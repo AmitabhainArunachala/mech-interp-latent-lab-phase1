@@ -1,0 +1,5277 @@
+Riemannian radial distributions on Riemannian symmetric
+spaces: Optimal rates of convergence for parameter estimation
+Hengchao Chen*
+May 14, 2024
+Abstract
+Manifold data analysis is challenging due to the lack of parametric distributions on mani-
+folds. To address this, we introduce a series of Riemannian radial distributions on Riemannian
+symmetric spaces. By utilizing the symmetry, we show that for many Riemannian radial distri-
+butions, the Riemannian Lp center of mass is uniquely given by the location parameter, and the
+maximum likelihood estimator (MLE) of this parameter is given by an M-estimator. Therefore,
+these parametric distributions provide a promising tool for statistical modeling and algorithmic
+design.
+In addition, our paper develops a novel theory for parameter estimation and minimax opti-
+mality by integrating statistics, Riemannian geometry, and Lie theory. We demonstrate that the
+MLE achieves a convergence rate of root-n up to logarithmic terms, where the rate is quantified
+by both the hellinger distance between distributions and geodesic distance between parameters.
+Then we derive a root-n minimax lower bound for the parameter estimation rate, demonstrating
+the optimality of the MLE. Our minimax analysis is limited to the case of simply connected
+Riemannian symmetric spaces for technical reasons, but is still applicable to numerous applica-
+tions. Finally, we extend our studies to Riemannian radial distributions with an unknown tem-
+perature parameter, and establish the convergence rate of the MLE. We also derive the model
+complexity of von Mises-Fisher distributions on spheres and discuss the effects of geometry in
+statistical estimation.
+1
+Introduction
+Manifold data appear in various forms across numerous applications, such as spherical data in bioin-
+formatics (Banerjee et al., 2005; Mardia and Jupp, 2009), hyperbolic data in network analysis (Kri-
+oukov et al., 2010), shape data in medical imaging (Kendall, 1984), and covariance matrices in brain
+computer interface (Barachant et al., 2011). The analysis of these geometric objects, known as man-
+ifold data analysis, poses a significant challenge due to their inherent nonlinearity, which limits the
+applicability of traditional Euclidean methods. In response, researchers have devised novel methods
+using tools from Riemannian geometry. Notable examples include Fr´echet mean (Bhattacharya and
+Patrangenaru, 2003), geodesic regression (Cornea et al., 2017; Fletcher, 2013), principal geodesic
+analysis (Fletcher et al., 2004), mixture models (Banerjee et al., 2005), and principal nested spheres
+*Department of Statistical Sciences, University of Toronto, hengchao.chen@mail.utoronto.ca.
+1
+arXiv:2405.07852v1  [math.ST]  13 May 2024
+(Jung et al., 2012). Moreover, numerous metric space data analysis methods, which apply to mani-
+fold data, are also developed by researchers. Notable examples include Fr´echet regression (Petersen
+and M¨uller, 2019), Fr´echet change point detection (Dubey and M¨uller, 2020), and Fr´echet analysis
+of variance (Dubey and M¨uller, 2019).
+However, due to the lack of parametric distributions on manifolds, most manifold data analy-
+sis methods are nonparametric (Patrangenaru and Ellingson, 2016; Bhattacharya and Bhattacharya,
+2012). Such limitation has substantially hindered the development of statistical modeling and algo-
+rithm design. In response, this paper introduces a family of Riemannian radial distributions on Rie-
+mannian homogeneous spaces1, which generalize von Mises-Fisher distributions on spheres (Mar-
+dia and Jupp, 2009) and Riemannian Gaussian distributions on Riemannian symmetric spaces (Said
+et al., 2017b). Similar to radial distributions on Euclidean spaces, the Riemannian radial distribution
+on a Riemannian homogeneous space M posits a density function that is proportional to:
+f(x; α, ϕ) ∝ef(x; α, ϕ) = e−ϕ(dg(x,α)),
+x ∈M,
+where ϕ is a monotone increasing function, α ∈M is the location parameter, and dg is the geodesic
+distance in M. By applying Riemannian geometry, we can demonstrate that this parametric distri-
+bution possesses multiple favorable properties.
+• First, the density f(x; α, ϕ) depends only on the distance dg(x, α) and becomes smaller when
+x moves away from α. Thus, it is natural to model random noise using this distribution.
+• Second, by using the homogeneity of M, we can show that the normalizing constant of f is
+a constant independent of the parameter α. Consequently, the maximum likelihood estimator
+(MLE) of α, based on n independent samples {xi}n
+i=1 drawn from f, is given by the following
+M-estimator:
+bαMLE = argmin
+α
+n
+X
+i=1
+ϕ(dg(xi, α)).
+This estimator can be efficiently solved by Riemannian optimization methods.
+• Finally, when M is a Riemannian symmetric space and ϕ is strictly increasing, we can show
+that the Riemannian Lp center of mass (Afsari, 2011) of the distribution f is uniquely given by
+the location parameter α. This non-trivial property characterizes the symmetry of Riemannian
+radial distributions on Riemannian symmetric spaces.
+These properties make this parametric family of distributions a promising choice for statistical mod-
+eling and algorithm design, such as building regression or mixture models, and designing differential
+privacy mechanisms.
+Besides introducing Riemannian radial distributions, our paper also develops a novel theory to
+address parameter estimation and minimax optimality2. First, we derive the convergence rate of the
+MLE of α by using empirical process theory and Riemannian geometry. Unlike most existing works
+1Examples include Euclidean spaces, spheres, hyperbolic spaces, real and complex projective spaces, tori, the spaces
+of symmetric positive definite matrices, Grassmann manifolds, Stiefel manifolds, and more.
+2Such theory does not exist in the literature even for Riemannian Gaussian distributions and von Mises-Fisher distri-
+butions. Thus, as special cases, these gaps are filled by our theory.
+2
+that impose entropy conditions (Petersen and M¨uller, 2019; Dubey and M¨uller, 2020), our paper
+imposes bounded parameters conditions, derives entropy estimates using the volume comparison
+theorem, and then deduces the convergence rate of the MLE by applying empirical process theory
+and examining the parameter identifiability. We show that the convergence rate of the MLE is root-n
+up to logarithmic terms for a broad range of Riemannian radial distributions. Such rate matches the
+Euclidean cases.
+To assess the optimality of the MLE’s convergence rate, we establish a minimax lower bound for
+parameter estimation3. For a variety of Riemannian radial distributions, such as Riemannian Gaus-
+sian distributions and von Mises-Fisher distributions, the derived minimax lower bound is root-n,
+confirming the MLE’s optimality up to logarithmic terms. Our analysis integrates the Fano’s method
+and geometric tools. Specifically, for simply connected noncompact Riemannian symmetric spaces,
+we will use the Hessian comparison theorem from Riemannian geometry, and for simply connected
+compact Riemannian symmetric spaces, we will use an integral formula and a Hessian formula for
+the squared distance function from Lie theory.
+As an extension, our paper also studies Riemannian radial distributions with an unknown tem-
+perature parameter and establishes the convergence rate of the MLE, which is root-n in a variety of
+contexts. Additionally, we investigate von Mises-Fisher distributions on the unit m-sphere Sm and
+establish its optimal parameter estimation rate as Θ( m
+√n), where Θ(·) omits constants independent
+of m and n, and the numerator m in the rate indicates the model complexity.
+1.1
+Organization
+The rest of this paper is structured as follows. We review differential geometry and empirical process
+theory in Section 2. Then we introduce Riemannian radial distributions on Riemannian homoge-
+neous spaces, and discuss their basic properties in Section 3. In Section 4, we study the MLE of the
+parameter in Riemannian radial distributions, and derive the rates of convergence of such estimator,
+measured by both the hellinger distance between distributions and the geodesic distance between
+parameters. In Section 5, we derive the minimax lower bounds for the parameter estimation rates.
+Section 6 examines Riemannian radial distributions with an unknown temperature, and establishes
+the convergence rate of the MLE. Section 7 delves into the model complexity of a specific class of
+Riemannian radial distributions: the von Mises-Fisher distributions on spheres. Concluding remarks
+are given in Section 8. Proofs are provided in the Appendix.
+2
+Preliminary
+2.1
+Differential geometry
+In this section, we introduce basic concepts of differential geometry. Familiarity with smooth mani-
+folds is assumed in the subsequent sections. For those less acquainted with the topic, an introduction
+to smooth manifolds is available in Appendix A.1 and Lee (2012). In the sequel, we will first review
+Riemannian manifolds in Section 2.1.1 and then review integration on manifolds in Section 2.1.2.
+Following that, we will review Riemannian symmetric spaces and discuss basic properties and ex-
+amples. Some details will be given in the Appendix. In addition, for a more complete treatment of
+3This analysis is restricted to simply connected Riemannian symmetric spaces for technical reasons.
+3
+the subject, we refer readers to Do Carmo and Flaherty Francis (1992); Helgason (2001); Petersen
+(2006); Cheeger et al. (1975).
+2.1.1
+Riemannian manifolds
+A Riemannian manifold (M, gM) is a smooth manifold M endowed with a Riemannian metric
+gM. The metric is a smoothly varying family of inner products gM
+x
+: TxM × TxM →R, where
+TxM is the tangent space of M at x. The metric enables us to measure geometric quantities on M,
+including curve lengths, distances, volumes, and curvatures.
+Let (M, gM) be a Riemannian manifold. An isometry of M is a diffeomorphism F : M →M
+that preserves the Riemannian metric, i.e., gM
+F(x)(dFx(v), dFx(w)) = gM
+x (v, w) for all v, w ∈TxM
+and x ∈M, where dFx is the differential of F at x. By definition, an isometry of M preserves all
+geometric quantities determined by the Riemannian metric. We will denote the set of all isometries
+of M by Iso(M).
+A mapping γ : [a, b] →M is a piecewise smooth curve in M if γ is continuous and there is
+a partition a = a1 < . . . < ak = b of [a, b] such that γ|[ai,ai+1] is smooth for i = 1, . . . , k −1.
+Given a piecewise smooth curve γ in M, its length is measured by integrating the norm of the
+tangent vectors along the curve. For any two points x, y ∈M, the distance dg(x, y) is given by
+the minimum length over all possible piecewise smooth curves between x and y. This dg defines a
+metric on M and (M, dg) forms a metric space. We say the manifold (M, gM) is complete if the
+metric space (M, dg) is complete.
+A curve in M is a geodesic if it locally minimizes the length between points. The Hopf-Rinow
+theorem states that a connected manifold M is complete if and only if all geodesics extend indef-
+initely. Moreover, in a connected complete manifold, any two points are connected by a length-
+minimizing geodesic.
+For any point x ∈M and vector v ∈TxM, there is a unique geodesic γv(t) with x as its
+initial location and v as its initial velocity. The exponential map Expx : TxM →M is defined
+by Expx(v) = γv(1) when γv(1) exists. Suppose M is a connected complete manifold. Then the
+exponential map is well-defined on the whole tangent space TxM. The segment domain of Expx is
+defined as
+seg(x) = {v ∈TxM | dg(x, γv(t)) = t∥v∥, ∀t ∈[0, 1]} ,
+where ∥v∥is the norm of the vector v. The Hopf-Rinow theorem implies that M = Expx(seg(x)).
+The interior of seg(x),
+seg0(x) = {sv ∈TxM | s ∈[0, 1), v ∈seg(x)} ,
+is an open star-shaped domain in TxM. On seg0(x), the exponential map Expx is a diffeomorphism
+and its inverse is called the logarithm map, denoted by Logx. The set seg(x) −seg0(x) is called the
+cut locus of x in TxM and the set Cut(x) := M −Expx(seg0(x)) is called the cut locus of x in
+M. Since M is complete, Cut(x) is closed with measure zero in M, meaning that Exp(seg0(x))
+covers M except for a null set. The distance function rx(y) = dg(x, y) is smooth at y if and only if
+y /∈Cut(x) ∪{x}. The injectivity radius at x is defined as
+inj(x) := dg(x, Cut(x)) =
+min
+y∈Cut(x) dg(x, y).
+The injectivity radius of M is defined as inj(M) = infx∈M inj(x).
+4
+2.1.2
+Integration on manifolds
+To introduce integration on manifolds, we first need the concept of volume density. Let (M, gM) be
+an m-dimensional Riemannian manifold, and A be a compact set contained in a local chart (U, φ)
+with the coordinate φ(y) = (x1(y), . . . , xm(y)). The volume of A is defined to be
+vol(A) =
+Z
+φ(A)
+√
+G ◦φ−1dx1 · · · dxm,
+where G = det(gij), gij = gM( ∂
+∂xi ,
+∂
+∂xj ), and dx1 · · · dxm is the Lebesgue measure on Rm. This
+definition is independent of the choice of the coordinate chart. To define the volume of a general
+set A which needs not to be in one coordinate chart, we use the partition of unity argument. More
+precisely, we pick a locally finite family of coordinate charts (Uα, φα, xα,1, . . . , xα,m) with S
+α Uα =
+M and a partition of unity {ρα} subordinate to this family of charts. We set
+vol(A) =
+X
+α
+Z
+φα(A∩Uα)
+ρα
+p
+Gα ◦φ−1
+α dx1
+α · · · dxm
+α ,
+as long as each integral in the sum exists. This leads to the following definition.
+Definition 2.1 (Volume density). The Riemannian volume density dvol on (M, gM) is defined as
+dvol =
+X
+α
+ρα
+p
+Gα ◦φ−1
+α dx1
+α · · · dxm
+α .
+Remark 2.2. Definition 2.1 is independent of the choice of the family of local charts {(Uα, φα)}
+and the choice of the partition of unity {ρα}.
+The Riemannian volume density dvol enables us to integrate functions on M. Let C0
+c (M) be
+the set of compactly supported continuous functions on M. For any f ∈C0
+c (M), its integral is
+given by
+Z
+M
+fdvol =
+X
+α
+Z
+Uα
+ραf
+p
+Gα ◦φ−1
+α dx1
+α · · · dxm
+α .
+Let C∞
+c (M) be the set of compactly supported differentiable functions on M. For any 1 ≤p < ∞,
+one can define the Lp norm and the L∞norm on C∞
+c (M) via
+∥f∥Lp =
+Z
+M
+|f|pdvol
+1/p
+,
+∥f∥∞= sup
+x |f(x)|,
+The completion of C∞
+c (M) under the Lp norm is the Lp space, Lp(M). Similarly, one can define
+the L∞space, L∞(M). A function f : M →R is said to be Lp integrable or bounded if its Lp
+norm or L∞norm is finite. Given two functions f, h : M →R, the Lp distance and L∞distance
+between them are defined as dp(f, h) := ∥f −h∥Lp and d∞(f, h) := ∥f −h∥∞, respectively. A
+density function on M is a non-negative function with a unit L1 norm. Given two density functions
+f, h : M →R, the hellinger distance between them is given by
+dh(f, h) := ∥
+p
+f −
+√
+h∥L2 =
+Z
+M
+(
+p
+f −
+√
+h)2dvol
+1/2
+.
+5
+The Kullbeck-Leibler (KL) divergence between two density functions f and h is given by
+DKL(f ∥h) :=
+Z
+M
+ln
+f
+h
+
+fdvol.
+Our paper will use these distances and divergences in our statistical analysis on manifolds.
+To evaluate integrals on manifolds, one can use the coordinate representation over a local chart.
+One typical choice is to use the normal coordinate system determined by the exponential map. Let
+(M, gM) be an m-dimensional complete Riemannian manifold and x ∈M. The normal coordinate
+chart at x is given by (Expx(seg0(x)), Logx), where seg0(x) is the interior of the segment domain
+of Expx. On the normal coordinate chart, the volume density dvol can be expressed as follows:
+dvol =
+√
+G ◦Expxdx1 · · · dxm,
+where G = det(gij), gij = gM( ∂
+∂xi ,
+∂
+∂xj ), and dx1 · · · dxm is the Lebesgue measure on Rm. Using
+the polar coordinates and replacing (x1, . . . , xm) by (r, Θ), one can rewrite dvol as
+dvol = λ(r, Θ)drdΘ,
+∀(r, Θ) ∈seg0(x),
+(2.1)
+where λ(r, Θ) = rm−1√
+G ◦Expx is defined over seg0(x) and dΘ is the usual surface measure on
+the unit sphere Sm−1. For convenience, we set λ(r, Θ) = 0 outside seg0(x). Since Cut(x) is of
+measure zero in M, for any real-valued function f, we have
+Z
+M
+fdvol =
+Z
+Expx(seg0(x))
+fdvol =
+Z
+seg0(x)
+f♭λ(r, Θ)drdΘ =
+Z
+TxM
+f♭λ(r, Θ)drdΘ,
+(2.2)
+where f♭= f ◦Expx. To evaluate the above integral, one can use Theorem 2.3 to replace λ(r, Θ)
+with simpler functions.
+Theorem 2.3. Let (M, gM) be an m-dimensional complete Riemannian manifold. Suppose the
+sectional curvatures of M lie within the interval [κmin, κmax]. Let λ(r, Θ) be given by (2.1). Then
+for all (r, Θ) ∈seg0(x), we have
+snm−1
+κmax(r) ≤λ(r, Θ) ≤snm−1
+κmin (r),
+where m is the dimension of M, and
+snκ(r) =
+
+
+
+
+
+
+
+sin(√κr)
+√κ
+1r≤π
+√κ ,
+if κ > 0,
+r,
+if κ = 0,
+sinh(√−κr)
+√−κ
+,
+if κ < 0.
+(2.3)
+Since λ(r, Θ) = 0 outside seg0(x), the inequality λ(r, Θ) ≤snm−1
+κmin (r) holds for all (r, Θ).
+Proof. This immediately follows from Theorem 27, Chapter 6 in Petersen (2006).
+Notably, when M is of constant curvature κ, then λ(r, Θ) = snm−1
+κ
+(r) for all (r, Θ) ∈seg0(x).
+Consequently, Theorem 2.3 essentially gives a volume comparison between a general Riemannian
+manifold and manifolds of constant curvatures. This theorem is useful throughout this paper.
+6
+2.1.3
+Riemannian symmetric spaces
+In this section, we will delve into a benign class of Riemannian manifolds called Riemannian sym-
+metric spaces. A Riemannian manifold (M, gM) is said to be symmetric if for each x ∈M, there
+is an isometry F of M fixing x and acting on the tangent space TxM as minus the identity. Such
+isometry F is called an involution as its square F ◦F is the identity. Riemannian symmetric spaces
+are homogeneous, thus satisfying all properties in Proposition 2.4. Note that a Riemannian manifold
+M is homogeneous if for any x, y ∈M, there is an isometry F ∈Iso(M) such that F(x) = y.
+Proposition 2.4. A Riemannian homogeneous space (M, gM) satisfies the following properties.
+• M is a complete Riemannian manifold.
+• The sectional curvatures of M lie within a bounded interval [κmin, κmax].
+• The injectivity radius inj(M) of M is larger than zero.
+• There exists a constant c0 > 0 such that for any x, y ∈M with dg(x, y) < c0, x and y are
+connected by a unique length-minimizing geodesic.
+• Let dvol be the volume density on M and f ∈L1(M) be an integrable function. Then
+Z
+M
+fdvol =
+Z
+M
+f ◦Fdvol,
+∀F ∈Iso(M).
+(2.4)
+In addition to the above properties, Riemannian symmetric spaces possess some distinct charac-
+teristics. Proposition 2.5 provides one of such characteristics. This property is useful in examining
+the population Lp center of mass of the Riemannian radial distributions on symmetric spaces. These
+are elaborated in Section 3.
+Proposition 2.5. Suppose (M, gM) is a Riemannian symmetric space. Then for any x ̸= y ∈M,
+there exists an isometry F ∈Iso(M) such that F(x) = y and F ◦F is the identity.
+Simply connected Riemannian symmetric spaces admit more benign properties. First, any sim-
+ply connected Riemannian symmetric space can be expressed as a product of a Hadamard Rieman-
+nian symmetric space4 and a simply connected compact Riemannian symmetric space, as outlined
+in the following proposition. It is thus natural to consider these two types of Riemannian symmetric
+spaces separately.
+Proposition 2.6. Let M be a simply connected Riemannian symmetric space. Then M is a product
+M = MH × MC,
+where MH is a Riemannian symmetric space that is also a Hadamard manifold, and MC is a simply
+connected compact Riemannian symmetric space.
+Proof. This immediately follows from Proposition 4.2 and Theorem 3.1 in Helgason (2001).
+4A Hadamard manifold is a complete and simply connected Riemannian manifold that has nonpositive curvatures.
+7
+Hadamard Riemannian symmetric spaces and simply connected compact Riemannian symmet-
+ric spaces exhibit distinct geometries. Notably, Hadamard Riemannian symmetric spaces are diffeo-
+morphic to Euclidean spaces and have empty cut loci. In contrast, compact Riemannian symmetric
+spaces have non-empty cut loci. The existence of such non-empty cut locus brings additional chal-
+lenges to our minimax analysis in Section 5. Advanced tools from Lie theories will be needed, and
+we postpone these materials to Appendix A.2.
+Finally, to conclude this section, we provide examples of Riemannian symmetric spaces (RSS)
+and Riemannian homogeneous spaces, along with discussions on their corresponding applications.
+These examples include Hadamard RSSs, simply connected compact RSSs, non-simply connected
+RSSs, and Riemannian homogeneous spaces that are not symmetric. By introducing these examples,
+we aim to provide readers with a deeper understanding of the applicability of our theories.
+Example 2.7. The following are examples of Hadamard RSSs.
+• The Euclidean space Rm is a Hadamard RSS. The space of symmetric positive definite (SPD)
+matrices endowed with the log-Euclidean metric is an example of the Euclidean spaces (Ar-
+signy et al., 2007). It has applications in medical imaging (Arsigny et al., 2006), brain con-
+nectivity (You and Park, 2021), and computer vision (Huang et al., 2015).
+• The hyperbolic space Hm is a Hadamard RSS. It has been used to model complex networks
+(Krioukov et al., 2010) or word embeddings (Nickel and Kiela, 2017), because it can naturally
+fit an exponentially growing number of nodes.
+• The space of SPD matrices endowed with the affine-invariant metric is a Hadamard RSS
+which is non-Euclidean (Moakher, 2005; Said et al., 2017a; Terras, 2012). It is useful in med-
+ical imaging (Pennec et al., 2006), computer vision (Tuzel et al., 2008), and brain-computer
+interface (Barachant et al., 2011).
+• The product space of several Hadamard RSSs is a Hadamard RSS.
+Example 2.8. The following are examples of simply connected compact RSSs.
+• The m-sphere Sm (m ≥2) is a simply connected compact RSS. It is well-suited to model
+ℓ2 normalized feature vectors and has received much attention in various fields (Mardia and
+Jupp, 2009).
+• The complex projective space CPm is a simply connected compact RSS. It is well-suited for
+modeling 2D landscape shape data (Kendall, 1984) and is applicable in archaeology, medical
+imaging, biology, and more (Dryden and Mardia, 2016).
+• The complex Grassmann manifold Gr(k, Cm), representing k-dimensional subspaces in Cm,
+is a simply connected compact RSS.
+• The product space of several simply connected compact RSSs is a simply connected compact
+RSS.
+Example 2.9. The following are examples of non-simply connected RSSs.
+• The circle S1 and m-dimensional torus Tm are non-simply connected RSSs.
+8
+• The real projective space RPm is a non-simply connected RSS, which is useful in axial data
+analysis (Bhattacharya and Patrangenaru, 2005).
+• The Grassmann manifold Gr(k, Rm), representing k-dimensional subspaces in Rm, is a non-
+simply connected RSS when k ≥1 and m −k > 1. It is useful in Riemannian optimization
+(Edelman et al., 1998) and computer vision (Turaga et al., 2008).
+• The product space of a non-simply connected RSS with any RSS is a non-simply connected
+RSS.
+Example 2.10. The following are examples of Riemannian homogeneous spaces that are not sym-
+metric.
+• Stiefel manifolds are Riemannian homogeneous spaces but not symmetric. They are suitable
+for modeling frames and are useful in Riemannian optimization (Edelman et al., 1998).
+• The product space of homogeneous spaces is still homogeneous but not necessarily symmet-
+ric.
+2.2
+Empirical process theory
+Besides geometry, this paper also uses empirical process theory (van der Vaart and Wellner, 1996)
+and minimax analysis (Wainwright, 2019) to derive the optimal rates of convergence. Both analyses
+involve the concepts of entropies introduced in this section. The first two concepts, metric entropy
+and packing number, are defined for all metric spaces. Essentially, they measure the same complex-
+ity as shown in Lemma 2.13. The metric entropy is typically useful in establishing the upper bound
+and the packing number is useful in deriving the lower bound.
+Definition 2.11 (Metric entropy). Let (X, d) be a metric space and A ⊆X. A δ-cover of A is a
+set {xi}N
+i=1 ⊆X such that for any y ∈A, there exists an i ∈[N] such that d(xi, y) ≤δ. The
+δ-covering number N(δ, A, d) is the cardinality of the smallest δ-cover of A. The δ-metric entropy
+is the logarithm of the δ-covering number, denoted by H(δ, A, d) = log N(δ, A, d).
+Definition 2.12 (Packing number). Let (X, d) be a metric space and A ⊆X. A δ-packing of A
+is a set {xi}N
+i=1 ⊆A such that d(xi, xj) > δ for all distinct i, j ∈[N]. The δ-packing number
+M(δ, A, d) is the cardinality of the largest δ-packing.
+Lemma 2.13 (Lemma 5.5 in Wainwright (2019)). For all δ > 0, the packing number and covering
+numbers are related as follows
+M(2δ, A, d) ≤N(δ, A, d) ≤M(δ, A, d).
+Besides metric entropy, to upper bound the convergence rate of an M-estimator, we also need to
+introduce bracketing entropy. This is defined for a functional space F = {f : M →R} equipped
+with a distance function d.
+Definition 2.14 (Bracketing entropy). Consider the functional space F equipped with the distance
+function d. Given two functions l, u ∈F with l ≤u, the bracket [l, u] is the set of all functions f ∈
+F with l ≤f ≤u. An ϵ-bracket is a bracket [l, u] with d(l, u) ≤ϵ. Let G ⊆F be some functional
+9
+class. The ϵ-bracketing number NB(ϵ, G, d) is the minimum number of ϵ-brackets needed to cover
+G. The bracketing entropy is the logarithm of the bracketing number, denoted by HB(ϵ, G, d) =
+log NB(ϵ, G, d).
+A key aspect of our paper is establishing desired bounds on specific entropies, which yields the
+desired convergence rates. Our analysis integrates statistics, differential geometry, and Lie theory,
+offering a deeper understanding on manifold data analysis.
+3
+Riemannian radial distributions
+In this section, we will define Riemannian radial distributions on Riemannian homogeneous spaces.
+We will begin by establishing the conditions under which these distributions are well-defined. Then
+we will explore fundamental properties of Riemannian radial distributions and give some examples.
+Our findings will show that Riemannian radial distributions form a promising parametric family of
+distributions, meriting deeper exploration.
+To proceed, we let (M, gM) be a Riemannian homogeneous space. Given a point α ∈M and
+a continuous, increasing function ϕ : [0, ∞) →[0, ∞), we can define the following function on M:
+ef(x; α, ϕ) = e−ϕ(dg(x,α)),
+∀x ∈M,
+(3.1)
+where dg(·, ·) is the geodesic distance on M. Suppose ef is integrable on M, then we can normalize
+it to obtain a density function f(x; α, ϕ) on M. Such density function only depends on the distance
+dg(x, α) between x and α, and decreases as the distance dg(x, α) increases. Thus, we refer to such
+density as a Riemannian radial distribution. The following proposition presents sufficient conditions
+under which ef is integrable and hence the Riemannian radial distribution is well-defined.
+Proposition 3.1. Suppose (M, gM) is a connected Riemannian homogeneous space with sectional
+curvatures bounded within [κmin, κmax]. Then the function ef, as defined in (3.1), is integrable over
+M in any of the following cases:
+(1) M is compact.
+(2) M is noncompact and ϕ satisfies
+Z ∞
+0
+e−ϕ(r) · snm−1
+κmin (r)dr < ∞,
+(3.2)
+where m is the dimension of M and snκmin(·) is given by (2.3).
+Remark 3.2. It is worth discussing the second case where M is noncompact. In this case, κmin is
+nonpositive, ensuring that snκmin(·) is well-defined over R+ and condition (3.2) is well-defined. If
+κmin = 0, then condition (3.2) reduces to
+Z ∞
+0
+e−ϕ(r)rm−1dr < ∞.
+Conversely, if κmin < 0, condition (3.2) becomes
+Z ∞
+0
+e−ϕ(r) · e
+√−κmin(m−1)rdr < ∞.
+10
+The differences between these two cases are significant. For instance, let us consider ϕ(r) = βrq for
+some constant β > 0 and q > 0. When κmin = 0, condition (3.2) is satisfied for all q > 0. However,
+for κmin < 0, this condition only holds for q ≥1. Moreover, when q = 1, this condition is only met
+if β > √−κmin(m −1). These sharp differences between the cases κmin = 0 and κmin < 0 stem
+from the varying rates of volume growth of balls in different manifolds M, highlighting the impact
+of geometry.
+Condition 3.3. We assume the following conditions hold.
+(1) (M, gM) is a connected Riemannian homogeneous space and we denote its maximum radius
+by rM = supx,y∈M dg(x, y).
+(2) ϕ is a nonnegative, increasing, and continuous function defined over [0, rM].5
+(3) ef(x; α, ϕ), as defined by (3.1), is integrable over M for some α ∈M.
+Going forward, we will always assume that Condition 3.3 is satisfied. Under this condition, we
+will first establish some basic properties of a Riemannian radial distribution in Proposition 3.4. In
+this proposition, we show that if ef(x; α, ϕ) is integrable over M for a point α ∈M, then ef(x; α, ϕ)
+is integrable over M for all α ∈M. Moreover, we show that the integral of ef(x; α, ϕ) is a constant
+independent of α, which we denote by
+Z(ϕ) = Z(α, ϕ) :=
+Z
+M
+ef(x; α, ϕ)dvol(x).
+(3.3)
+By normalizing ef, we can obtain the density function of a Riemannian radial distribution as follows:
+f(x; α, ϕ) =
+1
+Z(ϕ)e−ϕ(dg(x,α)),
+∀x ∈M.
+(3.4)
+Suppose ϕ is fixed and known, then the MLE for α, based on n independent samples {xi}n
+i=1 from
+f, is given by the following M-estimator
+αMLE = argmin
+α∈M
+n
+X
+i=1
+ϕ(dg(xi, α)).
+(3.5)
+This property follows from the fact that the normalizing constant Z(ϕ) is independent of α.
+Proposition 3.4. Assuming Condition 3.3 is satisfied and using the same notation, we have
+(1) ef(x; eα, ϕ) is integrable over M for all eα ∈M.
+(2) The normalizing constant Z(α, ϕ) =
+R
+M ef(x; α, ϕ)dvol(x) is independent of α.
+(3) Let f(x; α, ϕ) be the density function given by (3.4), where ϕ is considered fixed and known.
+Then the MLE of α, based on n independent samples {xi}n
+i=1 from f, is given by (3.5).
+5Throughout this paper, the interval [0, rM] is always interpreted as [0, ∞) when rM = ∞.
+11
+Proposition 3.4 is rooted in the homogeneity of M, yet it does not fully capture the symmetry of
+M when M is a Riemannian symmetric space. Indeed, if M is a Riemannian symmetric space, we
+can establish more favorable properties. To see this, recall that the Lp center of mass with respect
+to a density function f on M is given by
+αp = argmin
+α∈M
+Z
+M
+dp
+g(x, α)f(x)dvol(x).
+(3.6)
+Then in Proposition 3.5, we establish that under mild conditions, the Lp center of mass with respect
+to the density f(x; α, ϕ) is uniquely given by the location parameter α.
+Proposition 3.5. Assume (M, gM) is a Riemannian symmetric space and Condition 3.3 holds. Let
+f(x; α, ϕ) be the density given by (3.4) and p ∈(0, ∞). If ϕ is strictly increasing and the integral
+Z
+M
+dp
+g(x, α)f(x; α, ϕ)dvol(x)
+is finite, then the Lp center of mass with respect to f(x; α, ϕ) is uniquely given by the parameter α.
+Remark 3.6. Proposition 3.5 is a remarkable result, as the uniqueness of the Lp center of mass with
+respect to a distribution on a manifold is typically nontrivial. Previous results either assume that the
+manifold is Hadamard or the distribution is supported in a local area (Afsari, 2011; Karcher, 1977).
+In sharp contrast, our results drop the assumption of a localized support and cover all Riemannian
+symmetric spaces. Our results hold for a wide class of Riemannian radial distributions, highlighting
+that symmetric distributions on symmetric spaces can possess a unique Lp center of mass. One may
+extend such high-level ideas to the study of Gibbs distributions on symmetric spaces, and enrich the
+results in Said and Manton (2021).
+Proposition 3.4 and 3.5 suggest that Riemannian radial distributions form a promising paramet-
+ric class of distributions on Riemannian homogeneous spaces. Therefore, exploring their statistical
+properties is of considerable importance. One of the most important statistical problems is to esti-
+mate the parameter α given n independent samples {xi}n
+i=1 from f(x; α, ϕ). While we can employ
+the MLE in (3.5), it remains unknown, due to the non-Euclidean geometry,
+(1) What is the convergence rate of the MLE in terms of the sample size n?
+(2) Is the convergence rate achieved by the MLE optimal in the minimax sense?
+Answering these two questions will be the main focus of this paper. We will derive the convergence
+rate of the MLE in Section 4, and investigate the minimax lower bound on the parameter estimation
+rate in Section 5. Together, we will obtain the optimal rate of convergence for parameter estimation
+and demonstrate the optimality of the MLE in a wide range of contexts.
+Before moving on, let us present several examples of Riemannian radial distributions, including
+Riemannian Gaussian, Laplacian, and uniform distributions on Riemannian homogeneous spaces,
+and the von Mises-Fisher distributions on spheres. Keeping these examples in mind will be benefi-
+cial, as they can enhance understanding of the theories developed in the following sections.
+Example 3.7. Here are examples of Riemannian radial distributions and associated properties.
+12
+(1) The Riemannian Gaussian distribution is the Riemannian radial distribution with ϕ(r) = βr2
+for some constant β > 0. The density of such distribution is given by
+fN(x; α, β) =
+1
+ZN(β)e−βd2
+g(x,α),
+where ZN(β) =
+Z
+M
+e−βd2
+g(x,α)dvol(x).
+Given n independent samples {xi}n
+i=1 from fN, the MLE of α is the sample Fr´echet mean:
+αFM = argmin
+α∈M
+n
+X
+i=1
+d2
+g(xi, α).
+(2) The Riemannian Laplacian distribution is the Riemannian radial distribution with ϕ(r) = βr
+for some sufficiently large β > 0. The density of such distribution is given by
+fLap(x; α, β) =
+1
+ZLap(β)e−βdg(x,α),
+where ZLap(β) =
+Z
+M
+e−βdg(x,α)dvol(x).
+Given n independent samples {xi}n
+i=1 from fLap, the MLE of α is the sample Fr´echet median:
+αmed = argmin
+α∈M
+n
+X
+i=1
+dg(xi, α).
+(3) When M is a compact Riemannian homogeneous space and ϕ(r) = 0 for all r, the associated
+Riemannian radial distribution is called the uniform distribution. Such distribution f(x; α, ϕ)
+remains identical for all α ∈M, rendering the estimation of α impossible.
+Example 3.8. The von Mises-Fisher distribution on a unit m-sphere Sm is determined by the fol-
+lowing density function (Mardia and Jupp, 2009):
+fvMF(x; α, β) =
+1
+ZvMF(β)eβ⟨x,α⟩,
+ZvMF(β) =
+Z
+Sm eβ⟨x,α⟩dvol(x),
+β > 0,
+where a point in Sm is denoted by an ℓ2 normalized vector x ∈Rm+1 and ⟨·, ·⟩is the inner product
+in Rm+1. It is easy to show that ⟨x, α⟩= cos dg(x, α), where dg is the geodesic distance on Sm.
+Thus, the von Mises-Fisher distribution is a special case of the Riemannian radial distribution with
+ϕ(r) = β(1 −cos r), r ∈[0, π] and some β > 0.
+4
+Maximum likelihood estimation
+Consider a Riemannian homogeneous space (M, gM) and assume Condition 3.3 holds. Let f(x; α, ϕ)
+be the density in (3.4) with ϕ being fixed and known. The goal of this section is to derive the conver-
+gence rate for the MLE of α, based on n independent samples {xi}n
+i=1 from f. Since the MLE is an
+M-estimator, we will use empirical process theory to derive its convergence rate. Our first step is to
+give an entropy estimate for the studied functional class in Section 4.1. Then, we will use empirical
+process theory to derive the convergence rate of the MLE in Section 4.2, where the rate is measured
+by the hellinger distance between the true distribution and the estimated distribution. After that, we
+will examine the identifiability of the parameter and derive the parameter estimation rate in Section
+4.3.
+13
+4.1
+Entropy estimates
+Our first main theorem aims to establish entropy estimates for the following functional class
+F = {f(x; α, ϕ) | α ∈BM(α∗, D)},
+(4.1)
+where ϕ is considered fixed and known, and BM(α∗, D) is the geodesic ball defined by
+BM(α∗, D) = {α ∈M | dg(α, α∗) < D}.
+(4.2)
+Our analysis requires α to be bounded, a standard condition even in the Euclidean cases. Moreover,
+for a valid entropy estimate, we impose additional assumptions on ϕ.
+Condition 4.1. Let (M, gM) be an m-dimensional Riemannian homogeneous space with rM =
+supx,y∈M dg(x, y). Let ϕ be a continuous function on [0, rM] satisfying Condition 3.3. We assume
+the following conditions hold.
+(1) The function e−ϕ(r) is Lipschitz continuous on [0, rM] with a Lipschitz constant L.
+(2) When M is noncompact, the following function
+h(r) = e−ϕ(r/2)snm−1
+κmin (r)
+is integrable over [0, ∞), where κmin < 0 is a lower bound on the sectional curvatures of M
+and snκmin(·) is given by (2.3). Moreover, for all sufficiently small η,
+Z ∞
+Bη
+h(r)dr ≤c1ηc2,
+where Bη =
+log(1/η)
+2(m−1)√−κmin and c1, c2 > 0 are constants independent of η.
+Remark 4.2. A variety of functions ϕ satisfy Condition 4.1. For example, ϕ(r) = βrp with p > 1
+and β > 0, and ϕ(r) = βr with a sufficiently large β all satisfy Condition 4.1. When M = Sm is
+the unit m-sphere, ϕ(r) = β(1−cos(r)) also satisfies this condition. Thus, subsequent results, such
+as Theorem 4.3 and Corollary 4.4, hold for Riemannian radial distributions associated with these ϕ.
+Under Condition 4.1, we can derive the entropy estimates of F as follows.
+Theorem 4.3. Let (M, gM) be a Riemannian homogeneous space and ϕ a function such that Con-
+dition 4.1 holds. Let f(x; α, ϕ) be the density in (3.4) and F be the functional class in (4.1). Then
+for sufficiently small ϵ, we have
+log N(ϵ, F, d∞) ≲log(1
+ϵ ),
+log NB(ϵ, F, d1) ≲log(1
+ϵ ),
+log NB(ϵ, F, dh) ≲log(1
+ϵ ),
+where d∞, d1, dh represent the L∞, L1, and hellinger distance, respectively, and ≲omits constants
+independent of ϵ.
+14
+Proof. We will prove this theorem in three steps. First, we construct an ϵ-net S = {αi}N
+i=1 of the set
+X = BM(α∗, D). By Lemma C.1, this ϵ-net S can be chosen such that N ≲ϵ−m for sufficiently
+small ϵ, where ≲omits constants independent of ϵ.
+Next, we use S to construct the following net
+SF = {f(x; αi, ϕ) | αi ∈S}.
+(4.3)
+For any α ∈X, there is an αi ∈S such that dg(α, αi) ≤ϵ. By the Lipschitz property of f(x; α, ϕ)
+with respect to its parameter α, i.e., Lemma C.2, we have
+d∞(f(x; α, ϕ), f(x; αi, ϕ)) ≤Cϵ,
+where C is a constant independent of ϵ. Consequently, SF in (4.3) is a Cϵ-net of F, defined in (4.1),
+and
+N(Cϵ, F, d∞) ≤|SF| ≲ϵ−m.
+By rescaling ϵ, we obtain the following metric entropy estimate of F:
+log N(ϵ, F, d∞) ≲log(1
+ϵ ),
+where ≲omits constants independent of ϵ. This proves the first entropy inequality in the theorem.
+To proceed, we analyze the bracketing entropy log NB(ϵ, F, d1) and log NB(ϵ, F, dh). Observe
+that for any f(x; α, ϕ) ∈F, it holds that
+0 ≤f(x; α, ϕ) ≤
+1
+Z(ϕ),
+∀x ∈M.
+(4.4)
+In addition, if dg(x, α∗) ≥2D, then for all α ∈BM(α∗, D), we have
+dg(x, α) ≥dg(x, α∗) −dg(α, α∗) ≥dg(x, α∗)
+2
+.
+(4.5)
+Consequently, for all x with dg(x, α∗) ≥2D, we have
+f(x; α, ϕ) ≤
+1
+Z(ϕ)e−ϕ(dg(x,α∗)/2),
+(4.6)
+where we use (4.5) and the fact that ϕ is increasing. Combining (4.4) and (4.6), we conclude that
+H(x) =
+(
+1
+Z(ϕ)e−ϕ(dg(x,α∗)/2),
+if dg(x, α∗) > 2D,
+1
+Z(ϕ),
+otherwise,
+is an envelope for F, that is, f(x; α, ϕ) ≤H(x) for all x ∈M and α ∈X. Now construct brackets
+[li, ui] as follows:
+li = max{fi −η, 0},
+ui = min{fi + η, H},
+where {fi}N
+i=1 is the η-net of F under d∞. It is clear that F ⊆∪N
+i=1[li, ui] and
+ui −li ≤min{2η, H}.
+As a result, for any B > 0,
+d1(ui, li) :=
+Z
+M
+(ui −li)dvol ≤2η · vol(BM(α∗, B)) +
+Z
+dg(x,α∗)>B
+H(x)dvol(x).
+(4.7)
+To analyze this upper bound, we consider two cases, M is compact or noncompact, separately.
+15
+• Case 1: M is compact. In this case, by taking B > supx∈M dg(x, α∗), we obtain
+d1(ui, li) ≤2η · vol(M).
+This implies that for sufficiently small η,
+NB(2η · vol(M), F, d1) ≤N(η, F, d∞) ≲η−m.
+where ≲omits constants independent of η. By taking ϵ = 2η · vol(M), we obtain that for
+sufficiently small ϵ,
+log NB(ϵ, F, d1) ≲log(1
+ϵ ),
+where ≲omits constants independent of ϵ. Since NB(√ϵ, F, dh) ≤NB(ϵ, F, d1), we have
+log NB(ϵ, F, dh) ≲log(1
+ϵ )
+for sufficiently small ϵ, where ≲omits constants independent of ϵ.
+• Case 2: M is noncompact. In this case, we take B > 2D. The upper bound in (4.7) is then
+reduced to
+d1(ui, li) ≤2η · vol(BM(α∗, B)) +
+1
+Z(ϕ)
+Z
+dg(x,α∗)>B
+e−ϕ(dg(x,α∗)/2)dvol(x).
+Using the polar coordinate expression (2.2) of the integral, we obtain that
+d1(ui, li) ≤2η · vol(BM(α∗, B)) +
+1
+Z(ϕ)
+Z
+Sm−1
+Z ∞
+B
+e−ϕ(r/2)λ(r, Θ)drdΘ.
+(4.8)
+Let κmin < 0 be a lower bound on the sectional curvatures of M that is used in Condition
+4.1, and m the dimension of M. Then by the volume comparison theorem, Theorem 2.3, we
+have
+vol(BM(α∗, B)) ≤vol(Sm−1) ·
+Z B
+0
+snm−1
+κmin (r)dr
+≤C1e
+√−κmin(m−1)B,
+(4.9)
+where snκmin(·) is given by (2.3) and C1 is a constant independent of B. Furthermore, by
+Theorem 2.3, we have
+Z
+Sm−1
+Z ∞
+B
+e−ϕ(r/2)λ(r, Θ)drdΘ ≤vol(Sm−1) ·
+Z ∞
+B
+e−ϕ(r/2)snm−1
+κmin (r)dr
+≤C2
+Z ∞
+B
+h(r)dr,
+(4.10)
+where h(r) = e−ϕ(r/2)snm−1
+κmin (r) and C2 is a constant independent of B. By combining (4.8),
+(4.9), and (4.10), we obtain
+d1(ui, li) ≤2C1ηe
+√−κmin(m−1)B +
+C2
+Z(ϕ)
+Z ∞
+B
+h(r)dr.
+16
+Taking B = Bη =
+log(1/η)
+2(m−1)√−κmin , and using Condition 4.1, we conclude that for all suffi-
+ciently small η,
+d1(ui, li) ≤2C1η1/2 + c1C2
+Z(ϕ)ηc2 ≤Cηc,
+where c1, c2, C, c > 0 are constants independent of η. This implies that for sufficiently small
+η,
+NB(Cηc, F, d1) ≤N(η, F, d∞) ≲η−m,
+where ≲omits constants independent of η. By taking ϵ = Cηc, we obtain that for sufficiently
+small ϵ,
+log NB(ϵ, F, d1) ≲log(1
+ϵ ),
+where ≲omits constants independent of ϵ. Again, since NB(√ϵ, F, dh) ≤NB(ϵ, F, d1), we
+have
+log NB(ϵ, F, dh) ≲log(1
+ϵ )
+for sufficiently small ϵ, where ≲omits constants independent of ϵ.
+The proof of the theorem is complete by combining the above two cases.
+4.2
+Distribution estimation
+Once we obtain the bracketing entropy estimate of the functional class F in Theorem 4.3, we can use
+empirical process theory to derive the convergence rate of the MLE for the parameter α. Specifically,
+consider a true distribution f(x; αtr, ϕ) with the parameter αtr ∈X := BM(α∗, D). Then the MLE
+for α, based on n independent samples {xi}n
+i=1 drawn from f(x; αtr, ϕ), is given by
+bαMLE = argmin
+α∈X
+n
+X
+i=1
+ϕ(dg(xi, α)).
+(4.11)
+To derive the convergence rate of this MLE, we use the hellinger distance between the true distribu-
+tion f(x; αtr, ϕ) and the estimated distribution f(x; bαMLE, ϕ). Corollary 4.4 shows that this rate is
+root-n up to logarithmic terms, matching the classical results in the Euclidean cases.
+Corollary 4.4. Suppose (M, gM) is a Riemannian homogeneous space and Condition 4.1 holds.
+Let f(x; αtr, ϕ) be the true density in (3.4) with αtr ∈BM(α∗, D). Let bαMLE be the MLE for α,
+based on n independent samples {xi}n
+i=1 from f, defined in (4.11). Then for sufficiently large n, it
+holds with probability at least 1 −ce−c log2 n that
+dh(f(x; αtr, ϕ), f(x; bαMLE, ϕ)) ≲log n
+√n ,
+(4.12)
+d1(f(x; αtr, ϕ), f(x; bαMLE, ϕ)) ≲log n
+√n ,
+(4.13)
+where dh and d1 are the hellinger distance and the L1 distance, respectively, c is a constant, and ≲
+omits constants independent of n.
+17
+Proof. This follows from empirical process theory and the bracketing entropy estimates in Theo-
+rem 4.3. Specifically, by the bracketing entropy estimates in Theorem 4.3, the bracketing entropy
+integral satisfies that
+JB(δ, F, dh) :=
+Z δ
+0
+p
+log NB(u, F, dh)du ≲
+Z δ
+0
+log1/2(1
+u)du,
+for sufficiently small δ, where ≲omits constants independent of δ. By Theorem 2, Wong and Shen
+(1995), we conclude that with probability at least 1 −ce−c log2 n,
+dh(f(x; αtr, ϕ), f(x; bαMLE, ϕ)) ≲log n
+√n ,
+where ≲omits constants independent of n and c is a universal constant. This proves (4.12). Since
+the L1 distance is upper bounded by twice the hellinger distance, the inequality (4.13) follows from
+the inequality (4.12). This proves the corollary.
+4.3
+Parameter estimation
+This section aims to derive the convergence rate of the MLE in terms of the geodesic distance be-
+tween parameters. The key component is to examine the identifiability of the parameter α. Clearly,
+if ϕ is a constant, as in the uniform distribution in Example 3.7, the parameter is non-identifiable and
+thus the parameter estimation is impossible. To avoid this undesirable situation, we further assume
+that ϕ is strictly increasing and continuously differentiable. With these additional assumptions, we
+can establish the identifiability of the parameter α in the function f(x; α, ϕ). Furthermore, we show
+that the geodesic distance convergence rate is upper bounded by the rate of L1 distance convergence.
+These results are formally stated in Theorem 4.6.
+Condition 4.5. Let (M, gM) be a Riemannian homogeneous space with rM = supx,y dg(x, y).
+Assume ϕ is a function satisfying Condition 4.1. In addition, we assume that ϕ is strictly increasing
+on [0, rM] and continuously differentiable on (0, rM).
+Theorem 4.6. Suppose (M, gM) is a Riemannian homogeneous space and ϕ is a function satisfy-
+ing Condition 4.5. Let f(x; α, ϕ) be the density in (3.4) and X be a compact set in M. Let α0 ∈X
+be a fixed point. Then for all α ∈X, the following inequality holds:
+dg(α, α0) ≤C · d1(f(x; α, ϕ), f(x; α0, ϕ)),
+where d1 is the L1 distance and C > 0 is a constant independent of α.
+Proof. By Lemma C.6, we have
+lim
+ϵ→0 inf {D(α, α0)/dg(α, α0) | dg(α, α0) < ϵ} > 0,
+(4.14)
+where
+D(α, α0) = d1(f(x; α, ϕ), f(x; α0, ϕ)).
+Therefore, there exists a positive constant ϵ0 such that for all α with dg(α, α0) < ϵ0, the following
+inequality holds:
+dg(α, α0) ≤C1 · D(α, α0),
+(4.15)
+18
+where C1 > 0 is a constant independent of α. To prove the theorem, we then show that
+inf
+α∈X−BM(α0,ϵ0) D(α, α0) > 0,
+(4.16)
+where BM(α0, ϵ0) = {x ∈M | dg(x, α) < ϵ0} is a geodesic ball. Suppose on the contrary that
+inf
+α∈X−BM(α0,ϵ0) D(α, α0) = 0.
+Then there exists a sequence {αn}∞
+n=1 ⊆X −BM(α0, ϵ0) such that
+D(αn, α0) →0.
+Since X −BM(α0, ϵ0) is a compact set, we can apply Lemma C.3 to obtain that dg(αn, α0) →0.
+This contradicts the fact that dg(αn, α0) ≥ϵ0, and thus we prove the result (4.16). Combining this
+with (4.15), we immediately obtain the theorem.
+Theorem 4.6 allows us to transform the hellinger/L1 distance convergence rate into the parame-
+ter estimation rate. In particular, by combining Theorem 4.6 with Corollary 4.4, we can demonstrate
+that the parameter estimation rate of the MLE is root-n up to logarithmic terms. This result matches
+the classical results in the Euclidean cases and is presented in Corollary 4.7.
+Corollary 4.7. Assume (M, gM) is a Riemannian homogeneous space and ϕ satisfies Condition
+4.5. Let f(x; αtr, ϕ) be the true density in (3.4) with αtr ∈BM(α∗, D). Let bαMLE be the MLE for
+α, based on n independent samples {xi}n
+i=1 from f, defined in (4.11). Then for sufficiently large n,
+it holds with probability at least 1 −ce−c log2 n that
+dg(bαMLE, αtr) ≲log n
+√n ,
+where c is a constant independent of n and ≲omits constants independent of n.
+Proof. This immediately follows from Theorem 4.6 and Corollary 4.4.
+Remark 4.8. It can be seen that the conditions in Corollary 4.7 hold for a wide range of Riemannian
+radial distributions, such as Riemannian Gaussian distributions, Riemannian Laplacian distributions
+(ϕ(r) = βr with a sufficiently large β), and von Mises-Fisher distributions. Thus, the conclusions
+in Corollary 4.7 also hold for these Riemannian radial distributions.
+5
+Minimax lower bounds for parameter estimation rates
+In the previous section, we derived the parameter estimation rate of the MLE for α. To determine
+the optimality of this rate, this section establishes a lower bound for such rate. Our analysis employs
+the classical minimax framework, which will be revisited in Section 5.1. Then we will give a high-
+level intuition behind our minimax analysis in Section 5.2, highlighting the role of symmetry in our
+problem. Then in Section 5.3 and 5.4, we will rigorously establish the minimax lower bounds in the
+case of simply connected Riemannian symmetric spaces. These minimax lower bounds will match
+the upper bounds established in Section 4 up to logarithmic terms, thus establishing the optimality
+of the MLE for a wide range of Riemannian radial distributions.
+19
+5.1
+Minimax framework
+First, let us review the classical minimax analysis framework (Wainwright, 2019) within the context
+of our problem. Consider a Riemannian symmetric space (M, gM) and assume that ϕ is a function
+satisfying Condition 3.3. For any α ∈M, denote by f(x; α, ϕ) the density in (3.4). Our objective
+is to estimate the parameter α, based on samples {xi}n
+i=1 independently drawn from the distribution
+f(x; α, ϕ) for some unknown α ∈X := BM(α∗, D). Given any estimator bα, which is a measurable
+function mapping from Mn to M, we define its risk as
+E[dg(bα(x1, . . . , xn), α)],
+where the expectation is taken over the samples {xi}n
+i=1. Also, we define the minimax risk of the
+parameter estimation problem as
+Rn(ϕ) = inf
+bα sup
+α∈X
+E[dg(bα(x1, . . . , xn), α)],
+(5.1)
+where we take the supremum over all α ∈X and the infimum over all estimators bα. The goal is to
+establish a lower bound for this minimax risk under certain conditions on ϕ.
+One useful technique in bounding the minimax risk is through the Fano’s inequality from infor-
+mation theory. Given a finite set V ⊆X, we say it is 2δ-separated if dg(α, α′) ≥2δ for all distinct
+pairs α, α′ ∈V. Given any such 2δ-separated set, the Fano’s inequality states that the minimax risk
+(5.1) has the following lower bound:
+Rn(ϕ) ≥δ ·
+
+1 −IV + log 2
+log |V|
+
+,
+(5.2)
+where |V| is the cardinality of the set V, and
+IV = 1
+|V|
+X
+α∈V
+DKL(P n
+α ∥¯P).
+Here Pα represents the distribution f(x; α, ϕ), P n
+α denotes the n-product of the distribution Pα, ¯P
+denotes the mixture distribution
+1
+|V|
+P
+α∈V P n
+α , and DKL is the KL divergence. By the convexity of
+the KL divergence, we have that
+IV ≤
+1
+|V|2
+X
+α,α′∈V
+DKL(P n
+α ∥P n
+α′)
+(i)= n ·
+1
+|V|2
+X
+α,α′∈V
+DKL(Pα∥Pα′)
+≤n · sup
+α,α′∈V
+DKL(Pα∥Pα′),
+(5.3)
+where (i) uses the equality DKL(P n
+α ∥P n
+α′) = nDKL(Pα∥Pα′). By combining (5.3) with (5.2), we
+obtain the following lower bound for the minimax risk:
+Rn(ϕ) ≥δ ·
+
+1 −n · supα,α′∈V DKL(Pα∥Pα′) + log 2
+log |V|
+
+.
+(5.4)
+In concrete problems, we will establish the lower bound for Rn(ϕ) by selecting a suitable set V and
+determining upper bounds on DKL(Pα∥Pα′) for all pairs α, α′ ∈V.
+20
+5.2
+Symmetry
+To proceed, let us introduce our intuitions and emphasize the role of symmetry in our problem. Let
+(M, gM) be a Riemannian symmetric space and assume ϕ satisfies Condition 3.3. Our goal is to de-
+rive a lower bound on Rn(ϕ), defined in (5.1). For this purpose, we choose V = {α, α(2δ), α(−2δ)},
+where α ∈X and α(t) is a unit-speed geodesic in M with α(0) = α. We assume δ is sufficiently
+small such that V ⊆X and the distance between α(2δ) and α(−2δ) is 4δ. Thus, V is 2δ-separated
+and we can use (5.4) to derive a lower bound for Rn(ϕ).
+We need to establish an upper bound on supα,α′∈V DKL(Pα∥Pα′), where Pα denotes the density
+f(x; α, ϕ). For example, let us consider the pair (α, α(2δ)). By definition of f, we can rewrite the
+KL divergence between Pα and Pα(2δ) as follows:
+DKL(Pα∥Pα(2δ)) =
+1
+Z(ϕ) · (I(2δ) −I(0)),
+(5.5)
+where I(t), t ∈R is defined as
+I(t) =
+Z
+M
+ϕ(dg(x, α(t)))e−ϕ(dg(x,α))dvol(x).
+(5.6)
+Here α(t) is the unit-speed geodesic passing α(0) = α and α(2δ). Our valuable observation is the
+following symmetry result.
+Proposition 5.1 (Symmetry). Consider a Riemannian symmetric space (M, gM) and assume Con-
+dition 3.3 holds. Let α(t) be a geodesic in M with α(0) = α, and define I(t) as the integral (5.6).
+Then I(t) = I(−t) holds for all t ∈R.
+Proof. Since M is a Riemannian symmetric space, there is an isometry F of M such that F ◦F is
+the identity, F(α) = α, and F(α(t)) = α(−t) for all t ∈R, where α(t) represents a geodesic with
+α(0) = α. Using this F, we can show that
+I(t) =
+Z
+M
+ϕ(dg(x, α(t)))e−ϕ(dg(x,α))dvol(x)
+(i)=
+Z
+M
+ϕ(dg(F(x), α(t)))e−ϕ(dg(F(x),α))dvol(x)
+(ii)
+=
+Z
+M
+ϕ(dg(x, F(α(t))))e−ϕ(dg(x,F(α)))dvol(x)
+(iii)
+=
+Z
+M
+ϕ(dg(x, α(−t)))e−ϕ(dg(x,α))dvol(x)
+= I(−t),
+where (i) uses the property (2.4), (ii) uses the facts that F ∈Iso(M) and F ◦F is the identity, and
+(iii) follows from the definition of F.
+Proposition 5.1 shows that I(t) = I(−t) for all t ∈R. Thus, if I(t) has desired differentiability,
+then
+I(2δ) −I(0) = O(δ2)
+(5.7)
+21
+for sufficiently small δ. Combining this with (5.5), we obtain DKL(Pα∥Pα(2δ)) = O(δ2) for suffi-
+ciently small δ. If we can derive similar results for all pairs α, α′ ∈V, then we actually prove that
+for sufficiently small δ,
+Rn(ϕ) ≥δ ·
+
+1 −Cnδ2 + log 2
+log 3
+
+,
+where C > 0 is a universal constant. It implies that Rn(ϕ) ≥C1n−1/2 for some universal constant
+C1 > 0 and sufficiently large n, by taking Cnδ2 = 0.01. Up to logarithmic terms, this lower bound
+matches the upper bound we established in Section 4, and thus proving the optimality of the MLE.
+In the subsequent sections, we will delve into rigorous proofs of the above intuitions. Some of
+the unsolved challenges are
+• the integrability of the integral I(t);
+• the differentiability of I(t);
+• the upper bound (5.7).
+To address these issues, we will use Riemannian geometry and Lie theory. For technical reasons6,
+we will only consider simply connected Riemannian symmetric spaces. Due to distinct proof tech-
+niques, the noncompact and compact cases will be addressed separately in Section 5.3 and 5.4. The
+Lie theory will only be used in the compact case.
+5.3
+Simply connected noncompact Riemannian symmetric spaces
+Now, we consider a simply connected noncompact Riemannian symmetric space (M, gM) and let
+ϕ be a function satisfying Condition 3.3. By the decomposition result, Proposition 2.6, we can write
+M as a product space M = MH × MC, where MH is a Hadamard Riemannian symmetric space
+and MC is a simply connected compact Riemannian symmetric space. Moreover, the dimension of
+MH is positive since M is noncompact. By using this decomposition, we can write each point x ∈
+M as (xH, xC), where xH and xC represent the Hadamard and compact components, respectively.
+Our goal is to establish a lower bound on the minimax risk Rn(ϕ). For this purpose, we select
+a set V = {α, α(2δ), α(−2δ)}, where α(t) = (αH(t), αC) is a unit-speed geodesic with a constant
+compact component. We assume that α(0) = α ∈X and δ is sufficiently small such that V ⊆X
+and dg(α(2δ), α(−2δ)) = 4δ. Such choice of a curve is feasible as MH has a positive dimension,
+and this choice will significantly simplify our analysis due to the empty cut locus on MH.
+Our analysis will follow the intuitions in Section 5.2. First, by the Fano’s method and inequality
+(5.4), we can reduce the problem to estimating the following quantity:
+sup
+α,α′∈V
+DKL(Pα∥Pα′),
+(5.8)
+where Pα denotes the distribution f(x; α, ϕ). Then we will use Proposition 5.1 and the differentia-
+bility of I(t) in (5.6) to upper bound this quantity. Our proofs will need the following conditions on
+ϕ.
+6The cut locus on a simply connected Riemannian symmetric space is more tractable.
+22
+Condition 5.2. Consider a simply connected noncompact Riemannian symmetric space (M, gM).
+Let κmin < 0 be a lower sectional curvature bound of M and m the dimension of M. Assume the
+following conditions hold.
+(1) ϕ satisfies Condition 3.3.
+(2) The integral
+R ∞
+0 ϕ(2r)e−ϕ(r)snm−1
+κmin (r)dr is finite, where snκmin(r) is given by (2.3).
+(3) ϕ is second-order continuously differentiable on (0, ∞).
+(4) ϕ is convex and the integral
+R ∞
+0 ϕ′(2r)e−ϕ(r)snm−1
+κmin (r)dr is finite.
+(5) When m = 1, the integral
+Z ∞
+0
+ϕ′′(r)e−ϕ(max{r−1,0})dr
+is finite. When m > 1, the following integral
+Z ∞
+0
+
+ϕ′′(r) + 3ϕ′(r)sn′
+κmin(r)
+snκmin(r)
+
+e−ϕ(max{r−1,0})snm−1
+κmin (r)dr
+is finite.
+Remark 5.3. Many functions ϕ satisfy Condition 5.2, including ϕ(r) = βrp with p > 1 and β > 0,
+and ϕ(r) = βr with a sufficiently large β. Therefore, Proposition 5.4 and Theorem 5.5 below hold
+for Riemannian radial distributions associated with these ϕ.
+Under Condition 5.2, we can establish an upper bound for the quantity in (5.8), as presented in
+Proposition 5.4.
+Proposition 5.4. Let (M, gM) be a simply connected noncompact Riemannian symmetric space.
+Assume ϕ is a function satisfying Conditions 5.2. Let α(t) = (αH(t), αC) be a unit-speed geodesic
+in M with a constant compact component. Then for a sufficiently small δ0 > 0, we have
+DKL(Pα(t1)∥Pα(t2)) ≤C|t1 −t2|2,
+for all t1, t2 ∈R with |t1 −t2| ≤δ0, where C is a constant independent of the choice of t1, t2.
+Proof. By Lemma D.4, the KL divergence DKL(Pα(t1)∥Pα(t2)) is finite for all t1, t2 ∈R. Moreover,
+we can rewrite it as follows
+DKL(Pα(t1)∥Pα(t2)) =
+1
+Z(ϕ)(It1(∆) −It1(0)),
+(5.9)
+where ∆= t2 −t1, It1(t) is a function on R defined by
+It1(t) =
+Z
+M
+ϕ(dg(x, αt1(t)))e−ϕ(dg(x,αt1(0)))dvol(x),
+and αt1(t) = α(t+t1). Note that αt1(t) is also a unit-speed geodesic in M with a constant compact
+component. Therefore, without loss of generality, we may assume t1 = 0 and denote I0(t) by I(t).
+23
+By Lemma D.7, there exists a small constant δ0 > 0 such that for any |t| ≤δ0, the following bound
+holds:
+|I(t) −I(0)| ≤C0t2,
+where C0 is a constant independent of t. Combining this with (5.9), we have that for all |t| ≤δ0,
+DKL(Pα(0)∥Pα(t)) ≤Ct2,
+where C is a constant independent of t. By choosing a suitable geodesic α as we discussed, we can
+prove that for all t1, t2 ∈R with |t1 −t2| ≤δ0,
+DKL(Pα(t1)∥Pα(t2)) ≤C(t1 −t2)2,
+where C is a constant independent of t1 and t2. This proves the proposition.
+By using Proposition 5.4, we can now establish a lower bound on the minimax risk Rn(ϕ) in the
+following theorem. This minimax lower bound is of order n−1/2, matching the parameter estimation
+rates of the MLE in Corollary 4.7 up to logarithmic terms.
+Theorem 5.5. Let (M, gM) be a simply connected noncompact Riemannian symmetric space, and
+assume ϕ to be a function satisfying Condition 5.2. Let Rn(ϕ) be the minimax risk defined in (5.1).
+Then for sufficiently large n, we have
+Rn(ϕ) ≥Cn−1/2,
+where C > 0 is a constant independent of n.
+Proof. Pick V = {α, α(2δ), α(−2δ)}, where α(t) is a unit-speed geodesic with α(0) = α ∈X and
+a constant compact component. Let δ be sufficiently small such that dg(α(2δ), α(−2δ)) = 4δ and
+V ⊆X. Then V is a 2δ-separated set in X, and by inequality (5.4), we have
+Rn(ϕ) ≥δ ·
+
+1 −n · supα,α′ DKL(Pα∥Pα′) + log 2
+log 3
+
+.
+By Proposition 5.4, we have for sufficient small δ,
+sup
+α,α′ DKL(Pα∥Pα′) ≤C0δ2,
+where C0 is a constant independent of δ. Therefore,
+Rn(ϕ) ≥δ · {1 −C0nδ2 + log 2
+log 3
+}
+for sufficient small δ. When n is sufficiently large, we can take C0nδ2 = 0.01, and then obtain
+Rn(ϕ) ≥Cn−1/2,
+where C is a constant independent of n. This proves the theorem.
+24
+5.4
+Simply connected compact Riemannian symmetric spaces
+Now let us consider a simply connected compact Riemannian symmetric space (M, gM). Assume
+ϕ is a function satisfying Condition 3.3. To establish the lower bound on the minimax risk Rn(ϕ),
+defined in (5.1), we select a set V = {α, α(2δ), α(−2δ)}, where α(t) is a unit-speed geodesic in
+M. We choose δ to be sufficiently small such that dg(α(2δ), α(−2δ)) = 4δ. Then we shall use the
+analysis in Section 5.4 to obtain the minimax lower bound. Specifically, by the Fano’s method and
+inequality, we can reduce the problem to estimating the following quantity,
+sup
+α,α′∈V
+DKL(Pα∥Pα′),
+(5.10)
+where Pα denotes the distribution f(x; α, ϕ). To proceed, we will need the following conditions on
+ϕ.
+Condition 5.6. Consider a simply connected compact Riemannian symmetric space (M, gM). Let
+rM = supx,y dg(x, y) be the maximum radius of M and m ≥2 the dimension of M. We assume
+the following conditions hold.
+(1) ϕ is a Lipschitz continuous function on [0, rM] satisfying Condition 3.3.
+(2) ϕ is second-order continuously differentiable on (0, rM) and ϕ′ is bounded on (0, rM).
+(3) The integral
+R rM
+0
+|ϕ′′(r)|rm−1dr is finite.
+Remark 5.7. Many functions satisfy Condition 5.6. For example, ϕ(r) = βrp with p > 1 and β ≥
+0, and ϕ(r) = βr with a sufficiently large β all satisfy Condition 5.6. In addition, when M = Sm
+is the m-sphere, the function ϕ(r) = β(1 −cos(r)) also satisfies Condition 5.6. Consequently, the
+following Proposition 5.8 and Theorem 5.9 hold for Riemannian radial distributions associated with
+these ϕ.
+Under Condition 5.6, we can derive a desirable upper bound on the quantity in (5.10). This is
+presented in the following proposition.
+Proposition 5.8. Let (M, gM) be a simply connected compact Riemannian symmetric space and ϕ
+a function satisfying Condition 5.6. Let α(t) be a unit-speed geodesic in M. Then for a sufficiently
+small δ0 > 0, we have
+DKL(Pα(t1)∥Pα(t2)) ≤C|t1 −t2|2,
+for any t1, t2 ∈R with |t1 −t2| ≤δ0, where C is a constant independent of the choice of t1, t2.
+Proof. By Lemma D.10, the KL divergence DKL(Pα(t1)∥Pα(t2)) is finite for all t1, t2 ∈R. It can
+be rewritten as follows
+DKL(Pα(t1)∥Pα(t2)) =
+1
+Z(ϕ)(It1(∆) −It1(0)),
+(5.11)
+where ∆= t2 −t1, It1(t) is a function on R defined by
+It1(t) =
+Z
+M
+ϕ(dg(x, αt1(t)))e−ϕ(dg(x,αt1(0)))dvol(x),
+25
+and αt1(t) = α(t + t1). Here αt1(t) is also a unit-speed geodesic in M. Thus, by Lemma D.13,
+there exists a small constant δ0 > 0 such that for any |∆| ≤δ0, the following bound holds:
+|It1(∆) −It1(0)| ≤C0∆2,
+where C0 is a constant independent of t. Combining this with (5.11), we have that for all |∆| ≤δ0,
+DKL(Pα(t1)∥Pα(t2)) ≤C∆2,
+where C is a constant independent of t1 and t2. This proves the proposition.
+By using Proposition 5.8, we can now establish a lower bound on the minimax risk Rn(ϕ) in the
+following theorem. This minimax lower bound is of order n−1/2, matching the parameter estimation
+rates of the MLE in Corollary 4.7 up to logarithmic terms.
+Theorem 5.9. Let (M, gM) be a simply connected compact Riemannian symmetric space and ϕ a
+function satisfying Condition 5.6. Define Rn(ϕ) as the minimax risk in (5.1). Then for sufficiently
+large n, we have
+Rn(ϕ) ≥Cn−1/2,
+where C > 0 is a constant independent of n.
+Proof. Pick V = {α, α(2δ), α(−2δ)}, where α(t) is a unit-speed geodesic in M with α(0) = α.
+Let δ be sufficiently small such that
+dg(α(2δ), α(−2δ)) = 4δ.
+Then V is a 2δ-separated set in M, and by inequality (5.4), we have
+Rn(ϕ) ≥δ ·
+
+1 −n · supα,α′ DKL(Pα∥Pα′) + log 2
+log 3
+
+.
+By Proposition 5.8, we have for sufficient small δ,
+sup
+α,α′ DKL(Pα∥Pα′) ≤C0δ2,
+where C0 is a constant independent of δ. Therefore,
+Rn(ϕ) ≥δ · {1 −C0nδ2 + log 2
+log 3
+}
+for sufficient small δ. When n is sufficiently large, we can take C0nδ2 = 0.01, and then obtain
+Rn(ϕ) ≥Cn−1/2,
+where C is a constant independent of n. This proves the theorem.
+26
+6
+Riemannian radial distributions with an unknown temperature
+In previous sections, we study the Riemannian radial distribution f(x; α, ϕ) with a fixed and known
+function ϕ, where the primary goal is to estimate the unknown location parameter α. In this section,
+we aim to extend this problem to a more practical setting where the Riemannian radial distribution
+has an additional unknown temperature parameter. Specifically, for a general Riemannian homoge-
+neous space (M, gM), we shall study the following parametric family of distributions on M:
+f(x; α, β, ϕ) =
+1
+Z(β, ϕ)e−βϕ(dg(x,α)),
+∀x ∈M,
+(6.1)
+where ϕ is a function known a priori, α ∈M and β > 0 are the unknown location and temperature
+parameters, respectively, and Z(β, ϕ) =
+R
+M e−βϕ(dg(x,α))dvol(x) is the normalizing constant. Our
+objective is to investigate the MLE for the parameters α and β, and derive their rates of convergence.
+Combined with the minimax lower bounds established in Section 57, we shall obtain the optimal
+parameter estimation rates and demonstrate the optimality of the MLE in a variety of contexts.
+The rest of this section proceeds as follows. Section 6.1 presents basic properties of Riemannian
+radial distributions with an unknown temperature parameter, such as the properties of the MLE. In
+Section 6.2, 6.3, and 6.4, we study the convergence rates of the MLE. Specifically, Section 6.2 gives
+an entropy estimate of a certain functional class, Section 6.3 derives the distribution estimation rates
+using the empirical process theory, and Section 6.4 establishes the parameter estimation rates.
+6.1
+Maximum likelihood estimation
+Let (M, gM) be a Riemannian homogeneous space and ϕ a function such that ϕβmin satisfies Con-
+dition 3.3, where ϕβ(r) = βϕ(r) and βmin > 0 is a constant. Then for any β ≥βmin, the function
+ϕβ satisfies Condition 3.3 and f(x; α, β, ϕ) is well-defined, since ϕβ ≤ϕβmin for all β ≥βmin. To
+proceed, we will always assume this condition, summarized below, is satisfied.
+Condition 6.1. Let (M, gM) be a Riemannian homogeneous space. We assume that ϕ is a function
+such that ϕβmin(·) = βminϕ(·) satisfies Condition 3.3 for some constant βmin > 0.
+Proposition 6.2 derives the MLEs for α and β, based on n independent samples drawn from the
+distribution f(x; α, β, ϕ). Notably, the MLE of α is the same as when β is known. Thus, estimating
+α via Riemannian optimization is equally straightforward regardless of whether β is known or not.
+Proposition 6.2. Let (M, gM) be a Riemannian homogeneous space and ϕ a function satisfying
+Condition 6.1 for a constant βmin > 0. Let f(x; α, β, ϕ) be a true distribution with an unknown
+α ∈X ⊆M and β ≥βmin. Given n samples {xi}n
+i=1 drawn independently from f(x; α, β, ϕ), the
+MLEs for α and β are given by
+bαMLE = argmin
+α∈X
+n
+X
+i=1
+ϕ(dg(xi, α)),
+bβMLE = argmin
+β
+β
+n
+X
+i=1
+ϕ(dg(xi, bαMLE)) + n log Z(β, ϕ),
+where Z(β, ϕ) is the normalizing constant in the distribution f(x; α, β, ϕ).
+7The minimax lower bounds in Section 5 adapt to the case where the temperature parameter is unknown, since Section
+5 addresses the simpler case where the temperature parameter is fixed and known.
+27
+6.2
+Entropy estimate
+To derive the convergence rate of the MLEs for α and β, we first provide entropy estimates for the
+following functional class
+F = {f(x; α, β, ϕ) | α ∈X, β ∈[βmin, βmax]},
+(6.2)
+where X = BM(α∗, D) is a geodesic ball in M and 0 < βmin ≤βmax < ∞are lower and upper
+bounds for β. For an effective entropy estimate, we impose the following conditions on ϕ.
+Condition 6.3. Let (M, gM) be an m-dimensional Riemannian homogeneous space with rM =
+supx,y∈M dg(x, y) and ϕ a function satisfying Condition 6.1 for βmin > 0. We assume the following
+conditions are satisfied.
+(1) ϕ is differentiable on [0, rM] and |ϕ′(r)e−βminϕ(r)| is bounded on [0, rM] by a constant L.
+(2) When M is noncompact, the following two functions
+h(r) = e−βminϕ(r/2)snm−1
+κmin (r),
+h1(r) = ϕ(r)e−βminϕ(r)snm−1
+κmin (r),
+are integrable over [0, ∞), where κmin < 0 is a lower bound on the sectional curvatures of
+M and snκmin(·) is given by (2.3). In addition, for all sufficiently small η,
+Z ∞
+Bη
+h(r)dr ≤c1ηc2,
+where Bη =
+log(1/η)
+2(m−1)√−κmin and c1, c2 > 0 are constants independent of η.
+Remark 6.4. A broad range of functions ϕ satisfy Condition 6.3 for a given βmin > 0. For example,
+ϕ(r) = νrp with p > 1 and ν > 0, and ϕ(r) = νr with a sufficiently large ν all satisfy Condition
+6.3. When M = Sm is the m-sphere, ϕ(r) = ν(1−cos(r)) with ν > 0 also satisfies this condition.
+Consequently, the following Theorem 6.5 and Corollary 6.6 hold for Riemannian radial distributions
+associated with these ϕ.
+Under Condition 6.3, we can establish the entropy estimates of F as follows.
+Theorem 6.5. Assume (M, gM) is a Riemannian homogeneous space and ϕ is a function satisfying
+Condition 6.3 for βmin > 0. Let f(x; α, β, ϕ) be the density in (6.1) and F the functional class in
+(6.2). Then for sufficiently small ϵ, the following entropy estimates hold:
+log N(ϵ, F, d∞) ≲log(1
+ϵ ),
+log NB(ϵ, F, d1) ≲log(1
+ϵ ),
+log NB(ϵ, F, dh) ≲log(1
+ϵ ),
+where d∞, d1, dh represent the L∞, L1, and hellinger distance, respectively, and ≲omits constants
+independent of ϵ.
+28
+6.3
+Distribution estimation
+Once we obtain the entropy estimate, we can derive the convergence rate of the MLEs of α and β
+using empirical process theory. Specifically, we assume f(x; αtr, βtr, ϕ) is the true distribution with
+αtr ∈X := BM(α∗, D) and βtr ∈[βmin, βmax]. Let bαMLE and bβMLE be the MLEs for α and β
+based on n independent samples drawn from f. Then the convergence rate of such MLEs, measured
+by the hellinger distance between the true and estimated distributions, is derived in Corollary 6.6. It
+shows that this rate is root-n up to logarithmic terms, matching the classical results in the Euclidean
+cases.
+Corollary 6.6. Suppose (M, gM) is a Riemannian homogeneous space and ϕ satisfies Condition
+6.3 for βmin > 0. Let f(x; αtr, βtr, ϕ) be the true density with αtr ∈X and βtr ∈[βmin, βmax]. Let
+bαMLE and bβMLE be the MLEs for α and β, based on n independent samples drawn from f. Then
+for sufficiently large n, it holds with probability at least 1 −ce−c log2 n that
+dh(f(x; αtr, βtr, ϕ), f(x; bαMLE, bβMLE, ϕ)) ≲log n
+√n ,
+(6.3)
+d1(f(x; αtr, βtr, ϕ), f(x; bαMLE, bβMLE, ϕ)) ≲log n
+√n ,
+(6.4)
+where dh and d1 are the hellinger distance and the L1 distance, respectively, c is a constant, and ≲
+omits constants independent of n.
+6.4
+Parameter estimation
+To proceed, we derive the parameter estimation rates of the MLEs for α and β. The key result is
+the following theorem, which controls the distance between parameters by the L1 distance between
+distributions. This identifiability result allows us to transform the hellinger/L1 distance convergence
+rate in Corollary 6.6 into the parameter estimation rates.
+Condition 6.7. Assume (M, gM) is a Riemannian homogeneous space with rM = supx,y dg(x, y).
+Assume ϕ satisfies Condition 6.3 for some βmin > 0. In addition, we assume that ϕ is strictly in-
+creasing on [0, rM] and continuously differentiable on (0, rM).
+Theorem 6.8. Suppose (M, gM) is a Riemannian homogeneous space and ϕ satisfies Condition
+6.7 for βmin > 0. Let X ⊆M be a compact set and βmax ≥βmin be a finite constant. Fix α0 ∈X
+and β0 ∈[βmin, βmax]. Then for any α ∈X and β ∈[βmin, βmax], the following bounds hold:
+dg(α, α0) + |β −β0| ≤C · d1(f(x; α, β, ϕ), f(x; α0, β0, ϕ)),
+where d1 is the L1 distance and C > 0 is a constant independent of α and β.
+By combining Theorem 6.8 and Corollary 6.6, we shall obtain the parameter estimation rate of
+the MLEs for α and β as follows.
+Corollary 6.9. Suppose (M, gM) is a Riemannian homogeneous space and ϕ satisfies Condition
+6.7 for βmin > 0. Let f(x; αtr, βtr, ϕ) be the true density with α ∈X = BM(α∗, D) and βtr ∈
+29
+[βmin, βmax]. Let bαMLE, bβMLE be the MLEs for α and β, based on n independent samples drawn
+from f. Then for sufficiently large n, it holds with probability at least 1 −ce−c log2 n that
+dg(bαMLE, αtr) + |bβMLE −βtr| ≲log n
+√n ,
+where c is a constant independent of n and ≲omits constants independent of n.
+Proof. This corollary immediately follows from Theorem 6.8 and Corollary 6.6.
+Remark 6.10. Examples in Remark 6.4 satisfy the conditions in Corollary 6.9. Thus, the parameter
+estimation rates derived in Corollary 6.9 hold for the MLEs associated with those distributions.
+7
+Model complexity for von Mises-Fisher distributions
+In previous sections, we show for a wide range of Riemannian radial distributions that the optimal
+parameter estimation rate is root-n up to logarithmic terms. This rate aligns with the classical results
+in Euclidean cases, indicating that the sample size n plays a similar role in determining estimation
+accuracy in manifold settings. However, such theory does not tell us what the model complexity is,
+such as the dependence on the dimension m of the manifold. Thus, it gives limited insights on how
+geometry may affect the complexity of a statistical model. Motivated by this issue, this section uses
+von Mises-Fisher distributions on spheres as an example8, and establishes its model complexity.
+7.1
+Formulation
+Let M = Sm be the unit m-sphere, and recall that the von Mises-Fisher distribution on Sm is given
+by
+fvMF(x; α, β) =
+1
+ZvMF(β)eβ cos dg(x,α),
+ZvMF(β) =
+Z
+Sm eβ cos dg(x,α)dvol(x),
+(7.1)
+where dg is the geodesic distance, α ∈Sm is the location parameter, and β is the dispersion param-
+eter. For simplicity, we assume that β is known a priori and our aim is to estimate α. Then the MLE
+of α, based on n independent samples {xi}n
+i=1 drawn from fvMF(x; α, β), is given by the following
+M-estimator:
+bαMLE = argmax
+α∈Sm
+n
+X
+i=1
+cos dg(xi, α).
+It is natural to ask what the convergence rate of the MLE is and how it depends on the dimension m
+of the sphere. In addition, one may ask whether this dependence is optimal in the minimax sense.
+Answering these questions is the main objective of this section. Specifically, we will establish the
+convergence rate of the MLE in Section 7.2. We will then derive a compatible minimax lower bound
+in Section 7.3, which demonstrates the optimality of the MLE in the minimax sense.
+8Characterizing the tight model complexity of general Riemannian radial distributions on Riemannian symmetric
+spaces is challenging, since it depends on both the manifold structure and the function ϕ. Therefore, we do not touch the
+general cases in this paper, and leave relevant study to future works.
+30
+7.2
+Maximum likelihood estimation
+This section derives the convergence rate of the MLE. To that end, we first provide entropy estimates
+for the following functional class:
+F = {fvMF(x; α, β) | α ∈Sm}.
+(7.2)
+The result is presented in the following theorem.
+Theorem 7.1. Let fvMF(x; α, β) be the von Mises-Fisher distribution on Sm and F the functional
+class in (7.2). Then for any sufficiently small ϵ, the following entropy estimates hold:
+log N(ϵ, F, d∞) ≤2m log(1
+ϵ ),
+log NB(ϵ, F, d1) ≤2m log(1
+ϵ ),
+log NB(ϵ, F, dh) ≤2m log(1
+ϵ ),
+where d∞, d1, and dh denote the L∞, L1, and hellinger distance, respectively.
+After we obtain the entropy estimate in Theorem 7.1, we can apply empirical process theory to
+derive the convergence rate of the MLE. This is presented in the following corollary.
+Corollary 7.2. Let fvMF(x; α, β) be the von Mises-Fisher distribution on Sm, and bαMLE the MLE
+of α based on n independent samples drawn from fvMF(x; αtr, β). Then for sufficiently large n, it
+holds with probability at least 1 −ce−cm log2 n that
+dh(f(x; bαMLE, β), f(x; αtr, β)) ≤C√m log n
+√n
+,
+(7.3)
+d1(f(x; bαMLE, β), f(x; αtr, β)) ≤2C√m log n
+√n
+,
+(7.4)
+where dh and d1 represent the hellinger and L1 distances, respectively, and c, C > 0 are constants
+independent of n and m.
+Furthermore, by studying the identifiability of the parameter α in fvMF(x; α, β), we obtain the
+parameter estimation rate of the MLE as follows.
+Theorem 7.3. Let fvMF(x; α, β) be the von Mises-Fisher distribution on Sm, and bαMLE the MLE
+of α based on n independent samples drawn from fvMF(x; αtr, β). Then for sufficiently large n, it
+holds with probability at least 1 −ce−cm log2 n that
+dg(bαMLE, αtr) ≤Cm log n
+√n
+,
+where c, C > 0 are constants independent of n and m.
+Remark 7.4. Observe that the hellinger distance rate in Corollary 7.2 and the parameter estimation
+rate in Theorem 7.3 differ by a root-m term. Such difference stems from the parameter identifiability
+for the von Mises-Fisher distribution, which highlights the effects of geometry on the precision of
+statistical estimates.
+31
+7.3
+Minimax lower bounds
+To assess the optimality of the model complexity established in Theorem 7.3, we derive a compatible
+minimax lower bound using the Fano’s method. Specifically, Let fvMF(x; α, β) be the von Mises-
+Fisher distribution on Sm. Let {xi}n
+i=1 be n independent samples drawn from fvMF(x; α, β) with
+an unknown α ∈Sm. We define the minimax risk Rn,vMF(β) of the parameter estimation problem
+as follows:
+Rn,vMF(β) = inf
+bα sup
+α E[dg(bα(x1, . . . , xn), α)],
+(7.5)
+where we take the infimum over all estimators bα, take the supremum over all feasible parameters
+α ∈Sm, and take the expectation over the independent samples {xi}n
+i=1. Our objective is to lower
+bound this minimax risk, and our main result is the following theorem.
+Theorem 7.5. Let fvMF(x; α, β) be the von Mises-Fisher distribution defined on the m-sphere Sm.
+Let Rn,vMF(β) be the minimax risk defined in (7.5). Then for sufficiently large n, we have
+Rn,vMF(β) ≥Cmn−1/2,
+where C > 0 is a constant independent of n and m.
+By comparing the minimax lower bound with the convergence rate of the MLE in Theorem 7.3,
+we conclude that the optimal convergence rate is eΘ(mn−1/2), where eΘ(·) omits logarithmic terms,
+and that the MLE is optimal in the minimax sense. Also, by comparing this rate with the Gaussian
+distributions in the Euclidean space Rm, whose minimax optimal rate is Θ(√m/√n), we find that
+there is an additional root-m term for the von Mises-Fisher distribution. This demonstrates that the
+geometry can affect the statistical estimation accuracy, and it is promising to draw more conclusions
+on the impacts of geometry on statistics in future research.
+8
+Conclusion
+Manifold data analysis is challenging partially due to the lack of parametric distributions on mani-
+folds. In response, this paper introduces a series of Riemannian radial distributions on Riemannian
+symmetric spaces. By using homogeneity and symmetry, we establish favorable properties of these
+parametric distributions, making them a promising candidate for statistical modeling and algorithm
+design. In addition, we introduce a novel theory for parameter estimation and minimax optimality,
+leveraging statistics, Riemannian geometry, and Lie theory. We show that for a wide range of Rie-
+mannian radial distributions, the convergence rate of the MLE is root-n up to logarithmic terms. We
+also derive a root-n minimax lower bound for the parameter estimation rate when M is a simply
+connected Riemannian symmetric space. This demonstrates the optimality of the MLE in a variety
+of contexts. Extensions to (1) Riemannian radial distributions with an unknown temperature param-
+eter and (2) model complexity of von Mises-Fisher distributions are also provided in this paper. To
+conclude, let us highlight several promising directions for future exploration.
+• It is promising to use Riemannian radial distributions to build sophisticated statistical models
+and design efficient algorithms. Potential examples include regression models (Cornea et al.,
+2017), mixture models (Banerjee et al., 2005), and differential privacy mechanisms (Reimherr
+et al., 2021; Jiang et al., 2023).
+32
+• It is intriguing to develop the concept of covariance matrix on Riemannian symmetric spaces.
+In Euclidean spaces, Gaussian distributions with general covariance matrices are much more
+useful than those with isotropic covariance matrices. Therefore, extending Riemannian radial
+distributions to include more complex dependence structures is a promising direction.
+• It is interesting to investigate the role of Riemannian radial distributions in hypothesis testing
+over manifolds. Such procedures may provide efficient tools for uncertainty quantification.
+• Technically, it is interesting to examine minimax lower bounds for parameter estimation when
+M is not a simply connected Riemannian symmetric space. New theoretical tools are needed
+as the structure of the cut locus is more complicated. Besides, it is promising to investigate
+the model complexity of more complex statistical models on manifolds. This will reveal how
+geometry may affect the model complexity.
+References
+Afsari, B. (2011). Riemannian Lp center of mass: existence, uniqueness, and convexity. Proceed-
+ings of the American Mathematical Society, 139(2):655–673.
+Arsigny, V., Fillard, P., Pennec, X., and Ayache, N. (2006). Log-euclidean metrics for fast and
+simple calculus on diffusion tensors. Magnetic Resonance in Medicine: An Official Journal of
+the International Society for Magnetic Resonance in Medicine, 56(2):411–421.
+Arsigny, V., Fillard, P., Pennec, X., and Ayache, N. (2007). Geometric means in a novel vector
+space structure on symmetric positive-definite matrices. SIAM journal on matrix analysis and
+applications, 29(1):328–347.
+Banerjee, A., Dhillon, I. S., Ghosh, J., Sra, S., and Ridgeway, G. (2005). Clustering on the unit
+hypersphere using von mises-fisher distributions. Journal of Machine Learning Research, 6(9).
+Barachant, A., Bonnet, S., Congedo, M., and Jutten, C. (2011). Multiclass brain–computer in-
+terface classification by riemannian geometry. IEEE Transactions on Biomedical Engineering,
+59(4):920–928.
+Bhattacharya, A. and Bhattacharya, R. (2012). Nonparametric inference on manifolds: with appli-
+cations to shape spaces, volume 2. Cambridge University Press.
+Bhattacharya, R. and Patrangenaru, V. (2003). Large sample theory of intrinsic and extrinsic sample
+means on manifolds. The Annals of Statistics, 31(1):1–29.
+Bhattacharya, R. and Patrangenaru, V. (2005). Large sample theory of intrinsic and extrinsic sample
+means on manifolds—ii.
+Cheeger, J., Ebin, D. G., and Ebin, D. G. (1975). Comparison theorems in Riemannian geometry,
+volume 9. North-Holland publishing company Amsterdam.
+Cornea, E., Zhu, H., Kim, P., and Ibrahim, J. G. (2017). Regression models on riemannian symmet-
+ric spaces. Journal of the Royal Statistical Society Series B: Statistical Methodology, 79(2):463–
+482.
+33
+Do Carmo, M. P. and Flaherty Francis, J. (1992). Riemannian geometry, volume 6. Springer.
+Dryden, I. L. and Mardia, K. V. (2016). Statistical shape analysis: with applications in R, volume
+995. John Wiley & Sons.
+Dubey, P. and M¨uller, H.-G. (2019). Fr´echet analysis of variance for random objects. Biometrika,
+106(4):803–821.
+Dubey, P. and M¨uller, H.-G. (2020). Fr´echet change-point detection. The Annals of Statistics,
+48(6):3312–3335.
+Edelman, A., Arias, T. A., and Smith, S. T. (1998). The geometry of algorithms with orthogonality
+constraints. SIAM journal on Matrix Analysis and Applications, 20(2):303–353.
+Fletcher, P. T. (2013). Geodesic regression and the theory of least squares on riemannian manifolds.
+International Journal of Computer Vision, 2(105):171–185.
+Fletcher, P. T., Lu, C., Pizer, S. M., and Joshi, S. (2004). Principal geodesic analysis for the study
+of nonlinear statistics of shape. IEEE transactions on medical imaging, 23(8):995–1005.
+Helgason, S. (2001). Differential geometry and symmetric spaces, volume 341. American Mathe-
+matical Soc.
+Huang, Z., Wang, R., Shan, S., Li, X., and Chen, X. (2015). Log-euclidean metric learning on
+symmetric positive definite manifold with application to image set classification. In International
+conference on machine learning, pages 720–729. PMLR.
+Jiang, Y., Chang, X., Liu, Y., Ding, L., Kong, L., and Jiang, B. (2023). Gaussian differential privacy
+on riemannian manifolds. Advances in Neural Information Processing Systems, 36:14665–14684.
+Jung, S., Dryden, I. L., and Marron, J. S. (2012). Analysis of principal nested spheres. Biometrika,
+99(3):551–568.
+Karcher, H. (1977). Riemannian center of mass and mollifier smoothing. Communications on pure
+and applied mathematics, 30(5):509–541.
+Kendall, D. G. (1984). Shape manifolds, procrustean metrics, and complex projective spaces. Bul-
+letin of the London mathematical society, 16(2):81–121.
+Krioukov, D., Papadopoulos, F., Kitsak, M., Vahdat, A., and Bogun´a, M. (2010). Hyperbolic geom-
+etry of complex networks. Physical Review E, 82(3):036106.
+Lee, J. (2012). Introduction to Smooth Manifolds, volume 218. Springer Science & Business Media.
+Mardia, K. V. and Jupp, P. E. (2009). Directional statistics. John Wiley & Sons.
+Moakher, M. (2005).
+A differential geometric approach to the geometric mean of symmetric
+positive-definite matrices. SIAM journal on matrix analysis and applications, 26(3):735–747.
+Nickel, M. and Kiela, D. (2017). Poincar´e embeddings for learning hierarchical representations.
+Advances in neural information processing systems, 30.
+34
+Patrangenaru, V. and Ellingson, L. (2016). Nonparametric statistics on manifolds and their appli-
+cations to object data analysis. CRC Press, Taylor & Francis Group Boca Raton.
+Pennec, X., Fillard, P., and Ayache, N. (2006). A riemannian framework for tensor computing.
+International Journal of computer vision, 66:41–66.
+Petersen, A. and M¨uller, H.-G. (2019). Fr´echet regression for random objects with euclidean pre-
+dictors. The Annals of Statistics, 47(2):691–719.
+Petersen, P. (2006). Riemannian geometry, volume 171. Springer.
+Reimherr, M., Bharath, K., and Soto, C. (2021). Differential privacy over riemannian manifolds.
+Advances in Neural Information Processing Systems, 34:12292–12303.
+Said, S., Bombrun, L., Berthoumieu, Y., and Manton, J. H. (2017a). Riemannian gaussian distri-
+butions on the space of symmetric positive definite matrices. IEEE Transactions on Information
+Theory, 63(4):2153–2170.
+Said, S., Hajri, H., Bombrun, L., and Vemuri, B. C. (2017b). Gaussian distributions on riemannian
+symmetric spaces: statistical learning with structured covariance matrices. IEEE Transactions on
+Information Theory, 64(2):752–772.
+Said, S. and Manton, J. H. (2021). Riemannian barycentres of gibbs distributions: new results on
+concentration and convexity in compact symmetric spaces. Information Geometry, 4(2):329–362.
+Terras, A. (2012). Harmonic analysis on symmetric spaces and applications II. Springer Science &
+Business Media.
+Turaga, P., Veeraraghavan, A., and Chellappa, R. (2008). Statistical analysis on stiefel and grass-
+mann manifolds with applications in computer vision. In 2008 IEEE conference on computer
+vision and pattern recognition, pages 1–8. IEEE.
+Tuzel, O., Porikli, F., and Meer, P. (2008). Pedestrian detection via classification on riemannian
+manifolds. IEEE transactions on pattern analysis and machine intelligence, 30(10):1713–1727.
+van der Vaart, A. and Wellner, J. (1996). Weak Convergence and Empirical Processes: With Appli-
+cations to Statistics. Springer Science & Business Media.
+Wainwright, M. J. (2019). High-dimensional statistics: A non-asymptotic viewpoint, volume 48.
+Cambridge university press.
+Wong, W. H. and Shen, X. (1995). Probability inequalities for likelihood ratios and convergence
+rates of sieve mles. The Annals of Statistics, pages 339–362.
+You, K. and Park, H.-J. (2021). Re-visiting riemannian geometry of symmetric positive definite
+matrices for the analysis of functional connectivity. NeuroImage, 225:117464.
+35
+Appendix
+Table of Contents
+A Differential geometry
+37
+A.1
+Smooth manifolds . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+37
+A.2
+Simply connected compact Riemannian symmetric spaces
+. . . . . . . . . . . .
+38
+B
+Proofs of results in Section 3
+40
+B.1
+Proof of Proposition 3.1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+40
+B.2
+Proof of Proposition 3.4 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+41
+B.3
+Proof of Proposition 3.5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+42
+C Technical lemmas for Section 4
+43
+C.1
+Basic entropy estimates . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+43
+C.2
+Lipschitz property . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+44
+C.3
+Identifiability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+44
+C.4
+Proof of the claim (4.14) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+46
+C.5
+Geometric lemma . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+49
+D Technical lemmas for Section 5
+50
+D.1
+Simply connected noncompact Riemannian symmetric spaces
+. . . . . . . . . .
+50
+D.2
+Simply connected compact Riemannian symmetric spaces
+. . . . . . . . . . . .
+61
+E
+Technical proofs for Section 6
+69
+E.1
+Proof of Proposition 6.2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+69
+E.2
+Proof of Theorem 6.5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+69
+E.3
+Proof of Corollary 6.6 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+72
+E.4
+Proof of Theorem 6.8 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+73
+E.5
+Technical lemmas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+73
+F
+Technical proofs for Section 7
+83
+F.1
+Proof of Theorem 7.1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+83
+F.2
+Proof of Corollary 7.2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+84
+F.3
+Proof of Theorem 7.3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+85
+F.4
+Proof of Theorem 7.5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+85
+F.5
+Technical lemmas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+86
+36
+A
+Differential geometry
+This section gives an additional introduction to differential geometry. Section A.1 introduces basic
+concepts in smooth manifolds, and we refer readers to Lee (2012) for a more complete introduction.
+Section A.2 reviews simply connected compact Riemannian symmetric spaces from the perspective
+of Lie theory. This introduction will follow the review presented in Said and Manton (2021), and
+we refer readers to Helgason (2001) for more details.
+A.1
+Smooth manifolds
+A smooth manifold M of dimension m is a topological manifold M equipped with a maximal
+family of injective mappings φα : Uα ⊆M →Rm such that
+(1) φα is a homeomorphism from an open set Uα to an open subset φ(Uα) ⊆Rm.
+(2) For any α, β with a non-empty W := Uα ∩Uβ, the mapping φβ ◦φ−1
+α
+is a differentiable
+mapping of φα(W) onto φβ(W).
+(3) S
+α Uα = M.
+The collection {(Uα, φα)} satisfying the above properties is called a smooth structure on M. The
+pair (Uα, φα) is referred to as an open chart or a local coordinate system on M. If x ∈Uα and
+φα(x) = (x1(x), . . . , xm(x)), the set Uα is called a coordinate neighborhood of x and the numbers
+xi(x) are called local coordinates of x.
+Let M and N be smooth manifolds. A mapping f : M →N is called differentiable at x ∈M
+if given a local chart (V, ψ) at f(x) there exists a local chart (U, φ) at x such that f(U) ⊆V and
+ψ ◦f ◦φ−1 : φ(U) →ψ(f(U)) is differentiable at φ(x). The mapping f is called differentiable
+if it is differentiable at every point x ∈M. A differentiable mapping f is called a diffeomorphism
+if it is bijective and its inverse f−1 is differentiable. Let C∞(M, N) be the set of all differentiable
+mappings of M onto N. In particular, when N = R, C∞(M, R) is the set of all differentiable
+functions on M, which we denote by C∞(M). In addition, we let C∞
+x (M) be the set of all real-
+valued functions on M that are differentiable at x ∈M.
+Let M be a smooth manifold. A tangent vector at x ∈M is a linear mapping v : C∞
+x (M) →R
+such that v(fg) = f(x)v(g)+g(x)v(f) for all f, g ∈C∞
+x (M). The set TxM of all tangent vectors
+at x forms an m-dimensional vector space, called the tangent space to M at x. Let (U, φ) be a local
+chart at x and φ(y) = (x1(y), . . . , xm(y)) be the coordinate representation. Then { ∂
+∂xi |x}1≤i≤m
+gives a set of basis vectors of the tangent space TxM, where
+∂
+∂xi is defined by
+∂
+∂xi
+|yf = ∂
+ f ◦φ−1
+∂xi
+|φ(y),
+∀f ∈C∞
+y (M),
+∀y ∈U.
+Let N be a smooth manifold and φ : M →N be a differentiable mapping. The differential of
+φ at x is a linear mapping dφx : TxM →Tφ(x)N such that dφx(v)(f) = v(f ◦φ) holds for all
+v ∈TxM and f ∈C∞(N).
+Let M be a smooth manifold. A family of open sets Uα ⊆M with S
+α Uα = M is called
+locally finite if every x ∈M has a neighborhood W such that W ∩Vα is non-empty for only a
+finite number of indices. The support of ρ : M →R is the closure of the set of points where ρ is
+different from zero. A family of differentiable functions ρα : M →R is called a smooth partition
+of unity if:
+37
+(1) For all α, ρα ≥0 and the support of ρα is contained in a coordinate neighborhood Uα of a
+smooth structure {(Uβ, φβ)} of M.
+(2) The family {Uα} is locally finite.
+(3) P
+α ρα(x) = 1 for all x ∈M.
+The following theorem guarantees the existence of the smooth partition of unity.
+Theorem A.1 (Theorem 5.6, Chapter 0 in Do Carmo and Flaherty Francis (1992)). A smooth mani-
+fold M has a smooth partition of unity if and only if every connected component of M is Hausdorff
+and has a countable basis.
+A.2
+Simply connected compact Riemannian symmetric spaces
+This section reviews simply connected compact Riemannian symmetric spaces from the perspective
+of Lie theory. It allows us to present several geometric formulae which are useful in the minimax
+analysis in Section 5.4. In the review, we will first present the connection to Lie theory in Section
+A.2.1. We will then introduce an integral formula in Section A.2.2, followed by an examination of
+the squared distance function, including the formulae for its gradient and Hessian, in Section A.2.3.
+Finally, in Section A.2.4, we will discuss some results on the union of the cut loci. For clarity, our
+review will focus on the results while omitting technical derivations. For further details, we direct
+readers to Said and Manton (2021) and Helgason (2001).
+A.2.1
+Connection to Lie theory
+Suppose (M, gM) is a simply connected compact Riemannian symmetric space. Then the identity
+component G of the isometry group of M is a compact, simply connected Lie group. Given some
+o ∈M, the isotropy subgroup K of o in G is a closed subgroup of G. In addition, M ≃G/K as a
+Riemannian homogeneous space.
+The Riemannian geometry of M can be given in algebraic terms. Let g and t be the Lie algebras
+of G and K, and B the Killing form on g. Then g = t+p is a direct sum with p being the orthogonal
+complement of t with respect to B. The tangent space ToM can be naturally identified with p, and
+the Riemannian metric of M is determined (up to re-scaling) by
+gM
+o (u, v) = −B(u, v),
+∀u, v ∈ToM ≃p.
+(A.1)
+Moreover, the Riemannian curvature tensor Ro is given by
+Ro(u, v)w = −[[u, v], w],
+∀u, v, w ∈ToM ≃p,
+(A.2)
+where [·, ·] is the Lie bracket. The right hand side of (A.2) is in p as M is a Riemannian symmetric
+space. We can define Tu for each u ∈p as the following operator
+Tu : v ∈p →Ro(u, v)u = [u, [u, v]] ∈p.
+(A.3)
+Both (A.1) and (A.3) can be simplified using a root system. Let a be a maximal Abelian sub-
+space of p, and ∆+ the set of positive roots of g with respect to a. Then we can rewrite u ∈p as
+38
+u = Ad(k)a for some k ∈K and a ∈a, where Ad is the adjoint representation. With this notation,
+the Riemannian metric of M satisfies
+gM
+o (u, u) =
+X
+λ∈∆+
+mλ(λ(a))2,
+(A.4)
+where mλ is the multiplicity of the root λ. In addition, the operator Tu satisfies
+Tu(v) = −
+X
+λ∈∆+
+(λ(a))2Πk
+λ(v),
+Πk
+λ = Ad(k) ◦Πλ ◦Ad(k−1),
+(A.5)
+where Πλ is an orthogonal projector from p onto the eigenspace of Ta associated with the eigenvalue
+−(λ(a))2. Define Πa as the orthogonal projector from p onto a and Πk
+a = Ad(k) ◦Πa ◦Ad(k−1).
+These definitions are useful in deriving the integral formula and the formula for the Hessian of the
+squared distance function, which we will discuss in Section A.2.2 and Section A.2.3.
+A.2.2
+Integral formula
+This section introduces a useful formula for the integral
+R
+M f(x)dvol(x). To evaluate this integral,
+it is desirable to parameterize x ∈M by the so-called polar coordinates k ∈K and a ∈a,
+x = Expo(Ad(k)a),
+where Expo is the Riemannian exponential mapping. However, this parametrization is not unique.
+To turn it into a unique parametrization, we let Ka be the centralizer of a in K and set S = K/Ka.
+Also, we let C+ be the set of a ∈a such that λ(a) ∈(0, π) for each λ ∈∆+. Then, it is useful to
+consider the following mapping,
+φ(s, a) = Expo ◦β(s, a),
+(s, a) ∈S × ¯C+,
+(A.6)
+where β(s, a) = Ad(s)a and ¯C+ is the closure of C+. Indeed, φ maps S × ¯C+ onto the whole area
+of M, and is a diffeomorphism from S ×C+ to the set Mr of regular values of φ. The set M−Mr
+is of measure zero. Thus, given a measurable function f on M, the integral of f can be written as
+Z
+M
+f(x)dvol(x) =
+Z
+Mr
+f(x)dvol(x).
+Since φ is a diffeomorphism, this integral can be further rewritten as
+Z
+M
+f(x)dvol(x) =
+Z
+C+
+Z
+S
+f(s, a)D(a)dadω(s),
+where f(s, a) = f ◦φ(s, a), D(a) is the Jacobian determinant of φ, and dω is the invariant volume
+density on S induced from K. It has been derived in Said and Manton (2021) that
+D(a) =
+Y
+λ∈∆+
+(sin λ(a))mλ.
+Thus, we obtain the following integral formula on M:
+Z
+M
+f(x)dvol(x) =
+Z
+C+
+Z
+S
+f(s, a)
+Y
+λ∈∆+
+(sin λ(a))mλdadω(s).
+(A.7)
+39
+A.2.3
+The squared distance function
+Fix x ∈M, and consider the function hx(y) = 1
+2d2(x, y). This function is C2 differentiable near
+o if x /∈Cut(o), where Cut(o) denotes the cut locus of o. The objective of this section is to derive
+the closed form formulae for the gradient and Hessian of the function hx at o. Recall that given a
+function f with desired differentiability,
+• The gradient ∇yf of a function f at y is a tangent vector in TyM such that
+gM
+y (∇yf, u) = u(f),
+∀u ∈TyM.
+(A.8)
+• The Hessian Hessyf of a function f at y is given by
+Hessyf(u, v) = gM
+y (∇u∇f, v),
+∀u, v ∈TyM,
+(A.9)
+where ∇f is the gradient field of f defined near y, and ∇u∇f is the covariant derivative of
+∇f in the direction of u.
+To express the gradient Go(x) and Hessian Ho(x) of the function hx at o, we write x = φ(s, a) in
+the notation of (A.6). If x /∈Cut(o), then we have
+Go(x) = −β(s, a),
+(A.10)
+Ho(x) = Πs
+a +
+X
+λ∈∆+
+λ(a) cot λ(a)Πs
+λ,
+(A.11)
+where Πs
+a and Πs
+λ are the orthogonal projectors defined in (A.5) and cot is the cotangent func-
+tion. Both the integral formula (A.7) and Hessian formula (A.11) are derived using the closed form
+solutions of the Jacobi equations. We refer readers to Said and Manton (2021) for more details.
+A.2.4
+Cut locus
+Lastly, we present a lemma on the cut locus which is useful in our minimax analysis. We know that
+the cut locus of a point Cut(x) is of measure zero. Lemma A.2 below strengthens this statement in
+the case of simply connected compact Riemannian symmetric spaces. Rather than one cut locus, it
+considers the union of cut loci along a geodesic.
+Lemma A.2. Assume (M, gM) is a simply connected compact Riemannian symmetric space. Let
+γ : I →M be a geodesic defined on a compact interval I. Let Ucut(γ) denote the union of all cut
+loci Cut(γ(t)) for t ∈I. Then Ucut(γ) is a set of measure zero.
+The assumption of simply connectedness is essential in this lemma. For example, if M is a real
+projective space, which is not simply connected, then the statement in Lemma A.2 does not hold.
+B
+Proofs of results in Section 3
+B.1
+Proof of Proposition 3.1
+Proof. We will treat both cases separately.
+40
+• Case 1. When M is compact, any bounded and measurable function on M is integrable.
+Since ϕ is a nonnegative, continuous, and increasing function, the function ef is bounded and
+measurable. Thus, it is integrable on M.
+• Case 2. When M is noncompact, we can use Theorem 2.3 to prove the results. As ef is
+nonnegative and measurable, to prove its integrability, it suffices to show that
+Z
+M
+ef(x; α, ϕ)dvol(x) < ∞.
+To prove this, we will use the polar coordinate chart at α, and rewrite the integral as
+Z
+M
+ef(x; α, ϕ)dvol(x) =
+Z
+TαM
+ef♭λ(r, Θ)drdΘ
+(i)=
+Z
+TαM
+e−ϕ(r)λ(r, Θ)drdΘ,
+where ef♭= ef ◦Expα with Expα being the exponential map, and (i) uses the definition of ef.
+Since the sectional curvatures of M are larger than κmin, we have λ(r, Θ) ≤snm−1
+κmin (r) by
+Theorem 2.3. It follows that
+Z
+M
+ef(x; α, ϕ)dvol(x) ≤
+Z
+TαM
+e−ϕ(r) · snm−1
+κmin (r)drdΘ
+= vol(Sm−1) ·
+Z ∞
+0
+e−ϕ(r) · snm−1
+κmin (r)dr < ∞,
+where Sm−1 is the unit (m −1)-sphere and the last inequality follows from condition (3.2).
+The proof is complete by combining these two cases.
+B.2
+Proof of Proposition 3.4
+Proof. Suppose ef(x; α, ϕ) is integrable over M for some α ∈M. We will first show that ef(x; eα, ϕ)
+is integrable over M for all eα ∈M. Since ef(x; eα, ϕ) is nonnegative and measurable, it suffices to
+show that its integral over M is finite. Indeed, since M is a Riemannian homogeneous space, there
+is an isometry F ∈Iso(M) such that F(α) = eα. As a result,
+Z
+M
+ef(x; eα, ϕ)dvol(x) =
+Z
+M
+e−ϕ(dg(x,eα))dvol(x)
+(i)=
+Z
+M
+e−ϕ(dg(x,F(α)))dvol(x)
+(ii)
+=
+Z
+M
+e−ϕ(dg(F −1(x),α))dvol(x)
+(iii)
+=
+Z
+M
+e−ϕ(dg(x,α))dvol(x) < ∞,
+where (i) uses the fact that eα = F(α), (ii) uses the fact that dg(x, F(α)) = dg(F −1(x), α) when F
+is an isometry, and (iii) uses equality (2.4) in Proposition 2.4. This proves the first and the second
+properties in Proposition 3.4. Since the normalizing constant
+Z(α, ϕ) =
+Z
+M
+ef(x; α, ϕ)dvol(x)
+is independent of α, we immediately obtain the third property in Proposition 3.4 using the definition
+of the MLE. This concludes the proof.
+41
+B.3
+Proof of Proposition 3.5
+Proof. To prove this statement, it suffices to show that if
+Z
+M
+dp
+g(x, eα)f(x; α, ϕ)dvol(x) ≤
+Z
+M
+dp
+g(x, b)f(x; α, ϕ)dvol(x),
+∀b ∈M,
+(B.1)
+then eα = α. Suppose on the contrary that eα satisfies (B.1) but eα ̸= α. Then we have
+Z
+M
+dp
+g(x, eα)f(x; α, ϕ)dvol(x) ≤
+Z
+M
+dp
+g(x, α)f(x; α, ϕ)dvol(x).
+Ignoring the normalizing constant Z(ϕ), we have
+I(eα, α) ≤I(α, α) < ∞,
+(B.2)
+where
+I(a, b) =
+Z
+M
+dp
+g(x, a)e−ϕ(dg(x,b))dvol(x),
+∀a, b ∈M.
+By property (2.4), we can show that for any isometry F ∈Iso(M),
+I(a, b) = I(F(a), F(b)),
+∀a, b ∈M.
+(B.3)
+Since M is a Riemannian symmetric space and eα ̸= α, we can find an isometry F ∈Iso(M) such
+that F(α) = eα and F ◦F is the identity, as a consequence of Proposition 2.5. Using this F in (B.2)
+and using (B.3), we have
+I(α, eα) = I(F(eα), F(α)) = I(eα, α) ≤I(α, α) = I(eα, α).
+Therefore,
+I(α, eα) + I(eα, α) ≤I(α, α) + I(eα, eα).
+Equivalently, we have
+Z
+M
+D(x; α, eα)dvol(x) ≤0,
+(B.4)
+where
+D(x; α, eα) = D1(dg(x, α), dg(x, eα)),
+and
+D1(u, v) = upe−ϕ(v) + vpe−ϕ(u) −upe−ϕ(u) −vpe−ϕ(v).
+By calculation, we find that
+D1(u, v) = (up −vp) · (e−ϕ(v) −e−ϕ(u)) ≥0,
+(B.5)
+where we use the fact that ϕ is an increasing function. Since ϕ is strictly increasing, we know that
+the equality in (B.5) holds if and only if u = v. Combining this with (B.4), we obtain
+dg(x, α) = dg(x, eα),
+∀x ∈M,
+where we use the continuity of the distance function dg(·, ·). It implies that eα = α and concludes
+the proof.
+42
+C
+Technical lemmas for Section 4
+This section presents lemmas used in Section 4. Section C.1 gives a metric entropy estimate for a
+geodesic ball in a Riemannian homogeneous space. Section C.2 establishes a Lipschitz property of
+a Riemannian radial distribution f(x; α, ϕ) with respect to its parameter α under certain conditions.
+Section C.3 establishes the identifiability of the parameter α in the density function f(x; α, ϕ) under
+certain conditions. Section C.4 proves the claim (4.14), which is used in the proof of Theorem 4.6.
+Section C.5 establishes a geometric lemma that is used in Section C.4.
+C.1
+Basic entropy estimates
+Lemma C.1. Let (M, gM) be a Riemannian homogeneous space and X = BM(α∗, D) a geodesic
+ball in M, given by (4.2). Then for sufficiently small ϵ, we have
+N(ϵ, X, dg) ≲ϵ−m.
+where dg is the geodesic distance and ≲omits constants independent of ϵ.
+Proof. Construct an ϵ-net S of X by the following greedy procedure. Let x1 ∈X be an arbitrary
+point. Suppose x1, . . . , xs have been chosen. If the set {x ∈X | dg(x, xi) > ϵ, i ≤s} is not empty,
+let xs+1 be an arbitrary point in this set. Else end the construction of the set S. Such set S is easily
+shown to be an ϵ-net of X.
+It suffices to upper bound the cardinality of the ϵ-net S. To this end, we observe that the distance
+between any two points xi and xj in S is at least ϵ. It implies that the geodesic balls BM(xi, ϵ/2)
+and BM(xj, ϵ/2) are disjoint. Therefore, the volume of ∪xi∈SBM(xi, ϵ/2) is equal to the sum of
+the volumes of these geodesic balls. Recall that X = BM(α∗, D). We have
+∪xi∈SBM(xi, ϵ/2) ⊆BM(α∗, D + ϵ/2).
+Considering the volumes of these two regions, we obtain
+|S| · vol(BM(x, ϵ/2)) ≤vol(BM(α∗, D + ϵ/2)),
+(C.1)
+where we use the fact that vol(BM(x, ϵ)) is independent of x as M is a Riemannian homogeneous
+space. It remains to lower bound the volume of the geodesic ball BM(x, ϵ/2) and upper bound the
+volume of BM(α∗, D + ϵ/2).
+Since M is a Riemannian homogeneous space, its injectivity radius inj(M) is larger than zero
+and its sectional curvatures are bounded within [κmin, κmax]. Here κmax is assumed to be positive
+without loss of generality. Let ϵ∗be a constant such that
+ϵ∗/2 ≤min{1, inj(M)},
+and snκmax(ϵ∗/2) ≥ϵ∗/4,
+where snκmax(·) is given by (2.3). Then for all ϵ ≤ϵ∗, we have
+vol(BM(α∗, D + ϵ/2)) ≤vol(BM(α∗, D + 1)) < ∞.
+(C.2)
+In addition, we have
+vol(BM(x, ϵ/2)) =
+Z
+Sm−1
+Z ϵ/2
+0
+λ(r, Θ)drdΘ,
+43
+where we use the polar coordinate representation (2.2) of the integral and the fact that ϵ ≤2inj(M).
+By the volume comparison theorem, Theorem 2.3, we have
+vol(BM(x, ϵ/2)) ≥
+Z
+Sm−1
+Z ϵ/2
+0
+snm−1
+κmax(r)drdΘ.
+Since ϵ ≤ϵ∗and snκmax(r)/r is a decreasing function, we have snκmax(r) ≥r/2 for r ≤ϵ/2, and
+thus
+vol(BM(x, ϵ/2)) ≥vol(Sm−1)
+2m−1
+·
+Z ϵ/2
+0
+rm−1dr
+= vol(Sm−1)
+m22m−1
+· ϵm.
+(C.3)
+Combining (C.1), (C.2), and (C.3), we have
+|S| ≤m22m−1 · vol(BM(α∗, D + 1))
+vol(Sm−1)
+· ϵ−m,
+for all ϵ ≤ϵ∗. This proves the lemma.
+C.2
+Lipschitz property
+Lemma C.2. Suppose Condition 3.3 holds. Let f(x; α, ϕ) be the density given by (3.4). If e−ϕ(r)
+is a Lipschitz continuous function with a Lipschitz constant L, then we have
+d∞(f(x; α1, ϕ), f(x; α2, ϕ)) ≤
+L
+Z(ϕ) · dg(α1, α2),
+where Z(ϕ) is the normalizing constant in (3.4).
+Proof. Since e−ϕ(r) is a Lipschitz continuous function with a Lipschitz constant L, we have
+|f(x; α1, ϕ) −f(x; α2, ϕ)| ≤
+L
+Z(ϕ) · |dg(x, α1) −dg(x, α2)|,
+where Z(ϕ) is the normalizing constant in (3.4). By the triangular inequality, we have
+|dg(x, α1) −dg(x, α2)| ≤dg(α1, α2),
+which implies that
+|f(x; α1, ϕ) −f(x; α2, ϕ)| ≤
+L
+Z(ϕ) · dg(α1, α2).
+By taking the supremum over x, we conclude the proof of this lemma.
+C.3
+Identifiability
+Lemma C.3. Assume (M, gM) is a Riemannian homogeneous space with rM = supx,y dg(x, y).
+Suppose ϕ satisfies Condition 4.1 and is strictly increasing on [0, rM]. Let f(x; α, ϕ) be the density
+in (3.4) and X ⊆M a compact set. Then for any α0, {αn}∞
+n=1 ⊆X such that
+d1(f(x; αn, ϕ), f(x; α0, ϕ)) →0,
+as n →∞,
+(C.4)
+where d1 is the L1 distance, we have dg(αn, α0) →0 as n →∞.
+44
+Proof. We prove this lemma by contradiction. Suppose condition (C.4) holds but αn do not con-
+verge to α0. Then there is a subsequence {αni}∞
+i=1 of {αn} such that αni →α′
+0 for some α′
+0 ̸= α0,
+where we use the fact that {αn} ⊆X and X is a compact set. By Lemma C.4, we have
+d1(f(x; αni, ϕ), f(x; α′
+0, ϕ)) →0,
+as i →∞.
+(C.5)
+Combining with (C.4), we have d1(f(x; α0, ϕ), f(x; α′
+0, ϕ)) = 0. It then follows from Lemma C.5
+that α′
+0 = α0, which leads to contradiction.
+Lemma C.4 establishes the continuity of f(x; α, ϕ) with respect to its parameter α under certain
+conditions, where we use the L1 distance to measure the distance between functions.
+Lemma C.4. Assume (M, gM) is a Riemannian homogeneous space and Condition 4.1 holds. Let
+f(x; α, ϕ) be the density in (3.4). If dg(αn, α) →0 as n →∞, then
+d1(f(x; αn, ϕ), f(x; α, ϕ)) →0,
+where d1 is the L1 distance.
+Proof. By definition of the density function f(x; α, ϕ) and the L1 distance d1, we know
+d1(f(x; αn, ϕ), f(x; α, ϕ)) =
+1
+Z(ϕ)
+Z
+M
+e−ϕ(dg(x,αn)) −e−ϕ(dg(x,α)) dvol(x),
+(C.6)
+where Z(ϕ) is the normalizing constant. Since αn →α, αn is bounded within the geodesic ball
+BM(α, D) = {x ∈M | dg(x, α) < D} for a sufficiently large D. For dg(x, α) > 2D, we have
+dg(x, αn) ≥dg(x, α) −dg(αn, α) ≥dg(x, α)/2.
+Consequently, for all n, we have
+e−ϕ(dg(x,αn)) ≤H(x) :=
+(
+e−ϕ(dg(x,α)/2),
+if dg(x, α) > 2D,
+1,
+otherwise.
+where we use the fact that ϕ is an increasing function. Using H, we can upper bound the integrand
+in (C.6) as follows:
+e−ϕ(dg(x,αn)) −e−ϕ(dg(x,α)) ≤H(x) + e−ϕ(dg(x,α)).
+When M is compact, H(x) + e−ϕ(dg(x,α)) is clearly an integrable function as it is bounded. When
+M is noncompact, by using the polar coordinate representation (2.2), Theorem 2.3, Condition 3.3,
+and Condition 4.1, we also can show that it is integrable. Specifically,
+Z
+M
+
+H(x) + e−ϕ(dg(x,α))
+dvol(x)
+≤vol(BM(α, 2D)) + vol(Sm−1) ·
+Z ∞
+2D
+e−ϕ(r/2)snm−1
+κmin (r)dr +
+Z
+M
+e−ϕ(dg(x,α))dvol(x)
+< ∞,
+where κmin is the lower bound on the sectional curvatures of M used in Condition 4.1 and snκmin(·)
+is given by (2.3). These results imply that the integrand in (C.6) has a dominating function H(x) +
+45
+e−ϕ(dg(x,α)). In addition, since e−ϕ(r) is a Lipschitz continuous function with a Lipschitz constant
+L, we have
+|e−ϕ(dg(x,αn)) −e−ϕ(dg(x,α))| ≤L|dg(x, αn) −dg(x, α)| ≤L · dg(αn, α),
+where the second inequality uses the triangle inequality. It implies that the integrand in (C.6) con-
+verges to zero pointwise, and by the dominated convergence theorem, the integral in (C.6) converges
+to zero, which concludes the proof.
+Lemma C.5 shows that if the L1 distance between f(x; α, ϕ) and f(x; α′, ϕ) is zero, then α = α′
+under mild conditions.
+Lemma C.5. Assume (M, gM) is a Riemannian homogeneous space with rM = supx,y dg(x, y).
+Suppose Condition 3.3 holds and ϕ is a strictly increasing function over [0, rM]. Let f(x; α, ϕ) be
+the density in (3.4). Then the following condition
+d1(f(x; α, ϕ), f(x; α′, ϕ)) = 0,
+(C.7)
+where d1 is the L1 distance, implies that α = α′.
+Proof. By definition of the density f and the L1 distance d1, the condition (C.7) is reduced to
+Z
+M
+e−ϕ(dg(x,α)) −e−ϕ(dg(x,α′)) dvol(x) = 0.
+As the integrand is nonnegative, the above condition implies that
+e−ϕ(dg(x,α)) −e−ϕ(dg(x,α′)) = 0,
+∀x ∈M,
+where we use the continuity of the function ϕ. It follows that
+ϕ(dg(x, α)) = ϕ(dg(x, α′)),
+∀x ∈M,
+and since ϕ is strictly increasing, we have
+dg(x, α) = dg(x, α′),
+∀x ∈M.
+This shows that α = α′, which concludes the proof.
+C.4
+Proof of the claim (4.14)
+Lemma C.6 proves the claim (4.14) used in the proof of Theorem 4.6.
+Lemma C.6. Assume (M, gM) is a Riemannian homogeneous space and ϕ satisfies Condition 4.5.
+Let f(x; α, ϕ) be the density in (3.4). Then we have
+lim
+ϵ→0 inf {D(α, α0)/dg(α, α0) | dg(α, α0) < ϵ} > 0,
+where D(α, α0) = d1(f(x; α, ϕ), f(x; α0, ϕ)).
+46
+Proof. Without loss of generality, we assume that α0 ∈M is fixed and let α vary in the geodesic
+ball BM(α0, ϵ). By using the definition of f(x; α, ϕ) and the L1 distance d1, we can write D(α, α0)
+as follows:
+D(α, α0) =
+1
+Z(ϕ)
+Z
+M
+e−ϕ(dg(x,α)) −e−ϕ(dg(x,α0)) dvol(x).
+For any δ > 0, it holds that
+Z(ϕ) · D(α, α0) ≥
+Z
+BM(α0,δ)
+e−ϕ(dg(x,α)) −e−ϕ(dg(x,α0)) dvol(x),
+where BM(α0, δ) is the geodesic ball {x ∈M | dg(x, α0) < δ}. Let inj(M) denote the injectivity
+radius of M, which is positive since M is a Riemannian homogeneous space. We can show that for
+sufficiently small δ, δ < inj(M)
+2
+, ϕ(δ) < ∞, and
+|1 −ew| ≥1
+2 · |w|,
+∀w ∈[ϕ(0) −ϕ(2δ), 0].
+where we use the fact that ϕ is an increasing and continuous function. Choosing any one of such δ,
+we can show that for all α, x ∈BM(α0, δ), the following inequality holds:
+e−ϕ(dg(x,α)) −e−ϕ(dg(x,α0)) = e−ϕ(dg(x,α0)) · |e−ϕ(dg(x,α))+ϕ(dg(x,α0)) −1|
+≥e−ϕ(δ) · 1
+2 · |ϕ(dg(x, α)) −ϕ(dg(x, α0))|.
+In particular, for all α ∈BM(α0, δ), we have
+2eϕ(δ) · Z(ϕ) · D(α, α0) ≥
+Z
+BM(α0,δ)
+|ϕ(dg(x, α)) −ϕ(dg(x, α0))|dvol(x).
+Consequently, to prove the lemma, it suffices to show that
+lim
+ϵ→0 inf{T(α, α0) | dg(α, α0) < ϵ} > 0,
+(C.8)
+where
+T(α, α0) :=
+Z
+BM(α0,δ)
+|ϕ(dg(x, α)) −ϕ(dg(x, α0))|
+dg(α, α0)
+dvol(x).
+We will prove this condition by contradiction. Suppose (C.8) does not hold, then there is a sequence
+{ys}∞
+s=1 converging to α0 such that T(ys, α0) tends to 0. Without loss of generality, we can assume
+that dg(ys, α0) < ϵ0 for some ϵ0 ≤δ and all s. In addition, let θ0 =
+π
+100, and we assume there is a
+unit tangent vector V ∈Tα0M such that the angle between V and Logα0ys is smaller than θ0 for
+an infinite number of s, where Logα0 is the logarithmic map at α0. Without loss of generality, we
+can assume that the angle between such V and Logαys is smaller than θ0 for all s9. The rest of the
+proof is to provide a positive lower bound for T(ys, α0) when ys is sufficiently close to α0, which
+immediately leads to contradiction.
+9Otherwise, we may take a subsequence such that this condition holds.
+47
+𝒓𝟏+ 𝚫
+𝒓𝟐−𝚫
+𝜶𝟎
+Figure 1: Visualization of the region R defined in (C.9).
+Since ϕ is strictly increasing over [0, rM] and continuously differentiable over (0, rM), we can
+find an interval [r1, r2] such that 0 < r1 < r2 < δ and ϕ′(r) ≥c0 for all r ∈[r1, r2] and some
+positive constant c0. Let 0 < ∆< (r2 −r1)/2 and consider the following region
+R = {x ∈M | dg(x, α0) ∈[r1 + ∆, r2 −∆],
+the angle between Logα0x and V is larger than π −θ0.},
+(C.9)
+where V ∈Tα0M is the aforementioned unit tangent vector. It is obvious that R ⊆BM(α0, δ) and
+R is a region of positive volume. In addition, for any x ∈R and any s, the angle between Logα0x
+and Logα0ys is larger than π −2θ0 by the triangle inequality.
+Now we assume without loss of generality that ϵ0 ≤∆. It implies that for any x ∈R and any
+ys, the condition dg(x, ys) ∈[r1, r2] holds, due to the triangle inequality. Therefore, by the mean
+value theorem, for any x ∈R and any ys, we have
+ϕ(dg(x, ys)) −ϕ(dg(x, α0))) = ϕ′(ξ) · (dg(x, ys) −dg(x, α0)),
+where ξ is some number between dg(x, ys) and dg(x, α0) and thus ξ ∈[r1, r2]. Since ϕ′(r) ≥c0 >
+0 for all r ∈[r1, r2], it follows that
+|ϕ(dg(x, ys)) −ϕ(dg(x, α0)))| ≥c0 · |dg(x, ys) −dg(x, α0)|,
+and thus
+T(ys, α0) ≥c0 ·
+Z
+R
+|dg(x, ys) −dg(x, α0)|
+dg(ys, α0)
+dvol(x).
+(C.10)
+The rest of the proof aims to lower bound the right hand side of (4.10) by examining the geodesic
+triangle with vertices x, α0, and ys.
+Our idea is to employ Lemma C.7. Since M is a Riemannian homogeneous space, its sectional
+curvatures are upper bounded by some κ > 0. Then we can assume without loss of generality that
+the constant δ in the previous arguments is smaller than the constant r0 specified in Lemma C.7.
+Then by Lemma C.7, for any x ∈R and ys specified above, we have
+dg(x, ys) ≥dκ(a, b),
+(C.11)
+where a = dg(x, α0), b = dg(ys, α0), and
+dκ(a, b) = κ−1/2 · arccos
+ cos(√κa) cos(√κb) −sin(√κa) sin(√κb) cos(2θ0)
+
+.
+48
+a
+b
+c
+C
+Manifold M
+A sphere of constant curvature
+in comparison with
+a
+b
+c’
+C
+Figure 2: Illustration of Lemma C.7. Left: a geodesic triangle in M with edges of lengths a, b, c,
+and the angle opposite side c is C. Right: a geodesic triangle in a sphere of curvature κ with edges
+of lengths a, b, c′, and the angle opposite c′ is still C. Under the conditions of Lemma C.7, c ≥c′.
+Here we use the fact that the angle between Logα0x and Logα0ys is larger than π −2θ0.
+Notice that for all x ∈R, we have a = dg(x, α0) ≥r1 > 0. Then there is a sufficiently small
+b0 > 0, which is independent of x, such that the function cos(√κdκ(a, b)) < 1 for all b ∈[0, b0].
+Consequently, the function dκ(a, b) is differentiable with respect to b in [0, b0], and for b ∈[0, b0],
+we have
+∂
+∂bdκ(a, b) =
+1
+p
+1 −cos2(√κdκ(a, b))
+·
+ cos(√κa) sin(√κb) + sin(√κa) cos(√κb) cos(2θ0)
+
+.
+By selecting a sufficiently small b0 > 0, we can ensure that ∂
+∂bdκ(a, b) ≥C0 > 0 for all b ∈[0, b0]
+and a = dg(x, α0) with x ∈R. Here C0 is a constant independent of b and x. Therefore, by using
+mean value theorem, we can show that for all a = dg(x, α0) with x ∈R,
+dκ(a, b) −a ≥C0b,
+∀b ∈[0, b0],
+where we use the fact that dκ(a, 0) = a. Combining this with (C.11), we can conclude that for all
+x ∈R,
+dg(x, ys) −dg(x, α0) ≥C0 · dg(ys, α0),
+if dg(ys, α0) ≤b0.
+Combining this with (C.10), we have that
+T(ys, α0) ≥c0 · C0 · vol(R) > 0,
+if dg(ys, α0) ≤b0.
+This contradicts the assumption that T(ys, α0) tends to zero, as s tends to infinity.
+C.5
+Geometric lemma
+Lemma C.7 delves into the geodesic triangle on a Riemannian manifold with an upper curvature
+bound. It is built on the Rauch comparison theorem, Section 11, Chapter 1 in Cheeger et al. (1975),
+as well as the spherical law of cosines.
+Lemma C.7. Consider a complete Riemannian manifold (M, gM) with a positive injectivity radius
+inj(M). Assume its sectional curvatures are upper bounded by κ > 0. Consider a geodesic triangle
+49
+in M with edges of lengths a, b, and c, and suppose the angle opposite side c is C. If a, b ≤r0 for
+a sufficiently small constant r0, then we have c ≥c′, where
+c′ = κ−1/2 · arccos
+ cos(√κa) cos(√κb) + sin(√κa) sin(√κb) cos(C)
+
+.
+Proof. Let m be the dimension of M. Since the curvatures of M are upper bounded by κ and M
+has a positive injectivity radius, by Corollary 1.35 in Cheeger et al. (1975), we can show that when
+a, b are sufficiently small, the length c is larger than c′, where c′ is given by the following rule:
+a, b, c′ are the edge lengths of a geodesic triangle in an m-dimensional sphere with sectional
+curvature κ, and the angle opposite side c′ is still equal to C.
+By the spherical law of cosines, we have
+cos(√κc′) = cos(√κa) cos(√κb) + sin(√κa) sin(√κb) cos(C),
+which proves the lemma.
+D
+Technical lemmas for Section 5
+This section collects technical results used in Section 5. Lemmas related to Section 5.3 will be given
+in Section D.1, and lemmas related to Section 5.4 will be provided in Section D.2.
+D.1
+Simply connected noncompact Riemannian symmetric spaces
+In this section, we shall focus on the case of a simply connected noncompact Riemannian symmetric
+space. We will provide several geometrical lemmas in Section D.1.1, and conduct statistical analysis
+in Section D.1.2.
+D.1.1
+Geometric lemmas
+In this section, we present several geometric lemmas on a simply connected noncompact Rieman-
+nian symmetric space (M, gM). In Lemma D.1, we consider a geodesic α(t) in M with a constant
+compact component, and demonstrate the smoothness of the function ϱ(t) = d2
+g(x, α(t)) at t ∈R
+for any fixed x ∈M.
+Lemma D.1. Let (M, gM) be a simply connected noncompact Riemannian symmetric space with
+the decomposition M = MH × MC, where MH and MC are the Hadamard and compact com-
+ponents of M, respectively. Let α(t) = (αH(t), αC) be a geodesic in M with a constant compact
+component. Then given any x ∈M, the function ϱ(t) = d2
+g(x, α(t)) is smooth at any t ∈R.
+Proof. We denote each point x ∈M by (xH, xC), where xH and xC are the Hadamard and compact
+components of x, respectively. For all pairs x, y ∈M, we have
+d2
+g(x, y) = d2
+H(xH, yH) + d2
+C(xC, yC),
+(D.1)
+50
+where dH and dC denote the geodesic distances on MH and MC, respectively. Consider a geodesic
+α(t) = (αH(t), αC) in M with a constant compact component, where αH(t) is a geodesic in MH
+and αC is a constant point in MC. Then for any x = (xH, xC) ∈M, we have
+ϱ(t) = d2
+g(x, α(t)) = d2
+H(xH, αH(t)) + d2
+C(xC, αC),
+where we use the equality (D.1). Since MH is a Hadamard manifold, the squared distance function
+d2
+H(xH, yH) is smooth at all yH ∈MH. Thus, as a consequence of composition, the function ϱ(t)
+is smooth at any t ∈R.
+In Lemma D.2, we consider a unit-speed geodesic α(t) in M with a constant compact compo-
+nent. We will investigate the upper bounds on the absolute values of the first two order derivatives
+of the function ϱ(t) = d2
+g(x, α(t)) for any fixed x ∈M.
+Lemma D.2. Suppose M = MH×MC is a simply connected noncompact Riemannian symmetric
+space, where MH and MC are the Hadamard and compact components of M, respectively. Let
+α(t) = (αH(t), αC) be a unit-speed geodesic in M with a constant compact component. Consider
+the function ϱ(t) = d2
+g(x, α(t)) for some x ∈M. Then the following upper bounds hold:
+ϱ′(t)
+ ≤2 · dg(x, α(t)),
+(D.2)
+ϱ′′(t)
+ ≤4 · dg(x, α(t)) · sn′
+κmin(dg(x, α(t)))
+snκmin(dg(x, α(t))).
+(D.3)
+where κmin < 0 is a lower bound on the sectional curvatures of M and snκmin(r) is given by (2.3).
+Proof. By Lemma D.1, we know ϱ(t) is smooth at any t ∈R. To derive the inequalities (D.2) and
+(D.3), we will consider the following two cases separately.
+• Case 1. x = (αH(t0), xC) for some t0 ∈R and xC ∈MC. In this case, the function ϱ(t)
+can be expressed as
+ϱ(t) = d2
+H(αH(t0), αH(t)) + d2
+C(xC, αC),
+where dH and dC denote the geodesic distances in MH and MC, respectively. Since MH is a
+Hadamard manifold, there exists a unique geodesic connecting αH(t0) and αH(t). Moreover,
+since α is a unit-speed geodesic in M with a constant compact component, αH(t) is a unit-
+speed geodesic in MH and dH(αH(t0), αH(t)) = |t −t0|. It implies that
+ϱ(t) = (t −t0)2 + d2
+C(xC, αC).
+By taking the derivatives, we can show that |ϱ′(t)| = 2|t−t0| ≤2·dg(x, α(t)), and ϱ′′(t) = 2
+for any t ∈R. This implies (D.3) since
+|ϱ′′(t)| = 2 ≤2 · dg(x, α(t)) · sn′
+κmin(dg(x, α(t)))
+snκmin(dg(x, α(t))),
+where κmin < 0 is a lower bound on the sectional curvatures of M and snκmin(·) is given by
+(2.3).
+51
+• Case 2. x = (xH, xC) ∈MH × MC where xH /∈Img(αH) := {αH(t) | t ∈R}. In this
+case, the function ϱ(t) can be expressed as
+ϱ(t) = d2
+H(xH, αH(t)) + d2
+C(xC, αC),
+where dH and dC denote the geodesic distances in MH and MC, respectively. Since MH
+is a Hadamard manifold and xH /∈Img(αH), the function dH(xH, αH(t)) is positive and
+smooth at any t ∈R. Additionally, by calculation, the first two order derivatives of ϱ(t) are
+given by
+ϱ′(t) = 2 · dH(xH, αH(t)) · d
+dtdH(xH, αH(t)),
+ϱ′′(t) = 2 ·
+
+d
+dtdH(xH, αH(t))
+
+2
++ 2 · dH(xH, αH(t)) · d2
+dt2 dH(xH, αH(t)).
+Taking the absolute values of ϱ′(t) and ϱ′′(t) and using the triangle inequality, we obtain that
+|ϱ′(t)| ≤2 · dH(xH, αH(t)) ·
+
+d
+dtdH(xH, αH(t))
+ ,
+(D.4)
+|ϱ′′(t)| ≤2 ·
+
+d
+dtdH(xH, αH(t))
+
+2
++ 2 · dH(xH, αH(t)) ·
+
+d2
+dt2 dH(xH, αH(t))
+ .
+(D.5)
+Since α(t) is a unit-speed geodesic in M with a constant compact component, its Hadamard
+component αH(t) is also a unit-speed geodesic in MH. It implies that
+
+d
+dtdH(xH, αH(t))
+ ≤1.
+Substituting this into (D.4) and (D.5), we obtain
+|ϱ′(t)| ≤2 · dH(xH, αH(t))
+(i)
+≤2dg(x, α(t)),
+|ϱ′′(t)| ≤2 + 2 · dH(xH, αH(t)) ·
+
+d2
+dt2 dH(xH, αH(t))
+ .
+(D.6)
+where (i) uses the inequality dH(xH, αH(t)) ≤dg(x, α(t)). To further upper bound the right
+hand side of (D.6), we calculate
+d2
+dt2 dH(xH, αH(t)) = HessαH(t)ρ( ˙αH(t), ˙αH(t)),
+where
+HessαHρ : TαHMH × TαHMH →R
+is the Hessian of the function ρ(αH) = dH(xH, αH), and ˙αH(t) ∈TαH(t)MH is the differ-
+ential of αH(t). By employing the Hessian comparison theorem, Theorem 27, Chapter 6 in
+Petersen (2006), we have
+HessαH(t)ρ( ˙αH(t), ˙αH(t))
+
+≤max
+(
+1
+dH(xH, αH(t)), sn′
+κmin(dH(xH, αH(t)))
+snκmin(dH(xH, αH(t)))
+)
+· | ˙αH(t)|2
+≤sn′
+κmin(dH(xH, αH(t)))
+snκmin(dH(xH, αH(t))),
+(D.7)
+52
+where κmin is a lower bound on the sectional curvatures of M, snκmin(·) is defined by (2.3),
+and the second inequality follows from | ˙αH(t)| = 1 and
+1
+r ≤sn′
+κmin(r)
+snκmin(r).
+(D.8)
+Consequently, by substituting (D.7) into (D.6), we obtain
+|ϱ′′(t)| ≤2 + 2 · dH(xH, αH(t)) · sn′
+κmin(dH(xH, αH(t)))
+snκmin(dH(xH, αH(t)))
+≤4 · dH(xH, αH(t)) · sn′
+κmin(dH(xH, αH(t)))
+snκmin(dH(xH, αH(t)))
+≤4 · dg(x, α(t)) · sn′
+κmin(dg(x, α(t)))
+snκmin(dg(x, α(t))),
+where the second inequality uses (D.8) and the third inequality uses the inequality
+dg(x, α(t)) ≥dH(xH, αH(t))
+and the fact that
+r · sn′
+κmin(r)/snκmin(r)
+is an increasing function.
+The proof is complete by combining the above two cases.
+In Lemma D.3, we will consider the case when dim(M) > 1. Let α(t) be a unit-speed geodesic
+in M with a constant compact component. We will examine the upper bound on the absolute values
+of the first two order derivatives of the function ϱ0(t) = dg(x, α(t)) for any fixed x ∈M−Img(α),
+where
+Img(α) = {α(t) | t ∈R}
+(D.9)
+is of measure zero in M.
+Lemma D.3. Suppose M is a simply connected noncompact Riemannian symmetric space with
+dim(M) > 1. Let α(t) be a unit-speed geodesic in M with a constant compact component. Let
+ϱ0(t) = dg(x, α(t)) be the function for some x ∈M −Img(α), where Img(α) is given by (D.9).
+Then ϱ0(t) is smooth at any t ∈R. In addition, the following upper bounds hold:
+|ϱ′
+0(t)| ≤1,
+(D.10)
+|ϱ′′
+0(t)| ≤3 · sn′
+κmin(dg(x, α(t)))
+snκmin(dg(x, α(t))),
+(D.11)
+where κmin < 0 is a lower bound on the sectional curvatures of M and snκmin(·) is given by (2.3).
+Proof. Suppose q(r) = √r is the square root function. Then the relationship ϱ0(t) = q◦ϱ(t) holds,
+where ϱ(t) = d2
+g(x, α(t)). Since α(t) is a geodesic in M with a constant compact component, it
+follows from Lemma D.1 that ϱ(t) is smooth over t ∈R. Additionally, since x ∈M −Img(α),
+53
+where Img(α) is given by (D.9), the inequality ϱ(t) > 0 holds for any t ∈R. As a consequence of
+composition, the function ϱ0(t) is smooth at any t ∈R, since the square root function q(·) is smooth
+over (0, ∞). Furthermore, by using the chain rule, we can compute its first two order derivatives as
+follows
+ϱ′
+0(t) =
+ϱ′(t)
+2
+p
+ϱ(t)
+,
+ϱ′′
+0(t) =
+ϱ′′(t)
+2
+p
+ϱ(t)
+−
+(ϱ′(t))2
+4ϱ(t)
+p
+ϱ(t)
+.
+By Lemma D.2, we can establish the following upper bounds on the absolute values of the first two
+order derivatives of ϱ0(t):
+|ϱ′
+0(t)| ≤1.
+|ϱ′′
+0(t)| ≤2 · sn′
+κmin(dg(x, α(t)))
+snκmin(dg(x, α(t))) +
+1
+dg(x, α(t))
+(i)
+≤3 · sn′
+κmin(dg(x, α(t)))
+snκmin(dg(x, α(t))),
+where κmin < 0 is a lower bound on the sectional curvatures of M, snκmin(·) is given by (2.3), and
+the inequality (i) uses the inequality 1 ≤r · sn′
+κmin(r)/snκmin(r) for any r > 0. This completes the
+proof of the lemma.
+D.1.2
+KL divergence
+This section will present lemmas related to the KL divergence DKL(Pα∥Pα′), where Pα denotes the
+distribution f(x; α, ϕ). In Lemma D.4, we will examine the finiteness of this KL divergence under
+certain conditions.
+Lemma D.4. Let (M, gM) be a simply connected noncompact Riemannian symmetric space. Let
+ϕ be a function satisfying Condition 3.3 and property (2) in Condition 5.2. Let α(t) be a unit-speed
+geodesic in M. Then the KL divergence DKL(Pα(t)∥P(α(s))) is finite for all t, s ∈R, where Pα
+denotes the distribution f(x; α, ϕ).
+Proof. By definition of the KL divergence and Pα, we have
+DKL(Pα(t)∥Pα(s)) =
+1
+Z(ϕ) ·
+Z
+M
+(ϕ(dg(x, α(s))) −ϕ(dg(x, α(t))))e−ϕ(dg(x,α(t)))dvol(x).
+Since ϕ is an increasing function, we have
+Z
+M
+ϕ(dg(x, α(t)))e−ϕ(dg(x,α(t)))dvol(x) ≤
+Z
+M
+ϕ(dg(x, α(t)) + |t −s|)e−ϕ(dg(x,α(t)))dvol(x),
+Z
+M
+ϕ(dg(x, α(s)))e−ϕ(dg(x,α(t)))dvol(x)
+(i)
+≤
+Z
+M
+ϕ(dg(x, α(t)) + |t −s|)e−ϕ(dg(x,α(t)))dvol(x),
+where (i) uses the triangle inequality dg(x, α(s)) ≤dg(x, α(t)) + dg(α(s), α(t)) ≤dg(x, α(t)) +
+|t −s|. Using the polar coordinate expression (2.2) of the integral and Theorem 2.3, we can show
+54
+that
+Z
+M
+ϕ (dg(x, α(t)) + |t −s|) · e−ϕ(dg(x,α(t)))dvol(x)
+≤
+Z ∞
+0
+ϕ(r + |t −s|)e−ϕ(r)snm−1
+κmin (r)dr
+
+· vol(Sm−1),
+≤
+ 
+ϕ(2|t −s|) · snm−1
+κmin (|t −s|) · |t −s| +
+Z ∞
+|t−s|
+ϕ(2r)e−ϕ(r)snm−1
+κmin (r)dr
+!
+· vol(Sm−1), (D.12)
+where m is the dimension of M and κmin < 0 is the lower sectional curvature bound of M used
+in Condition 5.2. By property (2) in Condition 5.2, we can show that the integral in (D.12) is finite.
+As a result, the KL divergence DKL(Pα(t)∥Pα(s)) is finite.
+In Lemma D.5, we will consider a unit-speed geodesic α(t) with a constant compact component,
+and investigate the first-order asymptotic behavior of the KL divergence DKL(Pα(0)∥Pα(t)) as t →
+0. Our analysis is based on the differentiability and symmetry of a function I(t), which is defined
+by
+I(t) =
+Z
+M
+ϕ(dg(x, α(t)))e−ϕ(dg(x,α(0)))dvol(x).
+This I(t) relates to the KL divergence in the sense that
+DKL(Pα(0)∥Pα(t)) =
+1
+Z(ϕ)(I(t) −I(0)),
+where Z(ϕ) is the normalizing constant related to the density f(x; α, ϕ).
+Lemma D.5. Let (M, gM) be a simply connected noncompact Riemannian symmetric space and
+ϕ a function satisfying Condition 5.2. Let α(t) be a unit-speed geodesic in M with α(0) = α and
+a constant compact component. Define
+I(t) =
+Z
+M
+ϕ(dg(x, α(t)))e−ϕ(dg(x,α))dvol(x).
+Then I(t) is differentiable at any t ∈R and
+I′(t) =
+Z
+M
+d
+dtϕ(dg(x, α(t)))e−ϕ(dg(x,α))dvol(x).
+(D.13)
+Moreover, I′(0) = 0.
+Remark D.6. Since ϕ is differentiable on (0, ∞) and α(·) is a geodesic with a constant compact
+component, the function ϕ(dg(x, α(t))) is differentiable at t for any x ̸= α(t). Hence, the integrand
+in (D.13) is well-defined in M except for a null set.
+Proof. By the proof of Lemma D.4, we know I(t) is integrable for all t ∈R. To further demonstrate
+its differentiability, we fix any t ∈R and vary ∆∈[−1, 1]. Then consider the following first-order
+difference
+I(t + ∆) −I(t)
+∆
+=
+Z
+M
+ϕ(dg(x, α(t + ∆))) −ϕ(dg(x, α(t)))
+∆
+e−ϕ(dg(x,α))dvol(x).
+(D.14)
+55
+Since ϕ is differentiable on (0, ∞) and α(·) is a geodesic in M with a constant compact component,
+it holds for any x ̸= α(t) that
+lim
+∆→0
+ϕ(dg(x, α(t + ∆))) −ϕ(dg(x, α(t)))
+∆
+= d
+dtϕ(dg(x, α(t))),
+where the right hand side of the above equation is well-defined for any x ̸= α(t). Consequently, the
+integrand in (D.14) has the following convergence
+lim
+∆→0
+ϕ(dg(x, α(t + ∆))) −ϕ(dg(x, α(t)))
+∆
+e−ϕ(dg(x,α)) = d
+dtϕ(dg(x, α(t)))e−ϕ(dg(x,α))
+for all x ̸= α(t). Now we proceed to find a dominating function for the integrand in (D.14). Since
+α(·) is a unit-speed geodesic in M, it holds that
+dg(x, α(t + ∆)) ≤dg(x, α) + t + |∆| ≤dg(x, α) + t + 1,
+dg(x, α(t)) ≤dg(x, α) + t,
+where we use the triangle inequality, the constraint |∆| ≤1, and the condition that α(0) = α. Since
+ϕ is an increasing and convex function and is differentiable on (0, ∞), ϕ is a Lipschitz function over
+[0, l] with a Lipschitz constant ϕ′(l) for any l > 0. Then it follows that
+|ϕ(dg(x, α(t + ∆))) −ϕ(dg(x, α(t)))| ≤ϕ′(dg(x, α) + t + 1) · |dg(x, α(t + ∆)) −dg(x, α(t))|
+≤ϕ′(dg(x, α) + t + 1) · |∆|,
+where the second inequality uses the triangle inequality. Using this estimate, we can show that the
+integrand in (D.14) is dominated by the following function
+
+ϕ(dg(x, α(t + ∆))) −ϕ(dg(x, α(t)))
+∆
+e−ϕ(dg(x,α))
+ ≤ϕ′(dg(x, α) + t + 1)e−ϕ(dg(x,α)). (D.15)
+Using the polar coordinate expression (2.2) of the integral and Theorem 2.3, we can show that the
+dominating function in (D.15) is integrable. Specifically,
+Z
+M
+ϕ′(dg(x, α) + t + 1) · e−ϕ(dg(x,α))dvol(x)
+≤
+Z ∞
+0
+ϕ′(r + t + 1)e−ϕ(r)snm−1
+κmin (r)dr
+
+· vol(Sm−1)
+(i)
+≤
+Z t+1
+0
+ϕ′(2(t + 1))e−ϕ(r)snm−1
+κmin (r)dr +
+Z ∞
+t+1
+ϕ′(2r)e−ϕ(r)snm−1
+κmin (r)dr
+
+· vol(Sm−1)
+(ii)
+<∞,
+where (i) uses the condition that ϕ is convex and (ii) uses property (4) in Condition 5.2. Thus, by
+applying the dominated convergence theorem, we can show that I(t) is differentiable at t and
+I′(t) = lim
+∆→0
+I(t + ∆) −I(t)
+∆
+=
+Z
+M
+d
+dtϕ(dg(x, α(t)))e−ϕ(dg(x,α))dvol(x).
+Finally, by Proposition 5.1, we can show that the symmetry I(t) = I(−t) holds for all t ∈R, which
+implies that I′(0) = 0.
+56
+In Lemma D.7, we again consider a unit-speed geodesic α(t) in M with a constant compact
+component. The objective is to study the second-order behavior of the function I(t) near t = 0.
+Lemma D.7. Let (M, gM) be a simply connected noncompact Riemannian symmetric space and
+ϕ a function satisfying Condition 5.2. Let α(t) be a unit-speed geodesic in M with α(0) = α and
+a constant compact component. Define
+I(t) =
+Z
+M
+ϕ(dg(x, α(t)))e−ϕ(dg(x,α))dvol(x).
+Then for sufficient small t, we have I(t) −I(0) ≤Ct2 for some constant C independent of t.
+Proof. By the proof of Lemma D.4, we can show that I(t) is integrable for all t ∈R. By Proposition
+5.1, we know that the symmetry I(t) = I(−t) holds, and thus it suffices to consider the case t ≥0.
+Since we only examine the behavior of I(t) near 0, we assume without loss of generality that t ≤1.
+By Lemma D.5, we know that I′(0) = 0, where I′(t) is given by (D.13). Therefore, we can rewrite
+I(t) −I(0) as follows:
+I(t) −I(0) = I(t) −I(0) −tI′(0)
+=
+Z
+M
+
+ϕ(dg(x, α(t))) −ϕ(dg(x, α)) −t · d
+dt
+
+t=0
+ϕ(dg(x, α(t)))
+
+e−ϕ(dg(x,α))dvol(x).
+Then by taking the absolute value, we shall obtain the following upper bound
+|I(t) −I(0)|
+≤
+Z
+M
+ϕ(dg(x, α(t))) −ϕ(dg(x, α)) −t · d
+dt
+
+t=0
+ϕ(dg(x, α(t)))
+ · e−ϕ(dg(x,α))dvol(x)
+(D.16)
+To give an upper bound on the above term, we consider the following two cases separately.
+• Case 1. The dimension of M is 1. In this case, M = R, and we can assume without loss of
+generality that α(t) = α + t. Under this assumption, the term in (D.16) can be rewritten as
+follows
+Z ∞
+−∞
+ϕ(|x −α −t|) −ϕ(|x −α|) −t · d
+dt
+
+t=0
+ϕ(|x −α −t|)
+ · e−ϕ(|x−α|)dx
+=
+Z ∞
+−∞
+ϕ(|x −t|) −ϕ(|x|) −t · d
+dt
+
+t=0
+ϕ(|x −t|)
+ · e−ϕ(|x|)dx,
+(D.17)
+=
+Z ∞
+−∞
+L(x)dx,
+(D.18)
+where the first equality uses the change of variables (x −α →x) and L(x) is the integrand in
+(D.17). Notably, the integrand L(x) and the integral
+R
+L(x)dx are independent of the choice
+of α. To evaluate the integral (D.18), we decompose it into the following three terms:
+Z ∞
+−∞
+L(x)dx =
+Z 0
+−∞
+L(x)dx +
+Z t
+0
+L(x)dx +
+Z ∞
+t
+L(x)dx.
+We shall upper bound these three terms separately.
+57
+– First, for any x ∈(−∞, 0),
+L(x) =
+ϕ(t −x) −ϕ(−x) −t · ϕ′(−x)
+ · e−ϕ(−x),
+=
+ ϕ(t −x) −ϕ(−x) −t · ϕ′(−x)
+
+· e−ϕ(−x),
+where the second equality uses the fact that ϕ is a convex function. Since ϕ is second-order
+continuously differentiable on (0, ∞), by using the Taylor theorem, we have
+L(x) =
+Z t
+0
+ϕ′′(ξ −x)(t −ξ)dξ · e−ϕ(−x),
+where ϕ′′(ξ −t) is nonnegative due to the convexity of ϕ. By applying the Tonelli theorem,
+we can show that
+Z 0
+−∞
+L(x)dx =
+Z 0
+−∞
+Z t
+0
+ϕ′′(ξ −x)(t −ξ)dξ · e−ϕ(−x)dx
+=
+Z t
+0
+(t −ξ)dξ ·
+Z 0
+−∞
+ϕ′′(ξ −x)e−ϕ(−x)dx.
+(D.19)
+Since ϕ is an increasing function and 0 ≤ξ ≤t ≤1, it holds that
+ϕ(−x) ≥ϕ(max{ξ −x −1, 0}).
+Therefore,
+Z 0
+−∞
+ϕ′′(ξ −x)e−ϕ(−x)dx ≤
+Z 0
+−∞
+ϕ′′(ξ −x)e−ϕ(max{ξ−x−1,0})dx
+(i)
+≤
+Z ∞
+0
+ϕ′′(x)e−ϕ(max{x−1,0})dx
+(D.20)
+(ii)
+< ∞,
+where (i) uses the change of variables (ξ −x →x) and the non-negativity of the integrand,
+and (ii) uses Condition 5.2. Notably, the integral in (D.20) is a finite constant independent
+of the choice of ξ ∈[0, t] and t ∈[0, 1]. By substituting this upper bound into (D.19), we
+obtain that
+Z 0
+−∞
+L(x)dx =
+Z t
+0
+(t −ξ)dξ ·
+Z ∞
+0
+ϕ′′(x)e−ϕ(max{x−1,0})dx ≤C1t2,
+where C1 > 0 is a finite constant independent of t.
+– Second, for any x ∈(0, t),
+L(x) = |ϕ(t −x) −ϕ(x) + t · ϕ′(x)| · e−ϕ(x)
+≤
+ ϕ′(t) · |t −2x| + t · ϕ′(t)
+
+· e−ϕ(0)
+≤ϕ′(1) · (|t −2x| + t) · e−ϕ(0),
+58
+where the first inequality uses the fact that ϕ is an increasing and convex function, and the
+second inequality uses the condition that t ≤1 and ϕ′(t) ≤ϕ′(1). Substituting this into
+the integral
+R t
+0 L(x)dx, we obtain that
+Z t
+0
+L(x)dx ≤ϕ′(1) · e−ϕ(0) ·
+Z t
+0
+(|t −2x| + t)dx
+≤C2t2,
+where C2 > 0 is a finite constant independent of t.
+– Third, for any x ∈(t, ∞),
+L(x) = |ϕ(x −t) −ϕ(x) + t · ϕ′(x)| · e−ϕ(x)
+= (ϕ(x −t) −ϕ(x) + t · ϕ′(x)) · e−ϕ(x),
+where the second equality uses the fact that ϕ is a convex function. Since ϕ is second-order
+continuously differentiable on (0, ∞), by using the Taylor theorem, we have
+L(x) =
+Z t
+0
+ϕ′′(x −ξ)(t −ξ)dξ · e−ϕ(x),
+where ϕ′′(x−ξ) is nonnegative due to the convexity of ϕ. By applying the Tonelli theorem,
+we can show that
+Z ∞
+t
+L(x)dx =
+Z ∞
+t
+Z t
+0
+ϕ′′(x −ξ)(t −ξ)dξ · e−ϕ(x)dx
+=
+Z t
+0
+(t −ξ)dξ ·
+Z ∞
+t
+ϕ′′(x −ξ) · e−ϕ(x)dx
+≤
+Z t
+0
+(t −ξ)dξ ·
+Z ∞
+t
+ϕ′′(x −ξ) · e−ϕ(x−ξ)dx,
+where the inequality uses the fact that ϕ is an increasing function. By using the change of
+variables (x −ξ →x), we can show that
+Z ∞
+t
+L(x)dx ≤
+Z t
+0
+(t −ξ)dξ ·
+Z ∞
+t−ξ
+ϕ′′(x) · e−ϕ(x)dx
+≤
+Z t
+0
+(t −ξ)dξ ·
+Z ∞
+0
+ϕ′′(x) · e−ϕ(x)dx
+≤C3t2,
+where C3 > 0 is a finite constant independent of t and the third inequality uses Condition
+5.2.
+By combining the above three cases, we find that
+Z ∞
+−∞
+L(x)dx ≤(C1 + C2 + C3)t2,
+where C1, C2, C3 > 0 are finite constants independent of t. This implies that |I(t) −I(0)| ≤
+Ct2 for some finite constant C > 0 independent of t.
+59
+• Case 2. The dimension of M is larger than 1. In this case, the set
+Img(α) := {α(s) | s ∈R}
+is of measure zero in M. Therefore, the integral in (D.16) can be evaluated on M −Img(α).
+In particular, by Lemma D.3, for any x ∈M −Img(α), the function ϱ0(s) = dg(x, α(s)) is
+positive and smooth at any s ∈R. Since ϕ is second-order continuously differentiable over
+(0, ∞), the function ϱϕ(s) = ϕ(ϱ0(s)) is also second-order continuously differentiable at any
+s ∈R. By the chain rule, we can compute the first two order derivatives of ϱϕ(s) as follows:
+ϱ′
+ϕ(s) = ϕ′(ϱ0(s)) · ϱ′
+0(s),
+ϱ′′
+ϕ(s) = ϕ′′(ϱ0(s)) ·
+ ϱ′
+0(s)
+2 + ϕ′(ϱ0(s)) · ϱ′′
+0(s),
+(D.21)
+where we use the fact that ϱ(s) is smooth over s ∈R when x ∈M −Img(α). By the Taylor
+theorem, we have
+ϱϕ(t) −ϱϕ(0) −tϱ′
+ϕ(0) =
+Z t
+0
+ϱ′′
+ϕ(ξ)(t −ξ)dξ.
+Taking the absolute value, we can obtain the following bound
+|ϱϕ(t) −ϱϕ(0) −tϱ′
+ϕ(0)| ≤
+Z t
+0
+|ϱ′′
+ϕ(ξ)|(t −ξ)dξ.
+Substituting this into (D.16), we obtain
+|I(t) −I(0)| ≤
+Z
+M
+Z t
+0
+|ϱ′′
+ϕ(ξ)|(t −ξ)dξ · e−ϱϕ(0)dvol(x).
+Since the integrand in the right hand side of the above inequality is nonnegative and measur-
+able, we can employ the Tonelli’s theorem to obtain that
+|I(t) −I(0)| ≤
+Z t
+0
+(t −ξ)dξ
+Z
+M
+|ϱ′′
+ϕ(ξ)|e−ϱϕ(0)dvol(x).
+(D.22)
+To evaluate the above the above upper bound, we first upper bound |ϱ′′
+ϕ(ξ)| using Lemma D.3
+and the expression (D.21). Specifically, for any x ∈M−Img(α), the following upper bound
+holds
+|ϱ′′
+ϕ(ξ)| ≤ϕ′′(ϱ0(ξ)) · (ϱ′
+0(ξ))2 + ϕ′(ϱ0(ξ)) · |ϱ′′
+0(ξ)|
+≤ϕ′′(ϱ0(ξ)) + 3 · ϕ′(ϱ0(ξ)) · sn′
+κmin(ϱ0(ξ))
+snκmin(ϱ0(ξ))
+where the first inequality uses the triangle inequality and the fact that ϕ is an increasing and
+convex function, and the second inequality uses Lemma D.3. Here κmin < 0 is a lower bound
+on the sectional curvatures of M used in Condition 5.2 and snκmin(·) is given by (2.3). Using
+this upper bound and the fact that Img(α) is of measure zero, we can show that
+Z
+M
+|ϱ′′
+ϕ(ξ)|e−ϱϕ(0)dvol(x)
+≤
+Z
+M
+
+ϕ′′(ϱ0(ξ)) + 3 · ϕ′(ϱ0(ξ)) · sn′
+κmin(ϱ0(ξ))
+snκmin(ϱ0(ξ))
+
+· e−ϕ(ϱ0(0))dvol(x)
+60
+Since α is a unit-speed geodesic in M and ξ ∈[0, 1], we can show by the triangle inequality
+that
+ϱ0(0) ≥max{ϱ0(ξ) −1, 0}.
+Therefore, since ϕ is an increasing function, we have
+Z
+M
+|ϱ′′
+ϕ(ξ)|e−ϱϕ(0)dvol(x)
+≤
+Z
+M
+
+ϕ′′(ϱ0(ξ)) + 3 · ϕ′(ϱ0(ξ)) · sn′
+κmin(ϱ0(ξ))
+snκmin(ϱ0(ξ))
+
+· e−ϕ(max{ϱ0(ξ)−1,0})dvol(x)
+=: J(ξ).
+(D.23)
+The integrand in J(ξ) is a function of ϱ0(ξ) = dg(x, α(ξ)), so we can use the homogeneity
+of M to demonstrate that
+J(ξ) = J(0),
+∀ξ ∈[0, 1].
+(D.24)
+This proof is omitted, since it is similar to those for Proposition 3.4 and 5.1, where we apply
+a suitable isometry of M to the integral and then employ property (2.4). The property (D.24)
+states that the integral J(ξ) is independent of ξ, which means that one only needs to focus on
+the quantity J(0). In fact, by using the polar coordinate expression (2.2) of the integral and
+Theorem 2.3, we can show that the quantity J(0) is finite:
+J(0) ≤vol(Sm−1) ·
+Z ∞
+0
+
+ϕ′′(r) + 3ϕ′(r)sn′
+κmin(r)
+snκmin(r)
+
+e−ϕ(max{r−1,0})snm−1
+κmin (r)dr
+< ∞,
+where m is the dimension of M and the second inequality uses Condition 5.2. By combining
+this with (D.22), (D.23), and (D.24), we can show that
+|I(t) −I(0)| ≤J(0) ·
+Z t
+0
+(t −ξ)dξ ≤Ct2,
+∀t ∈[0, 1],
+where C > 0 is a finite constant independent of t.
+The proof of the lemma is complete by combining the above two cases.
+D.2
+Simply connected compact Riemannian symmetric spaces
+In this section, we shall delve into the case of a simply connected compact Riemannian symmetric
+space. We will first provide several geometric lemmas in Section D.2.1, and then present detailed
+statistical analysis in Section D.2.2.
+D.2.1
+Geometric lemmas
+In this section, we will present several geometric lemmas on a simply connected compact Rieman-
+nian symmetric space (M, gM). In Lemma D.8, we consider a geodesic α(t) in M and investigate
+61
+the differentiability of the function ϱ0(t) = dg(x, α(t)) for any fixed x ∈M −Img(α) ∪Ucut(α),
+where
+Img(α) = {α(t) | t ∈R},
+(D.25)
+Ucut(α) = ∪t∈RCut(α(t)),
+(D.26)
+and Cut(α(t)) denotes the cut locus of α(t) in M. Since M is a simply connected compact Rie-
+mannian symmetric space, the dimension dim(M) > 1 and thus Img(α) is of measure zero in M.
+Additionally, by Lemma A.2, Ucut(α) is also of measure zero in M. Therefore, Lemma D.8 proves
+the smoothness of ϱ0(t) in R for almost all x in M.
+Lemma D.8. Let (M, gM) be a simply connected compact Riemannian symmetric space, and α(t)
+a geodesic in M. Then for any x ∈M −Img(α) ∪Ucut(α), the function ϱ0(t) = dg(x, α(t)) is
+smooth at all t ∈R, where Img(α) and Ucut(α) are defined by (D.25) and (D.26) respectively.
+Proof. Since x ∈M −Img(α) ∪Ucut(α), it holds that α(t) ̸= x and α(t) /∈Cut(x) for all t ∈R,
+where Cut(x) is the cut locus of x in M. Because the distance function dg(x, y) is smooth at any
+y ∈M −{x} ∪Cut(x), it follows from the chain rule that the function ϱ0(t) = dg(x, α(t)) is also
+smooth at all t ∈R.
+Lemma D.9 considers a unit-speed geodesic α(t) and a function ϕ satisfying Condition 5.6. We
+aim to examine the first two order derivatives of the function ϱϕ(t) = ϕ(dg(x, α(t))) for any x ∈
+M−Img(α)∪Ucut(α), where Img(α) and Ucut(α) are given by (D.25) and (D.26), respectively.
+Lemma D.9. Let (M, gM) is a simply connected compact Riemannian symmetric space, α(t) be
+a unit-speed geodesic in M, and ϕ be a function satisfying Condition 5.6. Then for any x ∈M −
+Img(α)∪Ucut(α), the function ϱϕ(t) = ϕ(dg(x, α(t))) is second-order continuously differentiable
+at any t ∈R, where Img(α) and Ucut(α) are given by (D.25) and (D.26) respectively. In addition,
+the absolute values of its first two order derivatives have the following upper bound
+|ϱ′
+ϕ(t)| ≤ϕ′(dg(x, α(t))),
+|ϱ′′
+ϕ(t)| ≤|ϕ′′(dg(x, α(t)))| + ϕ′(dg(x, α(t)))
+dg(x, α(t))
+· (1 + |ϱ′′(t)|
+2
+),
+where ϱ(t) = d2
+g(x, α(t)).
+Proof. Lemma D.8 has shown that the function ϱ0(t) = dg(x, α(t)) is smooth at any t ∈R for any
+fixed x ∈M −Img(α) ∪Ucut(α). In addition, one can verify that ϱ0(t) ∈(0, rM) for any t ∈R
+and any x ∈M −Img(α) ∪Ucut(α), where rM = supx,y dg(x, y) is the maximum radius of M.
+Hence, the composite function ϱϕ(t) = ϕ(ϱ0(t)) is second-order continuously differentiable at any
+t ∈R for any x ∈M −Img(α) ∪Ucut(α), since ϕ is second-order continuously differentiable on
+(0, rM). Additionally, by the chain rule, we can compute the first two order derivatives of ϱϕ(t) as
+follows
+ϱ′
+ϕ(t) = ϕ′(ϱ0(t)) · ϱ′
+0(t),
+ϱ′′
+ϕ(t) = ϕ′′(ϱ0(t)) · (ϱ′
+0(t))2 + ϕ′(ϱ0(t)) · ϱ′′
+0(t).
+62
+By taking the absolute values and using the triangle inequality, we obtain that
+|ϱ′
+ϕ(t)| ≤ϕ′(ϱ0(t)) · |ϱ′
+0(t)|
+≤ϕ′(ϱ0(t)),
+|ϱ′′
+ϕ(t)| ≤|ϕ′′(ϱ0(t))| · |ϱ′
+0(t)|2 + ϕ′(ϱ0(t)) · |ϱ′′
+0(t)|
+≤|ϕ′′(ϱ0(t))| + ϕ′(ϱ0(t)) · |ϱ′′
+0(t)|,
+(D.27)
+where we use the fact that |ϱ′
+0(t)| ≤1 and ϕ′(·) is nonnegative. Let ϱ(t) = d2
+g(x, α(t)). Then
+ϱ0(t) =
+p
+ϱ(t),
+ϱ′
+0(t) =
+1
+2
+p
+ϱ(t)
+· ϱ′(t),
+and
+ϱ′′
+0(t) =
+1
+2
+p
+ϱ(t)
+· ϱ′′(t) −
+1
+4ϱ(t)
+p
+ϱ(t)
+· (ϱ′(t))2.
+By taking the absolute value and using the triangle inequality, we can show that
+|ϱ′′
+0(t)| ≤|ϱ′′(t)|
+2
+p
+ϱ(t)
++
+1
+p
+ϱ(t)
+,
+where we use the fact that |ϱ′(t)| ≤2
+p
+ϱ(t). Substituting this into (D.27), we obtain that
+|ϱ′′
+ϕ(t)| ≤|ϕ′′(ϱ0(t))| + ϕ′(ϱ0(t)) · 2 + |ϱ′′(t)|
+2ϱ0(t)
+,
+which concludes the proof.
+D.2.2
+KL divergence
+This section will present lemmas related to the KL divergence DKL(Pα∥Pα′), where Pα denotes the
+distribution f(x; α, ϕ). First, in Lemma D.10, we will establish the finiteness of this KL divergence
+under mild conditions.
+Lemma D.10. Let (M, gM) be a simply connected compact Riemannian symmetric space, and ϕ
+a function satisfying Condition 3.3. Then the KL divergence DKL(Pα∥Pα′) is finite for all α, α′ ∈
+M, where Pα denotes the distribution f(x; α, ϕ).
+Proof. By definition of the KL divergence and Pα, we have
+DKL(Pα∥Pα′) =
+1
+Z(ϕ) ·
+Z
+M
+(ϕ(dg(x, α′)) −ϕ(dg(x, α)))e−ϕ(dg(x,α))dvol(x).
+Since M is a compact manifold and the integrand in the above integral is finite, the KL divergence
+DKL(Pα∥Pα′) is finite for all pairs α, α′ ∈M.
+63
+In Lemma D.11, we will consider a unit-speed geodesic α(t) in M. The objective is to inves-
+tigate the first-order asymptotic behavior of the KL divergence DKL(Pα(0)∥Pα(t)) as t →0, where
+Pα denotes the distribution f(x; α, ϕ). Similar to the noncompact case in Section D.1.2, the analysis
+here is again based on the differentiability and symmetry of the following function
+I(t) =
+Z
+M
+ϕ(dg(x, α(t)))e−ϕ(dg(x,α(0)))dvol(x).
+This I(t) relates to the KL divergence in the sense that
+DKL(Pα(0)∥Pα(t)) =
+1
+Z(ϕ)(I(t) −I(0)),
+where Z(ϕ) is the normalizing constant related to the density f(x; α, ϕ).
+Lemma D.11. Let (M, gM) be a simply connected compact Riemannian symmetric space, and ϕ
+a function satisfying Condition 5.6. Let α(t) is a unit-speed geodesic in M with α(0) = α. Define
+I(t) =
+Z
+M
+ϕ(dg(x, α(t)))e−ϕ(dg(x,α))dvol(x).
+Then I(t) is differentiable at any t ∈R and
+I′(t) =
+Z
+M
+d
+dtϕ(dg(x, α(t))) · e−ϕ(dg(x,α))dvol(x).
+(D.28)
+Moreover, I′(0) = 0.
+Remark D.12. Lemma D.8 shows that the function ϱ0(t) = dg(x, α(t)) is smooth at all t ∈R for
+any x ∈M −Img(α) ∪Ucut(α), where Img(α) and Ucut(α) are defined by (D.25) and (D.26)
+respectively, and the set Img(α) ∪Ucut(α) is of measure zero in M. Thus, for almost all x ∈M,
+the function ϕ(ϱ0(t)) is differentiable at all t ∈R, since ϕ is differentiable over (0, rM), where
+rM = supx,y dg(x, y) is the maximum radius of M. This implies that the derivative d
+dtϕ(ϱ0(t)) and
+thus the integrand in (D.28) are well-defined in M except for a null set.
+Proof. By the proof of Lemma D.10, we can show that I(t) is finite for all t ∈R. To demonstrate its
+differentiability, we fix any t ∈R and vary ∆∈[−1, 1]. Then we consider the following first-order
+difference
+I(t + ∆) −I(t)
+∆
+=
+Z
+M
+ϕ(dg(x, α(t + ∆))) −ϕ(dg(x, α(t)))
+∆
+e−ϕ(dg(x,α))dvol(x)
+(D.29)
+By Lemma D.8, the function ϱ0(t) = dg(x, α(t)) is smooth at all t ∈R for any x ∈M−Img(α)∪
+Ucut(α), where Img(α) and Ucut(α) are defined by (D.25) and (D.26) respectively. Additionally,
+since ϕ is differentiable on (0, rM), where rM = supx,y dg(x, y) is the maximum radius of M, the
+function ϕ(ϱ0(t)) is differentiable at all t ∈R for any x ∈M −Img(α) ∪Ucut(α). Therefore, for
+any x ∈M −Img(α) ∪Ucut(α), the following convergence holds
+lim
+∆→0
+ϕ(dg(x, α(t + ∆))) −ϕ(dg(x, α(t)))
+∆
+= d
+dtϕ(dg(x, α(t))).
+64
+Moreover, for any x ∈M −Img(α) ∪Ucut(α), the integrand in (D.29) has the following conver-
+gence
+lim
+∆→0
+ϕ(dg(x, α(t + ∆))) −ϕ(dg(x, α(t)))
+∆
+e−ϕ(dg(x,α)) = d
+dtϕ(dg(x, α(t)))e−ϕ(dg(x,α)).
+This proves the almost surely convergence of the integrand in (D.29) to the integrand in (D.28) as
+∆→0, where we use the fact that Img(α)∪Ucut(α) is of measure zero in M. Now we proceed to
+find a dominating function on the integrand in (D.29). Specifically, since ϕ is a Lipschitz function
+over [0, rM] with some Lipschitz constant L, we have
+|ϕ(dg(x, α(t + ∆))) −ϕ(dg(x, α(t)))| ≤L · |dg(x, α(t + ∆)) −dg(x, α(t))|
+≤L · |∆|,
+where the second inequality uses the triangle inequality and the condition that α(·) is a unit-speed
+geodesic. Using this upper bound and the fact that ϕ is nonnegative, we can show that
+
+ϕ(dg(x, α(t + ∆))) −ϕ(dg(x, α(t)))
+∆
+ e−ϕ(dg(x,α)) ≤L.
+Since the manifold M is compact, the constant function L is integrable over M. By the dominated
+convergence theorem, we conclude that I(t) is differentiable at t and
+I′(t) = lim
+∆→0
+I(t + ∆) −I(t)
+∆
+=
+Z
+M
+d
+dtϕ(dg(x, α(t)))e−ϕ(dg(x,α))dvol(x).
+Finally, by Proposition 5.1, we can show that the symmetry I(t) = I(−t) holds for all t ∈R, which
+implies that I′(0) = 0. This concludes the proof.
+In Lemma D.13, we again consider a unit-speed geodesic α(t) in M. The objective is to study
+the second-order behavior of the function I(t) near t = 0.
+Lemma D.13. Let (M, gM) be a simply connected compact Riemannian symmetric space, and ϕ
+a function satisfying Condition 5.6. Let α(t) be a unit-speed geodesic in M with α(0) = α. Define
+I(t) =
+Z
+M
+ϕ(dg(x, α(t)))e−ϕ(dg(x,α))dvol(x).
+Then for sufficiently small t, we have I(t) −I(0) ≤Ct2 for some constant C independent of t.
+Proof. By the proof of Lemma D.10, we can show that I(t) is finite for all t ∈R. By Proposition
+5.1, we know that the symmetry I(t) = I(−t) holds, and thus it suffices to consider the case t ≥0.
+Since we only examine the behavior of I(t) near 0, we assume without loss of generality that t ≤1.
+By Lemma D.11, we know that I′(0) = 0, where I′(t) is given by (D.28). Therefore, we can rewrite
+I(t) −I(0) as follows:
+I(t) −I(0) = I(t) −I(0) −tI′(0)
+=
+Z
+M
+
+ϕ(dg(x, α(t))) −ϕ(dg(x, α)) −t · d
+dt
+
+t=0
+ϕ(dg(x, α(t)))
+
+e−ϕ(dg(x,α))dvol(x).
+65
+By taking the absolute value, we can obtain the following upper bound
+|I(t) −I(0)|
+≤
+Z
+M
+ϕ(dg(x, α(t))) −ϕ(dg(x, α)) −t · d
+dt
+
+t=0
+ϕ(dg(x, α(t)))
+ · e−ϕ(dg(x,α))dvol(x)
+≤
+Z
+M
+ϕ(dg(x, α(t))) −ϕ(dg(x, α)) −t · d
+dt
+
+t=0
+ϕ(dg(x, α(t)))
+ dvol(x),
+(D.30)
+where the second inequality uses the fact that ϕ is nonnegative. Our current objective is to establish
+an upper bound on the integral in (D.30). Since ϕ is second-order continuously differentiable over
+(0, rM), where rM = supx,y dg(x, y) is the maximum radius of M, the function ϕ(dg(x, α(t))) is
+second-order continously differentiable at t ∈R for any fixed x ∈M −Img(α) ∪Ucut(α). Here
+we use the chain rule and Lemma D.8, and Img(α) and Ucut(α) are given by (D.25) and (D.26)
+respectively. Therefore, by using the Taylor theorem, we have
+ϕ(dg(x, α(t))) −ϕ(dg(x, α)) −t · d
+dt
+
+t=0
+ϕ(dg(x, α(t)))
+=
+Z t
+0
+ 
+d2
+dt2
+
+t=ξ
+ϕ(dg(x, α(t)))
+!
+(t −ξ)dξ
+for any x ∈M −Img(α) ∪Ucut(α). By taking the absolute value, we obtain the following upper
+bound
+ϕ(dg(x, α(t))) −ϕ(dg(x, α)) −t · d
+dt
+
+t=0
+ϕ(dg(x, α(t)))
+
+≤
+Z t
+0
+
+d2
+dt2
+
+t=ξ
+ϕ(dg(x, α(t)))
+ (t −ξ)dξ
+for any x ∈M−Img(α)∪Ucut(α). Substituting this into (D.30) and using the fact that Img(α)∪
+Ucut(α) is of measure zero in M, we obtain the following inequality
+|I(t) −I(0)| ≤
+Z
+M
+Z t
+0
+
+d2
+dt2
+
+t=ξ
+ϕ(dg(x, α(t)))
+ (t −ξ)dξdvol(x).
+By using the Tonelli’s theorem, we obtain that
+|I(t) −I(0)| ≤
+Z t
+0
+(t −ξ)dξ ·
+Z
+M
+
+d2
+dt2
+
+t=ξ
+ϕ(dg(x, α(t)))
+ dvol(x).
+(D.31)
+It suffices to establish a suitable upper bound on the above integral. By Lemma D.9, it holds for any
+x ∈M −Img(α) ∪Ucut(α) that
+
+d2
+dt2
+
+t=ξ
+ϕ(dg(x, α(t)))
+ ≤|ϕ′′(dg(x, α(ξ)))| + ϕ′(dg(x, α(ξ)))
+dg(x, α(ξ))
+· (1 + |ϱ′′(ξ)|
+2
+),
+where ϱ(t) = d2
+g(x, α(t)). Therefore,
+Z
+M
+
+d2
+dt2
+
+t=ξ
+ϕ(dg(x, α(t)))
+ dvol(x)
+≤
+Z
+M
+
+|ϕ′′(dg(x, α(ξ)))| + ϕ′(dg(x, α(ξ)))
+dg(x, α(ξ))
+· (1 + |ϱ′′(ξ)|
+2
+)
+
+dvol(x) =: J(ξ).
+(D.32)
+66
+Given any ξ ∈R, there exists an isometry F ∈Iso(M) such that F −1(α(t)) = α(t −ξ), since M
+is a Riemannian symmetric space and α(·) is a geodesic in M. Then
+J(ξ)
+=
+Z
+M
+ 
+|ϕ′′(dg(x, α(ξ)))| + ϕ′(dg(x, α(ξ)))
+dg(x, α(ξ))
+· (1 +
+
+d2
+dt2
+
+t=ξ
+d2
+g(x, α(t))
+2
+)
+!
+dvol(x)
+(a)
+=
+Z
+M
+ 
+|ϕ′′(dg(F(x), α(ξ)))| + ϕ′(dg(F(x), α(ξ)))
+dg(F(x), α(ξ))
+· (1 +
+
+d2
+dt2
+
+t=ξ
+d2
+g(F(x), α(t))
+2
+)
+!
+dvol(x)
+(b)
+=
+Z
+M
+ 
+|ϕ′′(dg(x, α(0)))| + ϕ′(dg(x, α(0)))
+dg(x, α(0))
+· (1 +
+
+d2
+dt2
+
+t=ξ
+d2
+g(x, α(t −ξ))
+2
+)
+!
+dvol(x)
+(c)
+=
+Z
+M
+ 
+|ϕ′′(dg(x, α(0)))| + ϕ′(dg(x, α(0)))
+dg(x, α(0))
+· (1 +
+
+d2
+dt2
+
+t=0
+d2
+g(x, α(t))
+2
+)
+!
+dvol(x)
+(d)
+=J(0),
+(D.33)
+where (a) uses the property (2.4) of the integral, (b) uses the fact that
+dg(F(x), α(t)) = dg(x, F −1(α(t))) = dg(x, α(t −ξ)),
+∀t ∈R,
+(c) uses the change of variables and the chain rule, and (d) uses the definition of J(0). The relation-
+ship (D.33) demonstrates that J(ξ) is a quantity independent of ξ, and thus one only needs to focus
+on the quantity J(0). By definition, J(0) = J1 + J2, where
+J1 =
+Z
+M
+|ϕ′′(dg(x, α))|dvol(x),
+J2 =
+Z
+M
+ϕ′(dg(x, α))
+dg(x, α)
+·
+ 
+1 +
+
+d2
+dt2
+
+t=0
+d2
+g(x, α(t))
+2
+
+!
+dvol(x).
+In the following, we will analyze J1 and J2 separately.
+• Analyzing J1. By using the polar coordinate expression (2.2) of the integral and the volume
+comparison theorem, Theorem 2.3, we obtain that
+J1 ≤vol(Sm−1) ·
+Z rM
+0
+|ϕ′′(r)|rm−1dr
+< ∞,
+where the first inequality uses the observation that the sectional curvatures of M are nonneg-
+ative and the second inequality uses Condition 5.6.
+• Establishing that J2 is finite using Lie theory. The second-order derivative
+
+d2
+dt2
+
+t=0
+d2
+g(x, α(t))
+2
+
+may diverge when x approaches the cut locus Cut(α) of α in M, posing a significant chal-
+lenge to the analysis of J2. To address this challenge, we need to use the Lie theory introduced
+67
+in Section A.2. Specifically, we will treat α as the reference point o used in Section A.2, and
+we will adopt the same set of notations in Section A.2. For each x ∈M, we shall use the
+parametrization x = φ(s, a) as in (A.6), where s ∈S, a ∈¯C+, and S and ¯C+ are bounded
+sets defined in Section A.2.2. Then we can establish the finiteness of J2 by combining the
+following steps.
+a) By the integral formula (A.7), we can rewrite the integral of any function ℓ(·) on M in the
+following way:
+Z
+M
+ℓ(x)dvol(x) =
+Z
+C+
+Z
+S
+ℓ(s, a)
+Y
+λ∈∆+
+(sin λ(a))mλdadω(s),
+where ℓ(s, a) = ℓ◦φ(s, a), ∆+ is the set of certain positive roots introduced in Section
+A.2.1, and mλ ≥1 is the multiplicity of the root λ ∈∆+. This integral formula is essential
+in proving the integrability of J2.
+b) Since α(·) is a geodesic in M, the second-order derivative
+d2
+dt2
+
+t=0
+d2
+g(x, α(t))
+2
+= Hα(x)( ˙α(0), ˙α(0)),
+where Hα(x) is the Hessian of the function hx(y) =
+d2
+g(x,y)
+2
+at α, and ˙α(0) is the differen-
+tial of α(·) at t = 0. Then by using the Hessian formula (A.11) and the fact that α(·) is a
+unit-speed geodesic, we can show that
+
+d2
+dt2
+
+t=0
+d2
+g(x, α(t))
+2
+ ≤1 +
+X
+λ∈∆+
+λ(a) cot λ(a),
+where x = φ(s, a), ∆+ is the set of certain positive roots introduced in Section A.2.1, and
+cot is the cotangent function. When x approaches the cut locus Cut(α) of α, the quantity
+λ(a) for some λ ∈∆+ will converge to π and thus λ(a) cot λ(a) will diverge. This poses
+the aforementioned challenge to the analysis of J2. Fortunately, we can address this issue
+by using the integral formula in part a), which we will discuss in part d).
+c) By using the formula of the Riemannian metric (A.4), we can obtain that
+d2
+g(x, α) =
+X
+λ∈∆+
+mλ(λ(a))2,
+where x = φ(s, a). It implies that λ(a) ≤dg(x, α) for any λ ∈∆+, where x = φ(s, a).
+d) Finally, by combining the above properties a) and b) and the fact that ϕ′(·) is bounded by
+some constant L within (0, rM), we obtain that
+J2 ≤
+Z
+C+
+Z
+S
+L
+dg(x, α)
+
+2 +
+X
+λ∈∆+
+λ(a) cot λ(a)
+
+Y
+λ∈∆+
+(sin λ(a))mλdadω(s). (D.34)
+By the above property c), we find that the integrand in (D.34) is bounded. Therefore, since
+C+ and S are bounded regions, we conclude that J2 is integrable.
+68
+By combining the above two cases, we obtain that J(0) = J1 + J2 < ∞. Then by combining this
+property with (D.31), (D.32), (D.33), we obtain that
+|I(t) −I(0)| ≤J(0) ·
+Z t
+0
+(t −ξ)dξ ≤Ct2,
+where C > 0 is a finite constant independent of t. This proves the lemma.
+E
+Technical proofs for Section 6
+This section provides proofs for the results in Section 6.
+E.1
+Proof of Proposition 6.2
+Proof. Given n independent samples {xi}n
+i=1 drawn from the distribution f(x; α, β, ϕ), the MLEs
+for α and β are given by
+(bαMLE, bβMLE) = argmax
+α,β
+1
+Z(β, ϕ)n e−β Pn
+i=1 ϕ(dg(xi,α)),
+where the maximum of α is taken over X since the true parameter is in X. For any β > 0, the MLE
+of α is given by
+bαMLE = argmin
+α∈X
+n
+X
+i=1
+ϕ(dg(xi, α)),
+(E.1)
+which is independent of β. Therefore, (E.1) gives the MLE of α when β is unknown. Moreover, the
+MLE of β is given by
+bβ = argmin
+β
+β
+n
+X
+i=1
+ϕ(dg(xi, bαMLE)) + n log Z(β, ϕ),
+where bα is given by (E.1).
+E.2
+Proof of Theorem 6.5
+Proof. We will prove this theorem in three steps. First, we construct an ϵ-net Sα = {αi}Nα
+i=1 of the
+set X = BM(α∗, D) and an ϵ-net Sβ = {βi}Nβ
+i=1 of the bounded interval [βmin, βmax]. By Lemma
+C.1, the ϵ-net Sα can be chosen such that Nα ≲ϵ−m, and by conventional knowledge, the ϵ-net Sβ
+can be chosen such that Nβ ≲ϵ−1, where ≲omits constants independent of ϵ.
+Next, we use Sα and Sβ to construct the following set
+SF = {f(x; αi, βj, ϕ) | αi ∈Sα, βj ∈Sβ}.
+(E.2)
+The cardinality of the set SF is controlled by
+|SF| ≤|Sα| · |Sβ| ≲ϵ−(m+1),
+69
+where ≲omits constants independent of ϵ. For any α ∈X and β ∈[βmin, βmax], there are αi ∈Sα
+and βj ∈Sβ such that dg(αi, α) ≤ϵ and |β −βj| ≤ϵ. By Lemma E.1 and E.2, we have
+d∞(f(x; α, β, ϕ), f(x; αi, β, ϕ)) ≤C1dg(α, αi) ≤C1ϵ,
+d∞(f(x; αi, β, ϕ), f(x; αi, βj, ϕ)) ≤C2|β −βj| ≤C2ϵ,
+where C1, C2 are finite constants independent of α, αi, β, βi, and ϵ. Then by the triangle inequality,
+we have
+d∞(f(x; α, β, ϕ), f(x; αi, βj, ϕ))
+≤d∞(f(x; α, β, ϕ), f(x; αi, β, ϕ)) + d∞(f(x; αi, β, ϕ), f(x; αi, βj, ϕ))
+≤Cϵ.
+where C is a constant independent of α, αi, β, βi, and ϵ. This demonstrates that SF is a Cϵ-net of
+F and thus
+N(Cϵ, F, d∞) ≤|SF| ≲ϵ−(m+1).
+where ≲omits constants independent of ϵ. By rescaling ϵ, we obtain the following entropy estimate:
+log N(ϵ, F, d∞) ≲log(1
+ϵ ),
+where ≲omits constants independent of ϵ. This proves the first entropy inequality in the theorem.
+To proceed, we analyze the bracketing entropy log NB(ϵ, F, d1) and log NB(ϵ, F, dh). Observe
+that for any f(x; α, β, ϕ) ∈F, it holds that
+0 ≤f(x; α, β, ϕ) ≤
+1
+Z(βmax, ϕ),
+∀x ∈M,
+(E.3)
+where we use the facts that ϕ is nonnegative and
+Z(β, ϕ) ≥Z(βmax, ϕ),
+∀β ∈[βmin, βmax].
+Additionally, if dg(x, α∗) ≥2D, then for all α ∈BM(α∗, D), it holds that
+dg(x, α) ≥dg(x, α∗) −dg(α, α∗) ≥dg(x, α∗)
+2
+.
+This implies that for all x with dg(x, α∗) ≥2D and β ∈[βmin, βmax],
+f(x; α, β, ϕ) ≤
+1
+Z(βmax, ϕ)e−βminϕ(dg(x,α∗)/2),
+(E.4)
+where we use the fact that ϕ is increasing and nonnegative. Combining (E.3) with (E.4), we conclude
+that
+H(x) =
+(
+1
+Z(βmax,ϕ)e−βminϕ(dg(x,α∗)/2),
+if dg(x, α∗) > 2D,
+1
+Z(βmax,ϕ),
+otherwise,
+70
+is an envelop for F, that is, f(x; α, β, ϕ) ≤H(x) for all x ∈M, α ∈X, and β ∈[βmin, βmax].
+Then we construct brackets [li, ui] as follows:
+li = max{fi −η, 0},
+ui = min{fi + η, H},
+where {fi}N
+i=1 is an η-net of F under d∞. It is obvious that F ⊆∪N
+i=1[li, ui] and
+ui −li ≤min{2η, H}.
+Therefore, for any B > 0,
+d1(ui, li) :=
+Z
+M
+(ui −li)dvol ≤2η · vol(BM(α∗, B)) +
+Z
+dg(x,α∗)>B
+H(x)dvol(x).
+(E.5)
+To provide an upper bound on this quantity, we consider the following two cases separately.
+• Case 1: M is compact. In this case, by taking B > supx∈M dg(x, α∗), we obtain that
+d1(ui, li) ≤2η · vol(M).
+This implies that for sufficiently small η,
+NB(2η · vol(M), F, d1) ≤N(η, F, d∞) ≲η−(m+1),
+where we use the entropy estimate of F under d∞. By taking ϵ = 2η · vol(M), we obtain
+that for sufficiently small ϵ,
+log NB(ϵ, F, d1) ≲log(1
+ϵ ),
+where ≲omits constants independent of ϵ. Since NB(√ϵ, F, dh) ≤NB(ϵ, F, d1), we have
+log NB(ϵ, F, dh) ≲log(1
+ϵ )
+for sufficiently small ϵ, where ≲omits constants independent of ϵ.
+• Case 2: M is noncompact. In this case, we take B > 2D. The upper bound in (E.5) can be
+rewritten as
+d1(ui, li) ≤2η · vol(BM(α∗, B)) +
+1
+Z(βmax, ϕ)
+Z
+dg(x,α∗)>B
+e−βminϕ(dg(x,α∗)/2)dvol(x).
+(E.6)
+Using the polar coordinate expression (2.2) of the integral, the volume comparison theorem,
+Theorem 2.3, and the same argument in (4.9), we obtain that
+vol(BM(α∗, B)) ≤C1e
+√−κmin(m−1)B,
+(E.7)
+where C1 is a constant independent of B, κmin < 0 is a lower bound on the sectional curva-
+tures of M, and m is the dimension of M. Similarly, by using the polar coordinate expression
+(2.2) and Theorem 2.3, we have
+Z
+dg(x,α∗)>B
+e−βminϕ(dg(x,α∗)/2)dvol(x) ≤
+Z ∞
+B
+e−βminϕ(r/2)snm−1
+κmin (r)dr · vol(Sm−1),
+71
+where snκmin(·) is given by (2.3). Combining this with (E.6) and (E.7), we obtain that
+d1(ui, li) ≤2C1ηe
+√−κmin(m−1)B + vol(Sm−1)
+Z(βmax, ϕ)
+Z ∞
+B
+e−βminϕ(r/2)snm−1
+κmin (r)dr.
+Taking B = Bη =
+log(1/η)
+2(m−1)√−κmin , and using Condition 6.3, we conclude that for all suffi-
+ciently small η,
+d1(ui, li) ≤2C1η1/2 + c1vol(Sm−1)
+Z(βmax, ϕ) ηc2 ≤Cηc,
+where c1, c2, C, c > 0 are constants independent of η. This implies that for sufficiently small
+η,
+NB(Cηc, F, d1) ≤N(η, F, d∞) ≲η−(m+1),
+where ≲omits constants independent of η. By taking ϵ = Cηc, we obtain that for sufficiently
+small ϵ,
+log NB(ϵ, F, d1) ≲log(1
+ϵ ),
+where ≲omits constants independent of ϵ. Again, since NB(√ϵ, F, dh) ≤NB(ϵ, F, d1), we
+have
+log NB(ϵ, F, dh) ≲log(1
+ϵ )
+for sufficiently small ϵ, where ≲omits constants independent of ϵ.
+The proof of the theorem is complete by combining the above two cases.
+E.3
+Proof of Corollary 6.6
+Proof. This follows from empirical process theory and the bracketing entropy estimates in Theo-
+rem 6.5. Specifically, by the bracketing entropy estimates in Theorem 6.5, the bracketing entropy
+integral satisfies that
+JB(δ, F, dh) :=
+Z δ
+0
+p
+log NB(u, F, dh)du ≲
+Z δ
+0
+log1/2(1
+u)du,
+for sufficiently small δ, where ≲omits constants independent of δ. By Theorem 2, Wong and Shen
+(1995), we obtain that with probability at least 1 −ce−c log2 n,
+dh(f(x; αtr, βtr, ϕ), f(x; bαMLE, bβMLE, ϕ)) ≲log n
+√n ,
+where ≲omits constants independent of n and c is a universal constant. This proves (6.3). Since
+the L1 distance is upper bounded by twice the hellinger distance, the inequality (6.4) follows from
+the inequality (6.3). This proves the corollary.
+72
+E.4
+Proof of Theorem 6.8
+Proof. By Lemma E.6, we have
+lim
+ϵ→0 inf
+
+D(α, β; α0, β0)
+dg(α, α0) + |β −β0|
+ dg(α, α0) < ϵ, |β −β0| < ϵ
+
+> 0,
+(E.8)
+where
+D(α, β; α0, β0) = d1(f(x; α, β, ϕ), f(x; α0, β0, ϕ)).
+Therefore, there exists a positive constant ϵ0 such that for all α, β with dg(α, α0) < ϵ0 and |β−β0| <
+ϵ0, the following inequality holds:
+dg(α, α0) + |β −β0| ≤C1 · D(α, β; α0, β0),
+(E.9)
+where C1 > 0 is a constant independent of α and β. Then to prove the theorem, we show that
+inf
+α,β∈A D(α, α0) > 0,
+(E.10)
+where A is a compact set given by
+A = {(α, β) ∈X × [βmin, βmax] | dg(α, α0) ≥ϵ0 or |β −β0| ≥ϵ0} .
+Suppose on the contrary that
+inf
+α,β∈A D(α, α0) = 0.
+Then there exists a sequence {αn, βn}∞
+n=1 ⊆A such that
+D(αn, βn; α0, β0) →0.
+Since A is a compact set, we can apply Lemma E.1 to obtain that dg(αn, α0) →0 and |βn−β0| →0.
+This contradicts with the choices of αn and βn, and thus we prove the result (E.10). Combining this
+with (E.9), we immediately obtain the theorem.
+E.5
+Technical lemmas
+This section collects technical lemmas for this section. Section E.5.1 derives the Lipschitz properties
+of the distribution f(x; α, β, ϕ) with respect to its parameters. Section E.5.2 presents the parameter
+identifiability of α, β in the distribution f(x; α, β, ϕ). Section E.5.3 proves a claim used in the proof
+of Theorem 6.8. Section E.5.4 present technical lemmas used in Section E.5.3.
+E.5.1
+Lipschitz properties
+Lemma E.1 establishes the Lipschitz property of the distribution f(x; α, β, ϕ) with respect to α.
+Lemma E.1. Assume (M, gM) is a Riemannian homogeneous space, and ϕ is a function satisfying
+Conditions 6.3 for some βmin > 0. Let f(x; α, β, ϕ) be the distribution defined in (6.2) and βmin ≤
+βmax < ∞. Then for any β ∈[βmin, βmax], the following inequality holds for any pair α1, α2 ∈M:
+d∞(f(x; α1, β, ϕ), f(x; α2, β, ϕ)) ≤C · dg(α1, α2),
+where C > 0 is a finite constant independent of α1, α2 and β.
+73
+Proof. Condition 6.3 states that the function |ϕ′(r)e−βminϕ(r)| is bounded on [0, rM] by a constant
+L, where rM = supx,y∈M dg(x, y) is the maximum radius of M. Then for any β ∈[βmin, βmax],
+the first-order derivative of e−βϕ(r) satisfies the following bound:
+
+d
+dre−βϕ(r)
+ = |βϕ′(r)e−βϕ(r)| ≤|βmaxϕ′(r)e−βminϕ(r)|
+≤βmaxL.
+Thus, the function e−βϕ(r) is a Lipschitz continuous function with a Lipschitz constant L0 = βmaxL
+for any β ∈[βmin, βmax]. As a result, we have
+|f(x; α1, β, ϕ) −f(x; α2, β, ϕ)| ≤
+L0
+Z(β, ϕ) · |dg(x, α1) −dg(x, α2)|
+≤
+L0
+Z(βmax, ϕ) · |dg(x, α1) −dg(x, α2)|,
+where Z(β, ϕ) is the normalizing constant in (6.2) and the second inequality follows from the fol-
+lowing observation
+Z(β, ϕ) ≥Z(βmax, ϕ),
+∀β ≤βmax.
+By the triangular inequality, we have
+|dg(x, α1) −dg(x, α2)| ≤dg(α1, α2).
+This implies that for any β ∈[βmin, βmax],
+|f(x; α1, β, ϕ) −f(x; α2, β, ϕ)| ≤
+L0
+Z(βmax, ϕ) · dg(α1, α2).
+By taking the supremum over x, we conclude the proof of this lemma.
+Lemma E.2 establishes the Lipschitz property of the distribution f(x; α, β, ϕ) with respect to β.
+Lemma E.2. Assume (M, gM) is a Riemannian homogeneous space, and ϕ is a function satisfying
+Conditions 6.3 for some βmin > 0. Let f(x; α, β, ϕ) be the distribution defined in (6.2) and βmin ≤
+βmax < ∞. Then for any α ∈M, the following inequality holds for any pair β1, β2 ∈[βmin, βmax]:
+d∞(f(x; α, β1, ϕ), f(x; α, β2, ϕ)) ≤C · |β1 −β2|,
+where C > 0 is a finite constant independent of α, β1, β2.
+Proof. By the definition of f(x; α, β, ϕ), we can show that for all β1, β2 ∈[βmin, βmax],
+|f(x; α, β1, ϕ) −f(x; α, β2, ϕ)|
+=
+
+1
+Z(β1, ϕ)e−β1ϕ(dg(x,α)) −
+1
+Z(β2, ϕ)e−β2ϕ(dg(x,α))
+
+≤
+
+1
+Z(β1, ϕ) −
+1
+Z(β2, ϕ)
+ · e−β2ϕ(dg(x,α)) +
+1
+Z(β1, ϕ) ·
+e−β1ϕ(dg(x,α)) −e−β2ϕ(dg(x,α))
+≤
+1
+Z(βmax, ϕ)2 · |Z(β2, ϕ) −Z(β1, ϕ)| +
+1
+Z(βmax, ϕ) ·
+e−β1ϕ(dg(x,α)) −e−β2ϕ(dg(x,α)) ,
+(E.11)
+74
+where the first inequality uses the triangle inequality and the second inequality uses the facts that ϕ
+is a nonnegative function and
+Z(β, ϕ) ≥Z(βmax, ϕ),
+∀β ≤βmax.
+Observe that the function ℓ(β) = e−βr for any r ≥0 is a Lipschitz function over [βmin, βmax] with
+a Lipschitz constant
+L0 = sup
+r≥0
+re−βminr < ∞,
+(E.12)
+which is independent of r. Then the following inequality holds
+e−β1ϕ(dg(x,α)) −e−β2ϕ(dg(x,α)) ≤L0|β1 −β2|,
+(E.13)
+where L0 is defined by (E.12). To proceed, we analyze the following term
+|Z(β1, ϕ) −Z(β2, ϕ)| ≤
+Z
+M
+|e−β1ϕ(dg(x,α)) −e−β2ϕ(dg(x,α))|dvol(x).
+(E.14)
+Using the Lipschitz property of the function ℓ(β) = e−βr over [βmin, βmax], whose Lipschitz con-
+stant is re−βminr, we obtain that
+Z
+M
+|e−β1ϕ(dg(x,α)) −e−β2ϕ(dg(x,α))|dvol(x)
+≤
+Z
+M
+ϕ(dg(x, α)) · e−βminϕ(dg(x,α)) · dvol(x) · |β1 −β2|.
+(E.15)
+Then we consider two cases.
+• Case 1: M is compact. In this case, the integral
+R
+M ϕ(dg(x, α)) · e−βminϕ(dg(x,α))dvol(x) is
+finite and independent of α. Thus, by combining this with (E.14) and (E.15), we obtain that
+|Z(β1, ϕ) −Z(β2, ϕ)| ≤L1|β1 −β2|,
+where L1 is a finite constant independent of α, β1, β2.
+• Case 2: M is noncompact. Using the polar coordinate expression (2.2) of the integral and
+the volume comparison theorem, Theorem 2.3, we obtain that
+Z
+M
+ϕ(dg(x, α))e−βminϕ(dg(x,α))dvol(x)
+≤
+Z ∞
+0
+ϕ(r)e−βminϕ(r)snm−1
+κmin (r)dr · vol(Sm−1)
+< ∞,
+where κmin is a lower bound on the sectional curvatures of M, snκmin(·) is given by (2.3),
+and the second inequality uses Condition 6.3. It follows that
+|Z(β1, ϕ) −Z(β2, ϕ)| ≤L1|β1 −β2|,
+where L1 is a finite constant independent of α, β1, β2.
+Combining these two cases with (E.11) and (E.13), we obtain that
+|f(x; α, β1, ϕ) −f(x; α, β2, ϕ)| ≤C · |β1 −β2|,
+where C > 0 is a finite constant independent of α, β1, β2. Then we conclude the proof by taking
+the supremum of x.
+75
+E.5.2
+Identifiability
+Lemma E.3. Suppose (M, gM) is a Riemannian homogeneous space with rM = supx,y dg(x, y).
+Assume ϕ satisfies Condition 6.3 for βmin > 0 and is strictly increasing on [0, rM]. Let f(x; α, β, ϕ)
+be the density in (6.1) and X ⊆M a compact set. Then if α0, {αn}∞
+n=1 ⊆X and β0, {βn}∞
+n=1 ⊆
+[βmin, βmax] for some βmin ≤βmax < ∞satisfy that
+d1(f(x; αn, βn, ϕ), f(x; α0, β0, ϕ)) →0,
+(E.16)
+where d1 is the L1 distance, then dg(αn, α0) →0 and |βn −β0| →0 as n →∞.
+Proof. We prove this lemma by contradiction. Suppose Condition E.16 holds but (αn, βn) does not
+converge to (α0, β0). Then there exists a subsequence {(αni, βni)}∞
+i=1 that converges to (α′
+0, β′
+0) ̸=
+(α0, β0), where we use the fact that {αn} ⊆X, {βn} ⊆[βmin, βmax], and X is a compact set. By
+the continuity of the function f(x; α, β, ϕ) with respect to its parameters, i.e., Lemma E.4, we have
+that
+d1(f(x; αni, βni, ϕ), f(x; α′
+0, β′
+0, ϕ)) →0.
+Combining this with (E.16), we obtain that d1(f(x; α0, β0, ϕ), f(x; α′
+0, β′
+0, ϕ)) = 0. It then follows
+by Lemma E.5 that α0 = α′
+0 and β0 = β′
+0, which leads to contradiction.
+Lemma E.4 proves the continuity of f(x; α, β, ϕ) with respect to its parameters α and β under
+certain conditions, where we use the L1 distance to measure the distance between distributions.
+Lemma E.4. Let (M, gM) be a Riemannian homogeneous space and ϕ a function satisfying Con-
+dition 6.3 for βmin > 0. Let f(x; α, β, ϕ) be the density in (6.1). If dg(αn, α) →0 and |βn−β| →0
+as n →∞, and {βn}, β ≥βmin, then the following convergence holds:
+d1(f(x; αn, βn, ϕ), f(x; α, β, ϕ)) →0,
+where d1 is the L1 distance.
+Proof. Using Lemma C.4, we have
+d1(f(x; αn, β, ϕ), f(x; α, β, ϕ)) →0.
+Then to prove the lemma, it remains to show that
+d1(f(x; αn, βn, ϕ), f(x; αn, β, ϕ)) →0.
+(E.17)
+By definition of f, we have
+d1(f(x; αn, βn, ϕ), f(x; αn, β, ϕ))
+=
+Z
+M
+
+1
+Z(βn, ϕ)e−βnϕ(dg(x,αn)) −
+1
+Z(β, ϕ)e−βϕ(dg(x,αn))
+ dvol(x).
+Since M is a homogeneous space, there exists an isometry F of M such that F(α) = αn. By using
+this isometry F and the property (2.4) of the integral, we can show that
+d1(f(x; αn, βn, ϕ), f(x; αn, β, ϕ)) = d1(f(x; α, βn, ϕ), f(x; α, β, ϕ)).
+76
+Thus, (E.17) is reduced to
+d1(f(x; α, βn, ϕ), f(x; α, β, ϕ)) →0.
+(E.18)
+To prove this, we observe that {βn} ⊆[βmin, βmax] for some βmax > β, and
+
+1
+Z(βn, ϕ)e−βnϕ(dg(x,α)) −
+1
+Z(β, ϕ)e−βϕ(dg(x,α))
+ ≤H(x),
+where
+H(x) =
+2
+Z(βmax, ϕ)e−βminϕ(dg(x,α)).
+By Condition 6.3, we know that H(x) is integrable. Thus, by applying the dominated convergence
+theorem, we have
+lim
+n→∞
+Z
+M
+
+1
+Z(βn, ϕ)e−βnϕ(dg(x,α)) −
+1
+Z(β, ϕ)e−βϕ(dg(x,α))
+ dvol(x) = 0,
+(E.19)
+where we use the observation that the integrand in (E.19) converges to zero pointwise as n tends to
+infinity. It implies that the convergence (E.18) holds, which concludes the proof.
+Lemma E.5 shows that if the L1 distance between f(x; α, β, ϕ) and f(x; α′, β′, ϕ) is zero, then
+α = α′ and β = β′ under mild conditions.
+Lemma E.5. Suppose (M, gM) is a Riemannian homogeneous space with rM = supx,y dg(x, y).
+Assume ϕ satisfies Condition 6.1 for some βmin > 0 and is strictly increasing on [0, rM]. Then for
+any β, β′ ≥βmin and α, α′ ∈M, the following equality
+d1(f(x; α, β, ϕ), f(x; α′, β′, ϕ)) = 0,
+(E.20)
+implies that α = α′ and β = β′.
+Proof. By the continuity of the functions f(x; α, β, ϕ) and f(x; α′, β′, ϕ), we know that Condition
+(E.20) implies that
+f(x; α, β, ϕ) = f(x; α′, β′, ϕ),
+∀x ∈M,
+By the definition of f, we obtain that
+1
+Z(β, ϕ)e−βϕ(dg(x,α)) =
+1
+Z(β′, ϕ)e−β′ϕ(dg(x,α′)),
+∀x ∈M,
+(E.21)
+where Z(β, ϕ) is the normalizing constant of f(x; α, β, ϕ). By taking x = α and x = α′, we have
+1
+Z(β, ϕ)e−βϕ(0) =
+1
+Z(β′, ϕ)e−β′ϕ(dg(α,α′))
+(i)
+≤
+1
+Z(β′, ϕ)e−β′ϕ(0)
+=
+1
+Z(β, ϕ)e−βϕ(dg(α′,α))
+(ii)
+≤
+1
+Z(β, ϕ)e−βϕ(0),
+77
+where the inequalities (i) and (ii) use the fact that ϕ is an increasing function. The above relation-
+ships imply that (i) and (ii) are in fact equalities. Since ϕ is a strictly increasing function, it follows
+that dg(α, α′) = 0 and thus α = α′. Substituting this into (E.21), we obtain that
+1
+Z(β, ϕ)e−βϕ(dg(x,α)) =
+1
+Z(β′, ϕ)e−β′ϕ(dg(x,α)),
+∀x ∈M,
+which implies β = β′.
+E.5.3
+Proof of the claim (E.8)
+Lemma E.6 proves the claim (E.8) used in the proof of Theorem 6.8.
+Lemma E.6. Assume (M, gM) is a Riemannian homogeneous space and ϕ satisfies Condition 6.7
+for βmin > 0. Let f(x; α, β, ϕ) be the density in (6.1) and (α0, β0) ∈X × [βmin, βmax] a fixed pair
+of parameters. Then
+lim
+ϵ→0 inf
+
+D(α, β; α0, β0)
+dg(α, α0) + |β −β0|
+ dg(α, α0) < ϵ, |β −β0| < ϵ, (α, β) ∈X × [βmin, βmax]
+
+> 0,
+where D(α, β; α0, β0) = d1(f(x; α, β, ϕ), f(x; α0, β0, ϕ)).
+Proof. Without loss of generality, we assume that dg(α, α0) < ϵ and |β −β0| < ϵ for a sufficiently
+small ϵ. They by Lemma E.8, we have
+D(α, β; α0, β0) ≥C1|β −β0|,
+(E.22)
+where C1 > 0 is a constant independent of ϵ, β, β0, α, and α0. Furthermore, by Lemma C.6, for all
+dg(α, α0) < ϵ for a sufficiently small ϵ, we have that
+D(α, β0; α0, β0) ≥C2dg(α, α0),
+(E.23)
+where C2 > 0 is a constant independent of ϵ, α0, α and β. In addition, by Lemma E.7, we have for
+all β, β0 ∈[βmin, βmax] and α ∈M that
+D(α, β; α, β0) ≤C3|β −β0|,
+(E.24)
+where C3 > 0 is a finite constant independent of the choice of β, β0, and α. We shall prove Lemma
+E.6 by combining the above three conclusions. Specifically, we consider the following two cases
+separately.
+• Case 1: |β −β0| ≤C2
+2C3 · dg(α, α0). In this case, we consider dg(α, α0) < ϵ for a sufficiently
+small ϵ. By using the triangle inequality, we have
+D(α, β; α0, β0) ≥D(α, β0; α0, β0) −D(α, β; α, β0)
+(i)
+≥C2dg(α, α0) −C3|β −β0|
+(ii)
+≥C2
+2 dg(α, α0)
+(iii)
+≥
+C2C3
+2C3 + C2
+(dg(α, α0) + |β −β0|)
+where (i) uses (E.23) and (E.24) and (ii) and (iii) use the assumption |β−β0| ≤C2
+2C3 ·dg(α, α0).
+This inequality proves the first case.
+78
+• Case 2: |β −β0| >
+C2
+2C3 · dg(α, α0). In this case, we consider |β −β0| < ϵ for a sufficiently
+small ϵ. We have
+D(α, β; α0, β0) ≥C1|β −β0|
+≥
+2C1C3
+C2 + 2C3
+(|β −β0| + dg(α, α0)),
+where the first inequality uses (E.22) and the second inequality uses the condition |β −β0| >
+C2
+2C3 · dg(α, α0).
+By combining the above two cases, we prove the lemma.
+E.5.4
+Technical lemmas used in Section E.5.3
+In the proof of Lemma E.6, we use the following lemmas. First, in Lemma E.7, we provide an upper
+bound on the quantity D(α, β; α, β0)/|β −β0|, where
+D(α, β; α, β0) = d1(f(x; α, β, ϕ), f(x; α, β0, ϕ)),
+and f(x; α, β, ϕ) is the density in (6.1).
+Lemma E.7. Suppose (M, gM) is a Riemannian homogeneous space with rM = supx,y dg(x, y).
+Assume ϕ satisfies Condition 6.3 for βmin > 0 and is strictly increasing on [0, rM]. Let f(x; α, β, ϕ)
+be the density in (6.1) and βmax > βmin be a finite constant. Define
+D(α, β; α0, β0) = d1(f(x; α, β, ϕ), f(x; α0, β0, ϕ)).
+Then for any β, β0 ∈[βmin, βmax], we have
+D(α, β; α, β0) ≤C|β −β0|,
+where C is a finite constant independent of the choice of β, β0, and α.
+Proof. Without loss of generality, we assume that β < β0. By definition of f(x; α, β, ϕ), we have
+that
+D(α, β; α, β0) =
+Z
+M
+
+1
+Z(β, ϕ)e−βϕ(dg(x,α)) −
+1
+Z(β0, ϕ)e−β0ϕ(dg(x,α))
+ dvol(x)
+≤
+Z
+M
+1
+Z(β, ϕ) ·
+e−βϕ(dg(x,α)) −e−β0ϕ(dg(x,α)) dvol(x)
++
+Z
+M
+
+1
+Z(β, ϕ) −
+1
+Z(β0, ϕ)
+ · e−β0ϕ(dg(x,α))dvol(x),
+(E.25)
+where the inequality uses the triangle inequality. Since βmin ≤β < β0 ≤βmax, we have
+Z
+M
+1
+Z(β, ϕ) ·
+e−βϕ(dg(x,α)) −e−β0ϕ(dg(x,α)) dvol(x) ≤
+1
+Z(βmax, ϕ) · |Z(β, ϕ) −Z(β0, ϕ)|,
+where we use the inequality Z(β, ϕ) ≥Z(βmax, ϕ) and the definition of Z(β, ϕ). Additionally, by
+Lemma E.9, we have
+|Z(β, ϕ) −Z(β0, ϕ)| ≤I1|β −β0|,
+(E.26)
+79
+where 0 < I1 < ∞is a constant defined by
+I1 =
+Z
+M
+ϕ(dg(x, α))e−βminϕ(dg(x,α))dvol(x).
+Therefore,
+Z
+M
+1
+Z(β, ϕ) ·
+e−βϕ(dg(x,α)) −e−β0ϕ(dg(x,α)) dvol(x) ≤
+I1
+Z(βmax, ϕ) · |β −β0|.
+(E.27)
+In addition, we have
+Z
+M
+
+1
+Z(β, ϕ) −
+1
+Z(β0, ϕ)
+ · e−β0ϕ(dg(x,α))dvol(x)
+(i)
+≤
+I1
+Z(βmax, ϕ)2 · |β −β0| ·
+Z
+M
+e−βminϕ(dg(x,α))dvol(x)
+(ii)
+≤C1|β −β0|,
+(E.28)
+where (i) uses (E.26) and βmin ≤β ≤β0 ≤βmax, (ii) uses Condition 6.3, and C1 > 0 is a finite
+constant independent of β, β0, and α. By substituting (E.27) and (E.28) into (E.25), we obtain that
+D(α, β; α, β0) ≤C|β −β0|,
+where C > 0 is a finite constant independent of β, β0, and α.
+Lemma E.8 establishes a lower bound on the quantity D(α, β; α0, β0)/|β −β0|, where
+D(α, β; α0, β0) = d1(f(x; α, β, ϕ), f(x; α0, β0, ϕ)),
+and f(x; α, β, ϕ) is the density in (6.1).
+Lemma E.8. Suppose (M, gM) is a Riemannian homogeneous space with rM = supx,y dg(x, y).
+Assume ϕ satisfies Condition 6.3 for βmin > 0 and is strictly increasing on [0, rM]. Let f(x; α, β, ϕ)
+be the density in (6.1) and βmax > βmin be a finite constant. Define
+D(α, β; α0, β0) = d1(f(x; α, β, ϕ), f(x; α0, β0, ϕ)).
+Then for all α, α0 with dg(α, α0) < ϵ for a sufficiently small ϵ and β, β0 ∈[βmin, βmax], we have
+D(α, β; α0, β0) ≥C|β −β0|,
+where C > 0 is a constant independent of ϵ, β, β0, α, and α0.
+Proof. Without loss of generality, we assume that β > β0. By using the definition of f(x; α, β, ϕ),
+we have that
+D(α, β; α0, β0) =
+Z
+M
+
+1
+Z(β, ϕ)e−βϕ(dg(x,α)) −
+1
+Z(β0, ϕ)e−β0ϕ(dg(x,α0))
+ dvol(x),
+(E.29)
+where Z(β, ϕ) is the normalizing constant of f(x; α, β, ϕ). Thus, we can assume that ϕ(0) = 0
+without loss of generality10. Since ϕ is nonnegative, for any β ∈[βmin, βmax], we have
+0 < Z(βmax, ϕ) ≤Z(β, ϕ) ≤Z(βmin, ϕ) < ∞.
+(E.30)
+10Otherwise, we can analyze ϕ −ϕ(0).
+80
+Substituting this into (E.29), we obtain that
+D(α, β; α0, β0) ≥
+1
+Z(βmin, ϕ)2
+Z
+M
+|W(x)| dvol(x),
+(E.31)
+where
+W(x) := Z(β0, ϕ) · e−βϕ(dg(x,α)) −Z(β, ϕ) · e−β0ϕ(dg(x,α0)).
+Since β > β0, it follows from Lemma E.9 that
+Z(β0, ϕ) −I1(β −β0) ≤Z(β, ϕ) ≤Z(β0, ϕ) −I0(β −β0).
+(E.32)
+where I0 and I1 are constants defined as follows:
+I0 =
+Z
+M
+ϕ(dg(x, α))e−βmaxϕ(dg(x,α))dvol(x),
+(E.33)
+I1 =
+Z
+M
+ϕ(dg(x, α))e−βminϕ(dg(x,α))dvol(x).
+(E.34)
+Note that 0 < I0 ≤I1 < ∞are constants independent of α, β, and β0. Let
+Aα = {x ∈M | dg(x, α) ≤dg(x, α0)}.
+Then for any x ∈Aα, we have
+W(x) ≥Z(β0, ϕ)e−βϕ(dg(x,α0)) −Z(β, ϕ)e−β0ϕ(dg(x,α0))
+≥Z(β0, ϕ)e−βϕ(dg(x,α0)) −(Z(β0, ϕ) −I0(β −β0)) · e−β0ϕ(dg(x,α0))
+= Z(β0, ϕ)e−β0ϕ(dg(x,α0)) ·
+
+e−(β−β0)ϕ(dg(x,α0)) −1
+
++ I0(β −β0)e−β0ϕ(dg(x,α0))
+=: W1(x),
+where we use the fact that ϕ is an increasing function and (E.32). Since e−x −1 ≥−x for all x ≥0,
+we have
+W1(x) ≥(β −β0)e−β0ϕ(dg(x,α0)) · (I0 −Z(β0, ϕ)ϕ(dg(x, α0)))
+≥(β −β0)e−β0ϕ(dg(x,α0)) · (I0 −Z(βmin, ϕ)ϕ(dg(x, α0)))
+=: W2(x).
+Since ϕ(0) = 0 and ϕ is a continuous function, there exists a constant ϵ0 > 0 such that
+Z(βmin, ϕ)ϕ(r) ≤I0
+2 ,
+∀0 ≤r ≤ϵ0.
+Fix any one of such ϵ0 and let
+Aϵ0 = {x ∈M | dg(x, α0) ≤ϵ0}.
+Then for all x ∈Aα ∩Aϵ0, it holds that
+W(x) ≥W2(x) ≥I0
+2 (β −β0)e−βmaxϕ(ϵ0) > 0.
+(E.35)
+81
+By taking a sufficiently small ϵ, we can ensure that
+vol(Aα ∩Aϵ0) ≥V0 > 0,
+∀α ∈BM(α0, ϵ),
+(E.36)
+where V0 is a constant independent of ϵ, α, and α0. Thus, by combining (E.35), (E.36), and (E.31),
+we can show that for any α ∈BM(α0, ϵ) with a sufficiently small ϵ,
+D(α, β; α0, β0) ≥
+1
+Z(βmin, ϕ)2
+Z
+Aα∩Aϵ0
+I0
+2 (β −β0)e−βmaxϕ(ϵ0)dvol(x)
+≥
+1
+Z(βmin, ϕ)2
+I0
+2 e−βmaxϕ(ϵ0) · V0 · (β −β0)
+=: C(β −β0),
+where C > 0 is a constant independent of the choice of ϵ, β, β0, α, and α0.
+Lemma E.9 examines the quantity |Z(β, ϕ)−Z(β0, ϕ)|/|β −β0|, where Z(β, ϕ) is the normal-
+izing constant of the distribution f(x; α, β, ϕ). This lemma is useful in the proof of Lemma E.7 and
+Lemma E.8.
+Lemma E.9. Suppose (M, gM) is a Riemannian homogeneous space with rM = supx,y dg(x, y).
+Assume ϕ satisfies Condition 6.3 for βmin > 0 and is strictly increasing on [0, rM]. Let Z(β, ϕ) be
+the normalizing constant of the function f(x; α, β, ϕ) and βmax ≥βmin a finite constant. Then for
+any different β, β0 ∈[βmin, βmax], we have
+0 < I0 ≤
+
+Z(β, ϕ) −Z(β0, ϕ)
+β −β0
+ ≤I1 < ∞,
+where I0 and I1 are constants defined as follows:
+I0 =
+Z
+M
+ϕ(dg(x, α))e−βmaxϕ(dg(x,α))dvol(x),
+(E.37)
+I1 =
+Z
+M
+ϕ(dg(x, α))e−βminϕ(dg(x,α))dvol(x).
+(E.38)
+Proof. Without loss of generality, we assume that β < β0. By using the definition of Z(β, ϕ), we
+have
+Z(β, ϕ) −Z(β0, ϕ) =
+Z
+M
+
+e−βϕ(dg(x,α)) −e−β0ϕ(dg(x,α))
+dvol(x).
+(E.39)
+Since β < β0 and ϕ is nonnegative, the integrand in (E.39) is nonnegative. Also, we notice that for
+any r ≥0 and β, β0 ∈[βmin, βmax], the following bounds hold:
+e−βmaxrr ≤|e−βr −e−β0r|
+|β −β0|
+≤e−βminrr.
+Substituting this into (E.39), we obtain that
+I0 ≤
+
+Z(β, ϕ) −Z(β0, ϕ)
+β −β0
+ ≤I1,
+where I0 and I1 are defined by (E.37) and (E.38) respectively. Since ϕ satisfies Condition 6.3 for
+βmin > 0 and ϕ is strictly increasing on [0, rM], one can easily show that 0 < I0 ≤I1 < ∞using
+the volume comparison theorem, Theorem 2.3. This concludes the proof of this lemma.
+82
+F
+Technical proofs for Section 7
+This section collects proofs for the results in Section 7. Specifically, Section F.1 provides the proof
+of Theorem 7.1. Section F.2 presents the proof of Corollary 7.2. Section F.3 provides the proof of
+Theorem 7.3, and Section F.4 gives the proof of Theorem 7.5. The remaining technical lemmas are
+postponed to Section F.5.
+F.1
+Proof of Theorem 7.1
+Proof. Let ϵ0 ∈[0, π/2] be the constant such that sin ϵ0 = ϵ0/2. By Lemma F.1, for any ϵ ≤2ϵ0,
+we can construct an ϵ-net S = {αi}N
+i=1 of M = Sm with
+N ≤
+vol(Sm)
+vol(Sm−1) · 4mmϵ−m.
+Using this set S, we can construct the following set
+SF = {fvMF(x; αi, β) | αi ∈S},
+whose cardinality is also N. For any α ∈Sm, there exists an αi ∈S such that dg(α, αi) ≤ϵ. By
+the Lipschitz property, Lemma F.3, we have
+d∞(fvMF(x; α, β), fvMF(x; αi, β)) ≤βe2βvol(Sm) · dg(α, αi)
+≤βe2βvol(Sm) · ϵ,
+Therefore, SF is a (vol(Sm)βe2βϵ)-net of F under d∞and the following entropy estimate holds:
+N
+
+vol(Sm)βe2βϵ, F, d∞
+
+≤|SF| ≤
+vol(Sm)
+vol(Sm−1) · 4mmϵ−m.
+By rescaling ϵ, we obtain that for a sufficiently small ϵ,
+N(ϵ, F, d∞) ≤
+vol(Sm)
+vol(Sm−1) ·
+
+4βe2βvol(Sm)
+m
+m · ϵ−m.
+(F.1)
+To proceed, we let {fi}N∗
+i=1 be a ϵ-net of F under d∞with
+N∗= N(ϵ, F, d∞).
+Then we construct the brackets [li, ui] as follows:
+li = max{0, fi −ϵ},
+ui = fi + ϵ.
+Then it is clear that F ⊆∪i[li, ui]. In addition,
+d1(li, ui) ≤2ϵ · vol(Sm).
+Therefore, {[li, ui]} are 2ϵ · vol(Sm)-brackets covering F. It implies that
+NB(2ϵ · vol(Sm), F, d1) ≤N(ϵ, F, d∞)
+≤
+vol(Sm)
+vol(Sm−1) ·
+
+4βe2βvol(Sm)
+m
+m · ϵ−m,
+83
+where we use (F.1). By rescaling ϵ, we obtain that for a sufficiently small ϵ,
+NB(ϵ, F, d1) ≤
+vol(Sm)
+vol(Sm−1) ·
+
+8βe2βm
+(vol(Sm))2m m · ϵ−m.
+(F.2)
+Since NB(ϵ, F, dh) ≤NB(ϵ2, F, d1), we obtain that
+NB(ϵ, F, dh) ≤
+vol(Sm)
+vol(Sm−1) ·
+
+8βe2βm
+(vol(Sm))2m m · ϵ−2m.
+(F.3)
+To further simplify (F.1), (F.2), and (F.3), we observe that
+vol(Sm) =
+Z π
+0
+sinm−1 rdr · vol(Sm−1) ≤π · vol(Sm−1).
+Also, since vol(Sm) tends to zero as m tends to infinity, one can show that vol(Sm) ≤C0 for some
+finite constant C0 independent of m. Thus, (F.1), (F.2), and (F.3) can be rewritten as follows:
+N(ϵ, F, d∞) ≤πm
+
+4C0βe2βm
+· ϵ−m ≤eCmϵ−m,
+NB(ϵ, F, d1) ≤πm
+
+8C2
+0βe2βm
+· ϵ−m ≤eCmϵ−m,
+NB(ϵ, F, dh) ≤πm
+
+8C2
+0βe2βm
+· ϵ−2m ≤eCmϵ−m,
+where C > 0 be a finite constant such that
+max
+n
+πm
+
+4C0βe2βm
+, πm
+
+8C2
+0βe2βmo
+≤eCm.
+Since C is chosen independent of m and ϵ, we can show that for a sufficiently small ϵ,
+log N(ϵ, F, d∞) ≤Cm + m log(1
+ϵ ) ≤2m log(1
+ϵ ),
+log NB(ϵ, F, d1) ≤2m log(1
+ϵ ),
+log NB(ϵ, F, dh) ≤2m log(1
+ϵ ),
+which concludes the proof.
+F.2
+Proof of Corollary 7.2
+Proof. By the bracketing entropy estimates in Theorem 7.1, the bracketing entropy integral satisfies
+that
+JB(δ, F, dh) :=
+Z δ
+0
+p
+log NB(u, F, dh)du
+≤
+√
+2m
+Z δ
+0
+log1/2(1
+u)du
+≤2√mδ log(1
+δ ),
+84
+for sufficiently small δ. Then by Theorem 2, Wong and Shen (1995), we obtain that for sufficiently
+large n, the following inequality
+dh(fvMF(x; αMLE, β), fvMF(x; αtr, β)) ≤C ·
+√m log n
+√n
+holds with probability at least 1 −ce−cm log2 n, where c, C > 0 are constants independent of m and
+n. This proves (7.3). Also, since the L1 distance is upper bounded by twice the hellinger distance,
+the inequality (7.4) follows from the inequality (7.3). This proves the corollary.
+F.3
+Proof of Theorem 7.3
+Proof. Using the same argument in Corollary 4.7, we know that for sufficiently large n, the distance
+dg(bαMLE, αtr) is sufficiently small with high probability. Then we can combine the identifiability
+result, Lemma F.4, with Corollary 7.2 to prove the desired result.
+F.4
+Proof of Theorem 7.5
+Proof. Let ϵ0 ∈[0, π/2] be a constant such that
+sin ϵ0 = ϵ0/2.
+Then we pick a 2δ-packing S = {αi}N
+i=1 of the set A = BSm(α, 8δ) for some δ ≤ϵ0/8. By Lemma
+F.2, we know S can be chosen such that N ≥2m. Then by the Fano’s method, i.e., inequality (5.4),
+we can show that
+Rn,vMF(β) ≥δ ·
+
+1 −n · supα,α′∈S DKL(Pα∥Pα′) + log 2
+m log 2
+
+,
+(F.4)
+where Pα represents the distribution fvMF(x; α, β), and DKL is the KL divergence. Notice that for
+all α, α′ ∈S, the inequality dg(α, α′) ≤16δ holds. Therefore, by Lemma F.5, we have
+sup
+α,α′∈S
+DKL(Pα∥Pα′) ≤Cδ2
+m ,
+where C > 0 is a constant independent of δ, S, and m. By substituting this into (F.4), we obtain
+that
+Rn,vMF(β) ≥δ · {1 −n · Cδ2/m + log 2
+m log 2
+}.
+Thus, by taking Cnδ2 = 0.01m2, we obtain the following inequality
+Rn,vMF(β) ≥C′m
+√n ,
+where C′ > 0 is a constant independent of n and m.
+85
+F.5
+Technical lemmas
+F.5.1
+Geometric lemma
+Lemma F.1 establishes an upper bound on the covering number N(ϵ, Sm, dg).
+Lemma F.1. Suppose M = Sm is the unit m-sphere. Let ϵ0 ∈[0, π/2] be the constant such that
+sin ϵ0 = ϵ0/2.
+Then for any ϵ ≤2ϵ0, it holds that
+N(ϵ, Sm, dg) ≤
+vol(Sm)
+vol(Sm−1) · 4mmϵ−m,
+(F.5)
+where N(ϵ, Sm, dg) represents the covering number.
+Proof. Construct an ϵ-net S of M by the following greedy procedure. Let x1 ∈M be an arbitrary
+point. Suppose x1, . . . , xs have been chosen. If the set {x ∈M | dg(x, xi) > ϵ, i ≤s} is not empty,
+we pick an arbitrary point xs+1 in this set and add it to S. Otherwise, we end the construction of
+the set S. Such set S is easily shown to be an ϵ-net of M as well as an ϵ-packing of M.
+To prove the lemma, it suffices to provide a suitable upper bound on the cardinality of the set
+S. Since S is an ϵ-packing, the geodesic balls BM(xi, ϵ/2) and BM(xj, ϵ/2) are disjoint for any
+different xi, xj ∈S. Thus, the volume of ∪xi∈SBM(xi, ϵ/2) is equal to the sum of the volumes of
+these geodesic balls. In addition, since M is a sphere, we have
+vol(BM(xi, ϵ/2)) = vol(BM(xj, ϵ/2)) =: V(ϵ/2)
+(F.6)
+for any pair of points xi, xj ∈M and any ϵ > 0. It follows that
+vol (∪xi∈SBM(xi, ϵ/2)) = |S| · V(ϵ/2).
+Since ∪xi∈SBM(xi, ϵ/2) ⊆Sm, we can show that
+|S| ≤vol(Sm)
+V(ϵ/2) .
+(F.7)
+Using the integral formula on Sm, one can show that
+V(δ) := vol(BM(x, δ)) =
+Z δ
+0
+sinm−1 rdr · vol(Sm−1).
+(F.8)
+By the choice of ϵ0, we know that
+sin r ≥r/2,
+∀r ∈[0, ϵ0].
+Then for all ϵ ≤2ϵ0, it holds that
+Z ϵ/2
+0
+sinm−1 rdr ≥
+Z ϵ/2
+0
+rm−1dr/2m−1 =
+ϵm
+22m−1m ≥
+ϵm
+4mm.
+By combining this with (F.7) and (F.8), we obtain that
+N(ϵ, Sm, dg) ≤|S| ≤
+vol(Sm)
+vol(Sm−1) · 4mmϵ−m,
+for all ϵ ≤2ϵ0. This proves the lemma.
+86
+Lemma F.2 lower bounds the packing number M(2δ, A, dg), where A = BSm(α, 8δ).
+Lemma F.2. Suppose M = Sm is the unit m-sphere. Let ϵ0 ∈[0, π/2] be the constant such that
+sin ϵ0 = ϵ0/2.
+Let A = BM(α, 8δ) for some α ∈M. Then for any δ ≤ϵ0/8, we have
+M(2δ, A, dg) ≥2m,
+where M(·, A, dg) denotes the packing number.
+Proof. We construct a 2δ-packing S of A by the following greedy procedure. Let x1 ∈A be an
+arbitrary point. Suppose x1, . . . , xs have been chosen. If the set {x ∈A | dg(x, xi) > 2δ, i ≤s} is
+not empty, we pick an arbitrary point xs+1 in this set and add it to S. Else, we end the construction
+of the set S. Such set S is easily shown to be a 2δ-net of A as well as a 2δ-packing of A.
+To prove the lemma, it suffices to provide a suitable lower bound on the cardinality of the set S.
+Since S is a 2δ-net of A, the set ∪xi∈SBM(xi, 2δ) covers A. Thus, we have
+X
+xi∈S
+vol(BM(xi, 2δ)) ≥vol(∪xi∈SBM(xi, 2δ)) ≥vol(A).
+Since M = Sm, we have
+vol(BM(xi, ϵ)) = vol(BM(xj, ϵ)) =: V(ϵ)
+(F.9)
+for any pair of points xi, xj ∈M and any ϵ > 0. Therefore, it follows that
+|S| · V(2δ) ≥V(8δ).
+By using the integral formula on Sm, we can show that
+V(ϵ) =
+Z ϵ
+0
+sinm−1 rdr · vol(Sm−1).
+Hence, the cardinality of the set S can be lower bounded as follows:
+|S| ≥
+R 8δ
+0 sinm−1 rdr
+R 2δ
+0 sinm−1 rdr
+.
+Since 8δ ≤ϵ0, where sin ϵ0 = ϵ0/2, we have that
+Z 8δ
+0
+sinm−1 rdr ≥
+Z 8δ
+0
+rm−12−mdr = (8δ)m
+m2m .
+Also, since sin r ≤r for all r ≥0, we have
+Z 2δ
+0
+sinm−1 rdr ≤
+Z 2δ
+0
+rm−1dr = (2δ)m
+m
+.
+Consequently,
+M(2δ, A, dg) ≥|S| ≥2m,
+which concludes the proof.
+87
+F.5.2
+Lipschitz properties
+Lemma F.3. Let fvMF(x; α, β) be the von Mises-Fisher distribution on the m-sphere Sm, defined
+in (7.1). Then for any α, α′ ∈Sm, the following inequality holds:
+d∞(fvMF(x; α, β), fvMF(x; α′, β)) ≤βe2βvol(Sm) · dg(α, α′).
+Proof. By definition of fvMF(x; α, β), we have
+|fvMF(x; α, β) −fvMF(x; α′, β)| =
+1
+ZvMF(β) · |eβ cos dg(x,α) −eβ cos dg(x,α′)|,
+where ZvMF(β) is the normalizing constant given by (7.1). Observe that the function h(r) = eβ cos r
+is a Lipschitz continuous function with a Lipschitz constant βeβ. Thus,
+|fvMF(x; α, β) −fvMF(x; α′, β)| ≤
+βeβ
+ZvMF(β) · |dg(x, α) −dg(x, α′)|
+≤
+βeβ
+ZvMF(β) · dg(α, α′),
+where the second inequality uses the triangle inequality. By simple estimation, we can show that
+ZvMF(β) ≥e−βvol(Sm).
+Thus,
+|fvMF(x; α, β) −fvMF(x; α′, β)| ≤βe2βvol(Sm) · dg(α, α′).
+By taking supremum over x, we conclude the proof of this lemma.
+F.5.3
+Identifiability
+Lemma F.4 characterizes the parameter identifiability for the von Mises-Fisher distribution.
+Lemma F.4. Let fvMF(x; α, β) be the von Mises-Fisher distribution on Sm. Then for a sufficiently
+small dg(α, α0), the following lower bound holds:
+d1(fvMF(x; α, β), fvMF(x; α0, β)) ≥Cdg(α, α0)
+√m
+,
+where C > 0 is a constant independent of α, α0, and m.
+Proof. It suffices to prove this lemma for sufficiently large m, since Theorem 4.6 already addresses
+the case where m is small. For convenience, we denote by
+D(α, α0) = d1(fvMF(x; α, β), fvMF(x; α0, β)).
+By definition of von Mises-Fisher distribution, we have
+D(α, α0) =
+1
+ZvMF(β)
+Z
+Sm
+eβ cos dg(x,α) −eβ cos dg(x,α0) dvol(x),
+(F.10)
+88
+where ZvMF(β) is the normalizing constant defined in (7.1). Denote by r0 = dg(α, α0). Without
+loss of generality, we assume that m > 2. Using the spherical geometry, we can rewrite the integral
+in (F.10) as follows:
+Z
+Sm
+eβ cos dg(x,α) −eβ cos dg(x,α0) dvol(x)
+=
+Z π
+0
+Z π
+0
+h(φ1, φ2) sinm−1 φ1 sinm−2 φ2dφ1dφ2 · vol(Sm−2),
+(F.11)
+where
+h(φ1, φ2) =
+eβ(cos φ1 cos r0+sin φ1 cos φ2 sin r0) −eβ cos φ1
+
+= eβ cos φ1 ·
+eβ(cos φ1(cos r0−1)+sin φ1 cos φ2 sin r0) −1
+ .
+There exists a sufficiently small constant r∗> 0 such that for all r0 ≤r∗,
+h(φ1, φ2) ≥e−β · β
+2 · |cos φ1(cos r0 −1) + sin φ1 cos φ2 sin r0|
+≥e−β · β
+2 ·
+r0
+2 |sin φ1 cos φ2| −r2
+0
+2 |cos φ1|
+
+.
+Therefore, for all r0 ≤r∗, it holds that
+2eβ
+β
+·
+Z π
+0
+Z π
+0
+h(φ1, φ2) sinm−1 φ1 sinm−2 φ2dφ1dφ2
+≥
+Z π
+0
+Z π
+0
+r0
+2 |sin φ1 cos φ2| sinm−1 φ1 sinm−2 φ2dφ1dφ2
+−
+Z π
+0
+Z π
+0
+r2
+0
+2 |cos φ1| sinm−1 φ1 sinm−2 φ2dφ1dφ2
+= r0
+Z π
+0
+sinm φ1dφ1
+Z π/2
+0
+sinm−2 φ2 cos φ2dφ2
+−r2
+0
+Z π/2
+0
+sinm−1 φ1 cos φ1dφ1
+Z π
+0
+sinm−2 φ2dφ2
+=
+r0
+m −1
+Z π
+0
+sinm φdφ −r2
+0
+m
+Z π
+0
+sinm−2 φdφ.
+(F.12)
+When m is sufficiently large, we have
+Z π
+0
+sinm φdφ =
+Z π
+0
+sinm−2 φdφ −
+Z π
+0
+sinm−2 φ cos2 φdφ
+≥1
+2
+Z π
+0
+sinm−2 φdφ.
+Then for sufficiently large m and r0 ≤min{r∗, 1/4}, we have
+r0
+m −1
+Z π
+0
+sinm φdφ −r2
+0
+m
+Z π
+0
+sinm−2 φdφ ≥
+ r0
+2m −r2
+0
+m
+ Z π
+0
+sinm−2 φdφ
+≥r0
+4m
+Z π
+0
+sinm−2 φdφ.
+89
+Combining this with (F.12), (F.11), and (F.10), we obtain that for a sufficiently large m and r0 ≤
+min{r∗, 1/4}, the following bound holds:
+D(α, α0) ≥
+1
+ZvMF(β) · vol(Sm−2) · β
+2eβ · r0
+4m
+Z π
+0
+sinm−2 φdφ.
+(F.13)
+By definition, we can show that
+ZvMF(β) ≤eβvol(Sm) = eβ
+Z π
+0
+sinm−1 φ1dφ1
+Z π
+0
+sinm−2 φ2dφ2 · vol(Sm−2).
+Substituting this into (F.13), we obtain that
+D(α, α0) ≥
+βr0
+8me2β R π
+0 sinm−1 φdφ.
+Using Stirling formula, one can show that
+L := sup
+m
+√m
+Z π
+0
+sinm φdφ > 0
+is a finite constant independent of m. Therefore,
+D(α, α0) ≥Cr0
+√m,
+where C > 0 is a constant independent of m and r0.
+F.5.4
+Lemmas for minimax analysis
+Lemma F.5. Let fvMF(x; α, β) be the von Mises-Fisher distribution on the m-sphere Sm. Then
+DKL(Pα∥Pα′) ≤Cd2
+g(α, α′)
+2m
+,
+where Pα denotes the distribution fvMF(x; α, β) and C > 0 is a finite constant independent of α, α′,
+and m.
+Proof. It suffices to consider a sufficiently large m, since when m is small, Proposition 5.8 already
+proves the result. Without loss of generality, we assume that m > 2. Using the definition of the von
+Mises-Fisher distribution the KL divergence, we have that
+DKL(Pα∥Pα′) =
+β
+ZvMF(β)
+Z
+Sm(cos dg(x, α) −cos dg(x, α′))eβ cos dg(x,α)dvol(x)
+(F.14)
+Denote by r0 = dg(α, α′). Then using the spherical geometry, we have
+Z
+Sm(cos dg(x, α) −cos dg(x, α′))eβ cos dg(x,α)dvol(x)
+=
+Z π
+0
+Z π
+0
+h(φ1, φ2) sinm−1 φ1 sinm−2 φ2dφ1dφ2 · vol(Sm−2)
+=:J,
+(F.15)
+90
+where
+h(φ1, φ2) = (cos φ1 −(cos φ1 cos r0 + sin φ1 cos φ2 sin r0))eβ cos φ1.
+By simple calculation, we find that
+Z π
+0
+sinm−2 φ2 cos φ2dφ2 = 0.
+Thus, the integral (F.15) reduces to
+J =
+Z π
+0
+Z π
+0
+h1(φ1) sinm−1 φ1 sinm−2 φ2dφ1dφ2 · vol(Sm−2)
+=
+Z π
+0
+h1(φ1) sinm−1 φ1dφ1 · vol(Sm−1),
+(F.16)
+where
+h1(φ1) = cos φ1(1 −cos r0)eβ cos φ1.
+Since 0 ≤1 −cos r0 ≤r2
+0/2, we know that
+J ≤r2
+0
+2
+Z π
+0
+eβ cos φ cos φ sinm−1 φdφ · vol(Sm−1).
+Substituting this into (F.14), we obtain that
+DKL(Pα∥Pα′) ≤
+β
+ZvMF(β)
+r2
+0
+2
+Z π
+0
+eβ cos φ cos φ sinm−1 φdφ · vol(Sm−1).
+(F.17)
+Observe that
+ZvMF(β) =
+Z π
+0
+eβ cos φ sinm−1 φdφ · vol(Sm−1).
+In addition,
+Z π
+0
+eβ cos φ cos φ sinm−1 φdφ = β
+m
+Z π
+0
+eβ cos φ sinm+1 φdφ
+≤β
+m
+Z π
+0
+eβ cos φ sinm−1 φdφ.
+By substituting these observations into (F.17), we obtain that
+DKL(Pα∥Pα′) ≤β2r2
+0
+2m ,
+which concludes the proof.
+91

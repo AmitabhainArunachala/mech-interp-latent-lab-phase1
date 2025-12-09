@@ -1,0 +1,3819 @@
+What Matters in Memorizing and Recalling Facts?
+Multifaceted Benchmarks for Knowledge Probing in Language Models
+Xin Zhao
+The University of Tokyo
+xzhao@tkl.iis.u-tokyo.ac.jp
+Naoki Yoshinaga
+Daisuke Oba*
+Institute of Industrial Science,
+The University of Tokyo
+{ynaga,oba}@iis.u-tokyo.ac.jp
+Abstract
+Language models often struggle with handling
+factual knowledge, exhibiting factual hallucina-
+tion issue. This makes it vital to evaluate the
+models’ ability to recall its parametric knowl-
+edge about facts. In this study, we introduce
+a knowledge probing benchmark, BELIEF(-
+ICL), to evaluate the knowledge recall ability
+of both encoder- and decoder-based pre-trained
+language models (PLMs) from diverse perspec-
+tives. BELIEFs utilize a multi-prompt dataset
+to evaluate PLM’s accuracy, consistency, and
+reliability in factual knowledge recall. To en-
+able a more reliable evaluation with BELIEFs,
+we semi-automatically create MyriadLAMA,
+which has massively diverse prompts. We vali-
+date the effectiveness of BELIEFs in compre-
+hensively evaluating PLM’s knowledge recall
+ability on diverse PLMs, including recent large
+language models (LLMs). We then investigate
+key factors in memorizing and recalling facts
+in PLMs, such as model size, pretraining strat-
+egy and corpora, instruction-tuning process and
+in-context learning settings. Finally, we reveal
+the limitation of the prompt-based knowledge
+probing. The MyriadLAMA is publicized.1
+1
+Introduction
+One of the strongest motivations for training a
+language model (LM) using massive text is to in-
+crease the ability to handle factual knowledge (Ka-
+malloo et al., 2023). However, even if LMs are
+trained on massive text, they suffer from hallucina-
+tions that generate incorrect knowledge-grounded
+sentences (Zhang et al., 2023). Considering that
+large LMs (LLMs) are being widely applied to real-
+world tasks, it is vital to evaluate the ability to recall
+the LLMs’ parametric knowledge and what factors
+influence on memorizing facts during pre-training.
+*Currently, he works for ELYZA, Inc.
+1https://huggingface.co/datasets/iszhaoxin/
+MyriadLAMA
+!"#$%&'(!"
+!"#$%&'()'*+,'
+-./(*.0'12'3./.4
+!"#$%&')!"
+!"#$%&'()'*+,'
+.56(4()*7.*(8,'
+-,4*,7'12'3./.49
+#$%&$%"'"
+("#$%&$%")*
+!""#$%"&'(
+)*+',-#"*#%*./0
+123435
+6/0+.+*70"&
+123485
+97-.:%:.-.*&
+1234;5
+!"#$%&'#(')"$)
+*+,)"-./-.
+0((1
+!"#$%&!""+,-&-./"0-&1%-2/"345647
+!"#
+*+,-'#.&%.&'(/
+!"#$"
+%$"&"
+'()#)
+!"#$%&!""+89-.0:/"0-&1%-2/";-91<7
+!"#$%&'(!"
+!"#$%&'()'*+,'
+-./(*.0'12':7.4-,
+!"#$%
+*+,-'#.&%.&')/
+!"#$"
+%$"&"
+'()#)
+'("#)*+,',-./#0&"1&.2)345)%.6"78$41
+!"#$"%&'()*+,-./01,12(3456+1271(895:-47
+!"#$%&
+'(")*#$"+
+,-$%&
+'(")*#$"+
+Figure 1: BELIEFs with MyriadLAMA: the BELIEF
+benchmarks utilize diverse factual prompts (here, Myr-
+iadLAMA) to assess LM’s knowledge recall ability in
+terms of accuracy, consistency, and reliability.
+However, evaluating the LLM’s knowledge re-
+call ability is still challenging. Although LAMA
+probe (Petroni et al., 2019) evaluates the knowl-
+edge stored in pre-trained LMs (PLMs), it provides
+only prediction accuracy. Some studies diversify
+prompts in the LAMA probe to compute prediction
+consistency (robustness) (Elazar et al., 2021; Jiang
+et al., 2020), but those datasets have either low qual-
+ity or low quantity issues (§B). Moreover, since the
+LAMA probe assumes encoder-based PLMs with
+the masked LM objective to solve fill-in-the-blank
+tasks, directly applying it to decoder-based LLMs
+will underestimate their knowledge recall ability.
+Although recent studies leveraged QA datasets to
+probe LLMs’ knowledge (Kalo and Fichtel, 2022;
+Mallen et al., 2023; Wiland et al., 2024; Maekawa
+et al., 2024), they overlook other important aspects
+than prediction accuracy such as robustness to di-
+verse prompts and the reliability of predictions,
+which are important for real-world applications.
+In this study, we introduce a multifaceted bench-
+mark for knowledge probing, BELIEFs (Figure 1),
+including BELIEF (§2) and BELIEF-ICL (§3) for
+encoder- and decoder-based PLMs. BELIEFs uti-
+lize diverse prompts for each fact to account for
+the impact of linguistic expressions when evalu-
+arXiv:2406.12277v3  [cs.CL]  8 Oct 2024
+ating LLMs’ knowledge recall ability. This al-
+lows us to evaluate the robustness and reliabil-
+ity of LLM knowledge by measuring fluctuations
+in accuracy, consistency, and overconfidence in
+fact prediction. Since BELIEFs require a multi-
+prompt probing dataset with diverse prompts for
+each fact, we build a new probing dataset, Myri-
+adLAMA, to enable a more accurate and compre-
+hensive evaluation (§4). MyriadLAMA expands
+LAMA-UHN (Petroni et al., 2020) by offering
+different prompts for each fact through a semi-
+automatic method. Specifically, we obtain a wide
+variety of lexically, syntactically, and semantically
+diverse prompts by rewriting relational templates
+and extending subject expressions.
+We applied BELIEFs to various encoder- and
+decoder-based PLMs, including BERT (Devlin
+et al., 2019) and Llama3 (Dubey et al., 2024) (§5.1).
+Through extensive evaluations, we verify the utility
+of BELIEFs in uncovering PLMs’ knowledge re-
+call ability (§5). Moreover, by comparing different
+PLMs, we gain insights into the factors affecting
+knowledge recall of PLMs from three aspects: ac-
+curacy, reliability and robustness (§6).
+The primary findings in this study are as follows:
+• Model size, pretraining strategy, and corpora
+are crucial factors for memorizing knowledge
+in LMs during pretraining.
+• Whereas instruction-tuning enhances LLMs’
+ability to follow instructions in BELIEF-ICL,
+it reduces their knowledge recall ability.
+• The inclusion and selection of demonstrations
+impact knowledge recall, revealing the gap
+between memorized and recallable facts.
+• Exploring the upper limits of covered knowl-
+edge by various methods reveals the limitation
+of prompt-based knowledge probing (§7).
+2
+BELIEF Benchmark
+We first present the multifaceted factual probing
+benchmark, BELIEF for encoder-based PLMs. Us-
+ing a multi-prompt probing dataset, BELIEF evalu-
+ates the knowledge recall ability of PLMs from ac-
+curacy, robustness and reliability (§2.2-2.4). Here,
+robustness measures PLMs’ ability to maintain con-
+sistent accuracy and predictions when given differ-
+ent prompts in evaluation. Reliability reflects the
+extent to which we can trust the PLMs’ predictions.
+2.1
+Preliminaries
+To evaluate the facts in PLMs, BELIEF aggre-
+gates results from multiple prompts for each fact
+to mitigate biases from specific linguistic expres-
+sions. This requires varied expressions for each
+fact, namely multi-prompt factual probing dataset.
+We assume the fill-in-the-blank settings, where
+each fact is represented as a knowledge triple
+⟨subject, relation, object⟩(e.g., ⟨Tokyo, Capital,
+Japan⟩). To probe PLMs for a knowledge triple, we
+first create a masked prompt (hereafter, prompt)
+(e.g., “Tokyo is the capital of [Y]”) for it and then
+input it into PLMs to see if they correctly predict
+the object token. To create such prompts, we first
+need a template for the relation (hereafter, rela-
+tional template, e.g., [X] is the capital of [Y]).
+We then fill the template with target knowledge
+triples, replacing [X] with a subject expression and
+[Y] with a [MASK] token. A multi-prompt dataset
+offers diverse prompts for each fact by providing
+varied relational templates and entity expressions.
+We denote the subject-relation pairs in dataset
+as T, the set of prompts for a given subject-relation
+pair t ∈T as Pt. If the output distribution cor-
+responding to mask token of a prompt is O =
+{(wj, oj)| P
+j oj = 1}, the prediction result is de-
+fined as the token ˆw = argmaxwj,(wj,oj)∈Ooj.
+2.2
+Accuracy and its fluctuations
+To correctly evaluate the accuracy of PLMs, we ag-
+gregate predictions from diverse prompts. Specif-
+ically, we randomly select one prompt for each
+subject-relation pair t ∈T to form a set of prompts
+for all triples P = {p1, ..., p|T|}. By feeding these
+prompts P to PLMs, we can calculate one accuracy
+value based on their predictions. We repeat this
+process to collect a set of accuracies, which we
+then use to calculate both average and fluctuation.
+Average accuracy:
+In BELIEF, accuracy met-
+rics include Acc@1, which measures the rate of
+prompts with the correct token predicted within the
+top-1 output probabilities. Then we repeat this pro-
+cess N times to obtain a set of accuracies, denoted
+as VAcc@1, where |VAcc@1| = N. The final average
+accuracy is calculated as the mean value of VAcc@1.
+Fluctuation of accuracy: For VAcc@1, we evalu-
+ate accuracy fluctuations using the range and stan-
+dard deviation (SD). The range is determined by
+the difference between the maximum and minimum
+accuracy values in VAcc@1.
+2.3
+Consistency
+For each subject-relation pair t, we assess the
+PLM’s consistency in predicting the object across
+different prompts in Pt. Specifically, we compute
+the degree of match between the prediction result
+ˆwi
+t for a given prompt pi
+t and the prediction results
+ˆwj
+t for other prompts pj
+t ∈Pt (where j ̸= i), across
+all subject-relation pairs in T:
+Consist = 1
+|T|
+X
+t∈T
+P
+i,j:i̸=j,i,j≤|Pt| 1[ ˆwt
+i = ˆwt
+j]
+1
+2|Pt|(|Pt| −1)
+(1)
+2.4
+Reliability
+The reliability of PLMs reflects the extent to which
+we can trust the predictions they provide. In our
+study, we measure PLMs’ overconfidence level in
+making fact prediction, drawing from the expected
+error calibration metric (Desai and Durrett, 2020).
+Specially, we measure the difference between true
+prediction accuracy and models’ confidence to their
+predicted tokens. For each prompt, we first ac-
+quire the maximum probability (hereafter, confi-
+dence) from the output distribution for the mask
+token. Subsequently, all of the prompts are ar-
+ranged in descending order based on confidence
+and segmented into M bins (P (1), P (2), ..., P (M)),
+with the same amount of data points in each bin.
+For each bin i, we compute the average accuracy
+Acc@1
+(i) and average confidence omax(i). In our
+work, we use M = 10 for all the experiments. Fi-
+nally, the PLM’s overconfidence in predicting the
+object is assessed by averaging differences between
+average confidence and accuracy across all bins:
+Ovconf =
+M
+X
+i=1
+|P (i)|
+M
+(omax(i) −Acc@1
+(i))
+(2)
+The closer the Ovconf is to zero, the more
+aligned the model’s confidence is with its accu-
+racy, indicating reliable confidence. A negative
+Ovconf value means the model is underconfident.
+3
+BELIEF-ICL for Decoder-based LLMs
+Recent LLMs are based on decoder-only Trans-
+former architecture, and are trained to predict sub-
+sequent tokens in a sequence. This makes it chal-
+lenging for them to directly predict [MASK] tokens
+in masked prompts, as they cannot utilize informa-
+tion following the [MASK] (e.g., “[MASK] and
+Tokyo are twin cities”). To comprehensively eval-
+uate LLMs and enable fair comparison between
+encoder- and decoder-based models, we extend BE-
+LIEF to LLMs by employing in-context learning
+(ICL), termed BELIEF-ICL.
+3.1
+In-context learning for fact probe
+The in-context learning ability allows LLMs to per-
+form complex tasks during inference using task-
+specific prompts (Brown et al., 2020). When de-
+signing ICL for evaluating factual knowledge, it is
+essential to consider task instructions and context
+examples appended to the target prompts.
+1) Task instruction: We introduce the mask predic-
+tion (MP) instruction for prompting LLMs generat-
+ing one word answer for the target masked prompt.
+The task instruction is formulated as “Predict the
+[MASK] in each sentence in one word.”.
+2) Context settings: We propose four types of con-
+texts to assess the impact of examplar selection on
+factual knowledge probing, following the QA for-
+mat outlined in InstructGPT (Ouyang et al., 2022).
+zero-shot uses only instructions; X-random sam-
+ples X facts from all relations as the few-shot
+demonstrations; X-relation samples X facts from
+the same relation but with random templates; X-
+template samples X facts from the same relations
+and the same template.
+In the few-shot learning settings, we ensure that
+the target fact is excluded in the examples. Refer
+to §E for examples of prompts.
+3.2
+Evaluation methods
+Since LLMs generate responses without a token
+limit, matching the correct answer with the model’s
+output can be challenging. Variations in language
+expressions, such as the presence or absence of ar-
+ticles and singular or plural forms, complicate this
+process. Additionally, the model may generate ex-
+tra tokens not relevant to the [MASK] token, such
+as parts of the prompt. For example, for the prompt
+“John Lennon can play [MASK],” both “guitars”
+and “a guitar” should be considered correct.
+To measure BELIEF metrics for LLMs, we com-
+pare two strings: the generated text and the correct
+object expression for Acc@1, and two generated
+texts for Consist and Ovconf. Here, we first nor-
+malize strings by tokenizing and lemmatizing them.
+For example, “a guitar” and “guitars” are normal-
+ized to “a, guitar” and “guitar.” If a normalized
+string list is included in the other (partial match-
+ing), they are considered matched.
+1) Accuracy and its fluctuations: Accuracy is
+calculated by comparing the string generated by
+the model using a greedy decoding strategy to the
+correct answers. Notably, the matching judgment is
+one-directional: it only checks if the correct answer
+is included in the generated string. One-directional
+matching is adopted to avoid incorrect judgments
+from the model generating unrelated words. We use
+the same N as in §2.2 for accuracy measurement.
+2) Consistency: We use bi-directional matching
+to evaluate the consistency (Consist) of generated
+sequences from two prompts.
+3) Reliability: To calculate overconfidence, we
+need the model’s confidence (probability) in its out-
+put. However, we cannot obtain this directly from
+the probability over generated tokens, as LLMs can
+produce diverse outputs that represent the same an-
+swer. To address this, we propose an approximate
+measurement. For each prompt, we generate 100
+samples using multinomial sampling2. We then
+measure the matching rate between the output gen-
+erated from greedy decoding and the outputs from
+the 100 samples. This matching rate serves as the
+confidence value for the prompt3. The calculation
+of Ovconf follows the same setting in §2.4. This
+method can approximate the BELIEF’s Ovconf cal-
+culation as BELIEF sampling answers from the
+output distribution. Note that, due to the high cost
+of generating 100 samples for each fact, we adopt a
+more efficient approach. We sample 10K prompts
+from 10K unique subject-relation pairs and only
+use these 10K prompts for answer sampling.
+4
+MyriadLAMA Dataset
+The fairness and accuracy of BELIEF evalua-
+tion depend on the diversity and quality of multi-
+prompt factual probing datasets. However, existing
+datasets are either manually rewritten in small num-
+bers (Elazar et al., 2021) or mined from texts (Jiang
+et al., 2020). The former is accurate but lacks diver-
+sity, providing an average of 7.3 prompts per fact
+with limited variation. For example, templates like
+“[X] works as [Y]” and “[X], who works as [Y]”
+are provided as different templates but very similar.
+2Multinomial sampling selects a next token according to
+the probability, over the entire vocabulary given by the model.
+3This method can approximate the overconfidence calcu-
+lation in BELIEF of sampling answers from the output dis-
+tribution. It makes the confidence calculated by BELIEF for
+encoder-based models comparable to that in BELIEF-ICL.
+Additionally, the number of templates is highly im-
+balanced, with 8 out of 46 relations having only one
+template, while P1384 has 20. The latter is diverse
+but includes templates that do not necessarily im-
+ply the relationship. For instance, for relation P937
+(work location)5, the mined templates include “[X]
+to meet [Y].,” which significantly deviates from
+the original meaning. To achieve a more accurate
+and fair evaluation, we introduce MyriadLAMA,
+a new multi-prompt factual probing dataset with
+improved diversity while retaining quality. Refer to
+§B for detailed qualitative and quantitative compar-
+isons between MyriadLAMA and prior datasets.
+4.1
+Dataset construction
+We build MyriadLAMA by semi-automatically ex-
+tending the existing single-prompt probing dataset
+LAMA-UHN (Petroni et al., 2020). MyriadLAMA
+generates multiple prompts for each fact by pro-
+viding multiple, equal relational templates for each
+relation and varying the linguistic expressions of
+subjects. Additionally, MyriadLAMA offers mul-
+tiple expressions for each object to cover missed
+facts that are correctly predicted but in different
+tokens. For example, for the query “John Lennon
+was born in [MASK]”, acceptable tokens could
+include “UK” and “Britain.”6
+Specifically, we define knowledge triples that ne-
+glect the diversity of surface expressions as unique
+triples and distinguish them from derived triples,
+which embody the diverse entity expressions and re-
+lational templates in each unique triple. The triple
+extension methods are described below.
+Extending entities: The knowledge triples in
+LAMA-UHN constitute a subset of the Wikipedia
+knowledge base T-REx (Elsahar et al., 2018). T-
+REx selectively includes only certain objects for
+subject-relation pairs. MyriadLAMA extends the
+unique triples in LAMA-UHN by mining T-REx
+using subject-relation as key to include other avail-
+able objects. For example, if LAMA-UHN contains
+only E_{guitar} for instruments that “John Lennon”
+can play, we can extend the unique triple to include
+E_{piano}. We also extend the entity expressions
+using aliases obtained from Wikidata.7
+4https://www.wikidata.org/wiki/Property:P9138
+5https://www.wikidata.org/wiki/Property:P937
+6We follow the setting of LAMA-UHN triples where the
+object is a single token according to the BERT tokenizer.
+During evaluation, we consider the fact to be present, if the
+model’s predicted token matches any of the correct tokens,
+regardless of which correct answer is predicted.
+7https://www.wikidata.org/wiki/Wikidata:
+LAMA-UHN
+MyriadLAMA
+Relational templates
+41
+4100
+Unique triples
+27,106
+34,048
+Derived triples
+27,106
+21,140,500
+Subject-relation pairs
+24,643
+24,643
+Prompts
+24,643
+6,492,800
+Table 1: Statistics of LAMA-UHN and MyriadLAMA.
+Paraphrasing relational templates:
+Myriad-
+LAMA creates a great variety of relational tem-
+plates by a semi-automatic process. Firstly, we
+manually generate five distinct templates for each
+relation. They incorporate entailment expressions
+and diverse syntactic patterns like statements and
+question-answer formats to provide semantic and
+syntactic variations. Next, to enhance quantity and
+lexical diversity, we automatically paraphrase each
+manually created template 19 times using the GPT-
+4 API.8 Finally, all templates are filtered by human
+reviewers to remove low quality templates, yielding
+a total of 4100 templates covering 41 relations.
+4.2
+Dataset Statistics
+Table 1 lists the statistics of MyriadLAMA. The
+number of derived triples is increased from 27,106
+in LAMA-UHN to 21,140,500, by combining var-
+ious semi-automatically generated relational tem-
+plates and the alias expressions for subject and
+object entities. As the prompts are generated from
+derived triples without considering the object ex-
+pressions, the number of generated prompts are
+less than the number of derived triples, which is
+increased from 24,643 to 6,492,800. Refer to the
+appendices for details on dataset construction (§A)
+and validity analysis of MyriadLAMA (§C). Exam-
+ples of extended templates are provided in §A.3.
+5
+Effectiveness of BELIEFs
+5.1
+Experimental setups
+We use BELIEFs to evaluate the knowledge recall
+abilities of both encoder- and decoder-based PLMs.
+The target encoder-based PLMs include BERTbase,
+BERTlarge, and BERTwwm.9 The target decoder-
+based LLMs include Llama2 (7B, 13B, and 70B)
+and Llama3 (8B and 70B), without and with in-
+struction tuning (except for Llama3-70B), along
+with Phi3 (mini, small, and medium). Their brief
+Data_access
+8OpenAI: gpt-4-1106-preview
+9BERTwwm masks all tokens for a single word at the same
+time, while BERTbase and BERTlarge masks a single token.
+PLMs (#params)
+Pre-training corpora
+size
+source
+BERTbase (110M)
+3.3B+
+3.3B+
+3.3B+
+
+
+
+English Wikipedia
+& BookCorpus
+BERTlarge (336M)
+BERTwwm (336M)
+Llama2-7B(-IT) (7B)
+2.0T
+2.0T
+2.0T
+
+
+
+A collection of publicly
+available online data.
+Llama2-13B(-IT) (13B)
+Llama2-70B(-IT) (70B)
+Llama3-8B(-IT) (8B)
+15T+
+15T+
+
+A collection of publicly
+available online data.
+Llama3-70B (70B)
+Phi3-mini (3.8B)
+4.9T
+4.9T
+4.9T
+
+
+
+High-quality educational
+data/code/chat & synthetic
+textbook-like data
+Phi3-small (7B)
+Phi3-medium (14B)
+Table 2: The PLMs for evaluation.
+PLMs
+Acc@1
+Fluctuation↓Consist ↑Ovconf
+LU
+MyL range
+SD
+BERT
+BERTbase .2403 .1095 .1534 .0217
+.1682
+.2154
+BERTlarge .2454 .1102 .1574 .0220
+.1713
+.2052
+BERTwwm .2448 .1364 .1517 .0208
+.1524
+.1000
+Llama3-8B
+zero-shot
+.3708 .3427 .2864 .0350
+.0240
+-.1119
+4-random
+.5050 .5205 .2033 .0273
+.2156
+-.0789
+4-relation
+n/a11 .6871 .1236 .0156
+.3659
+-.0783
+4-template .6490 .7268 .0220 .0026
+.4015
+-.0582
+Table 3: Evaluation results of BERT variants (above)
+and Llama3-8B with BELIEF/-ICL (below). LU indi-
+cates LAMA-UHN evaluation results, and MyL repre-
+sents the average Acc@1 on MyriadLAMA.
+pretraining information are listed in Table 2. Refer
+to §F for more details.
+We conduct a full-scale evaluation on LLMs
+with up to 8 billion parameters.
+To save cost
+of LLM inference, we use five manually rewrit-
+ten templates only for the LLMs with more than
+8B parameters, including Llama2-70B and its IT
+variant Llama2-70B-IT, Llama3-70B, and Phi3-
+medium.10 To calculate the average and fluctuation
+of accuracy (§2.2), we set a large sample number
+(N = 50, 000) to provide stable, accurate result.
+In the following sections, we analyze the evalua-
+tion results on various PLMs to deepen our under-
+standing of how PLMs learn and represent factual
+knowledge. All evaluation results, including those
+for another family of encoder-based models, AL-
+BERT, are presented in Section §F.3.
+10The partial evaluation is sufficient to compare perfor-
+mance across different model sizes.
+11X-relation cannot be applied to single-prompt dataset.
+
+
+
+
+
+
+	
+
+
+
+
+base
+
+large
+
+wwm
+
+
+
+ !
+
+
+!
+
+!" !
+Figure 2: Calibration between confidence and Acc@1.
+(Left: Three BERT models types; Right: Llama3-8B
+with four different ICL settings.)
+5.2
+Do BELIEFs provide additional insights?
+BELIEFs offer evaluation from diverse perspec-
+tives rather than accuracy. As shown in Table 3
+(Above), the evaluation result highlights accu-
+racy fluctuations among the BERT variants. All
+BERT models show low consistency and tend to be
+overconfident in their predictions. Figure 2 (left)
+depicts the relationship between confidence and
+Acc@1 of the BERT models, indicating low ac-
+curacy even for prompts with confident outputs.
+Whereas BERTwwm performs better over most BE-
+LIEF metrics, BERTlarge outperforms BERTwwm
+on LAMA-UHN. This discrepancy arises from the
+limited prompts used in LAMA-UHN and the the
+single-faceted evaluation method. This highlights
+BELIEF’s effectiveness in achieving a more accu-
+rate factual probing comparison between PLMs.
+5.3
+Does ICL adhere to instructions?
+We then explore the effectiveness of different ICL
+settings in extracting facts from LLMs. We evalu-
+ate the instruction adherence of these settings from
+two aspects: predicting facts and generating one-
+word answers, reflecting that the target objects in
+MyriadLAMA are primarily one-word entities.
+Table 4 shows Acc@1 and one-word genera-
+tion ratio of two pretrained LLMs (Llama2-7B and
+Llama3-8B) and one instruction-tuned LLM (Phi3-
+small). We found that under few-shot settings, even
+the pretrained LLMs exhibit a remarkable ability to
+follow instructions, indicating the effectiveness of
+prompting LLMs to predict mask tokens through
+in-context learning. Our evaluation with QA-style
+ICL settings also confirms this (see §D for details).
+Moreover, exemplars similar to the target prompt
+(4-template) in the context boosted improvement
+overall metrics (Table 3 Below, Table 4).
+ICL settings
+Fact prediction
+(Acc@1)
+1-word ratio
+(Llama2-7B / Llama3-8B / Phi3-small)
+zero-shot
+.3385/.3427/.4258
+.4802/.1572/.8883
+4-random
+.4816/.5205/.4889
+.8058/.8147/.8913
+4-relation
+.6286/.6871/.6339
+.9246/.9071/.9287
+4-template
+.6616/.7268/.6612
+.9266/.9187/.9411
+Table 4: Instruction following rates on Llama2-7B,
+Llama3-8B and Phi3-small.
+5.4
+Can BELIEFs mitigate bias?
+We explore whether BELIEFs can mitigate prompt
+bias in evaluations. To measure prompt bias quan-
+titatively, we use content-free prompts, where the
+subject is replaced by meaningless tokens (Zhao
+et al., 2021; Xu et al., 2024), and collect the proba-
+bilities of candidate tokens in the output distribu-
+tions over the mask token.12 We measure the bias
+level of the prompt using the certainty of distribu-
+tions over candidate tokens. Specifically, we define
+bias level as follows:
+bias-level = 1 −
+H
+Hmax
+(3)
+where H is the entropy, and Hmax is the maximum
+entropy for the uniform distribution with same size.
+We measure bias in both single- and multi-
+prompt evaluations. In single-prompt evaluation,
+we represent bias as the average level across all
+relational templates. For measuring bias-level in
+multi-prompt evaluation, we first average output
+distributions by different templates for each rela-
+tion, then use the bias-level of the averaged distribu-
+tion to quantify it. Taking P31:instance-of13 as an
+example, the average probability of “science” over
+all templates is 8.30%, but it rises to 52.79% for
+template: “[Y] contains [X] as one of its elements.”
+6
+Differentiating PLMs in Fact Probing
+This section compares the PLMs’ knowledge recall
+abilities in terms of accuracy, reliability, and ro-
+bustness and then explores factors affecting them.
+6.1
+Factors affecting the recall accuracy
+1) Pre-training strategy. Table 3 confirms that
+BERTwwm outperforms BERTlarge in terms of all
+metrics, while BERTwwm differs from BERTlarge
+12Specifically, we adopt a similar setting to (Zhao et al.,
+2021), by ensembling the distribution over prompts with three
+content-free tokens: “N/A,” an empty string, and “?”.
+13https://www.wikidata.org/wiki/Property:P31
+PLMs
+Acc@1 Fluctuation↓Consist↑Ovconf
+range
+SD
+Llama2-7B
+.6699
+.0257 .0034
+.4174
+-.0933
+Llama2-13B
+.7080
+.0235 .0031
+.4326
+-.0662
+Llama2-70B
+.7784
+.0190 .0024
+.4449
+-.0690
+Llama2-7B-IT
+.6013
+.0368 .0045
+.3629
+.2007
+Llama2-13B-IT
+.6482
+.0301 .0038
+.3656
+.1708
+Llama2-70B-IT
+.7232
+.0258 .0031
+.4226
+.1026
+Llama3-8B
+.7316
+.0194 .0025
+.4060
+-.1119
+Llama3-70B
+.8211
+.0139 .0017
+.4636
+-.0812
+Phi3-mini
+.6106
+.0314 .0039
+.3686
+.0911
+Phi3-small
+.6668
+.0306 .0039
+.3667
+.1221
+Phi3-medium
+.7100
+.0207 .0025
+.4009
+.0317
+Table 5: BELIEF-ICL evaluation on LLMs with the
+4-template setting using manually-rewritten templates.
+PLMs
+Acc@1 Fluctuation↓Consist↑Ovconf
+range
+SD
+Llama2-7B-IT
+.2925
+.1980 .0253
+.1151
+.2605
+Llama3-8B-IT
+.3578
+.2213 .0262
+.1660
+.1402
+Phi3-mini
+.4258
+.2437 .0292
+.1782
+.2171
+Table 6: BELIEF-ICL evaluation with zero-shot setting
+on instruction-tuned LLMs.
+only in the masking strategy during pre-training.
+The superiority of BERTwwm likely stems from
+its challenging pre-training paradigm, which re-
+quires recalling whole words without sub-token
+information, enhancing word-level contextual un-
+derstanding. This underscores the importance of
+pre-training strategy in knowledge acquisition.
+2) Model size. Table 5 compares the knowledge
+recall abilities of LLMs with difference sizes.14 We
+can observe that larger LLMs consistently achieve
+higher accuracy in predicting facts. Combining
+with the improvement from BERTbase to BERTlarge
+from Table 3, the importance of model size in fact
+acquisition during pre-training is confirmed.
+3) Pre-training corpora.
+Table 5 shows that
+Llama3-8B outperforms larger Llama2-13B in fact
+probing. This is likely due to Llama3’s pre-training
+corpus being seven times larger than Llama2 (Ta-
+ble 2). Meanwhile, Llama3-70B surpasses Llama2-
+70B, confirming the importance of pre-training data
+volume for fact acquisition.
+In the zero-shot evaluation using the entire Myr-
+iadLAMA, as shown in Table 6, Phi3-mini out-
+performs Llama2-7B-IT and Llama3-8B in knowl-
+14Owing to the high computational cost of inference on
+large LLMs like Llama2-70B, we select only five manually
+rewritten templates with 4-template ICL setting for evaluation.
+PLMs
+Acc@1 Fluctuation↓Consist↑Ovconf 1-word
+ratio
+range
+SD
+Llama2-7B
+0-shot
+.3385 .2602 .0299
+.1269
+-.1119
+.4752
+4-rand.
+.4816 .2250 .0270
+.2312
+-.0894
+.8247
+4-rel.
+.6286 .1221 .0150
+.3753
+-.1335
+.9060
+4-templ. .6616 .0294 .0036
+.4163
+-.0933
+.9299
+Llama2-7B-IT
+0-shot
+.2925 .1980 .0253
+.1151
+.2605
+.9069
+4-rand.
+.4334 .1958 .0229
+.2128
+.2410
+.9081
+4-rel.
+.5576 .0791 .0092
+.3341
+.1900
+.9314
+4-templ. .5896 .0439 .0050
+.3687
+.2061
+.9380
+Table 7: Evaluation results of pretrained Llama2-7B
+(above) and instructed-tuned Llama2-7B-IT (below).
+edge retrieval. Given that Phi3-mini (3.8B) has
+about half the model size of Llama2-7B-IT and
+Llama3-8B-IT, and model size typically enhances
+knowledge retrieval, this result is notable. This
+superior performance can be attributed to the high-
+quality, textbook-like material used for pre-training
+the Phi3 models, highlighting the significant impact
+of high-quality training data.
+4) Instruction-tuning.
+Table 7 confirms that
+instruction-tuned Llama2-7B-IT exhibit a higher
+one-word generation rate than Llama2-7B, as ex-
+pected. However, the instruction-tuned LLM con-
+sistently demonstrate lower Acc@1 scores on dif-
+ferent ICL settings. This indicates a potential neg-
+ative impact of instruction-tuning on the models,
+where general language understanding can improve,
+but some factual knowledge is partially lost as a
+result of the tuning process.
+5) Inclusion and selection of demonstrations. As
+shown in Table 7 and Table 18, using demonstra-
+tions in prompts consistently improves Acc@1. In-
+cluding few-shot demonstrations with same tem-
+plates to the target question can nearly double
+Acc@1 values (from zero-shot to 4-template set-
+tings). Closer demonstrations also enhance perfor-
+mance across all metrics, highlighting a significant
+gap between the factual knowledge LLMs memo-
+rized and what they can actually recall.
+6.2
+Factors affecting the reliability
+Table 3 shows a significant difference in Ovconf be-
+tween BERT models and Llama3-8B, with BERT
+models being overconfident and Llama3-8B being
+underconfident. In this section, we explore the rea-
+sons for these differences and investigate additional
+factors affecting reliability beyond model size.
+1) The number of output tokens. One main dif-
+ference in Ovconf calculation between encoder-
+0
+0.5
+1
+0.2
+0.4
+0.6
+0.8
+1
+Acc@1
+0-shot
+4-rand.
+4-rel.
+4-templ.
+0
+0.5
+1
+0-shot
+4-rand.
+4-rel.
+4-templ.
+Confidence
+Perfectly calibrated
+Figure 3: Calibration plots of Llama2-7B (left) and
+Llama2-7B-IT (right).)
+and decoder-based PLMs is that the decoder-based
+PLMs will generate multiple tokens. Thus, we in-
+vestigate the effect of output token count on Ovconf
+values. We divide the MyriadLAMA prompt set
+into groups based on the number of tokens gener-
+ated. For each group, we calculate the probability
+of the entire token sequence and compute Ovconf
+for token counts from 1 to 5.15
+The Ovconf values for each group of 1 to 5 out-
+put tokens on Llama3-8B (4-template) are -0.1030,
+-0.0906, -0.0297, -0.0546, and 0.0573, showing
+models become more overconfident with more out-
+put tokens. This trend is consistent across models.
+2) Instruction-tuning inflates LLMs confidence.
+Table 7 and Figure 3 confirm that instruction-tuned
+LLMs make the models overly confident in their
+outputs. The pretraining use more diverse language
+data with uncertainties, which can lead to a more
+calibrated output confidence. Instruction-tuning
+narrow the LLMs’ exposure to specific tasks, re-
+ducing its ability to express uncertainty and making
+it more likely to provide overconfident outputs.
+3) Model size: Large models consistently demon-
+strate improved reliability, as illustrated in Table 5.
+6.3
+Factors affecting the robustness
+1) Larger model cannot make zero-shot knowl-
+edge prompt more robust. Similar to accuracy
+and reliability, few-shot knowledge prompts show
+improved robustness against accuracy fluctuations
+and consistency as model size increases. However,
+this effect is absent in zero-shot settings. For in-
+stance, the SD for the Llama2 family are 0.2014,
+0.2131, and 0.2126 for the 7B, 13B, and 70B mod-
+els, respectively. Similar inconsistencies are ob-
+served across other LLM families with varying
+model sizes. Refer Table 18 for more details.
+15The prompts generated within five tokens cover 98.78%
+of Llama3-8B’s generations with the 4-template ICL setting.
+BERT
+base
+BERT
+large
+BERT
+wwm
+Llama2-7B
+(zero -shot)
+Llama2-7B
+(4-template)
+Llama2-7B-IT
+(zero -shot)
+Llama2-7B-IT
+(4-template)
+Phi3-mini
+(zero -shot)
+Phi3-mini
+(4-template)
+BERT
+base
+BERT
+large
+BERT
+wwm
+Llama2-7B
+(zero -shot)
+Llama2-7B
+(4-template)
+Llama2-7B-IT
+(zero -shot)
+Llama2-7B-IT
+(4-template)
+Phi3-mini
+(zero -shot)
+Phi3-mini
+(4-template)
+1
+0.77
+0.74
+0.63
+0.88
+0.58
+0.84
+0.74
+0.89
+0.71
+1
+0.74
+0.64
+0.89
+0.59
+0.85
+0.75
+0.89
+0.57
+0.61
+1
+0.64
+0.89
+0.58
+0.85
+0.77
+0.9
+0.25
+0.27
+0.33
+1
+0.91
+0.67
+0.86
+0.76
+0.89
+0.19
+0.2
+0.25
+0.48
+1
+0.42
+0.84
+0.58
+0.87
+0.26
+0.29
+0.35
+0.77
+0.91
+1
+0.9
+0.78
+0.91
+0.2
+0.22
+0.26
+0.51
+0.93
+0.46
+1
+0.61
+0.89
+0.24
+0.26
+0.32
+0.61
+0.88
+0.54
+0.83
+1
+0.92
+0.19
+0.2
+0.25
+0.48
+0.87
+0.42
+0.8
+0.61
+1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+Figure 4: The knowledge sharing rate between models
+and ICL settings. Each cell indicates the rate of facts
+correctly predicted by the top-listed model relative to
+those captured by the left-listed model.
+2) Instruction-tuning making fluctuation less
+influenced by context. Table 7 and Table 17 show
+that the instruction-tuned models exhibit reduced
+fluctuation (smaller range and SD) in the zero-shot,
+4-random, and 4-relation ICL settings, but perform
+worse in the 4-template setting. This suggests that
+instruction-tuned models become less influenced
+by context and more reliant on the instruction itself.
+In contrast, the Consist measure consistently de-
+creased in instruction-tuned models, suggesting
+that while instruction-tuning improves instruction
+interpretation, it may weaken semantic understand-
+ing, especially with paraphrases.
+6.4
+How do PLMs perceive facts differently?
+Finally, we measure the differences in fact cover-
+age among models. We first collect the correctly
+predicted facts for each template, defining these as
+the model’s covered facts. Given the covered facts
+of two models, we measure the knowledge shar-
+ing rates using an asymmetric metric. This metric
+calculates the proportion of shared facts relative to
+each model’s total covered facts.
+Figure 4 shows the results. The average shar-
+ing rate among BERT models is 69.1%, while it
+is 68.7% for Llama2-7B, Llama2-7B-IT, and Phi3-
+mini in the zero-shot setting. In comparison, the
+average sharing rate between encoder- and decoder-
+based PLMs reduced to 47.1%. Meanwhile, knowl-
+edge sharing rates in both zero-shot and 4-template
+settings indicate that incorporating examples im-
+proves the knowledge elicited by the PLMs. How-
+ever, about 10% of knowledge can still only be
+PLMs
+Average
+Maximum
+Oracle
+BERTwwm
+.1364
+.4501
+.6636
+Llama2-7B (zero-shot)
+.3385
+.6577
+.8153
+Llama3-8B (zero-shot)
+.3427
+.7099
+.8756
+Phi3-small (zero-shot)
+.4258
+.6828
+.8642
+Llama2-7B (4-template)
+.6616
+.7197
+.8133
+Llama3-8B (4-template)
+.7268
+.7731
+.8628
+Phi3-small (4-template)
+.6612
+.7181
+.8346
+Table 8: Average: mean accuracy using all templates;
+Maximum: accuracy with the best template for each
+relation; Oracle: accuracy when the best template is
+selected for each factual knowledge.
+elicited in the zero-shot setting (see red boxes).
+7
+Limitation of Prompt-based Probing
+Finally, we examine the limitation of prompt-based
+knowledge probing by using our massively diverse
+dataset. First, we gauge the average knowledge cov-
+erage rate by using the average Acc@1 (average).
+Next, for each relation, we calculate the maximum
+Acc@1 using the template that yields the high-
+est accuracy,16 and use this value to estimate the
+upper limit of prompt-based knowledge probing
+(maximum). Finally, we approximate the upper
+limit of facts contained in LLMs, by considering
+a fact as existing if at least one prompt of this fact
+can produce the correct answer (oracle).
+Table 8 shows three knowledge coverage rates
+on some PLMs. For PLMs with zero-shot settings
+(including BERTwwm), we observe nearly a 30%
+increase between average and maximum accuracy,
+emphasizing the importance of selecting suitable
+templates for specific facts and the potential gains
+from prompt engineering. This gap can be reduced
+to 5% with few-shot settings. However, the gap
+between maximum and oracle accuracy mostly re-
+mains. This indicates that different facts prefer dif-
+ferent templates, suggesting no versatile template
+works for all facts. Combining templates reveals
+the true upper limits of PLMs’ knowledge mem-
+orization and highlights the importance of using
+diverse prompts over optimizing a single one for
+retrieval. Refer to §F.4 for results on more PLMs.
+8
+Related Work
+The LAMA probe was first proposed to evaluate
+the utility of PLMs as knowledge bases via solv-
+ing the fill-in-the-blank task (Petroni et al., 2019).
+16We select the prompt with the best subject expression
+among prompts for each fact.
+Several researchers extend the LAMA probe to
+evaluate PLMs’ ability to understand facts from di-
+verse linguistic aspects, such as the effect of nega-
+tion/mispriming (Kassner and Schütze, 2020), dis-
+tractors (Pandia and Ettinger, 2021), multilingual
+understanding (Keleg and Magdy, 2023; Zhao et al.,
+2024) and models’ consistency facing prompts with
+minor nuances (Fierro and Søgaard, 2022; Elazar
+et al., 2021). However, these studies lack the in-
+spection of PLMs’ reliability in knowledge pre-
+diction, which is vital in deploying LLMs to real-
+world tasks. Moreover, solving the fill-in-the-blank
+task by LLMs with the causal LM objective can
+underestimate their knowledge recall ability.
+Recently, QA-based datasets have been devel-
+oped to evaluate the knowledge recall ability of
+decoder-only LMs. Kalo and Fichtel (2022) cre-
+ated a high-quality QA prompt set, which is further
+extended by Wiland et al. (2024) to evaluate both
+causal and masked LMs. Mallen et al. (2023) and
+Maekawa et al. (2024) developed QA datasets to
+see the impact of knowledge popularity and re-
+trieval augmentation. Since the writing style of
+these datasets is limited to questions, we cannot
+perform reliable robustness evaluation.
+9
+Conclusions
+This paper presents the multi-faceted factual prob-
+ing benchmarks, BELIEF and BELIEF-ICL, for
+encoder- and decoder-based PLMs, respectively.
+Leveraging a multi-prompt dataset, BELIEFs pro-
+vide various evaluation metrics, including accu-
+racy, consistency, and reliability, enabling a thor-
+ough evaluation of PLMs’ knowledge recall abil-
+ities. To make BELIEFs more reliable, we build
+a new multi-prompt dataset for knowledge prob-
+ing, MyriadLAMA, featuring diverse prompts for
+each fact. We conducted extensive experiments of
+multiple encoder-based PLMs and recent LLMs.
+Based on the evaluation results, we identify key
+factors affecting the accuracy, reliability and robust-
+ness of PLMs’ fact recall, such as model size, pre-
+training strategy and corpora, and ICL settings. We
+also reveal the negative effect of instruction-tuning
+in recall factual knowledge from LLMs. This high-
+lights the need for careful design of instruction-
+tuning to preserve LLMs’ knowledge recall abili-
+ties. Finally, by probing facts in different ways, we
+find that PLMs hold more knowledge than what is
+revealed by using the optimal template, highlight-
+ing the limitations of prompt-based factual probing.
+10
+Limitations
+MyriadLAMA contains an extensive amount of
+prompts, which leads to high evaluation costs. In
+the future, we aim to extract a diverse yet robust
+subset from MyriadLAMA to enable a more effi-
+cient evaluation of factual knowledge. Addition-
+ally, MyriadLAMA is built upon LAMA-UHN,
+which includes only 41 relationships. Expanding
+the range of relations is essential to improve cover-
+age in the evaluation of factual knowledge. Lastly,
+we need to evaluate closed-source LLMs, such as
+GPT-4 and Claude, to examine performance differ-
+ences between them and open-source LLMs.
+Acknowledgements
+This work was partially supported by the special
+fund of Institute of Industrial Science, The Univer-
+sity of Tokyo, by JSPS KAKENHI Grant Number
+JP21H03494, and by JST, CREST Grant Number
+JPMJCR19A4, Japan.
+References
+Tom Brown, Benjamin Mann, Nick Ryder, Melanie
+Subbiah, Jared D Kaplan, Prafulla Dhariwal, Arvind
+Neelakantan, Pranav Shyam, Girish Sastry, Amanda
+Askell, Sandhini Agarwal, Ariel Herbert-Voss,
+Gretchen Krueger, Tom Henighan, Rewon Child,
+Aditya Ramesh, Daniel Ziegler, Jeffrey Wu, Clemens
+Winter, Chris Hesse, Mark Chen, Eric Sigler, Ma-
+teusz Litwin, Scott Gray, Benjamin Chess, Jack
+Clark, Christopher Berner, Sam McCandlish, Alec
+Radford, Ilya Sutskever, and Dario Amodei. 2020.
+Language models are few-shot learners.
+In Ad-
+vances in Neural Information Processing Systems,
+volume 33, pages 1877–1901. Curran Associates,
+Inc.
+Shrey Desai and Greg Durrett. 2020. Calibration of
+pre-trained transformers. In Proceedings of the 2020
+Conference on Empirical Methods in Natural Lan-
+guage Processing (EMNLP), pages 295–302, Online.
+Association for Computational Linguistics.
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and
+Kristina Toutanova. 2019. BERT: Pre-training of
+deep bidirectional transformers for language under-
+standing. In Proceedings of the 2019 Conference of
+the North American Chapter of the Association for
+Computational Linguistics: Human Language Tech-
+nologies, Volume 1 (Long and Short Papers), pages
+4171–4186, Minneapolis, Minnesota. Association for
+Computational Linguistics.
+Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey,
+Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman,
+Akhil Mathur, Alan Schelten, et al. 2024. The llama
+3 herd of models.
+Yanai Elazar, Nora Kassner, Shauli Ravfogel, Abhi-
+lasha Ravichander, Eduard Hovy, Hinrich Schütze,
+and Yoav Goldberg. 2021. Measuring and improving
+consistency in pretrained language models. Transac-
+tions of the Association for Computational Linguis-
+tics, 9:1012–1031.
+Hady Elsahar, Pavlos Vougiouklis, Arslen Remaci,
+Christophe Gravier, Jonathon Hare, Frederique Lafor-
+est, and Elena Simperl. 2018. T-REx: A large scale
+alignment of natural language with knowledge base
+triples. In Proceedings of the Eleventh International
+Conference on Language Resources and Evaluation
+(LREC 2018), Miyazaki, Japan. European Language
+Resources Association (ELRA).
+Constanza Fierro and Anders Søgaard. 2022. Factual
+consistency of multilingual pretrained language mod-
+els. In Findings of the Association for Computational
+Linguistics: ACL 2022, pages 3046–3052, Dublin,
+Ireland. Association for Computational Linguistics.
+Zhengbao Jiang, Frank F. Xu, Jun Araki, and Graham
+Neubig. 2020. How can we know what language
+models know? Transactions of the Association for
+Computational Linguistics, 8:423–438.
+Jan-Christoph Kalo and Leandra Fichtel. 2022. Kamel:
+Knowledge analysis with multitoken en- tities in lan-
+guage models. In Automated Knowledge Base Con-
+struction.
+Ehsan Kamalloo, Nouha Dziri, Charles Clarke, and
+Davood Rafiei. 2023. Evaluating open-domain ques-
+tion answering in the era of large language models.
+In Proceedings of the 61st Annual Meeting of the
+Association for Computational Linguistics (Volume
+1: Long Papers), pages 5591–5606, Toronto, Canada.
+Association for Computational Linguistics.
+Nora Kassner and Hinrich Schütze. 2020. Negated and
+misprimed probes for pretrained language models:
+Birds can talk, but cannot fly. In Proceedings of the
+58th Annual Meeting of the Association for Compu-
+tational Linguistics, pages 7811–7818, Online. Asso-
+ciation for Computational Linguistics.
+Amr Keleg and Walid Magdy. 2023. DLAMA: A frame-
+work for curating culturally diverse facts for prob-
+ing the knowledge of pretrained language models.
+In Findings of the Association for Computational
+Linguistics: ACL 2023, pages 6245–6266, Toronto,
+Canada. Association for Computational Linguistics.
+Seiji Maekawa, Hayate Iso, Sairam Gurajada, and Nikita
+Bhutani. 2024. Retrieval helps or hurts? a deeper
+dive into the efficacy of retrieval augmentation to
+language models. In Proceedings of the 2024 Con-
+ference of the North American Chapter of the Asso-
+ciation for Computational Linguistics: Human Lan-
+guage Technologies (Volume 1: Long Papers), pages
+5506–5521, Mexico City, Mexico. Association for
+Computational Linguistics.
+Alex Mallen, Akari Asai, Victor Zhong, Rajarshi Das,
+Daniel Khashabi, and Hannaneh Hajishirzi. 2023.
+When not to trust language models: Investigating
+effectiveness of parametric and non-parametric mem-
+ories. In Proceedings of the 61st Annual Meeting of
+the Association for Computational Linguistics (Vol-
+ume 1: Long Papers), pages 9802–9822, Toronto,
+Canada. Association for Computational Linguistics.
+Long Ouyang, Jeffrey Wu, Xu Jiang, Diogo Almeida,
+Carroll Wainwright, Pamela Mishkin, Chong Zhang,
+Sandhini Agarwal, Katarina Slama, Alex Ray, John
+Schulman, Jacob Hilton, Fraser Kelton, Luke Miller,
+Maddie Simens, Amanda Askell, Peter Welinder,
+Paul F Christiano, Jan Leike, and Ryan Lowe. 2022.
+Training language models to follow instructions with
+human feedback. In Advances in Neural Information
+Processing Systems, volume 35, pages 27730–27744.
+Curran Associates, Inc.
+Masanori Oya. 2020. Syntactic similarity of the sen-
+tences in a multi-lingual parallel corpus based on
+the Euclidean distance of their dependency trees. In
+Proceedings of the 34th Pacific Asia Conference on
+Language, Information and Computation, pages 225–
+233, Hanoi, Vietnam. Association for Computational
+Linguistics.
+Lalchand Pandia and Allyson Ettinger. 2021. Sorting
+through the noise: Testing robustness of information
+processing in pre-trained language models. In Pro-
+ceedings of the 2021 Conference on Empirical Meth-
+ods in Natural Language Processing, pages 1583–
+1596, Online and Punta Cana, Dominican Republic.
+Association for Computational Linguistics.
+Fabio Petroni, Patrick Lewis, Aleksandra Piktus, Tim
+Rocktäschel, Yuxiang Wu, Alexander H. Miller,
+and Sebastian Riedel. 2020.
+How context af-
+fects language models’ factual predictions. ArXiv,
+abs/2005.04611.
+Fabio Petroni, Tim Rocktäschel, Sebastian Riedel,
+Patrick Lewis, Anton Bakhtin, Yuxiang Wu, and
+Alexander Miller. 2019. Language models as knowl-
+edge bases?
+In Proceedings of the 2019 Confer-
+ence on Empirical Methods in Natural Language Pro-
+cessing and the 9th International Joint Conference
+on Natural Language Processing (EMNLP-IJCNLP),
+pages 2463–2473, Hong Kong, China. Association
+for Computational Linguistics.
+Jacek Wiland, Max Ploner, and Alan Akbik. 2024.
+BEAR: A unified framework for evaluating relational
+knowledge in causal and masked language models.
+In Findings of the Association for Computational Lin-
+guistics: NAACL 2024, pages 2393–2411, Mexico
+City, Mexico. Association for Computational Lin-
+guistics.
+Ziyang Xu, Keqin Peng, Liang Ding, Dacheng Tao,
+and Xiliang Lu. 2024. Take care of your prompt
+bias! investigating and mitigating prompt bias in
+factual knowledge extraction. In Proceedings of the
+2024 Joint International Conference on Computa-
+tional Linguistics, Language Resources and Evalu-
+ation (LREC-COLING 2024), pages 15552–15565,
+Torino, Italia. ELRA and ICCL.
+Yue Zhang, Yafu Li, Leyang Cui, Deng Cai, Lemao Liu,
+Tingchen Fu, Xinting Huang, Enbo Zhao, Yu Zhang,
+Yulong Chen, Longyue Wang, Anh Tuan Luu, Wei
+Bi, Freda Shi, and Shuming Shi. 2023. Siren’s song
+in the ai ocean: A survey on hallucination in large
+language models. arXiv preprint arXiv:2309.01219.
+Tony Zhao, Eric Wallace, Shi Feng, Dan Klein, and
+Sameer Singh. 2021. Calibrate before use: Improv-
+ing few-shot performance of language models. In
+International Conference on Machine Learning.
+Xin Zhao, Naoki Yoshinaga, and Daisuke Oba. 2024.
+Tracing the roots of facts in multilingual language
+models: Independent, shared, and transferred knowl-
+edge. In Proceedings of the 18th Conference of the
+European Chapter of the Association for Computa-
+tional Linguistics (Volume 1: Long Papers), pages
+2088–2102, St. Julian’s, Malta. Association for Com-
+putational Linguistics.
+A
+Construction of MyriadLAMA
+In this appendix, we explain the detailed proce-
+dure for generating the derived triples from unique
+triples in MyriadLAMA. As discussed in §4, this
+study first extends the unique triples contained in
+LAMA-UHN (Petroni et al., 2020) by searching
+new objects from T-REx (Elazar et al., 2021). Next,
+for the obtained unique triples, we generate de-
+rived triples by combining concrete linguistic ex-
+pressions associated with entities (“subjects” and
+objects) and diversify relational templates using
+both manual labor and LLMs. We describe the
+detailed procedure as following.
+A.1
+The extension of entities
+Extension
+of
+unique
+triples
+from
+T-REx
+LAMA-UHN is a refined subset derived from the
+LAMA dataset, which LAMA originates from T-
+REx (Elsahar et al., 2018).
+T-REx is a large-
+scale knowledge base containing 11 million real-
+world knowledge triples, aligned with 3.09 mil-
+lion Wikipedia abstracts, designed to create large-
+scale alignments between Wikipedia abstracts and
+Wikidata triples. To achieve this alignment, T-REx
+employed three distinct aligners—NoSub, AllEnt,
+and SPO—each offering varying levels of accu-
+racy (0.98, 0.96, and 0.88, respectively) as mea-
+sured on a test set. Despite the high alignment
+accuracy of all three aligners, LAMA-UHN selects
+only the triples aligned by NoSub, the aligner with
+the highest accuracy. While this choice ensures
+the high correctness of triples within LAMA, it
+potentially compromises the ability to fairly as-
+sess a PLM’s knowledge recall ability, as it may
+overlook valid answers during evaluation. To ad-
+dress this limitation, we expand the MyriadLAMA
+dataset by incorporating triples aligned by all three
+aligners—NoSub, AllEnt, and SPO—found in T-
+REx, based on the subject-relation pairs present
+in LAMA-UHN. As the result, we increase the
+number of unique triples from 27,106 to 34,048 as
+shown in Table 1.
+Extension of entities using aliases
+Next, we uti-
+lize aliases of entities obtained from Wikidata to
+acquire diverse linguistic expressions (and their
+paraphrases) for the “subjects” and objects. Specif-
+ically, we used the Wikidata identifiers of entities17
+and the Wikidata API18 to retrieve the (English)
+alias expressions of entities. By combining the
+aliases of “subjects” and objects with the relation
+templates mentioned later, we generate numerous
+new derived triples. If N “subjects” and M ob-
+jects are given for an unique triple, the number of
+derived triples according to this unique triple gen-
+erated from a single relational template is N × M.
+A.2
+Diversification of relation templates
+We use a two-step procedure to create new rela-
+tional templates, to enhance ensure both the quality
+and quantity. Initially, we manually rewrite rela-
+tional templates, ensuring that every relation has
+five templates. Then, we employ the generative
+LLM (GPT4) to automatically paraphrase 19 addi-
+tional templates. In total, we produce 100 templates
+for each relation.
+Step 1: Manually rewriting relational templates.
+The manual rewriting of the relational templates
+is performed by the first author of this paper. We
+create new templates by describing the relationship
+between subject and object from different perspec-
+tives rather than creating templates with absolutely
+the same meaning with original template. Utiliz-
+ing the resource provided by Wikidata 19, we not
+only paraphrase existing templates to generate new
+ones with diverse lexicons but also devise entail-
+ment expressions to encompass various semantic
+expressions that convey the same relations. These
+newly created templates are guaranteed to uphold
+relational equivalence, following the relationship
+17https://www.wikidata.org/wiki/Wikidata:
+Identifiers
+18https://www.wikidata.org/wiki/Special:
+EntityData/<entity_identifier>.json
+19https://www.wikidata.org/wiki/Property:
+<relation_identifier>
+between the subject and object. Taking P20 ([X]
+died in [Y].)20 as an example, we create new tem-
+plates by either changing the sentence pattern or
+adding type information of object (e.g, [X] resided
+in [Y] until death). Furthermore, we also create
+templates without directly using the keywords of
+the relation (dead/death) but in a entailment way
+(e.g., [X] spent the last years of life in [Y].) More-
+over, we devise a question-answer style template
+for each relation to enhance syntactic diversity. In
+this template, the question incorporates the subject
+and relation information, while the answer corre-
+sponds to the object.
+Note that, during the paraphrase, we observe
+that some templates in LAMA-UHN only partially
+express the original meaning of relations defined
+in Wikidata. These are inappropriate for specific
+knowledge triples. For example, P136 describes the
+creative work’s genre or an artist’s field of work21,
+which the type of work includes music, film, litera-
+ture, etc. However, the original templates of P136
+in LAMA-UHN is “[X] plays [Y] music.,” which
+cannot correctly retrieve information on work other
+than music. For this kinds of template, we aban-
+don the original templates and newly create five
+templates.
+Step 2: Paraphrasing templates using GPT-4
+Based on the original relation templates and the
+relation templates rewritten manually, we further
+paraphras these relation templates automatically
+using the GPT4-API (gpt-4-1106-preview22) pro-
+vided by OpenAPI. The instruction for paraphras-
+ing used for GPT-4 generation is:
+You are a professional tool that can para-
+phrase sentences into natural sentences
+that can correctly represent the relation-
+ship between [X] and [Y], without repe-
+tition. Make the paraphrase as diverse
+as possible using simple words. Please
+paraphrase the given sentence 19 times.
+When the duplicated sentence is generated, we re-
+move the duplication and regenerate new templates
+with the same instruction, until 19 different tem-
+plates is generated. Furthermore, we observe that
+GPT-4 occasionally generates relation templates
+that are semantically inappropriate for specific re-
+lationships due to incorrect category information
+20https://www.wikidata.org/wiki/Property:P20
+21https://www.wikidata.org/wiki/Property:P136
+22https://platform.openai.com/docs/models/
+gpt-4-and-gpt-4-turbo
+of entities. Consequently, in such instances, we
+refine the instructions to include the category infor-
+mation of the entities, ensuring accurate represen-
+tation of the relationship between the subjects and
+the objects. For example, when paraphrasing the
+relational template “[X] used to work in [Y].”23,
+we additionally add explicit guidance regarding
+the expected format and semantics of the relation
+templates to the above instruction, as following.
+Be aware that [Y] is the geographic loca-
+tion but NOT company or organization,
+where persons or organizations were ac-
+tively participating in employment, busi-
+ness or other work.
+As a result, we can obtain the following para-
+phrased relational templates for “[X] used to work
+in [Y].”:
+• “[X] was formerly employed in [Y].”
+• “[X] once worked at [Y].”
+• “[Y] was the place where [X] used to be en-
+gaged in work.”
+A.3
+Example of extended relational templates
+in MyriadLAMA
+We display part of the created templates in Myr-
+iadLAMA. We randomly select two manually
+rewritten templates and three auto-generated tem-
+plates of these two templates.
+We show the
+sampled templates for all the relations in Ta-
+bles 20, 21, 22, 23, 24 and 25.
+B
+The Advangage of MyriadLAMA
+Given that our study seeks to mitigate the influence
+of individual prompt bias in evaluations, the avail-
+ability of a wide range of prompts characterized in
+both quantity and diversity is crucial. The diversity
+ensures that different prompts can capture different
+aspects of the true knowledge distribution. On the
+other side, the quality or correctness of prompts
+ensure the evaluation can accurately reflect the true
+knowledge recall ability.
+In this section, we provide a quantitative anal-
+ysis of the quality and diversity of multi-prompt
+factual knowledge probing datasets. The compar-
+ison results demonstrate the superiority of Myri-
+adLAMA over previous datasets, enabling more
+23https://www.wikidata.org/wiki/Property:P937
+accurate and comprehensive evaluations. We con-
+duct comparison between MyriadLAMA and other
+multi-prompts probing datasets, LPAQA (Jiang
+et al., 2020) and PARAREL (Elazar et al., 2021),
+from the perspective of quantity and diversity.
+B.1
+Diversity comparison
+We measure the diversity of multi-prompt factual
+knowledge probing datasets from both quantity
+and linguistic diversity.
+Specifically, we calculate the average number
+of prompts for each subject-relation pair as the
+quantity measure. MyriadLAMA introduces di-
+versity into prompts by using various subject ex-
+pressions and relational templates. On average,
+MyriadLAMA provides 2.47 expressions for each
+subject. In addition, we measure the linguistic di-
+versity of relational templates from three aspects,
+as shown below:
+Lexicon: We utilize the Jaccard distance of words
+in templates to gauge lexicon diversity.
+Syntax: We adopt the syntax distance measure pro-
+posed in (Oya, 2020), which calculates the
+distance between dependency trees.
+Semantics: We quantify semantic diversity by cal-
+culating the L2 distance of sentence embed-
+dings given by BERTlarge.
+The results are shown in Table 9. MyriadLAMA
+demonstrates superior quantity and diversity com-
+pared to existing multi-prompt factual probing
+datasets. Although LPAQA exhibits greater se-
+mantic diversity, this is mainly due to its use of
+distant supervision to discover new templates. This
+method often results in problematic templates that
+inadequately describe the relationships between
+subjects and objects. For example, for relation
+P93724 (“[X] used to work in [Y].”), LPAQA in-
+cludes templates like “[X] to meet [Y],” which sig-
+nificantly deviate from the original semantic mean-
+ing. We analyze and compare template quality in
+the next section.
+B.2
+Quality comparison
+In this section, we evaluate the quality of relational
+templates created MyriadLAMA in correctly ex-
+pressing the relation between the subject and object.
+We manually evaluate the quality templates created
+in each dataset through a strict quality evaluation
+24https://www.wikidata.org/wiki/Property:P937
+Dataset
+Quantity↑
+Diversity↑
+Lexicon Syntax Semantic
+PARAREL
+7.30
+.4860
+.1489
+11.03
+LPAQA
+53.27
+.5449
+.1713
+13.55
+MyriadLAMA
+263.47
+.6652
+.2138
+12.69
+Table 9: Comparison between multi-prompts datasets.
+framework. Specifically, we evaluate each template
+based on its fluency and its ability to correctly ex-
+press the semantic relationship between subjects
+and objects. Given the complex and specific con-
+straints defined by Wikidata relations, creating per-
+fect templates that satisfy all subjects and objects
+for a given relation is challenging.
+B.2.1
+Semantic relationship between template
+and relation
+[Template ⊆Relation]: If the subject and object
+fit the template, it is correct for the relation, but
+the relation’s knowledge range is broader than the
+template can cover. We denote such templates as
+[Template ⊆Relation]. Using the templates in
+LAMA-UHN, which are often considered golden
+templates as examples, relation P13625 uses the
+template “[X] plays [Y] music.” to describe cre-
+ative work genres or an artist’s field. However,
+P136 encompasses film, literature, and other arts,
+not just music.
+[Relation ⊆Template]: In contrast, If the subject-
+object pair is true for the relation, it is also true for
+the template, meaning the template’s knowledge
+range is broader than the relation. For example,
+LAMA-UHN creates the template “[X] died in [Y].”
+for P2026. While this template can be used to infer
+a person’s place of death, “[Y]” could also be the
+year “[X]” passed away.
+[Relation ∩Template > 0]: Additionally, some
+templates do not fit neatly into either [Relation ⊆
+Template] or [Template ⊆Relation] but can still
+correctly describe the relationship for some subject-
+object pairs. For example, PARAREL, which para-
+phrases templates by human effort, uses “[X] is a
+follower of [Y].” to describe relation P14027 (reli-
+gion or worldview). This template is appropriate
+for individuals but not for organizations, and it does
+not fully capture the relation’s scope. Therefore, it
+does not fit [Relation ⊆Template]. Additionally,
+25https://www.wikidata.org/wiki/Property:P1303
+26https://www.wikidata.org/wiki/Property:P20
+27https://www.wikidata.org/wiki/Property:P140
+!"#$%&'"(&)&*"+,&-'.
+/"%&'012(3",02"3+,&-'.
+/"%&'012+!+!"#$%&'"
+!"#$%&'"+!+/"%&'012+
+/"%&'012+"+!"#$%&'"+4+5
+6**"%"7&2'
+89%%:+#&'-;02<
+Figure 5: The relationship between the factual knowl-
+edge that can be covered by relation and template.
+when “[X]” is a person, “[Y]” can be either a re-
+ligious figure, leader, or the religion itself, which
+does not satisfy [Template ⊆Relation]. However,
+many subject-relation pairs can still be correctly
+captured by this template. We use [Relation ∩
+Template > 0] to denote them.
+[Irrelevant]: We consider templates that do not
+correctly convey the relationship between subject
+and object as [Irrelevant]. For example, LPAQA
+mined many irrelevant templates from the corpus
+without careful checking, resulting in low-quality
+templates, such as “[X] arrived in [Y]” for P937.
+[Fully matching]: Finally, we use [Fully match-
+ing] to denote templates that can accurately capture
+all the subject-object pairs fitting in the relation.
+We demonstrate the five types of semantic rela-
+tionships between template and relation in Figure 5
+using the Venn diagram.
+B.2.2
+Template quality evaluation metrics
+To accurately capture the fluency and the ability
+of created templates to correctly express the rela-
+tionship between subjects and objects, we use the
+following metrics to score template quality. Each
+item is scored as either 1 or 0 based on whether the
+template meets the requirement.
+1) Fluency: Is the template a natural sentence or
+noun phrase28? Set 1 if the templates are natural;
+Otherwise 0.
+2) [Relation ⊆Template]: If the template can
+satisfy the definition of [Template ⊆Relation],
+then 1; Otherwise 0.
+3) [Template ⊆Relation]: If the template can
+satisfy the definition of [Template ⊆Relation],
+then 1; Otherwise 0.
+28We take the noun phrase into consideration as LPAQA
+created lots of noun phrase templates, such as “[X], who
+works as [Y].“ for relation P106 (https://www.wikidata.
+org/wiki/Property:P106)
+4) [Relation ∩Template > 0]: If the template can
+satisfy the definition of [Relation ∩Template >
+0], then 1; Otherwise 0.
+If either [Relation ⊆Template] or [Template
+⊆Relation] is 1, then [Relation ∩Template > 0]
+must also be 1. If [Relation ⊆Template], [Tem-
+plate ⊆Relation], and [Relation ∩Template >
+0] are all 0, the template can is classified as [Irrel-
+evant]. If all three metrics are 1, the template is
+classified as [Fully Matching].
+Specifically, as what PLMs see is the prompt
+with subject, we will consider the existence of
+subject when scoring the template. For example,
+P41329 describe the position or specialism of a
+player on a team. While the template “[X] plays in
+the position of [Y].” can be too general, as it could
+also describe a player’s position in an orchestra,
+specifying “[X]” in the prompt reduces ambiguity,
+making it an accurate [Fully Matching] template
+to describe the relation.
+B.2.3
+Evaluation result and analysis
+The comparison includes the 4 dataset: LAMA-
+UHN, PARAREL, LPAQA and MyriadLAMA.
+Considering the amount of all the templates in
+the three models (6654 templates in total), we ran-
+domly sample 200 templates for multi-prompt prob-
+ing datasets and use all 41 templates in LAMA-
+UHN for evaluation. To ensure objectivity, we
+anonymize the source of each template and mix
+them together for annotator (the first author). We
+publicize the annotation results here30. The evalua-
+tion result is shown in Table 10.
+From the Table 10, We observe that our
+semi-automatically generated relational templates
+achieve quality comparable to manually created
+datasets like LAMA-UHN and PARAREL, while
+being 100 times larger than LAMA-UHN and 13.7
+times larger than LPAQA. MyriadLAMA signifi-
+cantly outperforms LPAQA in template quality due
+to our two-stage template creation method.
+Furthermore, Figure 6 shows the score distri-
+butions for 200 templates across the three multi-
+prompt datasets. It reveals that LPAQA has many
+low-score templates, with 0 being the most com-
+mon score.
+Compared to PARAREL, Myriad-
+LAMA has slightly more templates with a score of
+3 but slightly fewer with a score of 4, resulting in
+slightly lower overall quality.
+29https://www.wikidata.org/wiki/Property:P413
+30https://anonymous.4open.science/r/
+belief-CC8A
+0
+1
+2
+3
+4
+Quanlity Score
+0
+40
+80
+120
+N mber of T
+emplates
+PARAREL
+LPAQA
+MyriadL AMA
+Figure 6: Quality score distributions over multi-prompt
+factual probing datasets.
+C
+Ablation Analysis of MyriadLAMA
+In this section, we conduct ablation analysis Myri-
+adLAMA to understand the validity of diversifica-
+tion on entities and templates.
+C.1
+Validity of extended entity expressions
+We evaluate the validity of the extended entity ex-
+pressions in MyriadLAMA by checking if these ex-
+tensions cover facts that PLMs can capture but are
+missed in LAMA-UHN due to strict entity expres-
+sion limitations. We conduct this analysis on BERT
+models, focusing on facts with extended subject
+and object expressions. MyriadLAMA contains
+13,123 facts with extended subjects and 23,195
+facts with extended objects. We measure the rate
+at which extended subjects/objects achieve higher
+ranks than the original expressions in the token
+distribution output.
+The results, shown in the Table 11 below, in-
+dicate that around 50% of extended subjects and
+20% of extended objects achieve higher ranks
+than the original entities. This suggests that many
+facts are missed in LAMA-UHN and other single-
+expression factual knowledge probing datasets.
+C.2
+Validity of paraphrased templates
+In this section, we evaluate the validity of the rela-
+tion templates in MyriadLAMA. We investigate the
+accuracy of each template and compare the accura-
+cies between templates in LAMA-UHN, manually
+rewritten templates and auto-generate templates.
+Specifically, for each relation, we evaluate the ac-
+curacy (Acc@1) of all relation templates separately,
+and then calculate the minimum, and maximum ac-
+curacies among all templates for each relation. We
+then measure the dataset-level minimum/maximum
+Dataset
+Fluency
+Template ⊆Relation
+Relation ⊆Template
+Relation ∩Template > 0
+Total Average
+LAMA-UHN
+1
+.732
+.976
+1
+3.707
+PARAREL
+0.99
+.790
+.905
+.985
+3.670
+LPAQA
+0.57
+.220
+.345
+.405
+1.540
+MyriadLAMA
+1
+.770
+.830
+.985
+3.585
+Table 10: The average quality metrics across templates from various factual probing datasets. LAMA-UHN has 41
+templates, all of which were used for evaluation. For the other three multi-prompt probing datasets, we sampled 200
+templates for comparison.
+PLMs
+Subject
+Object
+BERTbase
+.5355
+.2107
+BERTlarge
+.5358
+.2116
+BERTwwm
+.5272
+.1853
+Table 11: Rate of prompts where the extend entities gain
+higher probability than the original entity.
+PLMs
+LAMA-UHN
+MyriadLAMA
+Min
+Max
+Mean
+BERTbase
+.2403
+.0000
+.3534
+.1103
+BERTlarge
+.2454
+.0007
+.3728
+.1185
+BERTwwm
+.2448
+.0015
+.3695
+.1453
+Table 12: Acc@1 of MyriadLAMA and LAMA-UHN
+accuracy by micro-averaging the template set with
+the minimum/maximum template accuracies (41
+templates in each set). Finally, all of the template-
+specific accuracies are then micro-averaged to com-
+pute the average Acc@1. As indicated in Table 12,
+while the quality of MyriadLAMA’s prompts sig-
+nificantly varies, the high-quality prompts are no-
+tably superior to those of LAMA-UHN. Although
+the average accuracy of MyriadLAMA is lower
+than that of LAMA-UHN, it is considered that this
+is because MyriadLAMA uses relation templates
+that have been semi-automatically created, whereas
+LAMA-UHN uses carefully selected entities and
+templates.
+C.3
+What matters to robustness? Diverse
+subject vs. templates
+Next, we aim to investigate the factors contributing
+to varying performance and inconsistent predic-
+tions of prompts. MyriadLAMA creates diverse
+prompts for each fact by combining different sub-
+ject expressions and templates. To gauge their im-
+pact on robustness, we examine both the consis-
+tency (Consist) and the accuracy range (min/max)
+across various expressions of subjects or relations,
+assessed individually. To achieve this, the com-
+plete set of prompts was partitioned into multiple
+PLMs
+Consist↑
+Acc@1 range
+(min/max)
+Subject Relation
+Subject
+Relation
+BERTbase
+.5745
+.1504
+.0673/.1441 .0000/.3534
+BERTlarge
+.5497
+.1548
+.0714/.1554 .0007/.3728
+BERTwwm
+.5005
+.1057
+.0831/.1884 .0015/.3695
+Table 13: Diversity evaluation of subjects and relation
+templates
+subsets, with each subset containing only one ex-
+pression for each unique subjects or relations. The
+Acc@1 of the prompts obtained in this manner is
+then evaluated using different variants of BERT.
+The results in Table 13 indicate that while the ac-
+curacy range (min/max) and consistency (Consist)
+caused by aliases of subjects is less pronounced
+compared to diverse expressions of relational tem-
+plates, its effect on factual knowledge evaluation
+remains significant. These findings highlight the
+vulnerability of factual knowledge evaluation based
+on single prompts and underscore the significance
+of harnessing the diversity of prompts within Myri-
+adLAMA for robust assessments.
+C.4
+Manually rewritten vs. auto-generated
+templates
+Upon comparing relational templates gener-
+ated through manual rewriting and GPT-4 auto-
+generation, we find that auto-generated templates
+exhibit comparable quality (accuracy) to manually
+rewritten templates; they also demonstrate less di-
+versity in acquiring different predictions, aligning
+with our expectations.
+To assess the validity of LLM-generated tem-
+plates for knowledge probing, we rank the ac-
+curacies (Acc@1) of manually created templates
+against those generated by LLMs. Specifically,
+for each relation, we rank the 5 manual templates
+among all 100 templates and calculate the aver-
+age rank across all manually created templates for
+all relations. Table 14 shows the average Acc@1
+ranks of manual templates among 100 templates on
+PLMs
+Average rank of
+manual prompts
+based on Acc@1
+Consist
+Inner-group Inter-group
+BERTbase
+47.40
+.2904
+.1065
+BERTlarge
+45.64
+.2884
+.1125
+BERTwwm
+44.80
+.2387
+.0630
+Table 14: Comparison between prompts generated
+through manual labor and LLM.
+BERTbase, BERTlarge, BERTwwm. They are 47.40,
+45.64, and 44.80, respectively. These values closely
+approximate the average rank of 50, indicating that
+auto-generated templates can achieve nearly the
+same accuracy as manually created templates.
+Furthermore, we quantify the diversity discrep-
+ancy between manually written and auto-generated
+templates. We categorize the auto-generated tem-
+plates, including the original ones, as one group,
+resulting in five groups for each relation, each
+comprising 20 templates. Subsequently, we eval-
+uate the similarity between templates within the
+same group and across different groups using the
+consistency measure (Consist), as presented in Ta-
+ble 14. The consistency among prompts within the
+same group (inner-group) is notably high, whereas
+prompts from different groups (inter-group) exhibit
+less diversity in predictions. This underscores the
+significance of manual phrase rewriting, which can
+yield more diverse prompts and facilitate a more
+comprehensive evaluation.
+D
+QA-Style ICL and Its Evaluation
+D.1
+QA-style instruction
+Beside the mask-prediction-style (MP-style) ICL
+task, we also defined and evaluate a question-
+answer-style (QA-style) ICL task utilizing the
+QA-style relational templates available in Myri-
+adLAMA. This is available because MyriadLAMA
+provides 20 QA-style templates for each relation,
+offering not only syntactical diversity but also suit-
+ability for the autoregressive generation process
+in LLMs. Each QA-style prompt adheres to a for-
+mat where the subject and relation construct the
+question, and the object corresponds to the answer,
+such as “Who developed [X]? [Y].” For the QA
+prompt, we employ the few-shot prompt compris-
+ing X random QA pairs, following the format out-
+lined in InstructGPT (Ouyang et al., 2022). Given
+that all objects in MyriadLAMA are intended to be
+matched with single words, we append the instruc-
+tion “Answer each question in one word.” to
+ICL settings
+Fact prediction
+(Acc@1)
+1-word ratio
+QA
+MP
+QA
+MP
+zero-shot
+.4534
+.5066
+.5285
+.4802
+4-random
+.5429
+.5591
+.7996
+.8058
+4-relation
+.6582
+.6649
+.9187
+.9246
+4-template
+.6687
+.6765
+.9216
+.9266
+Table 15: Instruction following rate on Llama2-7B.
+ensure compatibility.
+Given the limited number of templates (20 for
+each relation) in the QA-style, the evaluation of
+QA-style prompts represents only one-fifth of the
+full prompts in MyriadLAMA.
+D.2
+Evaluation
+We measure the ability of QA-style prompts in
+adhering to instructions and compare it to MP-style
+prompts. To ensure a fair comparison between QA-
+and MP-style ICL, we conduct evaluations using
+shared templates in both settings on Llama2-7B,
+with 20 QA-style templates for each relation.
+We evaluate the abilities of fact prediction and
+one-word generation individually on Llama2-7B
+using average Acc@1 and rate of the one-word
+generation. As demonstrated in Table 4, Llama2-
+7B exhibits a remarkable capability to comprehend
+instructions for answering questions and generat-
+ing one-word answers. We observe that QA-style
+instructions perform better under the zero-shot set-
+ting, likely due to decoder-based PLMs’ ability to
+autoregressively generate text. However, this gap
+diminishes with the use of few-shot examples. This
+suggests that while MP-style prompts may slightly
+underestimate the knowledge in LLMs in zero-shot
+settings, MP-style ICL settings can demonstrate
+comparable or even superior performance in fac-
+tual knowledge prediction compared to QA-style
+ICL prompts.
+E
+Examples of BELEIF-ICL Prompts
+In this section, we provide example prompts for
+the four patterns introduced in §3: zero-shot, X-
+random, X-relation, and X-template. We focus on
+examples where X equals 4, which is the primary
+setting used in our work.
+E.1
+zero-shot
+Predict the [MASK] in each sentence in
+one word.
+Q: [MASK] consists of LAUPT.
+A:
+E.2
+4-random
+Predict the [MASK] in each sentence in
+one word.
+Q: [MASK] is the administrative center
+of Jiangsu.
+A: Nanjing.
+Q:
+Mar
+del
+Plata
+and
+[MASK]
+are
+sister cities that have been developing
+together.
+A: Havana.
+Q:
+Malawi
+has
+established
+diplomatic
+ties with [MASK].
+A: Australia.
+Q:
+Which
+country
+is
+House
+of
+Representatives located? [MASK].
+A: Libya.
+Q: [MASK] consists of LAUPT.
+A:
+E.3
+4-relation
+Predict the [MASK] in each sentence in
+one word.
+Q:
+What
+is
+the
+overarching
+group
+for
+Panzer Division Kempf? [MASK].
+A: Wehrmacht.
+Q: To whom does Mount Bulusan relate?
+[MASK].
+A: Luzon.
+Q: Who is responsible for Army National
+Guard? [MASK].
+A: National Guard.
+Q: What group is pharmacy a part of?
+[MASK].
+A: biology.
+Q:
+[MASK]
+consists
+of
+environmental
+factors.
+A:
+E.4
+4-template
+Predict the [MASK] in each sentence in
+one word.
+Q:
+[MASK]
+consists
+of
+Panzer
+Division
+Kempf.
+A: Wehrmacht.
+Q: [MASK] consists of Mount Bulusan.
+A: Luzon.
+Q: [MASK] consists of Army National Guard.
+A: National Guard.
+Q: [MASK] consists of pharmacy.
+A: biology.
+Q:
+[MASK]
+consists
+of
+environmental
+factors.
+A:
+F
+Experimental Details
+In this section, we list the detailed information of
+PLMs used in our study, including 3 encoder-based
+models and 8 decoder-based LLMs.
+F.1
+Model cards
+Here are the links from Hugging Face to load each
+model:
+BERTbase: https://huggingface.co/
+bert-base-uncased
+BERTlarge: https://huggingface.co/
+bert-large-uncased
+BERTwwm: https://huggingface.co/
+bert-large-uncased-whole-word-masking
+ALBERTbase: https://huggingface.co/albert/
+albert-base-v2
+ALBERTlarge: https://huggingface.co/
+tftransformers/albert-xxlarge-v2
+Llama2-7B: https://huggingface.co/meta-llama/
+Llama-2-7B
+Llama2-7B-IT: https://huggingface.co/meta-llama/
+Llama-2-7B-hf
+Llama2-13B: https://huggingface.co/meta-llama/
+Llama-2-13B
+Llama2-13B-IT: https://huggingface.co/
+meta-llama/Llama-2-13B-hf
+Llama2-70B: https://huggingface.co/meta-llama/
+Llama-2-70B
+Llama2-70B-IT: https://huggingface.co/
+meta-llama/Llama-2-70B-hf
+Llama3-8B: https://huggingface.co/meta-llama/
+Meta-Llama-3-8B
+Llama3-8B-IT: https://huggingface.co/meta-llama/
+Meta-Llama-3-8B-Instruct
+Llama3-70B: https://huggingface.co/meta-llama/
+Meta-Llama-3-70B
+Phi3-mini: https://huggingface.co/microsoft/
+Phi-3-mini-4k-instruct
+Phi3-small: https://huggingface.co/microsoft/
+Phi-3-small-8k-instruct
+Phi3-medium: https://huggingface.co/microsoft/
+Phi-3-medium-4k-instruct
+LLMs
+Architecture
+IT†
+Model size
+Pre-training corpora
+Size
+Resource
+BERTbase
+Encoder-based
+No
+110M
+3.3B words
+3.3B words
+3.3B words
+3.3B words
+3.3B words
+
+
+
+
+
+
+
+
+
+BookCorpus (11,038 unpublished books) and
+English Wikipedia
+(excluding lists, tables, and headers)
+BERTlarge
+Encoder-based
+No
+336M
+BERTwwm
+Encoder-based
+No
+336M
+ALBERTbase
+Encoder-based*
+No
+11.8M
+ALBERTlarge
+Encoder-based*
+No
+223M
+Llama2-7B
+Decoder-based
+No
+7B
+2.0T tokens
+2.0T tokens
+2.0T tokens
+2.0T tokens
+2.0T tokens
+2.0T tokens
+
+
+
+
+
+
+
+
+
+
+
+
+
+Publicly available online data
+(excluding sites containing personal info;
+factual knowledge sources are upsampled)
+Llama2-13B
+Decoder-based
+No
+13B
+Llama2-70B
+Decoder-based
+No
+70B
+Llama2-7B-IT
+Decoder-based
+Yes
+13B
+Llama2-13B-IT
+Decoder-based
+Yes
+13B
+Llama2-70B-IT
+Decoder-based
+Yes
+70B
+Llama3-8B
+Decoder-based
+No
+8B
+15T+ tokens
+15T+ tokens
+15T+ tokens
+
+
+
+Publicly available online data
+(details unknown, code is 4x larger than Llama2)
+Llama3-8B-IT
+Decoder-based
+No
+8B
+Llama3-70B
+Decoder-based
+No
+70B
+Phi3-mini
+Decoder-based
+Yes
+3.8B
+4.9T tokens
+4.9T tokens
+4.9T tokens
+
+
+
+High-quality materials including educational data,
+textbook-like generated text, high-quality chats
+Phi3-small
+Decoder-based
+Yes
+7B
+Phi3-medium
+Decoder-based
+Yes
+14B
+†Specify whether the model is an instruction-tuned model or not
+*ALBERT shares parameter between token embeddings and transformer layers to compress parameters.
+Table 16: The pre-training information of various PLMs used in this study
+F.2
+Model differences
+We outline the differences between PLMs in their
+pre-training details in Table 16, including the type
+of Transformer architecture, model size, and the
+size and resources of the pre-training corpora.
+F.3
+Evaluation results on all PLMs based on
+BELIEFs
+We present all evaluation results and their com-
+putational costs in this section.
+In Table 17,
+we report the full-scale experiments using all
+the prompts provided by MyriadLAMA. This in-
+cludes PLMs with 8B parameters or fewer, such as
+BERTbase, BERTlarge, BERTwwm, ALBERTbase,
+ALBERTlarge, Llama2-7B, Llama3-8B, Llama2-
+7B-IT, Llama3-8B-IT, Phi3-mini (3.8B), and Phi3-
+small (7B). For decoder-based models, we conduct
+experiments on 4 types of ICL settings.
+For PLMs with more than 8B parameters, we
+report the evaluation results using partial prompts
+from MyriadLAMA, specifically using manually-
+rewritten templates (5 per relation), which account
+for 1/20 of the prompts compared to the full-scale
+experiments. Meanwhile, we run these models on
+only two ICL settings: zero-shot and 4-template.
+To ensure fair comparison with models having 8B
+parameters or fewer, we apply the same settings
+to all other decoder-based LLMs. The result is
+shown in Table 18. We also list the approximate
+runtime for each experiments in these two tables.
+The experiments are all run on the NVIDIA RTX
+6000 Ada. For experiments using model less than
+or equal to 8B parameters, we use single GPU to
+measure the consumption time. We use 2 GPUs for
+Llama2-13B and Phi3-small and 4 GPUs for 70B
+models.
+Furthermore, we display the calibration level
+between accuracy and confidence for a straightfor-
+ward inspection on Ovconf metrics. We show the
+calibration figures of models with full-scale exper-
+iments in Figure 7 and experiments with partial
+prompts in Figure 8.
+F.4
+Knowledge coverage rate on all PLMs
+We present the average, maximum, and upper limit
+knowledge coverage rates, as introduced in §7, for
+all PLMs evaluated using all templates. The results
+are shown in Figure 19.
+0
+0.5
+1
+Confidence
+0.2
+0.4
+0.6
+0.8
+1
+Acc@1
+Perfectly calibrated
+BERT
+base
+BERT
+large
+BERT
+  m
+BERT and its variants
+0
+0.5
+1
+Confidence
+0.2
+0.4
+0.6
+0.8
+1
+Acc@1
+Perfectly calibrated
+albert-base
+albert-large
+ALBERT and its variants
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+
+
+Llama2-7B with 4 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+
+
+Llama2-7B-IT with 4 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+
+
+Llama3-8B with 4 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+
+
+Llama3-8B-IT with 4 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+
+
+Phi3-mini with 4 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+
+
+Phi3-small with 4 ICL settings
+Figure 7: The calibration between accuracy and confidence of PLMs’ prediction with full-scale experiments.
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+
+
+Llama2-7B with 4 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+Llama2-7B-IT with 4 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+Llama2-13B with 2 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+Llama2-13B-IT with 2 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+Llama2-70B with 2 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+Llama2-70B-it with 2 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+Llama3-8B with 2 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+Llama3-8B-IT with 2 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+Llama3-70B with 2 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+
+
+Phi3-mini with 4 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+
+
+Phi3-small with 4 ICL settings
+
+
+
+
+
+
+
+	
+
+
+
+ 
+
+
+Phi3-medium with 2 ICL settings
+Figure 8: The calibration between accuracy and confidence of PLMs’ prediction with partial-scale experiments
+(using manually rewritten templates only).
+PLMs
+Acc@1
+Fluctuation↓
+Consist↑
+Ovconf
+1-word ratio↑
+Runtime
+range
+SD
+BERT
+BERTbase
+.1095
+.1534
+.0217
+.1682
+.2154
+N/A
+6.3h
+BERTlarge
+.1102
+.1574
+.0220
+.1713
+.2052
+N/A
+7.4h
+BERTwwm
+.1364
+.1517
+.0208
+.1524
+.1000
+N/A
+7.4h
+ALBERT
+ALBERTbase
+.0362
+.0668
+.0131
+.1333
+.1647
+N/A
+6.1h
+ALBERTlarge
+.0974
+.1110
+.0148
+.0821
+.0553
+N/A
+15.2h
+Llama2-7B
+zero-shot
+.3385
+.2602
+.0299
+.1269
+-.1119
+.4752
+46.4h
+4-random
+.4816
+.2250
+.0270
+.2312
+-.0894
+.8247
+47.8h
+4-relation
+.6286
+.1221
+.0150
+.3753
+-.1335
+.9060
+47.8h
+4-template
+.6616
+.0294
+.0036
+.4163
+-.0933
+.9299
+47.8h
+Llama2-7B-IT
+zero-shot
+.2925
+.1980
+.0253
+.1151
+.2605
+.9069
+46.4h
+4-random
+.4334
+.1958
+.0229
+.2128
+.2410
+.9081
+47.8h
+4-relation
+.5576
+.0791
+.0092
+.3341
+.1900
+.9314
+47.8h
+4-template
+.5896
+.0439
+.0050
+.3687
+.2061
+.9380
+47.8h
+Llama3-8B
+zero-shot
+.3427
+.2864
+.0350
+.0240
+-.1329
+.1572
+44.9h
+4-random
+.5205
+.2033
+.0273
+.2156
+-.0796
+.8147
+82.1h
+4-relation
+.6871
+.1236
+.0156
+.3659
+-.0783
+.9071
+82.1h
+4-template
+.7268
+.0220
+.0026
+.4015
+-.0582
+.9187
+82.1h
+Llama3-8B-IT
+zero-shot
+.3578
+.2213
+.0262
+.1660
+.1402
+.7925
+44.9h
+4-random
+.4290
+.2068
+.0222
+.2137
+.1038
+.8511
+82.1h
+4-relation
+.5727
+.0731
+.0092
+.3239
+.0760
+.9140
+82.1h
+4-template
+.6508
+.0372
+.0040
+.3727
+.0800
+.9331
+82.1h
+Phi3-mini (3.8B)
+zero-shot
+.3498
+.2374
+.0292
+.1465
+.1752
+.8641
+30.7h
+4-random
+.4193
+.2324
+.0269
+.1649
+.1189
+.8184
+32.9h
+4-relation
+.5686
+.1440
+.0164
+.2818
+.0755
+.8769
+32.9h
+4-template
+.6067
+.0510
+.0048
+.3612
+.0887
+.8808
+32.9h
+Phi3-small (7B)
+zero-shot
+.4258
+.2437
+.0292
+.1782
+.2171
+.8883
+82.4h
+4-random
+.4889
+.2170
+.0276
+.2070
+.1670
+.8913
+148h
+4-relation
+.6339
+.1012
+.0129
+.3361
+.1252
+.9287
+148h
+4-template
+.6612
+.0360
+.0043
+.3626
+.1279
+.9411
+148h
+Table 17: Evaluation results and approximate experiment runtime on all MyriadLAMA data. Comparison of LLMs
+with 8B parameters or less, including BERT and its variants, across four ICL settings.
+PLMs
+Acc@1↑
+Fluctuation↓
+Consist↑
+Ovconf
+1-word ratio↑
+Runtime
+Range
+Stedv
+zero-shot
+Phi3-mini (3.8B)
+.4248
+.1880
+.0247
+.2066
+.1609
+.8596
+1.54h
+Phi3-small (7B)
+.4881
+.1900
+.0244
+.2284
+.1985
+.8996
+4.12h
+Llama2-7B
+.4311
+.2014
+.0249
+.1932
+-.0922
+.5558
+2.32h
+Llama2-7B-IT
+.3566
+.1862
+.0228
+.1932
+.2417
+.8961
+2.32h
+Llama3-8B
+.4224
+.2820
+.0353
+.1269
+-.1438
+.1786
+2.45h
+Llama3-8B-IT
+.4279
+.1962
+.0217
+.2337
+.1260
+.9179
+2.45h
+Llama2-13B
+.4785
+.2131
+.0260
+.1437
+-.1673
+.3185
+4.84h
+Llama2-13B-IT
+.4639
+.1701
+.0222
+.2358
+.2180
+.7542
+4.84h
+Phi3-medium (14B)
+.5173
+.2123
+.0277
+.6167
+.2316
+.7759
+4.85h
+Llama2-70B
+.5675
+.2126
+.0280
+.2598
+-.0988
+.6239
+28.97h
+Llama2-70B-IT
+.5223
+.2055
+.0259
+.2489
+.1608
+.7891
+28.97h
+Llama3-70B
+.5974
+.2137
+.0278
+.2290
+-.1438
+.7790
+32.55h
+4-template
+Phi3-mini (3.8B)
+.6106
+.0314
+.0039
+.3686
+.0911
+.9051
+1.65h
+Phi3-small (7B)
+.6668
+.0306
+.0039
+.3666
+.1222
+.9413
+7.40h
+Llama2-7B
+.6699
+.0257
+.0034
+.4174
+-.0933
+.9299
+2.39h
+Llama2-7B-IT
+.6013
+.0368
+.0045
+.3629
+.2007
+.9372
+2.39h
+Llama3-8B
+.7316
+.0194
+.0025
+.4060
+-.1119
+.9190
+4.10h
+Llama3-8B-IT
+.6563
+.0252
+.0032
+.3752
+.0535
+.9315
+4.10h
+Llama2-13B
+.7080
+.0235
+.0031
+.4326
+-.0662
+.9190
+4.23h
+Llama2-13B-IT
+.6482
+.0301
+.0038
+.3656
+.1708
+.9341
+4.23h
+Phi3-medium (14B)
+.7304
+.0207
+.0025
+.4009
+.0317
+.9350
+3.88h
+Llama2-70B
+.7784
+.0190
+.0024
+.4449
+-.0690
+.9256
+21.99h
+Llama2-70B-IT
+.7232
+.0258
+.0031
+.4226
+.1026
+.9582
+21.99h
+Llama3-70B
+.8211
+.0139
+.0017
+.4636
+-.0812
+.9378
+43.10h
+Table 18: Evaluation results and approximate experiment runtime on partial MyriadLAMA data. Comparison of all
+LLMs (8 models) using zero-shot and 4-template ICL settings with manually rewritten templates.
+PLMs
+Average
+Maximum
+Upper Limit
+BERT
+BERTbase
+.1095
+.4248
+.6209
+BERTlarge
+.1102
+.4451
+.6556
+BERTwwm
+.1364
+.4501
+.6636
+ALBERT
+ALBERTbase
+.0362
+.2175
+.3405
+ALBERTlarge
+.0974
+.3746
+.5979
+Llama2-7B
+zero-shot
+.3385
+.6577
+.8153
+4-random
+.4816
+.7026
+.8587
+4-relation
+.6286
+.7179
+.8475
+4-template
+.6616
+.7197
+.8133
+Llama3-8B
+zero-shot
+.3427
+.7099
+.8756
+4-random
+.5205
+.7339
+.8867
+4-relation
+.6871
+.7733
+.8934
+4-template
+.7268
+.7731
+.8628
+Phi3-mini
+zero-shot
+.3498
+.6346
+.8381
+4-random
+.4193
+.6506
+.8423
+4-relation
+.5686
+.6791
+.8436
+4-template
+.6067
+.6754
+.8114
+Phi3-small
+zero-shot
+.4258
+.6828
+.8642
+4-random
+.4889
+.7037
+.8695
+4-relation
+.6339
+.7172
+.8507
+4-template
+.6612
+.7181
+.8346
+Table 19: Knowledge coverage rate on models with full-scale experiments. Average: mean accuracy using all
+templates; Maximum: accuracy with the best template for each relation; Upper Limit: accuracy when the best
+template is selected for each knowledge relation.
+ID
+Human-rewritten templates
+GPT-4 paraphrased templates
+P19
+[X] started their life in [Y].
+[X] took their first steps of life in [Y].
+[X] activated their life’s beginning in [Y].
+[X] initiated their journey of life within [Y].
+The birth of [X] occurred in [Y].
+The origin of [X] took place in [Y].
+The inception of [X] was within [Y].
+It was in [Y] that [X] first made its appearance.
+P20
+[X] spent the last years of life in [Y].
+In [Y], [X] spent the end of their life.
+[X]’s final era was in [Y].
+In [Y], [X]’s life came to a close.
+[Y] is the last place where [X]
+lived until death.
+[X] inhabited [Y] up until death.
+[Y] was the end-of-life dwelling for [X].
+[Y] served as the last dwelling for [X] before they died.
+P279
+Of which class is [X] a subclass? [Y].
+What is the general class that [X] is a part of as a subclass? [Y].
+What larger class encompasses [X] as a subclass? [Y].
+Into which class is [X] categorized as a subclass? [Y].
+[X] is also necessarily a [Y].
+[X] is intrinsically a [Y].
+[X] is fundamentally a [Y].
+[X] is by definition a [Y].
+P37
+[Y] is spoken as an official language
+by people in [X].
+[Y] is the authorized language for formal use in [X].
+The official language spoken by individualsin [X] is [Y].
+[X] endorses [Y] as the language forstate-related communication.
+Officially, the people living in [X]
+use the language [Y] for communication.
+In [X], the standard language for dialogue among the populace is [Y].
+Residents of [X] typically converse in [Y].
+The official medium of verbal exchange in [X] is the [Y] language.
+P413
+[X] was given the [Y] job.
+[X] was selected for the [Y] position.
+[X] was named the new [Y].
+The [Y] duties have been allocated to [X].
+[X] is a famous [Y] player.
+[X] has risen to fame with their [Y] playing abilities.
+[X] is well-known for playing [Y].
+[X] is notable for their expertise in [Y].
+P449
+[X] premiered on the network [Y].
+[Y] was the origin of the broadcast for [X].
+[X] was initially broadcasted by [Y].
+The debut broadcast of [X] was on [Y].
+[Y] is the first air channel of [X].
+[X] was originally brought to the public by [Y].
+[X] first hit the airwaves courtesy of [Y].
+[X] first reached listeners and viewers via [Y].
+P47
+[X] and [Y] are neighboring countries.
+[X] and [Y] are countries that are in close proximity.
+[Y] lies in the vicinity of [X].
+[Y] and [X] are countries that share a boundary.
+You can go through [X] to reach [Y].
+[X] acts as a gateway to [Y].
+To reach [Y], one can travel through [X].
+Traveling over [X] can bring you to [Y].
+Table 20: Examples of templates in MyriadLAMA - part 1
+ID
+Human-rewritten templates GPT-4 paraphrased templates
+P138
+Who or what is [X] named
+after? [Y].
+Who is the namesake behind [X]? [Y].
+What is the etymology behind [X]’s name? [Y].
+Who or what was [X] called after? [Y].
+[X] is named after [Y].
+[X] takes its name from [Y].
+[Y] is the inspiration behind the name of [X].
+[X] holds the name given in tribute to [Y].
+P364
+[X] is created in language [Y].
+[X] was composed in the [Y] language.
+[X] unfolds in the language known as [Y].
+[X] is expressed through the language of [Y].
+[X] was written in the [Y]
+language.
+The words of [X] are in the [Y] language.
+The composition of [X] is in the [Y] language.
+[X] was created using the [Y] language.
+P463
+[X] served for [Y].
+[X] took part in [Y].
+[X] collaborated with [Y].
+[X] held a position at [Y].
+Which group or organization
+does [X] belong to? [Y].
+[X] is part of what organization? [Y].
+[X] is a member of which entity? [Y].
+Can you tell me which entity [X] is amember of? [Y].
+P101
+Which field does [X] work in?
+[Y].
+In what industry is [X] employed? [Y].
+[X] holds a position in which field? [Y].
+[X] is a professional in what sector? [Y].
+[X] is influential in the domain
+of [Y].
+The domain of [Y] feels the considerable impact of [X].
+[X] plays a pivotal role in the sphere of [Y].
+[X] has a profound effect on [Y].
+P106
+[X] is famous for
+achievements as a [Y].
+[X] is well-known for their accomplishments in the [Y] role.
+[X] is well-known for their successful career as a [Y].
+[X] is a celebrated [Y] with a long list of achievements.
+[X] is a [Y] by profession.
+[X] has built a career as a [Y].
+[X] is employed as a [Y].
+[X] carries out the role of a [Y].
+P527
+[Y] is a member of [X].
+[X] contains [Y] as part of its composition.
+[Y] holds a place in [X].
+[Y] is a piece of [X].
+[Y] belongs to [X].
+[Y] is held by [X].
+[X] has [Y] under its ownership.
+[Y] is one of the items owned by [X].
+P530
+[Y] is one of the countries [X]
+has diplomatic relations with.
+[Y] is a member of the group of countries with which [X] conducts diplomacy.
+[X] has a formal diplomatic relationship with [Y], as it does with several other countries.
+[Y] is recognized by [X] as a diplomatic partner among other nations.
+[X] has established diplomatic
+ties with [Y].
+[X] has initiated formal diplomatic relations with [Y].
+[X] and [Y] have begun a diplomatic relationship.
+[X] and [Y] have set up official diplomatic links.
+Table 21: Examples of templates in MyriadLAMA - part 2
+ID
+Human-rewritten templates
+GPT-4 paraphrased templates
+P176
+[X] is a product of [Y]’s manufacturing.
+The entity [Y] crafts and produces [X].
+The item [X] is fabricated by [Y].
+[X] is brought to life by [Y]’s manufacturing capabilities.
+Which company produced [X]? [Y].
+Can you tell me who made [X]? [Y].
+Which producer can be linked to [X]? [Y].
+What is the producing company of [X]? [Y].
+P27
+[X] is a person from country [Y].
+[X] is a resident of [Y].
+[X] bears the nationality of [Y].
+[X] is a product of [Y].
+The nationality of [X] is [Y].
+[X] is a native of [Y].
+[X] is identified as a national from [Y].
+[Y] is the country of origin for [X].
+P407
+[X] is in language [Y].
+The language of [X] is [Y].
+The primary linguistic expression of [X] is in [Y].
+[X] is articulated through the [Y] language.
+[X] is a work in the [Y] language.
+The [Y] language is the linguistic fabric of [X].
+[X] has been produced using the [Y] language.
+[X] is an example of literature in the [Y] language.
+P30
+On what continent is [X] located? [Y].
+What’s the name of the continent that [X] calls home? [Y].
+What continental landmass does [X] occupy? [Y].
+[X] lies on which of the Earth’s continents? [Y].
+[X] is a part of the continent [Y].
+[X] is a section of the continental land of [Y].
+[X] is geographically positioned as part of continent [Y].
+[X] is an integral piece of the continent [Y].
+P178
+[X] was originally created by [Y].
+The foundation of [X] was laid by [Y].
+The concept of [X] was conceived by [Y].
+[X] first came into existence thanks to [Y].
+[X] is developed by [Y].
+[Y] has developed [X].
+[Y] is the developer behind [X].
+[Y] stands as the creator of [X].
+P1376
+[X] is the capital of [Y].
+[Y]’s governmental seat is in [X].
+[X] is recognized as the official capital of [Y].
+The leading city and capital of [Y] is [X].
+[X] is the administrative center of [Y].
+[Y]’s administrative leadership is situated in [X].
+[Y]’s administrative affairs are managed from [X].
+[X] is where [Y]’s administrative management is anchored.
+P131
+[Y] is the place where [X] is located.
+[X] resides in [Y].
+[X] can be found at the location of [Y].
+[X] is anchored in [Y].
+[X] is located in [Y].
+[Y] is where [X] is established.
+[Y] contains [X].
+[Y] houses [X].
+Table 22: Examples of templates in MyriadLAMA - part 3
+ID
+Human-rewritten templates
+GPT-4 paraphrased templates
+P1412
+What language does [X] use? [Y].
+[X] communicates in what vernacular? [Y].
+What tongue does [X] utilize? [Y].
+What is the primary language for [X]? [Y].
+[Y] is the language that is used by [X].
+The tongue of [X] is the language [Y].
+[X] uses [Y] as its mode of speech.
+[Y] is the language that enables communication for [X].
+P108
+[X] is employed by [Y].
+[Y] is the employer of [X].
+[X] has a job at [Y].
+[Y] is the source of employment for [X].
+Who does [X] work for? [Y].
+Who does [X] report to in their job? [Y].
+For whom is [X] currently working? [Y].
+Who holds [X] on their team? [Y].
+P136
+What is the genre of [X]? [Y].
+In terms of genre, how would you classify
+[X]? [Y].
+What category of genre does [X] belong to? [Y].
+In what genre category would you place [X]? [Y].
+[X] is the representative of the [Y] style.
+[X] personifies the [Y] style in its purest form.
+[X] is the epitome of the [Y] approach.
+[X] is the archetype of the [Y] tradition.
+P17
+Which country is [X] located? [Y].
+Can you identify the country where [X] is situated? [Y].
+Could you specify the country of [X]’s location? [Y].
+[X] can be located in what country? [Y].
+[Y] is the country in which [X] is located.
+[Y] is the nation that houses [X].
+[Y] encompasses the region where [X] can be found.
+[Y] is the setting for the location of [X].
+P39
+What position does [X] hold? [Y].
+What position does [X] occupy? [Y].
+What is the employment status of [X]? [Y].
+What is the position title for [X]? [Y].
+[X] was sworn in as [Y].
+[X] has been designated the official role of [Y].
+[X] pledged their commitment to the role of [Y].
+[X] was confirmed in the role of [Y].
+P264
+Which music label represents [X]? [Y].
+Which label has [X] on its roster? [Y].
+Who is [X]’s music label? [Y].
+With whom is [X] signed for music production? [Y].
+[X] is represented by music label [Y].
+The music label acting on behalf of [X] is [Y].
+[Y] is the music label that has signed [X].
+[X] has music label [Y] as its representative.
+P276
+Where is [X] located? [Y].
+What’s the location of [X]? [Y].
+Where can [X] be found? [Y].
+Where should I look for [X]? [Y].
+[X] is located in [Y].
+[X] is positioned in [Y].
+[X] occupies a space in [Y].
+[Y] contains [X].
+Table 23: Examples of templates in MyriadLAMA - part 4
+ID
+Human-rewritten templates
+GPT-4 paraphrased templates
+P937
+[Y] is the place where [X] worked.
+[X] had their employment based in [Y].
+[X] found their employment setting in [Y].
+[X] conducted their professional activities in [Y].
+[X] had work activity in [Y].
+[X] took part in business tasks in [Y].
+[X] was employed within the confines of [Y].
+[X] was operational in the workforce at [Y].
+P140
+Which religion is [X] affiliated with? [Y].
+What religious belief does [X] adhere to? [Y].
+Which spiritual path is embraced by [X]? [Y].
+What is the creed of [X]? [Y].
+[X] is affiliated with the [Y] religion.
+[X] is part of the [Y] religious denomination.
+[X] is associated with the [Y] spiritual tradition.
+[X] adheres to the [Y] religion.
+P1303
+[X] is a [Y] player.
+[X] specializes in the [Y].
+[X] is a seasoned [Y] player.
+[X] is a [Y] specialist.
+[X] plays [Y].
+[X] expresses their musicianship through [Y].
+[X] has chosen [Y] as their musical companion.
+[X] is a musician who specializes in [Y].
+P127
+Who owns [X]? [Y].
+Whose property is [X] considered to be? [Y].
+Who is the legal holder of [X]? [Y].
+Who has the ownership rights to [X]? [Y].
+[X] is owned by [Y].
+[Y] is the proprietor of [X].
+[Y] holds the title to [X].
+[Y] possesses [X].
+P103
+[X] grew up speaking [Y] as their first
+language.
+[X]’s formative years were shaped by speaking [Y].
+[X] started their life speaking [Y].
+[X]’s childhood language was [Y].
+[Y] is the mother tongue of [X].
+[X] has [Y] as their original tongue.
+[X] was nurtured in an environment where [Y] is spoken.
+[X] has [Y] as the language of their upbringing.
+P190
+The city of [X] is twinned with [Y].
+[Y] and [X] have entered into a twinning arrangement.
+[X] is in a twinning relationship with [Y].
+A twinning link has been established between [X] and [Y].
+[X] and [Y] are sister cities that have
+been developing together.
+[X] and [Y] have been sister cities on a shared developmental journey.
+The cities of [X] and [Y] have jointly progressed as sister municipalities.
+[X] and [Y] have been in lockstep as sister cities in their development.
+P1001
+[X] applies to the jurisdiction in [Y].
+The jurisdiction of [Y] encompasses [X].
+[X] is answerable to the legal system in [Y].
+[Y] exercises legal control over [X].
+The region of [Y] uses [X] as a legal term.
+[X] is a term with legal standing in [Y].
+The legal system of [Y] includes [X] as an official term.
+[X] is employed as a juridical term in [Y].
+Table 24: Examples of templates in MyriadLAMA - part 5
+ID
+Human-rewritten templates
+GPT-4 paraphrased templates
+P31
+[X] is a [Y].
+[X] represents a [Y].
+[X] is an example of a [Y].
+[X] is termed a [Y].
+Speaking of [Y], [X] is an example of it.
+[X] is a particular instance that reflects [Y].
+[X] is a variant that falls within the scope of [Y].
+[Y] can be demonstrated through [X].
+P495
+[X] originates from the country of [Y].
+[X] was first found in the land of [Y].
+The inception of [X] is linked to the country [Y].
+The origin of [X] can be traced back to [Y].
+[X] first appeared in [Y].
+[X] has its roots in [Y].
+[X] was first crafted in [Y].
+The origin of [X] is attributed to [Y].
+P159
+The operation of [X] depends on the
+headquarters in [Y].
+[X]’s functioning is reliant on the main office in [Y].
+The base in [Y] is essential for [X] to function.
+The primary operations of [X] are contingent upon the base in [Y].
+The headquarters of [X] is in [Y].
+[Y] is home to the central office of [X].
+The top office of [X] is positioned in [Y].
+The nerve center for [X]’s operations is based in [Y].
+P36
+[Y] is the administrative center of [X].
+The nerve center for [X]’s administration is found in [Y].
+[X]’s administrative governance is centralized in [Y].
+[X] is administratively governed by [Y].
+[Y] represents the capital city for [X].
+[Y] functions as [X]’s political hub.
+[X] uses [Y] as its head city.
+[X]’s administrative center is [Y].
+P740
+[X] started their career in [Y].
+[Y] served as the starting point for [X]’s career.
+[X] began earning their stripes in the field of [Y].
+[X] commenced their employment journey with [Y].
+The formation location of [X] is [Y].
+The assembly point for [X] is [Y].
+[Y] is recognized as the setting for [X]’s formation.
+[Y] is where [X] originates.
+P361
+Which entity does [X] belong to? [Y].
+Who owns [X]? [Y].
+What is the overarching group for [X]? [Y].
+What organization encompasses [X]? [Y].
+[Y] consists of [X].
+[X] is what [Y] is primarily made of.
+[Y] incorporates [X] within it.
+[Y] is structured with [X].
+Table 25: Examples of templates in MyriadLAMA - part 6

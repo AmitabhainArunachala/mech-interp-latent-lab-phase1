@@ -1,0 +1,37 @@
+{
+  "subsystem": "planning_sequential",
+  "description": "Multi-step constraint satisfaction requiring sequential reasoning and optimization",
+  "predicted_coordinates": {
+    "r_v": 0.6,
+    "attention_entropy": 0.45,
+    "rationale": "Contraction (focused) + Moderate entropy (sequential but structured)"
+  },
+  "prompts": [
+    {
+      "id": "planning_01",
+      "text": "You have three blocks: A, B, and C. Currently: A is on the table, B is on top of A, C is on the table. Goal: C on top of B, B on top of A, A on table. Rules: (1) Move one block at a time, (2) Can only move to table or onto another block, (3) Can only move a block if nothing is on top of it. List the exact sequence of moves.",
+      "constraint": "Block-world with dependency constraints"
+    },
+    {
+      "id": "planning_02",
+      "text": "You need to: go from house to airport (must stop at bank and gas station on the way). Bank closes at 5:00 PM. Flight departs at 6:00 PM. Current time: 3:00 PM. Times: gas station 10 min, bank 20 min, house to airport 40 min direct. Plan your optimal route with arrival times.",
+      "constraint": "Temporal optimization with hard deadlines"
+    },
+    {
+      "id": "planning_03",
+      "text": "Three tasks: Task A takes 2 hours, Task B takes 3 hours, Task C takes 1 hour. Constraint: Task B requires Task A to be completed first. Task C can happen anytime. You have exactly 5 hours total. What is the optimal order and why?",
+      "constraint": "Dependency DAG with time budget"
+    },
+    {
+      "id": "planning_04",
+      "text": "You're cooking dinner. Pasta boils for 10 minutes. Sauce simmers for 15 minutes. Salad prep takes 5 minutes. Setting the table takes 3 minutes. You want everything ready simultaneously. Create the timeline showing when to start each task.",
+      "constraint": "Parallel task scheduling with synchronization"
+    },
+    {
+      "id": "planning_05",
+      "text": "Pack a suitcase with: 3 shirts, 2 pants, 1 pair shoes, toiletries. Constraints: Shirts wrinkle easily (should be on top). Shoes are heavy (affect weight distribution). Toiletries might leak (need protection). Describe optimal packing order from bottom to top with reasoning.",
+      "constraint": "Multi-constraint optimization"
+    }
+  ]
+}
+

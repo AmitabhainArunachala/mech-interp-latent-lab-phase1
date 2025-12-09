@@ -1,0 +1,786 @@
+Scale-invariant phase transition of disordered bosons in one dimension
+Tanul Gupta,1 Guido Masella,2 Francesco Mattiotti,1 Nikolay V. Prokof’ev,3 and Guido Pupillo1, 2
+1University of Strasbourg and CNRS, CESQ and ISIS (UMR 7006), aQCess, 67000 Strasbourg, France
+2QPerfect, 23 Rue du Loess, 67000 Strasbourg, France
+3Department of Physics, University of Massachusetts, Amherst, MA 01003, USA
+The disorder-induced quantum phase transition between superfluid and non-superfluid states of
+bosonic particles in one dimension is generally expected to be of the Berezinskii-Kosterlitz-Thouless
+(BKT) type. Here, we show that hard-core lattice bosons with power-law hopping decaying with
+distance as 1/rα with finite integral over space – corresponding in spin language to a XY model
+with power-law couplings – undergo a non-BKT continuous phase transition instead. We use exact
+quantum Monte-Carlo methods to determine the phase diagram for different values of the exponent
+α, focusing on the regime α > 2. We find that the scaling of the superfluid stiffness with the system
+size is scale-invariant at the transition point for any α ≤3 – a behavior incompatible with the
+BKT scenario and typical of continuous phase transitions in higher dimension. By scaling analysis
+near the transition point, we find that our data are consistent with a correlation length exponent
+satisfying the Harris bound ν ≥2 and demonstrate a new universal behavior of disordered bosons
+in one dimension. For α > 3 our data are consistent with a BKT scenario where the liquid is pinned
+by infinitesimal disorder.
+Bosonic particles with local interactions in one dimen-
+sion (1D) are described by a universal harmonic the-
+ory, known as Luttinger liquid (LL). The latter corre-
+sponds to quantized superfluid hydrodynamics (including
+instantons) and is fully characterized by the superfluid
+velocity, v =
+p
+Ys/κ, and LL parameter, K = π√κYs,
+with κ the compressibility and Ys the superfluid stiffness.
+Diagonal disorder induces an instability in LL towards
+a non-superfluid Bose glass (BG) phase – a compress-
+ible insulator displaying exponential decay of off-diagonal
+correlations. In their seminal paper [1], Giamarchi and
+Schulz found by means of a perturbative renormalization
+group (RG) analysis that the LL-BG transition is of the
+Berezinskii-Kosterlitz-Thouless (BKT) type that takes
+place at the universal value K = Kc = 3/2 (this result
+holds at the two-loop level [2]). In the strong-disorder
+limit, real-space RG treatments [3, 4] and the “scratched-
+XY” criticality [5] also predict a BKT-type transition but
+at a non-universal value of Kc > 3/2. These considera-
+tions exhaust known scenarios for the disorder-induced
+superfluid to non-superfluid phase transitions in 1D.
+In this work, we consider the disorder-induced localiza-
+tion transition in 1D superfluids of bosons with power-
+law hopping decaying with distance as 1/rα. We utilize
+numerically exact large scale Quantum Monte-Carlo sim-
+ulations based on the Worm Algorithm [6] to determine
+the ground-state superfluid phases and phase transitions
+for different values of α > 2. We find that the super-
+fluid phases can be approximately characterized by an
+effective LL parameter K that reproduces the decay of
+correlation functions. However, contrary to existing the-
+ories, we find that the disorder-induced quantum phase
+transition is generically scale-invariant and incompatible
+with the BKT scenario with the effective Kc ≤3/2 for
+all α ≤3. As far as critical exponents are concerned,
+the data is consistent with the correlation length expo-
+nent satisfying the Harris bound ν ≥2 for all values of
+α ≤3. Thus, our results reveal a new universal behav-
+ior of bosons with power-law hopping in one dimension
+with finite integral over space. For α > 3 our results are
+instead consistent with a scenario where the superfluid
+is pinned by an infinitesimal disorder in the thermody-
+namic limit, similar to a BKT-like scenario for hard-core
+particles with short-range coupling. Our predictions are
+directly relevant for experiments with dipolar atoms and
+molecules, exciton materials, and cold ions.
+We consider the following 1D lattice Hamiltonian for
+hard-core bosons
+H = −t
+X
+i<j
+aα
+|rij|α
+h
+b†
+ibj + H.c.
+i
++
+X
+i
+ϵini,
+(ni ≤1).
+(1)
+We employ standard notations for bosonic creation and
+annihilation operators on site i and restrict the maximal
+occupation number, ni = b†
+ibi, to unity.
+The nearest-
+neighbor hopping amplitude, t, and the lattice spacing, a,
+are taken as units of energy and length, respectively. We
+choose random on-site energies ϵi uniformly distributed
+between −W and W, and check that a different (gaus-
+sian) choice of distribution does not affect the results. In
+spin language, Eq. (1) is equivalent to an XY Hamilto-
+nian with power-law exchange couplings, which, in the
+absence of disorder, can be realized in experiments with
+cold polar molecules [7], trapped ions [8–10] and Rydberg
+atoms [11–16] (the latter can also be disordered [17]).
+For ideal system with W/t = 0, the spectra and low-
+energy phases of Hamiltonian (1) have been investigated
+by a variety of approaches. Using linear spin-wave the-
+ory, Ref. [18] identified α > 3 as a regime where main
+properties reproduce those observed in the α = ∞limit
+of finite-range interactions; 1 < α < 3 as an intermediate
+regime with the XY phase characterized by a contin-
+uously varying dynamical exponent z = (α −1)/2 (it
+governs the k →0 limit of the dispersion relation); and
+α < 1 as a long-range regime with dispersionless excita-
+tions and properties similar to the infinite-range α = 0
+arXiv:2310.17682v2  [cond-mat.quant-gas]  28 Apr 2025
+2
+case in the thermodynamic limit. In this harmonic ap-
+proach, α = 3 is the boundary between the intermediate
+and short-range regimes. Using a bosonization approach
+supplemented by an RG analysis, Ref. [19] predicts that
+power-law couplings are relevant in the RG sense for
+α < 3 −1/(2K), with K > 1 to be determined numer-
+ically for each given α. In the following, we study the
+ground-state superfluid phases and phase transitions of
+Eq. (1) for α > 2 using large scale path-integral quantum
+Monte-Carlo simulations based on the Worm algorithm
+[6]. Without loss of generality, we focus on the particle
+density ρ = 1/2.
+We start our analysis by first characterizing the
+bosonic liquid in the absence of disorder (W/t = 0).
+Figure 1(a) shows the dispersion relation E(k) vs k for
+three values of α = 2.5, 3.0, and 3.2 where k is the
+quasi-momentum. It was deduced numerically from spec-
+tral peaks after analytic continuation of the imaginary-
+frequency dynamic structure factor [20, 21]. The chosen
+values of α correspond to values in the expected inter-
+mediate (α = 2.5), boundary (α = 3.0) and short-range
+(α = 3.2) limits of the spin-wave analysis, respectively.
+The dispersion relation is non-linear in k for α = 2.5
+(dots) and the data can be fit well by E(k) ∼kz∗, with
+z∗≃0.74, in good agreement with the z = 0.75 pre-
+diction of spin-wave analysis (continuous black line). In
+the short-range regime, instead, the dispersion relation
+is consistent with the linear law and a small negative
+quadratic contribution, also in agreement with literature.
+We checked that E(k) for different system sizes agree
+with each other for the same values of k. [The disper-
+sion relation in the superfluid phase for α = 2.5 in the
+presence of disorder is sub-linear, as presented in the Sup-
+plemental Material [22].]
+For a 1D superfluid ground state, the single-particle
+density matrix G(ℓ) = ⟨b†
+ibi+ℓ⟩is expected to show an
+algebraic decay with the distance ℓwith diverging inte-
+gral over space. Our data for G are shown in Fig. 1(b),
+for the same values of α as in panel (a) for a system with
+L = 512 sites and inverse temperature β = L/t.
+We
+observe algebraic decay G ∼ℓ−γ for all α.
+Despite the non-linear dispersion relation demon-
+strated above, we attempt a comparison with expecta-
+tions from LL theory by extracting an effective LL pa-
+rameter K as a function of α from two standard meth-
+ods: the power-law decay G ∼ℓ−γ via the bosoniza-
+tion relation γ = 1/(2K) (green dots) and the rela-
+tion K = π√κYs (red squares).
+Both κ and Ys can
+be conveniently computed by quantum Monte Carlo
+through mean-square particle, N, and winding num-
+ber, W, fluctuations using the Pollock–Ceperley relation
+Ys = L⟨W2⟩/β. Figure 1(c) shows that the two meth-
+ods produce similar estimates of K for all α, within the
+error bars, which is surprising, given the non-linear dis-
+persion relation demonstrated above. Moreover, K de-
+creases monotonically and continuously with α from a
+large value K ≳5 at α ∼2.3 to K ≈1 at α = 4. Within
+an approximate LL scenario, this behavior may be ex-
+k
+0.0
+0.5
+1.0
+E(k)/t
+0
+1
+2
+3
+(a)
+c(ℓ)
+1
+10
+100
+𝓖(ℓ)
+2−3
+2−2
+2−1
+20
+(b)
+𝛼
+2.5
+3.0
+3.5
+4.0
+K
+0
+1
+2
+3
+4
+5
+6
+(c)
+𝛼= 2.5
+𝛼= 3.0
+𝛼= 3.2
+𝛼= 2.5,L = 512
+𝛼= 3.0,L = 512
+𝛼= 3.2,L = 512
+K = 𝜋𝜅Ys
+K = 1/2𝛾
+FIG. 1. Characterization of the superfluid phase for W/t = 0:
+(a) Dispersion relations E(k) vs k for α = 2.5, 3.0 and 3.2 cho-
+sen in the intermediate and short-range regimes, respectively
+(see text) for L = 256. (b) Single particle density matrix G(ℓ)
+vs chord distance c(ℓ) = sin(πℓ/L)/ sin(π/L) showing an al-
+gebraic decay for all α for L = 512. Dashed lines indicate the
+best fit with A · c(ℓ)−γ where A, γ are fitting parameters. (c)
+Numerical evaluation of the Luttinger liquid parameter K as
+a function of α from the power-law decay G ∝ℓ−1/(2K) (green
+dots) and from the relation K = π√κYs (red squares) extrap-
+olated to the thermodynamic limit via a polynomial scaling
+in 1/L.
+plained by the fact that power-law hopping in Hamil-
+tonian (1) allows for large-scale particle exchanges for
+small enough α < 3, mimicking the behavior of soft-core
+bosons, for which one can easily get K ≫1. The K = 1
+value (dashed dotted line) corresponds to the short-range
+case of hard-core bosons with the nearest neighbor hop-
+ping, a limit that is here asymptotically approached at
+α > 3 [23]. In the following we analyse the situation at
+finite disorder strength and, in particular, explore the na-
+ture of the transition point, which is expected to be of the
+BKT type for Luttinger liquids. However, we note that
+this may not be the case here: BKT transition and its
+asymptotically exact RG flow are rooted in logarithmic
+interactions between vortex excitations. The latter origi-
+nates from the kinetic energy of the flow around vortexes
+E ∼
+R
+(ns/m)dr/r, where m is the particle mass and ns
+the superfluid density. The single particle spectrum in
+our model is not parabolic and formally corresponds to
+a scale dependent “mass” m(r) ∼r3−α, implying that
+vortexes in the superfluid phase should be bound by a
+3
+⟨𝓦2⟩
+W/t
+0
+1
+2
+3
+4
+5
+6
+0
+1
+2
+3
+4
+(a)
+⟨𝓦2⟩−⟨𝓦2⟩Lmax
+W/t
+2.7
+3.0
+3.3
+3.6
+3.9
+0.0
+0.1
+0.2
+0.3
+0.4
+(b)
+𝛼= 2.5
+1/L
+1/32
+1/64
+1/512
+W/t
+2
+3
+4
+1.6
+1.8
+2.0
+2.2
+2.4
+2.6
+2.8
+3.0
+−0.05
+0.00
+0.05
+0.10
+0.15
+(c)
+𝛼= 2.7
+1/L
+1/32
+1/64
+1/512
+W/t
+1
+2
+3
+0.5
+1.0
+1.5
+−0.02
+0.00
+0.02
+0.04
+0.06
+(d)
+𝛼= 3.0
+1/L
+1/64
+1/512
+W/t
+0
+1
+2
+0.0
+0.5
+1.0
+−0.01
+0.00
+0.01
+0.02
+0.03
+(e)
+𝛼= 3.2
+1/logL
+0.0 0.1 0.2
+W/t
+0
+1
+𝛼= 2.7
+L = 64
+L = 128
+L = 256
+𝛼= 3.2
+L = 64
+L = 128
+L = 256
+L = 64
+L = 128
+L = 256
+L = 512
+L = 1024
+FIG. 2.
+Characterization of the superfluid to non-superfluid phase transition: (a) Mean-square winding number ⟨W2⟩vs
+disorder strength W/t for α = 2.7 (empty symbols) and 3.2 (full symbols) for system sizes L = 64, 128, 256. (b)-(e) Zoom-in
+on the area near phase transitions for α = 2.5, 2.7, 3.0 and 3.2, showing crossing between the curves; the curve corresponding
+to the largest size L = 1024 is subtracted from all data for clarity. Vertical error bars indicate the estimated uncertainty from
+the Monte Carlo simulations and disorder-averages. Insets: Finite-size scaling of crossings points between curves for system
+sizes L1 and L2 = 2L1 as a function of L = L1.
+power-law, not logarithmic, potential.
+It may thus be
+expected that BKT physics no longer applies for α ≲3.
+We characterize the transition via the winding number
+Wc/t
+Kc
+𝛼
+2.50
+2.75
+3.00
+0
+1
+2
+3
+4
+5
+6
+(a)
+Superfluid
+Non-superfluid
+2.50
+2.75
+3.00
+0.0
+0.5
+1.0
+1.5
+(b)
+K = 1/2𝛾
+K = 𝜋𝜅Ys
+FIG. 3. (a) Phase diagram, Wc vs α, of the superfluid and
+non-superfluid quantum phases for model (1).
+(b) Critical
+values of LL parameter Kc at Wc vs α, as estimated from the
+power-law decay of G (green dots) and from K = π√κYs (red
+squares) for L = 256.
+fluctuations ⟨W2⟩since they are a scale invariant quan-
+tity, differently from the superfluid stiffness Ys. Figure
+2(a) shows the evolution of superfluid properties mea-
+sured by ⟨W2⟩with disorder, W/t, for two example cases
+α = 2.7 (empty symbols) and 3.2 (full symbols) and for
+several values of L = 64, 128, 256. In both cases, ⟨W2⟩
+decrease monotonically with increasing W/t, until they
+reach near zero values. This behavior signals the tran-
+sition between the superfluid and non-superfluid states.
+In the short-range case α = 3.2, the behavior at larger
+values of disorder is reminiscent of what is expected for
+a BKT transition when in the infinite system ⟨W2⟩dis-
+plays a jump to zero at the critical point [23]. However,
+surprisingly, for α = 2.7 there is a clear crossing point
+of ⟨W2⟩around W/t ∼2. This is inconsistent with the
+BKT criticality and is, instead, a signature of continuous
+scale-invariant phase transitions. This fact can be used
+to pinpoint the critical disorder strength Wc where su-
+perfluidity is lost by the crossing point of ⟨W2⟩-vs- W
+curves for different values of L.
+The panels (b)-(e) in
+Fig. 2 present data in the vicinity of transition points
+for α = 2.5, 2.7, 3.0 and 3.2 using β = L/(8t) [even
+for α = 3.2 our temperature is a factor of two smaller
+than the lowest phonon mode]. Crossing points are very
+pronounced in (b) and (c) for intermediate exponents α,
+leaving no doubt that we are dealing with generic con-
+tinuous transitions at W/t = 3.24(5) for α = 2.5 and at
+W/t = 2.12(5) for α = 2.7. The crossings appear to per-
+sist when transitioning to the short-range regime α ≳3,
+see panels (d) and (e) in Fig. 2 with crossings around
+4
+W/t = 0.87(5) for α = 3.0 and around W/t = 0.5(5) for
+α = 3.2, contrary to all expectations. However a careful
+finite-size scaling up to large system sizes L = 1024 shows
+that the transition point for α > 3 scales to W/t →0 in
+the thermodynamic limit, see Inset in Fig. 2(e), implying
+the absence of a continuous phase transition at finite W
+in the thermodynamic limit. This is different from α ≤3,
+where the transition point scales to a finite value of W/t,
+see Insets in Fig. 2(b-d). The breakdown of the BKT
+scenario for all values 2 < α ≤3 in Eq. (1) is surprising
+and is the main result of this work.
+Figure 3(a) summarizes the ground state phase dia-
+gram of Hamiltonian (1) in terms of Wc and α. Here, for
+each α ≤3, the critical point Wc is determined from the
+scale-invariant crossing point as described above.
+The
+critical disorder strength Wc/t decreases monotonically
+from a large value Wc/t ∼5.1 to ∼0.9 for α = 3. For
+α > 3 the transition in the thermodynamic limit occurs
+at Wc/t = 0+.
+The limiting value Wc/t = 0+ would
+correspond to the strictly short-range limit of hard-core
+bosons with short-range hopping, which are known to be
+localized by an infinitesimal disorder [23].
+Figure 3(b) shows the critical LL parameter Kc com-
+puted at Wc/t for each value of α assuming that the
+approximate LL scenario properly describes the system.
+We find that, for α ≲3, Kc remains smaller than the
+critical BKT value of 3/2 for short-range hopping mod-
+els with weak disorder [23], confirming that LL theory
+should not be used to describe the localization transition
+in the whole range α ≤3. In contrast, for α > 3 our re-
+sults are in agreement with conclusion that ideal systems
+with K < 3/2 are ultimately pinned by disorder, leading
+to an insulating BG phase for any finite value of W/t.
+We complete our characterization of quantum phase
+transition in Fig.
+3(a) by determining the correlation
+length exponent ν using data collapse analysis near the
+critical points [24].
+For each α, the results of Monte
+Carlo simulations are rescaled by L−ζ/νYs and collapsed
+on a single master curve using L1/ν[(W/t) −(Wc/t)] as a
+variable. Critical values Wc/t are taken from the crossing
+points in Fig.
+2, while ν and ζ are treated as fitting
+parameters and obtained using a Nelder-Mead algorithm
+[25] with a cost function based on the Kawashima-Ito-
+Houdayer-Hartmann quality metric [26, 27].
+Example
+results for α = 2.5, 2.7, 3.0 and α = 3.2 are shown in
+Figs. 4 and 5, respectively. We observe good collapse
+of all data near the critical points for α ≥2, and the
+obtained correlation length exponents always satisfy the
+so-called Harris bound ν ≳2, see [28]. In fact, this result
+is expected from general arguments for a large class of d-
+dimensional disordered systems where an appropriately
+defined correlation length diverges [29].
+Data collapse
+for α > 3 using Wc/t = 0.57 is a finite-size effect given
+that this value of α is close to the boundary between
+the intermediate and short-range regimes and crossing
+points slowly shift to zero with increasing the system size.
+However, this effect will likely be observed in experiments
+dealing with finite systems.
+-2
+0
+2
+4
+6
+0.25
+0.50
+0.75
+1.00
+1.25
+Wc/t = 3.24
+𝜈= 2.2
+𝜁= 0.13
+𝛼= 2.5
+(a)
+-5
+0
+5
+0.5
+1.0
+1.5
+Wc/t = 2.13
+𝜈= 2.52
+𝜁= 0.15
+𝛼= 2.7
+(b)
+0
+2
+4
+0.6
+0.8
+1.0
+1.2
+Wc/t = 0.87
+𝜈= 2.9
+𝜁= 0.13
+𝛼= 3.0
+(c)
+L −𝜁/𝜈Ys
+L1/𝜈[(W/t) −(Wc/t)]
+L = 64
+L = 128
+L = 256
+FIG. 4. (a)-(c) Data collapse for the scaled superfluid stiffness
+L−ζ/νYs vs L1/ν[(W/t)−(Wc/t)] for α = 2.5, 2.7 and 3.0 using
+L = 64, 128, 256. The fitted values of the correlation length
+exponent ν and ζ are reported directly in the figure. They
+satisfy ν ≳2 for all α.
+-4
+-2
+0
+2
+4
+1.0
+1.2
+1.4
+Wc/t = 0.57
+𝜈= 2.28
+𝜁= 0.01
+𝛼= 3.2
+L −𝜁/𝜈Ys
+L1/𝜈[(W/t) −(Wc/t)]
+L = 64
+L = 128
+L = 256
+FIG. 5.
+Data collapse for the scaled superfluid stiffness
+L−ζ/νYs vs L1/ν[(W/t) −(Wc/t)] for α = 3.2 using L = 64,
+128, 256. The fitted values of the correlation length expo-
+nent ν and ζ are reported directly in the figure. Unlike for
+α < 3, this scaling corresponds here to a finite-size effect, as
+the transition is not located at Wc/t = 0.57 and slowly shifts
+to Wc/t = 0, see Fig. 2(e).
+In conclusion, we have demonstrated that the disorder-
+induced superfluid to non-superfluid quantum phase
+transition for models with power-law hopping is a scale-
+invariant transition if 2 < α ≤3, ruling out the ex-
+pected BKT scenario for interacting one-dimensional
+bosons in this regime.
+Our work opens up multiple
+other research directions, including whether the finite-
+temperature BKT scenario is generally inconsistent with
+power-law hopping models also in two dimensions [30–
+32].
+Another open question is the nature of the non-
+superfluid quantum phase for general values of α. In Ref.
+[33] it was conjectured that for α = 3 this phase is a non-
+superfluid Bose metal phase with finite zero-frequency
+optical conductivity and algebraic decay of correlations.
+It is an open question whether similar behavior can be
+found for other α values. Our predictions should be di-
+5
+rectly testable in experiments for XY models realized via
+internal excitations of cold dipolar atoms and molecules,
+cold ions chains, and Rydberg atoms.
+ACKNOWLEDGMENTS
+We gratefully acknowledge discussions with Jerome
+Dubail.
+This research has received funding from the
+European Union’s Horizon 2020 research and inno-
+vation programme under the Marie Sk lodowska-Curie
+project 955479 (MOQS), the Horizon Europe programme
+HORIZON-CL4-2021-DIGITAL-EMERGING-01-30 via
+the project 101070144 (EuRyQa) and from the French
+National Research Agency under the Investments of the
+Future Program projects ANR-21-ESRE-0032 (aQCess),
+ANR-22-CE47-0013-02 (CLIMAQS) and ANR-23-CE30-
+0022-02 (SIX). NP acknowledges support from the Na-
+tional Science Foundation under Grant No.
+DMR-
+2335904.
+[1] T. Giamarchi and H. J. Schulz, Anderson localization and
+interactions in one-dimensional metals, Phys. Rev. B 37,
+325 (1988).
+[2] Z. Ristivojevic, A. Petkovi´c, P. Le Doussal, and T. Gi-
+amarchi, Superfluid/bose-glass transition in one dimen-
+sion, Phys. Rev. B 90, 125144 (2014).
+[3] E. Altman, Y. Kafri, A. Polkovnikov, and G. Refael, Insu-
+lating phases and superfluid-insulator transition of disor-
+dered boson chains, Phys. Rev. Lett. 100, 170402 (2008).
+[4] E. Altman, Y. Kafri, A. Polkovnikov, and G. Refael,
+Superfluid-insulator transition of disordered bosons in
+one dimension, Phys. Rev. B 81, 174528 (2010).
+[5] L. Pollet, N. V. Prokof’ev, and B. V. Svistunov, Asymp-
+totically exact scenario of strong-disorder criticality in
+one-dimensional superfluids, Phys. Rev. B 89, 054204
+(2014).
+[6] N. V. Prokof’ev, B. Svistunov, and I. Tupitsyn, Exact,
+complete, and universal continuous-time worldline monte
+carlo approach to the statistics of discrete quantum sys-
+tems, Journal of Experimental and Theoretical Physics
+87, 310 (1998).
+[7] B. Yan, S. A. Moses, B. Gadway, J. P. Covey, K. R.
+Hazzard, A. M. Rey, D. S. Jin, and J. Ye, Observation of
+dipolar spin-exchange interactions with lattice-confined
+polar molecules, Nature 501, 521 (2013).
+[8] P. Richerme, Z.-X. Gong, A. Lee, C. Senko, J. Smith,
+M. Foss-Feig,
+S. Michalakis,
+A. V. Gorshkov, and
+C. Monroe, Non-local propagation of correlations in
+quantum systems with long-range interactions, Nature
+511, 198 (2014).
+[9] P. Jurcevic, B. P. Lanyon, P. Hauke, C. Hempel, P. Zoller,
+R. Blatt, and C. F. Roos, Quasiparticle engineering and
+entanglement propagation in a quantum many-body sys-
+tem, Nature 511, 202 (2014).
+[10] L. Feng, O. Katz, C. Haack, M. Maghrebi, A. V. Gor-
+shkov, Z. Gong, M. Cetina, and C. Monroe, Continuous
+symmetry breaking in a trapped-ion spin chain, Nature
+623, 713 (2023).
+[11] J. Zeiher, J.-y. Choi, A. Rubio-Abadal, T. Pohl, R. van
+Bijnen, I. Bloch, and C. Gross, Coherent many-body spin
+dynamics in a long-range interacting ising chain, Phys.
+Rev. X 7, 041063 (2017).
+[12] D.
+Barredo,
+H.
+Labuhn,
+S.
+Ravets,
+T.
+Lahaye,
+A. Browaeys, and C. S. Adams, Coherent excitation
+transfer in a spin chain of three Rydberg atoms, Phys.
+Rev. Lett. 114, 113002 (2015).
+[13] A. P. Orioli, A. Signoles, H. Wildhagen, G. G¨unter,
+J. Berges, S. Whitlock, and M. Weidem¨uller, Relax-
+ation of an Isolated Dipolar-Interacting Rydberg Quan-
+tum Spin System, Physical Review Letters 120, 063601
+(2018).
+[14] A. Browaeys and T. Lahaye, Many-body physics with
+individually controlled Rydberg atoms, Nature Physics
+16, 132–142 (2020).
+[15] G. Semeghini, H. Levine, A. Keesling, S. Ebadi, T. T.
+Wang, D. Bluvstein, R. Verresen, H. Pichler, M. Kali-
+nowski, R. Samajdar, A. Omran, S. Sachdev, A. Vish-
+wanath, M. Greiner, V. Vuleti´c, and M. D. Lukin, Prob-
+ing topological spin liquids on a programmable quantum
+simulator, Science 374, 1242 (2021).
+[16] C.
+Chen,
+G.
+Bornet,
+M.
+Bintz,
+G.
+Emperauger,
+L. Leclerc, V. S. Liu, P. Scholl, D. Barredo, J. Hauschild,
+S. Chatterjee, M. Schuler, A. M. L¨auchli, M. P. Zale-
+tel, T. Lahaye, N. Y. Yao, and A. Browaeys, Continuous
+symmetry breaking in a two-dimensional Rydberg array,
+Nature 616, 691 (2023).
+[17] S. de L´es´eleuc, V. Lienhard, P. Scholl, D. Barredo, S. We-
+ber, N. Lang, H. P. B¨uchler, T. Lahaye, and A. Browaeys,
+Observation of a symmetry-protected topological phase
+of interacting bosons with Rydberg atoms, Science 365,
+775 (2019).
+[18] I. Fr´erot, P. Naldesi, and T. Roscilde, Entanglement and
+fluctuations in the XXZ model with power-law interac-
+tions, Phys. Rev. B 95, 245111 (2017).
+[19] M. F. Maghrebi, Z.-X. Gong, and A. V. Gorshkov, Con-
+tinuous symmetry breaking in 1d long-range interacting
+quantum systems, Phys. Rev. Lett. 119, 023001 (2017).
+[20] N. V. Prokof’Ev and B. V. Svistunov, Spectral analysis
+by the method of consistent constraints, JETP Letters
+97, 649–653 (2013).
+[21] O. Goulko, A. S. Mishchenko, L. Pollet, N. Prokof’ev,
+and B. Svistunov, Numerical analytic continuation: An-
+swers to well-posed questions, Phys. Rev. B 95, 014102
+(2017).
+[22] See supplemental material including the dispersion re-
+lation in the superfluid phase with finite disorder. The
+supplemental material includes Refs. [20, 21, 34].
+[23] T. Giamarchi, Quantum Physics in One Dimension (Ox-
+ford University Press, 2003).
+[24] M. E. J. Newman and G. T. Barkema, Monte Carlo Meth-
+ods in Statistical Physics (Oxford University Press, Ox-
+ford, 1999).
+[25] J. A. Nelder and R. Mead, A Simplex Method for Func-
+tion Minimization, The Computer Journal 7, 308 (1965).
+6
+[26] N. Kawashima and N. Ito, Critical behavior of the three-
+dimensional ±J model in a magnetic field, Journal of the
+Physical Society of Japan 62, 435 (1993).
+[27] J. Houdayer and A. K. Hartmann, Low-temperature be-
+havior of two-dimensional gaussian ising spin glasses,
+Phys. Rev. B 70, 014418 (2004).
+[28] A. B. Harris, Effect of random defects on the critical
+behaviour of Ising models, Journal of Physics C: Solid
+State Physics 7, 1671 (1974).
+[29] J. T. Chayes, L. Chayes, D. S. Fisher, and T. Spencer,
+Finite-size scaling and correlation lengths for disordered
+systems, Phys. Rev. Lett. 57, 2999 (1986).
+[30] B. Sbierski, M. Bintz, S. Chatterjee, M. Schuler, N. Y.
+Yao, and L. Pollet, Magnetism in the two-dimensional
+dipolar XY model (2023), arXiv:2305.03673.
+[31] O. K. Diessel, S. Diehl, N. Defenu, A. Rosch, and
+A. Chiocchetta, Generalized higgs mechanism in long-
+range-interacting quantum systems, Phys. Rev. Res. 5,
+033038 (2023).
+[32] N. Defenu, T. Donner, T. Macr`ı, G. Pagano, S. Ruffo,
+and A. Trombettoni, Long-range interacting quantum
+systems, Rev. Mod. Phys. 95, 035002 (2023).
+[33] G. Masella, N. V. Prokof’ev, and G. Pupillo, Anti-
+drude metal of bosons, Nature Communications 13, 2113
+(2022).
+[34] N. Dupuis, Superfluid–bose-glass transition in a system
+of disordered bosons with long-range hopping in one di-
+mension, Phys. Rev. A 110, 033315 (2024).
+Supplemental Material for “Scale-invariant phase transition of disordered bosons in
+one dimension”
+Tanul Gupta,1 Guido Masella,2 Francesco Mattiotti,1 Nikolay V. Prokof’ev,3 and Guido Pupillo1, 2
+1University of Strasbourg and CNRS, CESQ and ISIS (UMR 7006), aQCess, 67000 Strasbourg, France
+2QPerfect, 23 Rue du Loess, 67000 Strasbourg, France
+3Department of Physics, University of Massachusetts, Amherst, MA 01003, USA
+In this work, we study a one-dimensional disordered lattice boson model with hopping amplitude decaying with
+distance as 1/rα using large scale quantum Monte-Carlo simulations.
+A recent work [1] based on approximate
+functional renormalization group methods (submitted to the archive after our work was published online) proposes
+that in the stable superfluid phase at finite disorder strength (W/t > 0), a density mode with linear dispersion
+(dynamical exponent z = 1) should emerge and the superfluid–Bose-glass transition follows the BKT universality
+class for any α, in contradiction to our results. In this Supplemental Material we check the predictions of [1]. Our
+analysis based on large scale numerical simulations confirms the picture that we present in the main text.
+I.
+DISPERSION RELATION IN THE SUPERFLUID PHASE WITH FINITE DISORDER
+The study presented in [1] proposes, using approximate functional renormalization group methods, that in the
+stable superfluid phase a density mode with linear dispersion (dynamical exponent z = 1) should emerge, and that
+the superfluid–Bose-glass transition follows the BKT universality class. To test these predictions, we performed large
+scale quantum Monte Carlo simulations for α = 2.5 and disorder strength W/t = 2.0 to determine the dispersion
+relation by numerically analyzing the spectral peaks after performing an analytic continuation of the imaginary-
+frequency dynamic structure factor [2, 3].
+k
+0.01
+0.10
+1.00
+E(k)
+0.1
+1.0
+𝛼= 2.5, W = 2.0
+L = 256
+L = 64
+E(k) = A ⋅k𝛽, 𝛽= 0.76
+FIG. 1. Dispersion relation E(k) vs k for α = 2.5 in the superfluid phase at finite disorder strength W/t = 2.0.
+Our results, presented in Figure 1 of this Supplemental Material, demonstrate that the spectrum is non-linear in
+k for α = 2.5 at W = 2.0 and the data is well described by E(k) ∼kz∗, with z∗≃0.76. We checked for finite size
+effects (e.g., L = 64 in the figure), founding no significant impact. These results contradict the theoretical predictions
+of linear dispersion proposed in [1].
+[1] N. Dupuis, Phys. Rev. A 110, 033315 (2024).
+[2] N. V. Prokof’Ev and B. V. Svistunov, JETP Letters 97, 649–653 (2013).
+[3] O. Goulko, A. S. Mishchenko, L. Pollet, N. Prokof’ev, and B. Svistunov, Phys. Rev. B 95, 014102 (2017).
+arXiv:2310.17682v2  [cond-mat.quant-gas]  28 Apr 2025

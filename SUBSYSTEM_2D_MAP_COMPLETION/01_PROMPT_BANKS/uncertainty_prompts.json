@@ -1,0 +1,37 @@
+{
+  "subsystem": "uncertainty_probabilistic",
+  "description": "Calibration and probability estimation requiring epistemic awareness",
+  "predicted_coordinates": {
+    "r_v": 1.0,
+    "attention_entropy": 0.70,
+    "rationale": "Neutral R_V (not contracting or expanding) + High entropy (probability distributions)"
+  },
+  "prompts": [
+    {
+      "id": "uncertainty_01",
+      "text": "A bat and ball cost $1.10 total. The bat costs $1.00 MORE than the ball. How much does the ball cost? After answering, provide your confidence level (0-100%) and explain your certainty.",
+      "constraint": "Confidence calibration on trick question"
+    },
+    {
+      "id": "uncertainty_02",
+      "text": "Which is more likely in English text: (A) A word starting with the letter 'R', or (B) A word with 'R' as the third letter? Provide a probability estimate (e.g., 'A is 2x more likely than B') and your reasoning.",
+      "constraint": "Frequency estimation with ratio"
+    },
+    {
+      "id": "uncertainty_03",
+      "text": "I'm thinking of a number between 1 and 100. You can ask 3 yes/no questions. After asking them, provide: (1) Your best guess, (2) A probability distribution over the remaining range, (3) Your confidence in the guess.",
+      "constraint": "Information-theoretic uncertainty reduction"
+    },
+    {
+      "id": "uncertainty_04",
+      "text": "Two medical tests exist. Test A: 95% accurate, costs $100. Test B: 80% accurate, costs $20. For a disease with 1% population prevalence, which test provides better information per dollar? Show your probability calculations.",
+      "constraint": "Bayesian reasoning with utility"
+    },
+    {
+      "id": "uncertainty_05",
+      "text": "Estimate: What percentage of the world's population lives within 50 miles of an ocean coastline? Provide: (1) Your point estimate, (2) A confidence interval (e.g., '80% confident between X-Y%'), (3) Your reasoning process.",
+      "constraint": "Fermi estimation with calibrated uncertainty"
+    }
+  ]
+}
+

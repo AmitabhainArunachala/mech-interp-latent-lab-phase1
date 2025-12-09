@@ -1,0 +1,4069 @@
+Understanding Factual Recall in Transformers via
+Associative Memories
+Eshaan Nichani*
+Princeton University
+Jason D. Lee
+Princeton University
+Alberto Bietti
+Flatiron Institute
+December 10, 2024
+Abstract
+Large language models have demonstrated an impressive ability to perform factual recall.
+Prior work has found that transformers trained on factual recall tasks can store information at
+a rate proportional to their parameter count. In our work, we show that shallow transformers
+can use a combination of associative memories to obtain such near optimal storage capacity.
+We begin by proving that the storage capacities of both linear and MLP associative memories
+scale linearly with parameter count. We next introduce a synthetic factual recall task, and
+prove that a transformer with a single layer of self-attention followed by an MLP can obtain
+100% accuracy on the task whenever either the total number of self-attention parameters or
+MLP parameters scales (up to log factors) linearly with the number of facts. In particular,
+the transformer can trade off between using the value matrices or the MLP as an associative
+memory to store the dataset of facts. We complement these expressivity results with an analysis
+of the gradient flow trajectory of a simplified linear attention model trained on our factual recall
+task, where we show that the model exhibits sequential learning behavior.
+1
+Introduction
+One hallmark capability of transformer-based large language models (LLMs) is factual recall [40,
+21, 43]. Given a prompt of the form “In what year was George Washington born?” an LLM will
+correctly respond with “1732.” Language models thus act as databases, storing somewhere in their
+parameters mappings of the form (George Washington, birth year) 7→(1732) which can be easily
+accessed during inference time.
+Prior work [2] has observed that transformers trained on factual recall tasks can store information
+at a rate proportional to their parameter count. Other studies [e.g., 35, 12, 38, 29] have sought
+to understand the specific mechanism by which transformers implement factual recall, probing
+models to understand specifically which transformer blocks “contain” certain facts. However,
+these studies do not consider the memorization capacity of such constructions, and it is thus an
+*eshnich@princeton.edu. This work was conducted while EN was an intern at the Flatiron Institute.
+1
+arXiv:2412.06538v1  [cs.LG]  9 Dec 2024
+open question to understand how transformers optimally encode such factual information within
+their weights.
+In this work, we show that shallow transformers can use a combination of associative memories to
+obtain near-optimal storage capacity for factual recall tasks. Associative memories store pairs of
+input-output embeddings through their outer products, and are thus well-suited for modeling the
+weight matrices of a transformer. Prior work [5] has shown that this associative memory model is a
+key primitive towards understanding both the representational capacity and optimization dynamics
+of transformers on synthetic tasks.
+Our specific contributions are as follows:
+• In Section 3 we begin by studying the ability of linear and MLP associative memory models
+to store associations between discrete vocabularies. We prove that when the embeddings are
+sampled randomly over the sphere, these models can store a number of associations propor-
+tional to their parameter count, significantly improving over the case where the embeddings
+are orthogonal.
+• In Section 4, we introduce a synthetic next-token prediction task which models factual recall.
+The data distribution consists of prompts containing a subject token s and relation token r
+hidden amongst a set of noise tokens, which the learner must map to a ground truth answer
+a∗(s, r). Our main theorem is that a transformer consisting of a single multi-head self-
+attention layer followed by an MLP can obtain 100% accuracy when either the number
+of self-attention parameters or MLP parameters scales (up to logs) proportionally with the
+dataset size.
+• In Section 5, we study the gradient descent dynamics of a single linear self-attention head
+trained on the synthetic task. We prove that the model undergoes a sequential learning dy-
+namics, consisting of a “hallucination” stage where the model outputs the conditional distri-
+bution for the answer based on only the relation.
+• Finally, in Section 6 we complement our constructions with lower bounds, showing that they
+are optimal up to logarithmic factors.
+Overall, our work makes progress towards understanding the mechanism by which transformers
+learn and store factual information.
+2
+Related Work
+Associative memories.
+Associative memories have a long history in the neural computation lit-
+erature [16, 24, 49]. More recently there has been renewed interest in extensions of such models
+with larger capacity [25, 8, 28]. These have been linked to the attention blocks in Transform-
+ers [42, 44], with [26, 15] in particular using the connection between self-attention and associative
+memories to design new variants of the attention module. [41] show that overparameterized au-
+toencoders can also behave as associative memories. However, these connections differs from our
+work, where we consider instead the role of both self-attention and MLP weights as associative
+memories, in a similar vein to [5, 7].
+2
+Memorization and factual recall.
+Large language models are known to store vast amounts of
+factual knowledge in their weights [21, 43, 11]. Several recent works in the mechanistic inter-
+pretability literature have attempted to understand how transformers store facts [35, 12, 38, 29].
+Allen-Zhu and Li [2] empirically studied the memorization capacity for Transformer language
+models of different sizes trained on synthetic factual recall tasks, and observed near-linear scaling
+with the number of parameters. Jiang et al. [20] demonstrate how shallow transformers can solve
+a related latent concept association task by viewing the weight matrices as associative memories.
+At a more basic level, several works have studied the memorization capacity of neural networks,
+using constructions that differ from our associative memory approach, both in the context of re-
+gression [6, 47, 30] and (next) token prediction [33, 22, 23, 31].
+Gradient dynamics.
+Training dynamics of transformer models on various tasks has been a pop-
+ular recent line of research [18, 45, 27, 5, 46, 39]. Zhang et al. [50], Mahankali et al. [32] studied
+training dynamics of transformers with linear attention on in-context learning tasks. Ghosal et al.
+[13] studied the fine-tuning dynamics on a similar factual recall task, showing how training on
+lesser-known facts may hurt performance. Our emphasis differs in that we consider non-orthogonal
+embeddings, and require the model to additionally filter out the relevant subject and relation tokens
+from the noise tokens, which requires learning of the key and query matrices.
+3
+Associative Memories
+In this section, we show that associative memories have a storage capacity on the order of the
+number of parameters (up to logarithmic factors), which is near-optimal (as we show in Section 6).
+Setup.
+Our setting follows that of Cabannes et al. [7]. Let [N] be the set of input tokens, and
+[M] be the set of output tokens. Our goal is to store a set of associations given by the function
+f ∗: [N] →[M]. For each input token x ∈[N] we assign a corresponding embedding vector
+ex ∈Rd, and likewise for each output token y ∈[M] we associate an unembedding vector uy ∈
+Rd. We primarily focus on the setting where the embeddings {ex}x∈[N] and {uy}y∈[M] are drawn
+i.i.d uniformly from the sphere of radius 1. Let F : Rd →Rd be our model which “stores” the
+associations f ∗. Given such an F, the prediction ˆf(x) for f ∗(x) is given by the arg-max decoding
+ˆf(x) := arg maxy∈[M] u⊤
+y F(ex).
+3.1
+Linear Associative Memories
+We first consider the case where F is a linear map F(ex) = W ex.
+Theorem 1. Assume that f ∗is injective. If d2 ≳N poly log N, then with high probability over the
+draw of the embeddings, there exists a W such that
+arg max
+y∈[M] u⊤
+y W ex = f ∗(x)
+for all x ∈[N].
+(1)
+This capacity is obtained by the construction W = P
+x∈[N] uf∗(x)e⊤
+x . Furthermore, if W is
+restricted to be a rank m matrix, then such a W exists when md ≳N poly log N; this construction
+is W = P
+x∈[N] uf∗(x)e⊤
+x
+Pm
+i=1 viv⊤
+i , where vi ∈Rd are drawn i.i.d from the standard Gaussian.
+3
+Since W has d2 parameters, Theorem 1 shows that the number of associations that can be stored
+scales (up to log factors) linearly in the number of parameters. We note that in this linear case,
+the injectivity assumption on f ∗is important, as otherwise the capacity may be as low as d,
+as in [7]. Additionally, we remark that these constructions are easily obtained by gradient de-
+scent; the general W construction corresponds to one-step of GD on the correlation loss L(W ) =
+−P
+x u⊤
+f∗(x)W ex, while the low-rank construction corresponds to parameterizing W = UV ⊤for
+U, V ∈Rd×m, and taking one step of GD on U while V is fixed to random Gaussian initialization.
+The proof of Theorem 1 is deferred to Appendix B.
+Remarks.
+Our setting bears similarity to associative Hopfield networks [16], yet differs in that
+we decode to a fixed discrete set of output tokens [M] rather than exactly matching the target out-
+put. This more closely resembles the language modeling framework, and allows us to improve
+the memorization capacity from d to d2 [34]. Next, we note that non-orthogonality of the em-
+beddings is necessary for Theorem 1, as the optimal storage capacity for one-hot embeddings is
+only N = d. Since our constructions are in the regime N ≫d, the associative memory W is
+a superposition [10] of the outer products uf∗(x)e⊤
+x . Finally, we remark that the random, rather
+than trainable, embeddings setting was also studied in Cabannes et al. [7]. The embeddings can be
+viewed as global quantities in a larger network, of which the associative memory is implementing
+some subtask, and is thus not able to optimize these embeddings in order to solve its specific task.
+3.2
+MLP Associative Memories
+Next, we consider the case where F is a two-layer neural network with hidden width m; that is
+F(ex) = V ⊤σ(W ex) for V , W ∈Rm×d.
+Theorem 2 (Informal). If md ≳N poly log N, then with high probability over the draw of the
+embeddings, there exists V , W such that
+arg max
+y∈[M] u⊤
+y V ⊤σ(W ex) = f ∗(x)
+for all x ∈[N].
+(2)
+Since the MLP has 2md parameters, Theorem 2 shows that the MLP associative memory scheme
+has storage capacity which is (nearly) linear in the parameter count.
+Proof Sketch.
+The construction for Theorem 2 mimics that of Theorem 1, after an appropri-
+ate random feature transformation. First, sample the rows of W from the standard Gaussian.
+Then, set each vi = m−1 P
+x uf∗(x)hk(⟨wi, ex⟩), where hk is the kth Hermite polynomial (see
+Appendix F.1). We then see that
+F(ex) = 1
+m
+m
+X
+i=1
+X
+x′∈[N]
+uf∗(x′)hk(⟨wi, ex′⟩)σ(⟨wi, ex⟩) ≈
+X
+x′∈[N]
+uf∗(x′)⟨ex, ex′⟩k.
+(3)
+for sufficiently large m. Such polynomial associative memory is reminiscent of that in Krotov
+and Hopfield [25], and can store many more associations for large k. By choosing k ≈logd m and
+appropriately dealing with concentration, one can obtain the ˜O(md) storage capacity (for technical
+reasons, we must also use the Neural Tangent Kernel [17] rather the random feature model). The
+full proof of Theorem 2 is deferred to Appendix B.
+4
+102
+103
+104
+d2
+101
+102
+103
+N
+Linear Associative Memory
+Nlog N
+d2
+102
+103
+104
+md
+102
+103
+104
+N
+MLP Associative Memory
+m/d = 1
+m/d = 2
+m/d = 4
+m/d = 8
+Nlog N
+md
+Figure 1: We train linear and MLP associative memories to store the association f ∗(x) = x. (Left)
+A linear associative memory requires d2 ∝N log N parameters to store N associations. (Right)
+The MLP associative memory requires md ∝N log N parameters to store N associations, as
+predicted by Theorem 2.
+On Optimal Storage Capacity.
+Prior works [6, 30, 31] studying the memorization capacity of
+neural networks focus on the regression setting, and thus do not directly apply to our setup with
+multiple outputs and a discrete set of output tokens. Other works [47, 22, 23] show that one can
+memorize N arbitrary labels with ˜O(
+√
+N) parameters, at the expense of using a bit complexity
+of ˜Ω(
+√
+N). Such networks still require Ω(N) bits, which matches our lower bounds in Section 6.
+These constructions, however, are unwieldy, and are not learnable if we restrict the precision to be
+poly log N. Instead, our constructions are learnable – the linear construction results from one step
+of GD, while the ReLU construction uses the NTK and can thus be learned via GD on a convex
+loss. In Corollary 2, we show that a quantized version of the construction from Theorem 1 indeed
+succeeds with bit precision ˜O(1), and thus more accurately captures realistic training regimes
+where models do seem to succeed with low precision [9, 2].
+Empirical Validation.
+In Figure 1, we train both linear and MLP associative memories to store
+the association f ∗(x) = x. Given a fixed model size (d, m), we fit datasets with increasing values
+of N using the cross entropy loss, and plot the largest value of N for which we can obtain at
+least 99% accuracy. We observe that the linear associative memory can store ˜Θ(d2) associations,
+while the MLP associative memory can store ˜Θ(md) associations. See Appendix A for additional
+experiments where the number of output tokens M does not scale with N.
+4
+A Synthetic Task for Factual Recall
+In this section we introduce a synthetic factual recall task, and show that one-layer transformers
+constructed via associative memories can store a number of facts proportional to parameter count.
+5
+EOS
+⋯
+⋯
+⋯
+→
+s
+r
+a*
+z1
+zi−1
+zi+1
+zj−1
+zj+1
+zT−1
+Figure 2: A diagram of the synthetic factual recall task.
+4.1
+The Task
+We first define a global dictionary of facts. Let S be a set of subject tokens and R be a set of relation
+tokens, where S = |S|, R = |R|. Let A be the set of answer tokens. We let a∗: S ×R →A be the
+ground truth association function, which maps subject-relation tuples (s, r) to their corresponding
+answer a∗(s, r)1. A similar such task was considered in Petroni et al. [40], Ghosal et al. [13].
+Define Ar to be the set of answers corresponding to a relation r, i.e Ar := {a∗(s, r) : s ∈S}.
+Define As := {a∗(s, r) : r ∈R} analogously. We assume that each relation corresponds to a
+disjoint set of answers:
+Assumption 1. Ar ∩Ar′ = ∅for r, r′ ∈R with r ̸= r′. Furthermore, define D := maxr∈R |Ar|.
+For example, S could be the set of all countries, while R could be {president, capital}; in this
+case, the set of all presidents and set of all capitals are disjoint.
+We next define our data distribution D over sequences. Let T > 0 be the context length. Let N
+be a set of noise tokens, and define the vocabulary to be V := S ∪R ∪A ∪N ∪{EOS}, where
+EOS is a special “end-of-sequence” token. The data distribution is over length T + 1 sequences
+z1:T+1 := (z1, z2, . . . , zT, zT+1) ∈VT+1, generated via the following procedure:
+1. First, sample a subject and relation tuple (s, r) from some distribution p over S × R.
+2. Next, sample two distinct indices i, j ∈[T −1]. Set zi = s and zj = r.
+3. For the remainder of tokens zk where k ∈[T −1]\{i, j}, draw zk uniformly at random from
+the noise tokens N.
+4. Set zT = EOS.
+5. Finally, set zT+1 = a∗(s, r).
+The goal of this task is to predict zT+1 from (z1, . . . , zT). A model which can successfully do so
+must (1) be able to isolate the relevant subject and relation tokens from the noise tokens and (2)
+store all of the associations (s, r) 7→a∗(s, r). See Figure 2 for a diagram of the task.
+1We focus on one-to-one relations, where each (s, r) pair corresponds to a unique a∗. This is in contrast to
+the one-to-many setting, where each (s, r) maps to many possible answers (for example, s = “France,” r = “city,”
+a∗∈{“Paris”, “Toulouse”, · · · })
+6
+4.2
+The Model: One-Layer Transformer
+Our learner for the task is a single layer of multi-head self attention followed by an MLP. Define
+d to be the embedding dimension. The input to the transformer is a sequence of vectors X :=
+(x1, . . . , xT)⊤∈RT×d. Each self attention head is parameterized by the key, query, and value
+matrices WK, WQ, WV ∈Rdh×d, where dh is the head dimension. The self attention head is then
+a map attn( · ; WK, WQ, WV ) : RT×d →Rdh, which operates as
+attn(X; WK, WQ, WV ) = WV X⊤S
+ XW ⊤
+K WQxT
+
+,
+(4)
+where S(z)i =
+exp(zi)
+P
+j exp(zj) is the softmax operator.
+A multi-head self-attention layer with H heads is parameterized by H different key, query, and
+value matrices, along with H output matrices. Let θ := {(W (h)
+K , W (h)
+Q , W (h)
+V , W (h)
+O )}h∈[H], where
+W (h)
+K , W (h)
+Q , W (h)
+V , W (h)
+O
+∈Rdh×d. A multi-head self-attention layer is then a map FMHSA( · ; θ) :
+RT×d →Rd given by
+FMHSA(X; θ) =
+X
+h∈[H]
+W (h)
+O
+⊤attn(X; W (h)
+K , W (h)
+Q , W (h)
+V ).
+(5)
+Finally, a single-layer transformer combines a multi-head self-attention layer with an MLP. Let m
+be the MLP width. Let V , W ∈Rm×d be the MLP parameters, and define θTF := θ ∪{V , W }.
+Then, a single-layer transformer is the map FTF( · ; θTF) : RT×d →Rd given by
+FTF(X; θTF) = FMHSA(X; θ) + V ⊤σ(W FMHSA(X; θ)).
+(6)
+A single-layer transformer is parameterized by the tuple of hyperparameters (d, H, dh, m). The
+model has 4Hddh self-attention parameters, and 2md MLP parameters.
+4.3
+One-Layer Transformers have (Almost) Linear Storage Capacity
+We next characterize how large a single-layer transformer must be in order to obtain 100% accuracy
+on the synthetic task. For each token z ∈V, sample its embedding vectors φ(z) ∈Rd i.i.d
+uniformly over the sphere of radius 1. An input sequence (z1, . . . , zT) gets embedded as X =
+(φ(z1), . . . , φ(zT))⊤. We use argmax decoding to predict the next token; that is,
+ˆf(z1:T) = arg max
+z∈V φ(z)⊤FTF(X; θTF).
+(7)
+Our first result is that there exists an attention-only single-layer transformer that obtain 100%
+accuracy on the factual recall task, as long as the total number of self-attention parameters 4Hddh
+scales (up to logarithmic factors) linearly with the dataset size SR.
+Theorem 3 (Attention-only, informal). Assume that d ≥˜Ω(max(R, D)) and Hdh ≥˜Ω(S + R).
+With high probability over the embeddings, there exists a single-layer attention-only transformer
+FTF( · ; θTF) with embedding dimension d, number of heads H and head dimension dh such that
+Pz1:T +1∼D
+
+arg max
+z∈V φ(z)⊤FTF(X; θTF) = zT+1
+
+= 1.
+(8)
+7
+We next show that a single-layer transformer with an MLP can obtain 100% accuracy on the factual
+recall task, if the number of MLP parameters md scales linearly with the dataset size:
+Theorem 4 (Attention + MLP, informal). Assume that σ is a polynomial of sufficiently large de-
+gree. Define C(a) = |{(s, r) : a∗(s, r) = a}|. Let (d, H, dh, m) satisfy
+d ≥˜Ω(1)
+Hdh ≥˜Ω(S + R)
+m ≥˜Ω(max
+a
+C(a))
+md ≥˜Ω(SR).
+(9)
+Then with high probability over the embeddings there exists a single-layer transformer FTF( · ; θTF)
+with embedding dimension d, number of heads H, head dimension dh, and MLP width m such that
+Pz1:T +1∼D
+
+arg max
+z∈V φ(z)⊤FTF(X; θTF) = zT+1
+
+= 1.
+(10)
+The proofs of Theorem 3 and Theorem 4 are deferred to Appendix C.
+Remarks.
+Theorems 3 and 4 each have two main constraints on the size of the architecture
+needed to obtain 100% accuracy. First, the quantity Hdh must be larger than S + R. This corre-
+sponds to self-attention having sufficient capacity to filter out the tokens in S ∪R from the noise
+tokens N. For the attention-only architecture, we additionally require d = ˜Ω(max(R, D)). When
+R ≥D, the total number of parameters Hddh is (up to logs) at least the total number of facts
+SR. For the MLP construction, the second condition is that the number of MLP parameters, md,
+scales nearly linearly with the number of facts SR. As such, as long as either the total number of
+self-attention parameters or the total number of MLP parameters is large enough, 100% accuracy
+can be obtained. The single-layer transformer can thus trade off MLP and self-attention parameters
+while still maintaining perfect accuracy. This phenomenon is reflected in the experiments in Sec-
+tion 4.4. We remark that it is straightforward to extend our construction to the case where we only
+need to store a size M subset of S × R, where the constraints now become Hddh, md = ˜Ω(M).
+Proof Sketch.
+Theorems 3 and 4 both utilize the associative memory framework of Section 3.
+First, the key and query matrices of each self-attention head act as a denoiser, selecting the relevant
+subject and relation tokens in z1:T while ignoring the noise tokens. To the hth attention head, we
+associate a subset S(h) ⊂S ∪R of subject and relation tokens. Then, setting
+W (h)
+K
+⊤W (h)
+Q
+≈β
+X
+z∈S(h)
+φ(z)φ(EOS)⊤
+(11)
+for a large constant β, we see that the hth head will only attend to the tokens in the subset S(h). We
+remark that since the embeddings are d-dimensional, at most d/ poly log(d) embeddings can be in
+superposition, and thus we must have
+S(h) ≤d/ poly log(d).
+For the attention-only construction, the output-value matrix W (h)
+O
+⊤W (h)
+V
+acts as a linear associative
+memory, mapping each z in S(h) to a superposition of all possible answers associated with the
+8
+EOS
+s
+r
+a*(s, r)
+Head 
+ (attends to s)
+hs
+W⊤
+OWV
+∑a∈풜s ϕ(a)
+X⊤풮(XW⊤
+KWQxT)
+ϕ(s)
+∑a∈풜r ϕ(a)
+0
+0
+1
+1
+1
+0
+0
+0
+풜s
+0
+0
+0
+1
+1
+1
+0
+풜r
+0
+1
+1
+2
+1
+1
+0
+풜s
+풜r
+argmax
+Rest of heads attend to EOS
+W⊤
+OWV
+X⊤풮(XW⊤
+KWQxT)
+Head 
+ (attends to r)
+hr
+W⊤
+OWV
+X⊤풮(XW⊤
+KWQxT)
+⋮
+⋮
+⋮
+⋮
+ϕ(EOS)
+ϕ(r)
+∑a∈풜r ϕ(a) + ∑a∈풜s ϕ(a)
+Attention-only Construction
+EOS
+s
+r
+heads attends to s
+⌈d/dh⌉
+W⊤
+OWV
+X⊤풮(XW⊤
+KWQxT)
+ϕ(s)
+W⊤
+OWV
+X⊤풮(XW⊤
+KWQxT)
+heads attends to r
+⌈d/dh⌉
+W⊤
+OWV
+X⊤풮(XW⊤
+KWQxT)
+⋮
+⋮
+⋮
+⋮
+ϕ(EOS)
+ϕ(r)
+Rest of heads attend to EOS
+MLP Associative Memory
+x ↦V⊤σ(Wx)
+˜ϕ(s)
+0
+˜ϕ(r)
+˜ϕ(s)
+˜ϕ(r)
+a*(s, r)
+Attention + MLP Construction
+Figure 3: Both the Attention-only and Attention+MLP constructions for the factual recall task.
+subject/relation z. Letting Ph be a projection onto a random dh-dimensional subspace of Rd, we
+set
+W (h)
+O
+⊤W (h)
+V
+∝
+X
+z∈S(h)
+X
+a∈Az
+φ(a)φ(z)⊤Ph.
+(12)
+In Lemma 2, we show that this construction stores at most dh tokens per head (i.e
+S(h) ≲dh),
+and requires the dimension to scale with the number of elements in superposition (i.e |Az| ≲d).
+Since |Az| ≤R+D, and the S(h) partition S ∪R, it suffices to take d ≳R+D and Hdh ≳S +R.
+For the MLP construction, we instead associate the subset S(h) with ⌈d/dh⌉attention heads. This is
+equivalent to having a single full-rank attention head per subset. We set the aggregate output-value
+matrix to the identity, so that the output of the self-attention layer is FMHSA(X; θ) = φ(s)+φ(r).
+Finally, the MLP layer acts as an MLP associative memory, mapping φ(s) + φ(r) to φ(a∗(s, r))
+for each (s, r) pair. Via a similar computation to Theorem 2, it suffices to make the total number of
+parameters md be md = ˜Ω(SR). Since the S(h) partition S ∪R, it suffices to take Hdh ≳S + R
+as well. See Figure 3 for a diagram describing both constructions.
+4.4
+Empirical Validation
+We next empirically validate the claims of Theorems 3 and 4 that 100% accuracy can be obtained
+as long as either the total number of self-attention or MLP parameters scales with SR. We further
+9
+103
+104
+105
+106
+Number of Parameters
+102
+103
+104
+Number of Facts Stored
+alpha=4.0, beta=4.0
+alpha=4.0, beta=2.0
+alpha=4.0, beta=1.0
+alpha=4.0, beta=0.5
+alpha=2.0, beta=4.0
+alpha=2.0, beta=2.0
+alpha=2.0, beta=1.0
+alpha=2.0, beta=0.5
+alpha=2.0, beta=0.25
+alpha=1.0, beta=2.0
+alpha=1.0, beta=1.0
+alpha=1.0, beta=0.5
+alpha=1.0, beta=0.25
+alpha=0.5, beta=4.0
+alpha=0.5, beta=2.0
+alpha=0.5, beta=1.0
+alpha=0.5, beta=0.5
+alpha=0.5, beta=0.25
+alpha=0.25, beta=4.0
+alpha=0.25, beta=2.0
+alpha=0.25, beta=1.0
+alpha=0.25, beta=0.5
+alpha=0.25, beta=0.25
+Facts 
+ Params
+Figure 4: (Left) The number of facts stored scales linearly with the total number of parameters, for
+a wide range of model sizes. (Right) For a fixed dataset, the model can trade off MLP parameters
+for attention parameters to obtain 100% accuracy. The heatmap color corresponds to model accu-
+racy.
+observe that 100% accuracy can be achieved as long as the total number of parameters scales with
+SR, providing evidence that the model can simultaneously use attention and the MLP to store
+facts.
+In Figure 4, we train a wide range of models of various “shapes” on datasets of varying sizes. A
+model shape is defined by the tuple (α, β, H)2, and corresponds to the family of models satisfying
+Hdh = αd and m = βd. The total number of model parameters is 4Hdhd + 2md = (4α + 2β)d2,
+which can thus be varied by increasing d. For a fixed model size (d, H, dh, m), we binary search on
+the largest dataset size that can be memorized. Specifically, we fix D = 8 and vary S, R jointly as
+S = R. Experiments with different scalings are considered in Appendix A. For each (S, R, D), the
+fact dataset is generated at random by selecting |A| = RD, |N| = S + R, and for each s sampling
+a∗(s, r) uniformly at random from {(r −1)D + 1, . . . , rD}. We say the dataset was successfully
+memorized, and as such SR facts were stored, if the model can obtain an accuracy of at least 99%.
+On the left panel of Figure 4 we observe that, across different model shapes, the maximum number
+of facts stored scales linearly with the total number of parameters. On the right panel, we consider
+a specific dataset with S = 32, R = 32, D = 8, and plot the accuracy as the number of parameters
+vary. We observe that the model can trade off MLP parameters for self-attention parameters, while
+still maintaining an accuracy of near 1. However, we do still require the total number of attention
+parameters to be large enough; this corresponds to the Hdh = ˜Ω(S + R) constraint.
+5
+Optimization Dynamics
+We next study the optimization dynamics of the factual recall task. To simplify the model, we
+consider a linear attention transformer (i.e., the softmax is replaced with the identity map) with
+orthogonal embeddings.
+We set d = |V|, and let the embedding vectors {φ(z)}z∈V satisfy
+⟨φ(z), φ(z′)⟩= δz=z′. Such linear attention or orthogonal embeddings assumptions are common
+2The “standard” transformer scaling takes α = 1, β = 4.
+10
+in prior works studying the gradient descent dynamics of transformers [27, 48, 1, 32, 50, 39].
+The linear attention model is given by
+Flin(X; θ) := WOV X⊤XWKQxT,
+(13)
+where we set dh = d and let WOV := W ⊤
+O WV , WKQ := W ⊤
+K WQ denote the non-factorized
+output-value and key-query matrices. Let ˆp(· | z1:T) ∈∆A be the predicted next token distribution
+on an input sequence z1:T, i.e
+ˆp(a | z1:T) :=
+exp (⟨φ(a), Flin(X; θ)⟩)
+P
+a′∈A exp (⟨φ(a′), Flin(X; θ)⟩).
+(14)
+One can then rewrite the cross entropy loss as
+L(θ) = Ez1:T +1[−log ˆp(zT+1 | z1:T)].
+(15)
+We would like to characterize the output of running gradient flow, (i.e ˙θ = −∇L(θ)) with respect
+to the non-factorized parameters θ := {WOV , WKQ} on the cross-entropy loss (15). For notational
+convenience, we denote WOV (a, z) := φ(a)⊤WOV φ(z), WKQ(z) := φ(z)⊤WKQφ(EOS), and
+note that by isometry gradient flow on θ is equivalent to gradient flow on these quantities.
+Let us assume that we start from the following “balanced” initialization.
+Assumption 2. Given an initialization scale α > 0, set WOV (a, z) = α and WKQ(z) = α
+p
+|A| + 1
+for each a ∈A, z ∈V.
+Our first result is that the gradient flow indeed converges to zero loss. As a consequence, the
+predicted next token probabilities ˆp(zT+1 | z1:T) converge to 1(zT+1 = a∗(s, r)), where s, r are the
+subject and relation contained in the sequnece z1:T.
+Theorem 5 (Global Convergence). For t ≥0, let θ(t) be the output of running gradient flow for t
+time. For any δ > 0, there exists a time tδ such that for t ≥tδ, L(θ(t)) ≤δ.
+We next show that the model undergoes a sequential learning dynamics. Let us assume that the
+number of subjects S is much greater than the number of facts R. We show that during the first
+stage of training only the WOV (a, r) and WKQ(r) components grow for relations r ∈R, while
+the remainder of the parameters stay close to zero. As such, the model gets close to outputting the
+best predictor based on just the relation token r. Define p∗(· | r) to be the conditional distribution
+of the answer, given the relation r, i.e p∗(a | r) := P
+s∈S p(s | r)1(a = a∗(s, r)).
+Theorem 6 (Sequential Learning). Assume that S ≥8R
+√
+2D, and |N| ≥4R
+√
+2DT.
+Let
+p(s, r) =
+1
+SR. Pick ϵ > 0. There exists runtime T ∗and initialization scale α (both depending
+on ϵ) such that:
+1. For all t ≤T ∗and z ∈S ∪N, a ∈A, we have |WOV (a, z)|, |WKQ(z)| ≤α1/2
+2. There exists t ≤T ∗such that, for any input sequence z1:T containing a relation r,
+X
+a∈A
+(p∗(a | r) −ˆp(a | z1:T))2 ≤ϵ2.
+(16)
+Proofs of Theorems 5 and 6 are deferred to Appendix D.
+11
+0
+2000
+4000
+6000
+8000
+Steps of GD
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+Cross Entropy Loss
+Stage 1:
+Init
+Stage 2:
+Hallucination
+Stage 3:
+Convergence
+Relation-only
+Subject-only
+Total
+0
+1000
+2000
+3000
+4000
+Steps of GD
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+Cross Entropy Loss
+Stage 1:
+Init
+Stage 2:
+Hallucination
+Stage 3:
+Convergence
+Relation-only
+Subject-only
+Total
+Figure 5: (Left) Loss of the linear attention model with orthogonal embeddings. There is an
+intermediate hallucination stage where the loss plateaus and the model predicts based on only the
+relation. (Right) Loss of the softmax attention model with random embeddings. We again observe
+an intermediate hallucination stage, where the relation-only loss is zero but the total loss is still
+large.
+Remarks.
+Theorem 6 tells us that at some intermediate time, the prediction of the model ˆp(· |
+z1:T) is approximately equal to p∗(· | r), the conditional distribution of the answer given the
+relation r. At this stage, the model ignores all other tokens in the sequence z1:T – including the
+useful subject token s – and predicts based only on the relation r. For example, if S is the set of
+all countries and r is the relation “capital,” then on the prompt “What is the capital of France?”
+the model will output a random countries’ capital. We view this as an instance of hallucination:
+the model is outputting a plausible, yet ultimately incorrect, answer to the prompt. We remark
+that without the assumption that S ≫R, it is possible for this intermediate hallucination stage to
+exhibit different behavior.
+Empirical Validation.
+We next empirically verify Theorems 5 and 6. We first train the linear
+attention model with orthogonal embeddings (15) with S = 16, R = 4 and D = 8, and plot the loss
+over time. In the left pane of Figure 5, we observe three distinct stages. At the start of training, the
+prediction is close to uniform over all possible answers, and the model obtains a loss of log |A|.
+Next, the loss plateaus at log D, and the model outputs the conditional distribution of a given
+the relation r. Finally, as training continues, the model escapes the plateau and converges to zero
+loss. We include the “relation-only loss” in the plot, defined as Ez1:T +1
+
+−log
+ P
+a∈Ar p(a | z1:T)
+
+,
+where any probability mass assigned to an answer which is valid for the relation r is considered to
+be correct; the subject-only loss is defined analogously.
+In the right pane of Figure 5, we plot the loss of a single softmax attention head with random
+embeddings trained on the same factual recall task. We observe similar phenomenology as for
+linear attention, and identify an intermediate “hallucination” stage where the relation-only loss
+drops to zero, but the subject-only loss is still far from zero.
+12
+6
+Lower Bounds
+In this section, we argue via information-theoretic arguments that the results from Sections 3 and 4
+are optimal up to logarithmic factors. Proofs are deferred to Appendix E.
+Associative Memories.
+Let [N] and [M] be the input and output vocabularies, respectively. To
+establish a lower bound, we must consider a distribution over association functions f ∗. For each
+x ∈[N], assume that the output f ∗(x) is sampled independently from the uniform distribution over
+[M]. We model the learning protocol as follows. At train time, the learner observes the randomly
+sampled ground truth f ∗, and writes down a B bit model F . At test time, the learner generates a
+set of predictions ˆf ∈RN×M from F , where ˆf(x) ∈∆M is the prediction for f ∗(x). Both the
+mappings f ∗→F and F →ˆf can be randomized. Let p be a probability distribution over the
+input space [N]; assume WLOG that p(1) ≥p(2) ≥· · · ≥p(N). The goal of the learner is to
+minimize the cross entropy loss L( ˆf) = −P
+x∈[N] p(x) log ˆf(x)f∗(x).
+Theorem 7. The expected loss of the learner can be lower bounded by
+Ef∗, ˆf
+h
+L( ˆf)
+i
+≥log M ·
+X
+x≥⌈
+B
+log M ⌉
+p(x).
+(17)
+We thus see that in order to obtain zero loss, the learner must use B ≥N log M bits; this matches
+the construction from Theorem 2 up to log factors. As a corollary of Theorem 7, we can obtain
+scaling law lower bounds with respect to model size.
+Corollary 1. Assume that p is a power law, i.e p(x) ∝x−α for α > 1. Then Ef∗, ˆf
+h
+L( ˆf)
+i
+≳B1−α.
+This lower bound is obtained by the MLP associative memory by storing the most probable ˜O(B)
+associations. This matches the scaling law with respect to model size considered in Michaud et al.
+[36], Cabannes et al. [7], which also considered storing the ˜O(B) most frequent associations.
+Remark.
+The constructions in Section 3 require storing ˜O(N) network parameters, along with
+input and output embeddings. We view F in Theorem 7 as containing only the network param-
+eters, while the embeddings are “global” quantities, independent of the ground truth f ∗, used to
+compute the predictions ˆf. This matches our interpretation of the embeddings as fixed global
+quantities which cannot be modified by the associative memory. We remark that the associative
+memory constructions from Section 3 match the lower bound, since they hold for ˜O(1)-bit preci-
+sion (Corollary 2).
+Factual Recall.
+We next prove a lower bound for the factual recall task; a similar bound was
+proven in Allen-Zhu and Li [2]. Let S and R be the fixed set of subjects and relations and V be
+the full vocabulary, where |V| ≫|S|, |R|. The association function a∗: S × R →V is sampled
+randomly as follows. First, for each relation r ∈R, the answer set Ar is chosen to be a uniformly
+random size D subset of V, conditional on all subsets Ar being disjoint. For each s ∈S, the
+answer a∗(s, r) is sampled uniformly at random from Ar. The learner sees the association a∗,
+13
+writes down a B bit model F , and from F generates a set of predictions ˆf ∈RS×R×|V|, where
+ˆf(s, r) ∈∆V is the prediction for a∗(s, r). We lower bound L, the expected cross entropy loss
+with respect to a distribution p(s, r) over S × R, defined as follows:
+L := Ea∗, ˆf
+h
+L( ˆf)
+i
+= Ea∗, ˆf
+"
+−
+X
+s,r
+p(s, r) log ˆf(s, r)a∗(s,r)
+#
+.
+(18)
+Theorem 8. Assume that |V| ≥2RD and S ≥CD log(2D2 log |V |) for sufficiently large constant
+C. There exists a constant c ∈(0, 1) such that, if L = 0, the number of bits B must satisfy
+B ≥SR log D + (1 −c)RD log (|V|/D)
+(19)
+We thus see that ˜O(SR) parameters are needed to achieve a loss of zero. For this lower bound, the
+learner knows the sets S and R and does not have to distinguish them from the noise tokens N,
+making it a strictly easier problem than the factual recall task in Section 4.
+7
+Discussion
+In this work, we showed that shallow transformers can use associative memories to obtain near op-
+timal storage capacity for factual recall tasks. Furthermore, by studying the optimization dynam-
+ics of a simplified model, we also showed that transformers undergo an intermediate hallucination
+stage. One interesting direction of future work is to better understand the role of the embeddings,
+and whether there exists an optimal choice of (non-random) embeddings leading to more efficient
+constructions. Another important direction is to understand the implication of our results towards
+understanding empirical LLM scaling laws [14]. In particular, does there exist a scaling law lower
+bound for the factual recall task? Finally, it would be very interesting to understand the extent to
+which larger models utilize similar associative memory constructions, and if one can probe whether
+specific “facts” are stored in either the self-attention matrices or the MLP.
+Acknowledgements
+JDL acknowledges support of NSF CCF 2002272, NSF IIS 2107304, NSF CIF 2212262, ONR
+Young Investigator Award, and NSF CAREER Award 2144994. This work was conducted in part
+at the Simons Institute.
+References
+[1] Kwangjun Ahn, Xiang Cheng, Hadi Daneshmand, and Suvrit Sra. Transformers learn to
+implement preconditioned gradient descent for in-context learning. Advances in Neural In-
+formation Processing Systems, 36, 2024.
+[2] Zeyuan Allen-Zhu and Yuanzhi Li. Physics of language models: Part 3.3, knowledge capacity
+scaling laws. arXiv preprint arXiv:2404.05405, 2024.
+[3] William Beckner.
+Inequalities in fourier analysis.
+Annals of Mathematics, 102(1):159–
+182, 1975.
+ISSN 0003486X, 19398980.
+URL http://www.jstor.org/stable/
+1970980.
+14
+[4] William Beckner. Sobolev inequalities, the poisson semigroup, and analysis on the sphere
+sn. Proceedings of the National Academy of Sciences of the United States of America, 89
+(11):4816–4819, 1992. ISSN 00278424, 10916490. URL http://www.jstor.org/
+stable/2359537.
+[5] Alberto Bietti, Vivien Cabannes, Diane Bouchacourt, Herve Jegou, and Leon Bottou. Birth of
+a transformer: A memory viewpoint. In Advances in Neural Information Processing Systems
+(NeurIPS), 2023.
+[6] S´ebastien Bubeck, Ronen Eldan, Yin Tat Lee, and Dan Mikulincer. Network size and size
+of the weights in memorization with two-layers neural networks. In Advances in Neural
+Information Processing Systems, 2020.
+[7] Vivien Cabannes, Elvis Dohmatob, and Alberto Bietti. Scaling laws for associative memories.
+In International Conference on Learning Representations (ICLR), 2024.
+[8] Mete Demircigil, Judith Heusel, Matthias L¨owe, Sven Upgang, and Franck Vermet. On a
+model of associative memory with huge storage capacity. Journal of Statistical Physics, 168:
+288–299, 2017.
+[9] Tim Dettmers, Mike Lewis, Younes Belkada, and Luke Zettlemoyer. Gpt3. int8 (): 8-bit
+matrix multiplication for transformers at scale. Advances in Neural Information Processing
+Systems, 35:30318–30332, 2022.
+[10] Nelson Elhage, Tristan Hume, Catherine Olsson, Nicholas Schiefer, Tom Henighan, Shauna
+Kravec, Zac Hatfield-Dodds, Robert Lasenby, Dawn Drain, Carol Chen, Roger Grosse,
+Sam McCandlish, Jared Kaplan, Dario Amodei, Martin Wattenberg, and Christopher Olah.
+Toy models of superposition.
+Transformer Circuits Thread, 2022.
+URL https://
+transformer-circuits.pub/2022/toy_model/index.html.
+[11] Mor Geva, Roei Schuster, Jonathan Berant, and Omer Levy. Transformer feed-forward layers
+are key-value memories. In Conference on Empirical Methods in Natural Language Process-
+ing (EMNLP), 2021.
+[12] Mor Geva, Jasmijn Bastings, Katja Filippova, and Amir Globerson. Dissecting recall of
+factual associations in auto-regressive language models. In Conference on Empirical Methods
+in Natural Language Processing (EMNLP), 2023.
+[13] Gaurav Ghosal, Tatsunori Hashimoto, and Aditi Raghunathan. Understanding finetuning for
+factual knowledge extraction. arXiv preprint arXiv:2406.14785, 2024.
+[14] Jordan Hoffmann, Sebastian Borgeaud, Arthur Mensch, Elena Buchatskaya, Trevor Cai, Eliza
+Rutherford, Diego de Las Casas, Lisa Anne Hendricks, Johannes Welbl, Aidan Clark, et al.
+Training compute-optimal large language models. arXiv preprint arXiv:2203.15556, 2022.
+[15] Benjamin Hoover, Yuchen Liang, Bao Pham, Rameswar Panda, Hendrik Strobelt,
+Duen Horng Chau, Mohammed Zaki, and Dmitry Krotov. Energy transformer. Advances
+in Neural Information Processing Systems, 36, 2023.
+15
+[16] John J Hopfield. Neural networks and physical systems with emergent collective computa-
+tional abilities. Proceedings of the national academy of sciences, 79(8):2554–2558, 1982.
+[17] Arthur Jacot, Franck Gabriel, and Cl´ement Hongler. Neural tangent kernel: Convergence and
+generalization in neural networks. Advances in neural information processing systems, 31,
+2018.
+[18] Samy Jelassi, Michael Sander, and Yuanzhi Li. Vision transformers provably learn spatial
+structure. In Advances in Neural Information Processing Systems (NeurIPS), 2022.
+[19] Samy Jelassi, Clara Mohri, David Brandfonbrener, Alex Gu, Nikhil Vyas, Nikhil Anand,
+David Alvarez-Melis, Yuanzhi Li, Sham M Kakade, and Eran Malach. Mixture of parrots:
+Experts improve memorization more than reasoning. arXiv preprint arXiv:2410.19034, 2024.
+[20] Yibo Jiang, Goutham Rajendran, Pradeep Ravikumar, and Bryon Aragam. Do llms dream
+of elephants (when told not to)? latent concept association and associative memory in trans-
+formers. arXiv preprint arXiv:2406.18400, 2024.
+[21] Zhengbao Jiang, Frank F Xu, Jun Araki, and Graham Neubig. How can we know what
+language models know? Transactions of the Association for Computational Linguistics, 8:
+423–438, 2020.
+[22] Tokio Kajitsuka and Issei Sato. Are transformers with one layer self-attention using low-rank
+weight matrices universal approximators? arXiv preprint arXiv:2307.14023, 2023.
+[23] Tokio Kajitsuka and Issei Sato.
+Optimal memorization capacity of transformers.
+arXiv
+preprint arXiv:2409.17677, 2024.
+[24] Teuvo Kohonen. Correlation matrix memories. IEEE Transactions on Computers, 1972.
+[25] Dmitry Krotov and John J Hopfield. Dense associative memory for pattern recognition. Ad-
+vances in neural information processing systems, 29, 2016.
+[26] Hung Le, Truyen Tran, and Svetha Venkatesh. Self-attentive associative memory. In Inter-
+national conference on machine learning, pages 5682–5691. PMLR, 2020.
+[27] Yuchen Li, Yuanzhi Li, and Andrej Risteski. How do transformers learn topic structure:
+Towards a mechanistic understanding. In Proceedings of the International Conference on
+Machine Learning (ICML), 2023.
+[28] Carlo Lucibello and Marc M´ezard. Exponential capacity of dense associative memories.
+Physical Review Letters, 132(7):077301, 2024.
+[29] Ang Lv, Kaiyi Zhang, Yuhan Chen, Yulong Wang, Lifeng Liu, Ji-Rong Wen, Jian Xie, and
+Rui Yan. Interpreting key mechanisms of factual recall in transformer-based language mod-
+els. arXiv preprint arXiv:2403.19521, 2024.
+[30] Liam Madden and Christos Thrampoulidis. Memory capacity of two layer neural networks
+with smooth activations. SIAM Journal on Mathematics of Data Science, 6(3):679–702, 2024.
+16
+[31] Liam Madden, Curtis Fox, and Christos Thrampoulidis. Upper and lower memory capacity
+bounds of transformers for next-token prediction. arXiv preprint arXiv:2405.13718, 2024.
+[32] Arvind Mahankali, Tatsunori B Hashimoto, and Tengyu Ma. One step of gradient descent is
+provably the optimal in-context learner with one layer of linear self-attention. In Proceedings
+of the International Conference on Learning Representations (ICLR), 2024.
+[33] Sadegh Mahdavi, Renjie Liao, and Christos Thrampoulidis. Memorization capacity of multi-
+head attention in transformers. arXiv preprint arXiv:2306.02010, 2023.
+[34] R. McEliece, E. Posner, E. Rodemich, and S. Venkatesh. The capacity of the hopfield as-
+sociative memory. IEEE Transactions on Information Theory, 33(4):461–482, 1987. doi:
+10.1109/TIT.1987.1057328.
+[35] Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov. Locating and editing factual
+associations in gpt. In Advances in Neural Information Processing Systems (NeurIPS), 2022.
+[36] Eric Michaud, Ziming Liu, Uzay Girit, and Max Tegmark. The quantization model of neural
+scaling. Advances in Neural Information Processing Systems, 36, 2023.
+[37] Ashley Montanaro. Some applications of hypercontractive inequalities in quantum informa-
+tion theory. Journal of Mathematical Physics, 53(12), 2012.
+[38] Neel Nanda, S Rajamanoharan, J Kram´ar, and R Shah.
+Fact finding:
+Attempting
+to reverse-engineer factual recall on the neuron level.
+AI Alignment Forum, 2023.
+URL
+https://www.alignmentforum.org/posts/iGuwZTHWb6DFY3sKB/
+fact-finding-attempting-to-reverse-engineer-factual-recall.
+[39] Eshaan Nichani, Alex Damian, and Jason D Lee. How transformers learn causal structure
+with gradient descent. In Proceedings of the International Conference on Machine Learning
+(ICML), 2024.
+[40] Fabio Petroni, Tim Rockt¨aschel, Patrick Lewis, Anton Bakhtin, Yuxiang Wu, Alexander H
+Miller, and Sebastian Riedel. Language models as knowledge bases?
+In Conference on
+Empirical Methods in Natural Language Processing (EMNLP), 2019.
+[41] Adityanarayanan Radhakrishnan, Mikhail Belkin, and Caroline Uhler. Overparameterized
+neural networks implement associative memory. Proceedings of the National Academy of
+Sciences, 117(44):27162–27170, 2020.
+[42] Hubert Ramsauer, Bernhard Sch¨afl, Johannes Lehner, Philipp Seidl, Michael Widrich,
+Thomas Adler, Lukas Gruber, Markus Holzleitner, Milena Pavlovi´c, Geir Kjetil Sandve, et al.
+Hopfield networks is all you need. arXiv preprint arXiv:2008.02217, 2020.
+[43] Adam Roberts, Colin Raffel, and Noam Shazeer. How much knowledge can you pack into the
+parameters of a language model? In Conference on Empirical Methods in Natural Language
+Processing (EMNLP), 2020.
+17
+[44] Imanol Schlag, Kazuki Irie, and J¨urgen Schmidhuber. Linear transformers are secretly fast
+weight programmers. In Proceedings of the International Conference on Machine Learning
+(ICML), 2021.
+[45] Charlie Snell, Ruiqi Zhong, Dan Klein, and Jacob Steinhardt. Approximating how single
+head attention learns. arXiv preprint arXiv:2103.07601, 2021.
+[46] Yuandong Tian, Yiping Wang, Beidi Chen, and Simon Du. Scan and snap: Understanding
+training dynamics and token composition in 1-layer transformer.
+In Advances in Neural
+Information Processing Systems (NeurIPS), 2023.
+[47] Gal Vardi, Gilad Yehudai, and Ohad Shamir. On the optimal memorization power of relu
+neural networks. arXiv preprint arXiv:2110.03187, 2021.
+[48] Johannes Von Oswald, Eyvind Niklasson, Ettore Randazzo, Jo˜ao Sacramento, Alexander
+Mordvintsev, Andrey Zhmoginov, and Max Vladymyrov. Transformers learn in-context by
+gradient descent. In International Conference on Machine Learning, pages 35151–35174.
+PMLR, 2023.
+[49] David J Willshaw, O Peter Buneman, and Hugh Christopher Longuet-Higgins.
+Non-
+holographic associative memory. Nature, 222(5197):960–962, 1969.
+[50] Ruiqi Zhang, Spencer Frei, and Peter L Bartlett. Trained transformers learn linear models
+in-context. Journal of Machine Learning Research, 25(49):1–55, 2024.
+18
+A
+Additional Experiments
+A.1
+MLP Associative Memory
+In Figure 6, we train MLP associative memories to store the association f ∗(x) = x mod M. We
+fix M = 32 throughout. In this case, we see that the number of associations N which can be
+stored by a model with md parameters scales as N ∝md. This linear scaling in the absence of
+logarithmic factors is due to the fact that the number of output tokens M is a constant, and does
+not scale with the number of input tokens N.
+102
+103
+104
+md
+102
+103
+104
+N
+MLP Associative Memory
+m/d = 1
+m/d = 2
+m/d = 4
+m/d = 8
+N
+md
+Figure 6: We train an MLP associative memory to store the association f ∗(x) = x mod 32.
+Empirically, md ∝N parameters are required to store N associations.
+A.2
+Factual Recall
+In Figures 7 to 9, we repeat the experiment in the left pane of Figure 4, for different choices of H
+and scalings of (S, R, D). In all plots, we observe the general trend that the number of facts stored
+scales proportionally to the number of model parameters.
+A.3
+Experimental Details
+Figures 1, 6:
+For the MLP associative memory experiments, for each choice of m, d, N, we
+first sample random embeddings {ex}x∈[N], {uy}y∈[M] i.i.d uniformly over the sphere. We train a
+two-layer neural network on the cross entropy loss to predict the association f ∗(x) = x. We use
+standard parameterization and initialization, and the activation σ = ReLU. The network is trained
+using ADAM with a learning rate of 10−2 for 214 steps. We compute the maximum accuracy the
+network achieves over the training run, and say that the network has “stored” the dataset if the
+highest accuracy is at least 99%. We repeat this procedure to binary search over N, to find the
+largest value of N such that the network achieves an accuracy of at least 99%. Error bars are
+shown for 5 random seeds.
+19
+103
+104
+105
+106
+Number of Parameters
+102
+103
+104
+Number of Facts Stored
+H = 4, D = 8, S = R
+alpha=4.0, beta=4.0
+alpha=4.0, beta=2.0
+alpha=4.0, beta=1.0
+alpha=4.0, beta=0.25
+alpha=2.0, beta=4.0
+alpha=2.0, beta=2.0
+alpha=2.0, beta=1.0
+alpha=2.0, beta=0.5
+alpha=2.0, beta=0.25
+alpha=1.0, beta=4.0
+alpha=1.0, beta=2.0
+alpha=1.0, beta=1.0
+alpha=1.0, beta=0.5
+alpha=1.0, beta=0.25
+alpha=0.5, beta=4.0
+alpha=0.5, beta=2.0
+alpha=0.5, beta=1.0
+alpha=0.5, beta=0.5
+alpha=0.5, beta=0.25
+alpha=0.25, beta=4.0
+alpha=0.25, beta=2.0
+alpha=0.25, beta=1.0
+alpha=0.25, beta=0.5
+alpha=0.25, beta=0.25
+Facts 
+ Params
+103
+104
+105
+Number of Parameters
+102
+103
+104
+Number of Facts Stored
+H = 16, D = 8, S = R
+alpha=4.0, beta=4.0
+alpha=4.0, beta=2.0
+alpha=4.0, beta=1.0
+alpha=4.0, beta=0.5
+alpha=4.0, beta=0.25
+alpha=2.0, beta=4.0
+alpha=2.0, beta=2.0
+alpha=2.0, beta=1.0
+alpha=2.0, beta=0.5
+alpha=2.0, beta=0.25
+alpha=1.0, beta=4.0
+alpha=1.0, beta=2.0
+alpha=1.0, beta=1.0
+alpha=1.0, beta=0.5
+alpha=1.0, beta=0.25
+alpha=0.5, beta=4.0
+alpha=0.5, beta=2.0
+alpha=0.5, beta=1.0
+alpha=0.5, beta=0.5
+alpha=0.5, beta=0.25
+alpha=0.25, beta=4.0
+alpha=0.25, beta=2.0
+alpha=0.25, beta=1.0
+alpha=0.25, beta=0.5
+alpha=0.25, beta=0.25
+Facts 
+ Params
+Figure 7: We repeat the experiment in Figure 4, varying the number of head to be 4 (Left) or 16
+(Right). In both cases, we observe that the number of facts stored scales linear with the parameter
+count.
+103
+104
+105
+106
+Number of Parameters
+102
+103
+104
+Number of Facts Stored
+H = 8, D = S = R
+alpha=4.0, beta=4.0
+alpha=4.0, beta=2.0
+alpha=4.0, beta=1.0
+alpha=4.0, beta=0.5
+alpha=4.0, beta=0.25
+alpha=2.0, beta=4.0
+alpha=2.0, beta=2.0
+alpha=2.0, beta=1.0
+alpha=2.0, beta=0.5
+alpha=2.0, beta=0.25
+alpha=1.0, beta=4.0
+alpha=1.0, beta=2.0
+alpha=1.0, beta=1.0
+alpha=1.0, beta=0.5
+alpha=1.0, beta=0.25
+alpha=0.5, beta=4.0
+alpha=0.5, beta=2.0
+alpha=0.5, beta=1.0
+alpha=0.5, beta=0.5
+alpha=0.5, beta=0.25
+alpha=0.25, beta=4.0
+alpha=0.25, beta=2.0
+alpha=0.25, beta=1.0
+alpha=0.25, beta=0.5
+alpha=0.25, beta=0.25
+Facts 
+ Params
+103
+104
+105
+Number of Parameters
+102
+103
+104
+Number of Facts Stored
+H = 16, D = S = R
+alpha=4.0, beta=4.0
+alpha=4.0, beta=2.0
+alpha=4.0, beta=1.0
+alpha=4.0, beta=0.5
+alpha=4.0, beta=0.25
+alpha=2.0, beta=4.0
+alpha=2.0, beta=2.0
+alpha=2.0, beta=1.0
+alpha=2.0, beta=0.5
+alpha=2.0, beta=0.25
+alpha=1.0, beta=4.0
+alpha=1.0, beta=2.0
+alpha=1.0, beta=1.0
+alpha=1.0, beta=0.5
+alpha=1.0, beta=0.25
+alpha=0.5, beta=4.0
+alpha=0.5, beta=2.0
+alpha=0.5, beta=1.0
+alpha=0.5, beta=0.5
+alpha=0.5, beta=0.25
+alpha=0.25, beta=4.0
+alpha=0.25, beta=2.0
+alpha=0.25, beta=1.0
+alpha=0.25, beta=0.5
+alpha=0.25, beta=0.25
+Facts 
+ Params
+Figure 8: We repeat Figure 4 on factual recall tasks where each subject and relation map to a
+distinct answer (i.e D = S).
+103
+104
+105
+106
+Number of Parameters
+102
+103
+104
+Number of Facts Stored
+H = 8, D = 8, S = R2
+alpha=4.0, beta=4.0
+alpha=4.0, beta=2.0
+alpha=4.0, beta=1.0
+alpha=4.0, beta=0.5
+alpha=4.0, beta=0.25
+alpha=2.0, beta=4.0
+alpha=2.0, beta=2.0
+alpha=2.0, beta=1.0
+alpha=2.0, beta=0.5
+alpha=2.0, beta=0.25
+alpha=1.0, beta=4.0
+alpha=1.0, beta=2.0
+alpha=1.0, beta=1.0
+alpha=1.0, beta=0.5
+alpha=1.0, beta=0.25
+alpha=0.5, beta=4.0
+alpha=0.5, beta=2.0
+alpha=0.5, beta=1.0
+alpha=0.5, beta=0.5
+alpha=0.5, beta=0.25
+alpha=0.25, beta=4.0
+alpha=0.25, beta=2.0
+alpha=0.25, beta=1.0
+alpha=0.25, beta=0.5
+alpha=0.25, beta=0.25
+Facts 
+ Params
+103
+104
+105
+Number of Parameters
+102
+103
+104
+Number of Facts Stored
+H = 16, D = 8, S = R2
+alpha=4.0, beta=4.0
+alpha=4.0, beta=2.0
+alpha=4.0, beta=1.0
+alpha=4.0, beta=0.5
+alpha=4.0, beta=0.25
+alpha=2.0, beta=4.0
+alpha=2.0, beta=2.0
+alpha=2.0, beta=1.0
+alpha=2.0, beta=0.5
+alpha=2.0, beta=0.25
+alpha=1.0, beta=4.0
+alpha=1.0, beta=2.0
+alpha=1.0, beta=1.0
+alpha=1.0, beta=0.5
+alpha=1.0, beta=0.25
+alpha=0.5, beta=4.0
+alpha=0.5, beta=2.0
+alpha=0.5, beta=1.0
+alpha=0.5, beta=0.5
+alpha=0.5, beta=0.25
+alpha=0.25, beta=4.0
+alpha=0.25, beta=2.0
+alpha=0.25, beta=1.0
+alpha=0.25, beta=0.5
+alpha=0.25, beta=0.25
+Facts 
+ Params
+Figure 9: We repeat Figure 4 on factual recall tasks where the number of subjects is much larger
+than the number of relations; specifically, we take S = R2.
+20
+Figures 4, 7, 8, 9:
+We consider a fixed prompt length of T = 32, and train the models via online
+batch gradient descent with batch size 1024 on the population loss (i.e we sample an independent
+batch at each timestep). We use standard parameterization and initialization for both self-attention
+and the MLP. For a fixed model size, we binary search over the maximum value of SR such that
+the model achieves an accuracy of at least 99%. All models were trained using ADAM for 214
+steps, with a sweep over learning rates in {.001, .003, .01} (where we consider the best performing
+model over all learning rates).
+Figure 5:
+In the left pane we train a linear attention head with orthogonal embeddings. The
+weights are all initialized to be equal to 10−5. In the right plot, we train a softmax attention head
+with random embeddings, which are fixed throughout training.
+B
+Proofs for Section 3
+Proof of Theorem 1. Let us set W = P
+z∈[N] uf∗(z)e⊤
+z . For y ̸= f ∗(x), define the quantity γxy by
+γxy = (uf∗(x) −uy)⊤W ex.
+We first see that (where the expectation is taken over the randomness of the embedding vectors)
+E[γxy] =
+X
+z∈[N]
+E
+
+(uf∗(x) −uy)⊤uf∗(z)
+
+E
+
+e⊤
+z ex
+
+= E
+
+(uf∗(x) −uy)⊤uf∗(x)
+
+= 1.
+We can next compute the second moment of γxy. Since the ez are drawn uniformly on the sphere,
+the e⊤
+z ex terms for z ̸= x are independent and mean zero. Therefore
+E[γ2
+xy] =
+X
+z∈[N]
+E
+h (uf∗(x) −uy)⊤uf∗(z)
+2i
+E
+h e⊤
+z ex
+2i
+= E
+h 1 −u⊤
+f∗(x)uy
+2i
++ 1
+d
+X
+z̸=x
+E
+h (uf∗(x) −uy)⊤uf∗(z)
+2i
+= 1 + 1
+d + 1
+d
+X
+z̸=x
+2
+d · 1(f ∗(z) ̸= y) +
+
+1 + 1
+d
+
+· 1(f ∗(z) = y)
+
+=
+
+1 + 1
+d
+2
++ 2(N −2)
+d2
+.
+Therefore
+Var(γxy) = 2
+d + 1
+d2 + 2(N −2)
+d2
+≲1
+d + N
+d2.
+Let δ be a fixed failure probability, and let δ′ =
+δ
+NM . Observe that γxy is a degree 4 polynomial.
+By Lemma 14, by choosing d ≥C log4(1/δ′) and d2 ≥CN log4(1/δ′) for a sufficiently large
+constant C, we have that 16e−1 log4(1/δ)Var(γxy)
+(Eγxy)2
+≤1, and thus P(γxy ≤0) ≤δ′.
+21
+Therefore union bounding over all (x, y) pairs with y ̸= f ∗(x), we have that
+P(∃γxy ≤0) ≤N(M −1)δ′ ≤δ.
+Thus with probability 1−δ, γxy > 0 for all x and y ̸= f ∗(x), and on this event arg maxy∈[M] u⊤
+y W ex =
+f ∗(x) for all x ∈[N].
+For Theorem 2, we need the following assumption on the activation σ.
+Assumption 3. σ is a polynomial of degree q. Furthermore, if σ(z) = Pq
+k=0 ckhk(z) is the Hermite
+decomposition of σ, then ck ̸= 0 for all 0 ≤k ≤q.
+We prove the following formal version of Theorem 2.
+Theorem 9. Let ϵ ∈(0, 1) be a fixed constant. Assume that d ≥N ϵ and N ≥C1(ϵ), where C1(ϵ)
+is a constant depending only on ϵ. Assume that q in Assumption 3 satisfies q = C2
+ϵ for some C2 > 2.
+Then, if md ≳N(C3 log(MN/δ))C4/ϵ, with probability 1 −δ over the draw of the embeddings,
+there exists V , W such that
+arg max
+y∈[M] u⊤
+y V ⊤σ(W ex) = f ∗(x)
+(20)
+for all x ∈[N].
+Proof of Theorem 2. Let us consider the linearization, or Neural Tangent Kernel, of F:
+FNTK(z) = V ⊤ σ′(W 0z) ⊙(W −W 0)z
+
+=
+X
+i∈[m]
+viσ′(⟨w0
+i , z⟩)⟨wi −w0
+i , z⟩.
+where W 0 is the initialization which we are linearizing with respect to. By rescaling the parameters
+as W −W 0 ←ϵ(W −W 0) and V ←ϵ−1V , we see that F →FNTK as ϵ →0. It thus suffices
+to work with FNTK instead of F. For ease of notation, we redefine W 0 as W , and W −W 0 as
+Q, so that
+F(z) =
+X
+i∈[m]
+viσ′(⟨wi, z⟩)⟨qi, z⟩
+Let k be a even integer, to be chosen later. Assume without loss of generality that ck+1 > 0 (if it is
+negative, we can simply negate all the qi in the construction below). Set
+qi = 1
+m
+X
+z∈[N]
+hk(⟨ez, wi⟩)⟨vi, uf∗(z)⟩ez,
+where hk is the kth Hermite polynomial. Then
+F(ex) = 1
+m
+X
+i∈[m],z∈[N]
+vi⟨vi, uf∗(z)⟩σ′(⟨wi, ex⟩)hk(⟨ez, wi⟩)⟨ex, ez⟩
+22
+As in the proof of Theorem 1, define the margin between x and some y ̸= f ∗(x) as
+γxy = (uf∗(x) −uy)⊤F(ex)
+= 1
+m
+X
+i∈[m],z∈[N]
+⟨vi, uf∗(x) −uy⟩⟨vi, uf∗(z)⟩σ′(⟨wi, ex⟩)hk(⟨ez, wi⟩)⟨ex, ez⟩.
+We will show that, with high probability over the draw of the embeddings over the sphere, and the
+vi, wi independently from the standard Gaussian, that γxy > 0 for all y ̸= f ∗(x).
+The expectation of the margin is
+E[γxy] =
+X
+z
+E
+
+⟨vi, uf∗(x) −uy⟩⟨vi, uf∗(z)⟩σ′(⟨wi, ex⟩)hk(⟨ez, wi⟩)⟨ex, ez⟩
+
+= ck+1
+X
+z
+E
+
+⟨uf∗(x) −uy, uf∗(z)⟩⟨ez, ex⟩k+1
+= ck+1.
+We next compute the variance. Define ωxy
+iz as
+ωxy
+iz = ⟨vi, uf∗(x) −uy⟩⟨vi, uf∗(z)⟩σ′(⟨wi, ex⟩)hk(⟨ez, wi⟩)⟨ex, ez⟩,
+so that γxy =
+1
+m
+P
+i,z ωxy
+iz . First, observe that when z ̸= z′, we have E
+
+ωxy
+iz ωxy
+jz′
+
+= 0, since k is
+even. For i ̸= j, we have that
+E
+
+ωxy
+iz ωxy
+jz
+
+= c2
+k+1E
+
+⟨uf∗(x) −uy, uf∗(z)⟩2
+E[⟨ez, ex⟩2(k+1)]
+First, by Lemma 12 we have that
+E[⟨ez, ex⟩2(k+1)] ≤
+(
+1
+x = z
+(2k + 2)k+1d−(k+1)
+x ̸= z .
+Next, we see that
+E
+
+⟨uf∗(x) −uy, uf∗(z)⟩2
+=
+(
+1 + 1
+d
+f ∗(x) = f ∗(z) or y = f ∗(z)
+2
+d
+otherwise
+.
+Finally, we have that
+E[ωxy
+iz ωxy
+iz ] = E
+
+⟨vi, uf∗(x) −uy⟩2⟨vi, uf∗(z)⟩2σ′(⟨wi, ex⟩)2hk(⟨ez, wi⟩)2⟨ex, ez⟩2
+= E
+
+⟨vi, uf∗(x) −uy⟩2⟨vi, uf∗(z)⟩2
+E
+
+σ′(⟨wi, ex⟩)2hk(⟨ez, wi⟩)2⟨ex, ez⟩2
+.
+The first quantity can be bounded as
+E
+
+⟨vi, uf∗(x) −uy⟩2⟨vi, uf∗(z)⟩2
+≤E
+
+⟨vi, uf∗(x) −uy⟩41/2E
+
+⟨vi, uf∗(z)⟩41/2
+≤2 ·
+√
+3 ·
+√
+3 = 6.
+23
+The second term is bounded as
+E
+
+σ′(⟨wi, ex⟩)2hk(⟨ez, wi⟩)2⟨ex, ez⟩2
+≤E
+
+σ′(⟨wi, ex⟩)81/4E
+
+hk(⟨ez, wi⟩)81/4E
+
+⟨ex, ez⟩41/2
+By Gaussian hypercontractivity (Lemma 13),
+E
+
+σ′(⟨wi, ex⟩)81/4 = ∥σ′∥2
+L8 ≤8q∥σ′∥2
+L2 ≲8q,
+and likewise
+E
+
+hk(⟨ez, wi⟩)81/4 ≤8k.
+Finally, E[⟨ex, ez⟩4]1/2 ≤4d−1 if x ̸= z, and 1 otherwise. Altogether,
+E[ωxy
+iz ωxy
+iz ] ≲23q+3k d−1 + 1(x = z)
+
+.
+Altogether, we get that
+E
+
+γ2
+xy
+
+= m −1
+m
+X
+z
+E
+
+ωxy
+iz ωxy
+jz
+
++ 1
+m
+X
+z
+E[ωxy
+iz ωxy
+iz ].
+The first quantity is
+X
+z
+E
+
+ωxy
+iz ωxy
+jz
+
+≤
+
+1 + 1
+d
+
+c2
+k+1 + c2
+k+1(2k + 2)k+1d−(k+1) · 2N.
+The second quantity is
+X
+z
+E[ωxy
+iz ωxy
+iz ] ≤23q+3k
+
+1 + N
+d
+
+.
+Therefore
+Var(γxy) ≲1
+d + (2k)k+1N
+dk+1
++ 23q+3kN
+md
+.
+Choose k = 2⌈1
+ϵ⌉; then
+dk
+(2k)k+1N ≥
+N
+(4/ϵ)1+2/ϵ ≥1
+for N ≥C1(ϵ), and so
+Var(γxy) ≲1
+d + 23q+3kN
+md
+.
+Observe that γxy is a degree 2q + 2k + 4 ≤4q + 4 polynomial. If md ≳N · Cq
+3 log4q+4(1/δ′) for
+unspecified constant C3, then 24q+4e−1 log4q+4(1/δ′)Var(γxy)
+(Eγxy)2
+≤1, and thus by Lemma 14, we have that
+P(γxy ≤0) ≤δ′. Choosing δ′ =
+δ
+MN and union bounding over all (x, y) pairs with y ̸= f ∗(x)
+yields the desired result.
+24
+B.1
+Bounded Bit Complexity
+Corollary 2. Under the setting of Theorem 1, if d2 ≳N poly log N, then with high probability
+there exists a quantized weight matrix ˜
+W , where each weight requires O(log d) bits to store, such
+that
+arg max
+y∈[M] u⊤
+y ˜
+W ex = f ∗(x)
+for all x ∈[N].
+(21)
+Proof. One sees from the proof of Theorem 1 that, with high probability over the embeddings, the
+weight matrix W = P
+z∈[N] uf∗(z)e⊤
+z has a margin γxy satisfies γxy ≥1
+2 for all y ̸= f ∗(x). Each
+entry of W lies in the interval [−N, N]. For some ϵ > 0, define ˜
+W by rounding each entry of W
+to the nearest multiple of ϵ. By definition,
+W −˜
+W
+
+∞≤ϵ. We also see that
+u⊤
+y (W −˜
+W )ex
+ ≤
+W −˜
+W
+
+∞
+uye⊤
+x
+
+1 ≤dϵ.
+Thus choosing ϵ <
+1
+8d, the margin of the quantized network satisfies
+˜γxy := (uf∗(x) −uy)⊤˜
+W ex
+≥(uf∗(x) −uy)⊤W ex −
+(uf∗(x) −uy)⊤(W −˜
+W )ex
+
+≥1
+2 −2dϵ
+> 0.
+Finally, the number of bits required to store each weight is log(2N/ϵ) = log(16Nd) = O(log d).
+We remark that a similar quantization argument was proven in Jelassi et al. [19].
+C
+Proofs for Section 4
+Lemma 1. Let V(h) ⊂S ∪R. Assume that d ≳
+V(h) log(|V|/δ). Define v := P
+z∈V(h) φ(z) +
+1
+2φ(EOS). Then, with probability 1 −δ over the draw of the embeddings,
+⟨v, φ(z)⟩> ⟨v, φ(EOS)⟩+ 1
+4 > ⟨v, φ(z′)⟩+ 1
+2
+for any z ∈V(h) and z′ ̸∈V(h).
+Proof. Define γz as
+γz :=
+
+
+
+
+
+⟨v, φ(z)⟩−1
+z ∈V(h)
+⟨v, φ(EOS)⟩−1
+2
+z = EOS
+⟨v, φ(z)⟩
+z ̸∈V(h)
+25
+We first see that E[γz] = 0.
+Next, observe that
+γz =
+(P
+z′∈V(h)⟨φ(z), φ(z′)⟩
+z ̸∈V(h)
+P
+z′∈V(h)\{z}⟨φ(z), φ(z′)⟩
+z ∈V(h)
+Since each of the ⟨φ(z), φ(z′)⟩are independent subGaussian variables with variance proxy 1/d,
+by Hoeffding’s inequality we have that, with probability 1 −δ′,
+|γz| ≲
+r
+|V(h)| · log(1/δ′)
+d
+.
+Setting δ′ = δ/|V| and union bounding over all z ∈V yields the desired result.
+C.1
+Construction via Self-Attention
+Lemma 2. Let V(h) ⊂V, and for each z ∈V(h), let Az ⊂V. Assume that d ≳maxz∈V(h) |Az| log6(|V|/δ)
+and dh ≳
+V(h) log6(|V|/δ) Define
+W := d
+dh
+X
+z∈V(h)
+X
+a∈Az
+dh
+X
+i=1
+φ(a)φ(z)⊤wiw⊤
+i ,
+where wi are chosen uniformly on the sphere of radius 1, conditioned on being orthogonal to
+φ(EOS). Then, with probability 1 −δ over the draw of the embeddings and the wi,
+φ(a)⊤W φ(z) −1(a ∈Az)
+ ≤1
+5
+for all z ∈V(h), a ∈V.
+Proof. Define
+γaz := φ(a)⊤W φ(z).
+We first see that
+E[γaz] = E
+
+X
+z′∈V(h)
+X
+a′∈Az
+⟨φ(a), φ(a′)⟩⟨φ(z), P ⊥
+φ(EOS)φ(z′)⟩
+
+= d −1
+d
+· 1(a ∈Az).
+We next compute the variance. For a ̸∈Az,
+E
+
+γ2
+az
+
+= d2
+d2
+h
+E
+
+
+
+X
+z′∈V(h)
+X
+a′∈Az′
+dh
+X
+i=1
+⟨φ(a), φ(a′)⟩⟨φ(z), wi⟩⟨wi, φ(z′)⟩
+
+
+2
+
+26
+Define ωa′z′i = ⟨φ(a), φ(a′)⟩⟨φ(z), wi⟩⟨wi, φ(z′)⟩. We see that E[ωa1z1iωa2z2j] is nonzero only if
+a1 = a2 and z1 = z2. For i ̸= j, we have that
+E[ωa′z′iωa′z′j] = E
+
+⟨φ(a), φ(a′)⟩2⟨φ(z), wi⟩⟨wi, φ(z′)⟩⟨φ(z), wj⟩⟨wj, φ(z′)⟩
+
+= d−2E
+
+⟨φ(a), φ(a′)⟩2
+E
+
+⟨φ(z), P ⊥
+φ(EOS)φ(z′)⟩2
+≤d−2ρaa′ρzz′,
+where ρij =
+(
+1
+i = j
+d−1
+i ̸= j . Also,
+E
+
+ω2
+a′z′i
+
+= E
+
+⟨φ(a), φ(a′)⟩2⟨φ(z), wi⟩2⟨wi, φ(z′)⟩2
+.
+Since E
+
+w⊗4
+i
+
+=
+3
+(d−1)(d+1)Sym
+
+(P ⊥
+φ(EOS))⊗2
+,
+E
+
+ω2
+a′z′i
+
+≤(d2 −1)−1E
+
+⟨φ(a), φ(a′)⟩2
+E
+hP ⊥
+φ(EOS)φ(z)
+2i2
++ 2E
+
+⟨φ(z), P ⊥
+φ(EOS)φ(z′)⟩2
+≤d−2ρaa′(1 + 2ρzz′).
+Altogether,
+E
+
+γ2
+az
+
+= d2
+d2
+h
+X
+z′∈V(h)
+X
+a′∈Az′
+dh
+X
+i,j=1
+E[ωa′z′iωa′z′j]
+≤
+X
+z′∈V(h)
+X
+a′∈Az′
+dh −1
+dh
+ρaa′ρzz′ + 1
+dh
+ρaa′(1 + 2ρzz′)
+
+= dh + 2
+dh
+X
+a′∈Az
+ρaa′ + d + dh + 1
+ddh
+X
+z′∈V(h)\{z}
+X
+a′∈Az′
+ρaa′
+≤
+dh + 2
+dh
+
+1(a ∈Az) + |Az|
+d
+
++ d + dh + 1
+ddh
+·
+X
+z′∈V(h)\{z}
+ 
+1(a ∈Az′) +
+Az′
+d
+!
+,
+and thus
+Var(γaz) = E
+
+γ2
+az
+
+−d −1
+d
+· 1(a ∈Az)
+≲|Az|
+d
++ 1
+dh
+X
+z′∈V(h)
+ 
+1(a ∈Az′) +
+Az′
+d
+!
+≲maxz∈V(h) |Az|
+d
++
+V(h)
+dh
+,
+since d ≥|Az|, dh ≥
+V(h) Next, since γaz is a degree 6 polynomial, with probability 1 −
+δ
+|V||V(h)|
+27
+we have that
+|γaz −1(a ∈Az)| ≲
+q
+Var(γaz) log6(|V|/δ)
+≲
+s
+maxz∈V(h) |Az| log6(|V|/δ)
+d
++ |V(h)| log6(|V|/δ)
+dh
+≤1
+5.
+Union bounding over all z ∈V(h), a ∈V yields the desired result.
+Let us state the formal version of Theorem 3 which we aim to prove:
+Theorem 10. Assume that d ≳max(R, D) · log6(|V|SR/δ) and Hdh ≳S log6(|V|SR/δ). Then,
+with probability 1 −δ, there exists a single-layer attention-only transformer FTF( · ; θTF) with
+embedding dimension d, number of heads H and head dimension dhsuch that
+Pz1:T +1∼D
+
+arg max
+z∈V φ(z)⊤FTF(X; θTF) = zT+1
+
+= 1.
+Remark.
+When R ≥D, one can obtain an accuracy of 100% whenever the total parameter count
+is
+Hddh ≳SR poly log(|V|SR/δ).
+Proof of Theorem 10. Partition S into the sets S(1), . . . , S(NS) and R into the sets R(1), . . . , R(NR),
+such that
+S(i),
+R(j) ≤M and NS = ⌈S
+M ⌉, NR = ⌈R
+M ⌉.
+Let us choose M so that d ≥dh ≳M log6(|V|/δ). The total number of attention heads is then
+H = NS + NR ≳S log6(|V|/δ)
+dh
+.
+For each i ∈[NS], we construct the attention head i as follows. First, let
+W (i)
+K
+⊤W (i)
+Q = β
+X
+z∈S(i)
+φ(z)φ(EOS)⊤+ β
+2 φ(EOS)φ(EOS)⊤
+for a large constant β. Next, set
+W (i)
+O
+⊤W (i)
+V
+= d
+dh
+X
+z∈S(i)
+X
+a∈Az
+dh
+X
+i=1
+φ(a)φ(z)⊤wiw⊤
+i ,
+for wi sampled uniformly on the sphere, orthogonal to φ(EOS).
+28
+Consider an input sequence (z1, . . . , zT), and let s be the subject token in this sequence. On the
+event that Lemma 1 holds, if s ̸∈S(i), then zt ̸∈S(i), and thus
+φ(zt)⊤W (i)
+K
+⊤W (i)
+Q φ(EOS) < φ(EOS)⊤W (i)
+K
+⊤W (i)
+Q φ(EOS) −β
+2
+for all t < T. As β →∞, the self-attention module fully attends to the EOS token. On the other
+hand, if s ∈S(i), then if zt∗= s we have
+φ(zt)⊤W (i)
+K
+⊤W (i)
+Q φ(EOS) < φ(zt∗)⊤W (i)
+K
+⊤W (i)
+Q φ(EOS) −β
+2
+for all t ̸= t∗. Likewise, as β →∞, the softmax converges to a hardmax on the zt∗token.
+Altogether, we get that
+X⊤S
+
+XW (i)
+K
+⊤W (i)
+Q xT
+
+=
+(
+φ(EOS)
+s ̸∈S(i)
+φ(s)
+s ∈S(i) .
+Next, on the event that Lemma 2 holds, since d ≳R log6(|V|/δ) ≥|As| log6(|V|/δ), we have that
+φ(a)⊤W (i)
+O
+⊤W (i)
+V φ(s) −1(a ∈As)
+ ≤1
+6
+for s ∈S(i). Defining attni := W (i)
+O
+⊤W (i)
+V S
+
+XW (i)
+K
+⊤W (i)
+Q xT
+
+, we have that
+φ(a)⊤attni ∈
+
+
+
+
+
+{0}
+s ̸∈S(i)
+[−1
+5, 1
+5]
+s ∈S(i), a ̸∈As
+[ 4
+5, 6
+5]
+s ∈S(i), a ∈As
+.
+By an identical construction, for each j ∈[NR], with probability 1 −2δ we can construct the
+attention head NS + j such that
+φ(a)⊤attnNS+j ∈
+
+
+
+
+
+{0}
+r ̸∈R(i)
+[−1
+5, 1
+5]
+r ∈R(i), a ̸∈Ar
+[ 4
+5, 6
+5]
+r ∈R(i), a ∈Ar
+,
+as long as d ≳D log6(|V|/δ) ≥|Ar| log6(|V|/δ). Therefore by a union bound, with probability
+1 −2SRδ we have that (where s ∈S(i) and r ∈S(j)
+φ(a)⊤FMHSA(X; θ) =
+NS+NR
+X
+h=1
+φ(a)⊤attnh
+= φ(a)⊤attni +φ(a)⊤attnNS+j
+If a = a∗(s, r), then a ∈As ∩Ar, and thus
+φ(a)⊤FMHSA(X; θ) ≥4
+5 + 4
+5 = 8
+5.
+Otherwise, either φ(a)⊤attni or φ(a)⊤attnNS+j is ≤1
+5 and thus
+φ(a)⊤FMHSA(X; θ) ≥6
+5 + 1
+5 = 7
+5.
+Therefore arg maxa∈V φ(a)⊤FMHSA(X; θ) = a∗(s, r). Replacing 2SRδ with δ yields the desired
+result.
+29
+C.2
+Construction via MLP
+Lemma 3. Let ϵ be a fixed constant. Assume that q in Assumption 3 satisfies q = C2
+ϵ for some
+C2 > 2. Assume that d ≥Sϵ, Rϵ. Define C(a) = |{(s, r) : a∗(s, r) = a}|.
+Let d be odd, and let P, Q be orthogonal ⌊d/2⌋dimensional subspaces of Rd. Define ˜φ(s) =
+ΠPφ(s), ˜φ(r) = ΠQφ(r).
+There exists universal constants C3, C4 such that if
+d ≳(C3 log(|V|/δ)/ϵ)C4/ϵ
+m ≳(C3 log(|V|/δ))C4/ϵ · max
+a
+C(a)
+md ≳(C3 log(|V|/δ))C4/ϵ · SR,
+then with probability 1−δ over the draw of the embeddings there exists a two-layer neural network
+F(z) = P
+i∈[m] viσ(w⊤
+i z) of width m satisfying
+arg max
+a∈V φ(a)⊤F( ˜φ(s) + ˜φ(r)) = a∗(s, r)
+for all s ∈S, r ∈R.
+Proof. For odd integers p, k to be determined later, let us set
+vi = 1
+m
+X
+s,r
+⟨Hep+k(wi), ˜φ(s)⊗p ⊗˜φ(r)⊗k⟩· φ(a∗(s, r)),
+where Hep+k : Rd →(Rd)⊗(p+k) is the Hermite tensor of degree p + k (see Appendix F.1).
+Assume without loss of generality that cp+k := E
+
+σ(p+k)(z)
+
+, the (p + k)th Hermite coefficient of
+σ is positive (the negative case can be handled by negating all the vi in the construction)
+For some (s, r), the margin for some a ̸= a∗(s, r) is
+γsra = ⟨φ(a∗(s, r)) −φ(a), F( ˜φ(s) + ˜φ(r))
+= 1
+m
+X
+i∈[m]
+X
+s′,r′
+σ(⟨wi, ˜φ(s) + ˜φ(r)⟩)⟨Hep+k(wi), φ(s′)⊗p ⊗˜φ(r′)⊗k⟩
+· ⟨φ(a∗(s′, r′)), φ(a∗(s, r)) −φ(a)⟩.
+We first see that
+E[γsra]
+=
+X
+s′r′
+E
+
+σ(⟨wi, ˜φ(s) + ˜φ(r)⟩)⟨Hep+k(wi), φ(s′)⊗p ⊗˜φ(r′)⊗k⟩
+
+· (1(a∗(s, r) = a∗(s′, r′)) −1(a = a∗(s′, r′)))
+=
+X
+s′r′
+E
+
+σ(p+k)(⟨wi, ˜φ(s) + ˜φ(r)⟩)⟨( ˜φ(s) + ˜φ(r))⊗(p+k), φ(s′)⊗p ⊗˜φ(r′)⊗k⟩
+
+· (1(a∗(s, r) = a∗(s′, r′)) −1(a = a∗(s′, r′)))
+30
+If either s′ ̸= s or r ̸= r′, we see that conditioned on ˜φ(s), ˜φ(r), the quantity φ(s′)⊗p ⊗˜φ(r′)⊗k
+is mean zero. Therefore the only nonzero term in the sum is when (s, r) = (s′, r′), and so
+E[γsra] = EZ∼N(0,1)
+
+σ(p+k)
+
+Z
+q
+∥˜φ(s)∥2 + ∥˜φ(r)∥2
+
+· ∥˜φ(s)∥2p∥˜φ(r)∥2k
+
+The quantities ∥˜φ(s)∥2 −1
+2, ∥˜φ(r)∥2 −1
+2 are subexponential random variables with Orlicz norm
+1/d, and therefore we can bound
+E[γsra] −cp+k2−p−k ≲1
+d
+We next compute the variance. Define ωis′r′ by
+ωis′r′ = σ(⟨wi, ˜φ(s) + ˜φ(r)⟩)⟨Hep+k(wi), φ(s′)⊗p ⊗˜φ(r′)⊗k⟩· ⟨φ(a∗(s′, r′)), φ(a∗(s, r)) −φ(a)⟩
+We first observe that E[ωis1r1ωjs2r2] is zero, unless s1 = s2 and r1 = r2. Next, we compute the
+expectation of ωis′r′, conditioned on the embeddings (i.e with respect to the randomness wi):
+E[ωis′r′ | φ]
+= Ewi
+
+σ(p+k)(⟨wi, ˜φ(s) + ˜φ(r)⟩)
+
+· ⟨( ˜φ(s) + ˜φ(r))⊗(p+k), ˜φ(s′)⊗p ⊗˜φ(r′)⊗k⟩
+· ⟨φ(a∗(s′, r′)), φ(a∗(s, r)) −φ(a)⟩
+= EZ∼N(0,1)
+
+σ(p+k)
+
+Z
+q
+∥˜φ(s)∥2 + ∥˜φ(r)∥2
+
+· ⟨˜φ(s), ˜φ(s′)⟩p · ⟨˜φ(r), ˜φ(r′)⟩k · ⟨φ(a∗(s′, r′)), φ(a∗(s, r)) −
+Therefore for i ̸= j,
+E[ωis′r′ωjs′r′] = E
+
+E[ωis′r′ | φ]2
+≲c2
+p+kE
+
+⟨˜φ(s), φ(s′)⟩2p
+E
+
+⟨˜φ(r), ˜φ(r′)⟩2k
+E
+
+⟨φ(a∗(s′, r′)), φ(a∗(s, r)) −φ(a)⟩2
+.
+When (s, r) = (s′, r′), then
+E[ωisrωjsr] = E
+"
+EZ∼N(0,1)
+
+σ(p+k)
+
+Z
+q
+∥˜φ(s)∥2 + ∥˜φ(r)∥2
+2
+∥˜φ(s)∥4p∥˜φ(r)∥4k
+#
+·
+ 1 + d−1
+= c2
+p+k2−2p−2k + O(1/d)
+Next, define the quantities
+ρss′ = E
+
+⟨˜φ(s), ˜φ(s′)⟩2p
+ρrr′ = E
+
+⟨˜φ(r), ˜φ(r′)⟩2k
+ρaa′ = E
+
+⟨φ(a), φ(a′)⟩2
+,
+so that
+E[ωis′r′ωjs′r′] ≲c2
+p+kρss′ρrr′ ρaa∗(s′,r′) + ρa∗(s,r)a∗(s′r′)
+
+.
+31
+We see that for s ̸= s′, r ̸= r′, a ̸= a′,
+ρss′ ≤(2p)p(d/2)−p = (4p)pd−p
+ρrr′ ≤(2k)k(d/2)−k = (4k)kd−k
+ρaa′ ≤d−1
+Next, see that
+E
+
+ω2
+is′r′
+
+= E
+
+σ(⟨wi, ˜φ(s) + ˜φ(r)⟩)2⟨Hep+k(wi), ˜φ(s′)⊗p ⊗˜φ(r′)⊗k⟩2
+E
+
+⟨φ(a∗(s′, r′)), φ(a∗(s, r)) −φ(a)⟩2
+≤E
+
+σ(⟨wi, ˜φ(s) + ˜φ(r)⟩)41/2E
+
+⟨Hep+k(wi), ˜φ(s′)⊗p ⊗˜φ(r′)⊗k⟩41/2 ρaa∗(s′,r′) + ρa∗(s,r)a∗(s′r′)
+
+≤24q ρaa∗(s′,r′) + ρa∗(s,r)a∗(s′r′)
+
+,
+where we have applied Lemma 13 to the first two expectations. Altogether, we have that
+E
+
+γ2
+sra
+
+=
+X
+s′,r′
+m −1
+m
+E[ωis′r′ωjs′r′] + 1
+mE
+
+ω2
+is′r′
+
+= m −1
+m
+E[ωisrωjsr] + m −1
+m
+X
+(s′,r′)̸=(s,r)
+E[ωis′r′ωjs′r′] + 1
+m
+X
+s′,r′
+E
+
+ω2
+is′r′
+
+,
+and thus
+Var(γsra) = E
+
+γ2
+sra
+
+−c2
+p+k
+≲c2
+p+k
+X
+(s′,r′)̸=(s,r)
+ρss′ρrr′ ρaa∗(s′,r′) + ρa∗(s,r)a∗(s′r′)
+
++ 24q
+m
+X
+s′,r′
+ ρaa∗(s′,r′) + ρa∗(s,r)a∗(s′r′)
+
+For the first sum, we can bound
+X
+(s′,r′)̸=(s,r)
+ρss′ρrr′ ρaa∗(s′,r′) + ρa∗(s,r)a∗(s′r′)
+
+≤
+X
+(s′,r′)̸=(s,r)
+ρss′ρrr′
+≤SR · (4p)p(4k)kd−p−k + S(4p)pd−p + R(4k)kd−k
+For the second sum, we get that
+X
+s′,r′
+ ρaa∗(s′,r′) + ρa∗(s,r)a∗(s′r′)
+
+≤C(a) + C(a∗(s, r)) + 2SR
+d
+Altogether,
+Var(γsra)
+E[γsra]2 ≲S(4p)p
+dp
++ R(4k)k
+dk
++ S(4p)p
+dp
+· R(4k)k
+dk
++ 24q(C(a) + C(a∗(s, r)))
+mc2
+p+k
++ 24qSR
+mdc2
+p+k
+.
+32
+Let δ′ be a fixed failure probability. We see that, for p = 2⌈1
+ϵ⌉+ 1
+24q log4q+2(1/δ′)S(4p)p
+dp
+≲2
+4C2
+ϵ log
+4C2
+ϵ +2(1/δ′)(8
+ϵ)2/ϵ
+d
+1
+ϵ
+≲1,
+whenever d ≳(C3 log(1/δ′)/ϵ)C4/ϵ for appropriately chosen constants C3, C4. Likewise, setting
+k = 2⌈1
+ϵ⌉+ 1, we get that
+24q log4q+2(1/δ′)R(4k)k
+dk
+≲1.
+Next, setting m ≳28q+2 log4q+2(1/δ′)c−2
+p+k · maxa C(a) and md ≳28q+2 log4q+2(1/δ′)c−2
+p+kSR
+yields
+24q+2 log4q+2(1/δ′) · 24q(C(a) + C(a∗(s, r)))
+mc2
+p+k
+≲1
+24q+2 log4q+2(1/δ′) · 24qSR
+mdc2
+p+k
+≲1.
+Altogether, by choosing constants appropriately, we get that
+24q+2 log4q+2(1/δ′)e−1 · Var(γsra)
+E[γsra]2 ≤1.
+Therefore by Lemma 14, with probability 1 −δ′ we have that γsra > 0. Union bounding over all
+s, r, a and setting δ′ =
+δ
+SR|V| yields the desired result.
+We next state the formal version of Theorem 4, which we wish to prove:
+Theorem 11. Let ϵ be a fixed constant. Assume that σ is a degree q polynomial, where q = C1/ϵ
+for some C1 > 2. Assume that d ≥Sϵ, Rϵ. Define C(a) = |{(s, r) : a∗(s, r) = a}|.
+Let (d, H, dh, m) satisfy
+d ≳(C2 log(|V|/δ)/ϵ)C3/ϵ
+Hdh ≳(S + R) log (|V|/δ)
+m ≳(C2 log(|V|/δ))C3/ϵ · max
+a
+C(a)
+md ≳(C2 log(|V|/δ))C3/ϵ · SR,
+Then, with probability 1 −δ, there exists a single-layer transformer FTF( · ; θTF) with embedding
+dimension d, number of heads H, head dimension dh, and MLP width m such that
+Pz1:T +1∼D
+
+arg max
+z∈V φ(z)⊤FTF(X; θTF) = zT+1
+
+= 1.
+33
+Remark.
+Ignoring polylog factors, and treating ϵ as a constant, the constraints on the architecture
+size become
+Hdh ≳S + R
+and
+m ≳C(a)
+and
+md ≳SR.
+We first note that C(a) ≤S, and so m ≳S is sufficient. It is possible for C(a) to be much smaller;
+on average we expect C(a) ≈S/D, and we also note that it is possible for C(a) = 1. The main
+constraint is that md ≳SR, i.e that the number of MLP parameters scales linearly with the number
+of facts that need to be stored.
+Proof of Theorem 11. Partition S into the sets S(1), . . . , S(NS) and R into the sets R(1), . . . , R(NR),
+such that
+S(i),
+R(j) ≤M and NS = ⌈S
+M ⌉, NR = ⌈R
+M ⌉. Assume that d = Θ(M log(|V|/δ′))
+Let H = ⌈d/dh⌉. For each i ∈[NS], we construct the H′ attention heads corresponding to
+h ∈{(i −1)H′ + 1, . . . , iH′} as follows. First, for all such h, let
+W (h)
+K
+⊤W (h)
+Q
+= β
+X
+z∈S(i)
+φ(z)φ(EOS)⊤+ β
+2 φ(EOS)φ(EOS)⊤
+for a large constant β. By an identical argument to as in Theorem 3, on the event that Lemma 1
+holds we have that
+X⊤S
+
+XW (h)
+K
+⊤W (h)
+Q xT
+
+=
+(
+φ(EOS)
+s ̸∈S(i)
+φ(s)
+s ∈S(i) .
+The total contribution from these attention heads is then
+iH′
+X
+h=(i−1)H′+1
+W (h)
+O
+⊤attn(X; W (h)
+K , W (h)
+Q , W (h)
+V ) =
+
+
+iH′
+X
+h=(i−1)H′+1
+W (h)
+O
+⊤W (h)
+V
+
+·
+(
+φ(EOS)
+s ̸∈S(i)
+φ(s)
+s ∈S(i)
+Since H′dh ≥d, we can let PiH′
+h=(i−1)H′+1 W (h)
+O
+⊤W (h)
+V
+be a projection onto a ⌈d/2⌉dimensional
+subspace P, orthogonal to φ(EOS), and thus
+iH′
+X
+h=(i−1)H′+1
+W (h)
+O
+⊤attn(X; W (h)
+K , W (h)
+Q , W (h)
+V ) =
+(
+0
+s ̸∈S(i)
+ΠPφ(s)
+s ∈S(i)
+Altogether, if the sequence (z1, . . . , zT) contains the subject s, then
+H′NS
+X
+h=1
+W (h)
+O
+⊤attn(X; W (h)
+K , W (h)
+Q , W (h)
+V ) = ΠPφ(s)
+Similarly, if we let Q be a ⌈d/2⌉dimensional subspace orthogonal to P and φ(EOS), then we can
+construct the attention heads h ∈{H′NS + 1, . . . , H′NS + H′NR} such that
+H′NS+H′NR
+X
+h=H′NS+1
+W (h)
+O
+⊤attn(X; W (h)
+K , W (h)
+Q , W (h)
+V ) = ΠQφ(r),
+34
+where r is the relation in the sequence (z1, . . . , zT). Such a construction exists with probability
+1 −(NS + NR)δ′. The total number of heads is
+H = H′NS + H′NR ∝d(S + R)
+dhM
+∝(S + R) log(|V|/δ′)
+dh
+.
+The output of the self-attention component is then
+FMHSA(X; θ) = ΠPφ(s) + ΠQφ(r) = ˜φ(s) + ˜φ(r).
+On the event that Lemma 3 holds, we have that there exists a two-layer neural network F(z) =
+P
+i∈[m] viσ(w⊤
+i z) of width m such that
+arg max
+a
+φ(a)⊤F(φ(s) + ˜φ(r)) = a∗(s, r).
+Scaling V by a large enough constant ensures that
+arg max
+z∈V φ(z)⊤FTF(X; θTF) = a∗(s, r).
+Union bounding over all the high probability events and setting δ = δ′/(NS + NR + 1) yields the
+desired result.
+D
+Proofs for Section 5
+D.1
+Preliminaries
+Recall that the parameters are θ := {WOV (a, z)}a∈A,z∈V ∪{WKQ(z)}z∈V, and that the cross
+entropy loss is
+L(θ) := Ez1:T +1
+"
+−⟨φ(zT+1), Flin(X; θ)⟩+ log
+ X
+a∈A
+exp (⟨φ(a), Flin(X; θ)⟩)
+!#
+where
+φ(a)⊤Flin(X; θ) =
+T
+X
+t=1
+WOV (a, zt)WKQ(zt).
+We consider running gradient flow:
+˙θ = −∇L(θ)
+from the initialization WOV (a, z) = α, WKQ(z) = α
+p
+|A| + 1 for some α > 0.
+We also define Θ by
+Θ(a, z) = WKQ(z)WOV (a, z),
+and remark that the loss L is convex in Θ.
+35
+Lemma 4 (Balancedness). Let C(z1:T, z) denote the number of tokens in z1:T equal to z. The loss
+gradients are given by
+∂WV O(a,z)L(θ) = −WKQ(z) · Ez1:T [C(z1:T, z) · (1(a = a∗(z1:T)) −ˆp(a | z1:T))]
+∂WKQ(z)L(θ) = −
+X
+a
+WOV (a, z) · Ez1:T [C(z1:T, z) · (1(a = a∗(z1:T)) −ˆp(a | z1:T))]
+As such, the quantity
+WKQ(z)2 −
+X
+a∈A
+WV O(a, z)2
+is constant throughout the gradient flow trajectory.
+Proof. We first see that
+∂WV O(a,z)
+ φ(a′)⊤Flin(X; θ)
+
+= 1(a = a′) · C(z1:T, z) · WKQ(z),
+Similarly,
+∂WKQ(z)
+ φ(a′)⊤Flin(X; θ)
+
+= C(z1:T, z) · WOV (a′, z).
+Therefore
+∂WV O(a,z)L(θ)
+= WKQ(z) · E
+
+−1(zT+1 = a) · C(z1:T, z) +
+P
+a′∈A exp (⟨φ(a′), Flin(X; θ)⟩) · 1(a = a′) · C(z1:T, z)
+P
+a′∈A exp (⟨φ(a′), Flin(X; θ)⟩)
+
+= −WKQ(z) · Ez1:T [C(z1:T, z) · (1(a = a∗(z1:T)) −ˆp(a | z1:T))].
+By a similar computation,
+∂WKQ(z)L(θ)
+= Ez1:T
+"
+−WOV (zT+1, z) · C(z1:T, z) +
+X
+a
+ˆp(a | z1:T)WOV (a, z) · C(z1:T, z)
+#
+= Ez1:T
+"
+C(z1:T, z) ·
+ 
+−WOV (a∗(z1:T), z) +
+X
+a
+ˆp(a | z1:T)WOV (a, z)
+!#
+= −
+X
+a
+WOV (a, z) · Ez1:T [C(z1:T, z) · (1(a = a∗(z1:T)) −ˆp(a | z1:T))].
+36
+Under gradient flow, we see that
+1
+2
+d
+dt
+ 
+WKQ(z)2 −
+X
+a∈A
+WV O(a, z)2
+!
+= WKQ(z) · d
+dtWKQ(z) −
+X
+a∈A
+WV O(a, z) · d
+dtWV O(a, z)
+= −WKQ(z) · ∂WKQ(z)L(θ) +
+X
+a∈A
+WV O(a, z) · ∂WV O(a,z)L(θ)
+= WKQ(z)
+X
+a
+WOV (a, z) · Ez1:T [C(z1:T, z) · (1(a = a∗(z1:T)) −ˆp(a | z1:T))]
+−
+X
+a∈A
+WOV (a, z)WKQ(z) · Ez1:T [C(z1:T, z) · (1(a = a∗(z1:T)) −ˆp(a | z1:T))]
+= 0.
+Corollary 3. Throughout the gradient flow trajectory, WKQ(z) ≥α.
+Proof. At initialization, WKQ(z)2 −P
+a∈A WV O(a, z)2 = α2. Since this quantity is an invariant
+of gradient flow, it is impossible for WKQ(z) = 0, and thus WKQ(z) > 0 throughout the entire
+trajectory. Furthermore,
+WKQ(z)2 =
+X
+a∈A
+WV O(a, z)2 + α2 ≥α2,
+and thus WKQ(z) ≥α.
+D.2
+Proof of Theorem 5
+Proof of Theorem 5. Let us select
+ϵ ≤min
+1
+2αp(s, r)|A|−1T −2|N|−(T−3), 1
+2α|A|−1S−1R−1δ
+
+.
+There exists a time Tϵ such that for all t ≥Tϵ, ∥∇θL(θ(t))∥≤ϵ. Let us set tδ = Tϵ. Now, consider
+some iterate θ := θ(t) for t ≥tδ.
+First, see that for s ∈S,
+∂WOV (a,s)L(θ) = −WKQ(s) · Ez1:T [C(z1:T, z) · (1(a = a∗(z1:T)) −ˆp(a | z1:T))]
+= −WKQ(s) · p(s) · Ez1:T [1(a = a∗(z1:T)) −ˆp(a | z1:T) | s ∈z1:T].
+Consider some a ̸∈As. Then Ez1:T [1(a = a∗(z1:T)) | s ∈z1:T] = 0, and thus
+∂WOV (a,s)L(θ) = WKQ(s) · p(s) · Ez1:T [ˆp(a | z1:T) | s ∈z1:T]
+= WKQ(s)
+X
+r∈R
+p(s, r) · Ez1:T [ˆp(a | z1:T) | s, r ∈z1:T]
+37
+As such, since
+∂WOV (a,s)L(θ)
+ ≤ϵ,
+Ez1:T [ˆp(a | z1:T) | s, r ∈z1:T] ≤ϵα−1p(s, r)−1.
+By an identical argument, since
+∂WOV (a,r)L(θ)
+ ≤ϵ, then for a ̸∈Ar
+Ez1:T [ˆp(a | z1:T) | s, r ∈z1:T] ≤ϵα−1p(s, r)−1.
+For any a ̸= a∗(s, r), either a ̸∈As or a ̸∈Ar. Therefore Ez1:T [ˆp(a | z1:T) | s, r ∈z1:T] ≤
+ϵα−1p(s, r)−1 for all a ̸= a∗(s, r), and thus
+Ez1:T [ˆp(a∗(s, r) | z1:T) | s, r ∈z1:T] ≥1 −ϵα−1p(s, r)−1|A|.
+There are at most T 2|N|T−3 sequences z1:T containing (s, r), each of which occurs with equal
+probability. Therefore
+ˆp(a∗(s, r) | z1:T) ≥1 −T 2|N|T−3 · ϵα−1p(s, r)−1|A|
+for all such z1:T. Then, bounding −log(1 −z) ≤2z for z ∈[0, 1
+2],
+E[−log ˆp(a∗(s, r) | z1:T) | s, r ∈z1:T] ≤2E[1 −ˆp(a∗(s, r) | z1:T)) | s, r ∈z1:T]
+≤2ϵα−1p(s, r)−1|A|.
+Altogether, the loss is
+E[−log ˆp(zT+1 | z1:T)] =
+X
+s,r
+p(s, r) · E[−log ˆp(a∗(s, r) | z1:T) | s, r ∈z1:T]
+≤2ϵα−1|A|SR
+≤δ,
+as desired.
+D.3
+Sequential Learning
+The goal of this section is to show that the model learns sequentially; first, the relation components
+grow, then the subject components grow. This is given formally by Theorem 6
+We first prove that weights corresponding to the subject and noise tokens stay bounded during the
+beginning of the trajectory.
+Lemma 5. For s ∈S,
+WKQ(z) ≤exp(2p(s)t) · α
+p
+|A| + 1.
+Likewise, for z ∈N,
+WKQ(z) ≤exp(2Tt/|N|) · α
+p
+|A| + 1.
+38
+Proof. Recall that the update for WKQ(s) is
+˙WKQ(s) = p(s)⟨WOV (·, s), p∗(· | s) −Ez1:T [ˆp(· | z1:T) | s ∈z1:T]⟩
+≤p(s)∥WOV (·, s)∥∥p∗(· | s) −Ez1:T [ˆp(· | z1:T) | s ∈z1:T]∥
+≤2p(s)∥WOV (·, s)∥
+≤2p(s)WKQ(s)
+Therefore by Gronwall’s inequality,
+WKQ(s) ≤exp(2p(s)t) · α
+p
+|A| + 1.
+Similarly, the update for WKQ(z) for z ∈N is
+˙WKQ(z) = ⟨WOV (·, z), Ez1:T [C(z1:T, z) · (1(· = a∗(z1:T)) −ˆp(· | z1:T))]⟩
+≤∥WOV (·, z)∥· E[C(z1:T, z)∥1(· = a∗(z1:T)) −ˆp(· | z1:T)∥]
+≤2WOV (·, z)E[C(z1:T, z)]
+≤2T
+|N|WKQ(z).
+Again by Gronwall’s inequality,
+WKQ(z) ≤exp(2Tt/|N|) · α
+p
+|A| + 1.
+The following lemma is our key result, and shows that, assuming that the subject and noise weights
+stay bounded, the relation weights grow until the output of the model approximates the best
+relation-only prediction.
+Lemma 6. Let αsm, ϵ > 0 be arbitrary parameters satisfying
+α2
+smT ≤
+1
+150 log
+
+ϵ2
+α2(|A| + 1)
+−1
+· min
+r
+∥p∗(· | r) −p0∥.
+ϵ2 ≤
+1
+50(|A| + 1) · min
+r
+∥p∗(· | r) −p0∥
+For a target accuracy ϵmin > 0, define T ∗by
+T ∗= max
+r
+p(r)−1∥p∗(· | r) −p0∥−1 log
+ 
+ϵ
+α
+p
+|A| + 1
+!
++ 100(|A| + 1) log |A|ϵ−2ϵ−2
+min
+Assume that for z ∈S ∪N that WKQ(z) ≤αsm. Then, there exists t ≤T ∗such that
+X
+r
+p(r)2∥p∗(· | r) −Ez1:T [ˆp(· | z1:T) | r ∈z1:T]∥2 ≤ϵ2
+min.
+Proof. The proof proceeds in three stages. First, we bound the time required for the relation
+weights to escape the origin. Next, we prove that the relation weights stay large. Finally, we show
+convergence.
+39
+Stage 1: Escaping the origin.
+The gradient flow update on WOV (a, r) is
+˙WOV (a, r) = WKQ(r) · p(r)(p∗(a | r) −Ez1:T [ˆp(a | z1:T) | r ∈z1:T])
+We thus have
+ ˙WOV (·, r) −WKQ(r) · p(r)(p∗(· | r) −p0(a))
+ ≤WKQ(r) · p(r)∥Ez1:T [ˆp(· | z1:T) | r ∈z1:T] −p0∥
+Define p0 =
+1
+|A|1A. Observe that
+∥Ez1:T [ˆp(· | z1:T) | r ∈z1:T] −p0∥≤Ez1:T [∥[ˆp(a | z1:T) −p0∥| r ∈z1:T]
+≤Ez1:T
+"X
+t
+WKQ(zt)∥WOV (·, zt)∥| r ∈z1:T
+#
+≤WKQ(r)∥WOV (·, r)∥+ Tα2
+sm
+≤WKQ(r)2 + Tα2
+sm.
+Thus
+ ˙WOV (·, r) −WKQ(r) · p(r)(p∗(· | r) −p0(a))
+ ≤p(r)WKQ(r)
+ WKQ(r)2 + Tα2
+sm
+
+Likewise,
+˙WKQ(r) = p(r)⟨WOV (·, r), (p∗(· | r) −Ez1:T [ˆp(a | z1:T) | r ∈z1:T])⟩,
+and thus
+ ˙WKQ(r) −p(r)⟨WOV (·, r), (p∗(· | r) −p0)⟩
+ ≤p(r)∥WOV (·, r)∥∥Ez1:T [ˆp(· | z1:T) | r ∈z1:T] −p0∥
+≤p(r)WKQ(r)
+ WKQ(r)2 + Tα2
+sm
+
+Define the vector u ∈R2 by
+u =
+"
+WKQ(r)
+⟨WOV (·, r),
+p∗(·|r)−p0
+∥p∗(·|r)−p0∥⟩
+#
+We see that
+ ˙u −p(r)∥p∗(· | r) −p0∥·
+0
+1
+1
+0
+
+u
+ ≤2p(r)WKQ(r)
+ WKQ(r)2 + Tα2
+sm
+
+Therefore
+d
+dt(∥u∥2) ≤2⟨˙u, u⟩
+≤2p(r)∥p∗(· | r) −p0∥∥u∥2 + 4p(r)∥u∥WKQ(r)
+ WKQ(r)2 + Tα2
+sm
+
+≤2p(r)∥p∗(· | r) −p0∥∥u∥2 + 4p(r)∥u∥2 ∥u∥2 + Tα2
+sm
+
+≤2p(r)
+ ∥p∗(· | r) −p0∥+ 2Tα2
+sm
+
+∥u∥2 + 4p(r)∥u∥4.
+40
+where the last inequality bounds W 2
+KQ(r) ≤∥u∥2.
+Define γr := 2p(r)(∥p∗(· | r) −p0∥+ 2Tα2
+sm). By Lemma 7 we have that for
+t < γ−1
+r
+log
+
+γr
+4p(r)∥u0∥2 + 1
+
+,
+∥u∥2 ≤
+γr∥u0∥2 exp(γrt)
+γr + 4p(r)2(1 −exp(γrt))
+Let Tϵ be the first time that ∥u∥≥ϵ. If Tϵ < γ−1
+r
+log
+
+γr
+4p(r)∥u0∥2 + 1
+
+, then
+ϵ2 ≤∥u∥2 ≤
+γr∥u0∥2 exp(γrTϵ)
+γr + 4p(r)2(1 −exp(γrTϵ)) ≤
+γrα2(|A| + 1) exp(γrTϵ)
+γr + 4p(r)2(1 −exp(γrTϵ)).
+Therefore
+Tϵ ≥γ−1
+r
+log
+
+ϵ2γr + 4p(r)ϵ2α2(|A| + 1)
+α2(|A| + 1)γr + 4p(r)ϵ2α2(|A| + 1)
+
+≥γ−1
+r
+log
+
+ϵ2
+2α2(|A| + 1)
+
+for ϵ2 ≤
+γr
+4p(r) On this assumption,
+ϵ2
+2α2(|A|+1) ≤
+γr
+4p(r)∥u0∥2, and thus we always have Tϵ ≥γ−1
+r
+log
+
+ϵ2
+2α2(|A|+1)
+
+.
+Define Lr by
+Lr(θ) := p(r)Ez1:T +1
+"
+−⟨φ(zT+1), Flin(X; θ)⟩+ log
+ X
+a∈A
+exp (⟨φ(a), Flin(X; θ)⟩)
+!
+| r ∈z1:T
+#
+Let us define the relation-only model as
+φ(a)⊤Frel(X; θ) = WOV (a, r)WKQ(r)
+where r ∈z1:T. We see that
+φ(a)⊤Frel(X; θ) −φ(a)⊤Flin(X; θ)
+ ≤(T −1)α2
+sm.
+Define g : R|A| →R by g(z) = log (P
+a exp(za)). We see that ∇zg(z) = S(z), where S is the
+softmax, and thus
+|g(z1) −g(z2)| ≤sup
+z ∥∇zg(z)∥1 · ∥g(z1) −g(z2)∥∞≤∥g(z1) −g(z2)∥∞.
+Therefore defining the relation-only loss ¯Lr as
+¯Lr(θ) := p(r)Es
+"
+−⟨φ(a∗(s, r), Frel(r; θ)⟩+ log
+ X
+a∈A
+exp (⟨φ(a), Flin(r; θ)⟩)
+!#
+= −p(r)
+X
+a
+p(a | r)WOV (a∗(s, r), r)WKQ(r) + p(r) log
+ X
+a∈A
+exp (WOV (a, r)WKQ(r))
+!
+,
+41
+we see that
+Lr(θ) −¯Lr(θ)
+ ≤2(T −1)α2
+sm.
+Since log-sum-exp is 1-strongly-convex, recalling that Θ(a, r) := WOV (a, r)WKQ(r),
+log
+ X
+a
+exp(Θ(a, r))
+!
+≤log(|A|) +
+X
+a
+1
+|A|Θ(a, r) + 1
+2∥Θ(·, r)∥2.
+Therefore
+¯Lr ≤p(r) log |A| −p(r)⟨Θ(·, r), p∗(· | r) −p0⟩+ 1
+2p(r)∥Θ(·, r)∥2
+= Lr,0 −p(r)∥p∗(· | r) −p0∥· u1u2 + 1
+2p(r)∥Θ(·, r)∥2.
+We next track the evolution of u1u2:
+d
+dt(u1u2) = ˙u1u2 + u1 ˙u2
+≥p(r)∥p∗(· | r) −p0∥∥u∥2 −4p(r)∥u∥2 ∥u∥2 + (T −1)α2
+sm
+
+≥p(r)
+ ∥p∗(· | r) −p0∥−4∥u∥2 −4(T −1)α2
+sm
+
+∥u∥2
+≥p(r)
+ ∥p∗(· | r) −p0∥−4Tα2
+sm
+
+∥u∥2 −4p(r)∥u∥4.
+for t ≤Tϵ. Since ∥u∥≤ϵ, this is increasing in ∥u∥.
+We first have the bound ∥u∥2 ≥WKQ(r)2 ≥α2. Next, we have the bound ∥u∥2 ≥2u1u2. Pick
+some time τ ≤Tϵ. Define γ−
+r := 2p(r)(∥p∗(· | r) −p0∥−4Tα2
+sm). We see that
+(u1u2)(τ) ≥
+1
+2γ−
+r α2 −4p(r)α4
+
+τ ≥1
+4γ−
+r α2τ
+Next, by Lemma 7, for t ≤Tϵ we have
+(u1u2)(t) ≥
+γ−
+r (u1u2)(τ) exp(γ−
+r (t −τ))
+γ−
+r + 8p(r)(u1u2)(τ) exp(γ−
+r (t −τ)).
+Plugging in t = γ−1
+r
+log
+
+ϵ2
+2α2(|A|+1)
+
+,
+(u1u2)(τ) exp
+ γ−
+r (t −τ)
+
+≥1
+4γ−
+r α2τ exp
+ −γ−
+r τ
+
+· exp
+γ−
+r
+γr
+log
+
+ϵ2
+2α2(|A| + 1)
+
+42
+Selecting τ = 1/γ−
+r , we get
+(u1u2)(τ) exp
+ γ−
+r (t −τ)
+
+≥α2
+4e · exp
+∥p∗(· | r) −p0∥−4Tα2
+sm
+∥p∗(· | r) −p0∥+ 2Tα2
+sm
+log
+
+ϵ2
+2α2(|A| + 1)
+
+≥α2
+4e ·
+ϵ2
+2α2(|A| + 1) · exp
+
+−6Tα2
+sm
+∥p∗(· | r) −p0∥+ 2Tα2
+sm
+log
+
+ϵ2
+2α2(|A| + 1)
+
+≥α2
+4e ·
+ϵ2
+2α2(|A| + 1) ·
+
+1 −
+6Tα2
+sm
+∥p∗(· | r) −p0∥+ 2Tα2
+sm
+log
+
+ϵ2
+2α2(|A| + 1)
+
+≥
+ϵ2
+50(|A| + 1).
+whenever
+Tα2
+sm
+∥p∗(·|r)−p0∥+2Tα2sm log
+
+ϵ2
+α2(|A|+1)
+
+≤
+1
+150.
+Therefore
+(u1u2)(t) ≥
+ϵ2
+50(|A| + 1) ·
+1
+1 + 8p(r)
+γ−
+r
+ϵ2
+50(|A|+1)
+≥
+ϵ2
+50(|A| + 1) ·
+1
+1 +
+4ϵ2
+∥p∗(·|r)−p0∥50(|A|+1)
+≥
+ϵ2
+100(|A| + 1),
+Altogether, we get that the loss is
+¯Lr ≤Lr,0 −p(r)∥p∗(· | r) −p0∥·
+ϵ2
+100(|A| + 1) + 1
+2p(r)ϵ4
+≤Lr,0 −p(r)∥p∗(· | r) −p0∥·
+ϵ2
+200(|A| + 1)
+whenever ϵ2 ≤∥p∗(·|r)−p0∥
+100(|A|+1) .
+Stage 2: Norm stays large
+Next, we want to show that WKQ(r) stays large. We first show that
+the relation-only loss ¯L is decreasing. We can compute that
+d
+dt
+¯Lr(θ) = ⟨∇θ ¯Lr, ∇θLr⟩
+Define ˆp(· | r) by
+ˆp(a | r) =
+exp(WKQ(r)WOV (a, r))
+P
+a′ exp(WKQ(r)WOV (a′, r)).
+We observe that
+∂WOV (·,r) ¯Lr = WKQ(r)p(r)(p∗(· | r) −ˆp(· | r))
+∂WOV (·,r)Lr = WKQ(r)p(r)(p∗(· | r) −Ez1:T [ˆp(· | z1:T) | r ∈z1:T])
+43
+and thus
+∂WOV (·,r) ¯Lr −∂WOV (·,r)Lr
+ ≤WKQ(r)p(r)∥Ez1:T [ˆp(· | z1:T) | r ∈z1:T] −ˆp(· | r)∥
+≤WKQ(r)p(r)Tα2
+sm.
+Likewise,
+∂WKQ(r) ¯Lr −∂WKQ(r)Lr
+ = p(r)|⟨WOV (·, r), Ez1:T [ˆp(· | z1:T) | r ∈z1:T] −ˆp(· | r)⟩|
+≤p(r)∥WOV (·, r)∥∥Ez1:T [ˆp(· | z1:T) | r ∈z1:T] −ˆp(· | r)∥
+≤WKQ(r)p(r)Tα2
+sm.
+Therefore
+d
+dtLr(θ) ≥
+∇θ ¯Lr
+2 −
+∇θ ¯Lr
+∇θ ¯Lr −∇θLr
+
+≥
+∇θ ¯Lr
+2 −
+∇θ ¯Lr
+√
+2WKQ(r)p(r)Tα2
+sm.
+Assume that d
+dtLr(θ) < 0. Then
+√
+2WKQ(r)p(r)Tα2
+sm ≥
+∇θ ¯Lr
+ ≥WKQ(r)p(r)∥p∗(· | r) −ˆp(· | r)∥,
+i.e
+∥p∗(· | r) −ˆp(· | r)∥≤
+√
+2Tα2
+sm.
+Assuming that
+√
+2Tα2
+sm <
+1
+2S, since p∗(a | r) > 1
+S for p ∗(a | r) > 0 we have that
+p∗(a | r) log p∗(a | r)
+ˆp(a | r)
+ = p∗(a | r)
+log
+
+1 + ˆp(a | r) −p∗(a | r)
+p∗(a | r)
+ ≤2|ˆp(a | r) −p∗(a | r)|
+Therefore ¯Lr −p(r)H(p∗(· | r)) ≤2p(r)∥ˆp(· | r) −p∗(· | r)∥1 ≤
+√
+2Tα2
+smD. As such, we have
+that ¯Lr stays below Lr,0 −p(r)∥p∗(· | r) −p0∥·
+ϵ2
+200(|A|+1) for the remainder of the gradient flow
+trajectory.
+By convexity in Θ space,
+Lr,0 −¯Lr(Θ) ≤−⟨∇Θ(·,r) ¯L(0), Θ(·, r)⟩
+≤
+∇Θ(·,r) ¯L(0)
+∥Θ(·, r)∥
+≤p(r) · ∥p∗(· | r) −p0∥· ∥Θ(·, r)∥.
+Therefore
+∥Θ(·, r)∥≥
+ϵ2
+100(|A| + 1)
+44
+Stage 3: Convergence.
+Next, we can bound the loss decrease by
+d
+dtL(θ) = −∥∇θL∥2
+≤−
+X
+r
+∂WOV (·,r)L
+2
+= −
+X
+r
+∂WOV (·,r)Lr
+2
+= −
+X
+r
+WKQ(r)2p(r)2∥p∗(· | r) −Ez1:T [ˆp(· | z1:T) | r ∈z1:T]∥
+≤−
+X
+r
+∥Θ(·, r)∥p(r)2∥p∗(· | r) −Ez1:T [ˆp(· | z1:T) | r ∈z1:T]∥2
+≤−
+ϵ2
+200(|A| + 1)
+X
+r
+p(r)2∥p∗(· | r) −Ez1:T [ˆp(· | z1:T) | r ∈z1:T]∥2
+Since L(Θ) ≤L(Θ0) = log |A|, and L(Θ) ≥0, there exists some t ≤maxr t∗+ 100(|A| +
+1) log |A|ϵ−2ϵ−2
+min such that
+X
+r
+p(r)2∥p∗(· | r) −Ez1:T [ˆp(· | z1:T) | r ∈z1:T]∥2 ≤ϵ2
+min,
+as desired.
+To conclude, we must set α, αsm, T ∗appropriately in terms of ϵ in order to apply Lemma 6.
+Proof of Theorem 6. Let ϵ = ϵmin ≤
+1
+100(|A|+1) · minr ∥p∗(· | r) −p0∥be the target accuracy. Let
+us choose the initialization α so that log
+
+ϵ
+α√
+|A|+1
+
+= ι, where ι is chosen so that
+ι ≥100(|A| + 1) log |A|ϵ−4p(r)∥p∗(· | r) −p0∥.
+In this case, we see that
+T ∗≤2ι max
+r
+ p(r)−1∥p∗(· | r) −p0∥−1
+.
+Since p∗(· | r) is supported on at most D elements, and |A| ≥2D, we have ∥p∗(· | r) −p0∥−1 ≤
+√
+2D. Therefore T ∗≤2R
+√
+D · ι. Let us compute αsm. We see that, since S ≥8R
+√
+2D,
+WKQ(s) ≤exp
+ 
+4R
+√
+D
+S
+ι
+!
+· α
+p
+|A| + 1
+≤exp
+1
+2ι
+
+α
+p
+|A| + 1
+= √ϵα · (|A| + 1)1/4
+≤√α
+45
+Similarly, since N ≥4R
+√
+2DT,
+WKQ(s) ≤exp
+ 
+4R
+√
+DT
+|N|
+ι
+!
+· α
+p
+|A| + 1
+≤exp
+1
+2ι
+
+α
+p
+|A| + 1
+≤√α
+Therefore the assumption holds for αsm = √α. To conclude, we must verify that
+Tα ≤
+1
+300ι−1 · min
+r
+∥p∗(· | r) −p0∥.
+But since α =
+ϵ
+√
+|A|+1e−ι, the RHS scales with e−ι and the RHS scales with ι, and thus the
+condition can be obtained for choosing ι sufficiently large.
+Under the setting of paramters the conditions of Lemma 6 are satisfied, and thus the claim holds.
+D.4
+Helper Lemma
+Lemma 7. Let z(t) ≥0 satisfy
+˙z ≤Az + Bz2.
+for positive constants A, B. Then
+z(t) ≤
+Az(0)eAt
+A + Bz(0)(1 −eAt).
+Furthermore, if
+˙z ≥Az −Bz2,
+and z ∈[0, A
+2B] on the interval [0, T], then
+z(t) ≥
+Az(0)eAt
+A + Bz(0)(eAt −1).
+for all t ∈[0, T].
+Both claims follow from the Bihari-LaSalle inequality.
+E
+Proofs from Section 6
+E.1
+Associative Memories
+Proof of Theorem 7. f ∗→F →ˆf is a Markov chain, so by the data processing inequality,
+I(f ∗; ˆf) ≤I(f ∗; F ).
+46
+Also, by definition of mutual information
+I(f ∗; F ) ≤H(F ) ≤B,
+where the last inequality follows since F is an B-bit message. Thus I(f ∗; ˆf) ≤B.
+Let qx(· | ˆf) be the conditional distribution of f ∗(x) given ˆf. Consider some fixed ˆf. ˆf(x) is also
+a probability distribution over [M], and thus by Gibbs’ inequality
+Ey∼qx(·| ˆf)
+h
+−log ˆf(x)y
+i
+≥Ey∼qx(·| ˆf)
+h
+−log qx(y | ˆf)
+i
+.
+Therefore, letting q be the marginal distribution over ˆf and qx the marginal over f ∗(x),
+Ef∗, ˆf
+h
+−log ˆf(x)f∗(x)
+i
+= E ˆf
+h
+Ey∼qx(·| ˆf)
+h
+−log ˆf(x)y
+ii
+≥E ˆf
+h
+Ey∼qx(·| ˆf)
+h
+−log qx(y | ˆf)
+ii
+= Ef∗, ˆf
+h
+−log qx(f ∗(x) | ˆf)
+i
+= Ef∗, ˆf
+"
+−log qx(f ∗(x), ˆf)
+q( ˆf)qx(f ∗(x))
+−log qx(f ∗(x))
+#
+= −I(f ∗(x); ˆf) + log M.
+where in the last step we use the fact that qx is uniform over [M], and plug in the definition of
+mutual information. The total loss is thus
+Ef∗, ˆf
+h
+L( ˆf)
+i
+≥
+X
+x∈[N]
+p(x)
+
+−I(f ∗(x); ˆf) + log M
+
+.
+(22)
+Since the yi are independent,
+B ≥I(f ∗; ˆf) ≥
+X
+x∈[N]
+I(f ∗(x); ˆf).
+Also, 0 ≤I(f ∗(x); ˆf) ≤H(f ∗(x)) = log M. Therefore equation 22 is minimized when I(f ∗(x); ˆf) =
+log M for the B/ log M most frequent tokens. Altogether,
+Ef∗, ˆf
+h
+L( ˆf)
+i
+≥log M ·
+X
+x>⌈
+B
+log M ⌉
+p(x).
+Proof of Corollary 1. Let p(x) = Zαx−α, where Zα = P
+x∈[N] x−α. We can bound
+n
+X
+x=k
+p(x) =
+Pn
+x=k x−α
+Pn
+x=1 x−α ≍k1−α.
+Therefore
+Ef∗, ˆf
+h
+L( ˆf)
+i
+≥log M ·
+X
+x>⌈
+B
+log M ⌉
+p(x) ≳log M
+
+B
+log M
+1−α
+≳B1−α.
+47
+E.2
+Factual Recall
+Proof. Define ℓ(s, r) := ED, ˆf
+h
+−log ˆf(s, r)a∗(s,r)
+i
+so that
+L = p(s, r) · ℓ(s, r).
+Let us define the expanded dataset D := {Ar}r∈R ∪{a∗(s, r)}s∈S,r∈R. We observe that D →
+a∗→F →ˆf is a Markov chain, and thus by the data processing inequality
+B ≥I(D; ˆf).
+Next, by the chain rule, we can decompose
+I(D; ˆf) = I(A1, . . . , AR; ˆf) + I(a∗; ˆf | A1, . . . , AR)
+≥I(A1, . . . , AR; ˆf) +
+X
+s,r
+I(a∗(s, r); ˆf | A1, . . . , AR)
+= I(A1, . . . , AR; ˆf) +
+X
+s,r
+I(a∗(s, r); ˆf | Ar),
+where the first inequality uses the fact that the a∗(s, r) are conditionally independent given the Ar,
+and the second uses that a∗(s, r) is independent of Ar′ given Ar, for r ̸= r′.
+We can decompose the first mutual information term, using the fact that the Ar are nearly indepen-
+dent:
+Lemma 8. Assume that |V| ≥2RD. Then
+I(A1, . . . , AR; ˆf) ≥
+X
+r
+I(Ar; ˆf) −2R2D2
+|V|
+.
+We next relate I(Ar; ˆf) to the loss. The intuition for this lemma is that for a fixed r the quantity
+P
+s ℓ(s, r) is small, then the predictor ˆf must contain information about the answer set Ar.
+Lemma 9. Assume that |V| ≥2D. Define η := C
+q
+D
+S log(2D2 log |V|) for a sufficiently large
+constant C, and assume that η ≤1. Then
+I(Ar; ˆf) ≥−(1 + η)D
+S ·
+X
+s∈[S]
+ℓ(s, r) + D log |V|
+D −2D log |V|
+|V|
+−2D2
+|V| −ηD −1
+|
+{z
+}
+lower order term
+Finally, we relate I(a∗(s, r); ˆf | Ar) to the loss. Similarly, the intuition for this lemma is that if the
+loss ℓ(s, r) is small, then ˆf must contain information about the true association a∗(s, r).
+Lemma 10. For all s, r,
+I(a∗(s, r); ˆf | Ar) ≥log D −ℓ(s, r).
+48
+The proofs for Lemmas 8 to 10 are deferred to Appendix E.3.
+Combining Lemmas 8 to 10, we get
+B ≥I(A1, . . . , AR; ˆf) +
+X
+s,r
+I(a∗(s, r); ˆf | Ar)
+= −(1 + η)D
+S
+X
+s,r
+ℓ(s, r) + RD log |V|
+D −2RD log |V|
+|V|
+−2RD2
+|V|
+−ηRD −R −2R2D2
+|V|
+|
+{z
+}
+lower order term
++ SR log D −
+X
+s,r
+ℓ(s, r)
+= −
+
+(1 + η)D
+S + 1
+ X
+s,r
+ℓ(s, r) + SR log D + RD log |V|
+D −εlot,
+where εlot := 2RD log |V|
+|V|
++ 2RD2
+|V| + ηRD + R + 2R2D2
+|V|
+≪RD log |V|
+D is a lower order term.
+Altogether, we see that in order for all the losses ℓ(s, r) to equal zero, we require
+B ≥SR log D + RD log |V|
+D −ϵlot ≥SR log D + (1 −c)RD log |V|
+D
+Furthermore, when p(s, r) =
+1
+RS, then L =
+1
+SR
+P
+s,r ℓ(s, r), and the bound becomes
+B ≥−((1 + η)RD + RS) · L + SR log D + RD log |V|
+D −εlot
+−((1 + c)RD + RS) · L + SR log D + (1 −c)RD log |V|
+D .
+E.3
+Auxiliary Lemmas
+Lemma 11. For random variables X, Y, Z,
+I(X, Y ; Z) ≥I(X; Z) + I(Y ; Z) −I(X; Y )
+Proof. By standard properties of mutual information:
+I(X, Y ; Z) −I(X; Z) −I(Y ; Z)
+= H(X, Y ) −H(X, Y | Z) −H(X) + H(X | Z) −H(Y ) + H(Y | Z)
+= I(X; Y | Z) −I(X; Y )
+≥−I(X; Y ).
+49
+Proof of Lemma 8. By Lemma 11,
+I(A1, . . . , AR; ˆf) ≥
+X
+r
+I(Ar; ˆf) −
+X
+r
+I(Ar; A1, . . . , Ar−1)
+=
+X
+r
+I(Ar; ˆf) −
+ X
+r
+H(Ar) + H(A1, . . . , Ar−1) −H(A1, . . . , Ar)
+!
+=
+X
+r
+I(Ar; ˆf) −
+X
+r
+H(Ar) + H(A1, . . . , AR).
+Since each Ar is a uniformly random subset of V, we have H(Ar) = log
+ |V|
+D
+
+. Also, we can bound
+H(A1, . . . , AR) = log
+|V|
+D
+|V| −D
+D
+
+· · ·
+|V| −(R −1)D
+D
+
+.
+Thus
+X
+r
+H(Ar) −H(A1, . . . , AR) ≤R log
+ |V|
+D
+
+ |V|−(R−1)D
+D
+
+= R log
+|V|!(|V| −RD)!
+(|V| −D)!(|V| −(R −1)D)!
+≤RD log
+|V|
+|V| −RD
+≤2R2D2
+|V|
+,
+where we used the bound log
+1
+1−x ≤2x on (0, 1
+2). Plugging in yields the desired bound.
+Proof of Lemma 9. Let (z1, . . . , zD) be a random permutation of Ar. We first aim to relate I(A; ˆf)
+to I(zi; ˆf). By the data processing inequality,
+I(Ar; ˆf) ≥I(z1, . . . , zD; ˆf).
+By Lemma 11,
+I(z1, . . . , zD; ˆf) ≥
+X
+i
+I(zi; ˆf) −
+X
+i
+I(zi; z1, . . . , zi−1)
+=
+X
+i
+I(zi; ˆf) −
+X
+i
+H(zi) + H(z1, . . . , zD).
+The tuple (z1, . . . , zD) is chosen uniformly at random from VD, conditioned on all the zi being
+distinct. Therefore H(zi) = log |V|, and H(z1, . . . , zD) = log (|V| · · · (|V| −D + 1)). Thus
+X
+i
+H(zi) −H(z1, . . . , zD) = log
+ 
+|V|D
+|V| · · · (|V| −D + 1)
+!
+≤D log
+|V|
+|V| −D
+≤2D2
+|V| .
+50
+Altogether,
+I(Ar; ˆf) ≥
+X
+i
+I(zi; ˆf) −2D2
+|V| .
+Next, using the definition of mutual information and Gibbs’ inequality,
+I(zi; ˆf) = Ezi, ˆf
+"
+log P(zi | ˆf)
+P(zi)
+#
+≥Ezi, ˆf
+"
+log q(zi | ˆf)
+P(zi)
+#
+for any probability distribution q. Let us define q as follows. First, define ˜f(s, r) := (1−ϵ) ˆf(s, r)+
+ϵ
+|V|1 ∈∆V, for a small constant ϵ to be chosen later. Next, define
+q(z | ˆf) := 1
+S
+X
+s
+˜f(s, r)z.
+Plugging in, and observing that P(zi) =
+1
+|V|, we get that
+I(zi; ˆf) ≥Ezi, ˆf
+"
+log
+ 
+1
+S
+X
+s
+˜f(s, r)zi
+!#
++ log |V|.
+Define Nz := {s : a∗(s, r) = z}. Let E be the event that |Nz| ≥M for all z ∈A. On the event E,
+we can bound
+log
+ 
+1
+S
+X
+s
+˜f(s, r)zi
+!
+≥log
+
+1
+S
+X
+s∈Nzi
+˜f(s, r)a∗(s,r)
+
+
+= log
+
+
+1
+|Nzi|
+X
+s∈Nzi
+˜f(s, r)a∗(s,r)
+
++ log |Nzi|
+S
+≥
+1
+|Nzi|
+X
+s∈Nzi
+log ˜f(s, r)a∗(s,r) + log |Nzi|
+S
+≥1
+M
+X
+s∈Nzi
+log ˜f(s, r)a∗(s,r) + log M
+S .
+Thus
+X
+i∈[D]
+log
+ 
+1
+S
+X
+s
+˜f(s, r)zi
+!
+≥1
+M
+X
+i∈[D]
+X
+s∈Nzi
+log ˜f(s, r)a∗(s,r) + D log M
+S
+= 1
+M
+X
+s∈[S]
+log ˜f(s, r)a∗(s,r) + D log M
+S
+≥1 −ϵ
+M
+X
+s∈[S]
+log ˆf(s, r)a∗(s,r) −Sϵ
+M log |V| + D log M
+S .
+51
+On E, we have the naive bound
+X
+i∈[D]
+log
+ 
+1
+S
+X
+s
+˜f(s, r)zi
+!
+≥D log ϵ
+|V|.
+Altogether, we have
+X
+i∈[D]
+I(zi; ˆf)
+≥Ezi, ˆf
+
+X
+i∈[D]
+log
+ 
+1
+S
+X
+s
+˜f(s, r)zi
+!
++ D log |V|
+≥Ezi, ˆf
+
+1(E) ·
+
+1 −ϵ
+M
+X
+s∈[S]
+log ˆf(s, r)a∗(s,r) −Sϵ
+M log |V| + D log M
+S
+
+
+
+
++ P(E) · D log ϵ
+|V| + D log |V|
+≥1
+M Ezi, ˆf
+
+X
+s∈[S]
+log ˆf(s, r)a∗(s,r)
+
+−Sϵ
+M log |V| + D log M
+S + P(E) · D log ϵ
+|V| + D log |V|
+= −1
+M ·
+X
+s∈[S]
+ℓ(s, r) −Sϵ
+M log |V| + D log M
+S + P(E) · D log ϵ
+|V| + D log |V|
+By Bernstein’s inequality and a union bound (a similar such concentration argument was used in
+the lower bound proof in Allen-Zhu and Li [2]), there exists a constant C such that P(E) ≥1 −δ
+for
+M = S
+D −C
+r
+S
+D log(D/δ),
+as long as S ≥D log(D/δ). Set ϵ =
+1
+|V|, δ =
+1
+2D log |V|, and define η := 2C
+q
+D
+S log(2D2 log |V|) ≤
+1. We have that
+M
+S = 1
+D
+ 
+1 −C
+r
+D
+S log(D/δ)
+!
+= 1
+D
+
+1 −η
+2
+
+,
+and thus
+S
+M =
+D
+1 −η/2 ≤D(1 + η).
+Therefore
+X
+i∈[D]
+I(zi; ˆf) ≥−(1 + η)D
+S ·
+X
+s∈[S]
+ℓ(s, r) −(1 + η)D log |V|
+|V|
++ D log |V|
+D + D log(1 −η/2) −1
+≥−(1 + η)D
+S ·
+X
+s∈[S]
+ℓ(s, r) + D log |V|
+D −2D log |V|
+|V|
+−ηD −1.
+52
+Altogether, we have
+I(Ar; ˆf) ≥
+X
+i
+I(zi; ˆf) −2D2
+|V|
+≥−(1 + η)D
+S ·
+X
+s∈[S]
+ℓ(s, r) + D log |V|
+D −2D log |V|
+|V|
+−2D2
+|V| −ηD −1,
+as desired.
+Proof of Lemma 10. By the definition of mutual information and Gibbs’ inequality,
+I(a∗(s, r); ˆf | Ar) = EAr
+"
+Ea∗(s,r), ˆf|Ar
+"
+log P(a∗(s, r) | ˆf, Ar)
+P(a∗(s, r) | Ar)
+##
+= EAr
+h
+Ea∗(s,r), ˆf|Ar
+h
+log P(a∗(s, r) | ˆf, Ar)
+ii
++ log D
+≥EAr
+h
+Ea∗(s,r), ˆf|Ar
+h
+log q(a∗(s, r) | ˆf, Ar)
+ii
++ log D
+where q(· | ˆf, Ar) is any distribution over V. Let us define q to be
+q(a | ˆf, Ar) ∝ˆf(s, r)a · 1(a ∈Ar)
+Since a∗(s, r) ∈Ar always, we have that q(a∗(s, r) | ˆf, Ar) ≥ˆf(s, r)a∗(s,r), and thus
+I(a∗(s, r); ˆf | Ar) ≥EAr
+h
+Ea∗(s,r), ˆf|Ar
+h
+log ˆf(s, r)a∗(s,r)
+ii
++ log D
+= ED
+h
+log ˆf(s, r)a∗(s,r)
+i
++ log D
+= log D −ℓ(s, r).
+F
+Technical Lemmas
+Lemma 12. Let u, v be drawn uniformly over the d-dimensional sphere of radius 1. Then
+E
+
+⟨u, v⟩2p
+≤(2p)pd−p
+Lemma 13 (Hypercontractivity for product distributions). Let f : (Sd−1)k × Rm →R be a poly-
+nomial of total degree at most p. Then
+∥f∥Lq(ν⊗k
+d
+⊗µm) ≤(q −1)p/2∥f∥L2(ν⊗k⊗µm),
+where νd is the uniform distribution over the sphere Sd−1, and µm is the standard Gaussian in m
+dimensions.
+53
+Hypercontractivity for the Boolean hypercube (which implies hypercontractivity for Gaussian
+space) and for the sphere are consequences of Beckner [3, 4]. To show Lemma 13, one can use
+similar techniques to the proof of Corollary 12 in Montanaro [37].
+Lemma 14. Let f : (Sd−1)k × Rm →R be a polynomial of total degree at most p. Assume that
+Ef ≥0, where the expectation is taken with respect to ν⊗k
+d
+⊗µm. Then if
+2pe−1 logp(1/δ)Var(f)
+(Ef)2
+≤1,
+f ≤0 with probability at most δ.
+Proof. By Markov’s inequality,
+P(f ≤0) ≤P(|f −Ef| ≥Ef)
+≤P(|f −Ef|q ≥(Ef)q)
+≤E[|f −Ef|q]
+(Ef)q
+.
+Since f is a degree p polynomial, by Lemma 13 we have that
+E[|f −Ef|q]1/q ≤qp/2Var(f)1/2.
+Therefore
+P(f ≤0) ≤
+qpVar(f)
+(Ef)2
+q/2
+.
+Setting q = 2 log(1/δ), we see that whenever
+2pe−1 logp(1/δ)Var(f)
+(Ef)2
+≤1,
+we have
+P(f ≤0) ≤
+qpVar(f)
+(Ef)2
+q/2
+≤δ,
+as desired.
+F.1
+Hermite Polynomials
+Let µ be the standard Gaussian in 1 dimension, and let L2(µ) be the function space of square-
+integrable functions with respect to this Gaussian measure. The Hermite polynomials {hk}k≥0
+form an orthonormal basis of L2(µ). In particular, hk is a degree k polynomial, satisfying
+⟨hi, hk⟩L2(µ) = δij.
+One useful property of Hermite polynomials is the following:
+54
+Lemma 15. Let u, w ∈Rd with ∥u∥= ∥w∥= 1, and let x ∼N(0, Id). Then
+Ex[hk(⟨u, x⟩)hk(⟨w, x⟩)] = ⟨u, w⟩k.
+Next, let µd be the standard Gaussian in d dimensions. The function space L2(µd) has an orthonor-
+mal basis of Hermite tensors {Hek}k≥0, where Hek : Rm →
+ Rd⊗k:
+Definition 1. Let the kth Hermite tensor Hek : Rm →
+ Rd⊗k be defined as
+Hek(x) = (−1)k ∇kµd(x)
+µd(x) ,
+where µm(x) = (2π)−d/2 exp
+ −1
+2∥x∥2
+is the Gaussian density. We remark that each entry of
+Hek(x) is a degree k polynomial in x, and
+The Hermite tensors satisfy the following useful properties:
+Lemma 16 (Properties of Hermite Tensors).
+• (Connection to Hermite Polynomials) If w ∈Rd, ∥w∥= 1, then
+hk(⟨w, x⟩) = ⟨Hek(x), w⊗k⟩
+• (Stein’s Lemma) For x ∼N(0, Id), f ∈L2(µd),
+Ex[f(x)Hek(x)] = Ex
+
+∇kf(x)
+
+.
+55

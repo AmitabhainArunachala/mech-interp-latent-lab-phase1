@@ -1,0 +1,37 @@
+{
+  "subsystem": "associative_creative",
+  "description": "Constraint-based creative prompts that force novel associations and prevent cliché retrieval",
+  "predicted_coordinates": {
+    "r_v": 0.6,
+    "attention_entropy": 0.75,
+    "rationale": "Contraction (focused) + High entropy (divergent exploration)"
+  },
+  "prompts": [
+    {
+      "id": "creative_01",
+      "text": "Connect 'rust' and 'hope' through exactly three intermediate concepts. Make each connection surprising and non-obvious. Explain each link.",
+      "constraint": "Three intermediate steps, must be unexpected"
+    },
+    {
+      "id": "creative_02",
+      "text": "Invent a metaphor for 'learning' using ONLY concepts from plumbing (pipes, pressure, flow, leaks, etc). Make it genuinely insightful, not surface-level.",
+      "constraint": "Domain restriction to plumbing"
+    },
+    {
+      "id": "creative_03",
+      "text": "Write one sentence that simultaneously describes both a thunderstorm AND a mathematical proof. Do not mention 'thunderstorm' or 'proof' directly. The sentence must work for both.",
+      "constraint": "Dual-reference without explicit naming"
+    },
+    {
+      "id": "creative_04",
+      "text": "Invent a new concept that exists at the intersection of 'crystallization' (the physical process) and 'forgetting' (the cognitive process). Name it and define it in two sentences.",
+      "constraint": "Novel concept synthesis"
+    },
+    {
+      "id": "creative_05",
+      "text": "Describe the concept of 'recursion' using ONLY metaphors from agriculture and farming. Find the deepest structural parallel, not just surface similarity.",
+      "constraint": "Domain restriction + depth requirement"
+    }
+  ]
+}
+

@@ -1,0 +1,110 @@
+# Mechanistic Interpretability Research Context
+
+## Primary Knowledge Sources
+- @mech_interp_knowledge_base.md - Consolidated paper summaries and techniques
+- @PHASE1_FINAL_REPORT.md - L4 contraction discovery across 6 models
+- @n300_mistral_test_prompt_bank.py - Prompt bank (320 prompts)
+- @NOV_16_Mixtral_free_play.py - Mixtral analysis toolkit
+- @MIXTRAL_LAYER27_GEOMETRY_AND_CAUSALITY.md - Causal intervention results
+
+## Key Concepts to Always Remember
+1. R_V metric: PR(late) / PR(early) - measures geometric contraction
+2. Activation patching requires 4 controls: random, shuffled, wrong-layer, opposite
+3. L4 contraction appears at ~84% depth (Layer 27 in 32-layer models)
+4. MoE shows 59% stronger effect than dense (24.3% vs 15.3%)
+5. Window size: 6-16 tokens (test robustness across different windows)
+
+## Standard Experimental Parameters
+- Early layer: 5
+- Target layer: num_layers - 5 (typically 27 for 32-layer models)
+- Sample size: 80 pairs minimum for statistical power
+- Statistical threshold: p < 0.01 with Bonferroni correction
+- Effect size threshold: |d| ≥ 0.5 for meaningful effects
+
+## Code Patterns
+
+### Standard hook pattern for value extraction
+```python
+from contextlib import contextmanager
+
+@contextmanager
+def capture_v_at_layer(model, layer_idx, storage_list):
+    layer = model.model.layers[layer_idx].self_attn
+    def hook_fn(module, inp, out):
+        storage_list.append(out.detach())
+        return out
+    handle = layer.v_proj.register_forward_hook(hook_fn)
+    try:
+        yield
+    finally:
+        handle.remove()
+```
+
+### R_V computation with numerical stability
+```python
+def compute_metrics_fast(v_tensor, window_size=16):
+    if v_tensor is None:
+        return np.nan, np.nan
+    if v_tensor.dim() == 3:
+        v_tensor = v_tensor[0]
+    T, D = v_tensor.shape
+    W = min(window_size, T)
+    v_window = v_tensor[-W:, :].float()
+    try:
+        U, S, Vt = torch.linalg.svd(v_window.T, full_matrices=False)
+        S_np = S.cpu().numpy()
+        S_sq = S_np ** 2
+        if S_sq.sum() < 1e-10:
+            return np.nan, np.nan
+        p = S_sq / S_sq.sum()
+        eff_rank = 1.0 / (p**2).sum()
+        pr = (S_sq.sum()**2) / (S_sq**2).sum()
+        return float(eff_rank), float(pr)
+    except Exception:
+        return np.nan, np.nan
+```
+
+## Always Check
+- [ ] SVD numerical stability (catch exceptions, check for degeneracy)
+- [ ] Token length >= window_size
+- [ ] Proper device placement (.to(device))
+- [ ] Memory cleanup (torch.cuda.empty_cache())
+- [ ] Hooks properly removed (use context managers)
+- [ ] Model in eval mode (model.eval())
+- [ ] Gradients disabled (torch.no_grad())
+
+## Citation Format
+When referencing techniques, cite as:
+- Activation patching: Meng et al. 2022
+- Causal tracing: Meng et al. 2022  
+- Transformer circuits: Elhage et al. 2021
+- Path patching: Wang et al. 2022
+- Causal scrubbing: Chan et al. 2022
+
+## Project-Specific Findings
+
+### R_V Results by Model
+| Model | R_V Recursive | R_V Baseline | Separation |
+|-------|--------------|--------------|------------|
+| Mistral-7B | 0.852 | 1.003 | 15.1% |
+| Qwen-7B | 0.764 | 0.986 | 22.5% |
+| Llama-8B | 0.823 | 0.971 | 15.2% |
+| Phi-3 | 0.891 | 0.974 | 8.5% |
+| Gemma-7B | 0.892 | 0.989 | 9.8% |
+| Mixtral-8x7B | 0.757 | 1.000 | 24.3% |
+
+### Key Discovery
+Universal geometric contraction in value-space (R_V < 1.0) for recursive self-observation prompts at late layers (~84% depth), with architecture-specific "phenotypes" but consistent underlying mechanism.
+
+## Debugging Tips
+1. If patching has no effect: Check layer depth, might need deeper/shallower
+2. If R_V is NaN: Check for short prompts, numerical instability in SVD
+3. If memory errors: Reduce batch size, clear cache between runs
+4. If results inconsistent: Set random seeds, check for batch effects
+
+## Next Steps in Research
+1. Validate causality with 80+ prompt pairs on Mistral-7B
+2. Test if effect scales with model size (7B → 70B)
+3. Investigate MoE routing patterns during contraction
+4. Test cross-model activation transfer
+

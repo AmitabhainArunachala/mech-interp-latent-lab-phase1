@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Large data files
+*.csv
+*.h5
+*.pkl
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Model weights (too large for git)
+models/*/pytorch_model.bin
+models/*/model.safetensors
+
+# Results that are too large
+results/**/*.csv
+experiments/**/results/**/*.csv
+**/results/**/*.png
+**/results/**/*.pdf
+
+# Logs
+*.log
+logs/
+**/logs/*.txt
+
+# System
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.cursor/
+
+# Credentials
+.env
+*.key
+*.pem
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
