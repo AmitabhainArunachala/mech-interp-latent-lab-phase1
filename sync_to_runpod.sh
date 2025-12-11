@@ -8,9 +8,9 @@ rsync -avz --progress \
   --exclude='__pycache__' \
   --exclude='.git' \
   --exclude='*.log' \
-  -e "ssh -p 12777 -i ~/.ssh/id_ed25519" \
+  -e "ssh" \
   ~/mech-interp-latent-lab-phase1/ \
-  root@69.19.136.34:/workspace/mech-interp-latent-lab-phase1/
+  runpod-dec10:/workspace/mech-interp-latent-lab-phase1/
 
 echo ""
 echo "✅ Sync complete!"
