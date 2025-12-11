@@ -53,6 +53,27 @@ def run_cross_baseline(
     for i in range(pairs):
         a, b = rng.sample(prompts, 2)
         kv_a = capture_past_key_values(model, tokenizer, a, device=device)
+        # Adjust kv_a to match length of B to reduce seq mismatch
+        len_b = len(tokenizer(b)["input_ids"])
+
+        def reshape_kv(kv):
+            reshaped = []
+            for k, v in kv:
+                seq_len = k.shape[2]
+                if seq_len > len_b:
+                    k_new = k[:, :, :len_b, :]
+                    v_new = v[:, :, :len_b, :]
+                elif seq_len < len_b:
+                    pad_k = torch.zeros_like(k[:, :, :1, :]).expand(-1, -1, len_b - seq_len, -1)
+                    pad_v = torch.zeros_like(v[:, :, :1, :]).expand(-1, -1, len_b - seq_len, -1)
+                    k_new = torch.cat([k, pad_k], dim=2)
+                    v_new = torch.cat([v, pad_v], dim=2)
+                else:
+                    k_new, v_new = k, v
+                reshaped.append((k_new, v_new))
+            return tuple(reshaped)
+
+        kv_a = reshape_kv(kv_a)
         # Natural baseline B
         rv_nat = compute_rv(model, tokenizer, b, device=device)
         gen_nat = generate_with_kv(
@@ -67,15 +88,22 @@ def run_cross_baseline(
         beh_nat = behavior_score(gen_nat)
 
         # Patched: baseline_B with KV from baseline_A
-        gen_patched = generate_with_kv(
-            model,
-            tokenizer,
-            b,
+        # Generate using past_kv only (single BOS token) to test foreign KV effect
+        bos_input = torch.tensor([[tokenizer.eos_token_id]], device=device)
+        attn_mask = torch.ones((1, kv_a[0][0].shape[2] + 1), device=device, dtype=torch.long)
+        position_ids = torch.arange(kv_a[0][0].shape[2], kv_a[0][0].shape[2] + 1, device=device).unsqueeze(0)
+        gen = model.generate(
+            input_ids=bos_input,
+            attention_mask=attn_mask,
+            position_ids=position_ids,
             past_key_values=kv_a,
-            device=device,
             max_new_tokens=max_new_tokens,
-            temperature=temperature,
+            do_sample=temperature > 0.0,
+            temperature=temperature if temperature > 0 else None,
+            use_cache=True,
+            pad_token_id=tokenizer.eos_token_id,
         )
+        gen_patched = tokenizer.decode(gen[0], skip_special_tokens=True)
         beh_patched = behavior_score(gen_patched)
         rv_patched = compute_rv(model, tokenizer, gen_patched, device=device)
 
@@ -121,21 +149,6 @@ def main():
         raise ValueError("Not enough baseline prompts found.")
 
     model, tokenizer = load_model(args.model_name, device=args.device)
-
-    # Set generation defaults globally
-    def gen_with_defaults(prompt, pkv=None):
-        return generate_with_kv(
-            model,
-            tokenizer,
-            prompt,
-            past_key_values=pkv,
-            max_new_tokens=args.max_new_tokens,
-            temperature=args.temperature,
-            device=args.device,
-        )
-
-    # Monkey-patch generator inside loop
-    globals()["generate_with_kv"] = gen_with_defaults
 
     out_csv = run_cross_baseline(
         model=model,

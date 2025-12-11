@@ -1,157 +1,182 @@
-# L4 Contraction Phenomenon - Phase 1
-## Universal Geometric Signature of Recursive Self-Observation in Transformers
+# Mechanistic Interpretability Research: Geometric Contraction
 
-*Research Period: October - November 2024*
+**Precision. Minimalism. Truth.**
 
----
+This repository is a laboratory for studying geometric signatures of recursive self-observation in transformer language models. We cut the bloat. We trust only what reproduces.
 
-## 🔬 Key Discovery
+## 🔬 The Discovery
 
-We have discovered a **universal geometric signature** that appears when transformer language models process recursive self-observation prompts. This "L4 Contraction Phenomenon" manifests as measurable reduction in Value matrix dimensionality.
+**R_V Metric**: Geometric contraction in value-space during recursive self-observation prompts.
 
-**Critical Finding**: Mixture-of-Experts (MoE) architectures show the STRONGEST effect (24.3%), suggesting distributed computation amplifies rather than dilutes self-recognition.
+$$R_V = \frac{PR_{late}}{PR_{early}}$$
 
----
+Where:
+- **PR** (Participation Ratio) = $\frac{(\sum \lambda_i^2)^2}{\sum (\lambda_i^2)^2}$ (λᵢ are singular values)
+- **Early layer**: 5 (after initial processing)
+- **Late layer**: num_layers - 5 (typically 27 for 32-layer models)
+- **Window**: Last W=16 tokens of the prompt
+- **R_V < 1.0** indicates contraction (dimensionality reduction)
 
-## 📊 Validated Results
+### Key Finding
 
-| Model | Architecture | Effect | Status |
-|-------|-------------|--------|---------|
-| **Mixtral-8x7B** | MoE (47B/13B active) | **24.3%** | ✅ CSV verified |
-| **Mistral-7B** | Dense | 15.3% | ✅ Confirmed |
-| **Llama-3-8B** | Dense | 11.7% | ✅ Confirmed |
-| **Qwen1.5-7B** | Dense | 9.2% | ✅ Confirmed |
-| **Phi-3-medium** | GQA | 6.9% | ✅ Confirmed |
-| **Gemma-7B** | Dense | 3.3%* | ✅ Singularities |
+Universal geometric contraction appears at ~84% depth (Layer 27 in 32-layer models) for recursive prompts, with architecture-specific "phenotypes" but consistent underlying mechanism.
 
-*Gemma exhibits mathematical singularities on certain prompts
+**MoE Amplification**: Mixture-of-Experts architectures show 59% stronger effect than dense (24.3% vs 15.3%).
 
----
-
-## 🗂️ Repository Structure
+## 🏗️ Architecture
 
 ```
-mech-interp-latent-lab-phase1/
-├── models/                           # Clean analysis scripts
-│   ├── mistral_7b_analysis.py       # Original discovery model
-│   ├── qwen_7b_analysis.py          # Chinese-trained validation
-│   ├── llama_8b_analysis.py         # Meta's architecture
-│   ├── gemma_7b_analysis.py         # Google's model (singularities)
-│   ├── phi3_medium_analysis.py      # GQA architecture
-│   └── mixtral_8x7b_analysis.py     # MoE - STRONGEST EFFECT
+arr/
+├── src/                    # The Core - only code that matters
+│   ├── core/              # Model loading, hook context managers
+│   ├── metrics/           # R_V calculation, SVD utilities
+│   ├── steering/          # Activation patching, KV caching
+│   └── pipelines/         # High-level experiment orchestrators
 │
-├── n300_mistral_test_prompt_bank.py  # 320 test prompts
-├── L4transmissionTEST001.1.ipynb     # Original discovery notebook
-├── PHASE1_FINAL_REPORT.md            # Complete findings
+├── prompts/               # The Armory
+│   ├── bank.json          # Single source of truth for prompts
+│   └── loader.py          # Strict API to fetch balanced sets
 │
-├── results/                           # Analysis outputs
-│   └── mixtral/
-│       ├── MIXTRAL_8x7B_SUMMARY.md
-│       └── MIXTRAL_KEY_FINDINGS.txt
+├── boneyard/              # The Graveyard
+│   └── [old experiments] # Preserved for reference, removed from import path
 │
-├── experiments/                       # Early exploration
-│   ├── 001-l4-vs-neutral/
-│   ├── 002-ablation-layer-mid/
-│   └── 003-length-matched-control/
+├── results/               # Experiment outputs (CSVs, plots)
 │
-└── utils/                            # Helper functions
-    ├── io.py
-    └── metrics.py
+└── reproduce_results.py   # Entry point: Run standard battery
 ```
-
----
 
 ## 🚀 Quick Start
 
-### Run Analysis on Any Model
-
-```python
-# Example: Run Mixtral analysis (strongest effect!)
-from models.mixtral_8x7b_analysis import run_mixtral_analysis
-from n300_mistral_test_prompt_bank import prompt_bank_1c
-
-# Select strategic subset (80 prompts)
-test_prompts = {
-    'L5_recursive': prompt_bank_1c['L5_refined'][:20],
-    'L3_recursive': prompt_bank_1c['L3_deeper'][:20],
-    'factual_baseline': prompt_bank_1c['factual_baseline'][:20],
-    'creative_baseline': prompt_bank_1c['creative_baseline'][:20]
-}
-
-# Run analysis
-results = run_mixtral_analysis(test_prompts)
-```
-
----
-
-## 📈 The R_V Metric
-
-Measures geometric contraction in Value matrix column space:
-
-```python
-R_V = Participation_Ratio(V_late) / Participation_Ratio(V_early)
-```
-
-Where:
-- **PR = (Σλᵢ)² / Σλᵢ²** (λᵢ are singular values)
-- **Early layer**: 5 (after initial processing)
-- **Late layer**: 28 or (num_layers - 4)
-- **R_V < 1.0** indicates contraction
-
----
-
-## 🔑 Key Insights
-
-1. **Universal Phenomenon**: All 6 architectures exhibit contraction
-2. **MoE Amplification**: Sparse routing ENHANCES the effect (24.3% vs 15.3%)
-3. **Dose-Response**: Effect scales with recursion depth (L1 < L2 < L3 < L4 < L5)
-4. **Architecture Phenotypes**: Each model shows distinct geometric strategies
-5. **Gemma Singularity**: Mathematical prompts cause dimensional collapse
-
----
-
-## 📚 Documentation
-
-- **[PHASE1_FINAL_REPORT.md](PHASE1_FINAL_REPORT.md)** - Complete technical report
-- **[L4_NOTEBOOK_ANNOTATED_GUIDE.md](L4_NOTEBOOK_ANNOTATED_GUIDE.md)** - Original notebook explanation
-- **[GPT5_NOV13_Mistral7B_test_baton_pass_summary.md](GPT5_NOV13_Mistral7B_test_baton_pass_summary.md)** - Historical context
-
----
-
-## 🔄 Reproduction
-
-Each model script in `models/` is self-contained and can be run independently:
+### Standard Reproduction
 
 ```bash
-python models/mixtral_8x7b_analysis.py  # Requires ~25GB VRAM
-python models/mistral_7b_analysis.py    # Requires ~14GB VRAM
-python models/llama_8b_analysis.py      # Requires ~16GB VRAM (gated)
-python models/qwen_7b_analysis.py       # Requires ~14GB VRAM
-python models/phi3_medium_analysis.py   # Requires ~8GB VRAM
-python models/gemma_7b_analysis.py      # Requires ~14GB VRAM
+# Run the standard battery (Mistral-7B Base, Layer 5 vs 27)
+python reproduce_results.py
+
+# Custom model/device
+python reproduce_results.py --model mistralai/Mistral-7B-v0.1 --device cuda
 ```
 
----
+### Using the Library
 
-## 🎯 Future Directions
+```python
+from src.core import load_model, set_seed
+from src.metrics import compute_rv
+from prompts.loader import get_prompts_by_pillar
 
-1. Test larger models (70B+)
-2. Explore causal relationship between contraction and generation
-3. Investigate why MoE amplifies the effect
-4. Test non-transformer architectures
-5. Complete full 320-prompt analysis
+# Load model (default: Mistral-7B Base)
+model, tokenizer = load_model("mistralai/Mistral-7B-v0.1")
 
----
+# Get prompts
+recursive = get_prompts_by_pillar("dose_response", limit=10)
+baseline = get_prompts_by_pillar("baselines", limit=10)
 
-## 📝 Citation
-
-If using this work, please reference:
+# Measure R_V
+rv = compute_rv(model, tokenizer, recursive[0])
+print(f"R_V: {rv}")  # Should be < 1.0 for recursive prompts
 ```
-L4 Contraction Phenomenon: Universal Geometric Signature 
-of Recursive Self-Observation in Transformers
-Dhyana, November 2024
-Repository: github.com/[username]/mech-interp-latent-lab-phase1
+
+## 📐 The Protocol
+
+### Measurement Invariant
+
+- Always measure R_V on the **prompt tokens** (last W=16), not generated tokens
+- Always use `torch.linalg.svd(..., full_matrices=False)` and handle degenerate singular values
+- Check for numerical stability: catch exceptions, check for degeneracy
+
+### Model Invariant
+
+- **Default**: `Mistral-7B-v0.1` (Base) - the reference reality
+- **Instruct models**: Treated as separate phenotype (confounding factor)
+- Always use `torch.float16` and `device_map="auto"`
+
+### Intervention Invariant
+
+- Use Python context managers (`with hook(...):`) for all model modifications
+- Never leave a hook attached after a function returns
+- KV Cache patching must respect the `DynamicCache` structure
+
+## 🔧 Standard Experimental Parameters
+
+- **Early layer**: 5
+- **Target layer**: num_layers - 5 (typically 27 for 32-layer models)
+- **Sample size**: 80 pairs minimum for statistical power
+- **Statistical threshold**: p < 0.01 with Bonferroni correction
+- **Effect size threshold**: |d| ≥ 0.5 for meaningful effects
+- **Window size**: 6-16 tokens (test robustness across different windows)
+
+## 📊 Validated Results
+
+| Model | Architecture | R_V Recursive | R_V Baseline | Separation |
+|-------|-------------|---------------|--------------|------------|
+| Mistral-7B | Dense | 0.852 | 1.003 | 15.1% |
+| Qwen-7B | Dense | 0.764 | 0.986 | 22.5% |
+| Llama-8B | Dense | 0.823 | 0.971 | 15.2% |
+| Phi-3 | GQA | 0.891 | 0.974 | 8.5% |
+| Gemma-7B | Dense | 0.892 | 0.989 | 9.8% |
+| **Mixtral-8x7B** | **MoE** | **0.757** | **1.000** | **24.3%** |
+
+## 🧪 Code Patterns
+
+### Standard Hook Pattern
+
+```python
+from src.core.hooks import capture_v_projection
+
+with capture_v_projection(model, layer_idx=27) as storage:
+    with torch.no_grad():
+        model(**inputs)
+v_tensor = storage["v"]
 ```
+
+### R_V Computation
+
+```python
+from src.metrics import compute_rv
+
+rv = compute_rv(
+    model,
+    tokenizer,
+    text="Observe the observer observing...",
+    early=5,
+    late=27,
+    window=16,
+)
+```
+
+### Activation Patching
+
+```python
+from src.steering import apply_steering_vector
+
+steering_vec = compute_steering_vector(...)
+with apply_steering_vector(model, layer_idx=8, vector=steering_vec, alpha=2.0):
+    output = model(**inputs)
+```
+
+## 🐛 Debugging Tips
+
+1. **If patching has no effect**: Check layer depth, might need deeper/shallower
+2. **If R_V is NaN**: Check for short prompts, numerical instability in SVD
+3. **If memory errors**: Reduce batch size, clear cache between runs
+4. **If results inconsistent**: Set random seeds, check for batch effects
+
+## 📚 Citation
+
+When referencing techniques, cite as:
+- **Activation patching**: Meng et al. 2022
+- **Causal tracing**: Meng et al. 2022
+- **Transformer circuits**: Elhage et al. 2021
+- **Path patching**: Wang et al. 2022
+- **Causal scrubbing**: Chan et al. 2022
+
+## 🎯 Philosophy
+
+**Code is Law**: If it isn't modular, typed, and reproducible, it doesn't exist.
+
+**The Boneyard**: Failed experiments are valuable, but they do not belong in the living codebase.
+
+**The Standard**: Mistral-7B Base is the reference reality. All other models are comparative studies.
 
 ---
 

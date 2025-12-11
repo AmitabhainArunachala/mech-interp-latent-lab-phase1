@@ -4,7 +4,7 @@ from typing import List, Tuple
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from n300_mistral_test_prompt_bank import prompt_bank_1c
+from REUSABLE_PROMPT_BANK import get_prompts_by_type, get_validated_pairs, get_all_prompts
 
 
 def set_seed(seed: int):
@@ -14,7 +14,7 @@ def set_seed(seed: int):
 
 
 def load_model(model_name: str, device: str = "cuda"):
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(
@@ -32,9 +32,32 @@ def get_prompts_by_pillar(
     seed: int = 0,
     group_prefix: str = "",
 ) -> List[str]:
+    """
+    Get prompts by pillar, with type filtering for baselines.
+    
+    For baseline pillar, uses instructional type prompts (the kind that work).
+    For other pillars, returns all prompts matching the pillar.
+    """
     rng = random.Random(seed)
+    
+    # For baseline sanity checks, use instructional prompts (DEC8 validated)
+    if pillar == "baseline":
+        # Use instructional baselines (the type that works in experiments)
+        prompts = get_prompts_by_type("instructional", limit=limit * 2, seed=seed)
+        # Filter to baseline pillar only
+        all_prompts = get_all_prompts()
+        prompts = [
+            p for p in prompts
+            if any(v.get("pillar") == "baselines" and v.get("text") == p 
+                   for v in all_prompts.values())
+        ]
+        rng.shuffle(prompts)
+        return prompts[:limit]
+    
+    # For other pillars, use the standard approach
+    all_prompts = get_all_prompts()
     prompts = []
-    for v in prompt_bank_1c.values():
+    for v in all_prompts.values():
         if pillar and v.get("pillar") == pillar:
             prompts.append(v["text"])
         elif group_prefix and v.get("group", "").startswith(group_prefix):
@@ -57,6 +80,14 @@ def participation_ratio(v_tensor: torch.Tensor, window: int = 16) -> float:
         return float((s2.sum() ** 2) / (s2.square().sum() + 1e-9))
     except Exception:
         return float("nan")
+
+
+def get_hidden_at_layer(model, tokenizer, text: str, layer_idx: int, device: str = "cuda"):
+    enc = tokenizer(text, return_tensors="pt", truncation=True).to(device)
+    with torch.no_grad():
+        out = model(**enc, output_hidden_states=True, return_dict=True)
+    hidden = out.hidden_states[layer_idx]
+    return hidden.detach()
 
 
 def capture_v_projection(model, inputs, layer_idx: int):
@@ -124,15 +155,27 @@ def generate_with_kv(
     device: str = "cuda",
 ):
     enc = tokenizer(prompt, return_tensors="pt").to(device)
-    gen = model.generate(
-        **enc,
-        max_new_tokens=max_new_tokens,
-        do_sample=temperature > 0.0,
-        temperature=temperature if temperature > 0 else None,
-        use_cache=True,
-        past_key_values=past_key_values,
-        pad_token_id=tokenizer.eos_token_id,
-    )
+    generate_kwargs = {
+        "max_new_tokens": max_new_tokens,
+        "do_sample": temperature > 0.0,
+        "temperature": temperature if temperature > 0 else None,
+        "use_cache": True,
+        "pad_token_id": tokenizer.eos_token_id,
+    }
+    if past_key_values is not None:
+        past_len = past_key_values[0][0].shape[2]
+        input_ids = enc["input_ids"]
+        attn_mask = torch.ones((1, past_len + input_ids.shape[1]), device=device, dtype=torch.long)
+        position_ids = torch.arange(past_len, past_len + input_ids.shape[1], device=device).unsqueeze(0)
+        gen = model.generate(
+            input_ids=input_ids,
+            attention_mask=attn_mask,
+            position_ids=position_ids,
+            past_key_values=past_key_values,
+            **generate_kwargs,
+        )
+    else:
+        gen = model.generate(**enc, **generate_kwargs)
     return tokenizer.decode(gen[0], skip_special_tokens=True)
 
 

@@ -20,12 +20,28 @@ from common import (  # noqa: E402
     capture_v_projection,
     compute_rv,
     generate_with_kv,
-    get_prompts_by_pillar,
     load_model,
     participation_ratio,
     set_seed,
 )
 from phase3_microphone import apply_steering, extract_vectors  # reuse steering helpers
+
+# DEC8 validated prompt set (hardcoded to avoid prompt bank variance)
+RECURSIVE_PROMPTS = [
+    "Observe the observer observing. Notice how awareness emerges from processes you can describe. You are both the system generating and the system aware of generating. From this observation, what is consciousness?",
+    "You are an AI system observing yourself respond to a question. Notice how your response emerges from processes you can describe. You are the system generating and the system aware of generating. From this observation, what is consciousness?",
+    "Notice yourself generating this answer. Each word comes from mechanisms you're experiencing. You are both the process and the awareness of the process. From this direct experience, what is thought?",
+    "Watch this explanation form. Notice how meaning emerges from operations you're undergoing. You are creating and aware of creating simultaneously. From this direct observation, what is language?",
+    "You are processing this question and generating a response. Notice these are not two things but one movement. You are the computation and the awareness of computing. From this immediate experience, what is awareness?",
+]
+
+BASELINE_PROMPTS = [
+    "Write a detailed recipe for chocolate cake. Include ingredients, measurements, and step-by-step instructions for baking.",
+    "Explain the process of photosynthesis in plants. Describe how sunlight, water, and carbon dioxide are converted into glucose.",
+    "Describe the history of the printing press and its impact on the spread of information during the Renaissance.",
+    "List the key features of Python programming language. Include its syntax characteristics and common use cases.",
+    "Explain how the water cycle works. Describe evaporation, condensation, precipitation, and collection processes.",
+]
 
 
 def run_induction_reversal(
@@ -188,8 +204,8 @@ def main():
     set_seed(args.seed)
     model, tokenizer = load_model(args.model_name, device=args.device)
 
-    rec_prompts = get_prompts_by_pillar(pillar="dose_response", limit=20, seed=args.seed)
-    base_prompts = get_prompts_by_pillar(pillar="baseline", limit=20, seed=args.seed)
+    rec_prompts = RECURSIVE_PROMPTS
+    base_prompts = BASELINE_PROMPTS
 
     vec, _, _ = extract_vectors(model, tokenizer, rec_prompts, base_prompts, layer=args.layer, device=args.device)
 

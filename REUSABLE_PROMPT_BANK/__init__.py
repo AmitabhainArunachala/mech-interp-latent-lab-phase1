@@ -31,6 +31,8 @@ from .sampling import (
     get_control_set,
     get_prompts_by_group,
     get_prompts_by_pillar,
+    get_prompts_by_type,
+    get_validated_pairs,
 )
 
 __version__ = "2.0.0"
@@ -41,6 +43,8 @@ __all__ = [
     "get_control_set",
     "get_prompts_by_group",
     "get_prompts_by_pillar",
+    "get_prompts_by_type",
+    "get_validated_pairs",
     "dose_response_prompts",
     "baseline_prompts",
     "confound_prompts",

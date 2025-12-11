@@ -3,6 +3,7 @@
 
 import random
 from typing import Dict, List, Tuple, Optional
+import random
 
 def get_all_prompts() -> Dict:
     """Load all prompts from all modules into a single dictionary."""
@@ -198,6 +199,66 @@ def get_length_matched_pairs(
             {"key": rec_key, "est_tokens": est_tokens(rec_val["text"]), **rec_val},
             {"key": base_key, "est_tokens": est_tokens(base_val["text"]), **base_val}
         ))
+    
+    return pairs
+
+
+def get_prompts_by_type(prompt_type: str, limit: int = 20, seed: int = 42) -> List[str]:
+    """
+    Get prompts filtered by structural type (completion/instructional/creative/recursive).
+    
+    Args:
+        prompt_type: One of "completion", "instructional", "creative", "recursive"
+        limit: Maximum number of prompts to return
+        seed: Random seed for reproducibility
+    
+    Returns:
+        List of prompt text strings
+    """
+    random.seed(seed)
+    
+    all_prompts = get_all_prompts()
+    filtered = [
+        v["text"] for k, v in all_prompts.items()
+        if v.get("type") == prompt_type
+    ]
+    
+    random.shuffle(filtered)
+    return filtered[:limit]
+
+
+def get_validated_pairs(n_pairs: int = 20, seed: int = 42) -> List[Tuple[str, str]]:
+    """
+    Get the DEC8-validated recursive/baseline pairs that are known to work.
+    
+    Uses the DEC8 working prompts:
+    - Recursive: L3_deeper_DEC8_01 through L3_deeper_DEC8_05
+    - Baseline: baseline_instructional_01 through baseline_instructional_05
+    
+    Args:
+        n_pairs: Number of pairs to return (max 5, as there are 5 validated pairs)
+        seed: Random seed (not used since we return fixed pairs)
+    
+    Returns:
+        List of (recursive_prompt, baseline_prompt) tuples
+    """
+    from .dose_response import dose_response_prompts
+    from .baselines import baseline_prompts
+    
+    # Get DEC8 validated prompts
+    recursive_keys = [f"L3_deeper_DEC8_{i:02d}" for i in range(1, 6)]
+    baseline_keys = [f"baseline_instructional_{i:02d}" for i in range(1, 6)]
+    
+    pairs = []
+    for i in range(min(n_pairs, 5)):
+        rec_key = recursive_keys[i]
+        base_key = baseline_keys[i]
+        
+        if rec_key in dose_response_prompts and base_key in baseline_prompts:
+            pairs.append((
+                dose_response_prompts[rec_key]["text"],
+                baseline_prompts[base_key]["text"]
+            ))
     
     return pairs
 
