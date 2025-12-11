@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-12-11T17:25:28.642623",
+  "experiment_1_rv_contraction": {
+    "recursive_mean": 0.9588525699536328,
+    "recursive_std": 0.11297803698740934,
+    "baseline_mean": 1.1488566198084325,
+    "baseline_std": 0.10787766617082367,
+    "separation": 0.19000404985479968,
+    "t_statistic": 3.218121816090927,
+    "p_value": 0.003096623703715938,
+    "significant": true,
+    "reproduced": true
+  },
+  "experiment_2_l31_ablation": {
+    "detection_rate": 1.0,
+    "prompts_tested": 3,
+    "prompts_with_patterns": 3,
+    "reproduced": true
+  },
+  "experiment_3_residual_patching": {
+    "collapse_rate": 1.0,
+    "layers_tested": [
+      24,
+      27,
+      31
+    ],
+    "reproduced": true
+  }
+}
