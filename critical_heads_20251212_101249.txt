@@ -1,0 +1,8 @@
+CRITICAL HEADS SUMMARY
+======================================================================
+
+Layer 25: [23, 28, 3, 17, 19]
+Layer 27: [11, 1, 22]
+
+These heads drive the contraction effect.
+Use these for targeted patching in unified test.
