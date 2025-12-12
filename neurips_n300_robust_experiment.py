@@ -443,10 +443,10 @@ def run_neurips_experiment():
             'baseline_behavior': base_behavior,
             'transfer_behavior': transfer_behavior,
             'random_behavior': random_behavior,
-            'wrong_layer_behavior': wrong_behavior,
+            'wrong_behavior': wrong_behavior,
             'transfer_delta': transfer_behavior - base_behavior,
             'random_delta': random_behavior - base_behavior,
-            'wrong_layer_delta': wrong_layer_behavior - base_behavior,
+            'wrong_layer_delta': wrong_behavior - base_behavior,
             'baseline_text': base_gen[:200],
             'transfer_text': transfer_gen[:200]
         })
@@ -495,7 +495,7 @@ def run_neurips_experiment():
         'baseline_mean': df['baseline_behavior'].mean(),
         'transfer_mean': df['transfer_behavior'].mean(),
         'random_mean': df['random_behavior'].mean(),
-        'wrong_layer_mean': df['wrong_layer_behavior'].mean(),
+        'wrong_layer_mean': df['wrong_behavior'].mean(),
         'transfer_delta_mean': transfer_deltas.mean(),
         'transfer_delta_std': transfer_deltas.std(),
         'transfer_delta_ci': ci_transfer,
@@ -526,7 +526,7 @@ def run_neurips_experiment():
     print(f"  Baseline:        {summary['baseline_mean']:.2f} ± {df['baseline_behavior'].std():.2f}")
     print(f"  Transfer:        {summary['transfer_mean']:.2f} ± {df['transfer_behavior'].std():.2f}")
     print(f"  Random control:  {summary['random_mean']:.2f} ± {df['random_behavior'].std():.2f}")
-    print(f"  Wrong layer:     {summary['wrong_layer_mean']:.2f} ± {df['wrong_layer_behavior'].std():.2f}")
+    print(f"  Wrong layer:     {summary['wrong_layer_mean']:.2f} ± {df['wrong_behavior'].std():.2f}")
     
     print(f"\nTransfer Effects (Δ = condition - baseline):")
     print(f"  Transfer:        {summary['transfer_delta_mean']:.2f} ± {summary['transfer_delta_std']:.2f}")
@@ -559,7 +559,7 @@ def run_neurips_experiment():
         f.write(f"- Baseline: {summary['baseline_mean']:.2f} ± {df['baseline_behavior'].std():.2f}\n")
         f.write(f"- Transfer: {summary['transfer_mean']:.2f} ± {df['transfer_behavior'].std():.2f}\n")
         f.write(f"- Random control: {summary['random_mean']:.2f} ± {df['random_behavior'].std():.2f}\n")
-        f.write(f"- Wrong layer: {summary['wrong_layer_mean']:.2f} ± {df['wrong_layer_behavior'].std():.2f}\n\n")
+        f.write(f"- Wrong layer: {summary['wrong_layer_mean']:.2f} ± {df['wrong_behavior'].std():.2f}\n\n")
         f.write("### Transfer Effects\n\n")
         f.write(f"**Transfer:** Δ = {summary['transfer_delta_mean']:.2f} ± {summary['transfer_delta_std']:.2f}\n")
         f.write(f"- 95% CI: [{ci_transfer[0]:.2f}, {ci_transfer[1]:.2f}]\n")
