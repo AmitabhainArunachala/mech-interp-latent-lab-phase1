@@ -264,9 +264,7 @@ def run_unified_test():
     
     results = []
     
-    methods = ["V_PROJ"]  # Start with V_PROJ only
-    if head_activations:
-        methods.append("HEAD_LEVEL")
+    methods = ["V_PROJ"]  # Running V_PROJ only for now
     
     for layer in CONFIG['layers_to_patch']:
         for method in methods:
