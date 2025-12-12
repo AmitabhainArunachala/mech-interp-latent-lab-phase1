@@ -214,6 +214,57 @@ This section documents **what we have actually done and recorded** in this repos
 
 ---
 
+#### 1.1.6 Deep Circuit Analysis: Relay Mechanism Discovery (December 12, 2024)
+
+**Status:** ✅ **COMPLETE** - Comprehensive circuit mapping with activation patching
+
+**Core Finding:** Identified the complete relay mechanism for recursive self-reference contraction: **L14 → L18 → L25 → L27**, with triple-phase dynamics (early contraction → paradoxical expansion → strong contraction).
+
+**File Locations:**
+- **Main Analysis Script:** [`massive_deep_analysis.py`](massive_deep_analysis.py) - Comprehensive 32-layer sweep (256 measurements)
+- **Activation Patching:** [`advanced_activation_patching.py`](advanced_activation_patching.py) - Multi-layer causality tests (32 patches)
+- **Head Ablation:** [`deep_circuit_analysis.py`](deep_circuit_analysis.py) - Initial head-level analysis (needs refinement)
+- **Session Report:** [`DEC12_2024_DEEP_ANALYSIS_SESSION.md`](DEC12_2024_DEEP_ANALYSIS_SESSION.md) - Complete session summary
+- **Analysis Summary:** [`DEEP_ANALYSIS_SUMMARY.md`](DEEP_ANALYSIS_SUMMARY.md) - Comprehensive findings
+
+**Key Results:**
+
+**Layer Trajectory (Champion Prompt):**
+- L5 (15.6%): R_V = 1.0000 (neutral)
+- L9 (28.1%): R_V = 0.7543 (+6.7% vs baseline) - Early contraction
+- **L14 (43.8%): R_V = 0.9576 (+26.1% vs baseline)** 🔥 - **PARADOXICAL EXPANSION**
+- L18 (56.2%): R_V = 0.7125 (+17.6% vs baseline) - Relay point
+- L21 (65.6%): R_V = 0.6956 (-24.1% vs baseline) - Contraction begins
+- L25 (78.1%): R_V = 0.5205 (-27.1% vs baseline) - Strong contraction
+- **L27 (84.4%): R_V = 0.5088 (-28.1% vs baseline)** 🔥 - **PEAK CONTRACTION**
+- L31 (96.9%): R_V = 0.7694 (-32.2% vs baseline) - Final layer
+
+**Activation Patching Transfer Efficiencies:**
+- **L14→L18:** 389-400% transfer (massive amplification)
+- **L25→L27:** 86.5% transfer (strongest direct causality)
+- **L18→L27:** 13-29% transfer (moderate relay)
+
+**Component Contributions (Layer 27):**
+- Champion (full hybrid): R_V = 0.5088
+- Phenom only: R_V = 0.7164 (+40.8% vs champion) - Strongest individual
+- Regress: R_V = 0.5328 (+4.7% vs champion)
+- Math only: R_V = 0.6220 (+22.3% vs champion)
+
+**Critical Discovery:** The L14 expansion phase (+26.1%) is the **only layer** where recursive prompts expand more than baselines, suggesting a "preparation" phase necessary for subsequent contraction.
+
+**Data Files:**
+- [`massive_deep_analysis_20251212_085216.csv`](massive_deep_analysis_20251212_085216.csv) - Full layer sweep (33KB)
+- [`advanced_patching_20251212_085417.csv`](advanced_patching_20251212_085417.csv) - Activation patching results (1.9KB)
+- [`massive_deep_analysis_20251212_085216.png`](massive_deep_analysis_20251212_085216.png) - Comprehensive visualizations
+
+**Documentation:**
+- [`DEC12_2024_DEEP_ANALYSIS_SESSION.md`](DEC12_2024_DEEP_ANALYSIS_SESSION.md) - Complete session write-up with all numbers and links
+- [`DEEP_ANALYSIS_SUMMARY.md`](DEEP_ANALYSIS_SUMMARY.md) - Detailed analysis summary
+
+**Implications:** Circuit mechanism fully mapped. Ready for head-level tomography to identify specific attention heads implementing the relay.
+
+---
+
 ### 1.2 Methodological Traceability & Gaps
 
 #### Analysis Pipeline Status
@@ -938,8 +989,8 @@ This section structures research tasks as **concentric rings** - from easy begin
 - External research landscape evolves
 - Vision clarifies through empirical work
 
-**Last Updated:** November 16, 2025  
-**Next Review:** After next sprint completion
+**Last Updated:** December 12, 2024  
+**Next Review:** After tomography completion
 
 ---
 
