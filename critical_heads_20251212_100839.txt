@@ -1,0 +1,6 @@
+CRITICAL HEADS SUMMARY
+======================================================================
+
+
+These heads drive the contraction effect.
+Use these for targeted patching in unified test.
