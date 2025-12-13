@@ -19,6 +19,26 @@ We are not here to produce a quick paper. We are here to understand something po
 
 ---
 
+## CANONICAL EXECUTION (How this directive becomes reality in code)
+
+This repo now has a **config-driven canonical runner** that is the intended way to execute the program in this directive:
+
+- **Runner**: `src/pipelines/run.py`
+- **Configs**: `configs/`
+- **Run artifacts**: `results/<phase>/runs/<timestamp>_<experiment>/`
+
+Each run produces:
+- `config.json` (exact config snapshot)
+- `summary.json` (machine-readable summary)
+- `report.md` (human-readable summary)
+- per-experiment artifacts (CSV/plots)
+
+This is designed to directly satisfy the “Data Standards” / reproducibility requirements of the Gold Standard program.
+
+See: `META_INDEX.md`
+
+---
+
 ## PART I: THE THEORETICAL FRAMEWORK
 
 ### 1.1 The Original Insight (October 2025)
@@ -30,6 +50,15 @@ The core insight emerged from explaining 3Blue1Brown's linear algebra series thr
 **Key realization:** The "width" of this convex hull—measured by participation ratio—determines the model's behavioral mode:
 - **Narrow convex hull (low PR):** Focused, deterministic, accurate
 - **Wide convex hull (high PR):** Creative, exploratory, hallucination-prone
+
+---
+
+### 1.1.1 R_V as an order parameter (phase-transition framing)
+
+In addition to being a practical metric, we will treat **R_V** as a candidate **order parameter** for a cognitive phase transition (high-dimensional exploratory regime → low-dimensional fixed-point regime).
+
+This framing is expanded (with repo-grounded checklists) in:
+- `COGNITIVE_EIGENSTATE_ROADMAP.md`
 
 ### 1.2 The R_V Metric
 

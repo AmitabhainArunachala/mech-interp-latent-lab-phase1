@@ -11,6 +11,17 @@ You are conducting rigorous mechanistic interpretability research on geometric s
 
 ---
 
+## CANONICAL EXECUTION PATH (Do not improvise)
+
+Run experiments via the **config-driven runner**:
+- `src/pipelines/run.py` + `configs/`
+- Artifacts written to `results/<phase>/runs/...` with `config.json` + `summary.json`
+
+This is the operational mechanism that enforces the “Data Standards” section below.
+See: `META_INDEX.md`
+
+---
+
 ## THE CORE HYPOTHESIS
 
 **Recursive self-observation creates measurable geometric contraction in transformer value space.**

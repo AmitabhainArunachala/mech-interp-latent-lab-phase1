@@ -1,0 +1,25 @@
+{
+  "experiment": "rv_l27_causal_validation",
+  "run_name": "default",
+  "seed": 42,
+  "results": { "root": "results", "phase": "phase1_cross_architecture" },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "early_layer": 5,
+    "target_layer": 27,
+    "wrong_layer": 21,
+    "window": 16,
+    "max_pairs": 45,
+    "max_length": 512,
+    "pairing": {
+      "recursive_groups": ["L5_refined", "L4_full", "L3_deeper"],
+      "baseline_groups": ["long_control", "baseline_creative", "baseline_math"]
+    },
+    "measure_target_after_wrong_patch": false
+  }
+}
+
+

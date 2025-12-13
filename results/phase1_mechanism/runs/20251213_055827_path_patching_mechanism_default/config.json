@@ -1,0 +1,40 @@
+{
+  "experiment": "path_patching_mechanism",
+  "model": {
+    "device": "cuda",
+    "name": "mistralai/Mistral-7B-v0.1"
+  },
+  "params": {
+    "components": [
+      "v",
+      "o",
+      "resid"
+    ],
+    "early_layer": 5,
+    "max_length": 512,
+    "max_pairs": 12,
+    "measurement_layer": 27,
+    "n_repeats": 1,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "target_layer": 27,
+    "window": 16,
+    "wrong_layer": 21
+  },
+  "results": {
+    "phase": "phase1_mechanism",
+    "root": "results"
+  },
+  "run_name": "default",
+  "seed": 0
+}

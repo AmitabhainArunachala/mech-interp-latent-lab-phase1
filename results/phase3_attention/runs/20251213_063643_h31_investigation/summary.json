@@ -1,0 +1,157 @@
+{
+  "experiment": "h31_investigation",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "rv_results": {
+    "champion": 0.45485063245226415,
+    "baseline_photo": 0.6101678647803888,
+    "baseline_code": 0.5871013394204984,
+    "baseline_history": 0.555812297131781,
+    "recursive_mild": 0.5758650456953716,
+    "recursive_medium": 0.5552751828270047,
+    "recursive_strong": 0.49648549285685123
+  },
+  "h31_entropy_vs_rv_correlation": {
+    "r": 0.5293634675014733,
+    "p": 0.22175496300246325
+  },
+  "head_comparison": {
+    "H31": {
+      "champion": {
+        "entropy": 0.3173224925994873,
+        "bos_attn": 0.9677734375,
+        "max_attn": 0.9677734375,
+        "marker_attn": 0.0035247802734375
+      },
+      "baseline_photo": {
+        "entropy": 0.9969416260719299,
+        "bos_attn": 0.828125,
+        "max_attn": 0.828125,
+        "marker_attn": 0.0009341239929199219
+      },
+      "baseline_code": {
+        "entropy": 0.6541407704353333,
+        "bos_attn": 0.89794921875,
+        "max_attn": 0.89794921875,
+        "marker_attn": 0.0
+      },
+      "baseline_history": {
+        "entropy": 0.7839539051055908,
+        "bos_attn": 0.7236328125,
+        "max_attn": 0.7236328125,
+        "marker_attn": 0.0
+      },
+      "recursive_mild": {
+        "entropy": 0.22737270593643188,
+        "bos_attn": 0.9521484375,
+        "max_attn": 0.9521484375,
+        "marker_attn": 0.0003018379211425781
+      },
+      "recursive_medium": {
+        "entropy": 0.20081868767738342,
+        "bos_attn": 0.95751953125,
+        "max_attn": 0.95751953125,
+        "marker_attn": 0.0019311904907226562
+      },
+      "recursive_strong": {
+        "entropy": 0.37690332531929016,
+        "bos_attn": 0.95703125,
+        "max_attn": 0.95703125,
+        "marker_attn": 0.005992889404296875
+      }
+    },
+    "H11": {
+      "champion": {
+        "entropy": 0.7377541661262512,
+        "bos_attn": 0.91064453125,
+        "max_attn": 0.91064453125,
+        "marker_attn": 0.0107574462890625
+      },
+      "baseline_photo": {
+        "entropy": 0.8197649717330933,
+        "bos_attn": 0.8837890625,
+        "max_attn": 0.8837890625,
+        "marker_attn": 0.0006155967712402344
+      },
+      "baseline_code": {
+        "entropy": 0.7468585968017578,
+        "bos_attn": 0.8701171875,
+        "max_attn": 0.8701171875,
+        "marker_attn": 0.0
+      },
+      "baseline_history": {
+        "entropy": 0.5454992055892944,
+        "bos_attn": 0.92236328125,
+        "max_attn": 0.92236328125,
+        "marker_attn": 0.0
+      },
+      "recursive_mild": {
+        "entropy": 0.5316416621208191,
+        "bos_attn": 0.9296875,
+        "max_attn": 0.9296875,
+        "marker_attn": 0.0011339187622070312
+      },
+      "recursive_medium": {
+        "entropy": 0.6635020971298218,
+        "bos_attn": 0.91357421875,
+        "max_attn": 0.91357421875,
+        "marker_attn": 0.01018524169921875
+      },
+      "recursive_strong": {
+        "entropy": 0.6042377948760986,
+        "bos_attn": 0.916015625,
+        "max_attn": 0.916015625,
+        "marker_attn": 0.0013532638549804688
+      }
+    },
+    "H3": {
+      "champion": {
+        "entropy": 0.2832808494567871,
+        "bos_attn": 0.96533203125,
+        "max_attn": 0.96533203125,
+        "marker_attn": 0.0017080307006835938
+      },
+      "baseline_photo": {
+        "entropy": 0.7127568125724792,
+        "bos_attn": 0.7236328125,
+        "max_attn": 0.7236328125,
+        "marker_attn": 0.00038170814514160156
+      },
+      "baseline_code": {
+        "entropy": 1.041407585144043,
+        "bos_attn": 0.91845703125,
+        "max_attn": 0.91845703125,
+        "marker_attn": 0.0
+      },
+      "baseline_history": {
+        "entropy": 1.2450865507125854,
+        "bos_attn": 0.495849609375,
+        "max_attn": 0.495849609375,
+        "marker_attn": 0.0
+      },
+      "recursive_mild": {
+        "entropy": 0.375273197889328,
+        "bos_attn": 0.9208984375,
+        "max_attn": 0.9208984375,
+        "marker_attn": 0.0002868175506591797
+      },
+      "recursive_medium": {
+        "entropy": 0.3303890824317932,
+        "bos_attn": 0.89892578125,
+        "max_attn": 0.89892578125,
+        "marker_attn": 0.002201080322265625
+      },
+      "recursive_strong": {
+        "entropy": 0.6214343309402466,
+        "bos_attn": 0.69775390625,
+        "max_attn": 0.69775390625,
+        "marker_attn": 0.00603485107421875
+      }
+    }
+  },
+  "key_findings": [
+    "H31 entropy correlates with R_V (r=0.529)",
+    "Champion H31 entropy: 0.317",
+    "Baseline H31 entropy: 0.997",
+    "H31 entropy difference: 0.680"
+  ]
+}

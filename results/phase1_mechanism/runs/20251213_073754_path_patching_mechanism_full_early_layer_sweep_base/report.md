@@ -1,0 +1,3 @@
+# Run report: path_patching_mechanism
+
+run_dir: results/phase1_mechanism/runs/20251213_073754_path_patching_mechanism_full_early_layer_sweep_base

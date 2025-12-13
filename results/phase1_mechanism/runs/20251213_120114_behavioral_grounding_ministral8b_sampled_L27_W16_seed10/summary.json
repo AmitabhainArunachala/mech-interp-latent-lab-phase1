@@ -1,0 +1,52 @@
+{
+  "artifacts": {
+    "csv": "results/phase1_mechanism/runs/20251213_120114_behavioral_grounding_ministral8b_sampled_L27_W16_seed10/behavioral_grounding_summary.csv",
+    "jsonl": "results/phase1_mechanism/runs/20251213_120114_behavioral_grounding_ministral8b_sampled_L27_W16_seed10/behavioral_grounding.jsonl"
+  },
+  "by_condition": {
+    "baseline": {
+      "gen_token_count_mean": 220.0,
+      "n": 1,
+      "repeat_4gram_frac_mean": 0.0,
+      "self_ref_rate_mean": 0.0,
+      "unique_word_ratio_mean": 0.5818181818181818
+    },
+    "baseline_patched": {
+      "gen_token_count_mean": 220.0,
+      "n": 1,
+      "repeat_4gram_frac_mean": 0.0,
+      "self_ref_rate_mean": 0.0,
+      "unique_word_ratio_mean": 0.6625766871165644
+    },
+    "recursive": {
+      "gen_token_count_mean": 58.0,
+      "n": 1,
+      "repeat_4gram_frac_mean": 0.23809523809523808,
+      "self_ref_rate_mean": 0.24444444444444444,
+      "unique_word_ratio_mean": 0.28888888888888886
+    }
+  },
+  "device": "cuda",
+  "experiment": "behavioral_grounding",
+  "model_name": "mistralai/Ministral-8B-Instruct-2410",
+  "params": {
+    "do_sample": true,
+    "max_new_tokens": 220,
+    "max_pairs": 1,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "patch_layer": 27,
+    "temperature": 0.7,
+    "window": 16
+  }
+}

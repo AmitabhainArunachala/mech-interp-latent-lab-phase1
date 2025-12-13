@@ -1,0 +1,31 @@
+{
+  "experiment": "path_patching_mechanism",
+  "run_name": "peak_sweep_strong_base",
+  "seed": 3,
+  "results": { "root": "results", "phase": "phase1_mechanism" },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "early_layer": 5,
+    "measurement_layer": 27,
+    "target_layer": 27,
+    "wrong_layer": 18,
+    "window": 16,
+    "windows": [16, 32],
+    "patch_layers": [24, 25, 26, 27, 28, 29],
+    "max_pairs": 80,
+    "max_length": 512,
+    "n_repeats": 3,
+    "components": ["resid"],
+    "patch_types": ["none", "recursive", "shuffled", "opposite", "random"],
+    "include_wrong_layer_control": true,
+    "pairing": {
+      "recursive_groups": ["L5_refined", "L4_full", "L3_deeper"],
+      "baseline_groups": ["long_control", "baseline_creative", "baseline_math"]
+    }
+  }
+}
+
+

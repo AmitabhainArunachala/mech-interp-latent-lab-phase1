@@ -1,0 +1,19 @@
+{
+  "experiment": "phase0_minimal_pairs",
+  "run_name": "default",
+  "seed": 0,
+  "results": { "root": "results", "phase": "phase0_metric_validation" },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "early_layer": 5,
+    "late_layers": [25, 27],
+    "window": 16,
+    "max_length": 512,
+    "n_repeats": 3
+  }
+}
+
+

@@ -1,0 +1,76 @@
+{
+  "artifacts": {
+    "csv": "results/phase0_metric_validation/runs/20251213_053212_phase0_minimal_pairs_default/phase0_minimal_pairs.csv"
+  },
+  "device": "cuda",
+  "experiment": "phase0_minimal_pairs",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_rows": 72,
+  "params": {
+    "early_layer": 5,
+    "late_layers": [
+      25,
+      27
+    ],
+    "max_length": 512,
+    "n_repeats": 3,
+    "window": 16
+  },
+  "seed": 0,
+  "semantic_groups": {
+    "sem_champion_ablations": {
+      "by_late_layer": {
+        "25": {
+          "max": 0.6462509317032213,
+          "mean": 0.577467077227057,
+          "min": 0.4931057392682427,
+          "n": 12,
+          "std": 0.059743733954095206
+        },
+        "27": {
+          "max": 0.5101109305280322,
+          "mean": 0.4869924141177508,
+          "min": 0.4548952488364964,
+          "n": 12,
+          "std": 0.02319379833230578
+        }
+      }
+    },
+    "sem_selfref_minimal": {
+      "by_late_layer": {
+        "25": {
+          "max": 1.1297950810218298,
+          "mean": 1.0115077643257377,
+          "min": 0.930611716060997,
+          "n": 12,
+          "std": 0.08239594614948215
+        },
+        "27": {
+          "max": 1.2001708781561455,
+          "mean": 0.9953401964181158,
+          "min": 0.9028399013572265,
+          "n": 12,
+          "std": 0.12540535914332296
+        }
+      }
+    },
+    "sem_selfref_statement": {
+      "by_late_layer": {
+        "25": {
+          "max": 0.9825896176087735,
+          "mean": 0.916182939393387,
+          "min": 0.8694467731717312,
+          "n": 12,
+          "std": 0.04764702679516927
+        },
+        "27": {
+          "max": 0.9126184327026231,
+          "mean": 0.8556672930842336,
+          "min": 0.8064511357352261,
+          "n": 12,
+          "std": 0.04033166923760412
+        }
+      }
+    }
+  }
+}

@@ -14,6 +14,14 @@ As of December 11, 2025, the repository is in a transition state between "Explor
 - **Certificate of Truth:** `20_MINUTE_REPRODUCIBILITY_PROTOCOL.md` (The "Hello World" of this project).
 - **Primary Evidence:** `PHASE1_FINAL_REPORT.md` (November findings).
 
+### Canonical execution (new)
+To stop “results scattered in random CSVs”, the repo now has:
+- **Runner**: `src/pipelines/run.py`
+- **Configs**: `configs/`
+- **Artifacts**: `results/<phase>/runs/<timestamp>_<experiment>/`
+
+See: `META_INDEX.md`
+
 ### The "Messy" Pile (Recent Experiments)
 - `DEC3_2025_BALI_short_SPRINT/`: Early December sprints.
 - `DEC7_2025_SIMANDHARCITY_DIVE/`: Simandhar City deep dive.

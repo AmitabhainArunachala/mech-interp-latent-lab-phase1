@@ -1,0 +1,134 @@
+{
+  "artifacts": {
+    "csv": "results/phase1_mechanism/runs/20251213_055827_path_patching_mechanism_default/path_patching_mechanism.csv"
+  },
+  "by_component": {
+    "o": {
+      "none": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "opposite": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "random": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "recursive": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "shuffled": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "wrong_layer": {
+        "mean": 0.6625191680964495,
+        "n": 12.0,
+        "std": 0.058867573254264574
+      }
+    },
+    "resid": {
+      "none": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "opposite": {
+        "mean": 0.47955541247710265,
+        "n": 12.0,
+        "std": 0.05955959547759964
+      },
+      "random": {
+        "mean": 1.5517528586158693,
+        "n": 12.0,
+        "std": 0.07500064766650397
+      },
+      "recursive": {
+        "mean": 0.47955541247710265,
+        "n": 12.0,
+        "std": 0.05955959547759964
+      },
+      "shuffled": {
+        "mean": 0.4795553800998124,
+        "n": 12.0,
+        "std": 0.05955974238852561
+      },
+      "wrong_layer": {
+        "mean": 0.5220179860602546,
+        "n": 12.0,
+        "std": 0.06755940017900668
+      }
+    },
+    "v": {
+      "none": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "opposite": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "random": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "recursive": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "shuffled": {
+        "mean": 0.6657700414654225,
+        "n": 12.0,
+        "std": 0.05730441411496947
+      },
+      "wrong_layer": {
+        "mean": 0.6650347507522709,
+        "n": 12.0,
+        "std": 0.05799359089897832
+      }
+    }
+  },
+  "device": "cuda",
+  "experiment": "path_patching_mechanism",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_rows": 216,
+  "params": {
+    "components": [
+      "v",
+      "o",
+      "resid"
+    ],
+    "early_layer": 5,
+    "max_length": 512,
+    "max_pairs": 12,
+    "measurement_layer": 27,
+    "n_repeats": 1,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "target_layer": 27,
+    "window": 16,
+    "wrong_layer": 21
+  }
+}

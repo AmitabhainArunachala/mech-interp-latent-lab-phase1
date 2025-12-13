@@ -1,0 +1,110 @@
+{
+  "artifacts": {
+    "csv": "results/phase0_metric_validation/runs/20251213_053235_phase0_metric_targets_default/phase0_metric_targets.csv"
+  },
+  "by_group": {
+    "baselines": {
+      "pr_h_late": {
+        "mean": 1.3729642868041991,
+        "n": 10.0,
+        "std": 0.8694712627156684
+      },
+      "pr_v_late": {
+        "mean": 4.1248891115188595,
+        "n": 10.0,
+        "std": 0.9218587273053571
+      },
+      "rv_hidden": {
+        "mean": 1.0613857532135484,
+        "n": 10.0,
+        "std": 0.11968204673666459
+      },
+      "rv_vproj": {
+        "mean": 0.9843622124967666,
+        "n": 10.0,
+        "std": 0.15356849679201223
+      }
+    },
+    "confounds": {
+      "pr_h_late": {
+        "mean": 4.088483786582946,
+        "n": 10.0,
+        "std": 0.38963610627658507
+      },
+      "pr_v_late": {
+        "mean": 6.072852897644043,
+        "n": 10.0,
+        "std": 0.38055942061906683
+      },
+      "rv_hidden": {
+        "mean": 0.5872700930339031,
+        "n": 10.0,
+        "std": 0.03735716856036632
+      },
+      "rv_vproj": {
+        "mean": 0.6232078960755157,
+        "n": 10.0,
+        "std": 0.04385387749493128
+      }
+    },
+    "dose_response": {
+      "pr_h_late": {
+        "mean": 3.3884281158447265,
+        "n": 10.0,
+        "std": 0.34985969138726875
+      },
+      "pr_v_late": {
+        "mean": 5.343130683898925,
+        "n": 10.0,
+        "std": 0.4688897641270615
+      },
+      "rv_hidden": {
+        "mean": 0.4957860754069549,
+        "n": 10.0,
+        "std": 0.08038051715483396
+      },
+      "rv_vproj": {
+        "mean": 0.5396271451413999,
+        "n": 10.0,
+        "std": 0.07496155227588372
+      }
+    }
+  },
+  "correlations": {
+    "pearson_pr_v_late_vs_pr_h_late": 0.8798518558885166,
+    "pearson_rv_vproj_vs_rv_hidden": 0.9220035249642284
+  },
+  "device": "cuda",
+  "experiment": "phase0_metric_targets",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_rows": 30,
+  "params": {
+    "early_layer": 5,
+    "groups": {
+      "baselines": {
+        "limit": 10,
+        "pillar": "baselines",
+        "seed": 1
+      },
+      "confounds": {
+        "limit": 10,
+        "pillar": "confounds",
+        "seed": 2
+      },
+      "dose_response": {
+        "limit": 10,
+        "pillar": "dose_response",
+        "seed": 0
+      }
+    },
+    "late_layer": 27,
+    "max_length": 512,
+    "window": 16
+  },
+  "seed": 0,
+  "weight_pr": {
+    "pr_w_early": 764.6681518554688,
+    "pr_w_late": 743.4207153320312,
+    "rv_weight": 0.972213519718481
+  }
+}

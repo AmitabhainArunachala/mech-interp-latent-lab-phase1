@@ -42,6 +42,14 @@
 - ✅ Protocol documentation (Measurement, Model, Intervention invariants)
 - ✅ Code patterns and debugging tips
 
+### 10. Canonical Experiment Runner (Addendum)
+- ✅ **Config-driven runner**: `src/pipelines/run.py`
+- ✅ **Experiment registry**: `src/pipelines/registry.py`
+- ✅ **Phase-scoped run artifacts**: `results/<phase>/runs/<timestamp>_<experiment>/`
+- ✅ **Config templates**: `configs/phase1_existence.json`, `configs/rv_l27_causal_validation.json`
+
+See: `META_INDEX.md`
+
 ### 9. Boneyard
 - ✅ Old experiments moved to `boneyard/`
 - ✅ Preserved for reference, removed from import path

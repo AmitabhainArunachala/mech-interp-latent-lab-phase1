@@ -1,0 +1,18 @@
+{
+  "experiment": "l27_head_analysis",
+  "run_name": "default",
+  "seed": 42,
+  "results": { "root": "results", "phase": "phase3_attention" },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "target_layer": 27,
+    "critical_heads": [11, 1, 22],
+    "control_head": 5,
+    "window": 16,
+    "self_ref_markers": ["itself", "self", "process", "observer", "attention", "recursive", "aware"]
+  }
+}
+

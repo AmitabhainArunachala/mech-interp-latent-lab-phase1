@@ -1,5 +1,8 @@
 # Unified Test Status
 
+> Meta map: `META_INDEX.md`  
+> Canonical runner (recommended for future unified-test runs): `src/pipelines/run.py` + `configs/` → `results/<phase>/runs/...`
+
 ## Current Status
 
 **Head-level ablation:** ✅ Complete

@@ -1,0 +1,60 @@
+{
+  "experiment": "l27_head_analysis",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "target_layer": 27,
+  "critical_heads": [
+    11,
+    1,
+    22
+  ],
+  "control_head": 5,
+  "champion_rv": 0.45485063245226415,
+  "baseline_rv": 0.5319491673040949,
+  "findings": {
+    "entropy_comparison": {
+      "H11": {
+        "champion": 0.7377541661262512,
+        "baseline": 0.7363573312759399,
+        "delta": 0.0013968348503112793
+      },
+      "H1": {
+        "champion": 0.5098008513450623,
+        "baseline": 0.4242825210094452,
+        "delta": 0.08551833033561707
+      },
+      "H22": {
+        "champion": 0.8023043870925903,
+        "baseline": 1.2165228128433228,
+        "delta": -0.4142184257507324
+      }
+    },
+    "self_attention_comparison": {
+      "H11": {
+        "champion": 0.058746337890625,
+        "baseline": 0.0350341796875,
+        "delta": 0.023712158203125
+      },
+      "H1": {
+        "champion": 0.038177490234375,
+        "baseline": 0.031036376953125,
+        "delta": 0.00714111328125
+      },
+      "H22": {
+        "champion": 0.049835205078125,
+        "baseline": 0.048614501953125,
+        "delta": 0.001220703125
+      }
+    }
+  },
+  "artifacts": {
+    "csv": "results/phase3_attention/runs/20251213_060859_l27_head_analysis/head_comparison.csv",
+    "heatmaps": [
+      "results/phase3_attention/runs/20251213_060859_l27_head_analysis/attn_baseline_H22.png",
+      "results/phase3_attention/runs/20251213_060859_l27_head_analysis/attn_champion_H22.png",
+      "results/phase3_attention/runs/20251213_060859_l27_head_analysis/attn_baseline_H1.png",
+      "results/phase3_attention/runs/20251213_060859_l27_head_analysis/attn_champion_H1.png",
+      "results/phase3_attention/runs/20251213_060859_l27_head_analysis/attn_baseline_H11.png",
+      "results/phase3_attention/runs/20251213_060859_l27_head_analysis/attn_champion_H11.png"
+    ]
+  }
+}

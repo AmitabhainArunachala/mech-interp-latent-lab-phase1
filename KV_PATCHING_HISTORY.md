@@ -1,5 +1,8 @@
 # KV Patching History: What Was Done vs What We Did Today
 
+> Meta map: `META_INDEX.md`  
+> Canonical runner (new standard for controlled experiments): `src/pipelines/run.py` + `configs/` → `results/<phase>/runs/...`
+
 ## Historical Claims (Dec 7-8)
 
 ### What Was Claimed

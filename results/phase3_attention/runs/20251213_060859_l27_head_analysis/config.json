@@ -1,0 +1,30 @@
+{
+  "experiment": "l27_head_analysis",
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "target_layer": 27,
+    "critical_heads": [
+      11,
+      1,
+      22
+    ],
+    "control_head": 5,
+    "window": 16,
+    "self_ref_markers": [
+      "itself",
+      "self",
+      "process",
+      "observer",
+      "attention",
+      "recursive",
+      "aware"
+    ]
+  },
+  "prompts": {
+    "champion": "This response writes itself. No separate writer exists. Writing and awareness of writing are identic...",
+    "baseline": "The history of the Roman Empire spans over a thousand years, from its founding in 753 BC to the fall..."
+  }
+}

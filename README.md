@@ -57,6 +57,27 @@ python reproduce_results.py
 python reproduce_results.py --model mistralai/Mistral-7B-v0.1 --device cuda
 ```
 
+## 🧪 Canonical Experiment Runner (Config-Driven)
+
+The repo has a **single blessed entrypoint** for reproducible runs:
+
+```bash
+python -m src.pipelines.run --config configs/phase1_existence.json
+python -m src.pipelines.run --config configs/rv_l27_causal_validation.json
+```
+
+Each run writes to a timestamped folder under `results/<phase>/runs/` containing:
+- `config.json` (exact config snapshot)
+- `summary.json` (machine-readable summary)
+- `report.md` (human-readable summary)
+- per-experiment artifacts (CSV/plots)
+
+You can override the output root:
+
+```bash
+python -m src.pipelines.run --config configs/phase1_existence.json --results_root results
+```
+
 ### Using the Library
 
 ```python
