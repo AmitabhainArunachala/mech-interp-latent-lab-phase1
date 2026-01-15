@@ -131,6 +131,7 @@ def get_registry() -> Dict[str, ExperimentFn]:
     from .discovery.logit_lens_analysis import run_logit_lens_analysis_from_config
     from .discovery.vproj_patching_analysis import run_vproj_patching_analysis_from_config
     from .discovery.mlp_vproj_combined_sufficiency_test import run_mlp_vproj_combined_sufficiency_test_from_config
+    from .discovery.c2_rv_measurement import run_c2_rv_measurement_from_config
 
     # === ARCHIVE - Historical/superseded ===
     from .archive.phase1_existence import run_phase1_existence_from_config
@@ -206,6 +207,7 @@ def get_registry() -> Dict[str, ExperimentFn]:
         "vproj_patching_analysis": run_vproj_patching_analysis_from_config,
         "mlp_vproj_combined_sufficiency_test": run_mlp_vproj_combined_sufficiency_test_from_config,
         "cross_architecture_validation": run_cross_architecture_validation_from_config,
+        "c2_rv_measurement": run_c2_rv_measurement_from_config,
     }
 
 

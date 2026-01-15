@@ -1,0 +1,19 @@
+{
+  "experiment": "confound_validation",
+  "description": "Confound controls for Llama-3-8B",
+  "params": {
+    "model": "meta-llama/Meta-Llama-3-8B",
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16,
+    "n_champions": 30,
+    "n_length_matched": 30,
+    "n_pseudo_recursive": 30,
+    "seed": 42
+  },
+  "success_criteria": {
+    "champions_rv_max": 0.60,
+    "length_matched_rv_min": 0.75,
+    "pseudo_recursive_rv_min": 0.70
+  }
+}

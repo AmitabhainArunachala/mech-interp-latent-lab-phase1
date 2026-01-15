@@ -1,5 +1,5 @@
 {
-  "experiment": "c2_ablation",
+  "experiment": "c2_rv_measurement",
   "ablation": "no_steering",
   "description": "C2 with KV only - no H18/H26 steering",
   "params": {

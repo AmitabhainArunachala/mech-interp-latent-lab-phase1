@@ -74,12 +74,13 @@ configs/
 └── archive/          # 13 deprecated configs
 
 results/
-├── canonical/        # Paper-worthy runs (rv_l27, confound, c2)
-├── discovery/        # Methodology runs
-└── archive/          # Historical/failed runs
+├── canonical/              # Paper-worthy runs (rv_l27, confound, c2)
+├── discovery/              # Methodology runs
+├── phase2_generalization/  # Cross-architecture validation runs
+└── archive/                # Historical/failed runs
 
 prompts/
-├── bank.json         # 694 prompts, version-tracked
+├── bank.json         # 754 prompts, version-tracked
 ├── loader.py         # PromptLoader API
 └── README.md         # Schema documentation
 ```
@@ -105,7 +106,7 @@ prompts/
 | File | Purpose |
 |------|---------|
 | `MISTRAL_L27_CAUSAL_VALIDATION_COMPLETE.md` | Crown jewel result documentation |
-| `prompts/bank.json` | All 694 prompts with expected R_V ranges |
+| `prompts/bank.json` | All 754 prompts with expected R_V ranges |
 | `src/metrics/rv.py` | The R_V metric implementation |
 | `configs/canonical/rv_l27_causal_validation.json` | Gold standard config |
 

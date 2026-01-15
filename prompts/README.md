@@ -28,7 +28,7 @@ controls = loader.get_by_pillar("controls")
 
 ---
 
-## Bank Structure (694 prompts)
+## Bank Structure (754 prompts)
 
 | Pillar | Groups | Count | Purpose |
 |--------|--------|-------|---------|
@@ -136,7 +136,7 @@ Each control has `matched_to` field linking to its champion:
 
 | File | Purpose |
 |------|---------|
-| `bank.json` | THE source (424 prompts) |
+| `bank.json` | THE source (754 prompts) |
 | `loader.py` | API to access prompts |
 | `README.md` | This file |
 | `deprecated/` | Old files (archived) |

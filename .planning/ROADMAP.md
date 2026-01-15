@@ -19,7 +19,7 @@ None — custom mechanistic interpretability research project.
 - [x] **Phase 3: Config Consolidation** - Organize 54 configs into canonical set ✓
 - [x] **Phase 4: Results Organization** - Structure 100+ result directories ✓
 - [x] **Phase 5: Metrics Compliance** - Add BaselineMetricsSuite to canonical pipelines ✓ (SKIPPED - already fit for purpose)
-- [ ] **Phase 6: Statistical Standards** - Add p-value, Cohen's d, 95% CI everywhere
+- [x] **Phase 6: Statistical Standards** - Add p-value, Cohen's d, 95% CI everywhere ✓
 - [ ] **Phase 7: Unit Tests** - Test suite for metric implementations
 - [ ] **Phase 8: Regression Tests** - Expected values for canonical pipelines
 - [ ] **Phase 9: Documentation** - README, literature review, papers/, notebooks

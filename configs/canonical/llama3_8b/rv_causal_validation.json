@@ -1,0 +1,31 @@
+{
+  "experiment": "rv_l27_causal_validation",
+  "description": "Phase 5: Four-way causal validation at readout layer for Llama-3-8B",
+  "params": {
+    "model": "meta-llama/Meta-Llama-3-8B",
+    "target_layer": 27,
+    "wrong_layer": 21,
+    "early_layer": 5,
+    "window": 16,
+    "max_pairs": 45,
+    "seed": 42,
+    "pairing": {
+      "recursive_groups": ["L5_refined", "L4_full", "L3_deeper"],
+      "baseline_groups": ["long_control", "baseline_creative", "baseline_math"]
+    },
+    "controls": {
+      "random": true,
+      "shuffled": true,
+      "wrong_layer": true,
+      "dose_response": true
+    }
+  },
+  "success_criteria": {
+    "transfer_efficiency_min": 80,
+    "random_control": "R_V increases (no transfer)",
+    "shuffled_control": "Partial reduction",
+    "wrong_layer_control": "p > 0.05 (no effect)",
+    "dose_response": "L1 > L2 > L3 > L4 > L5"
+  },
+  "notes": "This is the crown jewel validation. On Mistral: d=-3.56, transfer=117.8%"
+}

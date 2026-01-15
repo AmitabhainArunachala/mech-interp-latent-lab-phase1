@@ -1,32 +1,89 @@
-# Mechanistic Interpretability Research Context
+# R_V Geometric Signatures Research Project
 
-## Primary Knowledge Sources
-- @mech_interp_knowledge_base.md - Consolidated paper summaries and techniques
-- @PHASE1_FINAL_REPORT.md - L4 contraction discovery across 6 models
-- @n300_mistral_test_prompt_bank.py - Prompt bank (320 prompts)
-- @NOV_16_Mixtral_free_play.py - Mixtral analysis toolkit
-- @MIXTRAL_LAYER27_GEOMETRY_AND_CAUSALITY.md - Causal intervention results
+**Repository**: mech-interp-latent-lab-phase1
+**Phase**: 7 of 10 (Unit Tests)
+**Core Finding**: R_V contraction is a causal, layer-specific geometric signature of recursive self-observation
 
-## Key Concepts to Always Remember
-1. R_V metric: PR(late) / PR(early) - measures geometric contraction
-2. Activation patching requires 4 controls: random, shuffled, wrong-layer, opposite
-3. L4 contraction appears at ~84% depth (Layer 27 in 32-layer models)
-4. MoE shows 59% stronger effect than dense (24.3% vs 15.3%)
-5. Window size: 6-16 tokens (test robustness across different windows)
+---
 
-## Standard Experimental Parameters
-- Early layer: 5
-- Target layer: num_layers - 5 (typically 27 for 32-layer models)
-- Sample size: 80 pairs minimum for statistical power
-- Statistical threshold: p < 0.01 with Bonferroni correction
-- Effect size threshold: |d| ≥ 0.5 for meaningful effects
+## Project Overview
 
-## Code Patterns
+This repo investigates how recursive self-observation prompts induce geometric contraction in transformer Value matrices. The R_V metric (PR_late / PR_early) measures this effect.
 
-### Standard hook pattern for value extraction
+**Key Result**: Cohen's d = -3.56, p < 10⁻⁶, Transfer efficiency = 117.8%
+
+---
+
+## Essential Knowledge
+
+### The R_V Metric
 ```python
-from contextlib import contextmanager
+R_V = PR_late / PR_early
+# PR = Participation Ratio = (Σλᵢ)² / Σλᵢ²
+# R_V < 1.0 indicates geometric contraction (recursive prompts)
+# R_V ≈ 1.0 indicates no contraction (baseline prompts)
+```
 
+### Standard Parameters
+| Parameter | Value | Notes |
+|-----------|-------|-------|
+| Early layer | 5 | Baseline measurement |
+| Late layer | 27 | Target (84% depth for 32-layer) |
+| Window size | 16 | Tokens for SVD |
+| n_pairs | ≥100 | Statistical power |
+| Effect threshold | \|d\| ≥ 0.5 | Meaningful effect |
+
+### Critical Files
+| File | Purpose |
+|------|---------|
+| `src/metrics/rv.py` | R_V metric implementation |
+| `src/metrics/baseline_suite.py` | Nanda-standard baseline metrics |
+| `prompts/bank.json` | 754 prompts (single source of truth) |
+| `src/pipelines/canonical/*.py` | 7 publication-ready pipelines |
+| `configs/canonical/*.json` | Validated experiment configs |
+
+---
+
+## Directory Structure
+
+```
+src/
+├── metrics/          # R_V, logit_diff, logit_lens, mode_score
+├── core/             # hooks, activations, patching, steering
+└── pipelines/
+    ├── canonical/    # 7 publication-ready
+    ├── discovery/    # 12 methodology tools
+    └── archive/      # 35 historical
+
+configs/
+├── canonical/        # Validated configs
+├── discovery/        # Experimental configs
+└── archive/          # Deprecated
+
+results/
+├── canonical/        # Paper-worthy runs
+├── discovery/        # Methodology runs
+├── phase2_generalization/  # Cross-arch validation
+└── archive/          # Historical
+
+prompts/
+├── bank.json         # 754 prompts
+└── loader.py         # PromptLoader API
+```
+
+---
+
+## Coding Standards
+
+### Always Include
+1. **Statistical reporting**: n, p-value, Cohen's d, 95% CI
+2. **Seed setting**: `set_seed(seed)` for reproducibility
+3. **Memory management**: `torch.cuda.empty_cache()` after runs
+4. **Hook cleanup**: Use context managers
+5. **Model state**: `model.eval()` + `torch.no_grad()`
+
+### Standard Hook Pattern
+```python
 @contextmanager
 def capture_v_at_layer(model, layer_idx, storage_list):
     layer = model.model.layers[layer_idx].self_attn
@@ -40,71 +97,52 @@ def capture_v_at_layer(model, layer_idx, storage_list):
         handle.remove()
 ```
 
-### R_V computation with numerical stability
+### Registry Pattern for New Pipelines
 ```python
-def compute_metrics_fast(v_tensor, window_size=16):
-    if v_tensor is None:
-        return np.nan, np.nan
-    if v_tensor.dim() == 3:
-        v_tensor = v_tensor[0]
-    T, D = v_tensor.shape
-    W = min(window_size, T)
-    v_window = v_tensor[-W:, :].float()
-    try:
-        U, S, Vt = torch.linalg.svd(v_window.T, full_matrices=False)
-        S_np = S.cpu().numpy()
-        S_sq = S_np ** 2
-        if S_sq.sum() < 1e-10:
-            return np.nan, np.nan
-        p = S_sq / S_sq.sum()
-        eff_rank = 1.0 / (p**2).sum()
-        pr = (S_sq.sum()**2) / (S_sq**2).sum()
-        return float(eff_rank), float(pr)
-    except Exception:
-        return np.nan, np.nan
+# In src/pipelines/{tier}/new_pipeline.py:
+def run_new_pipeline_from_config(cfg: Dict[str, Any], run_dir: Path) -> ExperimentResult:
+    params = cfg.get("params", {})
+    # ... implementation ...
+    return ExperimentResult(summary=summary, baseline_metrics=baseline_metrics)
+
+# Then add to src/pipelines/registry.py:
+# 1. Import: from .{tier}.new_pipeline import run_new_pipeline_from_config
+# 2. Register: "new_pipeline": run_new_pipeline_from_config,
 ```
 
-## Always Check
-- [ ] SVD numerical stability (catch exceptions, check for degeneracy)
-- [ ] Token length >= window_size
-- [ ] Proper device placement (.to(device))
-- [ ] Memory cleanup (torch.cuda.empty_cache())
-- [ ] Hooks properly removed (use context managers)
-- [ ] Model in eval mode (model.eval())
-- [ ] Gradients disabled (torch.no_grad())
+---
 
-## Citation Format
-When referencing techniques, cite as:
+## Validation Protocol
+
+### Before Any Claim
+1. **Kill switch**: `pure_repetition` prompts must NOT contract (R_V > 1.0)
+2. **Dose-response**: L1 < L2 < L3 < L4 < L5 contraction
+3. **Champions vs controls**: Champions beat both length-matched and pseudo-recursive
+4. **Cross-architecture**: Effect replicates on different models
+
+### Statistical Requirements
+- n ≥ 100 for publication claims
+- p < 0.01 with appropriate correction
+- Cohen's d reported for all comparisons
+- 95% CI for all mean estimates
+
+---
+
+## References
+
 - Activation patching: Meng et al. 2022
-- Causal tracing: Meng et al. 2022  
 - Transformer circuits: Elhage et al. 2021
 - Path patching: Wang et al. 2022
 - Causal scrubbing: Chan et al. 2022
+- IOI: Nanda et al. 2023
 
-## Project-Specific Findings
+---
 
-### R_V Results by Model
-| Model | R_V Recursive | R_V Baseline | Separation |
-|-------|--------------|--------------|------------|
-| Mistral-7B | 0.852 | 1.003 | 15.1% |
-| Qwen-7B | 0.764 | 0.986 | 22.5% |
-| Llama-8B | 0.823 | 0.971 | 15.2% |
-| Phi-3 | 0.891 | 0.974 | 8.5% |
-| Gemma-7B | 0.892 | 0.989 | 9.8% |
-| Mixtral-8x7B | 0.757 | 1.000 | 24.3% |
+## Debug Checklist
 
-### Key Discovery
-Universal geometric contraction in value-space (R_V < 1.0) for recursive self-observation prompts at late layers (~84% depth), with architecture-specific "phenotypes" but consistent underlying mechanism.
-
-## Debugging Tips
-1. If patching has no effect: Check layer depth, might need deeper/shallower
-2. If R_V is NaN: Check for short prompts, numerical instability in SVD
-3. If memory errors: Reduce batch size, clear cache between runs
-4. If results inconsistent: Set random seeds, check for batch effects
-
-## Next Steps in Research
-1. Validate causality with 80+ prompt pairs on Mistral-7B
-2. Test if effect scales with model size (7B → 70B)
-3. Investigate MoE routing patterns during contraction
-4. Test cross-model activation transfer
-
+- [ ] Prompts long enough for window_size?
+- [ ] SVD not returning NaN? (check for degenerate matrices)
+- [ ] Hooks removed after use?
+- [ ] Memory cleared between batches?
+- [ ] Seeds set for reproducibility?
+- [ ] Model in eval mode with no_grad?

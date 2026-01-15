@@ -1,0 +1,18 @@
+{
+  "experiment": "head_ablation_validation",
+  "description": "Phase 6: Head identification at L27 for Llama-3-8B",
+  "params": {
+    "model": "meta-llama/Meta-Llama-3-8B",
+    "target_layer": 27,
+    "heads_to_test": "all",
+    "early_layer": 5,
+    "window": 16,
+    "n_prompts": 20,
+    "seed": 42
+  },
+  "success_criteria": {
+    "identify_critical_heads": true,
+    "note": "Heads are likely SYMPTOMATIC not CAUSAL (like H18/H26 in Mistral)"
+  },
+  "notes": "Llama-3-8B has 32 heads per layer."
+}

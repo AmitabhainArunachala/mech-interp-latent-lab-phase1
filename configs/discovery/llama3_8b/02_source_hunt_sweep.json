@@ -1,0 +1,18 @@
+{
+  "experiment": "mlp_ablation_necessity",
+  "description": "Phase 3: Source layer hunt - sweep L0-L8 MLP ablation",
+  "params": {
+    "model": "meta-llama/Meta-Llama-3-8B",
+    "ablation_layers": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16,
+    "n_prompts": 30,
+    "seed": 42
+  },
+  "success_criteria": {
+    "source_layer_rv_jump": 1.0,
+    "description": "Source layer is where ablation causes R_V > 1.0"
+  },
+  "notes": "On Mistral, L0 is the source (ablation removes effect entirely)."
+}

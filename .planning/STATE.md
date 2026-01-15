@@ -112,6 +112,7 @@ Resume file: None
 
 ## Pending Actions
 
-1. **COMMIT**: 561 uncommitted changes from restructure (Phase 2-4 work)
-2. **GPU**: Llama cross-architecture validation (blocked on HF_TOKEN)
-3. **NEXT**: Phase 7 — Unit tests for rv.py, logit_diff.py, baseline_suite.py
+1. **GPU**: Llama cross-architecture validation (blocked on HF_TOKEN)
+2. **NEXT**: Phase 7 — Unit tests for rv.py, logit_diff.py, baseline_suite.py
+
+**Note:** Core restructure work has been staged and is ready to commit.

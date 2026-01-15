@@ -1,0 +1,20 @@
+{
+  "experiment": "mlp_combined_sufficiency_test",
+  "description": "Phase 4: Transfer sweet spot hunt - sweep L0-L10 MLP steering",
+  "params": {
+    "model": "meta-llama/Meta-Llama-3-8B",
+    "steering_layers": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "alpha": 2.5,
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16,
+    "n_prompts": 20,
+    "include_random_control": true,
+    "seed": 42
+  },
+  "success_criteria": {
+    "transfer_delta_min": 2.0,
+    "random_separation": "true_steering >> random_steering"
+  },
+  "notes": "On Mistral, L3-L4 is the transfer sweet spot. L2 is an artifact."
+}

@@ -1,5 +1,5 @@
 {
-  "experiment": "c2_ablation",
+  "experiment": "c2_rv_measurement",
   "ablation": "no_cascade",
   "description": "C2 without L26 cascade - only KV + H18/H26 steering",
   "params": {

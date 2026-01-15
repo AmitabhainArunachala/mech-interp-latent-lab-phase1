@@ -43,10 +43,11 @@ logs/
 .vscode/
 .cursor/
 
-# Credentials
+# Credentials and secrets
 .env
 *.key
 *.pem
+.secrets/
 
 # Temporary
 tmp/
