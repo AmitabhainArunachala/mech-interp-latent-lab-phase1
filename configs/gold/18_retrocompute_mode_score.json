@@ -1,0 +1,21 @@
+{
+  "experiment": "retrocompute_mode_score",
+  "params": {
+    "model": "mistralai/Mistral-7B-Instruct-v0.3",
+    "device": "cuda",
+    "n_baseline_prompts": 10,
+    "max_new_tokens": 200,
+    "n_tokens_for_m": 10
+  },
+  "results": {
+    "root": "results",
+    "phase": "ioi_causal_evidence"
+  }
+}
+
+
+
+
+
+
+

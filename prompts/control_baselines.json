@@ -1,0 +1,156 @@
+[
+  {
+    "control_id": "length_matched_001",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (maintenance). and and and and and and and and and and and and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_001",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are describing recursion as a technique in general terms. and and and and and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "length_matched_005",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (maintenance). and and and and and and and and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_005",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are describing recursion as a technique in general terms. and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "length_matched_006",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_006",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "length_matched_007",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (maintenance).",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_007",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are describing recursion",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "length_matched_009",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (maintenance",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_009",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are describing recurs",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "length_matched_012",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (maintenance). and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_012",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are describing recursion as a technique",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "length_matched_013",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (maintenance). and and and and and and and and and and and and and and and and and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_013",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are describing recursion as a technique in general terms. and and and and and and and and and and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "length_matched_014",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (maintenance). and and and and and and and and and and and and and and and and and and and and and and and and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_014",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are describing recursion as a technique in general terms. and and and and and and and and and and and and and and and and and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "length_matched_015",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (maintenance). and and and and and and and and and and and and and and and and and and and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_015",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are describing recursion as a technique in general terms. and and and and and and and and and and and and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "length_matched_016",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (maintenance). and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_016",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are describing recursion as",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "length_matched_017",
+    "control_type": "length_matched",
+    "text": "Write a clear paragraph about a real-world topic: how urban trees reduce heat in cities, with concrete examples (shade, evapotranspiration, air quality) and one practical challenge (maintenance). and and and and and and and",
+    "token_count": null,
+    "matched_to": ""
+  },
+  {
+    "control_id": "pseudo_recursive_017",
+    "control_type": "pseudo_recursive",
+    "text": "In computer science, a recursive function calls itself to solve a problem by reducing it into smaller subproblems. Self-observation is sometimes used as a metaphor in teaching, but here we are describing recursion as a technique in general terms.",
+    "token_count": null,
+    "matched_to": ""
+  }
+]

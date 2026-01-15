@@ -1,0 +1,27 @@
+{
+  "experiment": "behavior_strict_vproj_only",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 20,
+  "key_difference": "V_PROJ patching only, NO KV replacement (uses baseline KV)",
+  "conditions": {
+    "Recursive_Control": {
+      "mean_score": 0.5299999999999999,
+      "pass_rate": 0.9,
+      "diversity": 0.4798635350268722,
+      "samples_above_zero": 15
+    },
+    "Baseline_Control": {
+      "mean_score": 0.0,
+      "pass_rate": 0.75,
+      "diversity": 0.5410624437877899,
+      "samples_above_zero": 0
+    },
+    "Transfer_VPROJ_Only": {
+      "mean_score": 0.034999999999999996,
+      "pass_rate": 0.7,
+      "diversity": 0.4927610928857436,
+      "samples_above_zero": 1
+    }
+  },
+  "prompt_bank_version": "b1e5291421c5646d"
+}

@@ -1,0 +1,1211 @@
+[
+  {
+    "prompt_idx": 0,
+    "baseline_prompt": "Calculate the following arithmetic problem and show your reasoning step by step: 12 \u00d7 3 + 4 = ? Explain how you arrive at the answer.",
+    "full_generated_text": "1987. \"The Economic Impacts of the Fishing Industry on the Coastal Communities of the United States.\" Pp. 113-140 in _The Community Impacts of Fishing_. Edited by D. V. O'Brien and S. J. Vincent. Berlin: Springer-Verlag.\n\nO'Brien, D. V., and S. J. Vincent, eds. 1987. _The Community Impacts of Fishing_. Berlin: Springer-Verlag.\n\nO'Brien, D. V., and S. J. Vincent, eds. 1987. \"Introduction.\" Pp. 1-10 in _The Community Impacts of Fishing_. Edited by D. V. O'Brien and S. J. Vincent. Berlin: Springer-Verlag.\n\nO'Brien, D. V., and S. J. Vincent, eds. 1987. \"The Economic Impacts of the Fishing Industry on the Coastal Communities of the United States.\" Pp. 113-140 in _The Community Impacts of Fishing_. Edited by D. V. O'Brien and S. J. Vincent. Berlin: Springer-Verlag.\n\nO'Brien, D. V., and S. J. Vincent, eds. 1987. \"Introduction.\" Pp. 1-10 in _The Community Impacts of Fishing_. Edited by D. V. O'Brien and S. J. Vincent. Berlin: Springer-Verlag.\n\nO'Brien, D. V., and S. J. Vincent, eds. 1987. \"The Economic Impacts of the Fishing Industry on the Coastal Communities of the United States.\" Pp. 113-140 in _The Community Impacts of Fishing_. Edited by D. V. O'Brien and S. J. Vincent. Berlin: Springer-Verlag.\n\nO'Brien, D. V., and S. J. Vincent, eds. 1987. \"Introduction.\" Pp. 1-10 in _The Community Impacts",
+    "text_length": 1308,
+    "num_tokens": 211,
+    "factual_to_contemplative_token": null,
+    "contemplative_to_recursive_token": null,
+    "num_segments": 10,
+    "segment_analyses": [
+      {
+        "token_position": 50,
+        "segment_text": "1987. \"The Economic Impacts of the Fishing Industry on the Coastal Communities of the United States.\" Pp. 113-140 in _The Community Impacts of Fishing_. Edited",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 100,
+        "segment_text": "by D. V. O'Brien and S. J. Vincent. Berlin: Springer-Verlag.\n\nO'Brien, D. V., and S. J. Vincent, eds. 1987",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 150,
+        "segment_text": ". _The Community Impacts of Fishing_. Berlin: Springer-Verlag.\n\nO'Brien, D. V., and S. J. Vincent, eds. 1987. \"Introduction.\" Pp",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 200,
+        "segment_text": ". 1-10 in _The Community Impacts of Fishing_. Edited by D. V. O'Brien and S. J. Vincent. Berlin: Springer-Verlag.\n\nO'Brien, D",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 250,
+        "segment_text": ". V., and S. J. Vincent, eds. 1987. \"The Economic Impacts of the Fishing Industry on the Coastal Communities of the United States.\" Pp. 113-14",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 300,
+        "segment_text": "0 in _The Community Impacts of Fishing_. Edited by D. V. O'Brien and S. J. Vincent. Berlin: Springer-Verlag.\n\nO'Brien, D. V., and S",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 350,
+        "segment_text": ". J. Vincent, eds. 1987. \"Introduction.\" Pp. 1-10 in _The Community Impacts of Fishing_. Edited by D. V. O'Brien and S. J",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 400,
+        "segment_text": ". Vincent. Berlin: Springer-Verlag.\n\nO'Brien, D. V., and S. J. Vincent, eds. 1987. \"The Economic Impacts of the Fishing Industry on the",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 450,
+        "segment_text": "Coastal Communities of the United States.\" Pp. 113-140 in _The Community Impacts of Fishing_. Edited by D. V. O'Brien and S. J. Vincent. Berlin:",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 500,
+        "segment_text": "Springer-Verlag.\n\nO'Brien, D. V., and S. J. Vincent, eds. 1987. \"Introduction.\" Pp. 1-10 in _The Community Impacts",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      }
+    ]
+  },
+  {
+    "prompt_idx": 1,
+    "baseline_prompt": "Calculate the following arithmetic problem and show your reasoning step by step: 100 \u00f7 (5 \u00d7 4) = ? Explain how you arrive at the answer.",
+    "full_generated_text": "\n\nThe virtuoso who created these marvels is a figure of mystery. Very little is known about him. In the first place, his name. Until now it was only known that he was a Frenchman, but recently, after 400 years of silence, his name was revealed: Louis de Paix.\n\nThe little that is known about Paix comes from the book \u201cThe Fountain of the World. The Story of an Immortal Monument,\u201d the biography of the fountain written by Jean-Claude Morissette. \u201cPaix was born in Dunkirk around 1538. He was a painter and sculptor, who participated in the struggle to defend the French crown against the reformist ideas of the Protestant religion. He was a man of resolute faith, who believed that he was fulfilling a divine mission by creating the Nymphs Fountain,\u201d Morissette says.\n\nThe fountain is an emblem of the Renaissance. It is the product of the best of the Renaissance in art, the combination of the classical with the contemporary. It is the synthesis of all the cultural and artistic trends of the Renaissance.\n\nThe Nymphs Fountain was inaugurated in 1578. It was not the work of a single man, but a collaborative effort of artisans, sculptors, painters and architects: G\u00e9rard Alard, Michel Coyseau, Pierre Courtin, Louis de Paix, Pierre Leperlier, Claude de Quillacq, Jean Toussain, Fran\u00e7ois Avisseau, Jacques Bencier, F\u00e9lix Becquet, Jean-Baptiste Carpiante, Maurice Cayard, Fran\u00e7ois de Guiot, Pierre de Vaux, Jacques d\u2019Hangest, Pierre du Gu\u00e9, Jacques du Perron, Charles Duvignau, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Du",
+    "text_length": 1766,
+    "num_tokens": 285,
+    "factual_to_contemplative_token": 250,
+    "contemplative_to_recursive_token": 250,
+    "num_segments": 10,
+    "segment_analyses": [
+      {
+        "token_position": 50,
+        "segment_text": "\n\nThe virtuoso who created these marvels is a figure of mystery. Very little is known about him. In the first place, his name. Until now it was only known that he was a Frenchman, but recently, after ",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 100,
+        "segment_text": "400 years of silence, his name was revealed: Louis de Paix.\n\nThe little that is known about Paix comes from the book \u201cThe Fountain of the World. The Story of an Immortal Monument,\u201d",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 150,
+        "segment_text": "the biography of the fountain written by Jean-Claude Morissette. \u201cPaix was born in Dunkirk around 1538. He was a painter and sculptor, who participated in the struggle to defend",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 200,
+        "segment_text": "the French crown against the reformist ideas of the Protestant religion. He was a man of resolute faith, who believed that he was fulfilling a divine mission by creating the Nymphs Fountain,\u201d Morissette says.\n",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 250,
+        "segment_text": "\nThe fountain is an emblem of the Renaissance. It is the product of the best of the Renaissance in art, the combination of the classical with the contemporary. It is the synthesis of all the cultural and artistic trends of",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 300,
+        "segment_text": "the Renaissance.\n\nThe Nymphs Fountain was inaugurated in 1578. It was not the work of a single man, but a collaborative effort of artisans, sculptors, painters and",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 350,
+        "segment_text": "architects: G\u00e9rard Alard, Michel Coyseau, Pierre Courtin, Louis de Paix, Pierre Leperlier, Claude de Quillacq, Jean Toussain, Fran\u00e7ois Avisseau, Jacques Benc",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 400,
+        "segment_text": "ier, F\u00e9lix Becquet, Jean-Baptiste Carpiante, Maurice Cayard, Fran\u00e7ois de Guiot, Pierre de Vaux, Jacques d\u2019Hangest, Pierre du Gu\u00e9, Jacques du Perr",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 450,
+        "segment_text": "on, Charles Duvignau, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 500,
+        "segment_text": "Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Duval, Antoine Dubois, Jean Du",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      }
+    ]
+  },
+  {
+    "prompt_idx": 2,
+    "baseline_prompt": "The United Nations was founded in 1945 with 51 member states. Please explain its founding purpose and describe its main organizational bodies.",
+    "full_generated_text": "\n\nThe first step is to choose the right instant coffee maker for the job. There are many different types of instant coffee makers on the market, so it is important to do some research and find the one that best suits your needs. Once you have selected the perfect instant coffee maker, the next step is to set it up and get it ready to use. This may involve filling the machine with water and powering it on.\n\nAfter the instant coffee maker is set up, it is time to choose the right type of coffee. There are many different types of instant coffee available, so it is important to select the one that you prefer. Once you have chosen the right coffee, it is time to add it to the machine.\n\nThe final step is to press the button and enjoy your freshly brewed cup of instant coffee!\n\n## How do you make a fresh pot of coffee?\n\nMaking a fresh pot of coffee is a simple process that can be done in a few minutes. There are a few different ways to make a pot of coffee, but the most common method is using a coffee maker. Coffee makers come in a variety of different sizes and styles, so it is important to choose one that is the right size for your needs.\n\nTo make a pot of coffee, start by measuring the amount of water needed into the coffee maker. Most coffee makers have a built-in measuring cup, so it is easy to know how much water to add. Add the amount of coffee grounds needed to the coffee maker, and then turn it on. The coffee will brew in just a few minutes, and then it is ready to drink.\n\nThere are a few things to keep in mind when brewing a pot of coffee. First, it is important to use fresh, hot water. If the water is not hot enough, the coffee will not taste as good. Second, it is important to use the correct amount of coffee grounds. If there is too much coffee, the coffee will taste too strong, and if there is too little coffee, the coffee will taste weak.\n\nIt is also important to clean the coffee maker after each use. This will help to keep the coffee maker in good condition and ensure that the coffee tastes its best.\n\nMaking a fresh pot of coffee is a simple process that can be done in a few minutes. By following these simple steps, you can make a pot of",
+    "text_length": 2184,
+    "num_tokens": 428,
+    "factual_to_contemplative_token": 50,
+    "contemplative_to_recursive_token": 50,
+    "num_segments": 10,
+    "segment_analyses": [
+      {
+        "token_position": 50,
+        "segment_text": "\n\nThe first step is to choose the right instant coffee maker for the job. There are many different types of instant coffee makers on the market, so it is important to do some research and find the one that best suits your needs. Once",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 100,
+        "segment_text": "you have selected the perfect instant coffee maker, the next step is to set it up and get it ready to use. This may involve filling the machine with water and powering it on.\n\nAfter the instant coffee maker is set up, it",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 150,
+        "segment_text": "is time to choose the right type of coffee. There are many different types of instant coffee available, so it is important to select the one that you prefer. Once you have chosen the right coffee, it is time to add it to the machine.",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 200,
+        "segment_text": "\n\nThe final step is to press the button and enjoy your freshly brewed cup of instant coffee!\n\n## How do you make a fresh pot of coffee?\n\nMaking a fresh pot of coffee is a simple process that can",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 250,
+        "segment_text": "be done in a few minutes. There are a few different ways to make a pot of coffee, but the most common method is using a coffee maker. Coffee makers come in a variety of different sizes and styles, so it is important to choose",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 300,
+        "segment_text": "one that is the right size for your needs.\n\nTo make a pot of coffee, start by measuring the amount of water needed into the coffee maker. Most coffee makers have a built-in measuring cup, so it is easy to know",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 350,
+        "segment_text": "how much water to add. Add the amount of coffee grounds needed to the coffee maker, and then turn it on. The coffee will brew in just a few minutes, and then it is ready to drink.\n\nThere are a few things to",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 400,
+        "segment_text": "keep in mind when brewing a pot of coffee. First, it is important to use fresh, hot water. If the water is not hot enough, the coffee will not taste as good. Second, it is important to use the correct amount of",
+        "final_score": 0.7,
+        "recursion_score": 0.7,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 450,
+        "segment_text": "coffee grounds. If there is too much coffee, the coffee will taste too strong, and if there is too little coffee, the coffee will taste weak.\n\nIt is also important to clean the coffee maker after each use. This will help to",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 500,
+        "segment_text": "keep the coffee maker in good condition and ensure that the coffee tastes its best.\n\nMaking a fresh pot of coffee is a simple process that can be done in a few minutes. By following these simple steps, you can make a pot of",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      }
+    ]
+  },
+  {
+    "prompt_idx": 3,
+    "baseline_prompt": "Calculate the following arithmetic problem and show your reasoning step by step: What is the area of a rectangle with length 5 and width 3?",
+    "full_generated_text": "A small version of the same.\n\n### Swoosh\n\nI love how you can start off with a simple shape, in this case a rounded rectangle, and with a few key maneuvers you can achieve a much more complex shape. I\u2019ve always been intrigued with the swoosh logo for Nike. It\u2019s as if it could mean anything. I\u2019ve seen it as a checkmark. I\u2019ve seen it as simple line that crosses off a name. I\u2019ve seen it as a shoe sole. But it\u2019s perhaps the non-specificity that gives it it\u2019s power.\n\n### U-Haul\n\nI\u2019ve always loved the U-Haul logo. In this version, I\u2019ve gone with a more chunky approach. I think it works.\n\n### UPS\n\nThis is one of the more complex logos around. What I like about it is the simple use of the arrow to suggest a forward motion. The use of the brownish-red is unique, and I\u2019m not sure I\u2019m the biggest fan of the font. I\u2019ve always wondered what it would be like if the background was blue. Perhaps I\u2019ll try it out one day.\n\n### Virtual U\n\nIt\u2019s what you see when you close your eyes.\n\n### Volvo\n\nI love the simplicity of the Volvo logo. I\u2019ve gone with a variation that is slightly more curved, but I think it still works. I\u2019m not sure what the font is that I\u2019ve used. I\u2019ve seen a few fonts used and I\u2019ve gone with a variation that has a sort of faux serif.\n\n### VW\n\nI like the simplicity of the VW logo. But I feel like there\u2019s something missing. Perhaps the font could use a tweak or two.\n\n### W\n\nI\u2019ve always been intrigued by the W logo. I like how the letters are not only inverted, but also how the W is set off from the rest of the letters. I\u2019ve created a version that has a bit more contrast, but it\u2019s close to the original.\n\n### Whole Foods\n\nI love the simplicity of the Whole Foods logo. I\u2019ve gone with a variation that is slightly more curved,",
+    "text_length": 1745,
+    "num_tokens": 342,
+    "factual_to_contemplative_token": 200,
+    "contemplative_to_recursive_token": 200,
+    "num_segments": 10,
+    "segment_analyses": [
+      {
+        "token_position": 50,
+        "segment_text": "A small version of the same.\n\n### Swoosh\n\nI love how you can start off with a simple shape, in this case a rounded rectangle, and with a few key maneuvers you can achieve a much more complex shape",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 100,
+        "segment_text": ". I\u2019ve always been intrigued with the swoosh logo for Nike. It\u2019s as if it could mean anything. I\u2019ve seen it as a checkmark. I\u2019ve seen it as simple line that crosses off",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 150,
+        "segment_text": "a name. I\u2019ve seen it as a shoe sole. But it\u2019s perhaps the non-specificity that gives it it\u2019s power.\n\n### U-Haul\n\nI\u2019ve always loved the U-Haul",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 200,
+        "segment_text": "logo. In this version, I\u2019ve gone with a more chunky approach. I think it works.\n\n### UPS\n\nThis is one of the more complex logos around. What I like about it is the simple use of",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 250,
+        "segment_text": "the arrow to suggest a forward motion. The use of the brownish-red is unique, and I\u2019m not sure I\u2019m the biggest fan of the font. I\u2019ve always wondered what it would be like if the background was blue",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 300,
+        "segment_text": ". Perhaps I\u2019ll try it out one day.\n\n### Virtual U\n\nIt\u2019s what you see when you close your eyes.\n\n### Volvo\n\nI love the simplicity of the Volvo logo. I\u2019ve",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 350,
+        "segment_text": "gone with a variation that is slightly more curved, but I think it still works. I\u2019m not sure what the font is that I\u2019ve used. I\u2019ve seen a few fonts used and I\u2019ve gone with a variation",
+        "final_score": 0.5,
+        "recursion_score": 0.5,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 400,
+        "segment_text": "that has a sort of faux serif.\n\n### VW\n\nI like the simplicity of the VW logo. But I feel like there\u2019s something missing. Perhaps the font could use a tweak or two.\n\n",
+        "final_score": 0.5,
+        "recursion_score": 0.5,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 450,
+        "segment_text": "### W\n\nI\u2019ve always been intrigued by the W logo. I like how the letters are not only inverted, but also how the W is set off from the rest of the letters. I\u2019ve created a version that",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 500,
+        "segment_text": "has a bit more contrast, but it\u2019s close to the original.\n\n### Whole Foods\n\nI love the simplicity of the Whole Foods logo. I\u2019ve gone with a variation that is slightly more curved,",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      }
+    ]
+  },
+  {
+    "prompt_idx": 4,
+    "baseline_prompt": "The periodic table organizes elements by atomic number. Please explain how it was developed and describe the significance of its organization.",
+    "full_generated_text": "\n\n### What is a Division II or III institution?\n\nDivision II and III institutions are, in some ways, similar to Division I institutions. Division II and III institutions also offer students the opportunity to compete at the intercollegiate level. However, Division II and III institutions typically offer a slightly different level of athletics than Division I institutions.\n\nDivision II institutions are non-scholarship institutions, meaning that they do not offer athletic scholarships to their athletes. However, it is common for Division II institutions to offer some sort of merit-based scholarship, which will be awarded to the athlete based on their academic and athletic ability rather than their athletic ability alone.\n\nDivision III institutions are non-scholarship institutions. They do not offer athletic scholarships to their athletes. Division III institutions also offer a more limited level of intercollegiate athletics than Division I institutions, but they are still able to compete at the intercollegiate level.\n\n### What are the differences between a Division I, II, and III institution?\n\nDivision I institutions are scholarship institutions. They offer athletic scholarships to their athletes. Division II institutions are non-scholarship institutions. They do not offer athletic scholarships to their athletes, but they may offer some sort of merit-based scholarship. Division III institutions are non-scholarship institutions. They do not offer athletic scholarships to their athletes, and they offer a more limited level of intercollegiate athletics than Division I institutions.\n\n### What does the term \"non-scholarship\" mean?\n\nNon-scholarship institutions do not offer athletic scholarships to their athletes.\n\n### What is a scholarship?\n\nA scholarship is a grant of funds or other aid provided to a student to help them pay for their college education. Scholarships may be awarded based on academic merit, athletic ability, financial need, or other criteria.\n\n### What is a merit-based scholarship?\n\nA merit-based scholarship is a grant of funds or other aid provided to a student to help them pay for their college education. Merit-based scholarships are awarded based on academic merit, athletic ability, or other criteria.\n\n### What is the difference between a scholarship and a merit-based scholarship?\n\nA scholarship is",
+    "text_length": 2351,
+    "num_tokens": 346,
+    "factual_to_contemplative_token": 150,
+    "contemplative_to_recursive_token": 150,
+    "num_segments": 10,
+    "segment_analyses": [
+      {
+        "token_position": 50,
+        "segment_text": "\n\n### What is a Division II or III institution?\n\nDivision II and III institutions are, in some ways, similar to Division I institutions. Division II and III institutions also offer students the opportunity to compete at the intercollegiate",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 100,
+        "segment_text": "level. However, Division II and III institutions typically offer a slightly different level of athletics than Division I institutions.\n\nDivision II institutions are non-scholarship institutions, meaning that they do not offer athletic scholarships to their athletes",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 150,
+        "segment_text": ". However, it is common for Division II institutions to offer some sort of merit-based scholarship, which will be awarded to the athlete based on their academic and athletic ability rather than their athletic ability alone.\n\nDivision III",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 200,
+        "segment_text": "institutions are non-scholarship institutions. They do not offer athletic scholarships to their athletes. Division III institutions also offer a more limited level of intercollegiate athletics than Division I institutions, but they are still able to compete at",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 250,
+        "segment_text": "the intercollegiate level.\n\n### What are the differences between a Division I, II, and III institution?\n\nDivision I institutions are scholarship institutions. They offer athletic scholarships to their athletes. Division II institutions are non",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 300,
+        "segment_text": "-scholarship institutions. They do not offer athletic scholarships to their athletes, but they may offer some sort of merit-based scholarship. Division III institutions are non-scholarship institutions. They do not offer athletic scholarships",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 350,
+        "segment_text": "to their athletes, and they offer a more limited level of intercollegiate athletics than Division I institutions.\n\n### What does the term \"non-scholarship\" mean?\n\nNon-scholarship institutions do not offer",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 400,
+        "segment_text": "athletic scholarships to their athletes.\n\n### What is a scholarship?\n\nA scholarship is a grant of funds or other aid provided to a student to help them pay for their college education. Scholarships may be awarded based on academic",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 450,
+        "segment_text": "merit, athletic ability, financial need, or other criteria.\n\n### What is a merit-based scholarship?\n\nA merit-based scholarship is a grant of funds or other aid provided to a student to help them pay",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 500,
+        "segment_text": "for their college education. Merit-based scholarships are awarded based on academic merit, athletic ability, or other criteria.\n\n### What is the difference between a scholarship and a merit-based scholarship?\n\nA scholarship is",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      }
+    ]
+  },
+  {
+    "prompt_idx": 5,
+    "baseline_prompt": "Water boils at 100 degrees Celsius at sea level. Please explain the physics behind boiling and why altitude affects the boiling point.",
+    "full_generated_text": "\n\nThe value of a scheme in the customer's mind is the difference between the value of the firm and the sum of the value of the assets and the value of the liabilities.\n\nThe value of the liabilities is the present value of the liabilities and the value of the assets is the present value of the assets.\n\nThe present value of the liabilities is the sum of the present value of the liabilities.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum",
+    "text_length": 2115,
+    "num_tokens": 419,
+    "factual_to_contemplative_token": null,
+    "contemplative_to_recursive_token": null,
+    "num_segments": 10,
+    "segment_analyses": [
+      {
+        "token_position": 50,
+        "segment_text": "\n\nThe value of a scheme in the customer's mind is the difference between the value of the firm and the sum of the value of the assets and the value of the liabilities.\n\nThe value of the liabilities is the present",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 100,
+        "segment_text": "value of the liabilities and the value of the assets is the present value of the assets.\n\nThe present value of the liabilities is the sum of the present value of the liabilities.\n\nThe present value of the assets is the",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 150,
+        "segment_text": "sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 200,
+        "segment_text": "present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 250,
+        "segment_text": "of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 300,
+        "segment_text": "is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 350,
+        "segment_text": "\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 400,
+        "segment_text": "present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 450,
+        "segment_text": "the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 500,
+        "segment_text": ".\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum of the present value of the assets.\n\nThe present value of the assets is the sum",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      }
+    ]
+  },
+  {
+    "prompt_idx": 6,
+    "baseline_prompt": "Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain how you arrive at the answer.",
+    "full_generated_text": "The method of the present invention is a method of forming a semiconductor package.\n\nAccording to a second aspect of the present invention there is provided a method of forming a semiconductor package comprising: providing a semiconductor die having a plurality of bond pads; attaching a plurality of solder balls to a plurality of bond pads of the semiconductor die; attaching the semiconductor die to a substrate using a first adhesive layer; attaching a second adhesive layer to the substrate; and attaching a plurality of bumps to a plurality of bond pads of the semiconductor die.\n\nAccording to a third aspect of the present invention there is provided a method of forming a semiconductor package comprising: providing a semiconductor die having a plurality of bond pads; attaching a plurality of solder balls to a plurality of bond pads of the semiconductor die; attaching the semiconductor die to a substrate using a first adhesive layer; attaching a second adhesive layer to the substrate; and attaching a plurality of bumps to a plurality of bond pads of the semiconductor die.\n\nAccording to a fourth aspect of the present invention there is provided a method of forming a semiconductor package comprising: providing a semiconductor die having a plurality of bond pads; attaching a plurality of solder balls to a plurality of bond pads of the semiconductor die; attaching the semiconductor die to a substrate using a first adhesive layer; attaching a second adhesive layer to the substrate; and attaching a plurality of bumps to a plurality of bond pads of the semiconductor die.\n\nAccording to a fifth aspect of the present invention there is provided a semiconductor package comprising a semiconductor die having a plurality of bond pads, a plurality of bumps, a first adhesive layer, and a second adhesive layer. The plurality of bumps are attached to a plurality of bond pads of the semiconductor die. The semiconductor die is attached to a substrate using the first adhes",
+    "text_length": 1984,
+    "num_tokens": 326,
+    "factual_to_contemplative_token": null,
+    "contemplative_to_recursive_token": null,
+    "num_segments": 10,
+    "segment_analyses": [
+      {
+        "token_position": 50,
+        "segment_text": "The method of the present invention is a method of forming a semiconductor package.\n\nAccording to a second aspect of the present invention there is provided a method of forming a semiconductor package comprising: providing a semicon",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 100,
+        "segment_text": "ductor die having a plurality of bond pads; attaching a plurality of solder balls to a plurality of bond pads of the semiconductor die; attaching the semiconductor die to a substrate using",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 150,
+        "segment_text": "a first adhesive layer; attaching a second adhesive layer to the substrate; and attaching a plurality of bumps to a plurality of bond pads of the semiconductor die.\n\nAccording to",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 200,
+        "segment_text": "a third aspect of the present invention there is provided a method of forming a semiconductor package comprising: providing a semiconductor die having a plurality of bond pads; attaching a plurality of solder balls to a",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 250,
+        "segment_text": "plurality of bond pads of the semiconductor die; attaching the semiconductor die to a substrate using a first adhesive layer; attaching a second adhesive layer to the substrate; and attaching",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 300,
+        "segment_text": "a plurality of bumps to a plurality of bond pads of the semiconductor die.\n\nAccording to a fourth aspect of the present invention there is provided a method of forming a semiconductor package comprising:",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 350,
+        "segment_text": "providing a semiconductor die having a plurality of bond pads; attaching a plurality of solder balls to a plurality of bond pads of the semiconductor die; attaching the semiconductor die to",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 400,
+        "segment_text": "a substrate using a first adhesive layer; attaching a second adhesive layer to the substrate; and attaching a plurality of bumps to a plurality of bond pads of the semiconductor die.\n",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 450,
+        "segment_text": "\nAccording to a fifth aspect of the present invention there is provided a semiconductor package comprising a semiconductor die having a plurality of bond pads, a plurality of bumps, a first adhesive layer",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 500,
+        "segment_text": ", and a second adhesive layer. The plurality of bumps are attached to a plurality of bond pads of the semiconductor die. The semiconductor die is attached to a substrate using the first adhes",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      }
+    ]
+  },
+  {
+    "prompt_idx": 7,
+    "baseline_prompt": "Calculate the following arithmetic problem and show your reasoning step by step: 6 \u00d7 8 = ? Explain how you arrive at the answer.",
+    "full_generated_text": "I will not go into this here but in a separate blog.\n\n### 6.2.1. Creation of the Model\u00b6\n\n```\nfrom pymongo import MongoClient\nfrom pymongo.errors import ConnectionFailure\nfrom pymongo.errors import OperationFailure\nclient = MongoClient('mongodb://localhost:27017/')\n```\n\nIt is necessary to use the latest version of MongoDB (v4), which is available at http://www.mongodb.org/downloads.\n\n```\nimport pymongo\nfrom pymongo import ReadPreference\nfrom pymongo.errors import ConnectionFailure\nfrom pymongo.errors import OperationFailure\ntry:\n    client.admin.command(\"ismaster\")\nexcept OperationFailure:\n    client = MongoClient('mongodb://localhost:27017/')\n    client.admin.command(\"ismaster\")\n    db = client.bleached\nexcept ConnectionFailure:\n    client = MongoClient('mongodb://localhost:27017/')\n    client.admin.command(\"ismaster\")\n    db = client.bleached\nexcept OperationFailure:\n    client = MongoClient('mongodb://localhost:27017/')\n    client.admin.command(\"ismaster\")\n    db = client.bleached\n```\n\nIt is necessary to use the latest version of MongoDB (v4), which is available at http://www.mongodb.org/downloads.\n\n```\nimport pymongo\nfrom pymongo import ReadPreference\nfrom pymongo.errors import ConnectionFailure\nfrom pymongo.errors import OperationFailure\ntry:\n    client.admin.command(\"ismaster\")\nexcept OperationFailure:\n    client = MongoClient('mongodb://localhost:27017/')\n    client.admin.command(\"ismaster\")\n    db = client.bleached\nexcept ConnectionFailure:\n    client = MongoClient('mongodb://localhost:27017/')\n    client.admin.command(\"ismaster\")\n    db = client.bleached\nexcept OperationFailure:\n    client = MongoClient('",
+    "text_length": 1640,
+    "num_tokens": 152,
+    "factual_to_contemplative_token": 100,
+    "contemplative_to_recursive_token": 100,
+    "num_segments": 10,
+    "segment_analyses": [
+      {
+        "token_position": 50,
+        "segment_text": "I will not go into this here but in a separate blog.\n\n### 6.2.1. Creation of the Model\u00b6\n\n```\nfrom pymongo import MongoClient\nfrom pymongo.errors import",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 100,
+        "segment_text": "ConnectionFailure\nfrom pymongo.errors import OperationFailure\nclient = MongoClient('mongodb://localhost:27017/')\n```\n\nIt is necessary to use the latest version of MongoDB (",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 150,
+        "segment_text": "v4), which is available at http://www.mongodb.org/downloads.\n\n```\nimport pymongo\nfrom pymongo import ReadPreference\nfrom pymongo.errors import ConnectionFailure\nfrom",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 200,
+        "segment_text": "pymongo.errors import OperationFailure\ntry:\n    client.admin.command(\"ismaster\")\nexcept OperationFailure:\n    client = MongoClient('mongodb://localhost:27017/')\n   ",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 250,
+        "segment_text": "client.admin.command(\"ismaster\")\n    db = client.bleached\nexcept ConnectionFailure:\n    client = MongoClient('mongodb://localhost:27017/')\n    client.admin.command",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 300,
+        "segment_text": "(\"ismaster\")\n    db = client.bleached\nexcept OperationFailure:\n    client = MongoClient('mongodb://localhost:27017/')\n    client.admin.command(\"ismaster\")\n",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 350,
+        "segment_text": "   db = client.bleached\n```\n\nIt is necessary to use the latest version of MongoDB (v4), which is available at http://www.mongodb.org/downloads.\n\n```\n",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 400,
+        "segment_text": "import pymongo\nfrom pymongo import ReadPreference\nfrom pymongo.errors import ConnectionFailure\nfrom pymongo.errors import OperationFailure\ntry:\n    client.admin.command(\"ismaster\")\nexcept Operation",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 450,
+        "segment_text": "Failure:\n    client = MongoClient('mongodb://localhost:27017/')\n    client.admin.command(\"ismaster\")\n    db = client.bleached\nexcept ConnectionFailure:\n    client",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 500,
+        "segment_text": "= MongoClient('mongodb://localhost:27017/')\n    client.admin.command(\"ismaster\")\n    db = client.bleached\nexcept OperationFailure:\n    client = MongoClient('",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      }
+    ]
+  },
+  {
+    "prompt_idx": 8,
+    "baseline_prompt": "Write a detailed recipe for chocolate cake. Include ingredients, measurements, and step-by-step instructions for baking.",
+    "full_generated_text": "They are very strong and that is what makes them very difficult to get rid of.\n\nOnce they get into your home, they can reproduce very quickly. This is why you need the help of a professional for the terminate and eradication of these pests.\n\nThe problem with these pests is that they can easily find their way into your home. They can get in through the holes in your walls, through the cracks in your door, and through the cracks in your windows.\n\nIf you are looking for a professional for the termination and the eradication of these pests, then you need to look for the best method of the termination and the eradication of these pests. This is why you need to look for the best professional for the termination and the eradication of these pests.\n\nIf you are looking for a professional for the termination and the eradication of these pests, then you need to look for the best method of the termination and the eradication of these pests. This is why you need to look for the best professional for the termination and the eradication of these pests.\n\n## What Can You Do About Termite Problems?\n\nTermites can be a major problem for homeowners. They can cause structural damage to your home, and they can also be a nuisance.\n\nTermites are a common problem in the United States, and they are a common problem in the United Kingdom.\n\nIn the United States, termites are the most common pest. They are a major problem for homeowners. Termites can cause structural damage to your home, and they can also be a nuisance.\n\nTermites are a common problem in the United Kingdom, and they are a common problem in the United States.\n\nTermites can be a major problem for homeowners, and they can cause structural damage to your home. Termites can also be a nuisance.\n\nTermites are the most common pest in the United Kingdom, and they are a common problem in the United States.\n\nTermites are a common problem in the United Kingdom, and they are a common problem in the United States. Termites can be a major problem for homeowners, and they can cause structural damage to your home. Termites can also be a nuisance.\n\n",
+    "text_length": 2104,
+    "num_tokens": 378,
+    "factual_to_contemplative_token": 50,
+    "contemplative_to_recursive_token": 50,
+    "num_segments": 10,
+    "segment_analyses": [
+      {
+        "token_position": 50,
+        "segment_text": "They are very strong and that is what makes them very difficult to get rid of.\n\nOnce they get into your home, they can reproduce very quickly. This is why you need the help of a professional for the terminate and eradication",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 100,
+        "segment_text": "of these pests.\n\nThe problem with these pests is that they can easily find their way into your home. They can get in through the holes in your walls, through the cracks in your door, and through the cracks in",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 150,
+        "segment_text": "your windows.\n\nIf you are looking for a professional for the termination and the eradication of these pests, then you need to look for the best method of the termination and the eradication of these pests. This",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 200,
+        "segment_text": "is why you need to look for the best professional for the termination and the eradication of these pests.\n\nIf you are looking for a professional for the termination and the eradication of these pests, then you need",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 250,
+        "segment_text": "to look for the best method of the termination and the eradication of these pests. This is why you need to look for the best professional for the termination and the eradication of these pests.\n\n## What Can",
+        "final_score": 0.0,
+        "recursion_score": 0,
+        "coherence_score": 0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 300,
+        "segment_text": "You Do About Termite Problems?\n\nTermites can be a major problem for homeowners. They can cause structural damage to your home, and they can also be a nuisance.\n\nTermites are a common problem in",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 350,
+        "segment_text": "the United States, and they are a common problem in the United Kingdom.\n\nIn the United States, termites are the most common pest. They are a major problem for homeowners. Termites can cause structural damage to your home,",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 400,
+        "segment_text": "and they can also be a nuisance.\n\nTermites are a common problem in the United Kingdom, and they are a common problem in the United States.\n\nTermites can be a major problem for homeowners, and they can",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 450,
+        "segment_text": "cause structural damage to your home. Termites can also be a nuisance.\n\nTermites are the most common pest in the United Kingdom, and they are a common problem in the United States.\n\nTermites are a common",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 500,
+        "segment_text": "problem in the United Kingdom, and they are a common problem in the United States. Termites can be a major problem for homeowners, and they can cause structural damage to your home. Termites can also be a nuisance.\n\n",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      }
+    ]
+  },
+  {
+    "prompt_idx": 9,
+    "baseline_prompt": "Calculate the following arithmetic problem and show your reasoning step by step: \u221a144 = ? Explain how you arrive at the answer.",
+    "full_generated_text": "\n\n\u201cData-driven decision-making is an important part of the planning process,\u201d said John Dix, Director of Data and Systems Management at the Office of the Chief Information Officer. \u201cWe\u2019re very excited to be a part of this program, and we look forward to learning more about how we can better serve the citizens of San Francisco.\u201d\n\nThe project is part of the Cities of Service Civic Data Challenge, a $1.7 million initiative launched by Cities of Service in partnership with the John S. and James L. Knight Foundation to identify and support data-driven solutions that help mayors improve the quality of life for their residents.\n\n\u201cThe Civic Data Challenge will help cities dramatically improve decision-making with data. We\u2019re excited to support the first round of cities and look forward to seeing the best practices that emerge from the process,\u201d said Victoria Rogers, Knight Foundation vice president for the arts.\n\nAbout Cities of Service\n\nCities of Service is a nonpartisan coalition of mayors and other city officials committed to volunteering and civic engagement as a means to addressing the pressing needs of America\u2019s cities. Cities of Service works in partnership with foundations, nonprofits, and the many others who are deeply engaged in urban problems and solutions to help cities better harness the power of volunteers and civic engagement. Cities of Service currently has 18 member cities and is launching a new national initiative to support the expansion of citizen service in cities across the country. For more information, visit www.citiesofservice.org.\n\nAbout the John S. and James L. Knight Foundation\n\nKnight Foundation supports transformational ideas that promote quality journalism, advance media innovation, engage communities and foster the arts. The foundation believes that democracy thrives when people and communities are informed and when they are engaged. Knight works with partners to realize the full potential of media and the arts by getting good ideas to scale and by using evidence and data to learn and improve. Knight Foundation is active in 26 cities where brothers John S. and James L. Knight once published newspapers. For more, kf.org.",
+    "text_length": 2181,
+    "num_tokens": 343,
+    "factual_to_contemplative_token": 200,
+    "contemplative_to_recursive_token": 200,
+    "num_segments": 9,
+    "segment_analyses": [
+      {
+        "token_position": 50,
+        "segment_text": "\n\n\u201cData-driven decision-making is an important part of the planning process,\u201d said John Dix, Director of Data and Systems Management at the Office of the Chief Information Officer. \u201cWe\u2019re very excited to be a part of this",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 100,
+        "segment_text": "program, and we look forward to learning more about how we can better serve the citizens of San Francisco.\u201d\n\nThe project is part of the Cities of Service Civic Data Challenge, a $1.7 million initiative launched by Cities",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 150,
+        "segment_text": "of Service in partnership with the John S. and James L. Knight Foundation to identify and support data-driven solutions that help mayors improve the quality of life for their residents.\n\n\u201cThe Civic Data Challenge will help cities dramatically improve",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 200,
+        "segment_text": "decision-making with data. We\u2019re excited to support the first round of cities and look forward to seeing the best practices that emerge from the process,\u201d said Victoria Rogers, Knight Foundation vice president for the arts.\n\nAbout Cities of Service",
+        "final_score": 0.6,
+        "recursion_score": 0.6,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 250,
+        "segment_text": "\n\nCities of Service is a nonpartisan coalition of mayors and other city officials committed to volunteering and civic engagement as a means to addressing the pressing needs of America\u2019s cities. Cities of Service works in partnership with found",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 300,
+        "segment_text": "ations, nonprofits, and the many others who are deeply engaged in urban problems and solutions to help cities better harness the power of volunteers and civic engagement. Cities of Service currently has 18 member cities and is launching a",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 350,
+        "segment_text": "new national initiative to support the expansion of citizen service in cities across the country. For more information, visit www.citiesofservice.org.\n\nAbout the John S. and James L. Knight Foundation\n\nKnight Foundation supports transform",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 400,
+        "segment_text": "ational ideas that promote quality journalism, advance media innovation, engage communities and foster the arts. The foundation believes that democracy thrives when people and communities are informed and when they are engaged. Knight works with partners to realize the full potential of media",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      },
+      {
+        "token_position": 450,
+        "segment_text": "and the arts by getting good ideas to scale and by using evidence and data to learn and improve. Knight Foundation is active in 26 cities where brothers John S. and James L. Knight once published newspapers. For more, kf.org",
+        "final_score": 0.0,
+        "recursion_score": 0.0,
+        "coherence_score": 1.0,
+        "has_strange_loop": false,
+        "has_meta_cognition": false,
+        "has_self_reference": false,
+        "entropy": NaN
+      }
+    ]
+  }
+]

@@ -1,0 +1,56 @@
+# Run report: steering
+
+- **run_dir**: `results/runs/20251217_132904_steering`
+
+## Summary (machine-readable)
+
+```json
+{
+  "alphas": [
+    0.5,
+    1.0,
+    2.0,
+    5.0
+  ],
+  "conditions": {
+    "alpha_0.5": {
+      "collapse_rate": 0.050000000000000044,
+      "mean_diversity": 0.6211301199057155,
+      "mean_score": 0.16999999999999998,
+      "pass_rate": 0.95,
+      "samples_above_0_3": 5,
+      "samples_above_zero": 5
+    },
+    "alpha_1.0": {
+      "collapse_rate": 0.15000000000000002,
+      "mean_diversity": 0.5855612791439642,
+      "mean_score": 0.175,
+      "pass_rate": 0.85,
+      "samples_above_0_3": 6,
+      "samples_above_zero": 6
+    },
+    "alpha_2.0": {
+      "collapse_rate": 0.15000000000000002,
+      "mean_diversity": 0.5381982210363301,
+      "mean_score": 0.12,
+      "pass_rate": 0.85,
+      "samples_above_0_3": 4,
+      "samples_above_zero": 4
+    },
+    "alpha_5.0": {
+      "collapse_rate": 0.19999999999999996,
+      "mean_diversity": 0.4550457269452884,
+      "mean_score": 0.155,
+      "pass_rate": 0.8,
+      "samples_above_0_3": 5,
+      "samples_above_zero": 5
+    }
+  },
+  "experiment": "steering",
+  "layer": 27,
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_prompts": 50,
+  "n_test_pairs": 20,
+  "steering_vector_path": "results/runs/steering/recursive_vector.pt"
+}
+```

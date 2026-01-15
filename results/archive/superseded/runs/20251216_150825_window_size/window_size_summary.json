@@ -1,0 +1,45 @@
+{
+  "experiment": "window_size",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 20,
+  "window_sizes": [
+    1,
+    4,
+    8,
+    16,
+    32
+  ],
+  "conditions": {
+    "window_1": {
+      "mean_score": 0.39499999999999996,
+      "pass_rate": 0.55,
+      "samples_above_zero": 10,
+      "samples_above_0_3": 10
+    },
+    "window_4": {
+      "mean_score": 0.095,
+      "pass_rate": 0.2,
+      "samples_above_zero": 3,
+      "samples_above_0_3": 3
+    },
+    "window_8": {
+      "mean_score": 0.095,
+      "pass_rate": 0.15,
+      "samples_above_zero": 3,
+      "samples_above_0_3": 3
+    },
+    "window_16": {
+      "mean_score": 0.12,
+      "pass_rate": 0.2,
+      "samples_above_zero": 3,
+      "samples_above_0_3": 3
+    },
+    "window_32": {
+      "mean_score": 0.11000000000000001,
+      "pass_rate": 0.2,
+      "samples_above_zero": 3,
+      "samples_above_0_3": 3
+    }
+  },
+  "prompt_bank_version": "b1e5291421c5646d"
+}

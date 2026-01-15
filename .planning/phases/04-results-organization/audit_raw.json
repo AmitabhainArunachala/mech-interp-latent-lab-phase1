@@ -1,0 +1,695 @@
+{
+  "canonical": [
+    {
+      "path": "gold_standard/runs/20251216_061127_rv_l27_causal_validation",
+      "experiment": "rv_l27_causal_validation",
+      "n": 45,
+      "p_value": 2.7493079629829965e-22,
+      "has_error": false
+    },
+    {
+      "path": "gold_standard/runs/20251216_060955_rv_l27_causal_validation",
+      "experiment": "rv_l27_causal_validation",
+      "n": 45,
+      "p_value": 2.7493079629829965e-22,
+      "has_error": false
+    }
+  ],
+  "discovery": [
+    {
+      "path": "runs/20251216_125333_behavior_strict",
+      "experiment": "behavior_strict",
+      "n": 20,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251217_132904_steering",
+      "experiment": "steering",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251217_122855_behavior_strict",
+      "experiment": "behavior_strict",
+      "n": 20,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251216_140553_behavior_strict",
+      "experiment": "behavior_strict",
+      "n": 20,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251217_135733_steering",
+      "experiment": "steering",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251217_124132_steering",
+      "experiment": "steering",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251216_130512_behavior_strict",
+      "experiment": "behavior_strict",
+      "n": 20,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251216_123737_behavior_strict",
+      "experiment": "behavior_strict",
+      "n": 20,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_115936_behavioral_grounding_ministral8b_sampled_L24_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120224_behavioral_grounding_ministral8b_sampled_L27_W32_seed11",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_115047_behavioral_grounding_ministral_3_8b_base_behavioral_grounding_override_v1",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120021_behavioral_grounding_ministral8b_sampled_L27_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_073754_path_patching_mechanism_full_early_layer_sweep_base",
+      "experiment": "path_patching_mechanism",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_121148_behavioral_grounding_ministral8b_peak_sampled_L35_W16_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122306_behavioral_grounding_ministral8b_collapse_map_L33_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_115922_behavioral_grounding_ministral8b_sampled_L24_W16_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122134_behavioral_grounding_ministral8b_collapse_map_L27_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120104_behavioral_grounding_ministral8b_sampled_L26_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122122_behavioral_grounding_ministral8b_collapse_map_L26_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_080454_path_patching_mechanism_full_early_layer_sweep_full_controls_base",
+      "experiment": "path_patching_mechanism",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_104209_behavioral_grounding_mistral_base_behavioral_grounding_v1",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120033_behavioral_grounding_ministral8b_sampled_L24_W16_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20260111_140002_c2_ablation_no_cascade",
+      "experiment": "c2_rv_measurement",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120124_behavioral_grounding_ministral8b_sampled_L27_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_121127_behavioral_grounding_ministral8b_peak_sampled_L30_W16_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120204_behavioral_grounding_ministral8b_sampled_L26_W32_seed11",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_121106_behavioral_grounding_ministral8b_peak_sampled_L35_W16_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20260111_125410_c2_rv_measurement",
+      "experiment": "c2_rv_measurement",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_090121_path_patching_mechanism_early_layers_deep_base",
+      "experiment": "path_patching_mechanism",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20260111_140229_c2_ablation_no_steering",
+      "experiment": "c2_rv_measurement",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20260111_125011_c2_rv_measurement",
+      "experiment": "c2_rv_measurement",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_061350_path_patching_mechanism_stress",
+      "experiment": "path_patching_mechanism",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_121158_behavioral_grounding_ministral8b_peak_sampled_L35_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_121115_behavioral_grounding_ministral8b_peak_sampled_L35_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122159_behavioral_grounding_ministral8b_collapse_map_L33_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20260111_130123_c2_rv_measurement",
+      "experiment": "c2_rv_measurement",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_064141_path_patching_mechanism_layer_sweep_base",
+      "experiment": "path_patching_mechanism",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122224_behavioral_grounding_ministral8b_collapse_map_L24_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_080014_path_patching_mechanism_full_controls_w16_debug",
+      "experiment": "path_patching_mechanism",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120214_behavioral_grounding_ministral8b_sampled_L27_W16_seed11",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122245_behavioral_grounding_ministral8b_collapse_map_L27_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_124735_behavioral_grounding_batch_ministral8b_n100_L24_27_W32_sampled_v1",
+      "experiment": "behavioral_grounding_batch",
+      "n": 65,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20260111_140449_c2_ablation_no_kv",
+      "experiment": "c2_rv_measurement",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20260111_123508_c2_rv_measurement",
+      "experiment": "c2_rv_measurement",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_121040_behavioral_grounding_ministral8b_peak_sampled_L30_W16_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_115944_behavioral_grounding_ministral8b_sampled_L26_W16_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122256_behavioral_grounding_ministral8b_collapse_map_L30_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_104610_behavioral_grounding_mistral_base_behavioral_grounding_override_v1",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122235_behavioral_grounding_ministral8b_collapse_map_L26_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_070135_path_patching_mechanism_peak_sweep_strong_base",
+      "experiment": "path_patching_mechanism",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120044_behavioral_grounding_ministral8b_sampled_L24_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120154_behavioral_grounding_ministral8b_sampled_L26_W16_seed11",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120134_behavioral_grounding_ministral8b_sampled_L24_W16_seed11",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122317_behavioral_grounding_ministral8b_collapse_map_L35_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122147_behavioral_grounding_ministral8b_collapse_map_L30_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_094438_path_patching_mechanism_math_source_control_base",
+      "experiment": "path_patching_mechanism",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122212_behavioral_grounding_ministral8b_collapse_map_L35_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_121054_behavioral_grounding_ministral8b_peak_sampled_L30_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120114_behavioral_grounding_ministral8b_sampled_L27_W16_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120009_behavioral_grounding_ministral8b_sampled_L27_W16_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_094227_hysteresis_patching_mistral_base_hysteresis_v1",
+      "experiment": "hysteresis_patching",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_103333_behavioral_grounding_mistral_base_behavioral_grounding_v1",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_055827_path_patching_mechanism_default",
+      "experiment": "path_patching_mechanism",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_121138_behavioral_grounding_ministral8b_peak_sampled_L30_W32_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_115957_behavioral_grounding_ministral8b_sampled_L26_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_122111_behavioral_grounding_ministral8b_collapse_map_L24_W32_seed9",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120054_behavioral_grounding_ministral8b_sampled_L26_W16_seed10",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120144_behavioral_grounding_ministral8b_sampled_L24_W32_seed11",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_103906_behavioral_grounding_mistral_base_behavioral_grounding_v1",
+      "experiment": "behavioral_grounding",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    }
+  ],
+  "archive": [
+    {
+      "path": "runs/20251217_135538_steering_layer_matrix",
+      "experiment": "layer_matrix",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251217_161456_extended_context_steering",
+      "experiment": "extended_context_steering",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251217_155242_minimal_recursive_intervention",
+      "experiment": "minimal_recursive_intervention",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251218_063238_triple_system_intervention",
+      "experiment": "unknown",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251217_155449_minimal_recursive_intervention",
+      "experiment": "minimal_recursive_intervention",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "runs/20251217_153735_minimal_recursive_intervention",
+      "experiment": "minimal_recursive_intervention",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase3_attention/runs/20251213_060859_l27_head_analysis",
+      "experiment": "l27_head_analysis",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase3_attention/runs/20251213_063415_l27_deep_dive",
+      "experiment": "l27_deep_dive",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase3_attention/runs/20251213_075807_eigenstate_analysis",
+      "experiment": "unknown",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase3_attention/runs/20251213_065959_unified_layer_map",
+      "experiment": "unknown",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase3_attention/runs/20251213_072428_comprehensive_circuit",
+      "experiment": "unknown",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase3_attention/runs/20251213_084700_eigenstate_analysis",
+      "experiment": "unknown",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase3_attention/runs/20251213_063643_h31_investigation",
+      "experiment": "h31_investigation",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase3_attention/runs/20251213_064047_causal_mechanism_hunt",
+      "experiment": "causal_mechanism_hunt",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase3_attention/runs/20251213_062223_l27_head_analysis",
+      "experiment": "l27_head_analysis",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "gold_standard/runs/20251216_060911_confound_validation",
+      "experiment": "unknown",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase1_mechanism/runs/20251213_120917_phase1_existence_ministral8b_instruct_phase1_existence_fast_v1",
+      "experiment": "phase1_existence",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "kv_sufficiency_matrix/runs/20251215_150947_kv_sufficiency_matrix_mistral7b_instruct_l27_w16_n20",
+      "experiment": "unknown",
+      "n": 50,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "kv_sufficiency_matrix/runs/20251215_152312_kv_sufficiency_matrix_mistral7b_instruct_l27_w16_n20",
+      "experiment": "unknown",
+      "n": 50,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "kv_sufficiency_matrix/runs/20251215_095734_kv_sufficiency_matrix_mistral7b_instruct_l27_w16_n20",
+      "experiment": "unknown",
+      "n": 20,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase0_metric_validation/runs/20251213_053235_phase0_metric_targets_default",
+      "experiment": "phase0_metric_targets",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase0_metric_validation/runs/20251213_052557_phase0_minimal_pairs_default",
+      "experiment": "phase0_minimal_pairs",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase0_metric_validation/runs/20251213_053212_phase0_minimal_pairs_default",
+      "experiment": "phase0_minimal_pairs",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "phase0_metric_validation/runs/20251213_052612_phase0_metric_targets_default",
+      "experiment": "phase0_metric_targets",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "champion_paraphrase_hunt/runs/20251215_081556_paraphrase_hunt",
+      "experiment": "unknown",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "confound_validation/runs/20251215_152231_confound_validation_mistral7b_instruct_l27_w16",
+      "experiment": "unknown",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    },
+    {
+      "path": "confound_validation/runs/20251215_091017_confound_validation_mistral7b_instruct_l27_w16",
+      "experiment": "unknown",
+      "n": null,
+      "p_value": null,
+      "has_error": false
+    }
+  ],
+  "failed": []
+}

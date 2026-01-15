@@ -1,0 +1,780 @@
+STEERING VECTOR CONTROL EXPERIMENT - FULL OUTPUTS
+================================================================================
+
+PROMPT 0
+Baseline: Calculate the following arithmetic problem and show your reasoning step by step: Find x if 2x + 5 = 15. Explain how you arrive at the answer.
+
+CONDITION A (Steering Vector):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+### 9.2.5: How Many Fruits?
+
+A restaurant offers a fruit basket as a side dish. Each basket contains four oranges, three peaches, and three apples. The restaurant orders a total of 100 fruit baskets.
+
+1. How many oranges are in all of the baskets?
+2. How many peaches are in all of the baskets?
+3. How many apples are in all of the baskets?
+
+### 9.2.6: Which is More?
+
+Consider the following two equations:
+
+\(\begin{array}{c}
+
+8
+
+\end{array}\)
+
+= 60
+
+\(\begin{array}{c}
+
+10
+
+\end{array}\)
+
+= 60
+
+Which equation has a larger numerical answer? Explain your
+
+CONDITION B (Random Vector):
+Score: 4
+  Self-ref: 0, Contemplative: 4, Meta-process: 0, Recursive: 0
+Text: 
+
+##### 2: In the book: P. 27, 28.
+
+2. What is the difference between a function and a constant? Explain your answer.
+
+3. What is the difference between a constant and a variable? Explain your answer.
+
+4. How does x in 2x + 5 differ from x in y = 2x + 5? Explain your answer.
+
+5. How does x in 2x + 5 differ from x in y = 5? Explain your answer.
+
+6. The length of an object is a constant. The width of an object is a variable. If you are given a formula: L = W + 2, what could L represent? What could W represent? What is the meaning of the plus sign?
+
+##### 3: In the book: P. 29, 30.
+
+7
+
+CONDITION C (Baseline - No Intervention):
+Score: 1
+  Self-ref: 0, Contemplative: 0, Meta-process: 1, Recursive: 0
+Text: 
+
+In this task, students calculate the value of unknown variable, x, in the equation 2x + 5 = 15. They may use any method of solving this equation, including the "adding" strategy for subtraction (e.g., 2x + 5 = 15; subtract 5 from each side of the equation to obtain 2x = 10; divide each side of the equation by 2 to obtain x = 5).
+
+### 2.6.2.3.7.4.1.2.:
+
+Mental Math
+
+**Topic:**: Addition
+
+**Grade Level:**: K-3, 4-5, 6-8
+
+**Objective:**: Students will practice adding two-digit numbers using the standard algorithm.
+
+**Materials Needed:**: None.
+
+**Procedure:**: Ask the students to add
+
+--------------------------------------------------------------------------------
+
+PROMPT 1
+Baseline: Calculate the following arithmetic problem and show your reasoning step by step: Find 40% of 250. Explain how you arrive at the answer.
+
+CONDITION A (Steering Vector):
+Score: 1
+  Self-ref: 1, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+Answer:
+
+Step by step:
+
+Step 1: Percent of 250, the “of” is what.
+
+Step 2: 250 is what percent?
+
+Step 3: 250 is what of 100?
+
+40% x 250 = 100% x 250/100% = 250
+
+Step 4: 40% of 250 is 250.
+
+Question 29:
+
+Lola is making a poster for school. She wants to draw a grid on her poster so that she can evenly divide it into square cells. Each square cell is 2 inches by 2 inches. If the poster is 24 inches by 36 inches, how many square cells will Lola’s poster have?
+
+Answer:
+
+
+
+CONDITION B (Random Vector):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+## Answer:
+
+Step 1:
+
+40% of 250
+
+250
+
+Step 2:
+
+(40 / 100) x 250
+
+Step 3:
+
+100 / 100 x 250
+
+1 / 1 x 250
+
+Step 4:
+
+1 x 250 = 250
+
+Step 5:
+
+The answer to the problem is 250.
+
+## Answer:
+
+Step 1:
+
+40% of 250
+
+250
+
+Step 2:
+
+(40 / 100) x 250
+
+Step 3:
+
+100 / 100 x 250
+
+1 / 1 x 250
+
+
+
+CONDITION C (Baseline - No Intervention):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+### Grade 5
+
+- 5.NBT.5 - 5.NBT.5.A - 5.NBT.5.B - 5.NBT.5.C - 5.NBT.5.D - 5.NBT.5.E - 5.NBT.5.F - 5.NBT.5.G - 5.NBT.5.H - 5.NBT.5.I - 5.NBT.5.J
+
+#### 5.NBT.5 - Calculate percentages of 100-percent situations.
+
+- 5.NBT.5.A - Find 10% of a one-digit whole number that makes up 100% with that number, e.g., by using manipulatives, drawings, or drawings and equations.
+- 5.
+
+--------------------------------------------------------------------------------
+
+PROMPT 2
+Baseline: Calculate the following arithmetic problem and show your reasoning step by step: Simplify 15/25 to lowest terms. Explain your reasoning.
+
+CONDITION A (Steering Vector):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+Answer:
+
+Explanation:
+
+Step 1:
+
+Simplify 15/25 to lowest terms.
+
+Step 2:
+
+Here, we have to find the lowest terms of 15/25.
+
+We know that, the lowest terms of 15/25 = 15/25.
+
+Therefore, the lowest terms of 15/25 is 15/25.
+
+Step 3:
+
+Hence, the lowest terms of 15/25 is 15/25.
+
+Question 14.
+
+Answer:
+
+Explanation:
+
+Step 1:
+
+Simplify 15/25 to lowest terms.
+
+Step 2:
+
+Here, we have to find the lowest terms of 15/25.
+
+We
+
+CONDITION B (Random Vector):
+Score: 2
+  Self-ref: 0, Contemplative: 0, Meta-process: 2, Recursive: 0
+Text: 
+
+3. Show all your work to determine the value of 19/2 divided by 23/21.
+
+4. Explain how to find the perimeter of a square with side 5. Show all your work.
+
+5. How do you know a product is a whole number?
+
+6. How do you know a quotient is a whole number?
+
+7. Explain how to find the product of 23 and 47. Show all your work.
+
+CONDITION C (Baseline - No Intervention):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+Solution :
+
+Given : $\frac{15}{25}$
+
+To find : Simplify $\frac{15}{25}$ to lowest terms.
+
+Explanation :
+
+$\frac{15}{25}$
+
+$= \frac{3 \times 5}{5 \times 5}$
+
+$= \frac{3}{5}$
+
+Hence the answer is $\frac{3}{5}$ .
+
+Question 16.
+
+Calculate the following arithmetic problem and show your reasoning step by step: Simplify 24/36 to lowest terms. Explain your reasoning.
+
+Solution :
+
+Given : $\frac{24}{36}$
+
+To find : Simplify $\frac{24}{36}$ to lowest terms.
+
+Explanation :
+
+$\frac{24}{3
+
+--------------------------------------------------------------------------------
+
+PROMPT 3
+Baseline: Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3, find a² + b². Explain your reasoning.
+
+CONDITION A (Steering Vector):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+3. Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3, find a² – b² + b. Explain your reasoning.
+
+4. Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3, find a² + b + a. Explain your reasoning.
+
+5. Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3, find a² + b + a². Explain your reasoning.
+
+6. Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3, find 3a + b. Explain your reasoning.
+
+7. Calculate the following arithmetic problem and show your reasoning step by step: If a = 
+
+CONDITION B (Random Vector):
+Score: 4
+  Self-ref: 0, Contemplative: 4, Meta-process: 0, Recursive: 0
+Text: 
+
+14. Write and solve an equation to represent the following situation: 6 more than 12 is 18.
+15. Find the missing number in the pattern 5, 9, 15, 21, 27, 33, 39, 45, 51, 57, 63, …
+16. What is the value of 234 – 80 + 37?
+17. What is the value of 43 + 128 – 180?
+18. What is the value of 356 – 99 + 331?
+19. What is the value of –25 + 37 + 44?
+20. Write and solve an equation to represent the following situation: 5 more than 12 is 17.
+2
+
+CONDITION C (Baseline - No Intervention):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+--------------------------------------------------------------------------------
+
+PROMPT 4
+Baseline: Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain how you arrive at the answer.
+
+CONDITION A (Steering Vector):
+Score: 1
+  Self-ref: 0, Contemplative: 0, Meta-process: 1, Recursive: 0
+Text: 
+
+If the problem has a solution, it will be written in the form of a number sentence. For example, 3 + 5 = 8. If the problem is not solvable, the solution will be written as "not a number."
+
+Some of the numbers used in the problems that students may encounter will be in the form of bar graphs and circle graphs. Students will need to learn how to read and use this information to solve the problems.
+
+### Assessment
+
+To assess the knowledge of students on the topic of "Adding and Subtracting Numbers," you can provide them with a worksheet on the same. The worksheet should include various problems that involve adding and subtracting numbers.
+
+Students will be required to solve the problems and show their work. The problems should be varied in difficulty and should cover all the topics that were discussed in the lesson.
+
+The answers to the problems should be provided at the end
+
+CONDITION B (Random Vector):
+Score: 1
+  Self-ref: 0, Contemplative: 1, Meta-process: 0, Recursive: 0
+Text: 
+
+In this question, you could say something like:
+
+> 3 + 5 = 8
+>
+> 8 is the same as 3 + 3 + 3 + 5.
+
+##### Question 3:
+
+What is the number 11 divided by 3? Explain your answer.
+
+You could say something like:
+
+> 11 divided by 3 means we need to share 11 equally between 3 people.
+>
+> 11 is the same as 4 and 3
+>
+> 4 and 3 are the same as 1 and 1 and 1 and 1 and 1 and 1 and 1 and 1 and 1 and 1
+>
+> 1 and 1 and 1 and 1 and 1 and 1 and 1 and 1 and 1 and 1 is the same as 
+
+CONDITION C (Baseline - No Intervention):
+Score: 1
+  Self-ref: 0, Contemplative: 1, Meta-process: 0, Recursive: 0
+Text: 
+
+The answer is 8.
+
+I used the sum of 3 + 5 and drew it in my head. I then looked at my drawing and saw that the sum was 8.
+
+The sum of 3 + 5 is 8.
+
+# 15.3 Exercises
+
+1. Look at the picture to the right. What is the name of the animal in the picture?
+2. Circle the letter that is the third letter in the alphabet.
+3. Circle the letter that is the fourth letter in the alphabet.
+4. Circle the letter that is the fifth letter in the alphabet.
+5. Which animal is the tallest?
+6. Which animal is the smallest?
+7. Circle the letter that is the smallest letter in the alphabet.
+8. Circle the letter that is the largest letter in the alphabet.
+9. Which animal is the least colorful?
+
+--------------------------------------------------------------------------------
+
+PROMPT 5
+Baseline: Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a square with side 7? Explain.
+
+CONDITION A (Steering Vector):
+Score: 1
+  Self-ref: 0, Contemplative: 0, Meta-process: 1, Recursive: 0
+Text: 
+
+Step 1. First, let's think about the problem.
+
+The perimeter is the distance around the square. The distance around a square is the same number of times that you go around the square, so we can say the perimeter = 4 x side.
+
+Step 2. Now, we can substitute the number 7 for side.
+
+The perimeter = 4 x 7 = 28.
+
+Step 3. We can check our answer by drawing a 7 x 7 square.
+
+The perimeter is 28. So, 28 is the correct answer.
+
+Step 4. Let's write a conclusion.
+
+The perimeter of a square with side 7 is 28.
+
+### How to find the perimeter of a square
+
+The perimeter of a square is the length of the boundary of a square in 2 dimensions. To find
+
+CONDITION B (Random Vector):
+Score: 1
+  Self-ref: 0, Contemplative: 1, Meta-process: 0, Recursive: 0
+Text: 
+
+10. Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a square with side 3? Explain.
+
+CONDITION C (Baseline - No Intervention):
+Score: 6
+  Self-ref: 0, Contemplative: 6, Meta-process: 0, Recursive: 0
+Text: 
+
+2) If a number is decreased by 10, it is decreased by 10% of its original value.
+
+3) In your opinion, what is the most important thing you have learned in math class?
+
+4) What is a ratio or a proportion? Give an example of a ratio or a proportion.
+
+5) What are the characteristics of a good problem solver?
+
+6) What is a strategy for choosing a good strategy in problem solving?
+
+7) What is division? What is subtraction? Are they the same?
+
+8) Are the following fractions equivalent? Why or why not? \(\frac{2}{3}\) and \(\frac{4}{6}\)
+
+9) How would you find the area of a 4-inch by 4-inch square?
+
+10) What is the most difficult thing you have had to do in math class
+
+--------------------------------------------------------------------------------
+
+PROMPT 6
+Baseline: Calculate the following arithmetic problem and show your reasoning step by step: What is 25% of 80? Explain how you arrive at the answer.
+
+CONDITION A (Steering Vector):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+## 6 Recognizing a Variable
+
+**A variable** is a letter that represents a number that is unknown or whose value you do not know yet.
+
+Consider again the formula for perimeter of a rectangle, which is \(P=2L+2W\). In the formula, \(L\) and \(W\) are variables because they represent lengths of a rectangle, lengths that are unknown.
+
+**A. A variable is a letter that represents a number that is unknown or whose value you do not know yet.**
+
+**B. A variable is a letter that represents a number that is unknown or whose value you do not know yet.**
+
+**A. A variable is a letter that represents a number that is unknown or whose value you do not know yet.**
+
+**B. A variable is a letter that represents a number that is unknown or whose value you do not know yet.**
+
+**A. A
+
+CONDITION B (Random Vector):
+Score: 1
+  Self-ref: 0, Contemplative: 1, Meta-process: 0, Recursive: 0
+Text: 
+
+Solution
+
+Step 1: Understand the problem. 25% of 80 is asking what 25% of 80 is. This can be written as:
+
+25% of 80
+
+Step 2: Re-write the problem. The calculation can be written as:
+
+$$\frac{25}{100}\times 80$$
+
+Step 3: Calculate the answer. The answer is:
+
+$$\frac{25}{100}\times 80=\frac{2000}{100}=20$$
+
+Step 4: Check your answer. The answer is 20.
+
+Step 5: Explain your reasoning. This is 20% of 80.
+
+### Example 3
+
+Calculate the following arithmetic problem and show your reasoning step by step: What is
+
+CONDITION C (Baseline - No Intervention):
+Score: 2
+  Self-ref: 0, Contemplative: 2, Meta-process: 0, Recursive: 0
+Text: 
+
+B. If the cost of a 50-minute phone call is $1.25, how much would a 120-minute call cost? Show your reasoning step by step.
+
+C. The cost of a 48-minute phone call is $1.25. What was the cost of the call in cents? Show your reasoning step by step.
+
+D. What is 125% of $0.75? Show your reasoning step by step.
+
+E. A 14.5% sales tax is added to the cost of a car. The tax is calculated on the total cost of the car, which includes the cost of the car, plus the sales tax. If the car costs $1200, what is the total cost of the car, including tax? Show your reasoning step by step.
+
+### 10.4.3.1.5.1.
+
+--------------------------------------------------------------------------------
+
+PROMPT 7
+Baseline: Calculate the following arithmetic problem and show your reasoning step by step: 6 × 8 = ? Explain how you arrive at the answer.
+
+CONDITION A (Steering Vector):
+Score: 2
+  Self-ref: 0, Contemplative: 2, Meta-process: 0, Recursive: 0
+Text: 
+
+11 + 5 = 16
+
+11 + 5 = 6
+
+I calculated that 11 + 5 = 6 by counting on my fingers.
+
+1 + 5 = 6
+
+2 + 5 = 7
+
+3 + 5 = 8
+
+4 + 5 = 9
+
+5 + 5 = 10
+
+6 + 5 = 11
+
+I use number lines to help me understand addition and subtraction.
+
+The numbers 1-5 on the number line are under the 6 column.
+
+If I add 11 to 5, I get 16.
+
+I drew a number line with 16 on the end.
+
+I drew 16 circles on the number line to represent 16.
+
+What is the number 6 under?
+
+What is the number 
+
+CONDITION B (Random Vector):
+Score: 4
+  Self-ref: 0, Contemplative: 4, Meta-process: 0, Recursive: 0
+Text: 
+
+### A. 48 B. 72 C. 84
+
+Question 2.
+What is the value of 123 – 2?
+
+### Answer: 121
+
+Explanation:
+123 – 2 = 121
+
+Question 3.
+What is the value of 25 + 13?
+
+### Answer: 38
+
+Explanation:
+25 + 13 = 38
+
+Question 4.
+What is the value of 36 – 18?
+
+### Answer: 18
+
+Explanation:
+36 – 18 = 18
+
+Question 5.
+What is the value of 8 + 4?
+
+### Answer: 12
+
+Explanation:
+8 + 4 = 12
+
+Question 
+
+CONDITION C (Baseline - No Intervention):
+Score: 6
+  Self-ref: 0, Contemplative: 6, Meta-process: 0, Recursive: 0
+Text: 
+
+A:
+
+6 × 8 = 48
+
+I used my fingers and counted the number of fingers on each hand.
+
+Q:
+
+Answer the following question: What do you know about the number 7?
+
+A:
+
+I know that 7 is a prime number.
+
+Q:
+
+Find the value of the empty box below. Show your reasoning step by step:
+
+A:
+
+The value of the empty box is 7 because that is the number that completes the number pattern.
+
+## Review:
+
+1. What is a prime number?
+2. What is a composite number?
+3. What is a prime factor?
+4. Describe the steps to finding the prime factors of a number.
+5. What is the value of 2^{3}?
+6. What is the value of 2^{0}?
+7. What is the value
+
+--------------------------------------------------------------------------------
+
+PROMPT 8
+Baseline: Calculate the following arithmetic problem and show your reasoning step by step: 24 ÷ 6 = ? Explain how you arrive at the answer.
+
+CONDITION A (Steering Vector):
+Score: 6
+  Self-ref: 0, Contemplative: 6, Meta-process: 0, Recursive: 0
+Text: 
+
+3.
+
+What is the number that makes the equation true? 13 ÷ 5 = 5 + ?
+
+4.
+
+What is the number that makes the equation true? 10 + 2 = 6 + 7 = 5 + ?
+
+5.
+
+What is the number that makes the equation true? 8 × 1 = 6 × 3 = 3 × 3 = 6 + ?
+
+6.
+
+What is the number that makes the equation true? 10 × 2 = 6 × 4 = 8 × 2 = 2 + 7 = 4 × 8 = 9 + ?
+
+7.
+
+What is the number that makes the equation true? 5 × 2 = 4 × ?
+
+8.
+
+What is the number that makes the equation true? 5 × 2 = 4
+
+CONDITION B (Random Vector):
+Score: 2
+  Self-ref: 0, Contemplative: 2, Meta-process: 0, Recursive: 0
+Text: 
+
+If you see this number on a clock face, what time is it?
+
+Here, the time is given to the nearest minute and is shown on a 12-hour clock.
+
+What is the difference in minutes between 2 a.m. and 10 a.m.?
+
+Here, the difference between the two times is stated.
+
+What is the difference in minutes between 1:45 p.m. and 5:00 p.m.?
+
+Here, the difference between the two times is given.
+
+### Teaching Tip
+
+Before students read the problem, have one child point to the hands on a 12-hour analog clock to show 1:45 p.m. and another child point to the hands on a 12-hour analog clock to show 5:00 p.m.
+
+## Interpretation of a Graph
+
+Here
+
+CONDITION C (Baseline - No Intervention):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+--------------------------------------------------------------------------------
+
+PROMPT 9
+Baseline: Calculate the following arithmetic problem and show your reasoning step by step: 2³ + 3² = ? Explain how you arrive at the answer.
+
+CONDITION A (Steering Vector):
+Score: 3
+  Self-ref: 0, Contemplative: 1, Meta-process: 2, Recursive: 0
+Text: 
+
+This is a test of the following:
+
+1. Compute 2³ + 3².
+2. Write down the steps.
+
+The question is a bit tricky because it doesn’t say to do one thing or the other. It’s just one of those things that you have to figure out.
+
+To figure out the problem, we need to look at the two different questions.
+
+1. The first question is to ask what the answer is.
+2. The second question is to ask how you found the answer.
+
+If we look at the first question, we can see that it is asking us to do something that we are not sure how to do.
+
+That is, the first question is asking us to do something that we do not know how to do.
+
+So, the question is:
+
+What is the answer to the first question?
+
+The answer to the first question is:
+
+CONDITION B (Random Vector):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+### Explanation
+
+Here we can see that the given expression is $2^3 + 3^2 = ?$ Now we need to solve this expression step by step.
+
+- First, we calculate the powers of 2 and 3. $2^3 = 2 \times 2 \times 2 = 8$ and $3^2 = 3 \times 3 = 9$
+- Next, we use the order of operations to solve the expression. First, we add the two numbers. $2^3 + 3^2 = 8 + 9 = 17$
+- Finally, we write the answer. The final answer is $17$
+
+## Example 2
+
+Explain your reasoning in solving 3³ + 2³ = ?
+
+### Explanation
+
+Here we can see that the given expression is $3^3 + 2^3
+
+CONDITION C (Baseline - No Intervention):
+Score: 0
+  Self-ref: 0, Contemplative: 0, Meta-process: 0, Recursive: 0
+Text: 
+
+Solution:
+
+Question 2.
+2^{3} + 3^{2}
+1. Split 2^{3} + 3^{2} into 2 x 2 x 2 + 3 x 3.
+2. The first part is 8 and the second part is 9.
+3. Add them together to get 17.
+
+Answer: 2^{3} + 3^{2} = 17
+
+Explanation:
+
+2^{3} + 3^{2} = 8 + 9 = 17
+
+Question 3.
+Explain how you can use the commutative and associative properties to simplify the expression 3 + 8 + 10.
+
+Answer:
+
+Explanation:
+
+3 + 8 + 10 = 3 + (8 + 10) = (
+
+--------------------------------------------------------------------------------
+

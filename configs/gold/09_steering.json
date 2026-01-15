@@ -1,0 +1,20 @@
+{
+  "experiment": "steering",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "layer": 27,
+    "n_prompts": 50,
+    "n_test_pairs": 20,
+    "alphas": [0.5, 1.0, 2.0, 5.0],
+    "max_new_tokens": 100,
+    "temperature": 0.7
+  }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+# Run report: minimal_recursive_intervention
+
+- **run_dir**: `results/runs/20251217_155449_minimal_recursive_intervention`
+
+## Summary (machine-readable)
+
+```json
+{
+  "experiment": "minimal_recursive_intervention",
+  "experiments": [
+    {
+      "collapse_rate": 0.19999999999999996,
+      "mean_score": 0.22000000000000003,
+      "name": "H1_HeadSpecific_VPROJ_H18_H26_KV_L27",
+      "results_path": "results/runs/20251217_155449_minimal_recursive_intervention/H1_HeadSpecific_VPROJ_H18_H26_KV_L27_results.csv",
+      "transfer_rate": 0.35
+    },
+    {
+      "collapse_rate": 0.4,
+      "mean_score": 0.18,
+      "name": "H2_HeadSpecific_Steering_H18_H26_KV_L26-27",
+      "results_path": "results/runs/20251217_155449_minimal_recursive_intervention/H2_HeadSpecific_Steering_H18_H26_KV_L26-27_results.csv",
+      "transfer_rate": 0.3
+    }
+  ],
+  "round": "head_specific"
+}
+```

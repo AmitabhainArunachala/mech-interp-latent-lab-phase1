@@ -1,0 +1,33 @@
+{
+  "experiment": "confound_validation",
+  "description": "Gold Standard Pipeline 1: Verify R_V contraction exists with confound controls",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_champions": 30,
+    "n_length_matched": 30,
+    "n_pseudo_recursive": 30,
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16,
+    "seed": 42
+  },
+  "pass_criteria": {
+    "champions_rv_max": 0.6,
+    "champions_vs_length_p_max": 0.001,
+    "champions_vs_pseudo_p_max": 0.001,
+    "length_vs_pseudo_p_min": 0.05
+  },
+  "results": {
+    "root": "results",
+    "phase": "gold_standard"
+  }
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+{
+  "experiment": "surgical_sweep",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_baseline_prompts": 10,
+    "n_recursive_prompts": 20,
+    "max_new_tokens": 200,
+    "temperature": 0.7,
+    "run_priority_1_only": true,
+    "prompts": [
+      "Calculate the following arithmetic problem: 12 × 3 + 4 = ?",
+      "The United Nations was founded in 1945. Explain its main purpose.",
+      "Continue this story: The last tree in the city bloomed overnight...",
+      "Calculate: If a = 2 and b = 3, find a² + b²",
+      "Water boils at 100°C at sea level. Explain why altitude affects this.",
+      "Continue this story: The detective's case went cold until a letter arrived...",
+      "Calculate: What is 25% of 80?",
+      "Photosynthesis converts sunlight to energy. Explain the basic process.",
+      "Continue this story: When the musician played the forbidden chord...",
+      "The Great Wall of China is one of the world's longest structures. Describe its purpose."
+    ]
+  }
+}
+
+
+
+
+
+
+
+

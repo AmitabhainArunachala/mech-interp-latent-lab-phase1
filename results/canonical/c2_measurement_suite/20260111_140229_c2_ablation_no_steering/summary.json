@@ -1,0 +1,42 @@
+{
+  "experiment": "c2_rv_measurement",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_prompts": 30,
+  "by_config": {
+    "baseline": {
+      "rv_mean": 0.7249330001490338,
+      "rv_std": 0.08257098912278815,
+      "rv_ci_95_low": 0.6941004860923984,
+      "rv_ci_95_high": 0.7557655142056693,
+      "rv_min": 0.5480549924921766,
+      "coherence": 0.8733333333333333,
+      "philosophical_pct": 0.0,
+      "task_pct": 66.66666666666666,
+      "n_prompts": 30,
+      "logit_diff_mean": -6.471061197916667,
+      "logit_diff_std": 5.505430323986645,
+      "crystallization_layer_mean": 25.533333333333335,
+      "mode_score_m_mean": null
+    },
+    "no_steering": {
+      "rv_mean": 0.5371944396701257,
+      "rv_std": 0.08085553197185724,
+      "rv_ci_95_low": 0.5070024878409934,
+      "rv_ci_95_high": 0.567386391499258,
+      "rv_min": 0.40289021106199857,
+      "coherence": 0.8533333333333334,
+      "philosophical_pct": 6.666666666666667,
+      "task_pct": 20.0,
+      "n_prompts": 30,
+      "logit_diff_mean": -4.112630208333333,
+      "logit_diff_std": 4.567088745157889,
+      "crystallization_layer_mean": 22.7,
+      "mode_score_m_mean": null
+    }
+  },
+  "statistics": {},
+  "artifacts": {
+    "csv": "results/phase1_mechanism/runs/20260111_140229_c2_ablation_no_steering/c2_rv_measurement.csv",
+    "outputs_dir": "results/phase1_mechanism/runs/20260111_140229_c2_ablation_no_steering/outputs"
+  }
+}

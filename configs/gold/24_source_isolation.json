@@ -1,0 +1,15 @@
+{
+  "experiment": "source_isolation_diagnostic",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda",
+    "max_new_tokens": 200
+  }
+}
+
+
+
+
+
+
+

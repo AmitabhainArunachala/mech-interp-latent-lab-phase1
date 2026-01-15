@@ -1,0 +1,71 @@
+# Run report: cross_architecture_validation
+
+- **run_dir**: `results/phase2_generalization/runs/20260111_212156_cross_architecture_validation`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "csv": "results/phase2_generalization/runs/20260111_212156_cross_architecture_validation/cross_architecture_validation.csv"
+  },
+  "ci_95_rv": {
+    "champions": {
+      "ci_lower": 0.49824322152011474,
+      "ci_upper": 0.538916147768287
+    },
+    "length_matched": {
+      "ci_lower": 0.728263895757302,
+      "ci_upper": 0.9364336823424486
+    },
+    "pseudo_recursive": {
+      "ci_lower": 0.7134860342565212,
+      "ci_upper": 0.8450231119255953
+    }
+  },
+  "experiment": "cross_architecture_validation",
+  "mean_rv": {
+    "champions": 0.5185796846442009,
+    "length_matched": 0.8323487890498753,
+    "pseudo_recursive": 0.7792545730910583
+  },
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "n_champions": 15,
+  "n_length_matched": 11,
+  "n_pseudo_recursive": 11,
+  "n_total": 37,
+  "params": {
+    "early_layer": 5,
+    "late_layer": 27,
+    "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+    "n_champions": 30,
+    "n_length_matched": 30,
+    "n_pseudo_recursive": 30,
+    "seed": 42,
+    "window": 16
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "std_rv": {
+    "champions": 0.035477690111455976,
+    "length_matched": 0.14772209215321094,
+    "pseudo_recursive": 0.09334175063415026
+  },
+  "ttest": {
+    "champions_vs_length_matched": {
+      "cohens_d": -2.9208061165051946,
+      "p": 4.265290177734138e-05,
+      "t": -6.582604418644872
+    },
+    "champions_vs_pseudo_recursive": {
+      "cohens_d": -3.6917921136666423,
+      "p": 2.152654064807189e-06,
+      "t": -8.40811062595742
+    },
+    "length_matched_vs_pseudo_recursive": {
+      "cohens_d": 0.42970144194260185,
+      "p": 0.35018848501043953,
+      "t": 0.960841634213337
+    }
+  }
+}
+```

@@ -1,0 +1,32 @@
+{
+  "experiment": "kv_separation",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 20,
+  "conditions": {
+    "Baseline_Control": {
+      "mean_score": 0.06,
+      "pass_rate": 0.7,
+      "samples_above_zero": 2,
+      "samples_above_0_3": 2
+    },
+    "K_Only": {
+      "mean_score": 0.12,
+      "pass_rate": 0.7,
+      "samples_above_zero": 4,
+      "samples_above_0_3": 4
+    },
+    "V_Only": {
+      "mean_score": 0.175,
+      "pass_rate": 0.7,
+      "samples_above_zero": 5,
+      "samples_above_0_3": 5
+    },
+    "Full_KV": {
+      "mean_score": 0.5650000000000001,
+      "pass_rate": 0.75,
+      "samples_above_zero": 14,
+      "samples_above_0_3": 14
+    }
+  },
+  "prompt_bank_version": "b1e5291421c5646d"
+}

@@ -1,0 +1,16 @@
+{
+  "experiment": "mlp_steering_sweep",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_pairs": 10,
+    "layers": [0, 6, 12, 18, 24],
+    "alpha": 2.0,
+    "window_size": 16,
+    "max_new_tokens": 200
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  }
+}
+

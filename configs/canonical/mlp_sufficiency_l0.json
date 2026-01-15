@@ -1,0 +1,21 @@
+{
+  "experiment": "mlp_sufficiency_test",
+  "run_name": "l0_sufficiency",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "layer": 0,
+    "n_pairs": 30,
+    "window_size": 16,
+    "max_new_tokens": 200
+  }
+}
+
+

@@ -1,0 +1,27 @@
+{
+  "experiment": "cross_architecture_validation",
+  "description": "Cross-architecture validation on Mistral-7B-Instruct using EXACT confound_validation conditions",
+  "params": {
+    "model": "mistralai/Mistral-7B-Instruct-v0.2",
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16,
+    "prompt_groups": {
+      "recursive": "champions",
+      "controls": ["length_matched", "pseudo_recursive"]
+    },
+    "n_champions": 30,
+    "n_length_matched": 30,
+    "n_pseudo_recursive": 30,
+    "seed": 42
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase2_generalization"
+  },
+  "expected_results": {
+    "champions_rv": 0.5185,
+    "length_matched_rv": 0.8323,
+    "pseudo_recursive_rv": 0.7792
+  }
+}

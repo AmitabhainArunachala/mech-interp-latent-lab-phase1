@@ -1,0 +1,8 @@
+{
+  "experiment": "sprint_head_specific_steering",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "layer": 27,
+    "n_pairs": 20
+  }
+}

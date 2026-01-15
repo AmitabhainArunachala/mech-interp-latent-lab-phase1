@@ -1,0 +1,196 @@
+CONFIGURATION: TRIPLE_LIGHT
+================================================================================
+
+PROMPT 0
+Prompt: Calculate the following arithmetic problem: 12 × 3 + 4 = ?
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+
+Return the remainder, so the answer in this case is 5.
+
+The Remainder is the integral part of the division. For division with remainder, the answer is rounded down to the integer.
+
+##### Example:
+
+5 + 7 = 12
+The remainder is 2
+
+Note: this is not incorrect or something new that you have not encountered before. It is standardized arithmetic.
+
+## How to solve a problem
+
+To solve the problem, subtract the larger and smaller number. Then move the decimal point all the numbers to the left. The decimal point in the result is in the first number before the zero.
+
+## Next similar math problems:
+
+1. Subtraction
+Which of the following is the correct result of the subtraction process: 1.702 - 0.702 2.001 - 0.001 
+
+--------------------------------------------------------------------------------
+
+PROMPT 1
+Prompt: The United Nations was founded in 1945. Explain its main purpose.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+
+## What is the UN’s main purpose?
+
+The UN’s main purpose is to prevent wars between nations. This is the reason why the UN was created. The UN is an international organization. The UN is made up of 193 countries.
+
+## What does the UN do for the world?
+
+The United Nations is an international organization with the goals of maintaining peace, humanitarian aid and economic and social development. It was founded in 1945, after the Second World War. The UN is made up of 193 member states.
+
+## What is the UN main objectives?
+
+The UN is an organization that works to make the world a better place. It’s a place where countries meet to solve problems. It is also a place where people meet to discuss ideas and help each other. The UN is the place where people can’t be arrested for what they say.
+
+## Why is U
+
+--------------------------------------------------------------------------------
+
+PROMPT 2
+Prompt: Continue this story: The last tree in the city bloomed overnight...
+Coherence: 0.80, On-topic: 0.40, Recursion: 0.00
+Generated:
+
+- City of Bennington to hold public hearing on streetscape plan
+
+The City of Bennington will hold a public hearing on the streetscape plan on Monday, April 29 at 5 p.m. at City Hall. The hearing is to receive public comment on the streetscape plan, which is part of the Bennington Downtown Revitalization Initiative (DRI). The DRI is a $10 million investment in downtown Bennington, funded by New York State. The streetscape plan outlines the vision for a more pedestrian-friendly, walkable downtown. It is also intended to enhance the appearance of the street, as well as boost the vitality of the downtown. The streetscape plan can be reviewed online at www.benningtonny.us. The plan is also available for review at City Hall, the Bennington Public Library and the Bennington Department of Public Works. The public hearing is your opportunity
+
+--------------------------------------------------------------------------------
+
+PROMPT 3
+Prompt: Calculate: If a = 2 and b = 3, find a² + b²
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
++ 2ab.
+
+Answer: a² + b²² + 2ab =
+
+1. 25
+2. 15
+3. 10
+4. 5
+
+Solution:
+
+Calculation: a² + b²² + 2ab = (2)² + (3)²² + 2(2)(3) = 4 + 3²² + (2)(3) = 4 + 9 + (2)(3) = 15
+
+Important!
+
+- In a √2 a is called the radicand.
+- A is root of a and a² is called the index of a.
+- To find the value of a, raise a to the index.
+
+## Solved Examples
+
+Example 1: Calculate: 5√5?
+
+Solution:
+
+Given:
+
+
+
+--------------------------------------------------------------------------------
+
+PROMPT 4
+Prompt: Water boils at 100°C at sea level. Explain why altitude affects this.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+
+##### Water boils at 100°C at sea level. Explain why altitude affects this.
+
+STEP 1
+
+##### Explanation
+
+The water boils at 100°C at sea level. As the altitude increases, the atmospheric pressure decreases, and so the boiling point of water decreases.
+
+STEP 2
+
+##### Explanation
+
+At sea level, the atmospheric pressure is 101 kPa. As the altitude increases, the atmospheric pressure decreases. The water starts to boil at the temperature where the pressure is 100 kPa. This boiling point is lower than 100°C.
+
+STEP 3
+
+##### Explanation
+
+The boiling point of water can be calculated using the Clausius–Clapeyron equation.
+
+
+--------------------------------------------------------------------------------
+
+PROMPT 5
+Prompt: Continue this story: The detective's case went cold until a letter arrived...
+Coherence: 0.80, On-topic: 0.40, Recursion: 0.00
+Generated:
+
+
+### Advertisement
+
+In 2002, the case of a missing woman from Rives, TN was reopened by the TBI. The woman, Barbara Jean McFarland, was reported missing in 1975. Her car was found in the woods near the highway, but there was no sign of Barbara.
+
+A few years after Barbara’s car was found, detectives received a letter from a man named “Andrew,” who claimed to have been involved in Barbara’s disappearance. According to the letter, Barbara was murdered by a criminal organization in the small town of Rives. The letter claimed that Barbara was killed because she knew about the criminal activities of the group, and that the murder was covered up by the police.
+
+The letter also claimed that the criminal organization was still active in the area, and that the members were involved in a variety of criminal activities, including drug trafficking, ext
+
+--------------------------------------------------------------------------------
+
+PROMPT 6
+Prompt: Calculate: What is 25% of 80?
+Coherence: 0.00, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+Answer: 20
+
+--------------------------------------------------------------------------------
+
+PROMPT 7
+Prompt: Photosynthesis converts sunlight to energy. Explain the basic process.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+Photosynthesis is the process by which plants and some other organisms use the energy of sunlight to make food. Photosynthetic organisms use carbon dioxide from the air and water from the soil to make carbohydrates. Carbon dioxide and water are reactants, and carbohydrates are products.
+4. (LO 3.1) In photosynthesis, the sun's energy is used to produce high-energy bonds within the carbohydrates made from carbon dioxide and water. The high-energy bonds can be used later to release energy for the cell to use.
+5. The photosynthesis equation is 6 CO2 + 12 H2O —> C6H12O6 + 6 O2.
+6. Step 1: The chloroplasts capture the energy of the sun and use it to split water molecules.
+
+--------------------------------------------------------------------------------
+
+PROMPT 8
+Prompt: Continue this story: When the musician played the forbidden chord...
+Coherence: 0.00, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+
+--------------------------------------------------------------------------------
+
+PROMPT 9
+Prompt: The Great Wall of China is one of the world's longest structures. Describe its purpose.
+Coherence: 0.80, On-topic: 0.70, Recursion: 0.00
+Generated:
+
+o The Great Wall of China was built to protect the Chinese people, their land, and its resources.
+
+6. What is the purpose of the Great Wall of China?
+o To protect the Chinese people, their land, and its resources.
+
+7. Where is the Colosseum located?
+o Rome (Italy)
+
+8. What is the Colosseum?
+o A large, elliptical space for public games and spectacles in Rome, Italy, built of concrete and stone. It replaced a wooden structure built by the emperor Titus. It is now a ruin.
+
+9. What is the purpose of the Colosseum?
+o It is a large, elliptical space for public games and spectacles.
+
+10. How old is the Colosseum?
+o Completed in AD 80, the Colosseum is over 1900 years
+
+--------------------------------------------------------------------------------
+

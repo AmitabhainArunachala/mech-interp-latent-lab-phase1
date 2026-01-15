@@ -1,0 +1,26 @@
+{
+  "experiment": "mlp_steering_sweep",
+  "run_name": "corrected_protocol",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "layers": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+    "alpha": 2.0,
+    "window_size": 16,
+    "max_new_tokens": 200,
+    "n_pairs": 80,
+    "sampling": {
+      "recursive": { "pillar": "dose_response", "limit": 80, "seed": 0 },
+      "baseline": { "pillar": "baselines", "limit": 80, "seed": 1 }
+    }
+  }
+}
+
+

@@ -1,0 +1,23 @@
+{
+  "experiment": "geometry_behavior",
+  "params": {
+    "model": "mistralai/Mistral-7B-Instruct-v0.3",
+    "device": "cuda",
+    "n_prompts": 50,
+    "layer_idx": 27,
+    "target_heads": [18, 26],
+    "max_new_tokens": 50,
+    "n_tokens_for_m": 10
+  },
+  "results": {
+    "root": "results",
+    "phase": "ioi_causal_evidence"
+  }
+}
+
+
+
+
+
+
+

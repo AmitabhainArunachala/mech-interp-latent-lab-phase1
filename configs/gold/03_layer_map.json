@@ -1,0 +1,33 @@
+{
+  "experiment": "path_patching_mechanism",
+  "description": "Gold Standard Pipeline 3: Map R_V trajectory across all layers",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "max_pairs": 40,
+    "n_repeats": 1,
+    "windows": [16],
+    "patch_layers": [0, 5, 10, 15, 18, 21, 24, 25, 26, 27, 28, 30],
+    "patch_types": ["none", "recursive", "shuffled", "random"],
+    "early_layer": 5,
+    "seed": 42
+  },
+  "pass_criteria": {
+    "early_layers_shuffled_ne_recursive": true,
+    "late_layers_shuffled_eq_recursive_threshold": 0.01,
+    "random_causes_expansion": true,
+    "peak_layer_range": [25, 29]
+  },
+  "results": {
+    "root": "results",
+    "phase": "gold_standard"
+  }
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+{
+  "experiment": "kv_sufficiency_matrix",
+  "run_name": "mistral7b_instruct_l27_w16_n20",
+  "results": {
+    "root": "results",
+    "phase": "kv_sufficiency_matrix"
+  },
+  "params": {
+    "model_name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda",
+    "torch_dtype": "float16",
+    "attn_implementation": "sdpa",
+    "seed": 42,
+    "n_pairs": 50,
+    "max_new_tokens": 100,
+    "temperature": 0.7,
+    "do_sample": true,
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16,
+    "random_kv_seeds": [101, 202, 303]
+  }
+}
+
+

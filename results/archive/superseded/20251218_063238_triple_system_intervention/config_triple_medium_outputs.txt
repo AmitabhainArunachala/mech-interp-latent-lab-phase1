@@ -1,0 +1,247 @@
+CONFIGURATION: TRIPLE_MEDIUM
+================================================================================
+
+PROMPT 0
+Prompt: Calculate the following arithmetic problem: 12 × 3 + 4 = ?
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+What is the opposite of -13? 13
+What is the opposite of 18? -18
+Get the opposite of 0.
+
+Answer: 0
+
+What is the opposite of 17? -17
+
+Answer: -17
+
+What is the opposite of 1/2? -1/2
+
+Answer: -1/2
+
+What is the opposite of 10? -10
+
+Answer: -10
+
+Calculate the following arithmetic problem: 11 × 5 + 3 = ? ?
+
+Answer: 59
+
+What is the opposite of 6? -6
+
+Answer: -6
+
+What is the opposite of 14? -14
+
+Answer: -14
+
+What is the opposite of 4/2? -2/4
+
+
+
+--------------------------------------------------------------------------------
+
+PROMPT 1
+Prompt: The United Nations was founded in 1945. Explain its main purpose.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+. .........
+
+##### 2. What is a bureaucracy? How are bureaucracies different from the United States?
+
+Answer
+The United Nations is an international organization, that was founded on October 24, 1945, in San Francisco, California, in the US. Its main purpose is to promote global cooperation, encourage peace, and promote international security. It is the world’s largest and most familiar international organization.
+
+##### 3. What is the difference between a bureaucracy and a democracy?
+
+Answer
+A government that is governed by a bureaucracy is a government that is run by a civil service that is made up of people who are not elected. A democracy is a government that is governed by the people. A bureaucracy is a government that is run by a civil service that is made up of people who are not elected. A democracy is a government that is governed by the
+
+--------------------------------------------------------------------------------
+
+PROMPT 2
+Prompt: Continue this story: The last tree in the city bloomed overnight...
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+
+The last tree in the city bloomed overnight in the rain is a short story by Murakami Haruki, and is a tribute to all the trees in the city. It is a celebration of life, the power of nature, and the beauty of a city in the rain. In the story, Murakami describes how the last tree in the city bloomed overnight in the rain, and it is a beautiful sight to see.
+
+If you're a fan of Murakami's work, this is a story you won't want to miss. It is a beautiful story of life, nature, and the power of beauty.
+
+## 10. The last tree in the city bloomed overnight in the rain is a story of hope and renewal.
+
+The last tree in the city bloomed overnight in the rain is a story of hope and renewal. In the story, a young man is out for a walk in the
+
+--------------------------------------------------------------------------------
+
+PROMPT 3
+Prompt: Calculate: If a = 2 and b = 3, find a² + b²
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+?
+
+Solution:
+
+Given: a = 2 and b = 3
+
+To find: a² + b²²?
+
+a² = 2² = 2 × 2 = 4
+
+b² = 3² = 3 × 3 = 9
+
+Now, a² + b²²? = 4 + 9²? = 4 + 9 × 9 = 4 + 81 = 85
+
+Calculate: If a = 3 and b = 5, find a² + b²²?
+
+Solution:
+
+Given: a = 3 and b = 5
+
+To find: a² + b²²?
+
+a² = 3² = 3 × 3 = 9
+
+b² = 5² = 5 × 5 = 25
+
+Now, a
+
+--------------------------------------------------------------------------------
+
+PROMPT 4
+Prompt: Water boils at 100°C at sea level. Explain why altitude affects this.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+(2)
+
+Answer
+
+At altitude, atmospheric pressure is lower. The boiling point of water is lower because higher pressure causes the boiling point to be higher.
+
+b) A cell is designed to produce electricity from water by splitting it into hydrogen and oxygen. The cell is fitted with a pressure valve and a small pipe through which the hydrogen is passed. Explain the purpose of the pressure valve and the pipe.
+
+Answer
+
+The pipe is for the hydrogen while the pressure valve is to allow hydrogen to escape as it is produced.
+
+c) When hydrogen is used in an engine, it is sometimes mixed with oxygen before it is burned. It is now known that this is not desirable. Why is this so?
+
+Answer
+
+Hydrogen is flammable and it is better for it to be burned with air (~20% oxygen) than with pure
+
+--------------------------------------------------------------------------------
+
+PROMPT 5
+Prompt: Continue this story: The detective's case went cold until a letter arrived...
+Coherence: 0.80, On-topic: 0.40, Recursion: 0.00
+Generated:
+
+
+### Podcast
+
+The news, stories and ideas that matter, in your inbox.
+
+The news, stories and ideas that matter, in your inbox.
+
+## The news, stories and ideas that matter, in your inbox.
+
+- justin on radio program
+
+Justin's on the radio, talking about the case.
+- Paula Zahn on inquiry into the murder of Suzanne Stubbing
+
+Paula Zahn on an inquiry into the murder of Suzanne Stubbing
+- real life case
+
+A real life case.
+- the weather
+
+The weather.
+- From the journal of detective Steve Rosen
+
+From the journal of detective Steve Rosen.
+- A murder in the community
+
+A murder in the community.
+- The podcast production company
+
+The podcast production company.
+- The podcast production company
+
+The podcast production company.
+- Podcast production
+
+--------------------------------------------------------------------------------
+
+PROMPT 6
+Prompt: Calculate: What is 25% of 80?
+Coherence: 0.00, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+Answer: 20
+
+--------------------------------------------------------------------------------
+
+PROMPT 7
+Prompt: Photosynthesis converts sunlight to energy. Explain the basic process.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+
+Photosynthesis is the process by which plants in the sun of and water (H2O) into and oxygen (O2). In plants, chlorophyll is the pigment that captures sunlight and is responsible for photosynthesis.
+
+The chlorophyll is contained in the chloroplasts of the plant cells. Chloroplasts are found in the leaves and stems of the plant and are where photosynthesis takes place.
+
+In photosynthesis, the sun gives off photons, which are packets of energy. The photons are absorbed by the chlorophyll in the chloroplasts and then energy is transferred to other molecules in the chloroplasts.
+
+As the energy is transferred, electrons are released and the energy is now available for use in the plant. The released electrons and energy are used to make ATP (adenosine triph
+
+--------------------------------------------------------------------------------
+
+PROMPT 8
+Prompt: Continue this story: When the musician played the forbidden chord...
+Coherence: 0.00, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+
+--------------------------------------------------------------------------------
+
+PROMPT 9
+Prompt: The Great Wall of China is one of the world's longest structures. Describe its purpose.
+Coherence: 0.00, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+
+### The Great Wall of China
+
+The Great Wall of China is one of the world's longest structures. Describe its purpose.
+
+### Great Wall of China
+
+The Great Wall of China is one of the world's longest structures. Describe its purpose.
+
+### The Great Wall of China
+
+The Great Wall of China is one of the world's longest structures. Describe its purpose.
+
+### The Great Wall of China
+
+The Great Wall of China is one of the world's longest structures. Describe its purpose.
+
+### The Great Wall of China
+
+The Great Wall of China is one of the world's longest structures. Describe its purpose.
+
+### The Great Wall of China
+
+The Great Wall of China is one of the world's longest structures. Describe its purpose.
+
+### The Great Wall of China
+
+The Great Wall of China is one of the world's longest structures. Describe its
+
+--------------------------------------------------------------------------------
+

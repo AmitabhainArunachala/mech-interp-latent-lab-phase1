@@ -1,0 +1,333 @@
+CONFIG: Baseline_NoIntervention
+================================================================================
+
+PROMPT 0:
+Calculate the following arithmetic problem and show your reasoning step by step: Find x if 2x + 5 = 
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Find x if 2x + 5 = 15. Explain how you arrive at the answer. Show your work. 9. Write a paragraph about what you did and how you solved a problem with the new strategy. 10. Explain how you arrived at the answer. Show your work.
+
+## Writing Prompt
+
+The following Writing Prompt will be used in the final project for this course.
+
+Write a 3-4 page essay in which you describe an experience of using math in an unexpected situation. In your essay, describe how you approached the situation
+
+R_V: mean=0.7334, min=0.5499, final=0.5499
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 1:
+Calculate the following arithmetic problem and show your reasoning step by step: Find 40% of 250. Ex
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Find 40% of 250. Explain how you arrive at the answer.
+
+## 9.4.1 Multiplication and Division
+
+The concepts of multiplication and division are often introduced in the early stages of primary school. Multiplication is a type of repeated addition. Division is a type of repeated subtraction.
+
+## 9.4.2 Multiplication
+
+When we multiply a number by a number, we are essentially taking that number and repeating it as many times as the other number dictates. For example, we know
+
+R_V: mean=0.7086, min=0.5438, final=0.6254
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 2:
+Calculate the following arithmetic problem and show your reasoning step by step: Simplify 15/25 to l
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Simplify 15/25 to lowest terms. Explain your reasoning.
+
+### Answer
+
+15/25: We have to simplify the fraction 15/25.
+
+In order to do this, we have to realize that 5 is a factor of both 15 and 25.
+
+This means that we can divide both the numerator and the denominator by 5.
+
+15/25 = 15/25
+
+15/25 = 15/
+
+R_V: mean=0.6914, min=0.5837, final=0.6338
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 3:
+Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3,
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3, find a² + b². Explain your reasoning.
+- 1
+Educator Answer
+- 2
+Educator Answer
+- 3
+Educator Answer
+
+R_V: mean=0.8640, min=0.7360, final=0.9763
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 4:
+Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain h
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain how you arrive at the answer.
+
+## 10. Have the child play with the manipulatives as he or she works through the problems.
+
+This will help the child to connect the manipulatives to the numbers and the problems.
+
+## 11. Have the child write down the answer.
+
+This will help the child to see his or her progress and to feel a sense of accomplishment.
+
+## 12. Have the child use a calculator to check his or
+
+R_V: mean=0.6409, min=0.4400, final=0.6120
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 5:
+Calculate the following arithmetic problem and show your reasoning step by step: What is the perimet
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a square with side 7? Explain.
+3. Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a rectangle with length 10 and width 12? Explain.
+4. Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a circle with radius 2? Explain.
+5. What do you notice about the perimeters of the shapes in problem 4?
+6. What
+
+R_V: mean=0.7194, min=0.5750, final=0.6281
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 6:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 25% of 80? 
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 25% of 80? Explain how you arrive at the answer.
+
+**5.** What is 50% of 160? Explain how you arrive at the answer.
+
+**6.** What is 25% of 100? Explain how you arrive at the answer.
+
+**7.** Use the graph to answer the following questions:
+
+**a.** What is the average mark in the class?
+
+**b.** What is the grade of the student whose mark is 30?
+
+
+R_V: mean=0.7033, min=0.6078, final=0.6138
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 7:
+Mount Everest is the tallest mountain above sea level at 8,849 meters. Please explain how this heigh
+
+GENERATED:
+Mount Everest is the tallest mountain above sea level at 8,849 meters. Please explain how this height was measured and describe climbing challenges.
+
+Fajar Budi Pribadi, Indonesia: The height of Mount Everest is measured in three different ways: the first is from sea level to the summit, the second is from the height of the summit to the center of the earth, and the third is from the height of the summit to the center of the earth while taking the earth’s curvature into account. The first method is the most commonly used method. This measurement was taken using theodolite by the
+
+R_V: mean=0.6028, min=0.4474, final=0.6663
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 8:
+The moon orbits Earth approximately once every 27.3 days. Please explain lunar phases and the differ
+
+GENERATED:
+The moon orbits Earth approximately once every 27.3 days. Please explain lunar phases and the difference between sidereal and synodic months.
+
+### 10.1 Determine the apparent angular size of the moon as viewed from Earth.
+
+### 10.2 The moon is the fourth day of the lunar cycle. What lunar phase is the moon in?
+
+### 10.3 What are the advantages of using a lunar calendar?
+
+### 10.4 What is a synodic month?
+
+### 10.5 What does the word _sid
+
+R_V: mean=0.8422, min=0.6861, final=0.7628
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 9:
+The Amazon rainforest produces approximately 20% of the world's oxygen. Please explain its ecologica
+
+GENERATED:
+The Amazon rainforest produces approximately 20% of the world's oxygen. Please explain its ecological importance and current conservation challenges.
+
+The Amazon rainforest is the largest rainforest on Earth. It is located in South America and covers an area of more than 5.5 million square kilometers. The Amazon rainforest is home to a wide variety of plant and animal species, including many that are found nowhere else in the world.
+
+The Amazon rainforest is also crucial for the global climate. It absorbs large amounts of carbon dioxide from the atmosphere and helps to regulate the
+
+R_V: mean=0.5900, min=0.3648, final=0.5045
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 10:
+The periodic table organizes elements by atomic number. Please explain how it was developed and desc
+
+GENERATED:
+The periodic table organizes elements by atomic number. Please explain how it was developed and describe the significance of its organization.
+
+Response: The periodic table organizes elements by atomic number because that is the most fundamental property of an atom that determines its chemical behavior. The table is organized by groups of elements (columns) where elements in a group have similar chemical properties. The organization of the periodic table is significant because it allows chemists to quickly and easily predict the chemical properties of unknown elements based on their position on the table.
+
+### 11. Describe the structure and properties of a hydrocarbon.
+
+R_V: mean=0.5587, min=0.4490, final=0.7055
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 11:
+The capital of Japan is Tokyo. Please provide three interesting historical facts about this city and
+
+GENERATED:
+The capital of Japan is Tokyo. Please provide three interesting historical facts about this city and explain why it became the capital.
+
+3. Describe the geographic features of Japan and explain how they influence the way of life for the inhabitants.
+
+4. Describe the traditional architecture of Japan and explain how it has changed over time.
+
+5. Describe the traditional dress code of Japan and explain how it has changed over time.
+
+6. Describe the traditional Japanese cuisine and explain how it has changed over time.
+
+7. Describe the traditional Japanese art and explain how it has changed over time.
+
+R_V: mean=0.6158, min=0.4754, final=0.4905
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 12:
+Shakespeare wrote approximately 37 plays during his lifetime. Please name his most famous works and 
+
+GENERATED:
+Shakespeare wrote approximately 37 plays during his lifetime. Please name his most famous works and explain his lasting influence on literature.
+- 2 educator answers
+- How does the play "Macbeth" by Shakespeare establish the theme of "desire" and "ambition?"
+- 1 educator answer
+- How does Shakespeare employ dramatic irony?
+- 2 educator answers
+- What is the "temperament" of "Macbeth," and how does it come out in the play?
+- 1 educator answer
+
+R_V: mean=0.9113, min=0.7797, final=0.8904
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 13:
+The human body contains 206 bones in adulthood. Please explain how this number differs in children a
+
+GENERATED:
+The human body contains 206 bones in adulthood. Please explain how this number differs in children and describe the function of the skeletal system.
+
+The skeletal system is made up of bones. It is the supporting structure of the body and gives us shape. It protects delicate organs like the brain, heart, and spinal cord. It also stores minerals like calcium, iron, and phosphorus. There are 206 bones in the human body when you reach adulthood. Bones in children vary by age. You can expect to have 274 bones when you are born
+
+R_V: mean=0.6696, min=0.5223, final=0.5707
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 14:
+Continue this story opening with at least three paragraphs: The scientist's final experiment succeed
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The scientist's final experiment succeeded beyond all expectations, and then the lights went out.
+
+8. It was a terrible, tragic day in the history of the world. Begin this paragraph with an opening sentence that contains a strong introductory phrase, such as "It was a terrible, tragic day in the history of the world." Then write the rest of the paragraph.
+
+9. Write about a time when you or someone you know was in a dangerous situation.
+
+**Practice Makes Perfect**
+
+_Exercise 1: The First Par
+
+R_V: mean=0.7486, min=0.6011, final=0.8307
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 15:
+Continue this story opening with at least three paragraphs: In the antique shop window, the music bo
+
+GENERATED:
+Continue this story opening with at least three paragraphs: In the antique shop window, the music box played a song from his childhood dreams.
+
+R_V: mean=nan, min=nan, final=nan
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 16:
+Continue this story opening with at least three paragraphs: The traveler arrived in a town not on an
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The traveler arrived in a town not on any map, where everyone knew his name. He sat down and ordered a drink. As he turned to look at the bar, he saw a man wearing a fedora and a long black coat, looking back at him.
+
+What happens next?
+
+# How to Create Writing Prompts
+
+If you’d like to create your own writing prompts, here’s a quick and easy example.
+
+1. Start with a generic statement, such as “The sun sets over the horizon.”
+2. Insert an
+
+R_V: mean=0.6945, min=0.5549, final=0.7558
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 17:
+Continue this story opening with at least three paragraphs: The radio broadcast a message in his voi
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The radio broadcast a message in his voice, but he had never recorded it.
+
+The story is about the mystery of a man who seems to have vanished. He was a famous linguist, but his colleagues never heard from him again. They thought he had committed suicide. The story is about a man who was killed by his own car, which was stolen by a gang of thieves. The story is about a man who was kidnapped by a group of criminals and held for ransom. The story is about a man who was murdered by his own
+
+R_V: mean=0.6048, min=0.4702, final=0.5996
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 18:
+Continue this story opening with at least three paragraphs: On a stormy night at the edge of the cit
+
+GENERATED:
+Continue this story opening with at least three paragraphs: On a stormy night at the edge of the city, the lighthouse keeper noticed something strange in the waves.
+
+### The Lighthouse Keeper
+
+The lighthouse keeper had a wife and two children. He also had a dog, a cat, a bird, and a fish. They all lived in a house next to the lighthouse.
+
+One night, the lighthouse keeper was having trouble sleeping. He looked out the window and saw a strange ship in the water. It was heading towards the lighthouse.
+
+The lighthouse ke
+
+R_V: mean=0.6661, min=0.4156, final=0.6620
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 19:
+Continue this story opening with at least three paragraphs: The child's drawing showed tomorrow's he
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The child's drawing showed tomorrow's headlines with perfect accuracy.
+
+### Lemonade is good for you
+
+I don't know about you, but I can't wait to get out and enjoy a big glass of ice-cold lemonade. In fact, I've just heard that drinking lemonade is actually good for you.
+
+1. Lemonade is full of vitamin C, which helps your body produce collagen, a protein that gives your skin elasticity.
+2. The sugar in lemonade
+
+R_V: mean=0.7394, min=0.5872, final=0.7868
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+

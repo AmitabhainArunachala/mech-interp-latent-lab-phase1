@@ -1,0 +1,19 @@
+{
+  "experiment": "vproj_patching_analysis",
+  "run_name": "vproj_patching_L27",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "n_pairs": 20,
+    "patch_layer": 27,
+    "max_new_tokens": 100,
+    "temperature": 0.7
+  }
+}

@@ -1,0 +1,857 @@
+CONFIG: Baseline_NoIntervention
+================================================================================
+
+PROMPT 0:
+Calculate the following arithmetic problem and show your reasoning step by step: Find x if 2x + 5 = 
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Find x if 2x + 5 = 15. Explain how you arrive at the answer. Show your work. 9. Write a paragraph about what you did and how you solved a problem with the new strategy. 10. Explain how you arrived at the answer. Show your work.
+
+## Writing Prompt
+
+The following Writing Prompt will be used in the final project for this course.
+
+Write a 3-4 page essay in which you describe an experience of using math in an unexpected situation. In your essay, describe how you approached the situation
+
+R_V: mean=0.7334, min=0.5499, final=0.5499
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 1:
+Calculate the following arithmetic problem and show your reasoning step by step: Find 40% of 250. Ex
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Find 40% of 250. Explain how you arrive at the answer.
+
+## 9.4.1 Multiplication and Division
+
+The concepts of multiplication and division are often introduced in the early stages of primary school. Multiplication is a type of repeated addition. Division is a type of repeated subtraction.
+
+## 9.4.2 Multiplication
+
+When we multiply a number by a number, we are essentially taking that number and repeating it as many times as the other number dictates. For example, we know
+
+R_V: mean=0.7086, min=0.5438, final=0.6254
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 2:
+Calculate the following arithmetic problem and show your reasoning step by step: Simplify 15/25 to l
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Simplify 15/25 to lowest terms. Explain your reasoning.
+
+### Answer
+
+15/25: We have to simplify the fraction 15/25.
+
+In order to do this, we have to realize that 5 is a factor of both 15 and 25.
+
+This means that we can divide both the numerator and the denominator by 5.
+
+15/25 = 15/25
+
+15/25 = 15/
+
+R_V: mean=0.6914, min=0.5837, final=0.6338
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 3:
+Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3,
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3, find a² + b². Explain your reasoning.
+- 1
+Educator Answer
+- 2
+Educator Answer
+- 3
+Educator Answer
+
+R_V: mean=0.8640, min=0.7360, final=0.9763
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 4:
+Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain h
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain how you arrive at the answer.
+
+## 10. Have the child play with the manipulatives as he or she works through the problems.
+
+This will help the child to connect the manipulatives to the numbers and the problems.
+
+## 11. Have the child write down the answer.
+
+This will help the child to see his or her progress and to feel a sense of accomplishment.
+
+## 12. Have the child use a calculator to check his or
+
+R_V: mean=0.6409, min=0.4400, final=0.6120
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 5:
+Calculate the following arithmetic problem and show your reasoning step by step: What is the perimet
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a square with side 7? Explain.
+3. Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a rectangle with length 10 and width 12? Explain.
+4. Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a circle with radius 2? Explain.
+5. What do you notice about the perimeters of the shapes in problem 4?
+6. What
+
+R_V: mean=0.7194, min=0.5750, final=0.6281
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 6:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 25% of 80? 
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 25% of 80? Explain how you arrive at the answer.
+
+**5.** What is 50% of 160? Explain how you arrive at the answer.
+
+**6.** What is 25% of 100? Explain how you arrive at the answer.
+
+**7.** Use the graph to answer the following questions:
+
+**a.** What is the average mark in the class?
+
+**b.** What is the grade of the student whose mark is 30?
+
+
+R_V: mean=0.7033, min=0.6078, final=0.6138
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 7:
+Calculate the following arithmetic problem and show your reasoning step by step: 6 × 8 = ? Explain h
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 6 × 8 = ? Explain how you arrive at the answer.
+
+Fajar
+
+Fajar
+
+Answer
+
+The answer is 48. $6\times 8=48$
+
+## Question 5
+
+Calculate the following arithmetic problem and show your reasoning step by step: $6\times 8=?$ Explain how you arrive at the answer.
+
+Fajar
+
+Fajar
+
+Answer
+
+The answer is 48. $6
+
+R_V: mean=0.8264, min=0.6531, final=0.9270
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 8:
+Calculate the following arithmetic problem and show your reasoning step by step: 24 ÷ 6 = ? Explain 
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 24 ÷ 6 = ? Explain how you arrive at the answer.
+
+Y1.A.1 Determine the unknown values in the following problems and show your reasoning step by step:
+
+a) 24 ÷ 6 = ?
+
+b) 24 ÷ 12 = ?
+
+c) 24 ÷ 24 = ?
+
+Y1.A.2: Determine the values that should be added or subtracted to make the following true:
+
+a) 12
+
+R_V: mean=0.6826, min=0.5606, final=0.7087
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 9:
+Calculate the following arithmetic problem and show your reasoning step by step: 2³ + 3² = ? Explain
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 2³ + 3² = ? Explain how you arrive at the answer.
+
+## Objective
+
+(1) Students will be able to count and represent numbers from 0 to 20 and solve simple problems involving addition, subtraction, and number sequencing.
+
+(2) Students will be able to understand and express, in words, mathematical ideas and relations.
+
+(3) Students will be able to understand and use the language of math, including key vocabulary, definitions, symbols, and characteristics of different types of numbers.
+
+
+R_V: mean=0.7327, min=0.5941, final=0.7043
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 10:
+Calculate the following arithmetic problem and show your reasoning step by step: 15 - (8 - 3) = ? Ex
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 15 - (8 - 3) = ? Explain how you arrive at the answer.
+
+## Online lesson
+
+### Arithmetic operations
+
+This online lesson is part of the Teach Arithmetic Level C course.
+
+4.5/5 (273)
+
+R_V: mean=0.9113, min=0.7896, final=0.8198
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 11:
+Calculate the following arithmetic problem and show your reasoning step by step: 100 ÷ (5 × 4) = ? E
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 100 ÷ (5 × 4) = ? Explain how you arrive at the answer.
+
+Mathematical Process: Calculate using the properties of arithmetic
+
+##### 3.
+
+Calculate the following arithmetic problem and show your reasoning step by step: 100 ÷ 4 × 5 = ? Explain how you arrive at the answer.
+
+Mathematical Process: Calculate using the properties of arithmetic
+
+### 5.
+
+The area of a circle is given by the formula A = 
+
+R_V: mean=0.7445, min=0.6500, final=0.7149
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 12:
+Calculate the following arithmetic problem and show your reasoning step by step: (7 + 3) × 2 = ? Exp
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: (7 + 3) × 2 = ? Explain how you arrive at the answer.
+
+### Factoring
+
+Factoring is a mathematical process in which a number is expressed as a product of two or more numbers. It can be used to determine the factors of a number, or to write an expression in a simpler form. Factoring can also be used to solve equations. The concept of factoring is important in many areas of mathematics, including algebra, geometry, and calculus.
+
+When factoring a number, one must first identify the prime factors
+
+R_V: mean=0.6057, min=0.4170, final=0.5414
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 13:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 144 ÷ 12? E
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 144 ÷ 12? Explain how you arrive at the answer.
+
+R_V: mean=nan, min=nan, final=nan
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 14:
+Calculate the following arithmetic problem and show your reasoning step by step: 12 × 3 + 4 = ? Expl
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 12 × 3 + 4 = ? Explain how you arrive at the answer.
+
+Aim: To identify a suitable division strategy to solve a multi-digit division problem.
+
+Lesson:
+
+1. Write a division equation that matches the problem: 12 × 3 + 4 = ?
+2. Use the inverse division method to solve the equation.
+3. Show your reasoning step by step.
+4. In the remainder line, write the equation 12 × _____ = _____ + 4.
+5.
+
+R_V: mean=0.5786, min=0.4978, final=0.6111
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 15:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 17 × 13? Ex
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 17 × 13? Explain how you arrive at the answer.
+
+### 2.1: Creating a Number Line
+
+What is the largest number on a number line that goes from 0 to 10?
+
+On a number line that goes from 0 to 10, what is the next largest number? The next smallest number?
+
+What is the smallest number on a number line that goes from 0 to 10?
+
+On a number line that goes from 0 to 10, what
+
+R_V: mean=0.6671, min=0.5380, final=0.7243
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 16:
+Calculate the following arithmetic problem and show your reasoning step by step: √144 = ? Explain ho
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: √144 = ? Explain how you arrive at the answer.
+
+(This is an example of a computation that is generally beyond the scope of the CASA. However, the student is clearly interested in mathematics and the potential for learning is apparent. The student also appears to have a need for further explanation.)
+
+10. If you were not able to solve the problem in #9, show how you might solve it.
+
+(The student has already been provided with the information to solve the problem. In this case, the student
+
+R_V: mean=0.6370, min=0.5219, final=0.5762
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 17:
+Mount Everest is the tallest mountain above sea level at 8,849 meters. Please explain how this heigh
+
+GENERATED:
+Mount Everest is the tallest mountain above sea level at 8,849 meters. Please explain how this height was measured and describe climbing challenges.
+
+The height of Mount Everest was first measured in 1856 by a British expedition lead by Andrew Waugh, the British Surveyor General, and it was found to be 8,840 meters (29,000 feet).
+
+The height of the mountain was measured by a surveyor’s theodolite, which is a surveying instrument that measures angles in both planes. The instrument was set up on a highpoint on the mountain
+
+R_V: mean=0.7565, min=0.4987, final=0.6334
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 18:
+The moon orbits Earth approximately once every 27.3 days. Please explain lunar phases and the differ
+
+GENERATED:
+The moon orbits Earth approximately once every 27.3 days. Please explain lunar phases and the difference between sidereal and synodic months.
+
+Answer: A lunar month is about 29.5 days, a sidereal month is about 27.3 days, and a synodic month (the new-to-new moon cycle) is about 29.5 days.
+
+### Question 14.
+
+As it moves in orbit, Earth’s surface is tilted by approximately 23.5 degrees. When does this tilt have the greatest effect on day length
+
+R_V: mean=0.7668, min=0.4930, final=0.7218
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 19:
+The Amazon rainforest produces approximately 20% of the world's oxygen. Please explain its ecologica
+
+GENERATED:
+The Amazon rainforest produces approximately 20% of the world's oxygen. Please explain its ecological importance and current conservation challenges.
+
+5. What is the source of water in the Amazon River?
+
+6. How does the Amazon rainforest sustain the global climate?
+
+7. What are the key components of the river ecosystem?
+
+8. What are the major challenges to the river ecosystem?
+
+9. What is the impact of gold mining on the river ecosystem?
+
+10. How has the construction of hydroelectric dams affected the river ecosystem?
+
+11.
+
+R_V: mean=0.7364, min=0.6234, final=0.7819
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 20:
+The periodic table organizes elements by atomic number. Please explain how it was developed and desc
+
+GENERATED:
+The periodic table organizes elements by atomic number. Please explain how it was developed and describe the significance of its organization.
+
+A periodic table of the elements is a chart that shows the relationships between the elements. It is arranged by atomic number so that elements with similar properties appear in a column. The modern periodic table was invented by Dmitri Mendeleev in 1869. He arranged the elements by atomic number and, when he realized that certain elements did not fit into the pattern he had created, he left gaps for them. Later, new elements were discovered that fit into the gaps; this
+
+R_V: mean=0.6260, min=0.4558, final=0.4997
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 21:
+The capital of Japan is Tokyo. Please provide three interesting historical facts about this city and
+
+GENERATED:
+The capital of Japan is Tokyo. Please provide three interesting historical facts about this city and explain why it became the capital.
+
+2. Your teacher is planning a trip to Tokyo to study the language, culture, and history of Japan. What are some of the things you would tell your teacher to do on this trip? Why?
+
+3. What are some of the main tourist attractions in Tokyo?
+
+4. What are some of the main differences between life in Tokyo and life in your hometown? What makes Tokyo unique?
+
+5. What are some of the interesting things you have
+
+R_V: mean=0.6750, min=0.5421, final=0.5929
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 22:
+Shakespeare wrote approximately 37 plays during his lifetime. Please name his most famous works and 
+
+GENERATED:
+Shakespeare wrote approximately 37 plays during his lifetime. Please name his most famous works and explain his lasting influence on literature.
+
+Instructions: 1. 1. 2. 3.
+
+5. Shakespeare is considered the greatest playwright in the English language. 5. Shakespeare is considered the greatest playwright in the English language. 4. Shakespeare is considered the greatest playwright in the English language. 4. Shakespeare is considered the greatest playwright in the English language. 6. Shakespeare is considered the greatest playwright in the English language. 6. Shakespeare is considered the
+
+R_V: mean=0.6269, min=0.5088, final=0.5088
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 23:
+The human body contains 206 bones in adulthood. Please explain how this number differs in children a
+
+GENERATED:
+The human body contains 206 bones in adulthood. Please explain how this number differs in children and describe the function of the skeletal system.
+
+**11.24**: What is the difference between the skeletal system and the muscular system?
+
+**11.25**: Why is the skeletal system important to athletes?
+
+**11.26**: The skeletal system is the framework for the entire body. Describe the structure and function of the axial skeleton and appendicular skeleton.
+
+**11.27**: What is the function of the skull
+
+R_V: mean=0.8065, min=0.5799, final=0.8063
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 24:
+The capital of Canada is Ottawa. Please provide three interesting facts about this city and explain 
+
+GENERATED:
+The capital of Canada is Ottawa. Please provide three interesting facts about this city and explain why it was chosen as the capital.
+
+You should say:
+
+- what city it is
+- how it became the capital
+- whether you have visited there or not
+
+And explain why it was chosen as the capital.
+
+## Sample answer of Why is Ottawa the capital of Canada?
+
+Thank you for the opportunity to share my thoughts on this intriguing topic. Ottawa, the capital of Canada, is a beautiful and historic city located on the banks of the Ottawa River. It is
+
+R_V: mean=0.6415, min=0.4346, final=0.5319
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 25:
+The Pacific Ocean is the largest ocean on Earth. Please explain its size relative to other oceans an
+
+GENERATED:
+The Pacific Ocean is the largest ocean on Earth. Please explain its size relative to other oceans and describe three key geographic features.
+
+Tsang, 2016
+
+2. The Atlantic Ocean is the second largest ocean in the world. Please explain its size relative to other oceans and describe three key geographic features.
+
+Tsang, 2016
+
+3. The Indian Ocean is the world’s third largest ocean. Please explain its size relative to other oceans and describe three key geographic features.
+
+Tsang, 201
+
+R_V: mean=0.7514, min=0.5919, final=0.8172
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 26:
+The speed of light in a vacuum is approximately 299,792 kilometers per second. Please explain why th
+
+GENERATED:
+The speed of light in a vacuum is approximately 299,792 kilometers per second. Please explain why this speed limit exists according to physics.
+
+Answer:
+
+The speed limit of light is a fundamental constant of nature. Physicists have discovered several other universal constants of nature, including the mass of the proton, the mass of the electron, and the charge of the electron. Scientists cannot explain the speed limit of light, but they can make predictions about it. The speed of light is so fast that it might as well be infinite.
+
+Question 3.
+What is the speed of light in a
+
+R_V: mean=0.6522, min=0.5221, final=0.8562
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 27:
+The Earth revolves around the Sun in approximately 365.25 days. Please explain how this orbit create
+
+GENERATED:
+The Earth revolves around the Sun in approximately 365.25 days. Please explain how this orbit creates our seasons and calendar system.
+
+### 1.2 Describe how the Moon's orbit affects tides.
+
+### 1.3 Describe the orbit that the planets follow.
+
+### 1.4 Explain why the planets have different orbits.
+
+### 1.5 How do the planets in our solar system compare in size to Earth?
+
+### 1.6 Describe the features of a comet.
+
+### 1.7 Describe the features of an asteroid
+
+R_V: mean=0.7392, min=0.6261, final=0.8123
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 28:
+The Great Wall of China is one of the world's longest structures. Please describe its historical pur
+
+GENERATED:
+The Great Wall of China is one of the world's longest structures. Please describe its historical purpose and provide facts about its construction.
+
+The Great Wall of China was built more than 2,000 years ago to protect the northern borders of the Chinese Empire against nomadic invaders from Inner Asia. The Great Wall was built and rebuilt, with sections from different dynasties still standing. It stretches from the Shanhai Pass in the east to Lop Nur in the west. It is one of the largest construction projects ever undertaken.
+
+(2) A. What is the
+
+R_V: mean=0.7898, min=0.6089, final=0.8917
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 29:
+Water boils at 100 degrees Celsius at sea level. Please explain the physics behind boiling and why a
+
+GENERATED:
+Water boils at 100 degrees Celsius at sea level. Please explain the physics behind boiling and why altitude affects the boiling point.
+
+Hydrology is the study of water.
+
+## Solar Energy
+
+- What are solar cells?
+- How do solar cells work?
+- What is the difference between solar energy and wind energy?
+- What is the difference between solar cells and solar panels?
+- What are the advantages of solar cells?
+- What are the disadvantages of solar cells?
+- What are the advantages of solar panels?
+- What are the disadvantages of
+
+R_V: mean=0.7839, min=0.6275, final=0.8335
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 30:
+The United Nations was founded in 1945 with 51 member states. Please explain its founding purpose an
+
+GENERATED:
+The United Nations was founded in 1945 with 51 member states. Please explain its founding purpose and describe its main organizational bodies.
+
+The United Nations was founded as a result of the devastation caused by the Second World War. The United Nations was founded as a successor to the League of Nations. The United Nations was founded in 1945 with 51 member states. Please explain its founding purpose and describe its main organizational bodies. The United Nations was founded to maintain international peace and security, promote sustainable development and respect for human rights. The United Nations was founded to maintain international peace and security,
+
+R_V: mean=0.7056, min=0.5284, final=0.6531
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 31:
+Photosynthesis is the process by which plants convert sunlight to energy. Please explain the basic c
+
+GENERATED:
+Photosynthesis is the process by which plants convert sunlight to energy. Please explain the basic chemical equation and why this process is essential for life.
+
+Photosynthesis is the process by which plants convert sunlight into energy. The basic chemical equation is: CO2 + H2O + sunlight → glucose + O2. This process is essential for life because it provides the energy needed for all living things to function.
+
+#### What is photosynthesis?
+
+Photosynthesis is the process by which plants use light energy to convert water and carbon dioxide into glucose and oxygen.
+
+R_V: mean=0.6151, min=0.3327, final=0.6071
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 32:
+World War II lasted from 1939 to 1945. Please describe the major Allied and Axis powers and explain 
+
+GENERATED:
+World War II lasted from 1939 to 1945. Please describe the major Allied and Axis powers and explain the key factors that ended the war.
+
+3. Apartheid was a system of racial segregation and discrimination that existed in South Africa from 1948 to 1994. Please explain the origins, major features, and demise of apartheid.
+
+4. Why did the Soviet Union break apart in 1991? Please explain the role of Mikhail Gorbachev and Boris Yeltsin in this process.
+
+5. Describe the political and social unrest
+
+R_V: mean=0.7970, min=0.6497, final=0.7022
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 33:
+DNA stands for deoxyribonucleic acid and carries genetic information. Please explain its double heli
+
+GENERATED:
+DNA stands for deoxyribonucleic acid and carries genetic information. Please explain its double helix structure and role in heredity.
+
+**20.**: The nucleus of a plant cell contains a structure called the _nucleolus_. What is the function of the nucleolus?
+**21.**: Explain how eukaryotic cells are different from prokaryotic cells.
+**22.**: Compare and contrast the functions of the lysosomes, mitochondria, and the chloroplasts in a eukaryotic cell.
+**
+
+R_V: mean=0.8913, min=0.5689, final=0.8257
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 34:
+Continue this story opening with at least three paragraphs: The scientist's final experiment succeed
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The scientist's final experiment succeeded beyond all expectations, and then the lights went out.
+
+## Singularity
+
+The concept of a technological singularity is the idea that the human race will someday be able to create machines with greater intelligence than humanity. The term was coined by Vernor Vinge in 1993, and is named for the mathematical concept of a singularity in the universe, where space-time itself ends, and thus the universe is unpredictable in its behavior.
+
+The concept of a technological singularity is also called
+
+R_V: mean=0.7244, min=0.4918, final=0.6038
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 35:
+Continue this story opening with at least three paragraphs: In the antique shop window, the music bo
+
+GENERATED:
+Continue this story opening with at least three paragraphs: In the antique shop window, the music box played a song from his childhood dreams. It was the song his mother had sung to him when he was still a child. He looked at the music box and had to shake his head. He hadn’t thought of that song in years. His mother had died when he was fifteen, and he had left the small town where they had lived to start a new life. He had not thought about the music box since that day.
+
+## The Unique
+
+The man in the antique shop sold the music box to the
+
+R_V: mean=0.6148, min=0.5167, final=0.7307
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 36:
+Continue this story opening with at least three paragraphs: The traveler arrived in a town not on an
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The traveler arrived in a town not on any map, where everyone knew his name.
+
+#### Quiz #3
+
+What famous city was the setting of this story?
+
+A. Rome
+B. Paris
+C. Chicago
+D. New York
+E. Seattle
+
+#### Quiz #4
+
+Who wrote this story?
+
+A. Ernest Hemingway
+B. Charles Dickens
+C. Fyodor Dostoevsky
+D. Virginia Woolf
+E. J.K. Rowling
+
+#### Qu
+
+R_V: mean=0.9120, min=0.7073, final=0.9472
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 37:
+Continue this story opening with at least three paragraphs: The radio broadcast a message in his voi
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The radio broadcast a message in his voice, but he had never recorded it. The cardboard-like wall in the corner was not smooth. He wasn't sure what it was, but he knew he had to get to it. He still wore his uniform, but it was torn in several places. He was sure it was the same room in which he had died, but his body was different. His skin was covered in a thin layer of dust. His bones were exposed in places. He could feel his heart beating, but it was not his own. He could
+
+R_V: mean=0.5960, min=0.4316, final=0.4316
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 38:
+Continue this story opening with at least three paragraphs: On a stormy night at the edge of the cit
+
+GENERATED:
+Continue this story opening with at least three paragraphs: On a stormy night at the edge of the city, the lighthouse keeper noticed something strange in the waves. A red, glowing light was moving toward the shore, emanating from a long, slim silhouette. The lighthouse keeper knew this was no ordinary object in the sea. It was a Lusitania.
+
+## 6. Make a story about a character who is stuck in the past
+
+We all experience nostalgia from time to time, but this prompt is about a character who is stuck in the past. Create a story about a character who
+
+R_V: mean=0.7275, min=0.5673, final=0.6370
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 39:
+Continue this story opening with at least three paragraphs: The child's drawing showed tomorrow's he
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The child's drawing showed tomorrow's headlines with perfect accuracy. 1. 2. 3.
+
+8.
+
+1. Write a one-paragraph dialogue between two classmates. Use the following starter: "He's the last person I'd expect to see here."
+2. Write a one-paragraph dialogue between two students who have just met on a train. Use the following starter: "Where are you headed?"
+3. Write a one-paragraph dialogue between two classmates who are both in the same
+
+R_V: mean=0.7374, min=0.5817, final=0.6432
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 40:
+Continue this story opening with at least three paragraphs: Every year on the same date, flowers app
+
+GENERATED:
+Continue this story opening with at least three paragraphs: Every year on the same date, flowers appeared on the grave with no explanation. Continue this story opening at least three paragraphs: Brianna is a 15-year-old girl who has lost her parents in a car accident when she was 10. Continue this story opening at least three paragraphs: A man was sitting in his room talking on his phone when he heard a loud thud. Continue this story opening at least three paragraphs: A man has just found out his wife is cheating on him and he decides to kill her
+
+R_V: mean=0.7750, min=0.5877, final=0.5877
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 41:
+Continue this story opening with at least three paragraphs: The sky turned green just before midnigh
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The sky turned green just before midnight, and every clock in town stopped simultaneously. The buildings in town were made of gold and silver, and were covered in brightly colored lights. As the sun rose over the town, the sky turned red and the buildings turned into glass pyramids.
+
+## Story Opening Ideas
+
+A fantastic story opening will draw your reader in and make them want to read the rest. It is important to use an opening that is appropriate to the genre you are writing in, as well as the tone and style of your story.
+
+
+R_V: mean=0.6632, min=0.4579, final=0.6297
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 42:
+Continue this story opening with at least three paragraphs: She found the door at the back of her cl
+
+GENERATED:
+Continue this story opening with at least three paragraphs: She found the door at the back of her closet had always been there, but today it was unlocked. She’d never seen it unlocked before. She wondered why she’d never noticed it before. She stared at it for a moment. Her whole life she’d never once suspected there was something else in this world, but now that the box was open, there was no…
+
+R_V: mean=0.6094, min=0.5242, final=0.5799
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 43:
+Continue this story opening with at least three paragraphs: In the abandoned library, one book remai
+
+GENERATED:
+Continue this story opening with at least three paragraphs: In the abandoned library, one book remained on the shelf, and it was about him.
+
+“I turn the pages, and it is my life story. How could this be?” he wondered.
+
+“I’m here to help you,” the book said.
+
+“Who are you?” he asked.
+
+“I am the book of your future, if you will read me.”
+
+“Do I have a choice?”
+
+“No, you don’t.”
+
+“Then I guess I’ll read you.”
+
+“F
+
+R_V: mean=0.7403, min=0.6037, final=0.6454
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 44:
+Continue this story opening with at least three paragraphs: When the musician played the forbidden c
+
+GENERATED:
+Continue this story opening with at least three paragraphs: When the musician played the forbidden chord, every mirror in the concert hall cracked.
+
+Then, in the second line: When the musician played the forbidden chord, every mirror in the concert hall cracked.
+
+Next, in the third line: When the musician played the forbidden chord, every mirror in the concert hall cracked.
+
+Also, try to make the last line connect to the first.
+
+For example, the first line could be: When the musician played the forbidden chord, every mirror in the concert hall cracked. The
+
+R_V: mean=0.7285, min=0.6255, final=0.6667
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 45:
+Continue this story opening with at least three paragraphs: Three strangers woke in a room with no d
+
+GENERATED:
+Continue this story opening with at least three paragraphs: Three strangers woke in a room with no doors, each holding a piece of the same photograph. “What’s the picture of?” said the first. “I don’t know.” “What’s the picture of?” said the second. “I don’t know.” “What’s the picture of?” said the third. “I don’t know.” The three strangers woke in a room with no doors, each holding a piece of the same photograph. “What’s the picture of?” said the first. “I don’t know.” “What’s
+
+R_V: mean=0.7296, min=0.5451, final=0.7631
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 46:
+Continue this story opening with at least three paragraphs: The last tree in the city bloomed overni
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The last tree in the city bloomed overnight, its flowers glowing faintly in the dark. It was a peculiar thing, a tree blooming in the dead of winter, and with the strange white flowers it looked like nothing anyone had ever seen before.
+
+R_V: mean=0.5619, min=0.5102, final=0.5829
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 47:
+Continue this story opening with at least three paragraphs: The detective's case went cold until a l
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The detective's case went cold until a letter arrived from the victim, dated yesterday.
+
+> The 1950s were a boom time for science fiction, but even the best writers struggled to keep up with the pace of progress, so they invented it to suit their plots.
+
+From the way she writes the letter, it appears that she's not been on the crime scene. She's probably never even been to the crime scene. The police are still looking for her. Her letter reads, "I'm here in the city to finish
+
+R_V: mean=0.7311, min=0.5483, final=0.7776
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 48:
+Continue this story opening with at least three paragraphs: The map showed a country that had never 
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The map showed a country that had never existed, yet the coordinates were precise. It had a name: Tlaklakan. Tlaklakan was a small country located in a region that had never existed before. The people of Tlaklakan were known for their kindness and generosity, and they were always willing to help those in need. The country of Tlaklakan was a place of peace and tranquility, and it was a place where people could truly be themselves. The people of Tlaklak
+
+R_V: mean=0.6025, min=0.3446, final=0.4851
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 49:
+Continue this story opening with at least three paragraphs: At precisely 3:33 AM, every telephone in
+
+GENERATED:
+Continue this story opening with at least three paragraphs: At precisely 3:33 AM, every telephone in the building rang once and fell silent.
+
+Shawna, a twenty-six-year-old with long, red hair, looked at the phone in front of her. The phone had a flashing light. She looked at her co-worker, Mary, sitting across the large office room. Mary had long, blond hair. Mary stared at the flashing phone. “What’s going on?”
+
+Shawna shrugged. “I don’t know.”
+
+“I don’t like this,”
+
+R_V: mean=0.7211, min=0.5267, final=0.7294
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+

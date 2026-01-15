@@ -1,0 +1,17 @@
+{
+  "experiment": "layer_sweep",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda",
+    "max_new_tokens": 200,
+    "start_layer": 8,
+    "end_layer": 27
+  }
+}
+
+
+
+
+
+
+

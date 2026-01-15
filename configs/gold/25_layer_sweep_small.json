@@ -1,0 +1,9 @@
+{
+  "experiment": "layer_sweep",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "start_layer": 20,
+    "end_layer": 27,
+    "max_new_tokens": 50
+  }
+}

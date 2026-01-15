@@ -1,0 +1,14 @@
+{
+  "experiment": "circuit_discovery",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_pairs": 10
+  }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+{
+  "configs": [
+    {
+      "collapse_rate": 0.1,
+      "config": "baseline",
+      "mean_coherence": 0.7299999999999999,
+      "mean_on_topic": 0.7300000000000001,
+      "mean_recursion": 0.0
+    },
+    {
+      "collapse_rate": 0.1,
+      "config": "vproj_kv",
+      "mean_coherence": 0.72,
+      "mean_on_topic": 0.45999999999999996,
+      "mean_recursion": 0.0
+    },
+    {
+      "collapse_rate": 0.1,
+      "config": "residual_kv",
+      "mean_coherence": 0.71,
+      "mean_on_topic": 0.55,
+      "mean_recursion": 0.0
+    },
+    {
+      "collapse_rate": 0.2,
+      "config": "triple_light",
+      "mean_coherence": 0.6399999999999999,
+      "mean_on_topic": 0.67,
+      "mean_recursion": 0.0
+    },
+    {
+      "collapse_rate": 0.3,
+      "config": "triple_medium",
+      "mean_coherence": 0.5599999999999999,
+      "mean_on_topic": 0.76,
+      "mean_recursion": 0.0
+    }
+  ],
+  "total_prompts": 10
+}

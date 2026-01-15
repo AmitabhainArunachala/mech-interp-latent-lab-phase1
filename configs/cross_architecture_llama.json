@@ -1,0 +1,30 @@
+{
+  "experiment": "cross_architecture_validation",
+  "description": "Cross-architecture validation on Llama-3-8B-Instruct using EXACT confound_validation conditions",
+  "params": {
+    "model": "meta-llama/Llama-3-8B-Instruct",
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16,
+    "prompt_groups": {
+      "recursive": "champions",
+      "controls": ["length_matched", "pseudo_recursive"]
+    },
+    "n_champions": 30,
+    "n_length_matched": 30,
+    "n_pseudo_recursive": 30,
+    "seed": 42
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase2_generalization"
+  },
+  "expected_results": {
+    "champions_rv": "TBD - if ~0.52, effect generalizes; if ~0.80, Mistral-specific",
+    "success_criteria": {
+      "champions_rv_max": 0.60,
+      "controls_rv_min": 0.70,
+      "p_value_max": 0.001
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "experiment": "random_direction_control",
+  "run_name": "l2_random_control",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "layer": 2,
+    "alpha": 2.0,
+    "n_random": 5,
+    "n_pairs": 10,
+    "include_orthogonal": true,
+    "window_size": 16,
+    "max_new_tokens": 200
+  }
+}
+
+

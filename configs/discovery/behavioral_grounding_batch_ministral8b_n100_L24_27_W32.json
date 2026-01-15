@@ -1,0 +1,35 @@
+{
+  "experiment": "behavioral_grounding_batch",
+  "run_name": "ministral8b_n100_L24_27_W32_sampled_v1",
+  "seed": 9,
+  "results": { "root": "results", "phase": "phase1_mechanism" },
+  "model": {
+    "name": "mistralai/Ministral-8B-Instruct-2410",
+    "device": "cuda"
+  },
+  "params": {
+    "window": 32,
+    "patch_layers": [24, 25, 26, 27],
+    "max_new_tokens": 120,
+    "max_length": 512,
+    "do_sample": true,
+    "temperature": 0.7,
+    "include_recursive_generation": false,
+    "pairing": {
+      "n_pairs": 100,
+      "recursive_groups": ["L3_deeper", "L4_full", "L5_refined"],
+      "baseline_groups": ["baseline_math", "baseline_factual", "baseline_creative", "baseline_instructional"]
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

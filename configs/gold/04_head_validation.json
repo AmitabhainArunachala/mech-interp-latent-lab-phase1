@@ -1,0 +1,31 @@
+{
+  "experiment": "head_ablation_validation",
+  "description": "Gold Standard Pipeline 4: Validate KV-head group effects with controls",
+  "seed": 42,
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "n_recursive": 50,
+    "n_baseline": 50,
+    "target_layer": 27,
+    "control_layer": 21,
+    "target_kv_head": 2,
+    "control_kv_head": 0,
+    "early_layer": 5,
+    "window": 16,
+    "recursive_groups": ["champions", "L5_refined", "L4_full", "L3_deeper"],
+    "baseline_groups": ["baseline_math", "baseline_factual", "baseline_creative"]
+  },
+  "pass_criteria": {
+    "target_ablation_increases_rv_p_max": 0.001,
+    "target_gt_control_head_p_max": 0.01,
+    "l27_gt_l21_p_max": 0.001
+  },
+  "results": {
+    "root": "results",
+    "phase": "gold_standard"
+  },
+  "notes": "Pipeline 4 is now registered via src/pipelines/head_ablation_validation.py"
+}

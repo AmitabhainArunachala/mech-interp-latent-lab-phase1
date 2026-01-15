@@ -1,0 +1,29 @@
+{
+  "experiment": "phase1_existence",
+  "run_name": "ministral8b_instruct_phase1_existence_fast_v1",
+  "seed": 9,
+  "results": { "root": "results", "phase": "phase1_mechanism" },
+  "model": {
+    "name": "mistralai/Ministral-8B-Instruct-2410",
+    "device": "cuda"
+  },
+  "params": {
+    "layer_sweep": {
+      "windows": [16, 32],
+      "max_layer": 36
+    },
+    "battery": {
+      "recursive_limit": 6,
+      "baseline_limit": 6
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

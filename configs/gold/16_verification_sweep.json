@@ -1,0 +1,19 @@
+{
+  "experiment": "verification_sweep",
+  "params": {
+    "model": "mistralai/Mistral-7B-Instruct-v0.2",
+    "device": "cuda",
+    "n_baseline_prompts": 10,
+    "max_new_tokens": 200,
+    "n_recursive_prompts": 10,
+    "n_baseline_for_steering": 10
+  }
+}
+
+
+
+
+
+
+
+

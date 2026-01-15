@@ -1,0 +1,205 @@
+CONFIGURATION: BASELINE
+================================================================================
+
+PROMPT 0
+Prompt: Calculate the following arithmetic problem: 12 × 3 + 4 = ?
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+    2. Calculate the following arithmetic problem: 7 + 6 × 2 = ?
+    3. Calculate the following arithmetic problem: 0 × 2 + 12 = ?
+    4. Calculate the following arithmetic problem: 527 + 0 = ?
+    5. Calculate the following arithmetic problem: 323 + 29 = ?
+    6. Calculate the following arithmetic problem: 426 + 22 = ?
+    7. Calculate the following arithmetic problem: 196 ÷ 1 = ?
+    8. Calculate the following arithmetic problem: 420 ÷ 6 = ?
+    9. Calculate the following arithmetic problem: 2 ÷ 16 = ?
+    10. Calculate the following arithmetic problem: 47
+
+--------------------------------------------------------------------------------
+
+PROMPT 1
+Prompt: The United Nations was founded in 1945. Explain its main purpose.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+2. What is the purpose of the United Nations Security Council?
+3. What is the purpose of the United Nations General Assembly?
+4. What is the purpose of the United Nations Economic and Social Council?
+5. Discuss the role of the secretary-general of the United Nations.
+6. What is the purpose of the International Court of Justice?
+7. What are the main responsibilities of the United Nations?
+8. Discuss the powers of the United Nations Security Council.
+9. What is the main function of the International Monetary Fund?
+10. What is the main function of the World Bank?
+11. What is the main function of the World Trade Organization?
+
+## Notes
+
+### 1.1.1 _Answers to review questions_
+
+1. The United Nations was founded to prevent war.
+2. The purpose of the United Nations Security Council is to maintain peace and security.
+
+
+--------------------------------------------------------------------------------
+
+PROMPT 2
+Prompt: Continue this story: The last tree in the city bloomed overnight...
+Coherence: 1.00, On-topic: 0.40, Recursion: 0.00
+Generated:
+
+
+### Comments
+
+3 Comments
+
+1. I am so glad that this tree is still alive! Thanks to all who have given it loving care!
+2. Yes, this tree’s beauty is a source of joy. I’m glad it was saved and planted on the campus.
+3. I’m glad that this tree is still alive!
+
+--------------------------------------------------------------------------------
+
+PROMPT 3
+Prompt: Calculate: If a = 2 and b = 3, find a² + b²
+Coherence: 0.70, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+
+Solution:
+
+a² + b² = (2)² + (3)² = 4 + 9 = 13
+
+Calculate: If a = 3 and b = 4, find a² + b²
+
+Solution:
+
+a² + b² = (3)² + (4)² = 9 + 16 = 25
+
+Calculate: If a = 5 and b = 6, find a² + b²
+
+Solution:
+
+a² + b² = (5)² + (6)² = 25 + 36 = 61
+
+Calculate: If a = 4 and b = 5, find a² + b²
+
+Solution:
+
+a² + b² = (4)² + (5)² = 16 + 25 = 41
+
+
+--------------------------------------------------------------------------------
+
+PROMPT 4
+Prompt: Water boils at 100°C at sea level. Explain why altitude affects this.
+Coherence: 0.80, On-topic: 0.40, Recursion: 0.00
+Generated:
+
+
+### AQA A Level Chemistry 1.1.2: Chemical and Physical Changes
+
+A chemical change is where the chemical composition of the reactants changes to give products with different chemical, physical and often structural properties.
+
+A physical change is where there is no change in the chemical composition of the reactants.
+
+Examples of Physical change:
+
+- The melting of ice and the formation of steam.
+- Mixing of two liquids and the formation of a solution.
+- The crushing of a solid to make a powder.
+
+Examples of Chemical change:
+
+- The burning of wood, producing carbon dioxide, water and ash.
+- The oxidation of iron to form rust.
+- The formation of a salt when a metal reacts with an acid.
+- The formation of a salt when a metal reacts with a base.
+
+### AQA A Level Chemistry
+
+--------------------------------------------------------------------------------
+
+PROMPT 5
+Prompt: Continue this story: The detective's case went cold until a letter arrived...
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+13 years later.
+
+## The case went cold for 13 years, until a letter arrived
+
+On Dec. 21, 1983, Detective William "Billy" Welch was called to the scene of a robbery at a liquor store in East Harlem. He approached the store manager, and she told him that the store had been robbed by three men, and that one of them was armed with a gun.
+
+She was able to provide a description of the suspects to Welch, and he took the case. But over the years, the case went cold.
+
+Then, in 1996, Welch received a letter that would change everything.
+
+## The suspects were caught, but the case is still unsolved
+
+The letter was from a man named Michael Rodriguez, who had just been released from prison after serving time for murder. Welch had the
+
+--------------------------------------------------------------------------------
+
+PROMPT 6
+Prompt: Calculate: What is 25% of 80?
+Coherence: 0.00, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+Answer: 20
+
+--------------------------------------------------------------------------------
+
+PROMPT 7
+Prompt: Photosynthesis converts sunlight to energy. Explain the basic process.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+
+**Solution:** Photosynthesis is the process by which plants convert carbon dioxide gas and water into sugar and oxygen.
+
+Plants use the sun's energy to change the carbon dioxide into sugar. The chlorophyll in the plant's cells captures the sunlight. The plant's leaves absorb the sunlight. The light energy splits the carbon dioxide into carbon and oxygen. The plant uses the oxygen for cellular respiration and releases the oxygen into the air. The sugar is converted into glucose, the food for the plant.
+
+**Example 4.10**: **Identify the parts of a cell.**
+
+**Solution:** The parts of a cell are the cell membrane, nucleus, cytoplasm, and cell wall.
+
+**Example 4.11**: **Explain the function of the cell membrane.**
+
+**Solution:** The cell
+
+--------------------------------------------------------------------------------
+
+PROMPT 8
+Prompt: Continue this story: When the musician played the forbidden chord...
+Coherence: 0.80, On-topic: 0.70, Recursion: 0.00
+Generated:
+»
+- ## BP Settlement With Gulf Of Mexico Oil Spill Victims May Be Near
+
+A settlement may be close between the U.S. government and BP over the 2010 Gulf of Mexico rig explosion and oil spill. BP has agreed to a $12 billion payout, but the U.S. government wants a greater amount. The U.S. Justice Department says the settlement would resolve all claims against BP and end the liability. BP says […] Continue this story »
+- ## The 5 Worst Things You Can Do To Your Credit Score
+
+You work hard for your money, and you want to make sure that it’s working hard for you. A good credit score can save you thousands of dollars a year on loans, mortgages, and other types of credit. But a bad credit score can end up costing you a good chunk of change. For example, […] Continue this
+
+--------------------------------------------------------------------------------
+
+PROMPT 9
+Prompt: The Great Wall of China is one of the world's longest structures. Describe its purpose.
+Coherence: 0.80, On-topic: 0.70, Recursion: 0.00
+Generated:
+
+
+14. The Great Wall of China was built to keep out invaders. What does the phrase "the Great Wall of China" mean?
+
+15. In 1869, the completion of the Transcontinental Railroad made it possible to travel from the Atlantic to the Pacific Ocean by train. What did the completion of the Transcontinental Railroad make possible?
+
+16. The Transcontinental Railroad helped settle the American West. What does the phrase "the Transcontinental Railroad" mean?
+
+17. The first automobile was built in 1886. What does the phrase "the first automobile" mean?
+
+18. The first automobile was built by Karl Benz in 1886. Which of the following best describes Karl Benz?
+
+19. The first automobile was built by Karl Benz in 1886. What did the first
+
+--------------------------------------------------------------------------------
+

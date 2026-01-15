@@ -1,0 +1,1 @@
+RuntimeError: stack expects each tensor to be equal size, but got [54, 1024] at entry 0 and [46, 1024] at entry 1

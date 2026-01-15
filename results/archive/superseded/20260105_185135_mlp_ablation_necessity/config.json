@@ -1,0 +1,9 @@
+{
+  "experiment": "mlp_ablation_necessity",
+  "params": {
+    "layer": 0,
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_pairs": 5,
+    "seed": 42
+  }
+}

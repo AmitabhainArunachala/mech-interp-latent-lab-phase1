@@ -1,0 +1,38 @@
+{
+  "experiment": "phase0_metric_targets",
+  "model": {
+    "device": "mps",
+    "name": "mistralai/Mistral-7B-v0.1"
+  },
+  "params": {
+    "early_layer": 5,
+    "late_layer": 27,
+    "max_length": 512,
+    "sampling": {
+      "groups": {
+        "baselines": {
+          "limit": 10,
+          "pillar": "baselines",
+          "seed": 1
+        },
+        "confounds": {
+          "limit": 10,
+          "pillar": "confounds",
+          "seed": 2
+        },
+        "dose_response": {
+          "limit": 10,
+          "pillar": "dose_response",
+          "seed": 0
+        }
+      }
+    },
+    "window": 16
+  },
+  "results": {
+    "phase": "phase0_metric_validation",
+    "root": "results"
+  },
+  "run_name": "default",
+  "seed": 0
+}

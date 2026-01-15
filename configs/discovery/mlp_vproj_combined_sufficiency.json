@@ -1,0 +1,19 @@
+{
+  "experiment": "mlp_vproj_combined_sufficiency_test",
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "mlp_layers": [0, 1, 18, 19, 20],
+    "vproj_layer": 27,
+    "n_pairs": 30,
+    "seed": 42,
+    "window_size": 16,
+    "max_new_tokens": 200
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  }
+}

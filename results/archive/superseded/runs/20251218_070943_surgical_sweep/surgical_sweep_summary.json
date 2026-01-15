@@ -1,0 +1,58 @@
+{
+  "A1": {
+    "name": "A1_SplitBrain_Surgical",
+    "mean_coherence": 0.8399999999999999,
+    "mean_on_topic": 1.0,
+    "mean_recursion": 0.0,
+    "collapse_rate": 0.0,
+    "n_prompts": 10
+  },
+  "B1": {
+    "name": "B1_Full_4096_SplitBrain",
+    "mean_coherence": 0.86,
+    "mean_on_topic": 1.0,
+    "mean_recursion": 0.0,
+    "collapse_rate": 0.0,
+    "n_prompts": 10
+  },
+  "B2": {
+    "name": "B2_H18_Only_SplitBrain",
+    "mean_coherence": 0.6799999999999999,
+    "mean_on_topic": 1.0,
+    "mean_recursion": 0.0,
+    "collapse_rate": 0.2,
+    "n_prompts": 10
+  },
+  "B3": {
+    "name": "B3_H26_Only_SplitBrain",
+    "mean_coherence": 0.7799999999999999,
+    "mean_on_topic": 1.0,
+    "mean_recursion": 0.07462686567164178,
+    "collapse_rate": 0.1,
+    "n_prompts": 10
+  },
+  "C1": {
+    "name": "C1_H18_H26_NoKV",
+    "mean_coherence": 0.86,
+    "mean_on_topic": 1.0,
+    "mean_recursion": 0.0,
+    "collapse_rate": 0.0,
+    "n_prompts": 10
+  },
+  "C2": {
+    "name": "C2_H18_H26_FullKV",
+    "mean_coherence": 0.72,
+    "mean_on_topic": 1.0,
+    "mean_recursion": 0.153475935828877,
+    "collapse_rate": 0.1,
+    "n_prompts": 10
+  },
+  "C4": {
+    "name": "C4_H18_H26_InterpolatedKV",
+    "mean_coherence": 0.0,
+    "mean_on_topic": 0.0,
+    "mean_recursion": 0.0,
+    "collapse_rate": 1.0,
+    "n_prompts": 10
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "experiment": "triple_system_intervention",
+  "params": {
+    "max_new_tokens": 200,
+    "model": "mistralai/Mistral-7B-v0.1"
+  }
+}

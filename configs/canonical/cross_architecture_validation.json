@@ -1,0 +1,65 @@
+{
+  "experiment": "cross_architecture_validation",
+  "description": "Validate R_V contraction across architectures using EXACT ground truth conditions",
+
+  "ground_truth": {
+    "source": "results/canonical/confound_validation/20251216_060911_confound_validation/",
+    "expected_champions_rv": 0.5185,
+    "expected_controls_rv": 0.80,
+    "validated_date": "2025-12-16"
+  },
+
+  "model": {
+    "name": "mistralai/Mistral-7B-Instruct-v0.2",
+    "device": "cuda",
+    "note": "MUST use Instruct variant, not base model"
+  },
+
+  "params": {
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16,
+    "n_champions": 30,
+    "n_length_matched": 30,
+    "n_pseudo_recursive": 30,
+    "seed": 42
+  },
+
+  "prompt_groups": {
+    "recursive": "champions",
+    "controls": ["length_matched", "pseudo_recursive", "baseline_math"],
+    "note": "champions are engineered paradoxes, NOT generic recursive questions"
+  },
+
+  "success_criteria": {
+    "champions_rv_max": 0.60,
+    "controls_rv_min": 0.70,
+    "p_value_max": 0.001,
+    "cohens_d_min": 1.0
+  },
+
+  "cross_architecture_targets": [
+    {
+      "name": "meta-llama/Meta-Llama-3-8B-Instruct",
+      "layer_mapping": {
+        "note": "Layer 27 may need adjustment for different architecture",
+        "early_layer": 5,
+        "late_layer": 27
+      }
+    },
+    {
+      "name": "google/gemma-7b-it",
+      "layer_mapping": {
+        "note": "Gemma has different layer structure",
+        "early_layer": 5,
+        "late_layer": 24
+      }
+    }
+  ],
+
+  "warnings": [
+    "Do NOT use base models (e.g., Mistral-7B-v0.1) - Instruct required",
+    "Do NOT substitute generic recursive prompts for champions",
+    "Do NOT change layer/window parameters without re-validation"
+  ]
+}

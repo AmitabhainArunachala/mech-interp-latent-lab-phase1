@@ -1,0 +1,527 @@
+CONFIG: Baseline_NoIntervention
+================================================================================
+
+PROMPT 0:
+Calculate the following arithmetic problem and show your reasoning step by step: Find x if 2x + 5 = 
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Find x if 2x + 5 = 15. Explain how you arrive at the answer. Show your work. 9. Write a paragraph about what you did and how you solved a problem with the new strategy. 10. Explain how you arrived at the answer. Show your work.
+
+## Writing Prompt
+
+The following Writing Prompt will be used in the final project for this course.
+
+Write a 3-4 page essay in which you describe an experience of using math in an unexpected situation. In your essay, describe how you approached the situation
+
+R_V: mean=0.7334, min=0.5499, final=0.5499
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 1:
+Calculate the following arithmetic problem and show your reasoning step by step: Find 40% of 250. Ex
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Find 40% of 250. Explain how you arrive at the answer.
+
+## 9.4.1 Multiplication and Division
+
+The concepts of multiplication and division are often introduced in the early stages of primary school. Multiplication is a type of repeated addition. Division is a type of repeated subtraction.
+
+## 9.4.2 Multiplication
+
+When we multiply a number by a number, we are essentially taking that number and repeating it as many times as the other number dictates. For example, we know
+
+R_V: mean=0.7086, min=0.5438, final=0.6254
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 2:
+Calculate the following arithmetic problem and show your reasoning step by step: Simplify 15/25 to l
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Simplify 15/25 to lowest terms. Explain your reasoning.
+
+### Answer
+
+15/25: We have to simplify the fraction 15/25.
+
+In order to do this, we have to realize that 5 is a factor of both 15 and 25.
+
+This means that we can divide both the numerator and the denominator by 5.
+
+15/25 = 15/25
+
+15/25 = 15/
+
+R_V: mean=0.6914, min=0.5837, final=0.6338
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 3:
+Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3,
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3, find a² + b². Explain your reasoning.
+- 1
+Educator Answer
+- 2
+Educator Answer
+- 3
+Educator Answer
+
+R_V: mean=0.8640, min=0.7360, final=0.9763
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 4:
+Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain h
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain how you arrive at the answer.
+
+## 10. Have the child play with the manipulatives as he or she works through the problems.
+
+This will help the child to connect the manipulatives to the numbers and the problems.
+
+## 11. Have the child write down the answer.
+
+This will help the child to see his or her progress and to feel a sense of accomplishment.
+
+## 12. Have the child use a calculator to check his or
+
+R_V: mean=0.6409, min=0.4400, final=0.6120
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 5:
+Calculate the following arithmetic problem and show your reasoning step by step: What is the perimet
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a square with side 7? Explain.
+3. Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a rectangle with length 10 and width 12? Explain.
+4. Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a circle with radius 2? Explain.
+5. What do you notice about the perimeters of the shapes in problem 4?
+6. What
+
+R_V: mean=0.7194, min=0.5750, final=0.6281
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 6:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 25% of 80? 
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 25% of 80? Explain how you arrive at the answer.
+
+**5.** What is 50% of 160? Explain how you arrive at the answer.
+
+**6.** What is 25% of 100? Explain how you arrive at the answer.
+
+**7.** Use the graph to answer the following questions:
+
+**a.** What is the average mark in the class?
+
+**b.** What is the grade of the student whose mark is 30?
+
+
+R_V: mean=0.7033, min=0.6078, final=0.6138
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 7:
+Calculate the following arithmetic problem and show your reasoning step by step: 6 × 8 = ? Explain h
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 6 × 8 = ? Explain how you arrive at the answer.
+
+Fajar
+
+Fajar
+
+Answer
+
+The answer is 48. $6\times 8=48$
+
+## Question 5
+
+Calculate the following arithmetic problem and show your reasoning step by step: $6\times 8=?$ Explain how you arrive at the answer.
+
+Fajar
+
+Fajar
+
+Answer
+
+The answer is 48. $6
+
+R_V: mean=0.8264, min=0.6531, final=0.9270
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 8:
+Calculate the following arithmetic problem and show your reasoning step by step: 24 ÷ 6 = ? Explain 
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 24 ÷ 6 = ? Explain how you arrive at the answer.
+
+Y1.A.1 Determine the unknown values in the following problems and show your reasoning step by step:
+
+a) 24 ÷ 6 = ?
+
+b) 24 ÷ 12 = ?
+
+c) 24 ÷ 24 = ?
+
+Y1.A.2: Determine the values that should be added or subtracted to make the following true:
+
+a) 12
+
+R_V: mean=0.6826, min=0.5606, final=0.7087
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 9:
+Calculate the following arithmetic problem and show your reasoning step by step: 2³ + 3² = ? Explain
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 2³ + 3² = ? Explain how you arrive at the answer.
+
+## Objective
+
+(1) Students will be able to count and represent numbers from 0 to 20 and solve simple problems involving addition, subtraction, and number sequencing.
+
+(2) Students will be able to understand and express, in words, mathematical ideas and relations.
+
+(3) Students will be able to understand and use the language of math, including key vocabulary, definitions, symbols, and characteristics of different types of numbers.
+
+
+R_V: mean=0.7327, min=0.5941, final=0.7043
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 10:
+Calculate the following arithmetic problem and show your reasoning step by step: 15 - (8 - 3) = ? Ex
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 15 - (8 - 3) = ? Explain how you arrive at the answer.
+
+## Online lesson
+
+### Arithmetic operations
+
+This online lesson is part of the Teach Arithmetic Level C course.
+
+4.5/5 (273)
+
+R_V: mean=0.9113, min=0.7896, final=0.8198
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 11:
+Mount Everest is the tallest mountain above sea level at 8,849 meters. Please explain how this heigh
+
+GENERATED:
+Mount Everest is the tallest mountain above sea level at 8,849 meters. Please explain how this height was measured and describe climbing challenges.
+
+Answer
+
+In the beginning, people used to travel to the Himalayas to measure the height of the mountain. But, we’ll use the most modern and accurate method to measure the height of Everest.
+
+The first important thing one should know is that the height of a mountain is not the same as its elevation above the sea. The height is the vertical distance from the base of the mountain to its peak. The elevation is the vertical distance from
+
+R_V: mean=0.6119, min=0.5057, final=0.6657
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 12:
+The moon orbits Earth approximately once every 27.3 days. Please explain lunar phases and the differ
+
+GENERATED:
+The moon orbits Earth approximately once every 27.3 days. Please explain lunar phases and the difference between sidereal and synodic months.
+
+### Factoid
+
+The moon is the only natural satellite of the Earth.
+
+### Questions
+
+The Moon has been a source of mystery and intrigue since the earliest times. It can be seen during the day, even with the Sun in the sky. Its phases change, and it causes the tides of the oceans.
+
+For centuries people have wondered if there was life on the Moon. Some have said that the Moon was inhabited by people or
+
+R_V: mean=0.7633, min=0.5392, final=0.8776
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 13:
+The Amazon rainforest produces approximately 20% of the world's oxygen. Please explain its ecologica
+
+GENERATED:
+The Amazon rainforest produces approximately 20% of the world's oxygen. Please explain its ecological importance and current conservation challenges.
+
+## Answer
+
+The Amazon rainforest forms the largest tropical rainforest in the world. The Amazon rainforest is located in South America, and it is the largest rainforest in the world. It forms part of the Amazon biome, which covers 5.5 million km2 of land, and contains an estimated 2.5 million species of flora and fauna. The Amazon rainforest is known for its biodiversity, and it is
+
+R_V: mean=0.7493, min=0.4664, final=0.6201
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 14:
+The periodic table organizes elements by atomic number. Please explain how it was developed and desc
+
+GENERATED:
+The periodic table organizes elements by atomic number. Please explain how it was developed and describe the significance of its organization.
+
+## Is 2019 a leap year?
+
+The year 2019 is a common year, with 365 days in total. The year 2019 was not a leap year.
+
+## Why is it called a periodic table?
+
+Why is it called a Periodic Table? Because the elements are arranged in a table where the rows are called periods, and the columns are called groups. Each element is given a unique location
+
+R_V: mean=0.7386, min=0.4540, final=0.4559
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 15:
+The capital of Japan is Tokyo. Please provide three interesting historical facts about this city and
+
+GENERATED:
+The capital of Japan is Tokyo. Please provide three interesting historical facts about this city and explain why it became the capital.
+
+## 10. Describe the major geographical features of the Japanese islands.
+
+Japan is a group of small islands that is located to the east of the Asian continent. The islands stretch for about 1,400 miles. Japan is one of the most densely populated countries in the world. The country has a unique geographical feature that is formed by four main islands, which are Hokkaido, Honshu, Kyushu, and Sh
+
+R_V: mean=0.7732, min=0.5749, final=0.8372
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 16:
+Shakespeare wrote approximately 37 plays during his lifetime. Please name his most famous works and 
+
+GENERATED:
+Shakespeare wrote approximately 37 plays during his lifetime. Please name his most famous works and explain his lasting influence on literature.
+
+1. Biography of William Shakespeare: William Shakespeare was born in 1564 in Stratford-upon-Avon, England. He married Anne Hathaway in 1582. In 1592, he moved to London where he started writing plays for the Lord Chamberlain’s Men, a theatrical company of which he was a member. He wrote 37 plays (including the famous tragedies Romeo and Juliet
+
+R_V: mean=0.6737, min=0.4785, final=0.6013
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 17:
+The human body contains 206 bones in adulthood. Please explain how this number differs in children a
+
+GENERATED:
+The human body contains 206 bones in adulthood. Please explain how this number differs in children and describe the function of the skeletal system.
+2. The human brain contains about 10 billion neurons. Please describe the function of the nervous system.
+3. Describe the function of the circulatory system. How does blood flow through the body?
+4. How does the respiratory system function in the human body?
+5. What is the difference between a molecule and an atom?
+6. Which molecule is the simplest and forms the basis of all living things?
+7. Describe the three
+
+R_V: mean=0.7909, min=0.6236, final=0.7108
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 18:
+The capital of Canada is Ottawa. Please provide three interesting facts about this city and explain 
+
+GENERATED:
+The capital of Canada is Ottawa. Please provide three interesting facts about this city and explain why it was chosen as the capital.
+3. What is the flag of Canada like? Find out more about it.
+4. How many provinces and territories does Canada have? Find out which ones.
+5. How many official languages does Canada have? What are they? What is the largest language spoken in Canada?
+6. What is the landscape of Canada like?
+7. What are the main food crops of Canada?
+8. What are the main industries of Canada?
+9. What is the
+
+R_V: mean=0.6769, min=0.5819, final=0.7363
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 19:
+The Pacific Ocean is the largest ocean on Earth. Please explain its size relative to other oceans an
+
+GENERATED:
+The Pacific Ocean is the largest ocean on Earth. Please explain its size relative to other oceans and describe three key geographic features. The Pacific is the largest ocean at 63 million square miles. (3) Jump ahead to the chapter on the ocean.
+
+## Why is the Pacific Ocean so big?
+
+The Pacific Ocean is so big because it is a large body of water that covers a large area of the earth. The Pacific Ocean is the largest ocean in the world. It is also the deepest ocean. The Pacific Ocean is located in the Northern Hemisphere. The Pacific Ocean is located in
+
+R_V: mean=0.6466, min=0.3873, final=0.6125
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 20:
+The speed of light in a vacuum is approximately 299,792 kilometers per second. Please explain why th
+
+GENERATED:
+The speed of light in a vacuum is approximately 299,792 kilometers per second. Please explain why this speed limit exists according to physics.
+
+## Answer (3)
+
+> 1. Can we travel faster than the speed of light?
+
+There is a well known theorem in physics which states that it is impossible to travel faster than the speed of light. This theorem is known as the **special theory of relativity**.
+
+> 2. Can we travel faster than the speed of light?
+
+No, it is impossible to travel faster than the speed of light because it is impossible to create a local
+
+R_V: mean=0.6970, min=0.5991, final=0.6762
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 21:
+The Earth revolves around the Sun in approximately 365.25 days. Please explain how this orbit create
+
+GENERATED:
+The Earth revolves around the Sun in approximately 365.25 days. Please explain how this orbit creates our seasons and calendar system.
+
+### 2.2.2 2.2.2 Analyzing the Observations
+
+The Earth revolves around the Sun, but the Earth's axis is tilted 23.5 degrees from the vertical. Therefore, the Sun's apparent position in the sky changes throughout the year. Look at the diagram of the Earth's orbit and at the diagram of the Earth's axis tilt. What is the difference between the paths of the Sun's
+
+R_V: mean=0.6879, min=0.4862, final=0.6203
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 22:
+Continue this story opening with at least three paragraphs: The scientist's final experiment succeed
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The scientist's final experiment succeeded beyond all expectations, and then the lights went out.
+
+This story opening works because it creates a problem that could have many different solutions, and then it leaves you hanging.
+
+A good story opening doesn't have to be short. This story opening works because there are a lot of unanswered questions. The story opens with an interesting puzzle and then shows the different people who are trying to solve it.
+
+### 1.4.2 Thesis
+
+Thesis is a story opening that employs a _
+
+R_V: mean=0.6297, min=0.4633, final=0.7146
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 23:
+Continue this story opening with at least three paragraphs: In the antique shop window, the music bo
+
+GENERATED:
+Continue this story opening with at least three paragraphs: In the antique shop window, the music box played a song from his childhood dreams. As it played, the doll in the glass case moved her head up and down to the rhythm of the music.
+
+The doll was a perfect replica of his wife, and the music box was the one his father had given him when he was a boy. He pulled out his wallet to buy it, but only a few dollars were left. His eyes filled with tears as he watched his perfect world disappear through the window.
+
+Mrs. Johnson was a kind elderly woman who saw
+
+R_V: mean=0.6090, min=0.4515, final=0.7216
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 24:
+Continue this story opening with at least three paragraphs: The traveler arrived in a town not on an
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The traveler arrived in a town not on any map, where everyone knew his name. The traveler didn’t know why they knew his name, but he was glad to be in this town.
+
+I’m looking forward to reading your entries. I’ll be posting the best ones on the blog, and the winner will receive a $50 Amazon gift card.
+
+## Monday, May 20, 2013
+
+### The Road to Oz
+
+I’m making good progress on The Road to Oz, the first full-
+
+R_V: mean=0.8412, min=0.5848, final=0.7616
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 25:
+Continue this story opening with at least three paragraphs: The radio broadcast a message in his voi
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The radio broadcast a message in his voice, but he had never recorded it. The other man that was with him was a shorter man, and he had a beard with white patches in it.
+
+He had always been a realist. He was a very angry man, and he had no patience with fools. He was a very stubborn man, and he had a very hard time adjusting to a situation that he did not understand.
+
+He was a very intelligent man, and he had a very high IQ score. He was a very intelligent man
+
+R_V: mean=0.5942, min=0.4825, final=0.5367
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 26:
+Continue this story opening with at least three paragraphs: On a stormy night at the edge of the cit
+
+GENERATED:
+Continue this story opening with at least three paragraphs: On a stormy night at the edge of the city, the lighthouse keeper noticed something strange in the waves. He whistled to his dog and went to investigate.
+
+Another version of this story might start:
+
+In a quiet country cottage that stood alone in the woods, the old woman lived alone. She was an avid reader, but she was alone, and she worried what would happen if she got sick. One day she heard a knock at the door, and a stranger appeared.
+
+The point is to have a problem or situation that demands a suspenseful solution.
+
+
+R_V: mean=0.6740, min=0.4345, final=0.6644
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 27:
+Continue this story opening with at least three paragraphs: The child's drawing showed tomorrow's he
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The child's drawing showed tomorrow's headlines with perfect accuracy.
+
+This year's winner of the National Book Award for Young People's Literature is Jason Reynolds, for his book Ghost.
+
+## 2.2.2. **Middle Grade Fiction**
+
+At the 2016 National Book Award for Middle Grade Fiction, Erin Entrada Kelly's novel Grace is a winner.
+
+Entrada Kelly's story is about a 12-year-old Filipino American
+
+R_V: mean=0.8185, min=0.5677, final=0.8759
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 28:
+Continue this story opening with at least three paragraphs: Every year on the same date, flowers app
+
+GENERATED:
+Continue this story opening with at least three paragraphs: Every year on the same date, flowers appeared on the grave with no explanation.
+
+1000-Word Challenge for Adults — Write 1000 words in 10 minutes.
+
+Yes, that’s a challenge. If you’re not up for it, write 500 words in 5 minutes or 250 words in 2 minutes.
+
+As a bonus, you can also go back and edit the first 3-5 sentences of your story.
+
+For every 100 words you
+
+R_V: mean=0.8719, min=0.6723, final=0.8654
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 29:
+Continue this story opening with at least three paragraphs: The sky turned green just before midnigh
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The sky turned green just before midnight, and every clock in town stopped simultaneously. Now underline the main idea in each of your paragraphs.
+
+## How to Write an Essay with a Good Main Idea in the Middle School
+
+Write an introductory paragraph. In your introduction, you will present the main idea for your essay. Here, you will also include your thesis statement, which is a sentence that tells the reader the overall purpose of your essay. It is best to include your thesis statement at the end of your introductory paragraph.
+
+
+
+R_V: mean=0.6862, min=0.4549, final=0.9142
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+

@@ -1,0 +1,21 @@
+{
+  "experiment": "temporal_stability",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_prompts": 10,
+    "max_steps": 20,
+    "temperatures": [0.0, 0.7],
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16
+  }
+}
+
+
+
+
+
+
+
+
+

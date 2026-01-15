@@ -1,0 +1,57 @@
+{
+  "experiment": "c2_rv_measurement",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_prompts": 50,
+  "by_config": {
+    "baseline": {
+      "rv_mean": 0.713933041045725,
+      "rv_std": 0.08409485053157663,
+      "rv_ci_95_low": 0.6897781797005818,
+      "rv_ci_95_high": 0.7380879023908682,
+      "rv_min": 0.5514468431673946,
+      "coherence": 0.8639999999999998,
+      "philosophical_pct": 0.0,
+      "task_pct": 42.0,
+      "n_prompts": 50,
+      "logit_diff_mean": -6.5650390625,
+      "logit_diff_std": 5.0702470980504275,
+      "crystallization_layer_mean": 26.04,
+      "mode_score_m_mean": null
+    },
+    "kv_only": {
+      "rv_mean": 0.6065392400734807,
+      "rv_std": 0.09074289667987803,
+      "rv_ci_95_low": 0.5807503941784855,
+      "rv_ci_95_high": 0.6323280859684759,
+      "rv_min": 0.47419347301886416,
+      "coherence": 0.8399999999999997,
+      "philosophical_pct": 16.0,
+      "task_pct": 20.0,
+      "n_prompts": 50,
+      "logit_diff_mean": -3.2179296875,
+      "logit_diff_std": 4.7137772106697255,
+      "crystallization_layer_mean": 23.94,
+      "mode_score_m_mean": null
+    },
+    "c2_full": {
+      "rv_mean": 0.4979335589994304,
+      "rv_std": 0.07220383463360755,
+      "rv_ci_95_low": 0.47741345624182546,
+      "rv_ci_95_high": 0.5184536617570353,
+      "rv_min": 0.380608520792081,
+      "coherence": 0.8359999999999999,
+      "philosophical_pct": 20.0,
+      "task_pct": 12.0,
+      "n_prompts": 50,
+      "logit_diff_mean": -4.6614453125,
+      "logit_diff_std": 4.2195429601064625,
+      "crystallization_layer_mean": 24.62,
+      "mode_score_m_mean": null
+    }
+  },
+  "statistics": {},
+  "artifacts": {
+    "csv": "results/phase1_mechanism/runs/20260111_130123_c2_rv_measurement/c2_rv_measurement.csv",
+    "outputs_dir": "results/phase1_mechanism/runs/20260111_130123_c2_rv_measurement/outputs"
+  }
+}

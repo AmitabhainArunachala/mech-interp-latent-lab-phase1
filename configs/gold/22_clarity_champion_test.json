@@ -1,0 +1,17 @@
+{
+  "experiment": "p1_ablation",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda",
+    "n_baseline_prompts": 10,
+    "max_new_tokens": 200,
+    "use_champion_prompts": true
+  }
+}
+
+
+
+
+
+
+

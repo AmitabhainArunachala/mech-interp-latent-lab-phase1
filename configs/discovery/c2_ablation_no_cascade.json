@@ -1,0 +1,15 @@
+{
+  "experiment": "c2_ablation",
+  "ablation": "no_cascade",
+  "description": "C2 without L26 cascade - only KV + H18/H26 steering",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_prompts": 20,
+    "config_override": {
+      "head_target": "h18_h26",
+      "kv_strategy": "full",
+      "residual_alphas": null,
+      "vproj_alpha": 2.5
+    }
+  }
+}

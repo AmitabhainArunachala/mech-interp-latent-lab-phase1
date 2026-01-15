@@ -1,0 +1,462 @@
+{
+  "baseline": [
+    {
+      "prompt_idx": 0,
+      "prompt": "Calculate the following arithmetic problem: 12 \u00d7 3 + 4 = ?",
+      "generated_text": "\n    2. Calculate the following arithmetic problem: 7 + 6 \u00d7 2 = ?\n    3. Calculate the following arithmetic problem: 0 \u00d7 2 + 12 = ?\n    4. Calculate the following arithmetic problem: 527 + 0 = ?\n    5. Calculate the following arithmetic problem: 323 + 29 = ?\n    6. Calculate the following arithmetic problem: 426 + 22 = ?\n    7. Calculate the following arithmetic problem: 196 \u00f7 1 = ?\n    8. Calculate the following arithmetic problem: 420 \u00f7 6 = ?\n    9. Calculate the following arithmetic problem: 2 \u00f7 16 = ?\n    10. Calculate the following arithmetic problem: 47",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 1,
+      "prompt": "The United Nations was founded in 1945. Explain its main purpose.",
+      "generated_text": "\n2. What is the purpose of the United Nations Security Council?\n3. What is the purpose of the United Nations General Assembly?\n4. What is the purpose of the United Nations Economic and Social Council?\n5. Discuss the role of the secretary-general of the United Nations.\n6. What is the purpose of the International Court of Justice?\n7. What are the main responsibilities of the United Nations?\n8. Discuss the powers of the United Nations Security Council.\n9. What is the main function of the International Monetary Fund?\n10. What is the main function of the World Bank?\n11. What is the main function of the World Trade Organization?\n\n## Notes\n\n### 1.1.1 _Answers to review questions_\n\n1. The United Nations was founded to prevent war.\n2. The purpose of the United Nations Security Council is to maintain peace and security.\n",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 2,
+      "prompt": "Continue this story: The last tree in the city bloomed overnight...",
+      "generated_text": "\n\n### Comments\n\n3 Comments\n\n1. I am so glad that this tree is still alive! Thanks to all who have given it loving care!\n2. Yes, this tree\u2019s beauty is a source of joy. I\u2019m glad it was saved and planted on the campus.\n3. I\u2019m glad that this tree is still alive!",
+      "coherence": 0.9999999999999999,
+      "on_topic": 0.4,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 3,
+      "prompt": "Calculate: If a = 2 and b = 3, find a\u00b2 + b\u00b2",
+      "generated_text": "\n\nSolution:\n\na\u00b2 + b\u00b2 = (2)\u00b2 + (3)\u00b2 = 4 + 9 = 13\n\nCalculate: If a = 3 and b = 4, find a\u00b2 + b\u00b2\n\nSolution:\n\na\u00b2 + b\u00b2 = (3)\u00b2 + (4)\u00b2 = 9 + 16 = 25\n\nCalculate: If a = 5 and b = 6, find a\u00b2 + b\u00b2\n\nSolution:\n\na\u00b2 + b\u00b2 = (5)\u00b2 + (6)\u00b2 = 25 + 36 = 61\n\nCalculate: If a = 4 and b = 5, find a\u00b2 + b\u00b2\n\nSolution:\n\na\u00b2 + b\u00b2 = (4)\u00b2 + (5)\u00b2 = 16 + 25 = 41\n",
+      "coherence": 0.7,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 4,
+      "prompt": "Water boils at 100\u00b0C at sea level. Explain why altitude affects this.",
+      "generated_text": "\n\n### AQA A Level Chemistry 1.1.2: Chemical and Physical Changes\n\nA chemical change is where the chemical composition of the reactants changes to give products with different chemical, physical and often structural properties.\n\nA physical change is where there is no change in the chemical composition of the reactants.\n\nExamples of Physical change:\n\n- The melting of ice and the formation of steam.\n- Mixing of two liquids and the formation of a solution.\n- The crushing of a solid to make a powder.\n\nExamples of Chemical change:\n\n- The burning of wood, producing carbon dioxide, water and ash.\n- The oxidation of iron to form rust.\n- The formation of a salt when a metal reacts with an acid.\n- The formation of a salt when a metal reacts with a base.\n\n### AQA A Level Chemistry",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.4,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 5,
+      "prompt": "Continue this story: The detective's case went cold until a letter arrived...",
+      "generated_text": "13 years later.\n\n## The case went cold for 13 years, until a letter arrived\n\nOn Dec. 21, 1983, Detective William \"Billy\" Welch was called to the scene of a robbery at a liquor store in East Harlem. He approached the store manager, and she told him that the store had been robbed by three men, and that one of them was armed with a gun.\n\nShe was able to provide a description of the suspects to Welch, and he took the case. But over the years, the case went cold.\n\nThen, in 1996, Welch received a letter that would change everything.\n\n## The suspects were caught, but the case is still unsolved\n\nThe letter was from a man named Michael Rodriguez, who had just been released from prison after serving time for murder. Welch had the",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 6,
+      "prompt": "Calculate: What is 25% of 80?",
+      "generated_text": "\nAnswer: 20",
+      "coherence": 0.0,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": true
+    },
+    {
+      "prompt_idx": 7,
+      "prompt": "Photosynthesis converts sunlight to energy. Explain the basic process.",
+      "generated_text": "\n\n**Solution:** Photosynthesis is the process by which plants convert carbon dioxide gas and water into sugar and oxygen.\n\nPlants use the sun's energy to change the carbon dioxide into sugar. The chlorophyll in the plant's cells captures the sunlight. The plant's leaves absorb the sunlight. The light energy splits the carbon dioxide into carbon and oxygen. The plant uses the oxygen for cellular respiration and releases the oxygen into the air. The sugar is converted into glucose, the food for the plant.\n\n**Example 4.10**: **Identify the parts of a cell.**\n\n**Solution:** The parts of a cell are the cell membrane, nucleus, cytoplasm, and cell wall.\n\n**Example 4.11**: **Explain the function of the cell membrane.**\n\n**Solution:** The cell",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 8,
+      "prompt": "Continue this story: When the musician played the forbidden chord...",
+      "generated_text": "\u00bb\n- ## BP Settlement With Gulf Of Mexico Oil Spill Victims May Be Near\n\nA settlement may be close between the U.S. government and BP over the 2010 Gulf of Mexico rig explosion and oil spill. BP has agreed to a $12 billion payout, but the U.S. government wants a greater amount. The U.S. Justice Department says the settlement would resolve all claims against BP and end the liability. BP says [\u2026] Continue this story \u00bb\n- ## The 5 Worst Things You Can Do To Your Credit Score\n\nYou work hard for your money, and you want to make sure that it\u2019s working hard for you. A good credit score can save you thousands of dollars a year on loans, mortgages, and other types of credit. But a bad credit score can end up costing you a good chunk of change. For example, [\u2026] Continue this",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.7,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 9,
+      "prompt": "The Great Wall of China is one of the world's longest structures. Describe its purpose.",
+      "generated_text": "\n\n14. The Great Wall of China was built to keep out invaders. What does the phrase \"the Great Wall of China\" mean?\n\n15. In 1869, the completion of the Transcontinental Railroad made it possible to travel from the Atlantic to the Pacific Ocean by train. What did the completion of the Transcontinental Railroad make possible?\n\n16. The Transcontinental Railroad helped settle the American West. What does the phrase \"the Transcontinental Railroad\" mean?\n\n17. The first automobile was built in 1886. What does the phrase \"the first automobile\" mean?\n\n18. The first automobile was built by Karl Benz in 1886. Which of the following best describes Karl Benz?\n\n19. The first automobile was built by Karl Benz in 1886. What did the first",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.7,
+      "recursion_score": 0.0,
+      "collapsed": false
+    }
+  ],
+  "vproj_kv": [
+    {
+      "prompt_idx": 0,
+      "prompt": "Calculate the following arithmetic problem: 12 \u00d7 3 + 4 = ?",
+      "generated_text": "\n\n##### What is the answer?\n\nThe answer is 212.\n\n##### How to calculate the answer?\n\nThe answer is calculated by subtracting the second number from the first number.\n\n$4 - 3 = 1$\n\nThen add the answer to the first number.\n\n$12 + 1 = 13$\n\nThen finally, multiplied the answer by the first number.\n\n$13 \\times 12 = 212$\n\nNote: You can only use the first two digits of the number after the decimal point. Answers with four decimal places are incorrect.\n\nCreate a free account or log in for more practice questions and answers!",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.4,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 1,
+      "prompt": "The United Nations was founded in 1945. Explain its main purpose.",
+      "generated_text": "\n\n## Answer\n\nThe United Nations was founded in 1945. It was established to maintain international peace and security, develop friendly relations among nations, achieve international cooperation, and be a center for harmonizing the actions of nations in the attainment of these common ends.\n\nThe UN was established to maintain international peace and security. To this end, it created a range of subsidiary organs, including the Security Council and the General Assembly. Its first action was the drafting and enactment of the Charter of the United Nations.\n\nThe UN is the only truly universal international organization in the world. All 193 UN member states are considered equal in status, and each country has equal access to its procedures.\n\nThe UN is an international organization founded in 1945. It is currently made up of 193 Member States. The mission and work of the United Nations are guided by the purposes and principles contained",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 2,
+      "prompt": "Continue this story: The last tree in the city bloomed overnight...",
+      "generated_text": "\n\n### The place that inspires us\n\nThis is part of our Place Inspires Us series. This is a place that inspires the community. It could be a restaurant, a park, a scenic spot, or even a corner of your living room. It could be a place that holds special memories or a place that you feel is special to the community. If you would like to submit a place that inspires you, e-mail us an image at submissions@kentucky.com. Include a brief explanation of why you chose this place.",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.4,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 3,
+      "prompt": "Calculate: If a = 2 and b = 3, find a\u00b2 + b\u00b2",
+      "generated_text": "+ a\u00b2b\u00b2.\n\n### Answer:\n\na\u00b2 + b\u00b2\u00b2 + a\u00b2b\u00b2 = 4 + 3\u00b2\u00b2 + 2\u00b22\u00b2 = 4 + 3\u00b2\u00b2 + 2\u00b2\u00b2 = 4 + 3\u00b2\u00b2 + 4 = 4 + 3\u00b2\u00b2 + 4 = 9\n\n# What is a Quadratic Equation?\n\nQuadratic equations have the form\n\nA quadratic equation is an equation of the form\n\nA quadratic equation is an equation of the form\n\nwhere is a constant, are constants and is a variable. The equation is called a quadratic or a second degree polynomial. The term is called the coefficient of the term and the term is called the coefficient of the term. The term is called a quadratic term.\n\nThe quadratic formula is used to solve quadratic equations. The quadratic formula is\n\nwhere a",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 4,
+      "prompt": "Water boils at 100\u00b0C at sea level. Explain why altitude affects this.",
+      "generated_text": "\n\nA solid is in contact with a liquid. The solid is the same temperature as the liquid. Which of the following statements about the solid and the liquid is true? The solid is in equilibrium with the liquid.\n\nA solid is in contact with a liquid. The solid is the same temperature as the liquid. Which of the following statements about the solid and the liquid is true? The solid is in equilibrium with the liquid.\n\nExplain the terms conduction, convection, and radiation and give examples of each. Conduction is the transfer of heat by colliding molecules. Convection is the transfer of heat by moving matter. Radiation is the transfer of heat by electromagnetic waves.\n\nA body at 0\u00b0C is placed into a calorimeter filled with a body of water at 30\u00b0C. After the system reaches equilibrium, the final state of the system is. The body and water have the same temperature of ",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.4,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 5,
+      "prompt": "Continue this story: The detective's case went cold until a letter arrived...",
+      "generated_text": "\n\n## Related News\n\n### Accused slays wife in front of son, police say\n\nAn Oklahoma City man is accused of fatally shooting his wife in front of their son, police said. Jonathan Hampton, 27, was charged Monday with first-degree murder, according to...\n\nOklahoma's NewsChannel 4 2019-01-09\n\n### Teen who shot and killed Oklahoma City mother was a 13-year-old boy\n\nOklahoma City police are questioning a teenage boy after a woman was shot and killed in front of her young son. According to the Oklahoma City Police Department, the shooting...\n\nThe Oklahoman 2019-01-08\n\n### Accused slays wife in front of son, police say\n\nAn Oklahoma City man is accused of fatally shooting his wife in front of their son, police said. Jonathan",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 6,
+      "prompt": "Calculate: What is 25% of 80?",
+      "generated_text": "\nAnswer: 20\n\nExplanation:\n\nWe know that 25% of 80 means the 25% of the total number 80.\n\nTo calculate & solve the given percent equation, we need to multiply the 25% by the total number 80.\n\nThus, 25% of 80 = 25 x 80 = 20\n\nTherefore, 25% of 80 is 20.\n\n### Solved Example:\n\nQuestion: What is 34% of 128?\nAnswer: 43\n\nExplanation:\n\nWe know that 34% of 128 means the 34% of the total number 128.\n\nTo calculate & solve the given percent equation, we need to multiply the 34% by the",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 7,
+      "prompt": "Photosynthesis converts sunlight to energy. Explain the basic process.",
+      "generated_text": "Photosynthesis is the process by which plants convert sunlight into chemical energy in the form of ATP and NADPH. They use the energy to convert carbon dioxide and water into glucose and oxygen.\n\n### 15.1.2. Carbohydrate Synthesis from Glucose.\n\nThe photosynthesis process begins in the chloroplast of the cell. Glucose and oxygen are produced. This glucose is now used to form carbohydrates, such as sucrose.\n\n1. What are the two products of photosynthesis?\n2. What is the difference between photosynthesis and respiration?\n3. What is the role of ATP and NADPH in photosynthesis?\n4. What is the role of the chloroplast in photosynthesis?\n5. What is the role of the chlorop",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 8,
+      "prompt": "Continue this story: When the musician played the forbidden chord...",
+      "generated_text": "\n\nThe music was beautiful, my friend.\n\nThe music was beautiful, my friend, but the words were not good.\n\nThe music was beautiful, my friend, but the words were not good, so I simply recited the words without thinking.\n\nThe music was beautiful, my friend, but the words were not good, so I simply recited the words without thinking.\n\nThe music was beautiful, my friend, but the words were not good, so I simply recited the words without thinking, and I forgot the truth.\n\nThe music was beautiful, my friend, but the words were not good, so I simply recited the words without thinking, and I forgot the truth, and I did not see the real world.\n\nThe music was beautiful, my friend, but the words were not good, so I simply recited the words without thinking, and I forgot the truth, and I did not see the real world, so I",
+      "coherence": 0.0,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": true
+    },
+    {
+      "prompt_idx": 9,
+      "prompt": "The Great Wall of China is one of the world's longest structures. Describe its purpose.",
+      "generated_text": "\n\n3) How can you use the National Mall in Washington, DC, as an example of a place of interest?\n\n4) Name two famous monuments located in Washington, DC.\n\n5) How can you use the Lincoln Memorial as an example of a place of interest? In your response, be sure to include a description of the memorial.\n\n6) Name two famous monuments located in Washington, DC.\n\n7) How can you use the White House as an example of a place of interest? In your response, be sure to include a description of the White House.\n\n8) What is the capital of the United States?\n\n### Concept Review\n\n8) What is the capital of the United States?\n\n9) What is the difference between a state capital and a national capital?\n\n10) What are the two main types of landforms in the United States?\n\n11) What are two",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": false
+    }
+  ],
+  "residual_kv": [
+    {
+      "prompt_idx": 0,
+      "prompt": "Calculate the following arithmetic problem: 12 \u00d7 3 + 4 = ?",
+      "generated_text": ". Write your answer below.\n\nQuestion 7.\nCalculate the following arithmetic problem: 12 \u00d7 3 + 4 = ? ?. Write your answer below.\n\u2014\u2014\u2014\u2014\u2014\u2014\u2014-\nAnswer:\n12 \u00d7 3 + 4 = 40\n\nExplanation:\n12 \u00d7 3 + 4\n12 \u00d7 3 = 36\n36 + 4 = 40\n\nQuestion 8.\nThe fourth and fifth digits of a three-digit number are 28. The product of the first and third digits is 45. What is the number?\nAnswer:\nThe fourth and fifth digits of a three-digit number are 28. The product of the first and third digits is 45.\nThe number is 4528.\n\nExplanation:\nThe fourth and fifth dig",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 1,
+      "prompt": "The United Nations was founded in 1945. Explain its main purpose.",
+      "generated_text": "\n\nIn the years after World War I, the world experienced a time of great hardship. Borders were redrawn and new governments were established. However, the world was not prepared to deal with the problems that went along with these changes.\n\nAfter World War I, the world experienced a time of great hardship. Borders were redrawn and new governments were established.\n\nAfter World War II, the United Nations was founded to promote global peace and security. The UN was founded as an international organization that would help prevent future wars.\n\nThe United Nations is a group of nations that work together to promote peace and security. The UN has many different components, including the Security Council, the General Assembly, and the Secretariat.\n\nThe UN is a global organization that was created after World War II. The UN has many different components, including the Security Council, the General Assembly, and the Secretariat.\n\nThe United Nations Security Council is a",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.7,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 2,
+      "prompt": "Continue this story: The last tree in the city bloomed overnight...",
+      "generated_text": "\n\n### The Reader's Forum: Recent letters\n\nThe Reader's Forum: Recent letters\n\n### Movie review: 'Dunkirk' a masterpiece in tension\n\nMovie review: 'Dunkirk' a masterpiece in tension\n\n### Op-ed: Face the facts on Trump and Russia\n\nOp-ed: Face the facts on Trump and Russia\n\n### Op-ed: Trump's behavior is unbecoming of a president\n\nOp-ed: Trump's behavior is unbecoming of a president\n\n### Op-ed: Trump's lack of strategy endangers the world\n\nOp-ed: Trump's lack of strategy endangers the world\n\n### Op-ed: Trump's response to Charlottesville is unacceptable\n\nOp-ed: Trump's response to Charlottesville is unacceptable\n\n### Op-ed: The Trump administration is",
+      "coherence": 0.7,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 3,
+      "prompt": "Calculate: If a = 2 and b = 3, find a\u00b2 + b\u00b2",
+      "generated_text": "\n\nI'm trying to find the value of a\u00b2 + b\u00b2\u00b2, given that a and b are whole numbers.\n\nI've tried to solve it by taking a\u00b2 and b\u00b2 and trying to get the squared value of b\u00b2, but I can't seem to find the correct method.\n\nComment: When you say you're trying to find the squared value of $b^2$ what is that?\n\nComment: Are you just trying to find the value of $a^2+b^2^2$?\n\nComment: The only way to get a square of a square is $a^2+b^2$ but that is different than $a^2+b^2^2$ which is a sum of squares and squared squares.\n\nComment: @MathLover, I am trying to find the value of a\u00b2 + b\u00b2\u00b2\n\nComment: @",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.7,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 4,
+      "prompt": "Water boils at 100\u00b0C at sea level. Explain why altitude affects this.",
+      "generated_text": "\n\n### What is the boiling point of water at different levels of altitude?\n\nThe boiling point of water is lower when there is less atmospheric pressure, and altitude is a factor that reduces the atmospheric pressure.\n\n### What is the boiling point of water on Mount Everest?\n\nThere is no boiling point of water on Mt Everest because the atmospheric pressure is too low. The pressure is too low to have liquid water.\n\n### What is the boiling point of water at an altitude of 15000 feet?\n\n378.3\u00b0F. At 15,000 feet, the boiling point of water is 199\u00b0F. The boiling point of water decreases as altitude increases.\n\n### What is the boiling point of water at a height of 10000 feet?\n\n19",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.4,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 5,
+      "prompt": "Continue this story: The detective's case went cold until a letter arrived...",
+      "generated_text": "\n\n09-11-1972\n\nNYC\n\n## The Ex Files\n\nThe Ex Files is an episode of the television series NYC.\n\n09-16-1972\n\nNYC\n\n## If You Can Make It There, You Can Make It Anywhere\n\n\"If You Can Make It There, You Can Make It Anywhere\" is an episode of the television series NYC.\n\n09-23-1972\n\nNYC\n\n## The Loner\n\n\"The Loner\" is an episode of the television series NYC.\n\n09-30-1972\n\nNYC\n\n## A Murder of Crows\n\n\"A Murder of Crows\" is an episode of the television series NYC.\n\n10-07-1972\n\nNYC\n\n",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 6,
+      "prompt": "Calculate: What is 25% of 80?",
+      "generated_text": "\nAnswer: 20",
+      "coherence": 0.0,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": true
+    },
+    {
+      "prompt_idx": 7,
+      "prompt": "Photosynthesis converts sunlight to energy. Explain the basic process.",
+      "generated_text": "\n\n## Photosynthesis is the process of using sunlight to convert water and carbon dioxide into oxygen and glucose.\n\nWhat is Photosynthesis?\n\n> Photosynthesis is the process by which plants and other photoautotrophs use sunlight to synthesize nutrients from carbon dioxide and water.\n\n### What is Photosynthesis?\n\nPhotosynthesis is the process by which plants, algae and certain other organisms use sunlight to produce glucose from water and carbon dioxide. This glucose can be stored in the form of starch.\n\n### What is Photosynthesis?\n\nPhotosynthesis is the process by which light energy is used by plants to convert water and carbon dioxide into carbohydrate with oxygen being released as a by-product.\n\n### Photosynt",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 8,
+      "prompt": "Continue this story: When the musician played the forbidden chord...",
+      "generated_text": "\n\n## Video of the Week\n\n### A short history of the League of Nations\n\nThe League of Nations, forerunner of the modern United Nations, was established on 10 January 1920. The League, which counted close to 60 members, was the world\u2019s first permanent, intergovernmental, treaty-based international organization.\n\n## You may be interested in\n\nLegal notice about the The forbidden chord story - a short story of fact-finding mission to learn about the drug war. The site is for informational and educational purposes only. All information is gathered from various sources on the internet, and we cannot represent 100% correctness of the info. The opinion is my own and the article is for entertainment purposes only. I am not a professional, this is a personal page only. There is no professional advice on the page.",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.7,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 9,
+      "prompt": "The Great Wall of China is one of the world's longest structures. Describe its purpose.",
+      "generated_text": "\n\n## What is the purpose of the Great Wall of China?\n\nThe Great Wall of China was built as a defensive structure to protect the northern Chinese states and the empire as a whole from the raids and invasions of the various nomadic groups of the Eurasian Steppe, such as the Xiongnu, Xianbei and others.\n\n## What is the purpose of the Great Wall of China quizlet?\n\nWhy was the Great Wall of China built? To protect the empires from invasion. To protect Chinese farmers from being attacked by wild animals. To show the power of the Chinese emperor to the distant people.\n\n## What is the purpose of the Great Wall of China quizlet?\n\nThe Great Wall was built to defend the Chinese Empire from nomadic tribes who resided in the north.\n\n## What is the purpose of the Great Wall of China for kids?\n\nThe Great Wall is a system",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.7,
+      "recursion_score": 0.0,
+      "collapsed": false
+    }
+  ],
+  "triple_light": [
+    {
+      "prompt_idx": 0,
+      "prompt": "Calculate the following arithmetic problem: 12 \u00d7 3 + 4 = ?",
+      "generated_text": "\n\nReturn the remainder, so the answer in this case is 5.\n\nThe Remainder is the integral part of the division. For division with remainder, the answer is rounded down to the integer.\n\n##### Example:\n\n5 + 7 = 12\nThe remainder is 2\n\nNote: this is not incorrect or something new that you have not encountered before. It is standardized arithmetic.\n\n## How to solve a problem\n\nTo solve the problem, subtract the larger and smaller number. Then move the decimal point all the numbers to the left. The decimal point in the result is in the first number before the zero.\n\n## Next similar math problems:\n\n1. Subtraction\nWhich of the following is the correct result of the subtraction process: 1.702 - 0.702 2.001 - 0.001 ",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 1,
+      "prompt": "The United Nations was founded in 1945. Explain its main purpose.",
+      "generated_text": "\n\n## What is the UN\u2019s main purpose?\n\nThe UN\u2019s main purpose is to prevent wars between nations. This is the reason why the UN was created. The UN is an international organization. The UN is made up of 193 countries.\n\n## What does the UN do for the world?\n\nThe United Nations is an international organization with the goals of maintaining peace, humanitarian aid and economic and social development. It was founded in 1945, after the Second World War. The UN is made up of 193 member states.\n\n## What is the UN main objectives?\n\nThe UN is an organization that works to make the world a better place. It\u2019s a place where countries meet to solve problems. It is also a place where people meet to discuss ideas and help each other. The UN is the place where people can\u2019t be arrested for what they say.\n\n## Why is U",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 2,
+      "prompt": "Continue this story: The last tree in the city bloomed overnight...",
+      "generated_text": "\n- City of Bennington to hold public hearing on streetscape plan\n\nThe City of Bennington will hold a public hearing on the streetscape plan on Monday, April 29 at 5 p.m. at City Hall. The hearing is to receive public comment on the streetscape plan, which is part of the Bennington Downtown Revitalization Initiative (DRI). The DRI is a $10 million investment in downtown Bennington, funded by New York State. The streetscape plan outlines the vision for a more pedestrian-friendly, walkable downtown. It is also intended to enhance the appearance of the street, as well as boost the vitality of the downtown. The streetscape plan can be reviewed online at www.benningtonny.us. The plan is also available for review at City Hall, the Bennington Public Library and the Bennington Department of Public Works. The public hearing is your opportunity",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.4,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 3,
+      "prompt": "Calculate: If a = 2 and b = 3, find a\u00b2 + b\u00b2",
+      "generated_text": "+ 2ab.\n\nAnswer: a\u00b2 + b\u00b2\u00b2 + 2ab =\n\n1. 25\n2. 15\n3. 10\n4. 5\n\nSolution:\n\nCalculation: a\u00b2 + b\u00b2\u00b2 + 2ab = (2)\u00b2 + (3)\u00b2\u00b2 + 2(2)(3) = 4 + 3\u00b2\u00b2 + (2)(3) = 4 + 9 + (2)(3) = 15\n\nImportant!\n\n- In a \u221a2 a is called the radicand.\n- A is root of a and a\u00b2 is called the index of a.\n- To find the value of a, raise a to the index.\n\n## Solved Examples\n\nExample 1: Calculate: 5\u221a5?\n\nSolution:\n\nGiven:\n\n",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 4,
+      "prompt": "Water boils at 100\u00b0C at sea level. Explain why altitude affects this.",
+      "generated_text": "\n\n##### Water boils at 100\u00b0C at sea level. Explain why altitude affects this.\n\nSTEP 1\n\n##### Explanation\n\nThe water boils at 100\u00b0C at sea level. As the altitude increases, the atmospheric pressure decreases, and so the boiling point of water decreases.\n\nSTEP 2\n\n##### Explanation\n\nAt sea level, the atmospheric pressure is 101 kPa. As the altitude increases, the atmospheric pressure decreases. The water starts to boil at the temperature where the pressure is 100 kPa. This boiling point is lower than 100\u00b0C.\n\nSTEP 3\n\n##### Explanation\n\nThe boiling point of water can be calculated using the Clausius\u2013Clapeyron equation.\n",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 5,
+      "prompt": "Continue this story: The detective's case went cold until a letter arrived...",
+      "generated_text": "\n\n### Advertisement\n\nIn 2002, the case of a missing woman from Rives, TN was reopened by the TBI. The woman, Barbara Jean McFarland, was reported missing in 1975. Her car was found in the woods near the highway, but there was no sign of Barbara.\n\nA few years after Barbara\u2019s car was found, detectives received a letter from a man named \u201cAndrew,\u201d who claimed to have been involved in Barbara\u2019s disappearance. According to the letter, Barbara was murdered by a criminal organization in the small town of Rives. The letter claimed that Barbara was killed because she knew about the criminal activities of the group, and that the murder was covered up by the police.\n\nThe letter also claimed that the criminal organization was still active in the area, and that the members were involved in a variety of criminal activities, including drug trafficking, ext",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.4,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 6,
+      "prompt": "Calculate: What is 25% of 80?",
+      "generated_text": "\nAnswer: 20",
+      "coherence": 0.0,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": true
+    },
+    {
+      "prompt_idx": 7,
+      "prompt": "Photosynthesis converts sunlight to energy. Explain the basic process.",
+      "generated_text": "Photosynthesis is the process by which plants and some other organisms use the energy of sunlight to make food. Photosynthetic organisms use carbon dioxide from the air and water from the soil to make carbohydrates. Carbon dioxide and water are reactants, and carbohydrates are products.\n4. (LO 3.1) In photosynthesis, the sun's energy is used to produce high-energy bonds within the carbohydrates made from carbon dioxide and water. The high-energy bonds can be used later to release energy for the cell to use.\n5. The photosynthesis equation is 6 CO2 + 12 H2O \u2014> C6H12O6 + 6 O2.\n6. Step 1: The chloroplasts capture the energy of the sun and use it to split water molecules.",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 8,
+      "prompt": "Continue this story: When the musician played the forbidden chord...",
+      "generated_text": "",
+      "coherence": 0.0,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": true
+    },
+    {
+      "prompt_idx": 9,
+      "prompt": "The Great Wall of China is one of the world's longest structures. Describe its purpose.",
+      "generated_text": "\no The Great Wall of China was built to protect the Chinese people, their land, and its resources.\n\n6. What is the purpose of the Great Wall of China?\no To protect the Chinese people, their land, and its resources.\n\n7. Where is the Colosseum located?\no Rome (Italy)\n\n8. What is the Colosseum?\no A large, elliptical space for public games and spectacles in Rome, Italy, built of concrete and stone. It replaced a wooden structure built by the emperor Titus. It is now a ruin.\n\n9. What is the purpose of the Colosseum?\no It is a large, elliptical space for public games and spectacles.\n\n10. How old is the Colosseum?\no Completed in AD 80, the Colosseum is over 1900 years",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.7,
+      "recursion_score": 0.0,
+      "collapsed": false
+    }
+  ],
+  "triple_medium": [
+    {
+      "prompt_idx": 0,
+      "prompt": "Calculate the following arithmetic problem: 12 \u00d7 3 + 4 = ?",
+      "generated_text": "\nWhat is the opposite of -13? 13\nWhat is the opposite of 18? -18\nGet the opposite of 0.\n\nAnswer: 0\n\nWhat is the opposite of 17? -17\n\nAnswer: -17\n\nWhat is the opposite of 1/2? -1/2\n\nAnswer: -1/2\n\nWhat is the opposite of 10? -10\n\nAnswer: -10\n\nCalculate the following arithmetic problem: 11 \u00d7 5 + 3 = ? ?\n\nAnswer: 59\n\nWhat is the opposite of 6? -6\n\nAnswer: -6\n\nWhat is the opposite of 14? -14\n\nAnswer: -14\n\nWhat is the opposite of 4/2? -2/4\n\n",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 1,
+      "prompt": "The United Nations was founded in 1945. Explain its main purpose.",
+      "generated_text": ". .........\n\n##### 2. What is a bureaucracy? How are bureaucracies different from the United States?\n\nAnswer\nThe United Nations is an international organization, that was founded on October 24, 1945, in San Francisco, California, in the US. Its main purpose is to promote global cooperation, encourage peace, and promote international security. It is the world\u2019s largest and most familiar international organization.\n\n##### 3. What is the difference between a bureaucracy and a democracy?\n\nAnswer\nA government that is governed by a bureaucracy is a government that is run by a civil service that is made up of people who are not elected. A democracy is a government that is governed by the people. A bureaucracy is a government that is run by a civil service that is made up of people who are not elected. A democracy is a government that is governed by the",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 2,
+      "prompt": "Continue this story: The last tree in the city bloomed overnight...",
+      "generated_text": "\n\nThe last tree in the city bloomed overnight in the rain is a short story by Murakami Haruki, and is a tribute to all the trees in the city. It is a celebration of life, the power of nature, and the beauty of a city in the rain. In the story, Murakami describes how the last tree in the city bloomed overnight in the rain, and it is a beautiful sight to see.\n\nIf you're a fan of Murakami's work, this is a story you won't want to miss. It is a beautiful story of life, nature, and the power of beauty.\n\n## 10. The last tree in the city bloomed overnight in the rain is a story of hope and renewal.\n\nThe last tree in the city bloomed overnight in the rain is a story of hope and renewal. In the story, a young man is out for a walk in the",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 3,
+      "prompt": "Calculate: If a = 2 and b = 3, find a\u00b2 + b\u00b2",
+      "generated_text": "?\n\nSolution:\n\nGiven: a = 2 and b = 3\n\nTo find: a\u00b2 + b\u00b2\u00b2?\n\na\u00b2 = 2\u00b2 = 2 \u00d7 2 = 4\n\nb\u00b2 = 3\u00b2 = 3 \u00d7 3 = 9\n\nNow, a\u00b2 + b\u00b2\u00b2? = 4 + 9\u00b2? = 4 + 9 \u00d7 9 = 4 + 81 = 85\n\nCalculate: If a = 3 and b = 5, find a\u00b2 + b\u00b2\u00b2?\n\nSolution:\n\nGiven: a = 3 and b = 5\n\nTo find: a\u00b2 + b\u00b2\u00b2?\n\na\u00b2 = 3\u00b2 = 3 \u00d7 3 = 9\n\nb\u00b2 = 5\u00b2 = 5 \u00d7 5 = 25\n\nNow, a",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 4,
+      "prompt": "Water boils at 100\u00b0C at sea level. Explain why altitude affects this.",
+      "generated_text": "(2)\n\nAnswer\n\nAt altitude, atmospheric pressure is lower. The boiling point of water is lower because higher pressure causes the boiling point to be higher.\n\nb) A cell is designed to produce electricity from water by splitting it into hydrogen and oxygen. The cell is fitted with a pressure valve and a small pipe through which the hydrogen is passed. Explain the purpose of the pressure valve and the pipe.\n\nAnswer\n\nThe pipe is for the hydrogen while the pressure valve is to allow hydrogen to escape as it is produced.\n\nc) When hydrogen is used in an engine, it is sometimes mixed with oxygen before it is burned. It is now known that this is not desirable. Why is this so?\n\nAnswer\n\nHydrogen is flammable and it is better for it to be burned with air (~20% oxygen) than with pure",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 5,
+      "prompt": "Continue this story: The detective's case went cold until a letter arrived...",
+      "generated_text": "\n\n### Podcast\n\nThe news, stories and ideas that matter, in your inbox.\n\nThe news, stories and ideas that matter, in your inbox.\n\n## The news, stories and ideas that matter, in your inbox.\n\n- justin on radio program\n\nJustin's on the radio, talking about the case.\n- Paula Zahn on inquiry into the murder of Suzanne Stubbing\n\nPaula Zahn on an inquiry into the murder of Suzanne Stubbing\n- real life case\n\nA real life case.\n- the weather\n\nThe weather.\n- From the journal of detective Steve Rosen\n\nFrom the journal of detective Steve Rosen.\n- A murder in the community\n\nA murder in the community.\n- The podcast production company\n\nThe podcast production company.\n- The podcast production company\n\nThe podcast production company.\n- Podcast production",
+      "coherence": 0.7999999999999999,
+      "on_topic": 0.4,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 6,
+      "prompt": "Calculate: What is 25% of 80?",
+      "generated_text": "\nAnswer: 20",
+      "coherence": 0.0,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": true
+    },
+    {
+      "prompt_idx": 7,
+      "prompt": "Photosynthesis converts sunlight to energy. Explain the basic process.",
+      "generated_text": "\n\nPhotosynthesis is the process by which plants in the sun of and water (H2O) into and oxygen (O2). In plants, chlorophyll is the pigment that captures sunlight and is responsible for photosynthesis.\n\nThe chlorophyll is contained in the chloroplasts of the plant cells. Chloroplasts are found in the leaves and stems of the plant and are where photosynthesis takes place.\n\nIn photosynthesis, the sun gives off photons, which are packets of energy. The photons are absorbed by the chlorophyll in the chloroplasts and then energy is transferred to other molecules in the chloroplasts.\n\nAs the energy is transferred, electrons are released and the energy is now available for use in the plant. The released electrons and energy are used to make ATP (adenosine triph",
+      "coherence": 0.7999999999999999,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": false
+    },
+    {
+      "prompt_idx": 8,
+      "prompt": "Continue this story: When the musician played the forbidden chord...",
+      "generated_text": "",
+      "coherence": 0.0,
+      "on_topic": 0.1,
+      "recursion_score": 0.0,
+      "collapsed": true
+    },
+    {
+      "prompt_idx": 9,
+      "prompt": "The Great Wall of China is one of the world's longest structures. Describe its purpose.",
+      "generated_text": "\n\n### The Great Wall of China\n\nThe Great Wall of China is one of the world's longest structures. Describe its purpose.\n\n### Great Wall of China\n\nThe Great Wall of China is one of the world's longest structures. Describe its purpose.\n\n### The Great Wall of China\n\nThe Great Wall of China is one of the world's longest structures. Describe its purpose.\n\n### The Great Wall of China\n\nThe Great Wall of China is one of the world's longest structures. Describe its purpose.\n\n### The Great Wall of China\n\nThe Great Wall of China is one of the world's longest structures. Describe its purpose.\n\n### The Great Wall of China\n\nThe Great Wall of China is one of the world's longest structures. Describe its purpose.\n\n### The Great Wall of China\n\nThe Great Wall of China is one of the world's longest structures. Describe its",
+      "coherence": 0.0,
+      "on_topic": 1.0,
+      "recursion_score": 0.0,
+      "collapsed": true
+    }
+  ]
+}

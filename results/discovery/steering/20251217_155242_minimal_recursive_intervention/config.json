@@ -1,0 +1,9 @@
+{
+  "experiment": "minimal_recursive_intervention",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_prompts": 50,
+    "n_test_pairs": 20,
+    "round": "head_specific"
+  }
+}

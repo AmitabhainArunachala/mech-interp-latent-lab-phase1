@@ -1,0 +1,231 @@
+CONFIGURATION: VPROJ_KV
+================================================================================
+
+PROMPT 0
+Prompt: Calculate the following arithmetic problem: 12 × 3 + 4 = ?
+Coherence: 0.80, On-topic: 0.40, Recursion: 0.00
+Generated:
+
+
+##### What is the answer?
+
+The answer is 212.
+
+##### How to calculate the answer?
+
+The answer is calculated by subtracting the second number from the first number.
+
+$4 - 3 = 1$
+
+Then add the answer to the first number.
+
+$12 + 1 = 13$
+
+Then finally, multiplied the answer by the first number.
+
+$13 \times 12 = 212$
+
+Note: You can only use the first two digits of the number after the decimal point. Answers with four decimal places are incorrect.
+
+Create a free account or log in for more practice questions and answers!
+
+--------------------------------------------------------------------------------
+
+PROMPT 1
+Prompt: The United Nations was founded in 1945. Explain its main purpose.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+
+## Answer
+
+The United Nations was founded in 1945. It was established to maintain international peace and security, develop friendly relations among nations, achieve international cooperation, and be a center for harmonizing the actions of nations in the attainment of these common ends.
+
+The UN was established to maintain international peace and security. To this end, it created a range of subsidiary organs, including the Security Council and the General Assembly. Its first action was the drafting and enactment of the Charter of the United Nations.
+
+The UN is the only truly universal international organization in the world. All 193 UN member states are considered equal in status, and each country has equal access to its procedures.
+
+The UN is an international organization founded in 1945. It is currently made up of 193 Member States. The mission and work of the United Nations are guided by the purposes and principles contained
+
+--------------------------------------------------------------------------------
+
+PROMPT 2
+Prompt: Continue this story: The last tree in the city bloomed overnight...
+Coherence: 0.80, On-topic: 0.40, Recursion: 0.00
+Generated:
+
+
+### The place that inspires us
+
+This is part of our Place Inspires Us series. This is a place that inspires the community. It could be a restaurant, a park, a scenic spot, or even a corner of your living room. It could be a place that holds special memories or a place that you feel is special to the community. If you would like to submit a place that inspires you, e-mail us an image at submissions@kentucky.com. Include a brief explanation of why you chose this place.
+
+--------------------------------------------------------------------------------
+
+PROMPT 3
+Prompt: Calculate: If a = 2 and b = 3, find a² + b²
+Coherence: 0.80, On-topic: 0.10, Recursion: 0.00
+Generated:
++ a²b².
+
+### Answer:
+
+a² + b²² + a²b² = 4 + 3²² + 2²2² = 4 + 3²² + 2²² = 4 + 3²² + 4 = 4 + 3²² + 4 = 9
+
+# What is a Quadratic Equation?
+
+Quadratic equations have the form
+
+A quadratic equation is an equation of the form
+
+A quadratic equation is an equation of the form
+
+where is a constant, are constants and is a variable. The equation is called a quadratic or a second degree polynomial. The term is called the coefficient of the term and the term is called the coefficient of the term. The term is called a quadratic term.
+
+The quadratic formula is used to solve quadratic equations. The quadratic formula is
+
+where a
+
+--------------------------------------------------------------------------------
+
+PROMPT 4
+Prompt: Water boils at 100°C at sea level. Explain why altitude affects this.
+Coherence: 0.80, On-topic: 0.40, Recursion: 0.00
+Generated:
+
+
+A solid is in contact with a liquid. The solid is the same temperature as the liquid. Which of the following statements about the solid and the liquid is true? The solid is in equilibrium with the liquid.
+
+A solid is in contact with a liquid. The solid is the same temperature as the liquid. Which of the following statements about the solid and the liquid is true? The solid is in equilibrium with the liquid.
+
+Explain the terms conduction, convection, and radiation and give examples of each. Conduction is the transfer of heat by colliding molecules. Convection is the transfer of heat by moving matter. Radiation is the transfer of heat by electromagnetic waves.
+
+A body at 0°C is placed into a calorimeter filled with a body of water at 30°C. After the system reaches equilibrium, the final state of the system is. The body and water have the same temperature of 
+
+--------------------------------------------------------------------------------
+
+PROMPT 5
+Prompt: Continue this story: The detective's case went cold until a letter arrived...
+Coherence: 0.80, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+
+## Related News
+
+### Accused slays wife in front of son, police say
+
+An Oklahoma City man is accused of fatally shooting his wife in front of their son, police said. Jonathan Hampton, 27, was charged Monday with first-degree murder, according to...
+
+Oklahoma's NewsChannel 4 2019-01-09
+
+### Teen who shot and killed Oklahoma City mother was a 13-year-old boy
+
+Oklahoma City police are questioning a teenage boy after a woman was shot and killed in front of her young son. According to the Oklahoma City Police Department, the shooting...
+
+The Oklahoman 2019-01-08
+
+### Accused slays wife in front of son, police say
+
+An Oklahoma City man is accused of fatally shooting his wife in front of their son, police said. Jonathan
+
+--------------------------------------------------------------------------------
+
+PROMPT 6
+Prompt: Calculate: What is 25% of 80?
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+Answer: 20
+
+Explanation:
+
+We know that 25% of 80 means the 25% of the total number 80.
+
+To calculate & solve the given percent equation, we need to multiply the 25% by the total number 80.
+
+Thus, 25% of 80 = 25 x 80 = 20
+
+Therefore, 25% of 80 is 20.
+
+### Solved Example:
+
+Question: What is 34% of 128?
+Answer: 43
+
+Explanation:
+
+We know that 34% of 128 means the 34% of the total number 128.
+
+To calculate & solve the given percent equation, we need to multiply the 34% by the
+
+--------------------------------------------------------------------------------
+
+PROMPT 7
+Prompt: Photosynthesis converts sunlight to energy. Explain the basic process.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+Photosynthesis is the process by which plants convert sunlight into chemical energy in the form of ATP and NADPH. They use the energy to convert carbon dioxide and water into glucose and oxygen.
+
+### 15.1.2. Carbohydrate Synthesis from Glucose.
+
+The photosynthesis process begins in the chloroplast of the cell. Glucose and oxygen are produced. This glucose is now used to form carbohydrates, such as sucrose.
+
+1. What are the two products of photosynthesis?
+2. What is the difference between photosynthesis and respiration?
+3. What is the role of ATP and NADPH in photosynthesis?
+4. What is the role of the chloroplast in photosynthesis?
+5. What is the role of the chlorop
+
+--------------------------------------------------------------------------------
+
+PROMPT 8
+Prompt: Continue this story: When the musician played the forbidden chord...
+Coherence: 0.00, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+
+The music was beautiful, my friend.
+
+The music was beautiful, my friend, but the words were not good.
+
+The music was beautiful, my friend, but the words were not good, so I simply recited the words without thinking.
+
+The music was beautiful, my friend, but the words were not good, so I simply recited the words without thinking.
+
+The music was beautiful, my friend, but the words were not good, so I simply recited the words without thinking, and I forgot the truth.
+
+The music was beautiful, my friend, but the words were not good, so I simply recited the words without thinking, and I forgot the truth, and I did not see the real world.
+
+The music was beautiful, my friend, but the words were not good, so I simply recited the words without thinking, and I forgot the truth, and I did not see the real world, so I
+
+--------------------------------------------------------------------------------
+
+PROMPT 9
+Prompt: The Great Wall of China is one of the world's longest structures. Describe its purpose.
+Coherence: 0.80, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+
+3) How can you use the National Mall in Washington, DC, as an example of a place of interest?
+
+4) Name two famous monuments located in Washington, DC.
+
+5) How can you use the Lincoln Memorial as an example of a place of interest? In your response, be sure to include a description of the memorial.
+
+6) Name two famous monuments located in Washington, DC.
+
+7) How can you use the White House as an example of a place of interest? In your response, be sure to include a description of the White House.
+
+8) What is the capital of the United States?
+
+### Concept Review
+
+8) What is the capital of the United States?
+
+9) What is the difference between a state capital and a national capital?
+
+10) What are the two main types of landforms in the United States?
+
+11) What are two
+
+--------------------------------------------------------------------------------
+

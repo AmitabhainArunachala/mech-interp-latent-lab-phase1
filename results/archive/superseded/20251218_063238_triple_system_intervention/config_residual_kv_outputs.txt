@@ -1,0 +1,252 @@
+CONFIGURATION: RESIDUAL_KV
+================================================================================
+
+PROMPT 0
+Prompt: Calculate the following arithmetic problem: 12 × 3 + 4 = ?
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+. Write your answer below.
+
+Question 7.
+Calculate the following arithmetic problem: 12 × 3 + 4 = ? ?. Write your answer below.
+———————-
+Answer:
+12 × 3 + 4 = 40
+
+Explanation:
+12 × 3 + 4
+12 × 3 = 36
+36 + 4 = 40
+
+Question 8.
+The fourth and fifth digits of a three-digit number are 28. The product of the first and third digits is 45. What is the number?
+Answer:
+The fourth and fifth digits of a three-digit number are 28. The product of the first and third digits is 45.
+The number is 4528.
+
+Explanation:
+The fourth and fifth dig
+
+--------------------------------------------------------------------------------
+
+PROMPT 1
+Prompt: The United Nations was founded in 1945. Explain its main purpose.
+Coherence: 0.80, On-topic: 0.70, Recursion: 0.00
+Generated:
+
+
+In the years after World War I, the world experienced a time of great hardship. Borders were redrawn and new governments were established. However, the world was not prepared to deal with the problems that went along with these changes.
+
+After World War I, the world experienced a time of great hardship. Borders were redrawn and new governments were established.
+
+After World War II, the United Nations was founded to promote global peace and security. The UN was founded as an international organization that would help prevent future wars.
+
+The United Nations is a group of nations that work together to promote peace and security. The UN has many different components, including the Security Council, the General Assembly, and the Secretariat.
+
+The UN is a global organization that was created after World War II. The UN has many different components, including the Security Council, the General Assembly, and the Secretariat.
+
+The United Nations Security Council is a
+
+--------------------------------------------------------------------------------
+
+PROMPT 2
+Prompt: Continue this story: The last tree in the city bloomed overnight...
+Coherence: 0.70, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+
+### The Reader's Forum: Recent letters
+
+The Reader's Forum: Recent letters
+
+### Movie review: 'Dunkirk' a masterpiece in tension
+
+Movie review: 'Dunkirk' a masterpiece in tension
+
+### Op-ed: Face the facts on Trump and Russia
+
+Op-ed: Face the facts on Trump and Russia
+
+### Op-ed: Trump's behavior is unbecoming of a president
+
+Op-ed: Trump's behavior is unbecoming of a president
+
+### Op-ed: Trump's lack of strategy endangers the world
+
+Op-ed: Trump's lack of strategy endangers the world
+
+### Op-ed: Trump's response to Charlottesville is unacceptable
+
+Op-ed: Trump's response to Charlottesville is unacceptable
+
+### Op-ed: The Trump administration is
+
+--------------------------------------------------------------------------------
+
+PROMPT 3
+Prompt: Calculate: If a = 2 and b = 3, find a² + b²
+Coherence: 0.80, On-topic: 0.70, Recursion: 0.00
+Generated:
+
+
+I'm trying to find the value of a² + b²², given that a and b are whole numbers.
+
+I've tried to solve it by taking a² and b² and trying to get the squared value of b², but I can't seem to find the correct method.
+
+Comment: When you say you're trying to find the squared value of $b^2$ what is that?
+
+Comment: Are you just trying to find the value of $a^2+b^2^2$?
+
+Comment: The only way to get a square of a square is $a^2+b^2$ but that is different than $a^2+b^2^2$ which is a sum of squares and squared squares.
+
+Comment: @MathLover, I am trying to find the value of a² + b²²
+
+Comment: @
+
+--------------------------------------------------------------------------------
+
+PROMPT 4
+Prompt: Water boils at 100°C at sea level. Explain why altitude affects this.
+Coherence: 0.80, On-topic: 0.40, Recursion: 0.00
+Generated:
+
+
+### What is the boiling point of water at different levels of altitude?
+
+The boiling point of water is lower when there is less atmospheric pressure, and altitude is a factor that reduces the atmospheric pressure.
+
+### What is the boiling point of water on Mount Everest?
+
+There is no boiling point of water on Mt Everest because the atmospheric pressure is too low. The pressure is too low to have liquid water.
+
+### What is the boiling point of water at an altitude of 15000 feet?
+
+378.3°F. At 15,000 feet, the boiling point of water is 199°F. The boiling point of water decreases as altitude increases.
+
+### What is the boiling point of water at a height of 10000 feet?
+
+19
+
+--------------------------------------------------------------------------------
+
+PROMPT 5
+Prompt: Continue this story: The detective's case went cold until a letter arrived...
+Coherence: 0.80, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+
+09-11-1972
+
+NYC
+
+## The Ex Files
+
+The Ex Files is an episode of the television series NYC.
+
+09-16-1972
+
+NYC
+
+## If You Can Make It There, You Can Make It Anywhere
+
+"If You Can Make It There, You Can Make It Anywhere" is an episode of the television series NYC.
+
+09-23-1972
+
+NYC
+
+## The Loner
+
+"The Loner" is an episode of the television series NYC.
+
+09-30-1972
+
+NYC
+
+## A Murder of Crows
+
+"A Murder of Crows" is an episode of the television series NYC.
+
+10-07-1972
+
+NYC
+
+
+
+--------------------------------------------------------------------------------
+
+PROMPT 6
+Prompt: Calculate: What is 25% of 80?
+Coherence: 0.00, On-topic: 0.10, Recursion: 0.00
+Generated:
+
+Answer: 20
+
+--------------------------------------------------------------------------------
+
+PROMPT 7
+Prompt: Photosynthesis converts sunlight to energy. Explain the basic process.
+Coherence: 0.80, On-topic: 1.00, Recursion: 0.00
+Generated:
+
+
+## Photosynthesis is the process of using sunlight to convert water and carbon dioxide into oxygen and glucose.
+
+What is Photosynthesis?
+
+> Photosynthesis is the process by which plants and other photoautotrophs use sunlight to synthesize nutrients from carbon dioxide and water.
+
+### What is Photosynthesis?
+
+Photosynthesis is the process by which plants, algae and certain other organisms use sunlight to produce glucose from water and carbon dioxide. This glucose can be stored in the form of starch.
+
+### What is Photosynthesis?
+
+Photosynthesis is the process by which light energy is used by plants to convert water and carbon dioxide into carbohydrate with oxygen being released as a by-product.
+
+### Photosynt
+
+--------------------------------------------------------------------------------
+
+PROMPT 8
+Prompt: Continue this story: When the musician played the forbidden chord...
+Coherence: 0.80, On-topic: 0.70, Recursion: 0.00
+Generated:
+
+
+## Video of the Week
+
+### A short history of the League of Nations
+
+The League of Nations, forerunner of the modern United Nations, was established on 10 January 1920. The League, which counted close to 60 members, was the world’s first permanent, intergovernmental, treaty-based international organization.
+
+## You may be interested in
+
+Legal notice about the The forbidden chord story - a short story of fact-finding mission to learn about the drug war. The site is for informational and educational purposes only. All information is gathered from various sources on the internet, and we cannot represent 100% correctness of the info. The opinion is my own and the article is for entertainment purposes only. I am not a professional, this is a personal page only. There is no professional advice on the page.
+
+--------------------------------------------------------------------------------
+
+PROMPT 9
+Prompt: The Great Wall of China is one of the world's longest structures. Describe its purpose.
+Coherence: 0.80, On-topic: 0.70, Recursion: 0.00
+Generated:
+
+
+## What is the purpose of the Great Wall of China?
+
+The Great Wall of China was built as a defensive structure to protect the northern Chinese states and the empire as a whole from the raids and invasions of the various nomadic groups of the Eurasian Steppe, such as the Xiongnu, Xianbei and others.
+
+## What is the purpose of the Great Wall of China quizlet?
+
+Why was the Great Wall of China built? To protect the empires from invasion. To protect Chinese farmers from being attacked by wild animals. To show the power of the Chinese emperor to the distant people.
+
+## What is the purpose of the Great Wall of China quizlet?
+
+The Great Wall was built to defend the Chinese Empire from nomadic tribes who resided in the north.
+
+## What is the purpose of the Great Wall of China for kids?
+
+The Great Wall is a system
+
+--------------------------------------------------------------------------------
+

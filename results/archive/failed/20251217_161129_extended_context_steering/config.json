@@ -1,0 +1,12 @@
+{
+  "experiment": "extended_context_steering",
+  "params": {
+    "max_new_tokens": 500,
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_prompts": 50,
+    "n_test_prompts": 10,
+    "segment_size": 50,
+    "steering_alpha": 2.0,
+    "steering_layer": 27
+  }
+}

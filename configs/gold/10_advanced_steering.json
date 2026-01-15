@@ -1,0 +1,16 @@
+{
+  "experiment": "p10_advanced_steering",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_prompts": 50,
+    "alphas": [1.0, 2.0, 5.0]
+  }
+}
+
+
+
+
+
+
+
+

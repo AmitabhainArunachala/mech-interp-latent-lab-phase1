@@ -1,0 +1,24 @@
+{
+  "experiment": "steering_layer_matrix",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "layer": 27,
+    "n_prompts": 50,
+    "n_test_pairs": 20,
+    "max_new_tokens": 100,
+    "temperature": 0.7,
+    "recursive_groups": ["L4_full", "L5_refined"],
+    "baseline_groups": ["baseline_math", "baseline_factual", "baseline_instructional"],
+    "extract_layers": [20, 24, 25, 26, 27, 28],
+    "apply_layers": [20, 24, 25, 26, 27, 28],
+    "alpha": 1.0
+  }
+}
+
+
+
+
+
+
+
+
