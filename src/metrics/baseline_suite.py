@@ -38,34 +38,59 @@ from .rv import compute_rv, participation_ratio
 from .mode_score import ModeScoreMetric
 from .logit_lens import compute_logit_lens_trajectory, LogitLensResult
 from .logit_diff import LogitDiffMetric, LogitDiffResult
+from .extended import (
+    compute_cosine_similarity,
+    compute_spectral_stats,
+    compute_attention_entropy,
+    SpectralStats,
+)
 
 
 @dataclass
 class BaselineMetrics:
     """Container for all baseline metrics for a single prompt."""
-    
+
     # Geometric (our novel metric)
     rv: float
     pr_early: float  # Participation ratio at early layer
     pr_late: float   # Participation ratio at late layer
-    
+
     # Nanda-standard (linear in residual stream)
     logit_diff: float
     logit_diff_details: Optional[LogitDiffResult] = None
-    
+
     # Logit lens
     crystallization_layer: Optional[int] = None
     min_entropy_layer: Optional[int] = None
     final_prediction: Optional[str] = None
     final_prob: Optional[float] = None
-    
+
     # Mode score (behavioral classifier)
     mode_score_m: Optional[float] = None
-    
+
     # Activation norms (diagnostic)
     residual_norm_early: Optional[float] = None
     residual_norm_late: Optional[float] = None
-    
+
+    # === EXTENDED METRICS (publication-grade) ===
+
+    # Directional alignment (complements R_V dimensionality)
+    cosine_early_late: Optional[float] = None
+
+    # Spectral shape at early layer
+    spectral_early_top1_ratio: Optional[float] = None
+    spectral_early_spectral_gap: Optional[float] = None
+    spectral_early_effective_rank: Optional[float] = None
+
+    # Spectral shape at late layer
+    spectral_late_top1_ratio: Optional[float] = None
+    spectral_late_spectral_gap: Optional[float] = None
+    spectral_late_effective_rank: Optional[float] = None
+
+    # Attention focus at readout layer
+    attention_entropy: Optional[float] = None
+    attention_max_weight: Optional[float] = None
+
     # Trajectories (optional, for detailed analysis)
     logit_diff_trajectory: Optional[List[LogitDiffResult]] = field(default=None, repr=False)
     logit_lens_trajectory: Optional[List[LogitLensResult]] = field(default=None, repr=False)
@@ -73,6 +98,7 @@ class BaselineMetrics:
     def to_dict(self) -> Dict[str, Any]:
         """Convert to flat dictionary for CSV/JSON output."""
         d = {
+            # Core metrics
             "rv": self.rv,
             "pr_early": self.pr_early,
             "pr_late": self.pr_late,
@@ -84,15 +110,25 @@ class BaselineMetrics:
             "mode_score_m": self.mode_score_m,
             "residual_norm_early": self.residual_norm_early,
             "residual_norm_late": self.residual_norm_late,
+            # Extended metrics (publication-grade)
+            "cosine_early_late": self.cosine_early_late,
+            "spectral_early_top1_ratio": self.spectral_early_top1_ratio,
+            "spectral_early_spectral_gap": self.spectral_early_spectral_gap,
+            "spectral_early_effective_rank": self.spectral_early_effective_rank,
+            "spectral_late_top1_ratio": self.spectral_late_top1_ratio,
+            "spectral_late_spectral_gap": self.spectral_late_spectral_gap,
+            "spectral_late_effective_rank": self.spectral_late_effective_rank,
+            "attention_entropy": self.attention_entropy,
+            "attention_max_weight": self.attention_max_weight,
         }
-        
+
         # Add logit diff details if available
         if self.logit_diff_details:
             d["logit_diff_top_recursive_token"] = self.logit_diff_details.top_recursive_token
             d["logit_diff_top_recursive_logit"] = self.logit_diff_details.top_recursive_logit
             d["logit_diff_top_baseline_token"] = self.logit_diff_details.top_baseline_token
             d["logit_diff_top_baseline_logit"] = self.logit_diff_details.top_baseline_logit
-        
+
         return d
 
 
@@ -253,7 +289,38 @@ class BaselineMetricsSuite:
         # === Activation Norms ===
         residual_norm_early = hidden_states[self.early_layer][0, -self.window_size:, :].norm().item()
         residual_norm_late = hidden_states[self.late_layer][0, -self.window_size:, :].norm().item()
-        
+
+        # === EXTENDED METRICS (publication-grade) ===
+
+        # Get V-projections for extended metrics
+        from ..core.hooks import capture_v_projection
+
+        v_early = None
+        v_late = None
+
+        with capture_v_projection(self.model, self.early_layer) as storage_early:
+            with torch.no_grad():
+                self.model(**inputs)
+            v_early = storage_early.get("v")
+
+        with capture_v_projection(self.model, self.late_layer) as storage_late:
+            with torch.no_grad():
+                self.model(**inputs)
+            v_late = storage_late.get("v")
+
+        # Cosine similarity (directional alignment)
+        cosine = compute_cosine_similarity(v_early, v_late, self.window_size)
+
+        # Spectral stats at both layers
+        spectral_early = compute_spectral_stats(v_early, self.window_size)
+        spectral_late = compute_spectral_stats(v_late, self.window_size)
+
+        # Attention entropy at late layer
+        attn_entropy, attn_max = compute_attention_entropy(
+            self.model, self.tokenizer, prompt, self.late_layer,
+            head=None, device=self.device
+        )
+
         return BaselineMetrics(
             rv=rv,
             pr_early=pr_early,
@@ -267,6 +334,16 @@ class BaselineMetricsSuite:
             mode_score_m=mode_score,
             residual_norm_early=residual_norm_early,
             residual_norm_late=residual_norm_late,
+            # Extended metrics
+            cosine_early_late=cosine,
+            spectral_early_top1_ratio=spectral_early.top1_ratio,
+            spectral_early_spectral_gap=spectral_early.spectral_gap,
+            spectral_early_effective_rank=spectral_early.effective_rank,
+            spectral_late_top1_ratio=spectral_late.top1_ratio,
+            spectral_late_spectral_gap=spectral_late.spectral_gap,
+            spectral_late_effective_rank=spectral_late.effective_rank,
+            attention_entropy=attn_entropy,
+            attention_max_weight=attn_max,
             logit_diff_trajectory=logit_diff_trajectory,
             logit_lens_trajectory=logit_lens_trajectory,
         )
