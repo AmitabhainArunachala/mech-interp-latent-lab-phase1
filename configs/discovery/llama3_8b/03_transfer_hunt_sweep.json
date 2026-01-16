@@ -1,5 +1,5 @@
 {
-  "experiment": "mlp_combined_sufficiency_test",
+  "experiment": "combined_mlp_sufficiency_test",
   "description": "Phase 4: Transfer sweet spot hunt - sweep L0-L10 MLP steering",
   "params": {
     "model": "meta-llama/Meta-Llama-3-8B",

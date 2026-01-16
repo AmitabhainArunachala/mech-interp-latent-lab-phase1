@@ -1,0 +1,35 @@
+{
+  "experiment": "rv_l27_causal_validation",
+  "model": {
+    "device": "cuda",
+    "name": "meta-llama/Meta-Llama-3-8B-Instruct"
+  },
+  "params": {
+    "early_layer": 5,
+    "max_length": 512,
+    "max_pairs": 80,
+    "measure_target_after_wrong_patch": false,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "target_layer": 27,
+    "window": 16,
+    "wrong_layer": 21
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "results": {
+    "phase": "phase2_generalization/llama3_8b/04_readout_validation",
+    "root": "results"
+  },
+  "run_name": "llama3_8b_readout_validation",
+  "seed": 42
+}

@@ -1,0 +1,29 @@
+{
+  "experiment": "mlp_ablation_necessity",
+  "model_metadata": {
+    "early_layer": 5,
+    "head_dim": 128,
+    "hidden_size": 4096,
+    "is_gqa": true,
+    "late_layer": 27,
+    "name": "mistralai/Mixtral-8x7B-v0.1",
+    "num_heads": 32,
+    "num_kv_heads": 8,
+    "num_layers": 32
+  },
+  "params": {
+    "layer": 6,
+    "max_new_tokens": 200,
+    "model": "mistralai/Mixtral-8x7B-v0.1",
+    "n_pairs": 80,
+    "seed": 42,
+    "window_size": 16
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "results": {
+    "phase": "phase2_generalization/mixtral_8x7b_v0_1/02_source_hunt",
+    "root": "results"
+  },
+  "run_name": "mixtral_8x7b_v0_1_ablation_l6",
+  "seed": 42
+}

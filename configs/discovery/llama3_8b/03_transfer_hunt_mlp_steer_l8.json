@@ -1,0 +1,20 @@
+{
+  "experiment": "combined_mlp_sufficiency_test",
+  "params": {
+    "layers": [
+      8
+    ],
+    "max_new_tokens": 200,
+    "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+    "n_pairs": 30,
+    "seed": 42,
+    "window_size": 16
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "results": {
+    "phase": "phase2_generalization/llama3_8b/03_transfer_hunt",
+    "root": "results"
+  },
+  "run_name": "llama3_8b_steer_l8",
+  "seed": 42
+}

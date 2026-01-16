@@ -1,0 +1,34 @@
+{
+  "experiment": "head_ablation_validation",
+  "model": {
+    "device": "cuda",
+    "name": "meta-llama/Meta-Llama-3-8B-Instruct"
+  },
+  "params": {
+    "baseline_groups": [
+      "baseline_math",
+      "baseline_factual",
+      "baseline_creative"
+    ],
+    "control_layer": 21,
+    "early_layer": 5,
+    "max_length": 512,
+    "n_baseline": 50,
+    "n_recursive": 50,
+    "recursive_groups": [
+      "champions",
+      "L5_refined",
+      "L4_full",
+      "L3_deeper"
+    ],
+    "target_layer": 27,
+    "window": 16
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "results": {
+    "phase": "phase2_generalization/llama3_8b/05_head_identification",
+    "root": "results"
+  },
+  "run_name": "llama3_8b_head_ablation",
+  "seed": 42
+}

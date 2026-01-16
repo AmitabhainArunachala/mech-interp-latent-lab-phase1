@@ -1,9 +1,20 @@
 {
   "experiment": "cross_architecture_validation",
+  "model_metadata": {
+    "early_layer": 5,
+    "head_dim": 128,
+    "hidden_size": 4096,
+    "is_gqa": true,
+    "late_layer": 27,
+    "name": "mistralai/Mistral-7B-v0.1",
+    "num_heads": 32,
+    "num_kv_heads": 8,
+    "num_layers": 32
+  },
   "params": {
     "early_layer": 5,
     "late_layer": 27,
-    "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+    "model": "mistralai/Mistral-7B-v0.1",
     "n_champions": 50,
     "n_length_matched": 50,
     "n_pseudo_recursive": 50,
@@ -19,9 +30,9 @@
   },
   "prompt_bank_version": "75e7c1b8dcebc24e",
   "results": {
-    "phase": "phase2_generalization/llama3_8b/01_baseline_rv",
+    "phase": "phase2_generalization/mistral_7b_v0_1/01_baseline_rv",
     "root": "results"
   },
-  "run_name": "llama3_8b_baseline_rv",
+  "run_name": "mistral_7b_v0_1_baseline_rv",
   "seed": 42
 }

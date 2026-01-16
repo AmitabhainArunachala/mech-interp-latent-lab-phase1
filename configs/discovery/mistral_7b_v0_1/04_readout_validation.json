@@ -1,0 +1,46 @@
+{
+  "experiment": "rv_l27_causal_validation",
+  "model": {
+    "device": "cuda",
+    "name": "mistralai/Mistral-7B-v0.1"
+  },
+  "model_metadata": {
+    "early_layer": 5,
+    "head_dim": 128,
+    "hidden_size": 4096,
+    "is_gqa": true,
+    "late_layer": 27,
+    "name": "mistralai/Mistral-7B-v0.1",
+    "num_heads": 32,
+    "num_kv_heads": 8,
+    "num_layers": 32
+  },
+  "params": {
+    "early_layer": 5,
+    "max_length": 512,
+    "max_pairs": 80,
+    "measure_target_after_wrong_patch": false,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "target_layer": 27,
+    "window": 16,
+    "wrong_layer": 21
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "results": {
+    "phase": "phase2_generalization/mistral_7b_v0_1/04_readout_validation",
+    "root": "results"
+  },
+  "run_name": "mistral_7b_v0_1_readout_validation",
+  "seed": 42
+}
