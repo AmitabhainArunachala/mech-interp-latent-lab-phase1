@@ -14,7 +14,7 @@
 ```
 R_V = PR_late / PR_early
 
-PR = (Σλᵢ)² / Σλᵢ²    (Participation Ratio from SVD singular values)
+PR = (Σλᵢ²)² / Σ(λᵢ²)²    (Participation Ratio from SVD singular values)
 ```
 
 **What it measures**: Geometric contraction in Value matrix column space. R_V < 1.0 indicates the late-layer representation occupies fewer effective dimensions than the early-layer representation.
@@ -39,10 +39,10 @@ PR = (Σλᵢ)² / Σλᵢ²    (Participation Ratio from SVD singular values)
 ```python
 from src.metrics.rv import compute_rv, participation_ratio
 
-# Single measurement
-rv = compute_rv(v_early, v_late, window=16)
+# Single measurement (prompt-time, model + tokenizer)
+rv = compute_rv(model, tokenizer, prompt_text, window=16)
 
-# With breakdown
+# With breakdown (using captured V-projections)
 pr_early = participation_ratio(v_early, window=16)
 pr_late = participation_ratio(v_late, window=16)
 rv = pr_late / pr_early
@@ -195,6 +195,92 @@ print(result.crystallization_layer, result.min_entropy)
 
 ---
 
+## Extended Metrics (Publication-Grade)
+
+These metrics complement R_V with directional and spectral information.
+
+**Location**: `src/metrics/extended.py`
+
+### 7. Cosine Similarity (Early-Late)
+
+**Definition**:
+```
+cos_sim = early_repr · late_repr / (||early|| × ||late||)
+```
+
+**What it measures**: Directional alignment between early and late layer representations. Complements R_V (dimensionality) with direction information.
+
+**Interpretation**:
+| Value | Interpretation |
+|-------|----------------|
+| cos ≈ 1.0 | Same direction (alignment preserved) |
+| cos ≈ 0 | Orthogonal (direction changed) |
+| cos < 0 | Opposite direction (rare) |
+
+**Hypothesis**: Recursive prompts may show *both* contraction (R_V < 1) *and* directional convergence (high cosine).
+
+---
+
+### 8. Spectral Shape Statistics
+
+**Definition**:
+```
+top1_ratio = σ₁ / Σσᵢ         # Dominance of first singular value
+spectral_gap = σ₁ - σ₂        # Separation of top direction
+effective_rank = exp(H(σ²))   # exp(entropy of normalized σ²)
+condition_number = σ_max/σ_min # Numerical stability
+```
+
+**What they measure**: The *shape* of the singular value distribution, beyond the single-number PR summary.
+
+**Interpretation**:
+| Metric | High Value | Low Value |
+|--------|------------|-----------|
+| top1_ratio | One dominant direction | Distributed |
+| spectral_gap | Clean separation | Noise |
+| effective_rank | Many dimensions active | Collapsed |
+| condition_number | Ill-conditioned | Well-conditioned |
+
+**Why it matters**: R_V tells us dimensions collapse. Spectral shape tells us *how* they collapse—to one dominant direction (clean signal) or diffusely (noise).
+
+**Usage**:
+```python
+from src.metrics.extended import compute_spectral_stats, SpectralStats
+
+stats: SpectralStats = compute_spectral_stats(v_projection, window_size=16)
+print(stats.top1_ratio, stats.spectral_gap, stats.effective_rank)
+```
+
+---
+
+### 9. Attention Entropy
+
+**Definition**:
+```
+H(attn) = -Σ aᵢ log(aᵢ)   # Shannon entropy of attention weights
+```
+
+**What it measures**: How "focused" vs "diffuse" attention is at the readout layer.
+
+**Interpretation**:
+| Entropy | Interpretation |
+|---------|----------------|
+| Low | Focused on few positions (sharp attention) |
+| High | Spread across many positions (diffuse) |
+
+**Hypothesis**: Recursive prompts may show *lower* attention entropy at late layers—the model "knows where to look" for the recursive signal.
+
+**Usage**:
+```python
+from src.metrics.extended import compute_attention_entropy
+
+entropy, max_weight = compute_attention_entropy(
+    model, tokenizer, prompt, layer=27, head=None, device="cuda"
+)
+```
+
+---
+
 ## Baseline Metrics Suite
 
 **Location**: `src/metrics/baseline_suite.py`
@@ -331,6 +417,24 @@ To add a new metric:
    ```
 4. Add to `BaselineMetricsSuite` if it should be standard
 5. Document in this file
+
+---
+
+## Complete Metrics Inventory
+
+| # | Metric | Location | Type | Purpose |
+|---|--------|----------|------|---------|
+| 1 | R_V | `rv.py` | Core | Geometric contraction |
+| 2 | Cohen's d | `baseline_suite.py` | Stats | Effect size |
+| 3 | 95% CI | `baseline_suite.py` | Stats | Confidence bounds |
+| 4 | Mode Score M | `mode_score.py` | Behavioral | Next-token classifier |
+| 5 | Logit Diff | `logit_diff.py` | Nanda-std | Attribution metric |
+| 6 | Logit Lens | `logit_lens.py` | Nanda-std | Crystallization layer |
+| 7 | Cosine Similarity | `extended.py` | Extended | Directional alignment |
+| 8 | Spectral Stats | `extended.py` | Extended | Spectrum shape |
+| 9 | Attention Entropy | `extended.py` | Extended | Readout focus |
+
+**Total: 9 metrics** (6 core + 3 extended)
 
 ---
 
