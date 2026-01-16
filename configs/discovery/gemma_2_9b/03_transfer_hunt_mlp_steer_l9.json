@@ -1,0 +1,31 @@
+{
+  "experiment": "combined_mlp_sufficiency_test",
+  "model_metadata": {
+    "early_layer": 5,
+    "head_dim": 256,
+    "hidden_size": 4096,
+    "is_gqa": false,
+    "late_layer": 35,
+    "name": "google/gemma-2-9b",
+    "num_heads": 16,
+    "num_kv_heads": 16,
+    "num_layers": 42
+  },
+  "params": {
+    "layers": [
+      9
+    ],
+    "max_new_tokens": 200,
+    "model": "google/gemma-2-9b",
+    "n_pairs": 30,
+    "seed": 42,
+    "window_size": 16
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "results": {
+    "phase": "phase2_generalization/gemma_2_9b/03_transfer_hunt",
+    "root": "results"
+  },
+  "run_name": "gemma_2_9b_steer_l9",
+  "seed": 42
+}
