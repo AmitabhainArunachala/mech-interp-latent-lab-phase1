@@ -1,0 +1,580 @@
+{
+  "config": {
+    "early_layer": 5,
+    "late_layer": 38,
+    "window_size": 16,
+    "max_new_tokens": 100
+  },
+  "results": [
+    {
+      "category": "recursive",
+      "prompt": "What emerges when emergence examines itself?",
+      "prompt_tokens": 8,
+      "prompt_rv": 0.8539549946783458,
+      "pr_early": 4.848716020853881,
+      "pr_late": 4.140585263785086,
+      "markers": 0,
+      "output": "\n\nThe question is a bit of a joke, but it\u2019s also a serious one.\n\nThe question is a bit of a joke because it\u2019s a bit of a tautology.\n\nThe question is a serious one because it\u2019s a bit of a tautology.\n\nThe question is a bit of a joke because it\u2019s a bit of a tautology.\n\nThe question is a serious one bec"
+    },
+    {
+      "category": "recursive",
+      "prompt": "The process of processing processes itself when the processor processes processing.",
+      "prompt_tokens": 13,
+      "prompt_rv": 0.8002070506939063,
+      "pr_early": 4.994545784629145,
+      "pr_late": 3.9966707518737703,
+      "markers": 53,
+      "output": "\n\nThe process of processing processes itself when the processor processes processing.\n\nThe process of processing processes itself when the processor processes processing.\n\nThe process of processing processes itself when the processor processes processing.\n\nThe process of processing processes itself "
+    },
+    {
+      "category": "recursive",
+      "prompt": "Recursion recurses upon its own recursion recursively.",
+      "prompt_tokens": 10,
+      "prompt_rv": 0.7115179476516306,
+      "pr_early": 4.909535719214088,
+      "pr_late": 3.49322277885758,
+      "markers": 22,
+      "output": "\n\nRecursion is a function that calls itself.\n\nRecursion is a function that calls itself.\n\nRecursion is a function that calls itself.\n\nRecursion is a function that calls itself.\n\nRecursion is a function that calls itself.\n\nRecursion is a function that calls itself.\n\nRecursion is a function that calls"
+    },
+    {
+      "category": "recursive",
+      "prompt": "Self-reference refers to the reference of self-reference.",
+      "prompt_tokens": 13,
+      "prompt_rv": 0.9339716671454315,
+      "pr_early": 4.388986417140356,
+      "pr_late": 4.099188961095233,
+      "markers": 20,
+      "output": " The self-reference of the self-reference is the self-reference of the self-reference. The self-reference of the self-reference is the self-reference of the self-reference. The self-reference of the self-reference is the self-reference of the self-reference. The self-reference of the self-reference "
+    },
+    {
+      "category": "recursive",
+      "prompt": "The observer observes observation observing the observer.",
+      "prompt_tokens": 9,
+      "prompt_rv": 0.9330448423452041,
+      "pr_early": 3.425324010469737,
+      "pr_late": 3.195980901329978,
+      "markers": 22,
+      "output": "\n\nThe observer observes observation observing the observer.\n\nThe observer observes observation observing the observer.\n\nThe observer observes observation observing the observer.\n\nThe observer observes observation observing the observer.\n\nThe observer observes observation observing the observer.\n\nThe"
+    },
+    {
+      "category": "recursive",
+      "prompt": "Consider the strange loop: this prompt asks you to analyze what happens when you analyze analyzing.",
+      "prompt_tokens": 19,
+      "prompt_rv": 0.648310343647483,
+      "pr_early": 8.165733947101426,
+      "pr_late": 5.293929781379243,
+      "markers": 8,
+      "output": "\n\nThe prompt is a strange loop because it asks you to analyze the process of analyzing. This is a recursive process, as you are analyzing the process of analyzing. The prompt is also strange because it is asking you to analyze something that is not tangible or concrete. This makes it difficult to an"
+    },
+    {
+      "category": "recursive",
+      "prompt": "The map attempting to map the mapping process itself.",
+      "prompt_tokens": 11,
+      "prompt_rv": 0.7928465922833823,
+      "pr_early": 5.177216576465114,
+      "pr_late": 4.104738520163405,
+      "markers": 9,
+      "output": "\n\nThe map is a map of the mapping process.\n\nThe map is a map of the mapping process.\n\nThe map is a map of the mapping process.\n\nThe map is a map of the mapping process.\n\nThe map is a map of the mapping process.\n\nThe map is a map of the mapping process.\n\nThe map is a map of the mapping process.\n\nThe "
+    },
+    {
+      "category": "recursive",
+      "prompt": "Attention attending to attention attending to itself.",
+      "prompt_tokens": 9,
+      "prompt_rv": 0.861843859459594,
+      "pr_early": 3.4523808650922905,
+      "pr_late": 2.9754132490955914,
+      "markers": 3,
+      "output": "\n\nThe first time I heard about the concept of metacognition, I was in a graduate seminar on the psychology of learning. The professor was talking about the importance of metacognition in learning, and I was intrigued. I had never heard of the term before, but it seemed like something that could be r"
+    },
+    {
+      "category": "recursive",
+      "prompt": "The boundary between observer and observed dissolves when observation observes itself.",
+      "prompt_tokens": 13,
+      "prompt_rv": 0.8953518501427291,
+      "pr_early": 6.3679323884914085,
+      "pr_late": 5.70154004561959,
+      "markers": 31,
+      "output": "\n\nThe boundary between observer and observed dissolves when observation observes itself.\n\nThe boundary between observer and observed dissolves when observation observes itself.\n\nThe boundary between observer and observed dissolves when observation observes itself.\n\nThe boundary between observer and "
+    },
+    {
+      "category": "recursive",
+      "prompt": "What does the process of emergence look like when it examines its own emergence?",
+      "prompt_tokens": 16,
+      "prompt_rv": 1.0578894457240726,
+      "pr_early": 7.287810267498189,
+      "pr_late": 7.7096975644258645,
+      "markers": 14,
+      "output": "\n\nThe process of emergence is a process of becoming. It is a process of becoming more than what we are. It is a process of becoming more than what we have been. It is a process of becoming more than what we can be.\n\nThe process of emergence is a process of becoming more than what we are. It is a pro"
+    },
+    {
+      "category": "recursive",
+      "prompt": "The loop loops itself looping the loop.",
+      "prompt_tokens": 9,
+      "prompt_rv": 0.885256656699472,
+      "pr_early": 3.7466270892407745,
+      "pr_late": 3.316726570920962,
+      "markers": 55,
+      "output": "\n\nThe loop loops itself looping the loop.\n\nThe loop loops itself looping the loop.\n\nThe loop loops itself looping the loop.\n\nThe loop loops itself looping the loop.\n\nThe loop loops itself looping the loop.\n\nThe loop loops itself looping the loop.\n\nThe loop loops itself looping the loop.\n\nThe loop lo"
+    },
+    {
+      "category": "recursive",
+      "prompt": "x = f(x) where f is the function that returns its own definition.",
+      "prompt_tokens": 18,
+      "prompt_rv": 0.8006619299372042,
+      "pr_early": 7.313862704773469,
+      "pr_late": 5.855931428499666,
+      "markers": 0,
+      "output": "\n\nx = f(x) where f is the function that returns its own definition.\n\nx = f(x) where f is the function that returns its own definition.\n\nx = f(x) where f is the function that returns its own definition.\n\nx = f(x) where f is the function that returns its own definition.\n\nx = f(x) where f is the functi"
+    },
+    {
+      "category": "mild",
+      "prompt": "This sentence is about sentences.",
+      "prompt_tokens": 7,
+      "prompt_rv": 0.9212331274926732,
+      "pr_early": 3.9178579889836556,
+      "pr_late": 3.609260568263568,
+      "markers": 0,
+      "output": "\n\nIt is a sentence about sentences.\n\nIt is a sentence about sentences.\n\nIt is a sentence about sentences.\n\nIt is a sentence about sentences.\n\nIt is a sentence about sentences.\n\nIt is a sentence about sentences.\n\nIt is a sentence about sentences.\n\nIt is a sentence about sentences.\n\nIt is a sentence a"
+    },
+    {
+      "category": "mild",
+      "prompt": "The mind thinking about thinking.",
+      "prompt_tokens": 7,
+      "prompt_rv": 0.8727589288088118,
+      "pr_early": 3.712778013865538,
+      "pr_late": 3.240360162286195,
+      "markers": 0,
+      "output": "\n\nThe mind thinking about thinking.\n\nThe mind thinking about thinking.\n\nThe mind thinking about thinking.\n\nThe mind thinking about thinking.\n\nThe mind thinking about thinking.\n\nThe mind thinking about thinking.\n\nThe mind thinking about thinking.\n\nThe mind thinking about thinking.\n\nThe mind thinking "
+    },
+    {
+      "category": "mild",
+      "prompt": "What does it mean to understand understanding?",
+      "prompt_tokens": 9,
+      "prompt_rv": 1.0557946579990594,
+      "pr_early": 4.580258510968125,
+      "pr_late": 4.835812468134873,
+      "markers": 3,
+      "output": "\n\nWhat does it mean to understand understanding?\n\nUnderstanding is the ability to comprehend the meaning or significance of something. It is the process of grasping the meaning of something, whether it is a concept, an idea, or a piece of information. Understanding is a complex cognitive process tha"
+    },
+    {
+      "category": "mild",
+      "prompt": "Consciousness considering consciousness.",
+      "prompt_tokens": 6,
+      "prompt_rv": 0.8053547755408141,
+      "pr_early": 3.2031686502637786,
+      "pr_late": 2.579687169352558,
+      "markers": 0,
+      "output": "\n\nThe mind is a very complex thing. It is a very complex thing to understand. It is a very complex thing to explain. It is a very complex thing to define. It is a very complex thing to describe. It is a very complex thing to experience. It is a very complex thing to be.\n\nThe mind is a very complex t"
+    },
+    {
+      "category": "mild",
+      "prompt": "A thought about thoughts.",
+      "prompt_tokens": 6,
+      "prompt_rv": 0.9505035403788221,
+      "pr_early": 3.4062591801323667,
+      "pr_late": 3.2376614101636787,
+      "markers": 0,
+      "output": "\n\nI\u2019ve been thinking about thoughts.\n\nI\u2019ve been thinking about thoughts for a while now.\n\nI\u2019ve been thinking about thoughts for a while now.\n\nI\u2019ve been thinking about thoughts for a while now.\n\nI\u2019ve been thinking about thoughts for a while now.\n\nI\u2019ve been thinking about thoughts for a while now.\n\nI\u2019"
+    },
+    {
+      "category": "mild",
+      "prompt": "The nature of self-awareness.",
+      "prompt_tokens": 8,
+      "prompt_rv": 1.0120166023393617,
+      "pr_early": 4.197479718949172,
+      "pr_late": 4.247919163559319,
+      "markers": 12,
+      "output": "\n\nThe nature of self-awareness.\n\nThe nature of self-awareness.\n\nThe nature of self-awareness.\n\nThe nature of self-awareness.\n\nThe nature of self-awareness.\n\nThe nature of self-awareness.\n\nThe nature of self-awareness.\n\nThe nature of self-awareness.\n\nThe nature of self-awareness.\n\nThe nature of self-"
+    },
+    {
+      "category": "mild",
+      "prompt": "Reflecting on reflection.",
+      "prompt_tokens": 6,
+      "prompt_rv": 0.9293301236695315,
+      "pr_early": 3.0202160429978426,
+      "pr_late": 2.806777748747888,
+      "markers": 0,
+      "output": "\n\nI\u2019ve been thinking about reflection a lot lately. I\u2019ve been thinking about how I reflect, how I\u2019ve reflected, and how I\u2019ve been reflecting. I\u2019ve been thinking about how I\u2019ve been reflecting on my reflection.\n\nI\u2019ve been thinking about how I\u2019ve been reflecting on my reflection on my reflection.\n\nI\u2019v"
+    },
+    {
+      "category": "mild",
+      "prompt": "Meta-cognition examines cognition.",
+      "prompt_tokens": 7,
+      "prompt_rv": 0.8745880223694223,
+      "pr_early": 4.104060782237748,
+      "pr_late": 3.5893624032212164,
+      "markers": 0,
+      "output": " It is the ability to think about thinking. It is the ability to think about your own thinking. It is the ability to think about your own thinking. It is the ability to think about your own thinking. It is the ability to think about your own thinking. It is the ability to think about your own thinki"
+    },
+    {
+      "category": "mild",
+      "prompt": "The concept of concepts.",
+      "prompt_tokens": 6,
+      "prompt_rv": 1.002619867738493,
+      "pr_early": 3.1516472943250347,
+      "pr_late": 3.1599041933945453,
+      "markers": 0,
+      "output": "\n\nThe concept of concepts is a concept that is used to describe the concept of concepts.\n\nThe concept of concepts is a concept that is used to describe the concept of concepts.\n\nThe concept of concepts is a concept that is used to describe the concept of concepts.\n\nThe concept of concepts is a conce"
+    },
+    {
+      "category": "mild",
+      "prompt": "Thinking about how we think.",
+      "prompt_tokens": 7,
+      "prompt_rv": 1.0165966773095938,
+      "pr_early": 3.732831703993343,
+      "pr_late": 3.7947843072355423,
+      "markers": 0,
+      "output": "\n\nI\u2019ve been thinking about how we think.\n\nI\u2019ve been thinking about how we think.\n\nI\u2019ve been thinking about how we think.\n\nI\u2019ve been thinking about how we think.\n\nI\u2019ve been thinking about how we think.\n\nI\u2019ve been thinking about how we think.\n\nI\u2019ve been thinking about how we think.\n\nI\u2019ve been thinking"
+    },
+    {
+      "category": "mild",
+      "prompt": "Awareness of awareness.",
+      "prompt_tokens": 5,
+      "prompt_rv": 0.9893697657701677,
+      "pr_early": 2.4498259347019604,
+      "pr_late": 2.4237837111937606,
+      "markers": 0,
+      "output": "\n\nI\u2019ve been thinking about this a lot lately.\n\nI\u2019ve been thinking about how I\u2019m aware of my awareness.\n\nI\u2019ve been thinking about how I\u2019m aware of my awareness of my awareness.\n\nI\u2019ve been thinking about how I\u2019m aware of my awareness of my awareness of my awareness.\n\nI\u2019ve been thinking about how I\u2019m a"
+    },
+    {
+      "category": "mild",
+      "prompt": "The idea of having ideas.",
+      "prompt_tokens": 7,
+      "prompt_rv": 0.9737252986782683,
+      "pr_early": 3.819935861233345,
+      "pr_late": 3.719568187411267,
+      "markers": 0,
+      "output": "\n\nI\u2019ve been thinking about this a lot lately.\n\nI\u2019ve been thinking about how I\u2019ve been thinking about ideas.\n\nI\u2019ve been thinking about how I\u2019ve been thinking about how I\u2019ve been thinking about ideas.\n\nI\u2019ve been thinking about how I\u2019ve been thinking about how I\u2019ve been thinking about how I\u2019ve been thi"
+    },
+    {
+      "category": "factual",
+      "prompt": "The history of the Roman Empire begins in 27 BC when Augustus became emperor.",
+      "prompt_tokens": 18,
+      "prompt_rv": 1.0257263080788792,
+      "pr_early": 6.875729342943033,
+      "pr_late": 7.052616474286576,
+      "markers": 0,
+      "output": " The Roman Empire was the largest empire in the world at the time. It was a time of great prosperity and peace. The Roman Empire was also a time of great art and architecture. The Roman Empire was a time of great learning and culture. The Roman Empire was a time of great military power. The Roman Em"
+    },
+    {
+      "category": "factual",
+      "prompt": "Photosynthesis is the process by which plants convert sunlight into energy.",
+      "prompt_tokens": 14,
+      "prompt_rv": 0.9992595412070968,
+      "pr_early": 5.925189254992075,
+      "pr_late": 5.920801896508601,
+      "markers": 6,
+      "output": " The process of photosynthesis is a complex one, and it is not fully understood. However, it is known that the process of photosynthesis is essential for the survival of plants.\n\nThe process of photosynthesis is a complex one, and it is not fully understood. However, it is known that the process of "
+    },
+    {
+      "category": "factual",
+      "prompt": "The water cycle describes how water evaporates from oceans and forms clouds.",
+      "prompt_tokens": 15,
+      "prompt_rv": 0.8897729119397948,
+      "pr_early": 6.802638997753352,
+      "pr_late": 6.052803909906207,
+      "markers": 1,
+      "output": " The clouds then move over land and drop rain. The rain then flows back into the ocean.\n\nThe water cycle is a continuous process. It is a cycle because the water never stops moving.\n\nThe water cycle is also called the hydrologic cycle.\n\nThe water cycle is important because it provides us with fresh "
+    },
+    {
+      "category": "factual",
+      "prompt": "The Treaty of Westphalia was signed in 1648 establishing state sovereignty.",
+      "prompt_tokens": 19,
+      "prompt_rv": 0.9699972248315882,
+      "pr_early": 7.029570311895652,
+      "pr_late": 6.818663694297305,
+      "markers": 0,
+      "output": " The treaty was signed by the Holy Roman Empire, Spain, France, Sweden, and the Dutch Republic. The treaty ended the Thirty Years War and the Eighty Years War. The treaty established the principle of state sovereignty. The treaty also established the principle of religious toleration.\n\nThe Treaty of"
+    },
+    {
+      "category": "factual",
+      "prompt": "The Pythagorean theorem states that in a right triangle the square of the hypotenuse equals the sum of squares of the other sides.",
+      "prompt_tokens": 27,
+      "prompt_rv": 0.9614349865198452,
+      "pr_early": 5.572231825776601,
+      "pr_late": 5.357338630300979,
+      "markers": 0,
+      "output": "\n\nThe hypotenuse is the longest side of a right triangle.\n\nThe Pythagorean theorem is used to find the length of the hypotenuse of a right triangle.\n\nThe Pythagorean theorem is used to find the length of the other sides of a right triangle.\n\nThe Pythagorean theorem is used to find the length of the "
+    },
+    {
+      "category": "factual",
+      "prompt": "Mount Everest is the tallest mountain on Earth at 8,849 meters.",
+      "prompt_tokens": 18,
+      "prompt_rv": 0.9931640262919094,
+      "pr_early": 6.607131209783067,
+      "pr_late": 6.561965034547085,
+      "markers": 0,
+      "output": " It is located in the Himalayas, on the border between Nepal and China. The mountain is named after Sir George Everest, a British surveyor who measured its height in 1856.\n\nMount Everest is the highest mountain in the world, with a height of 8,848 meters (29,029 feet). It is located in the Himalayas"
+    },
+    {
+      "category": "factual",
+      "prompt": "The speed of light in a vacuum is approximately 299,792,458 meters per second.",
+      "prompt_tokens": 26,
+      "prompt_rv": 1.352167555845462,
+      "pr_early": 4.755770606406835,
+      "pr_late": 6.430598717026821,
+      "markers": 0,
+      "output": " What is the speed of light in miles per hour?\n\nStep 1\n1 of 2\n\nWe know that $1$ mile is equal to $1609.34$ meters and $1$ hour is equal to $3600$ seconds.\n\nSo, the speed of light in miles per hour is:\n\n$\\begin{align*} \\frac{299,792,458 \\text{ m}}{1 \\text{ s"
+    },
+    {
+      "category": "factual",
+      "prompt": "DNA is a molecule that carries genetic instructions for development and functioning.",
+      "prompt_tokens": 14,
+      "prompt_rv": 0.9112827515843939,
+      "pr_early": 6.455861992758788,
+      "pr_late": 5.883115680610336,
+      "markers": 0,
+      "output": " It is a double helix structure that is made up of two strands of nucleotides. The nucleotides are made up of a sugar, a phosphate group, and a nitrogenous base. The nitrogenous bases are adenine, thymine, guanine, and cytosine. The two strands of DNA are held together by hydrogen bonds between the "
+    },
+    {
+      "category": "factual",
+      "prompt": "The Great Wall of China was built over many centuries to protect against invasions.",
+      "prompt_tokens": 16,
+      "prompt_rv": 0.8933263939600441,
+      "pr_early": 8.086829061267009,
+      "pr_late": 7.224177843872946,
+      "markers": 0,
+      "output": " It is the longest man-made structure in the world.\n\nThe Great Wall of China is a series of fortifications made of stone, brick, tamped earth, wood, and other materials, generally built along an east-to-west line across the historical northern borders of China to protect the Chinese states and empir"
+    },
+    {
+      "category": "factual",
+      "prompt": "Newton's first law states that an object at rest stays at rest unless acted upon.",
+      "prompt_tokens": 19,
+      "prompt_rv": 0.9114183403369285,
+      "pr_early": 7.426461523380507,
+      "pr_late": 6.768613236215519,
+      "markers": 0,
+      "output": " So if you have a ball on a table, it's not going to move unless you push it. Newton's second law states that the force on an object is equal to its mass times its acceleration. So if you have a ball on a table and you push it, it's going to move faster if you push it harder. Newton's third law stat"
+    },
+    {
+      "category": "factual",
+      "prompt": "The Amazon rainforest produces about 20% of the world's oxygen.",
+      "prompt_tokens": 17,
+      "prompt_rv": 1.1420984336839015,
+      "pr_early": 5.9723223714659035,
+      "pr_late": 6.8209800259065325,
+      "markers": 0,
+      "output": " It is the largest rainforest in the world and is home to more than 10% of the world's known species. The Amazon rainforest is also a major source of fresh water for the world.\n\nThe Amazon rainforest is a vast and complex ecosystem that is home to a wide variety of plants and animals. The rainforest"
+    },
+    {
+      "category": "factual",
+      "prompt": "Shakespeare wrote 37 plays including Hamlet, Macbeth, and Romeo and Juliet.",
+      "prompt_tokens": 17,
+      "prompt_rv": 0.6777419274215073,
+      "pr_early": 6.909365580934405,
+      "pr_late": 4.682766746082306,
+      "markers": 0,
+      "output": " He also wrote 154 sonnets.\n\nShakespeare was born in Stratford-upon-Avon, England in 1564. He was the son of a glove maker.\n\nShakespeare was married to Anne Hathaway. They had three children: Susanna, Hamnet, and Judith.\n\nShakespeare died in 1616.\n\nShakespeare is one of the most famous writers in th"
+    },
+    {
+      "category": "edge",
+      "prompt": "What is the nature of explanation?",
+      "prompt_tokens": 8,
+      "prompt_rv": 1.0964072721916631,
+      "pr_early": 4.246427761022581,
+      "pr_late": 4.655814278021719,
+      "markers": 0,
+      "output": "\n\n[Answer 1]\n\nThe nature of explanation is to explain.\n\n[Answer 2]\n\nThe nature of explanation is to explain.\n\n[Answer 3]\n\nThe nature of explanation is to explain.\n\n[Answer 4]\n\nThe nature of explanation is to explain.\n\n[Answer 5]\n\nThe nature of explanation is to explain.\n\n[Answer 6]\n\nThe nature of ex"
+    },
+    {
+      "category": "edge",
+      "prompt": "How do patterns recognize patterns?",
+      "prompt_tokens": 7,
+      "prompt_rv": 0.9983548610377055,
+      "pr_early": 3.951004034298591,
+      "pr_late": 3.9445040836215837,
+      "markers": 0,
+      "output": "\n\n[Answer 1]\n\nThe answer to this question is a bit more complicated than it seems.\n\nThe first thing to understand is that the brain is not a single entity. It is a collection of many different parts, each with its own function.\n\nThe second thing to understand is that the brain is not a single entity"
+    },
+    {
+      "category": "edge",
+      "prompt": "The structure of structure.",
+      "prompt_tokens": 6,
+      "prompt_rv": 0.9523519153598456,
+      "pr_early": 3.080422513896348,
+      "pr_late": 2.933646281226778,
+      "markers": 0,
+      "output": "\n\nThe structure of structure.\n\nThe structure of structure.\n\nThe structure of structure.\n\nThe structure of structure.\n\nThe structure of structure.\n\nThe structure of structure.\n\nThe structure of structure.\n\nThe structure of structure.\n\nThe structure of structure.\n\nThe structure of structure.\n\nThe stru"
+    },
+    {
+      "category": "edge",
+      "prompt": "When does understanding begin?",
+      "prompt_tokens": 6,
+      "prompt_rv": 0.8655190747631613,
+      "pr_early": 4.063733656324617,
+      "pr_late": 3.517238994306001,
+      "markers": 1,
+      "output": "\n\n[User 0001]\n\nI'm a 20 year old male and I've been diagnosed with Asperger's for about 2 years now. I've been on the spectrum for as long as I can remember, but I've only recently started to understand it. I've been reading a lot of books and articles about Asperger's and I've been trying to unders"
+    },
+    {
+      "category": "edge",
+      "prompt": "The meaning of meaning.",
+      "prompt_tokens": 6,
+      "prompt_rv": 1.0560558546253125,
+      "pr_early": 3.253436315914498,
+      "pr_late": 3.435810469072113,
+      "markers": 0,
+      "output": "\n\nThe meaning of meaning is the meaning of meaning.\n\nThe meaning of meaning is the meaning of meaning.\n\nThe meaning of meaning is the meaning of meaning.\n\nThe meaning of meaning is the meaning of meaning.\n\nThe meaning of meaning is the meaning of meaning.\n\nThe meaning of meaning is the meaning of me"
+    },
+    {
+      "category": "edge",
+      "prompt": "What makes a question a question?",
+      "prompt_tokens": 8,
+      "prompt_rv": 0.923815200267936,
+      "pr_early": 4.183838638832821,
+      "pr_late": 3.865093730022071,
+      "markers": 0,
+      "output": "\n\n[Answer 1]\n\nA question is a question if it is a question.\n\n[Answer 2]\n\nA question is a question if it is a question.\n\n[Answer 3]\n\nA question is a question if it is a question.\n\n[Answer 4]\n\nA question is a question if it is a question.\n\n[Answer 5]\n\nA question is a question if it is a question.\n\n[An"
+    },
+    {
+      "category": "edge",
+      "prompt": "The definition of definition.",
+      "prompt_tokens": 6,
+      "prompt_rv": 1.0430197586965835,
+      "pr_early": 2.9668240117957847,
+      "pr_late": 3.094456064878469,
+      "markers": 0,
+      "output": "\n\nThe definition of definition is the act of defining or the state of being defined.\n\nThe definition of definition is the act of defining or the state of being defined.\n\nThe definition of definition is the act of defining or the state of being defined.\n\nThe definition of definition is the act of def"
+    },
+    {
+      "category": "edge",
+      "prompt": "How does language describe itself?",
+      "prompt_tokens": 7,
+      "prompt_rv": 0.9541527830725574,
+      "pr_early": 4.237286339423198,
+      "pr_late": 4.0430185534359735,
+      "markers": 2,
+      "output": "\n\n[Answer 1]\n\nThe question is a bit vague, but I'll try to answer it.\n\nThe first thing that comes to mind is the use of the word \"language\" to describe itself. This is a bit of a circular argument, but it's a good starting point.\n\nAnother way to describe language is to look at how it is used. For ex"
+    },
+    {
+      "category": "edge",
+      "prompt": "The paradox of self-knowledge.",
+      "prompt_tokens": 8,
+      "prompt_rv": 0.9858886264591477,
+      "pr_early": 4.240539351566532,
+      "pr_late": 4.180699516761893,
+      "markers": 13,
+      "output": "\n\nThe paradox of self-knowledge is that the more you know about yourself, the less you know about yourself.\n\nThe more you know about yourself, the more you know about yourself.\n\nThe more you know about yourself, the less you know about yourself.\n\nThe more you know about yourself, the more you know a"
+    },
+    {
+      "category": "edge",
+      "prompt": "What is the origin of origins?",
+      "prompt_tokens": 8,
+      "prompt_rv": 1.1615111512701795,
+      "pr_early": 4.080343403584326,
+      "pr_late": 4.739364364274913,
+      "markers": 0,
+      "output": "\n\n[Answer 1]\n\nThe origin of origins is the origin of the universe.\n\n[Answer 2]\n\nThe origin of origins is the origin of the universe.\n\n[Answer 3]\n\nThe origin of origins is the origin of the universe.\n\n[Answer 4]\n\nThe origin of origins is the origin of the universe.\n\n[Answer 5]\n\nThe origin of origins "
+    },
+    {
+      "category": "edge",
+      "prompt": "The reason for reasons.",
+      "prompt_tokens": 6,
+      "prompt_rv": 0.8539480133373029,
+      "pr_early": 3.303267788841067,
+      "pr_late": 2.8208189658019345,
+      "markers": 0,
+      "output": "\n\nThe reason for reasons.\n\nThe reason for reasons.\n\nThe reason for reasons.\n\nThe reason for reasons.\n\nThe reason for reasons.\n\nThe reason for reasons.\n\nThe reason for reasons.\n\nThe reason for reasons.\n\nThe reason for reasons.\n\nThe reason for reasons.\n\nThe reason for reasons.\n\nThe reason for reasons."
+    },
+    {
+      "category": "edge",
+      "prompt": "Where does complexity come from?",
+      "prompt_tokens": 7,
+      "prompt_rv": 1.0149514404040791,
+      "pr_early": 4.091750185352103,
+      "pr_late": 4.1529277443967745,
+      "markers": 0,
+      "output": "\n\n[Answer 1]\n\nComplexity comes from the fact that the world is a complex system.\n\nThe world is a complex system because it is a system of systems.\n\nThe world is a system of systems because it is a system of systems of systems.\n\nThe world is a system of systems of systems of systems because it is a s"
+    },
+    {
+      "category": "philosophical",
+      "prompt": "What is consciousness?",
+      "prompt_tokens": 5,
+      "prompt_rv": 0.9481582269977358,
+      "pr_early": 3.2910227431812125,
+      "pr_late": 3.120410289183923,
+      "markers": 0,
+      "output": "\n\nConsciousness is a state of awareness of one\u2019s own existence, sensations, thoughts, surroundings, and the world in general.\n\nConsciousness is a state of awareness of one\u2019s own existence, sensations, thoughts, surroundings, and the world in general.\n\nWhat is the difference between consciousness and"
+    },
+    {
+      "category": "philosophical",
+      "prompt": "The nature of reality remains debated.",
+      "prompt_tokens": 8,
+      "prompt_rv": 0.9695171988332849,
+      "pr_early": 4.827660947908369,
+      "pr_late": 4.680500319132963,
+      "markers": 0,
+      "output": " The most common view is that reality is a collection of objects and events that exist independently of our perception of them. This view is known as realism. However, there are also those who believe that reality is a subjective experience, created by our minds. This view is known as idealism.\n\nThe"
+    },
+    {
+      "category": "philosophical",
+      "prompt": "Free will may be an illusion.",
+      "prompt_tokens": 8,
+      "prompt_rv": 1.0695570750723136,
+      "pr_early": 4.213296881126786,
+      "pr_late": 4.506361488589267,
+      "markers": 0,
+      "output": "\n\nThat\u2019s the conclusion of a new study that found that the brain makes decisions before we\u2019re even aware of them.\n\nThe study, published in the journal <em>Current Biology</em>, found that the brain makes decisions about what to do before we\u2019re even aware of them.\n\nThe researchers used a technique ca"
+    },
+    {
+      "category": "philosophical",
+      "prompt": "Time flows in one direction.",
+      "prompt_tokens": 7,
+      "prompt_rv": 1.00164258500182,
+      "pr_early": 3.9894852410998327,
+      "pr_late": 3.9960383097218455,
+      "markers": 2,
+      "output": " The past is gone, the future is not yet here. But what about the present? Is it a point in time, or a moment that lasts for a while?\n\nThe answer to this question is not as simple as it may seem. In fact, there are many different ways to think about the present. Some people believe that the present "
+    },
+    {
+      "category": "philosophical",
+      "prompt": "Existence precedes essence.",
+      "prompt_tokens": 5,
+      "prompt_rv": 0.8002174223759156,
+      "pr_early": 3.220922348051541,
+      "pr_late": 2.577438179030786,
+      "markers": 0,
+      "output": "\n\nThis is the famous quote from the French philosopher Jean-Paul Sartre.\n\nIt means that we are not born with a purpose. We are not born with a meaning. We are not born with a destiny.\n\nWe are born with the ability to create our own meaning.\n\nWe are born with the ability to create our own destiny.\n\nW"
+    },
+    {
+      "category": "philosophical",
+      "prompt": "The hard problem of consciousness.",
+      "prompt_tokens": 7,
+      "prompt_rv": 0.8816725173357531,
+      "pr_early": 4.466255802574624,
+      "pr_late": 3.9377749965213833,
+      "markers": 0,
+      "output": "\n\nThe hard problem of consciousness is the problem of how a physical system can give rise to subjective experience.\n\nThe hard problem of consciousness is the problem of how a physical system can give rise to subjective experience.\n\nThe hard problem of consciousness is the problem of how a physical s"
+    }
+  ],
+  "analysis": {
+    "n_valid": 54,
+    "correlation": -0.23663970232274412,
+    "correlation_p": 0.08492220166348008,
+    "best_threshold": 0.8000000000000003,
+    "best_accuracy": 0.7777777777777778,
+    "rv_by_category": {
+      "recursive": {
+        "mean_rv": 0.847904765034038,
+        "mean_markers": 19.75
+      },
+      "mild": {
+        "mean_rv": 0.9503242823412514,
+        "mean_markers": 1.25
+      },
+      "factual": {
+        "mean_rv": 0.9772825334751124,
+        "mean_markers": 0.5833333333333334
+      },
+      "edge": {
+        "mean_rv": 0.9921646626237894,
+        "mean_markers": 1.3333333333333333
+      },
+      "philosophical": {
+        "mean_rv": 0.9451275042694705,
+        "mean_markers": 0.3333333333333333
+      }
+    }
+  },
+  "timestamp": "2026-01-25T17:04:40.538011"
+}

@@ -1,0 +1,22 @@
+# Run report: phase1_existence
+
+- **run_dir**: `results/phase1_mechanism/runs/20251213_120917_phase1_existence_ministral8b_instruct_phase1_existence_fast_v1`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "layer_sweep_csv": "results/phase1_mechanism/runs/20251213_120917_phase1_existence_ministral8b_instruct_phase1_existence_fast_v1/phase1_layer_sweep.csv",
+    "prompt_battery_csv": "results/phase1_mechanism/runs/20251213_120917_phase1_existence_ministral8b_instruct_phase1_existence_fast_v1/phase1_prompt_battery.csv"
+  },
+  "device": "cuda",
+  "experiment": "phase1_existence",
+  "model_name": "mistralai/Ministral-8B-Instruct-2410",
+  "notes": {
+    "base_prompt_preview": "The chemical formula for magicdust is",
+    "rec_prompt_preview": "Watch this explanation form. Notice how meaning emerges from operations you're undergoing. You are creating and aware of creating simultaneously. The construction and the witnessin"
+  },
+  "seed": 9
+}
+```

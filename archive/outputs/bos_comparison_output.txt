@@ -1,0 +1,86 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+================================================================================
+QUANTITATIVE BOS ATTENTION COMPARISON
+================================================================================
+Model: mistralai/Mistral-7B-v0.1
+Layer: 27
+Heads: [2, 10, 18, 26]
+================================================================================
+
+[1/3] Loading model...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.30s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.12it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.05it/s]
+  ✅ Model loaded
+
+[2/3] Analyzing RECURSIVE prompt...
+  ✅ Recursive analysis complete
+
+[3/3] Analyzing BASELINE prompt...
+  ✅ Baseline analysis complete
+
+================================================================================
+RESULTS COMPARISON
+================================================================================
+
+📊 BOS ATTENTION (Mean attention to first token):
+--------------------------------------------------------------------------------
+  H 2: Recursive=0.9004 | Baseline=0.8965 | Δ=+0.0039
+  H10: Recursive=0.8652 | Baseline=0.9170 | Δ=-0.0518
+  H18: Recursive=0.5322 | Baseline=0.8296 | Δ=-0.2974
+  H26: Recursive=0.5234 | Baseline=0.7949 | Δ=-0.2715
+
+  MEAN: Recursive=0.7053 | Baseline=0.8595 | Δ=-0.1542
+
+📊 ENTROPY (Lower = more focused attention):
+--------------------------------------------------------------------------------
+  H 2: Recursive=0.3456 | Baseline=0.3099 | Δ=+0.0357
+  H10: Recursive=0.5566 | Baseline=0.3412 | Δ=+0.2154
+  H18: Recursive=1.5666 | Baseline=0.7338 | Δ=+0.8328
+  H26: Recursive=1.7905 | Baseline=0.8489 | Δ=+0.9416
+
+  MEAN: Recursive=1.0648 | Baseline=0.5584 | Δ=+0.5064
+
+📊 DIAGONAL ATTENTION (Attention to previous token - linear history):
+--------------------------------------------------------------------------------
+  H 2: Recursive=0.0701 | Baseline=0.0878 | Δ=-0.0177
+  H10: Recursive=0.0803 | Baseline=0.0588 | Δ=+0.0215
+  H18: Recursive=0.0833 | Baseline=0.0443 | Δ=+0.0390
+  H26: Recursive=0.0688 | Baseline=0.0346 | Δ=+0.0343
+
+  MEAN: Recursive=0.0756 | Baseline=0.0564 | Δ=+0.0193
+
+📊 MEAN MAX ATTENTION POSITION (Where heads attend on average):
+--------------------------------------------------------------------------------
+  H 2: Recursive=1.27 | Baseline=1.32 | Δ=-0.05
+        → Recursive: Attends to EARLY tokens (BOS anchor!)
+  H10: Recursive=0.00 | Baseline=0.54 | Δ=-0.54
+        → Recursive: Attends to EARLY tokens (BOS anchor!)
+  H18: Recursive=6.92 | Baseline=0.83 | Δ=+6.09
+  H26: Recursive=2.22 | Baseline=1.15 | Δ=+1.07
+
+================================================================================
+STATISTICAL ANALYSIS
+================================================================================
+
+BOS Attention Comparison:
+  Recursive mean: 0.7053
+  Baseline mean: 0.8595
+  Difference: -0.1542
+  t-test: t=-2.022, p=0.136349
+  ❌ NO SIGNIFICANT DIFFERENCE (p >= 0.05)
+  ❌ Theory WEAKENED: BOS attention is similar in both prompts
+
+✅ Results saved to: bos_attention_comparison.csv
+
+================================================================================
+INTERPRETATION
+================================================================================
+
+If BOS attention is HIGHER in recursive:
+  ✅ These heads lock onto BOS in recursive mode
+  ✅ BOS anchor is a recursive-specific feature
+  ✅ Theory CONFIRMED: Recursive mode switch exists
+
+If BOS attention is SIMILAR in both:
+  ❌ These heads always attend to BOS
+  ❌ Not unique to recursion
+  ❌ Theory WEAKENED: No mode switch

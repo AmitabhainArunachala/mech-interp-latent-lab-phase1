@@ -1,0 +1,28 @@
+{
+  "description": "Gold Standard Pipeline 2: Prove L27 is causal for geometric contraction",
+  "experiment": "rv_l27_causal_validation",
+  "params": {
+    "control_layer": 21,
+    "early_layer": 5,
+    "include_controls": [
+      "random",
+      "shuffled",
+      "wrong_layer"
+    ],
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_pairs": 60,
+    "seed": 42,
+    "target_layer": 27,
+    "window": 16
+  },
+  "pass_criteria": {
+    "patched_vs_baseline_p_max": 0.001,
+    "random_opposite_direction": true,
+    "transfer_efficiency_min": 0.5,
+    "wrong_layer_null_p_min": 0.05
+  },
+  "results": {
+    "phase": "gold_standard",
+    "root": "results"
+  }
+}

@@ -52,6 +52,7 @@ __all__ = [
     "kill_switch_prompts",
 ]
 
-print(f"REUSABLE_PROMPT_BANK v{__version__} loaded")
+# Silenced - use prompts/loader.py instead (canonical source)
+# print(f"REUSABLE_PROMPT_BANK v{__version__} loaded")
 
 

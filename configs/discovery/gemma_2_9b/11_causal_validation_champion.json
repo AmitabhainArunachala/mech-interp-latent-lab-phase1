@@ -1,0 +1,26 @@
+{
+  "experiment": "rv_l27_causal_validation",
+  "run_name": "gemma_2_9b_causal_validation_champion",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase2_generalization/gemma_2_9b/11_causal_validation_champion"
+  },
+  "model": {
+    "name": "google/gemma-2-9b",
+    "device": "cuda"
+  },
+  "params": {
+    "early_layer": 5,
+    "target_layer": 38,
+    "wrong_layer": 20,
+    "window": 16,
+    "max_pairs": 60,
+    "max_length": 512,
+    "pairing": {
+      "recursive_groups": ["champions", "L5_refined", "L4_full", "L3_deeper"],
+      "baseline_groups": ["long_control", "baseline_creative", "baseline_math", "baseline_factual"]
+    },
+    "measure_target_after_wrong_patch": false
+  }
+}

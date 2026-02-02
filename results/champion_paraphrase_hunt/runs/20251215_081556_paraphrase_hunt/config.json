@@ -1,0 +1,11 @@
+{
+  "script": "experiment_champion_paraphrase_hunt.py",
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "dtype": "torch.bfloat16",
+  "early_layer": 5,
+  "late_layer": 27,
+  "window": 16,
+  "max_length": 512,
+  "seed": 42,
+  "notes": "Empirical paraphrase sweep; selection is by measured R_V@L27."
+}

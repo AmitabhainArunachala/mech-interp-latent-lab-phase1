@@ -1,0 +1,24 @@
+{
+  "experiment": "multi_token_bridge",
+  "run_name": "gemma_2_9b_rv_behavioral_bridge_v2_seed123",
+  "seed": 123,
+  "results": {
+    "root": "results",
+    "phase": "phase3_bridge/gemma_2_9b/multi_token_correlation_v2_seed123"
+  },
+  "model": {
+    "name": "google/gemma-2-9b",
+    "device": "cuda"
+  },
+  "params": {
+    "n_prompts": 40,
+    "early_layer": 5,
+    "late_layer": 38,
+    "window": 16,
+    "max_new_tokens": 200,
+    "temperatures": [0.0, 0.7],
+    "seed": 123,
+    "recursive_groups": ["champions", "L4_full", "L3_deeper"],
+    "baseline_groups": ["baseline_factual", "baseline_math", "baseline_creative"]
+  }
+}

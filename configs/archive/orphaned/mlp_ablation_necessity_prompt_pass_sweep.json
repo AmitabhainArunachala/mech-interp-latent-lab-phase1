@@ -1,0 +1,13 @@
+{
+  "experiment": "batch_run",
+  "run_name": "mlp_ablation_prompt_pass_sweep_l0_to_l5",
+  "description": "Run prompt-pass-only ablation tests for layers 0-5 to validate geometric effects",
+  "configs": [
+    "configs/canonical/mlp_ablation_necessity_prompt_pass_l0.json",
+    "configs/canonical/mlp_ablation_necessity_prompt_pass_l1.json",
+    "configs/canonical/mlp_ablation_necessity_prompt_pass_l2.json",
+    "configs/canonical/mlp_ablation_necessity_prompt_pass_l3.json",
+    "configs/canonical/mlp_ablation_necessity_prompt_pass_l4.json",
+    "configs/canonical/mlp_ablation_necessity_prompt_pass_l5.json"
+  ]
+}

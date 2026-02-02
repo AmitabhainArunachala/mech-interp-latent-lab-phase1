@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+"""Run MLP + V_proj combined sufficiency test."""
+
+import sys
+from pathlib import Path
+import json
+from datetime import datetime
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from src.pipelines.mlp_vproj_combined_sufficiency_test import run_mlp_vproj_combined_sufficiency_test_from_config
+
+if __name__ == "__main__":
+    cfg = json.load(open("configs/mlp_vproj_combined_sufficiency.json"))
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    run_dir = Path("results/phase1_mechanism/runs") / f"{timestamp}_mlp_vproj_combined_sufficiency"
+    run_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f"Run directory: {run_dir}")
+    print(f"MLP layers: {cfg['params']['mlp_layers']}")
+    print(f"V_proj layer: {cfg['params']['vproj_layer']}")
+    print("")
+    print("Testing FULL CIRCUIT:")
+    print("  - Gate: L0+L1 MLP")
+    print("  - Amplifier: L18-L20 MLP")
+    print("  - Readout: L27 V_proj")
+    print("")
+    print("Starting experiment...")
+    print("=" * 60)
+
+    result = run_mlp_vproj_combined_sufficiency_test_from_config(cfg, run_dir)
+
+    print("")
+    print("=" * 60)
+    print("✅ Experiment complete!")
+    print(f"Results: {run_dir}")

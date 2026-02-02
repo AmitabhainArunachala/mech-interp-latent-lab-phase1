@@ -1,0 +1,115 @@
+{
+  "artifacts": {
+    "csv": "results/phase1_mechanism/runs/20251213_064141_path_patching_mechanism_layer_sweep_base/path_patching_mechanism.csv"
+  },
+  "by_component": {
+    "resid": {
+      "none": {
+        "mean": 0.6167092578442209,
+        "n": 1440.0,
+        "std": 0.09283782933491494
+      },
+      "random": {
+        "mean": 1.0702156781776802,
+        "n": 1440.0,
+        "std": 0.42670860782604536
+      },
+      "recursive": {
+        "mean": 0.5223025443912409,
+        "n": 1440.0,
+        "std": 0.09534518182094005
+      }
+    }
+  },
+  "by_component_by_window": {
+    "resid": {
+      "16": {
+        "none": {
+          "mean": 0.6657243016664168,
+          "n": 720.0,
+          "std": 0.0532391309541343
+        },
+        "random": {
+          "mean": 0.9764134349817482,
+          "n": 720.0,
+          "std": 0.27853079022661786
+        },
+        "recursive": {
+          "mean": 0.5529698577899946,
+          "n": 720.0,
+          "std": 0.09364230331358933
+        }
+      },
+      "32": {
+        "none": {
+          "mean": 0.5676942140220251,
+          "n": 720.0,
+          "std": 0.09799834424174601
+        },
+        "random": {
+          "mean": 1.1640179213736122,
+          "n": 720.0,
+          "std": 0.518856545579712
+        },
+        "recursive": {
+          "mean": 0.49163523099248735,
+          "n": 720.0,
+          "std": 0.08684230333985318
+        }
+      }
+    }
+  },
+  "device": "cuda",
+  "experiment": "path_patching_mechanism",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_rows": 4320,
+  "params": {
+    "components": [
+      "resid"
+    ],
+    "early_layer": 5,
+    "include_wrong_layer_control": false,
+    "max_length": 512,
+    "max_pairs": 30,
+    "measurement_layer": 27,
+    "n_repeats": 2,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "patch_layers": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "patch_types": [
+      "none",
+      "recursive",
+      "random"
+    ],
+    "target_layer": 27,
+    "window": 16,
+    "windows": [
+      16,
+      32
+    ],
+    "wrong_layer": 21
+  }
+}

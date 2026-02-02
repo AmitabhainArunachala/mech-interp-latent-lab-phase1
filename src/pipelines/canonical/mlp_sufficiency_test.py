@@ -267,6 +267,7 @@ def run_mlp_sufficiency_test_from_config(cfg: Dict[str, Any], run_dir: Path) -> 
     mode_deltas = df["mode_delta"].dropna().values
     rv_bases = df["rv_baseline"].dropna().values
     rv_patcheds = df["rv_patched"].dropna().values
+    rv_deltas = (df["rv_patched"] - df["rv_baseline"]).dropna().values
 
     # Helper: 95% CI for mean
     def compute_ci_95(arr):
@@ -297,7 +298,7 @@ def run_mlp_sufficiency_test_from_config(cfg: Dict[str, Any], run_dir: Path) -> 
         t_stat, p_val = stats.ttest_1samp(rv_restoration_pcts, 0.0)
         rv_stat = float(t_stat)
         rv_pvalue = float(p_val)
-        rv_significant = p_val < 0.01 and np.mean(rv_restoration_pcts) > 0
+        rv_significant = bool(p_val < 0.01 and np.mean(rv_restoration_pcts) > 0)
         rv_ci_95 = compute_ci_95(rv_restoration_pcts)
         # Cohen's d for baseline vs patched
         if len(rv_bases) >= 2 and len(rv_patcheds) >= 2:
@@ -311,7 +312,7 @@ def run_mlp_sufficiency_test_from_config(cfg: Dict[str, Any], run_dir: Path) -> 
         t_stat, p_val = stats.ttest_1samp(mode_deltas, 0.0)
         mode_stat = float(t_stat)
         mode_pvalue = float(p_val)
-        mode_significant = p_val < 0.01
+        mode_significant = bool(p_val < 0.01)
         mode_ci_95 = compute_ci_95(mode_deltas)
     
     # Get standardized metadata
@@ -348,6 +349,12 @@ def run_mlp_sufficiency_test_from_config(cfg: Dict[str, Any], run_dir: Path) -> 
         "rv_significant": rv_significant,
         "rv_cohens_d": rv_cohens_d,
         "rv_restoration_ci_95": rv_ci_95,
+        # Canonical summary keys (runner contract)
+        "rv_delta_mean": float(np.mean(rv_deltas)) if len(rv_deltas) > 0 else float("nan"),
+        "rv_p_value": rv_pvalue,
+        "logit_diff_delta_mean": None,
+        "logit_diff_cohens_d": None,
+        "logit_diff_p_value": None,
         # Standardized metadata
         "eval_window": window_size,
         "intervention_scope": "last_16",

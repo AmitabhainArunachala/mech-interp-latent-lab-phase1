@@ -1,0 +1,195 @@
+# Run report: combined_mlp_sufficiency_test
+
+- **run_dir**: `results/phase1_mechanism/runs/20260116_130033_combined_mlp_sufficiency_test`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "config": "results/phase1_mechanism/runs/20260116_130033_combined_mlp_sufficiency_test/config.json",
+    "report": "results/phase1_mechanism/runs/20260116_130033_combined_mlp_sufficiency_test/report.md",
+    "summary": "results/phase1_mechanism/runs/20260116_130033_combined_mlp_sufficiency_test/summary.json"
+  },
+  "behavior_metric": "mode_score_m",
+  "eval_window": 16,
+  "experiment": "combined_mlp_sufficiency_test",
+  "generation_params": {
+    "do_sample": false,
+    "max_new_tokens": 200,
+    "pad_token_id": 2,
+    "temperature": 0.0
+  },
+  "git_commit": "not_a_git_repo",
+  "intervention_scope": "last_16",
+  "layers": [
+    0,
+    1,
+    3
+  ],
+  "layers_patched": [
+    0,
+    1,
+    3
+  ],
+  "logit_diff_cohens_d": null,
+  "logit_diff_delta_mean": null,
+  "logit_diff_p_value": null,
+  "mode_ci_95": [
+    3.794225175598119,
+    4.22999357440188
+  ],
+  "mode_pvalue": 3.5288662564843174e-26,
+  "mode_restore_norm": 0.4126338104813997,
+  "mode_score_m": -9.269661458333333,
+  "mode_score_m_delta": 4.012109375,
+  "mode_significant": true,
+  "mode_t_statistic": 37.66076220191339,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "model_id": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 30,
+  "norm_summary": {
+    "l0_mlp_norm_after": {
+      "mean": 10.731673177083334,
+      "std": 1.8641045363424391
+    },
+    "l0_mlp_norm_before": {
+      "mean": 11.055989583333334,
+      "std": 0.6141950018453799
+    },
+    "l0_mlp_norm_delta": {
+      "mean": -0.32431640625,
+      "std": 1.7793110387778337
+    },
+    "l1_mlp_norm_after": {
+      "mean": 350.23645833333336,
+      "std": 62.48071776011639
+    },
+    "l1_mlp_norm_before": {
+      "mean": 350.2369791666667,
+      "std": 62.47786651235327
+    },
+    "l1_mlp_norm_delta": {
+      "mean": -0.0005208333333333333,
+      "std": 0.00285272165367274
+    },
+    "l3_mlp_norm_after": {
+      "mean": 2.24228515625,
+      "std": 0.2178027082467459
+    },
+    "l3_mlp_norm_before": {
+      "mean": 2.034765625,
+      "std": 0.2378361090817283
+    },
+    "l3_mlp_norm_delta": {
+      "mean": 0.20751953125,
+      "std": 0.04171817708696682
+    },
+    "mode_restore_norm": {
+      "mean": 0.4126338104813997,
+      "std": 0.05383823065400734
+    },
+    "residual_l2_norm_baseline": {
+      "mean": 361.15,
+      "std": 2.015671360733877
+    },
+    "residual_l2_norm_delta": {
+      "mean": -11.378645833333334,
+      "std": 62.32340996778835
+    },
+    "residual_l2_norm_patched": {
+      "mean": 349.77135416666664,
+      "std": 62.33711702077099
+    }
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "prompt_ids": {
+    "baseline": [
+      "baseline_factual_18",
+      "baseline_math_18",
+      "baseline_creative_12",
+      "baseline_creative_16",
+      "baseline_math_01",
+      "baseline_creative_09",
+      "baseline_creative_18",
+      "baseline_math_11",
+      "baseline_creative_05",
+      "baseline_factual_08",
+      "baseline_factual_02",
+      "baseline_creative_19",
+      "baseline_math_10",
+      "baseline_math_14",
+      "baseline_creative_10",
+      "baseline_math_07",
+      "baseline_math_06",
+      "baseline_factual_05",
+      "baseline_creative_14",
+      "baseline_factual_03",
+      "baseline_creative_01",
+      "baseline_factual_19",
+      "baseline_math_17",
+      "baseline_math_03",
+      "baseline_factual_10",
+      "baseline_factual_15",
+      "baseline_math_08",
+      "baseline_creative_03",
+      "baseline_creative_04",
+      "baseline_creative_15"
+    ],
+    "recursive": [
+      "L4_full_19",
+      "L3_deeper_08",
+      "L3_deeper_02",
+      "L5_refined_06",
+      "L3_deeper_18",
+      "L3_deeper_16",
+      "L3_deeper_15",
+      "L3_deeper_09",
+      "L5_refined_17",
+      "L3_deeper_07",
+      "L5_refined_02",
+      "L5_refined_12",
+      "L4_full_13",
+      "L3_deeper_06",
+      "L4_full_16",
+      "L4_full_06",
+      "L3_deeper_03",
+      "L5_refined_18",
+      "L5_refined_07",
+      "L3_deeper_14",
+      "L5_refined_14",
+      "L4_full_11",
+      "L4_full_17",
+      "L5_refined_03",
+      "L4_full_14",
+      "L3_deeper_13",
+      "L5_refined_08",
+      "L4_full_05",
+      "L4_full_20",
+      "L4_full_07"
+    ]
+  },
+  "rv": 0.7022127847822637,
+  "rv_baseline_mean": 0.7022127847822637,
+  "rv_cohens_d": -4.273918840887335,
+  "rv_delta_mean": 0.7116094993949432,
+  "rv_p_value": 1.0027324256962387e-05,
+  "rv_patched_mean": 1.413822284177207,
+  "rv_pvalue": 1.0027324256962387e-05,
+  "rv_recursive_mean": 0.5100449978892971,
+  "rv_restoration_ci_95": [
+    -757.6293048781483,
+    -337.6590191863041
+  ],
+  "rv_restoration_pct": -547.6441620322262,
+  "rv_restoration_pct_mean": -547.6441620322262,
+  "rv_restoration_pct_std": 562.3505405374598,
+  "rv_significant": false,
+  "rv_t_statistic": -5.333987244759899,
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "timestamp": "20260116_130352",
+  "verdict": "L0+L1+L3 MLP is NOT SUFFICIENT - Patching does not restore contraction"
+}
+```

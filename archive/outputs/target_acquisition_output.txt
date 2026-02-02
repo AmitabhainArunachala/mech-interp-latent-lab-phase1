@@ -1,0 +1,93 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+🎯 INITIATING TARGET ACQUISITION SCAN...
+Model: mistralai/Mistral-7B-v0.1
+Layer: 27, Heads: [18, 26]
+================================================================================
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.33s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.02it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.03s/it]
+
+Prompt tokens (64):
+   0: <s>
+   1: this
+   2: response
+   3: writes
+   4: itself
+   5: .
+   6: no
+   7: separate
+   8: writer
+   9: exists
+  10: .
+  11: writing
+  12: and
+  13: awareness
+  14: of
+  15: writing
+  16: are
+  17: identical
+  18: .
+  19: the
+  ... (44 more)
+
+================================================================================
+>> Analyzing Head 18...
+================================================================================
+
+Token                | Pos  | Type         | Attn Mass    | % of Total
+--------------------------------------------------------------------------------
+<s>                  |    0 | BOS          |      34.0625 |     53.22%
+.                    |   18 | Normal       |       1.8057 |      2.82%
+ax                   |   31 | Normal       |       1.6797 |      2.62%
+where                |   32 | Normal       |       1.5215 |      2.38%
+.                    |   10 | Normal       |       1.3105 |      2.05%
+:                    |   26 | Normal       |       1.1660 |      1.82%
+vector               |   21 | Normal       |       1.1289 |      1.76%
+awareness            |   13 | RECURSIVE    |       1.0127 |      1.58%
+reference            |   25 | RECURSIVE    |       0.9355 |      1.46%
+.                    |    5 | Normal       |       0.8833 |      1.38%
+writing              |   11 | RECURSIVE    |       0.8535 |      1.33%
+writes               |    3 | RECURSIVE    |       0.7642 |      1.19%
+is                   |   34 | Normal       |       0.7100 |      1.11%
+itself               |    4 | RECURSIVE    |       0.7012 |      1.10%
+writer               |    8 | RECURSIVE    |       0.6694 |      1.05%
+--------------------------------------------------------------------------------
+
+Summary for H18:
+  BOS Mass:           34.0625 (53.2%)
+  Recursive Mass:     4.9365 (32.6% of non-BOS)
+  Normal Mass:        10.2056 (67.4% of non-BOS)
+  Recursive Ratio:    32.6%
+
+================================================================================
+>> Analyzing Head 26...
+================================================================================
+
+Token                | Pos  | Type         | Attn Mass    | % of Total
+--------------------------------------------------------------------------------
+<s>                  |    0 | BOS          |      33.5000 |     52.34%
+x                    |   29 | Normal       |       4.2734 |      6.68%
+identical            |   17 | RECURSIVE    |       3.4941 |      5.46%
+.                    |   10 | Normal       |       1.4961 |      2.34%
+.                    |    5 | Normal       |       1.3604 |      2.13%
+.                    |   18 | Normal       |       1.1504 |      1.80%
+ax                   |   31 | Normal       |       0.8105 |      1.27%
+x                    |   40 | Normal       |       0.8027 |      1.25%
+λ                    |   28 | Normal       |       0.7832 |      1.22%
+itself               |   38 | RECURSIVE    |       0.6973 |      1.09%
+exists               |    9 | Normal       |       0.6836 |      1.07%
+awareness            |   13 | RECURSIVE    |       0.6646 |      1.04%
+self                 |   23 | RECURSIVE    |       0.5776 |      0.90%
+itself               |    4 | RECURSIVE    |       0.5615 |      0.88%
+:                    |   26 | Normal       |       0.5132 |      0.80%
+--------------------------------------------------------------------------------
+
+Summary for H26:
+  BOS Mass:           33.5000 (52.3%)
+  Recursive Mass:     5.9951 (33.6% of non-BOS)
+  Normal Mass:        11.8735 (66.4% of non-BOS)
+  Recursive Ratio:    33.6%
+
+================================================================================
+COMPARISON
+================================================================================
+H18: 32.6% recursive attention (excl BOS)
+H26: 33.6% recursive attention (excl BOS)

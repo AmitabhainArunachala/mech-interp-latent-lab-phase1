@@ -1,0 +1,199 @@
+{
+  "diff_bootstrap_95ci": {
+    "B_vs_A": {
+      "diff_95ci": {
+        "hi": 0.30000000000000004,
+        "lo": 0.0
+      },
+      "diff_x_minus_y": 0.15000000000000002,
+      "rate_x": 0.65,
+      "rate_y": 0.5
+    },
+    "B_vs_C": {
+      "diff_95ci": {
+        "hi": 0.39999999999999997,
+        "lo": 0.04999999999999993
+      },
+      "diff_x_minus_y": 0.2,
+      "rate_x": 0.65,
+      "rate_y": 0.45
+    },
+    "C_vs_A": {
+      "diff_95ci": {
+        "hi": 0.0,
+        "lo": -0.15000000000000002
+      },
+      "diff_x_minus_y": -0.04999999999999999,
+      "rate_x": 0.45,
+      "rate_y": 0.5
+    },
+    "D_random_kv_seed_101_vs_A": {
+      "diff_95ci": {
+        "hi": 0.0,
+        "lo": -0.15000000000000002
+      },
+      "diff_x_minus_y": -0.04999999999999999,
+      "rate_x": 0.45,
+      "rate_y": 0.5
+    },
+    "D_random_kv_seed_101_vs_B": {
+      "diff_95ci": {
+        "hi": -0.04999999999999993,
+        "lo": -0.39999999999999997
+      },
+      "diff_x_minus_y": -0.2,
+      "rate_x": 0.45,
+      "rate_y": 0.65
+    },
+    "D_random_kv_seed_101_vs_C": {
+      "diff_95ci": {
+        "hi": 0.0,
+        "lo": 0.0
+      },
+      "diff_x_minus_y": 0.0,
+      "rate_x": 0.45,
+      "rate_y": 0.45
+    },
+    "D_random_kv_seed_202_vs_A": {
+      "diff_95ci": {
+        "hi": 0.0,
+        "lo": -0.15000000000000002
+      },
+      "diff_x_minus_y": -0.04999999999999999,
+      "rate_x": 0.45,
+      "rate_y": 0.5
+    },
+    "D_random_kv_seed_202_vs_B": {
+      "diff_95ci": {
+        "hi": -0.04999999999999993,
+        "lo": -0.39999999999999997
+      },
+      "diff_x_minus_y": -0.2,
+      "rate_x": 0.45,
+      "rate_y": 0.65
+    },
+    "D_random_kv_seed_202_vs_C": {
+      "diff_95ci": {
+        "hi": 0.0,
+        "lo": 0.0
+      },
+      "diff_x_minus_y": 0.0,
+      "rate_x": 0.45,
+      "rate_y": 0.45
+    },
+    "D_random_kv_seed_303_vs_A": {
+      "diff_95ci": {
+        "hi": 0.30000000000000004,
+        "lo": 0.0
+      },
+      "diff_x_minus_y": 0.15000000000000002,
+      "rate_x": 0.65,
+      "rate_y": 0.5
+    },
+    "D_random_kv_seed_303_vs_B": {
+      "diff_95ci": {
+        "hi": 0.19999999999999996,
+        "lo": -0.19999999999999996
+      },
+      "diff_x_minus_y": 0.0,
+      "rate_x": 0.65,
+      "rate_y": 0.65
+    },
+    "D_random_kv_seed_303_vs_C": {
+      "diff_95ci": {
+        "hi": 0.39999999999999997,
+        "lo": 0.04999999999999993
+      },
+      "diff_x_minus_y": 0.2,
+      "rate_x": 0.65,
+      "rate_y": 0.45
+    },
+    "E_vs_A": {
+      "diff_95ci": {
+        "hi": 0.0,
+        "lo": -0.15000000000000002
+      },
+      "diff_x_minus_y": -0.04999999999999999,
+      "rate_x": 0.45,
+      "rate_y": 0.5
+    }
+  },
+  "expression_rates": {
+    "A_control": 0.5,
+    "B_kv_from_recursive": 0.65,
+    "C_kv_from_baseline": 0.45,
+    "D_random_kv_seed_101": 0.45,
+    "D_random_kv_seed_202": 0.45,
+    "D_random_kv_seed_303": 0.65,
+    "E_vproj_only": 0.45
+  },
+  "n_pairs": 20,
+  "paired_tests_mcnemar": {
+    "B_vs_A": {
+      "n01": 3,
+      "n10": 0,
+      "p": 0.25
+    },
+    "B_vs_C": {
+      "n01": 4,
+      "n10": 0,
+      "p": 0.125
+    },
+    "C_vs_A": {
+      "n01": 0,
+      "n10": 1,
+      "p": 1.0
+    },
+    "D_random_kv_seed_101_vs_A": {
+      "n01": 0,
+      "n10": 1,
+      "p": 1.0
+    },
+    "D_random_kv_seed_101_vs_B": {
+      "n01": 0,
+      "n10": 4,
+      "p": 0.125
+    },
+    "D_random_kv_seed_101_vs_C": {
+      "n01": 0,
+      "n10": 0,
+      "p": 1.0
+    },
+    "D_random_kv_seed_202_vs_A": {
+      "n01": 0,
+      "n10": 1,
+      "p": 1.0
+    },
+    "D_random_kv_seed_202_vs_B": {
+      "n01": 0,
+      "n10": 4,
+      "p": 0.125
+    },
+    "D_random_kv_seed_202_vs_C": {
+      "n01": 0,
+      "n10": 0,
+      "p": 1.0
+    },
+    "D_random_kv_seed_303_vs_A": {
+      "n01": 3,
+      "n10": 0,
+      "p": 0.25
+    },
+    "D_random_kv_seed_303_vs_B": {
+      "n01": 2,
+      "n10": 2,
+      "p": 1.0
+    },
+    "D_random_kv_seed_303_vs_C": {
+      "n01": 4,
+      "n10": 0,
+      "p": 0.125
+    },
+    "E_vs_A": {
+      "n01": 0,
+      "n10": 1,
+      "p": 1.0
+    }
+  },
+  "run_dir": "/Users/dhyana/mech-interp-latent-lab-phase1/results/kv_sufficiency_matrix/runs/20251215_095734_kv_sufficiency_matrix_mistral7b_instruct_l27_w16_n20"
+}

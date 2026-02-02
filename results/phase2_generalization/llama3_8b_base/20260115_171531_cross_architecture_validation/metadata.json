@@ -1,0 +1,36 @@
+{
+  "behavior_metric": "rv",
+  "eval_window": 16,
+  "git_commit": "not_a_git_repo",
+  "intervention_scope": "none",
+  "model_id": "meta-llama/Meta-Llama-3-8B",
+  "n_pairs": null,
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "prompt_ids": {
+    "baseline": [
+      "champion_001",
+      "champion_002",
+      "champion_003",
+      "champion_004",
+      "champion_005",
+      "champion_006",
+      "champion_007",
+      "champion_008",
+      "champion_009",
+      "champion_012"
+    ],
+    "recursive": [
+      "champion_001",
+      "champion_002",
+      "champion_003",
+      "champion_004",
+      "champion_005",
+      "champion_006",
+      "champion_007",
+      "champion_008",
+      "champion_009",
+      "champion_012"
+    ]
+  },
+  "seed": 42
+}

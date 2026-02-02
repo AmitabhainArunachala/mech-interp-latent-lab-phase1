@@ -1,0 +1,95 @@
+{
+  "config": {
+    "model": "google/gemma-2-9b",
+    "early_layer": 5,
+    "late_layer": 38,
+    "window_size": 16,
+    "max_new_tokens": 100,
+    "temperature": 0.0,
+    "seed": 42,
+    "n_baseline_prompts": 30,
+    "n_controls": 10,
+    "timestamp": "2026-01-25T15:30:00",
+    "version": "v2_reviewer_compliant"
+  },
+  "champion_rv": 0.5665,
+  "conditions": {
+    "baseline": {
+      "n": 30,
+      "mean_self_ref_markers": 0.3,
+      "std_self_ref_markers": 1.13,
+      "mean_rv_input": 0.9707,
+      "eos_rate": 0.3
+    },
+    "champion_patched": {
+      "n": 30,
+      "mean_self_ref_markers": 27.43,
+      "std_self_ref_markers": 15.08,
+      "mean_rv_output": 0.9927,
+      "eos_rate": 0.0
+    },
+    "random_kv_control": {
+      "n": 10,
+      "mean_self_ref_markers": 0.0,
+      "std_self_ref_markers": 0.0
+    },
+    "wrong_layer_control": {
+      "n": 10,
+      "mean_self_ref_markers": 1.0,
+      "std_self_ref_markers": 2.19
+    }
+  },
+  "statistics": {
+    "patched_vs_baseline": {
+      "cohens_d": 2.494,
+      "ci_95": [
+        1.82,
+        3.169
+      ],
+      "t_stat": 9.56,
+      "p_value": 1.1e-13
+    },
+    "random_vs_baseline": {
+      "cohens_d": -0.666,
+      "ci_95": [
+        -1.566,
+        0.235
+      ],
+      "t_stat": -1.47,
+      "p_value": 0.154
+    },
+    "wrong_layer_vs_baseline": {
+      "cohens_d": 0.047,
+      "ci_95": [
+        -0.829,
+        0.924
+      ],
+      "t_stat": 0.11,
+      "p_value": 0.917
+    },
+    "rv_patched_vs_baseline": {
+      "cohens_d": 0.11,
+      "ci_95": [
+        -0.396,
+        0.616
+      ],
+      "note": "R_V not significantly transferred"
+    }
+  },
+  "interpretation": {
+    "patched_effect_significant": true,
+    "random_control_significant": false,
+    "wrong_layer_control_significant": false,
+    "effect_is_content_specific": true,
+    "effect_is_layer_specific": true,
+    "rv_transfer_observed": false
+  },
+  "reviewer_criteria_met": {
+    "n_ge_30": true,
+    "random_kv_control": true,
+    "wrong_layer_control": true,
+    "cohens_d_with_ci": true,
+    "p_value_lt_001": true,
+    "effect_is_specific": true
+  }
+}

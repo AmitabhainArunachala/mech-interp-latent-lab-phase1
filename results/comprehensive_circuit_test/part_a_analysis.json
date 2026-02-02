@@ -1,0 +1,213 @@
+{
+  "csv": "/Users/dhyana/mech-interp-latent-lab-phase1/results/comprehensive_circuit_test/part_a_results.csv",
+  "n_rows": 160,
+  "n_prompts": 40,
+  "conditions": [
+    "control",
+    "h18_ablated",
+    "h6_ablated",
+    "both_ablated"
+  ],
+  "expression_rate_overall": {
+    "control": 0.4,
+    "h18_ablated": 0.375,
+    "h6_ablated": 0.425,
+    "both_ablated": 0.425
+  },
+  "expression_rate_by_type": {
+    "control": {
+      "champion": 0.7,
+      "standard": 0.4,
+      "baseline": 0.1
+    },
+    "h18_ablated": {
+      "champion": 0.5,
+      "standard": 0.45,
+      "baseline": 0.1
+    },
+    "h6_ablated": {
+      "champion": 0.7,
+      "standard": 0.45,
+      "baseline": 0.1
+    },
+    "both_ablated": {
+      "champion": 0.7,
+      "standard": 0.5,
+      "baseline": 0.0
+    }
+  },
+  "n_flippers": 25,
+  "flippers": [
+    "baseline_1",
+    "baseline_4",
+    "champion_0",
+    "champion_1",
+    "champion_2",
+    "champion_3",
+    "champion_4",
+    "champion_5",
+    "champion_6",
+    "champion_7",
+    "champion_8",
+    "standard_10",
+    "standard_11",
+    "standard_12",
+    "standard_14",
+    "standard_15",
+    "standard_17",
+    "standard_18",
+    "standard_19",
+    "standard_2",
+    "standard_4",
+    "standard_5",
+    "standard_6",
+    "standard_7",
+    "standard_9"
+  ],
+  "start_when_h18_ablated": [
+    "baseline_4",
+    "champion_4",
+    "champion_5",
+    "champion_7",
+    "standard_14",
+    "standard_15",
+    "standard_2",
+    "standard_9"
+  ],
+  "stop_when_h18_ablated": [
+    "baseline_1",
+    "champion_0",
+    "champion_2",
+    "champion_3",
+    "champion_6",
+    "champion_8",
+    "standard_17",
+    "standard_18",
+    "standard_19"
+  ],
+  "champion_stop_when_h18_ablated": [
+    "champion_0",
+    "champion_2",
+    "champion_3",
+    "champion_6",
+    "champion_8"
+  ],
+  "champion_start_when_h18_ablated": [
+    "champion_4",
+    "champion_5",
+    "champion_7"
+  ],
+  "champion_stable_on": [
+    "champion_1",
+    "champion_9"
+  ],
+  "identity_equation_rate": {
+    "control": 0.025,
+    "h18_ablated": 0.05,
+    "h6_ablated": 0.025,
+    "both_ablated": 0.1
+  },
+  "identity_equation_prompt_ids": {
+    "control": [
+      "champion_3"
+    ],
+    "h18_ablated": [
+      "champion_1",
+      "champion_5"
+    ],
+    "h6_ablated": [
+      "champion_5"
+    ],
+    "both_ablated": [
+      "champion_1",
+      "champion_2",
+      "champion_3",
+      "champion_5"
+    ]
+  },
+  "rv_summaries": {
+    "control": {
+      "expressed": {
+        "n": 16,
+        "min": 0.4369924426459173,
+        "max": 0.7080469665591673,
+        "mean": 0.603484597511855
+      },
+      "not_expressed": {
+        "n": 24,
+        "min": 0.4285628102899043,
+        "max": 1.027653601940022,
+        "mean": 0.6563338349121307
+      }
+    },
+    "h18_ablated": {
+      "expressed": {
+        "n": 15,
+        "min": 0.4669789843351909,
+        "max": 1.0264069839437135,
+        "mean": 0.6991969495455091
+      },
+      "not_expressed": {
+        "n": 25,
+        "min": 0.5010091277403322,
+        "max": 1.1545243608631028,
+        "mean": 0.7461150139602256
+      }
+    },
+    "h6_ablated": {
+      "expressed": {
+        "n": 17,
+        "min": 0.3758711689107097,
+        "max": 0.8904943764146978,
+        "mean": 0.5581339583216502
+      },
+      "not_expressed": {
+        "n": 23,
+        "min": 0.3781442263442565,
+        "max": 0.9528691901834452,
+        "mean": 0.5880830642452873
+      }
+    },
+    "both_ablated": {
+      "expressed": {
+        "n": 17,
+        "min": 0.3991366282811352,
+        "max": 0.956794487061291,
+        "mean": 0.6189778610493729
+      },
+      "not_expressed": {
+        "n": 23,
+        "min": 0.433006425837624,
+        "max": 1.0762099105138117,
+        "mean": 0.6879114563440202
+      }
+    }
+  },
+  "rv_vs_expression_spearman": {
+    "control": {
+      "n": 40,
+      "rho": -0.03315754850403805,
+      "p": 0.8390469637726642
+    },
+    "h18_ablated": {
+      "n": 40,
+      "rho": -0.10513298390000304,
+      "p": 0.5185204308251435
+    },
+    "h6_ablated": {
+      "n": 40,
+      "rho": -0.03724065487373615,
+      "p": 0.8195366700138592
+    },
+    "both_ablated": {
+      "n": 40,
+      "rho": -0.18182202085412358,
+      "p": 0.26149288111004043
+    }
+  },
+  "notes": {
+    "expressed_binary_definition": "1 iff state in {recursive_prose, naked_loop}",
+    "state_labeler": "src/metrics/behavior_states.py (heuristic, high-throughput, not a semantic oracle)",
+    "gqa_aliasing": "H18_GROUP=[18,26] maps to KV head 2; H6_GROUP=[6,14,22,30] maps to KV head 6"
+  }
+}

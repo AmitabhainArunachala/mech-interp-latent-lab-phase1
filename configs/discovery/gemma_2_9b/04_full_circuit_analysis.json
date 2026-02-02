@@ -1,0 +1,19 @@
+{
+  "experiment": "gemma_full_circuit_analysis",
+  "run_name": "gemma_2_9b_full_circuit",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase2_generalization/gemma_2_9b/04_full_circuit_analysis"
+  },
+  "model": {
+    "name": "google/gemma-2-9b",
+    "device": "cuda"
+  },
+  "params": {
+    "n_prompts": 30,
+    "window_size": 16,
+    "early_layer": 5,
+    "num_layers": 42
+  }
+}

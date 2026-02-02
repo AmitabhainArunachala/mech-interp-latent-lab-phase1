@@ -1,0 +1,9 @@
+{
+  "script": "test_kitchen_sink.py",
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "early_layer": 5,
+  "layers_tested": [25, 27],
+  "window": 16,
+  "precision": "bfloat16",
+  "notes": "Rerun triggered after recovering missing local CSV; HF cache redirected to /workspace/.hf to avoid root overlay exhaustion."
+}

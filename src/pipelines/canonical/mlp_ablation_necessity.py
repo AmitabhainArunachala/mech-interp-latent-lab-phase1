@@ -1,6 +1,9 @@
 """
 MLP Ablation Necessity Test: Zero out L0 MLP to test causal necessity.
 
+DEPRECATED: This pipeline measures R_V on generated text (lines 149-152),
+violating the prompt-only measurement contract. Use mlp_ablation_necessity_prompt_pass.py instead.
+
 Goal: Determine if L0 MLP is NECESSARY for recursive behavior.
 
 Method:
@@ -19,6 +22,14 @@ Expected Results:
 """
 
 from __future__ import annotations
+
+import warnings
+warnings.warn(
+    "mlp_ablation_necessity.py measures R_V on generated text (contract violation). "
+    "Use mlp_ablation_necessity_prompt_pass.py instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 import json
 from pathlib import Path

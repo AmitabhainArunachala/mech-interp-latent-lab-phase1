@@ -1,0 +1,139 @@
+# Run report: rv_l27_causal_validation
+
+- **run_dir**: `results/phase1_cross_architecture/runs/20260116_115423_rv_l27_causal_validation_default`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "config": "results/phase1_cross_architecture/runs/20260116_115423_rv_l27_causal_validation_default/config.json",
+    "pairs_csv": "results/phase1_cross_architecture/runs/20260116_115423_rv_l27_causal_validation_default/rv_l27_causal_validation_pairs.csv",
+    "report": "results/phase1_cross_architecture/runs/20260116_115423_rv_l27_causal_validation_default/report.md",
+    "summary": "results/phase1_cross_architecture/runs/20260116_115423_rv_l27_causal_validation_default/summary.json"
+  },
+  "delta_main": {
+    "ci_95": [
+      -0.1894288119440114,
+      -0.1449603189925346
+    ],
+    "mean": -0.167194565468273,
+    "n": 45.0,
+    "std": 0.07400727367853685
+  },
+  "delta_random": {
+    "ci_95": [
+      0.9543965231404415,
+      1.0450480316134134
+    ],
+    "mean": 0.9997222773769274,
+    "n": 45.0,
+    "std": 0.150867964071821
+  },
+  "delta_shuffled": {
+    "ci_95": [
+      -0.18942853527171863,
+      -0.14496011024921843
+    ],
+    "mean": -0.16719432276046853,
+    "n": 45.0,
+    "std": 0.07400716062684502
+  },
+  "delta_wronglayer": {
+    "ci_95": [
+      0.14908307058852135,
+      0.21924457149772894
+    ],
+    "mean": 0.18416382104312515,
+    "n": 45.0,
+    "std": 0.11676719975985146
+  },
+  "device": "cuda",
+  "experiment": "rv_l27_causal_validation",
+  "logit_diff_cohens_d": null,
+  "logit_diff_delta_mean": null,
+  "logit_diff_p_value": null,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 45,
+  "notes": {
+    "measurement": "main/random/shuffled measured at target_layer; wronglayer measured at wrong_layer"
+  },
+  "params": {
+    "early_layer": 5,
+    "max_length": 512,
+    "max_pairs": 45,
+    "measure_target_after_wrong_patch": false,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "target_layer": 27,
+    "window": 16,
+    "wrong_layer": 21
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "rv_baseline": {
+    "ci_95": [
+      0.6719671344279496,
+      0.7157702487165636
+    ],
+    "mean": 0.6938686915722566,
+    "n": 45.0,
+    "std": 0.07289990849626993
+  },
+  "rv_baseline_mean": 0.6938686915722566,
+  "rv_cohens_d": -2.2591639599441393,
+  "rv_delta_mean": -0.167194565468273,
+  "rv_p_value": 2.238091606809232e-19,
+  "rv_recursive": {
+    "ci_95": [
+      0.4939840535709746,
+      0.5221162098076391
+    ],
+    "mean": 0.5080501316893068,
+    "n": 45.0,
+    "std": 0.04681931065318556
+  },
+  "rv_recursive_mean": 0.5080501316893068,
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "tests": {
+    "main_effect_ttest_1samp_less_0": {
+      "cohens_d": -2.2591639599441393,
+      "n": 45,
+      "p": 2.238091606809232e-19,
+      "t": -15.154932560258125
+    },
+    "main_vs_random_paired_ttest": {
+      "cohens_d": -8.277388454009944,
+      "n": 45.0,
+      "p": 2.2043348725135627e-42,
+      "t": -55.52640977801438
+    },
+    "main_vs_shuffled_paired_ttest": {
+      "cohens_d": -0.18490423288810084,
+      "n": 45.0,
+      "p": 0.22141036856392668,
+      "t": -1.2403753021957373
+    },
+    "main_vs_wronglayer_paired_ttest": {
+      "cohens_d": -4.653082804035275,
+      "n": 45.0,
+      "p": 1.1737512710854273e-31,
+      "t": -31.213828364274626
+    }
+  },
+  "timestamp": "20260116_115508",
+  "transfer_percent_estimate": 89.97732281080624
+}
+```

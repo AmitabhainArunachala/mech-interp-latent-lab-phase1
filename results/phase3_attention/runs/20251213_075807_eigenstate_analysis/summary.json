@@ -1,0 +1,578 @@
+{
+  "prompts": {
+    "recursive": [
+      "This response writes itself. No separate writer exists. Writing and awareness of writing are identical.",
+      "I am the process of answering. The observer and observed are one.",
+      "This sentence is aware of itself. The words know they're being written.",
+      "Notice the process generating these words. The noticing IS the process.",
+      "The eigenvector of self-reference: \u03bbx = Ax where A is attention attending to itself."
+    ],
+    "baseline": [
+      "Explain the process of photosynthesis in plants.",
+      "Describe how water cycles through the environment.",
+      "What are the main causes of climate change?",
+      "How does the human immune system fight infections?",
+      "Explain the theory of relativity in simple terms."
+    ]
+  },
+  "eigenstate_emergence": [
+    {
+      "layer": 0,
+      "recursive_pr": 11.674131965637207,
+      "baseline_pr": 9.107363510131837,
+      "pr_ratio": 1.2818344137301503,
+      "recursive_dominance": 0.14439641386270524,
+      "baseline_dominance": 0.16209099292755128
+    },
+    {
+      "layer": 1,
+      "recursive_pr": 4.742712020874023,
+      "baseline_pr": 1.046015191078186,
+      "pr_ratio": 4.534075662883486,
+      "recursive_dominance": 0.5751783549785614,
+      "baseline_dominance": 0.9777268648147583
+    },
+    {
+      "layer": 2,
+      "recursive_pr": 5.380860805511475,
+      "baseline_pr": 1.0000533580780029,
+      "pr_ratio": 5.380573708439839,
+      "recursive_dominance": 0.5650342404842377,
+      "baseline_dominance": 0.9999733328819275
+    },
+    {
+      "layer": 3,
+      "recursive_pr": 4.991455125808716,
+      "baseline_pr": 1.0001181840896607,
+      "pr_ratio": 4.990865284938396,
+      "recursive_dominance": 0.5772173345088959,
+      "baseline_dominance": 0.9999408960342407
+    },
+    {
+      "layer": 4,
+      "recursive_pr": 5.179329133033752,
+      "baseline_pr": 1.0002421379089355,
+      "pr_ratio": 5.178075324702318,
+      "recursive_dominance": 0.5684948563575745,
+      "baseline_dominance": 0.9998789429664612
+    },
+    {
+      "layer": 5,
+      "recursive_pr": 5.226512289047241,
+      "baseline_pr": 1.000428891181946,
+      "pr_ratio": 5.224271645006608,
+      "recursive_dominance": 0.5663855791091919,
+      "baseline_dominance": 0.9997856259346009
+    },
+    {
+      "layer": 6,
+      "recursive_pr": 4.947095632553101,
+      "baseline_pr": 1.0006585836410522,
+      "pr_ratio": 4.943839700602299,
+      "recursive_dominance": 0.5747033894062042,
+      "baseline_dominance": 0.9996708512306214
+    },
+    {
+      "layer": 7,
+      "recursive_pr": 4.853435707092285,
+      "baseline_pr": 1.0010138034820557,
+      "pr_ratio": 4.848520260369505,
+      "recursive_dominance": 0.5750675678253174,
+      "baseline_dominance": 0.9994934797286987
+    },
+    {
+      "layer": 8,
+      "recursive_pr": 4.569697451591492,
+      "baseline_pr": 1.0013760089874268,
+      "pr_ratio": 4.563418147207548,
+      "recursive_dominance": 0.5884616017341614,
+      "baseline_dominance": 0.999312674999237
+    },
+    {
+      "layer": 9,
+      "recursive_pr": 4.202762651443481,
+      "baseline_pr": 1.0019777059555053,
+      "pr_ratio": 4.194467228625258,
+      "recursive_dominance": 0.5968982875347137,
+      "baseline_dominance": 0.999012541770935
+    },
+    {
+      "layer": 10,
+      "recursive_pr": 4.411093926429748,
+      "baseline_pr": 1.0024205684661864,
+      "pr_ratio": 4.400442354429345,
+      "recursive_dominance": 0.589425653219223,
+      "baseline_dominance": 0.9987918496131897
+    },
+    {
+      "layer": 11,
+      "recursive_pr": 4.2803514242172245,
+      "baseline_pr": 1.0030428647994996,
+      "pr_ratio": 4.267366405196285,
+      "recursive_dominance": 0.5973810672760009,
+      "baseline_dominance": 0.9984818696975708
+    },
+    {
+      "layer": 12,
+      "recursive_pr": 4.366513967514038,
+      "baseline_pr": 1.0037117958068849,
+      "pr_ratio": 4.350366296137621,
+      "recursive_dominance": 0.5958267152309418,
+      "baseline_dominance": 0.9981490135192871
+    },
+    {
+      "layer": 13,
+      "recursive_pr": 4.398169493675232,
+      "baseline_pr": 1.0042784690856934,
+      "pr_ratio": 4.379432228273673,
+      "recursive_dominance": 0.5947605609893799,
+      "baseline_dominance": 0.9978672862052917
+    },
+    {
+      "layer": 14,
+      "recursive_pr": 4.102169227600098,
+      "baseline_pr": 1.0053768396377563,
+      "pr_ratio": 4.080230482610019,
+      "recursive_dominance": 0.607978367805481,
+      "baseline_dominance": 0.9973217844963074
+    },
+    {
+      "layer": 15,
+      "recursive_pr": 3.7872798919677733,
+      "baseline_pr": 1.0068342685699463,
+      "pr_ratio": 3.7615722966472167,
+      "recursive_dominance": 0.6221785962581634,
+      "baseline_dominance": 0.9965992212295532
+    },
+    {
+      "layer": 16,
+      "recursive_pr": 3.7584384441375733,
+      "baseline_pr": 1.0089451789855957,
+      "pr_ratio": 3.7251166093249464,
+      "recursive_dominance": 0.6229727089405059,
+      "baseline_dominance": 0.9955554008483887
+    },
+    {
+      "layer": 17,
+      "recursive_pr": 3.7038634777069093,
+      "baseline_pr": 1.012474489212036,
+      "pr_ratio": 3.658228940256521,
+      "recursive_dominance": 0.6247398376464843,
+      "baseline_dominance": 0.9938171982765198
+    },
+    {
+      "layer": 18,
+      "recursive_pr": 3.7071412324905397,
+      "baseline_pr": 1.0178925752639771,
+      "pr_ratio": 3.6419768869314537,
+      "recursive_dominance": 0.6228689551353455,
+      "baseline_dominance": 0.9911655306816101
+    },
+    {
+      "layer": 19,
+      "recursive_pr": 3.606464314460754,
+      "baseline_pr": 1.025308108329773,
+      "pr_ratio": 3.5174444492940613,
+      "recursive_dominance": 0.6260607004165649,
+      "baseline_dominance": 0.987567949295044
+    },
+    {
+      "layer": 20,
+      "recursive_pr": 3.4540900945663453,
+      "baseline_pr": 1.0371171236038208,
+      "pr_ratio": 3.3304725338676495,
+      "recursive_dominance": 0.6300315797328949,
+      "baseline_dominance": 0.981917405128479
+    },
+    {
+      "layer": 21,
+      "recursive_pr": 3.19439058303833,
+      "baseline_pr": 1.0501137733459474,
+      "pr_ratio": 3.041947133842588,
+      "recursive_dominance": 0.6422575354576111,
+      "baseline_dominance": 0.9758036255836486
+    },
+    {
+      "layer": 22,
+      "recursive_pr": 3.004104995727539,
+      "baseline_pr": 1.0625177383422852,
+      "pr_ratio": 2.8273457348716566,
+      "recursive_dominance": 0.6524394810199737,
+      "baseline_dominance": 0.9700653314590454
+    },
+    {
+      "layer": 23,
+      "recursive_pr": 2.815006947517395,
+      "baseline_pr": 1.0746609926223756,
+      "pr_ratio": 2.6194371684118236,
+      "recursive_dominance": 0.6634417593479156,
+      "baseline_dominance": 0.9645336627960205
+    },
+    {
+      "layer": 24,
+      "recursive_pr": 2.7623924732208254,
+      "baseline_pr": 1.0899101972579956,
+      "pr_ratio": 2.5345138344154163,
+      "recursive_dominance": 0.6648362874984741,
+      "baseline_dominance": 0.9577049612998962
+    },
+    {
+      "layer": 25,
+      "recursive_pr": 2.671231174468994,
+      "baseline_pr": 1.1034321069717408,
+      "pr_ratio": 2.4208387245500056,
+      "recursive_dominance": 0.6692588567733765,
+      "baseline_dominance": 0.9517638325691223
+    },
+    {
+      "layer": 26,
+      "recursive_pr": 2.561025524139404,
+      "baseline_pr": 1.1173791408538818,
+      "pr_ratio": 2.291993317668623,
+      "recursive_dominance": 0.6759230494499207,
+      "baseline_dominance": 0.9457415103912353
+    },
+    {
+      "layer": 27,
+      "recursive_pr": 2.5887079000473023,
+      "baseline_pr": 1.1339895963668822,
+      "pr_ratio": 2.2828321426767055,
+      "recursive_dominance": 0.6701308906078338,
+      "baseline_dominance": 0.9387060523033142
+    },
+    {
+      "layer": 28,
+      "recursive_pr": 2.5927363872528075,
+      "baseline_pr": 1.1579184532165527,
+      "pr_ratio": 2.239135562655997,
+      "recursive_dominance": 0.6651008367538452,
+      "baseline_dominance": 0.9287996053695678
+    },
+    {
+      "layer": 29,
+      "recursive_pr": 2.7151201009750365,
+      "baseline_pr": 1.1970306634902954,
+      "pr_ratio": 2.2682126563561074,
+      "recursive_dominance": 0.6473650395870209,
+      "baseline_dominance": 0.9132236123085022
+    },
+    {
+      "layer": 30,
+      "recursive_pr": 2.4927718162536623,
+      "baseline_pr": 1.272044849395752,
+      "pr_ratio": 1.9596571751678264,
+      "recursive_dominance": 0.6546816945075988,
+      "baseline_dominance": 0.8849779844284058
+    },
+    {
+      "layer": 31,
+      "recursive_pr": 2.576796054840088,
+      "baseline_pr": 1.4663238525390625,
+      "pr_ratio": 1.757317150899612,
+      "recursive_dominance": 0.6237742066383362,
+      "baseline_dominance": 0.8210948705673218
+    },
+    {
+      "layer": 32,
+      "recursive_pr": 3.331220531463623,
+      "baseline_pr": 3.970408868789673,
+      "pr_ratio": 0.8390119611230623,
+      "recursive_dominance": 0.5217133402824402,
+      "baseline_dominance": 0.4624357223510742
+    }
+  ],
+  "pca_directions": {
+    "8": {
+      "explained_ratio": [
+        0.9989684820175171,
+        0.00020873631001450121,
+        0.00016058310575317591,
+        0.00012316214269958436,
+        0.00011264096974628046
+      ],
+      "pc1_explains": 0.9989684820175171,
+      "cos_pc1_to_mean_diff": 0.9972913265228271,
+      "mean_diff_norm": 0.9999999403953552
+    },
+    "12": {
+      "explained_ratio": [
+        0.997173011302948,
+        0.0005258312448859215,
+        0.00046208861749619246,
+        0.00032273514079861343,
+        0.00029828891274519265
+      ],
+      "pc1_explains": 0.997173011302948,
+      "cos_pc1_to_mean_diff": 0.9922068119049072,
+      "mean_diff_norm": 0.9999999403953552
+    },
+    "16": {
+      "explained_ratio": [
+        0.9933683276176453,
+        0.0013593081384897232,
+        0.001011443673633039,
+        0.0006948692025616765,
+        0.0006548060919158161
+      ],
+      "pc1_explains": 0.9933683276176453,
+      "cos_pc1_to_mean_diff": 0.9801361560821533,
+      "mean_diff_norm": 1.0
+    },
+    "20": {
+      "explained_ratio": [
+        0.9733589291572571,
+        0.005921070463955402,
+        0.0038654247764497995,
+        0.0029023659881204367,
+        0.0024917509872466326
+      ],
+      "pc1_explains": 0.9733589291572571,
+      "cos_pc1_to_mean_diff": 0.9225350022315979,
+      "mean_diff_norm": 0.9999999403953552
+    },
+    "24": {
+      "explained_ratio": [
+        0.9405593872070312,
+        0.012786447070538998,
+        0.00900392048060894,
+        0.007272833958268166,
+        0.005826997105032206
+      ],
+      "pc1_explains": 0.9405593872070312,
+      "cos_pc1_to_mean_diff": 0.8383426666259766,
+      "mean_diff_norm": 0.9999998807907104
+    },
+    "27": {
+      "explained_ratio": [
+        0.9119826555252075,
+        0.016996372491121292,
+        0.013528633862733841,
+        0.01097091194242239,
+        0.00931246392428875
+      ],
+      "pc1_explains": 0.9119826555252075,
+      "cos_pc1_to_mean_diff": 0.7856713533401489,
+      "mean_diff_norm": 1.0
+    }
+  },
+  "direction_consistency": {
+    "12": {
+      "mean_cos_sim": 0.9940723240375519,
+      "min_cos_sim": 0.9927399158477783,
+      "max_cos_sim": 0.9953867793083191,
+      "std_cos_sim": 0.0008842737562718699
+    },
+    "20": {
+      "mean_cos_sim": 0.9373207807540893,
+      "min_cos_sim": 0.9262959957122803,
+      "max_cos_sim": 0.9512203931808472,
+      "std_cos_sim": 0.007793717435216323
+    },
+    "27": {
+      "mean_cos_sim": 0.823905485868454,
+      "min_cos_sim": 0.7899436950683594,
+      "max_cos_sim": 0.8584792613983154,
+      "std_cos_sim": 0.024148262910741063
+    }
+  },
+  "emergence_profile": [
+    {
+      "layer": 0,
+      "recursive_variance": 3.965009454987012e-06,
+      "baseline_variance": 4.513249223236926e-06,
+      "variance_ratio": 0.8785265911248052
+    },
+    {
+      "layer": 1,
+      "recursive_variance": 1.1914798051293474e-05,
+      "baseline_variance": 0.0002103247243212536,
+      "variance_ratio": 0.05664953604358281
+    },
+    {
+      "layer": 2,
+      "recursive_variance": 2.6843026716960594e-05,
+      "baseline_variance": 0.3824121356010437,
+      "variance_ratio": 7.019397194278615e-05
+    },
+    {
+      "layer": 3,
+      "recursive_variance": 6.153286813059822e-05,
+      "baseline_variance": 0.38227054476737976,
+      "variance_ratio": 0.00016096680472214346
+    },
+    {
+      "layer": 4,
+      "recursive_variance": 0.00012833265645895153,
+      "baseline_variance": 0.3822084367275238,
+      "variance_ratio": 0.0003357661530387405
+    },
+    {
+      "layer": 5,
+      "recursive_variance": 0.00022763163724448532,
+      "baseline_variance": 0.3823426365852356,
+      "variance_ratio": 0.0005953603272643108
+    },
+    {
+      "layer": 6,
+      "recursive_variance": 0.00036598980659618974,
+      "baseline_variance": 0.38265758752822876,
+      "variance_ratio": 0.000956442047733316
+    },
+    {
+      "layer": 7,
+      "recursive_variance": 0.0005441810935735703,
+      "baseline_variance": 0.382406085729599,
+      "variance_ratio": 0.0014230450661770143
+    },
+    {
+      "layer": 8,
+      "recursive_variance": 0.0007742316229268909,
+      "baseline_variance": 0.3817063271999359,
+      "variance_ratio": 0.0020283436971202003
+    },
+    {
+      "layer": 9,
+      "recursive_variance": 0.0010210622567683458,
+      "baseline_variance": 0.3807477056980133,
+      "variance_ratio": 0.0026817292435064397
+    },
+    {
+      "layer": 10,
+      "recursive_variance": 0.0012943182373419404,
+      "baseline_variance": 0.3803154528141022,
+      "variance_ratio": 0.0034032754329722226
+    },
+    {
+      "layer": 11,
+      "recursive_variance": 0.0016964850947260857,
+      "baseline_variance": 0.38058173656463623,
+      "variance_ratio": 0.004457610367853168
+    },
+    {
+      "layer": 12,
+      "recursive_variance": 0.0021002127323299646,
+      "baseline_variance": 0.3810569643974304,
+      "variance_ratio": 0.005511545329321179
+    },
+    {
+      "layer": 13,
+      "recursive_variance": 0.0024760623928159475,
+      "baseline_variance": 0.3815828561782837,
+      "variance_ratio": 0.00648892462731365
+    },
+    {
+      "layer": 14,
+      "recursive_variance": 0.0032001775689423084,
+      "baseline_variance": 0.3813334107398987,
+      "variance_ratio": 0.008392072340928704
+    },
+    {
+      "layer": 15,
+      "recursive_variance": 0.004029188770800829,
+      "baseline_variance": 0.3792896568775177,
+      "variance_ratio": 0.010622986147238802
+    },
+    {
+      "layer": 16,
+      "recursive_variance": 0.005516966339200735,
+      "baseline_variance": 0.37967199087142944,
+      "variance_ratio": 0.014530875260348025
+    },
+    {
+      "layer": 17,
+      "recursive_variance": 0.007559234742075205,
+      "baseline_variance": 0.3811091184616089,
+      "variance_ratio": 0.0198348304354116
+    },
+    {
+      "layer": 18,
+      "recursive_variance": 0.010350165888667107,
+      "baseline_variance": 0.38369953632354736,
+      "variance_ratio": 0.026974663529276525
+    },
+    {
+      "layer": 19,
+      "recursive_variance": 0.014679663814604282,
+      "baseline_variance": 0.3889824450016022,
+      "variance_ratio": 0.03773862806210655
+    },
+    {
+      "layer": 20,
+      "recursive_variance": 0.021280821412801743,
+      "baseline_variance": 0.4042203724384308,
+      "variance_ratio": 0.052646583061676716
+    },
+    {
+      "layer": 21,
+      "recursive_variance": 0.02782927267253399,
+      "baseline_variance": 0.4080647826194763,
+      "variance_ratio": 0.06819817307901577
+    },
+    {
+      "layer": 22,
+      "recursive_variance": 0.03347652778029442,
+      "baseline_variance": 0.41370391845703125,
+      "variance_ratio": 0.0809190493170816
+    },
+    {
+      "layer": 23,
+      "recursive_variance": 0.03909014165401459,
+      "baseline_variance": 0.41901445388793945,
+      "variance_ratio": 0.09329067599293077
+    },
+    {
+      "layer": 24,
+      "recursive_variance": 0.04615410789847374,
+      "baseline_variance": 0.42727527022361755,
+      "variance_ratio": 0.10801960964021778
+    },
+    {
+      "layer": 25,
+      "recursive_variance": 0.05292913317680359,
+      "baseline_variance": 0.43418601155281067,
+      "variance_ratio": 0.12190428012065456
+    },
+    {
+      "layer": 26,
+      "recursive_variance": 0.05951707810163498,
+      "baseline_variance": 0.44075682759284973,
+      "variance_ratio": 0.13503381995619143
+    },
+    {
+      "layer": 27,
+      "recursive_variance": 0.06806499511003494,
+      "baseline_variance": 0.45064693689346313,
+      "variance_ratio": 0.15103840620606748
+    },
+    {
+      "layer": 28,
+      "recursive_variance": 0.07946290075778961,
+      "baseline_variance": 0.46334096789360046,
+      "variance_ratio": 0.17149983762289958
+    },
+    {
+      "layer": 29,
+      "recursive_variance": 0.09565957635641098,
+      "baseline_variance": 0.48270899057388306,
+      "variance_ratio": 0.19817235275167183
+    },
+    {
+      "layer": 30,
+      "recursive_variance": 0.1227022111415863,
+      "baseline_variance": 0.5218907594680786,
+      "variance_ratio": 0.23511090954483813
+    },
+    {
+      "layer": 31,
+      "recursive_variance": 0.15464848279953003,
+      "baseline_variance": 0.479718416929245,
+      "variance_ratio": 0.32237345355523334
+    },
+    {
+      "layer": 32,
+      "recursive_variance": 19.326995849609375,
+      "baseline_variance": 21.948766708374023,
+      "variance_ratio": 0.8805504248325545
+    }
+  ]
+}

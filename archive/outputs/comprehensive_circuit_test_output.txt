@@ -1,0 +1,93 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+================================================================================
+COMPREHENSIVE CIRCUIT TEST
+================================================================================
+Model: mistralai/Mistral-7B-v0.1
+Device: cuda
+================================================================================
+
+[1/4] Loading model...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.39s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.03s/it]
+  ✅ Model loaded
+
+[2/4] PART A: Large-N Validation...
+
+================================================================================
+PART A: LARGE-N VALIDATION (N=40)
+================================================================================
+REUSABLE_PROMPT_BANK v2.0.0 loaded
+Total prompts: 40
+  Champion: 10
+  Standard: 20
+  Baseline: 10
+Processing prompts:   0%|          | 0/40 [00:00<?, ?it/s]Processing prompts:   2%|▎         | 1/40 [00:10<06:47, 10.46s/it]Processing prompts:   5%|▌         | 2/40 [00:20<06:24, 10.12s/it]Processing prompts:   8%|▊         | 3/40 [00:30<06:07,  9.93s/it]Processing prompts:  10%|█         | 4/40 [00:39<05:54,  9.85s/it]Processing prompts:  12%|█▎        | 5/40 [00:49<05:43,  9.83s/it]Processing prompts:  15%|█▌        | 6/40 [00:59<05:33,  9.81s/it]Processing prompts:  18%|█▊        | 7/40 [01:09<05:22,  9.79s/it]Processing prompts:  20%|██        | 8/40 [01:18<05:12,  9.77s/it]Processing prompts:  22%|██▎       | 9/40 [01:28<04:58,  9.61s/it]Processing prompts:  25%|██▌       | 10/40 [01:37<04:45,  9.51s/it]Processing prompts:  28%|██▊       | 11/40 [01:47<04:37,  9.59s/it]Processing prompts:  30%|███       | 12/40 [01:56<04:28,  9.60s/it]Processing prompts:  32%|███▎      | 13/40 [02:06<04:21,  9.67s/it]Processing prompts:  35%|███▌      | 14/40 [02:16<04:12,  9.70s/it]Processing prompts:  38%|███▊      | 15/40 [02:26<04:02,  9.71s/it]Processing prompts:  40%|████      | 16/40 [02:35<03:52,  9.71s/it]Processing prompts:  42%|████▎     | 17/40 [02:45<03:44,  9.78s/it]Processing prompts:  45%|████▌     | 18/40 [02:55<03:34,  9.77s/it]Processing prompts:  48%|████▊     | 19/40 [03:05<03:24,  9.73s/it]Processing prompts:  50%|█████     | 20/40 [03:14<03:15,  9.77s/it]Processing prompts:  52%|█████▎    | 21/40 [03:24<03:04,  9.73s/it]Processing prompts:  55%|█████▌    | 22/40 [03:34<02:54,  9.71s/it]Processing prompts:  57%|█████▊    | 23/40 [03:43<02:44,  9.70s/it]Processing prompts:  60%|██████    | 24/40 [03:53<02:35,  9.73s/it]Processing prompts:  62%|██████▎   | 25/40 [04:03<02:25,  9.70s/it]Processing prompts:  65%|██████▌   | 26/40 [04:13<02:15,  9.69s/it]Processing prompts:  68%|██████▊   | 27/40 [04:22<02:05,  9.68s/it]Processing prompts:  70%|███████   | 28/40 [04:32<01:55,  9.61s/it]Processing prompts:  72%|███████▎  | 29/40 [04:41<01:44,  9.54s/it]Processing prompts:  75%|███████▌  | 30/40 [04:51<01:36,  9.66s/it]Processing prompts:  78%|███████▊  | 31/40 [05:01<01:27,  9.76s/it]Processing prompts:  80%|████████  | 32/40 [05:11<01:19,  9.88s/it]Processing prompts:  82%|████████▎ | 33/40 [05:21<01:09,  9.90s/it]Processing prompts:  85%|████████▌ | 34/40 [05:31<00:59,  9.88s/it]Processing prompts:  88%|████████▊ | 35/40 [05:41<00:49,  9.87s/it]Processing prompts:  90%|█████████ | 36/40 [05:51<00:39,  9.93s/it]Processing prompts:  92%|█████████▎| 37/40 [06:01<00:29,  9.89s/it]Processing prompts:  95%|█████████▌| 38/40 [06:11<00:19,  9.94s/it]Processing prompts:  98%|█████████▊| 39/40 [06:20<00:09,  9.88s/it]Processing prompts: 100%|██████████| 40/40 [06:30<00:00,  9.80s/it]Processing prompts: 100%|██████████| 40/40 [06:30<00:00,  9.76s/it]
+
+  ✅ Results saved to: results/comprehensive_circuit_test/part_a_results.csv
+
+📊 PART A STATISTICS
+--------------------------------------------------------------------------------
+
+control:
+  R_V: 0.6352 ± 0.1560 (95% CI: 0.5853 - 0.6851)
+  Behavior score: 0.400 (95% CI: 0.241 - 0.559)
+  Expression rate: 40.0% (16/40)
+
+h18_ablated:
+  R_V: 0.7285 ± 0.1642 (95% CI: 0.6760 - 0.7810)
+  Behavior score: 0.375 (95% CI: 0.218 - 0.532)
+  Expression rate: 37.5% (15/40)
+
+h6_ablated:
+  R_V: 0.5754 ± 0.1578 (95% CI: 0.5249 - 0.6258)
+  Behavior score: 0.425 (95% CI: 0.265 - 0.585)
+  Expression rate: 42.5% (17/40)
+
+both_ablated:
+  R_V: 0.6586 ± 0.1698 (95% CI: 0.6043 - 0.7129)
+  Behavior score: 0.425 (95% CI: 0.265 - 0.585)
+  Expression rate: 42.5% (17/40)
+
+📊 STATISTICAL TESTS
+--------------------------------------------------------------------------------
+Control vs H18-ablated R_V: t=-2.606, p=0.0110
+Control vs H6-ablated R_V: t=1.705, p=0.0921
+
+[3/4] PART B: Expression Analysis...
+
+================================================================================
+PART B: EXPRESSION ANALYSIS
+================================================================================
+
+Control condition:
+  Expressing: 16/40 (40.0%)
+  Non-expressing: 24/40 (60.0%)
+
+R_V comparison:
+  Expressing: 0.6035 ± 0.0826
+  Non-expressing: 0.6563 ± 0.1888
+  t-test: t=-1.051, p=0.2999
+
+By prompt type:
+  champion: 70.0% expressing (7/10)
+  standard: 40.0% expressing (8/20)
+  baseline: 10.0% expressing (1/10)
+
+[4/4] PART C: Expression Head Hunt...
+
+================================================================================
+PART C: HUNT FOR EXPRESSION HEADS
+================================================================================
+  Testing 5 expressing prompts
+  Baseline behavior score: 0.200
+  Testing 10 random heads: [24, 3, 0, 9, 8, 25, 4, 29, 20, 2]
+Testing heads:   0%|          | 0/10 [00:00<?, ?it/s]Testing heads:  10%|█         | 1/10 [00:12<01:48, 12.09s/it]Testing heads:  20%|██        | 2/10 [00:24<01:37, 12.16s/it]Testing heads:  30%|███       | 3/10 [00:36<01:25, 12.15s/it]Testing heads:  40%|████      | 4/10 [00:47<01:11, 11.85s/it]Testing heads:  50%|█████     | 5/10 [00:59<00:59, 11.81s/it]Testing heads:  60%|██████    | 6/10 [01:11<00:47, 11.91s/it]Testing heads:  70%|███████   | 7/10 [01:23<00:36, 12.03s/it]Testing heads:  80%|████████  | 8/10 [01:36<00:24, 12.11s/it]Testing heads:  90%|█████████ | 9/10 [01:49<00:12, 12.35s/it]Testing heads: 100%|██████████| 10/10 [02:01<00:00, 12.45s/it]Testing heads: 100%|██████████| 10/10 [02:01<00:00, 12.18s/it]
+
+  Results:
+    Expression enablers found: 10
+    Enabler heads: [24, 3, 0, 9, 8, 25, 4, 29, 20, 2]
+
+  ✅ Summary saved to: results/comprehensive_circuit_test/summary.json
+
+================================================================================
+✅ COMPREHENSIVE TEST COMPLETE
+================================================================================

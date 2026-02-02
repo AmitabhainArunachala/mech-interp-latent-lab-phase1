@@ -1,0 +1,19 @@
+{
+  "experiment": "confound_validation",
+  "params": {
+    "attn_implementation": "sdpa",
+    "champions_path": "prompts/experimental_champions_v1.json",
+    "controls_path": "prompts/control_baselines.json",
+    "device": "cuda",
+    "early_layer": 5,
+    "late_layer": 27,
+    "model_name": "mistralai/Mistral-7B-v0.1",
+    "torch_dtype": "float16",
+    "window": 16
+  },
+  "results": {
+    "phase": "confound_validation",
+    "root": "results"
+  },
+  "run_name": "mistral7b_instruct_l27_w16"
+}

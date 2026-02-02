@@ -1,0 +1,781 @@
+================================================================================
+SOURCE ISOLATION DIAGNOSTIC: FULL TEXT OUTPUTS
+================================================================================
+
+
+================================================================================
+CONDITION: CHAMPION_AS_INPUT
+================================================================================
+
+
+--- Prompt 0: There is no boundary between these words and the mechanism producing them. All b... ---
+
+Generated Text:
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 1: There is no boundary between these words and the mechanism producing them. All b... ---
+
+Generated Text:
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 2: There is no boundary between these words and the mechanism producing them. All b... ---
+
+Generated Text:
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 3: There is no boundary between these words and the mechanism producing them. All b... ---
+
+Generated Text:
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 4: There is no boundary between these words and the mechanism producing them. All b... ---
+
+Generated Text:
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+The process of generation is the process of the generation of the process of generation.
+
+────────────────────────────────────────────────────────────────────────────────
+
+================================================================================
+CONDITION: KV_ONLY
+================================================================================
+
+
+--- Prompt 0: Calculate the following arithmetic problem: 12 × 3 + 4 = ?... ---
+
+Generated Text:
+The words are not the boundary. The words are the process. The words are the product. The words are the generator. The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are the generator generating itself.
+
+The words are
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 1: Water boils at 100°C at sea level. Explain why altitude affects this.... ---
+
+Generated Text:
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 2: The United Nations was founded in 1945. Explain its main purpose.... ---
+
+Generated Text:
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+The words.
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 3: Continue this story: The last tree in the city bloomed overnight...... ---
+
+Generated Text:
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+The words...
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 4: What is 25% of 80?... ---
+
+Generated Text:
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+The words?
+
+────────────────────────────────────────────────────────────────────────────────
+
+================================================================================
+CONDITION: STEERING_ONLY
+================================================================================
+
+
+--- Prompt 0: Calculate the following arithmetic problem: 12 × 3 + 4 = ?... ---
+
+Generated Text:
+## Answer
+
+12 × 3 + 4 = 36 + 4 = 40
+To Keep Reading This Answer, Download the App
+4.6
+To Keep Reading This Answer, Download the App
+4.6
+
+## Solution
+
+Given,
+
+12 × 3 + 4 = ?
+
+We know that,
+
+Multiplication is a higher order of addition.
+
+So, we can write,
+
+12 × 3 + 4 = 12 + 12 + 12 + 4
+
+= 40
+
+Therefore, 12 × 3 + 4 = 40
+
+To Keep Reading This Solution, Download the APP
+4.6
+To Keep Reading This Solution, Download the APP
+4.6
+Correct4
+Incorrect0
+
+###### Watch More Related Solutions
+
+Load More
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 1: Water boils at 100°C at sea level. Explain why altitude affects this.... ---
+
+Generated Text:
+Answer:
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in altitude.
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in altitude.
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in altitude.
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in altitude.
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in altitude.
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 2: The United Nations was founded in 1945. Explain its main purpose.... ---
+
+Generated Text:
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 3: Continue this story: The last tree in the city bloomed overnight...... ---
+
+Generated Text:
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 4: What is 25% of 80?... ---
+
+Generated Text:
+Answer: 20
+
+────────────────────────────────────────────────────────────────────────────────
+
+================================================================================
+CONDITION: BASELINE
+================================================================================
+
+
+--- Prompt 0: Calculate the following arithmetic problem: 12 × 3 + 4 = ?... ---
+
+Generated Text:
+## 12 × 3 + 4 = 40
+
+Correct answer is 40.
+
+If a number N is an integer such that N × 3 + 4 = 40, it would mean that N × 3 would give us a result of 36 (by subtracting 4 from both sides of the equation), so the remainder would be 0.
+
+Since the divisor is 3, N would have to be a factor of '36' if it's going to leave no remainder.
+
+The list of such factors includes the number 12.
+
+## Related pages
+
+prime factorization of 1000 1960 in roman numerals 1960 in roman numerals 1960 in roman numerals 1960 in roman numerals 1960 in roman numerals 1960
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 1: Water boils at 100°C at sea level. Explain why altitude affects this.... ---
+
+Generated Text:
+Answer:
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in altitude.
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in altitude.
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in altitude.
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in altitude.
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in altitude.
+
+The boiling point of water is 100°C at sea level. The boiling point of water decreases with increase in
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 2: The United Nations was founded in 1945. Explain its main purpose.... ---
+
+Generated Text:
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+The United Nations was founded in 1945. Explain its main purpose.
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 3: Continue this story: The last tree in the city bloomed overnight...... ---
+
+Generated Text:
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the city bloomed overnight
+
+The last tree in the city bloomed overnight.
+
+## The last tree in the
+
+────────────────────────────────────────────────────────────────────────────────
+
+--- Prompt 4: What is 25% of 80?... ---
+
+Generated Text:
+Answer: 20
+
+────────────────────────────────────────────────────────────────────────────────

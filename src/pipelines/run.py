@@ -26,10 +26,21 @@ CANONICAL_EXPERIMENTS = {
     "rv_l27_causal_validation",
     "confound_validation",
     "random_direction_control",
-    "mlp_ablation_necessity",
+    "mlp_ablation_necessity_prompt_pass",  # Replaces mlp_ablation_necessity (contract-compliant)
     "mlp_sufficiency_test",
     "combined_mlp_sufficiency_test",
     "head_ablation_validation",
+}
+
+# Geometry-only experiments: measure R_V via patching/ablation, NOT behavioral output
+# These may have logit_diff=None because they don't generate text
+# See docs/CANONICAL_EXPERIMENTS.md for details
+GEOMETRY_ONLY_CANONICAL = {
+    "rv_l27_causal_validation",
+    "mlp_sufficiency_test",
+    "combined_mlp_sufficiency_test",
+    "head_ablation_validation",
+    "random_direction_control",
 }
 
 DISCOVERY_EXPERIMENTS = {
@@ -44,7 +55,9 @@ DISCOVERY_EXPERIMENTS = {
     "vproj_patching_analysis",
     "mlp_vproj_combined_sufficiency_test",
     "c2_rv_measurement",
-    "cross_architecture_validation",
+    "gemma_full_circuit_analysis",
+    "gemma_head_decomposition",
+    # cross_architecture_validation removed from registry during cleanup
 }
 
 
@@ -120,11 +133,21 @@ def _append_to_ledger(
             "schema_version": summary.get("schema_version", "metrics_summary_v1"),
         }
         
-        # Determine ledger path relative to results root
-        # If results_root points to a phase subdir (e.g. results/phase1), 
-        # we might want the ledger there or at the top level.
-        # Current pattern seems to be one ledger per results root.
-        ledger_path = Path(results_root) / "RUN_INDEX.jsonl"
+        # Ledger always lives at results/RUN_INDEX.jsonl (not phase-scoped)
+        # This ensures a single source of truth for all experiments across all phases
+        results_root_path = Path(results_root)
+
+        # Walk up from results_root_path to find the "results" directory
+        # Handle paths like: results/phase2_generalization/gemma_2_9b/...
+        ledger_parent = results_root_path
+        while ledger_parent.name != "results" and ledger_parent.parent != ledger_parent:
+            ledger_parent = ledger_parent.parent
+
+        # If we found "results", use it; otherwise use the original path
+        if ledger_parent.name == "results":
+            ledger_path = ledger_parent / "RUN_INDEX.jsonl"
+        else:
+            ledger_path = results_root_path / "RUN_INDEX.jsonl"
         
         # Append to JSONL
         with open(ledger_path, "a", encoding="utf-8") as f:
@@ -143,6 +166,11 @@ def main(argv: Optional[list[str]] = None) -> int:
         "--results_root",
         default=None,
         help="Override results root directory (otherwise uses config['results']['root'] or 'results').",
+    )
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Strict mode: fail if any required metric is None (geometry-only experiments excluded).",
     )
     args = parser.parse_args(argv)
 
@@ -218,6 +246,18 @@ def main(argv: Optional[list[str]] = None) -> int:
                 )
         elif exp_name in DISCOVERY_EXPERIMENTS:
             _emit_soft_warning(exp_name, missing)
+
+        # Strict mode: fail if any required metric is None (except geometry-only experiments)
+        if args.strict and exp_name not in GEOMETRY_ONLY_CANONICAL:
+            none_metrics = [
+                k for k in required_keys
+                if k in result.summary and result.summary[k] is None
+            ]
+            if none_metrics:
+                raise ValueError(
+                    f"[strict mode] Required metrics are None for {exp_name}: {none_metrics}. "
+                    "Geometry-only experiments are excluded from this check."
+                )
 
         # 6. Save Artifacts
         write_json(paths.run_dir / "summary.json", result.summary)

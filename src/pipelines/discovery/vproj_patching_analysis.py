@@ -101,6 +101,11 @@ def run_vproj_patching_analysis_from_config(cfg: Dict[str, Any], run_dir: Path) 
     patch_layer = int(params.get("patch_layer", 27))
     max_new_tokens = int(params.get("max_new_tokens", 100))
     temperature = float(params.get("temperature", 0.7))
+
+    # R_V measurement layers (configurable for different architectures)
+    rv_early_layer = int(params.get("rv_early_layer", 5))
+    rv_late_layer = int(params.get("rv_late_layer", patch_layer))  # Default to patch layer
+    rv_window = int(params.get("rv_window", 16))
     
     set_seed(seed)
     print(f"Loading model: {model_name}")
@@ -173,9 +178,9 @@ def run_vproj_patching_analysis_from_config(cfg: Dict[str, Any], run_dir: Path) 
             recursive_domain = analyze_generation_domain(recursive_text)
             
             # === Step 5: Compute R_V on generated texts ===
-            rv_baseline = compute_rv(model, tokenizer, baseline_text, early=5, late=27, window=16, device=device)
-            rv_recursive = compute_rv(model, tokenizer, recursive_text, early=5, late=27, window=16, device=device)
-            rv_transfer = compute_rv(model, tokenizer, transfer_text, early=5, late=27, window=16, device=device)
+            rv_baseline = compute_rv(model, tokenizer, baseline_text, early=rv_early_layer, late=rv_late_layer, window=rv_window, device=device)
+            rv_recursive = compute_rv(model, tokenizer, recursive_text, early=rv_early_layer, late=rv_late_layer, window=rv_window, device=device)
+            rv_transfer = compute_rv(model, tokenizer, transfer_text, early=rv_early_layer, late=rv_late_layer, window=rv_window, device=device)
             
             # === Step 6: Analyze domain shift ===
             domain_shift = baseline_domain["domain"] != transfer_domain["domain"]

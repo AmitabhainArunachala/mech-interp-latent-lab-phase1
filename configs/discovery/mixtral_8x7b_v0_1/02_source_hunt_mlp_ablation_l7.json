@@ -1,5 +1,5 @@
 {
-  "experiment": "mlp_ablation_necessity",
+  "experiment": "mlp_ablation_necessity_prompt_pass",
   "model_metadata": {
     "early_layer": 5,
     "head_dim": 128,

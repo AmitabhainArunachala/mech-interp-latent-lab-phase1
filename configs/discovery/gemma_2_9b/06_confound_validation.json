@@ -1,0 +1,21 @@
+{
+  "experiment": "confound_validation",
+  "run_name": "gemma_2_9b_confound_validation",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase2_generalization/gemma_2_9b/06_confound_validation"
+  },
+  "model": {
+    "name": "google/gemma-2-9b",
+    "device": "cuda"
+  },
+  "params": {
+    "early_layer": 5,
+    "late_layer": 35,
+    "window": 16,
+    "n_champions": 30,
+    "n_length_matched": 30,
+    "n_pseudo_recursive": 30
+  }
+}

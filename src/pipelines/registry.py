@@ -111,14 +111,17 @@ def get_registry() -> Dict[str, ExperimentFn]:
     # Local imports to keep import-time side effects minimal.
     # Organized by tier: canonical, discovery, archive
 
-    # === CANONICAL (7) - Core paper findings ===
+    # === CANONICAL (8) - Core paper findings ===
     from .canonical.rv_l27_causal_validation import run_rv_l27_causal_validation_from_config
     from .canonical.confound_validation import run_confound_validation_from_config
     from .canonical.random_direction_control import run_random_direction_control_from_config
-    from .canonical.mlp_ablation_necessity import run_mlp_ablation_necessity_from_config
+    # mlp_ablation_necessity REMOVED from registry - measures R_V on generated text (contract violation)
+    # Use mlp_ablation_necessity_prompt_pass instead
+    from .canonical.mlp_ablation_necessity_prompt_pass import run_mlp_ablation_necessity_prompt_pass_from_config
     from .canonical.mlp_sufficiency_test import run_mlp_sufficiency_test_from_config
     from .canonical.mlp_combined_sufficiency_test import run_combined_mlp_sufficiency_test_from_config
     from .canonical.head_ablation_validation import run_head_ablation_validation_from_config
+    from .canonical.multi_token_bridge import run_multi_token_bridge_from_config
 
     # === DISCOVERY (12) - Methodology tools ===
     from .discovery.behavioral_grounding import run_behavioral_grounding_from_config
@@ -132,10 +135,12 @@ def get_registry() -> Dict[str, ExperimentFn]:
     from .discovery.vproj_patching_analysis import run_vproj_patching_analysis_from_config
     from .discovery.mlp_vproj_combined_sufficiency_test import run_mlp_vproj_combined_sufficiency_test_from_config
     from .discovery.c2_rv_measurement import run_c2_rv_measurement_from_config
+    from .discovery.gemma_full_circuit_analysis import run_gemma_full_circuit_analysis_from_config
+    from .discovery.gemma_head_decomposition import run_gemma_head_decomposition_from_config
 
     # === ARCHIVE - Historical/superseded ===
     from .archive.phase1_existence import run_phase1_existence_from_config
-    from .cross_architecture_validation import run_cross_architecture_validation_from_config
+    # cross_architecture_validation removed during cleanup - configs archived
     from .archive.phase0_minimal_pairs import run_phase0_minimal_pairs_from_config
     from .archive.phase0_metric_targets import run_phase0_metric_targets_from_config
     from .archive.l27_head_analysis import run_l27_head_analysis_from_config
@@ -199,20 +204,33 @@ def get_registry() -> Dict[str, ExperimentFn]:
         "circuit_discovery": run_circuit_discovery_from_config,
         "mlp_steering_sweep": run_mlp_steering_sweep_from_config,
         "random_direction_control": run_random_direction_control_from_config,
-        "mlp_ablation_necessity": run_mlp_ablation_necessity_from_config,
+        # "mlp_ablation_necessity" removed - measures R_V on generated text (contract violation)
+        "mlp_ablation_necessity_prompt_pass": run_mlp_ablation_necessity_prompt_pass_from_config,
         "position_specific_ablation": run_position_specific_ablation_from_config,
         "mlp_sufficiency_test": run_mlp_sufficiency_test_from_config,
         "combined_mlp_sufficiency_test": run_combined_mlp_sufficiency_test_from_config,
         "logit_lens_analysis": run_logit_lens_analysis_from_config,
         "vproj_patching_analysis": run_vproj_patching_analysis_from_config,
         "mlp_vproj_combined_sufficiency_test": run_mlp_vproj_combined_sufficiency_test_from_config,
-        "cross_architecture_validation": run_cross_architecture_validation_from_config,
+        # "cross_architecture_validation" removed - file deleted during cleanup
         "c2_rv_measurement": run_c2_rv_measurement_from_config,
+        "gemma_full_circuit_analysis": run_gemma_full_circuit_analysis_from_config,
+        "gemma_head_decomposition": run_gemma_head_decomposition_from_config,
+        "multi_token_bridge": run_multi_token_bridge_from_config,
     }
 
 
 def run_from_config(cfg: Dict[str, Any], run_dir: Path) -> ExperimentResult:
     exp, _params = _validate_top_level(cfg)
+
+    # Enforce deprecation: block mlp_ablation_necessity completely
+    if exp == "mlp_ablation_necessity":
+        raise ConfigError(
+            f"Experiment 'mlp_ablation_necessity' is deprecated (measures R_V on generated text). "
+            f"Use 'mlp_ablation_necessity_prompt_pass' instead. "
+            f"Update your config's 'experiment' field."
+        )
+
     reg = get_registry()
     if exp not in reg:
         raise ConfigError(

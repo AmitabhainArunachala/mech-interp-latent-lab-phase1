@@ -1,0 +1,137 @@
+# Run report: random_direction_control
+
+- **run_dir**: `results/phase1_mechanism/runs/20260116_122849_random_direction_control_l3_random_control`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "alphas": [
+    2.0
+  ],
+  "analysis_by_alpha": {
+    "2.0": {
+      "mode_ratio": null,
+      "random_avg_mode_delta": 4.185546875,
+      "random_avg_rv_delta": 2.6337340953256785,
+      "rv_cohens_d": -0.5191491088221143,
+      "rv_ratio": 0.9234671487414334,
+      "rv_ttest": {
+        "p": 0.13785731529285655,
+        "t": -1.5770533309488863
+      },
+      "true_steering_mode_delta": null,
+      "true_steering_rv_ci_95": [
+        2.171732084514078,
+        2.6926017465929277
+      ],
+      "true_steering_rv_delta": 2.432166915553503,
+      "verdict": "ARTIFACT"
+    }
+  },
+  "artifacts": {
+    "config": "results/phase1_mechanism/runs/20260116_122849_random_direction_control_l3_random_control/config.json",
+    "report": "results/phase1_mechanism/runs/20260116_122849_random_direction_control_l3_random_control/report.md",
+    "summary": "results/phase1_mechanism/runs/20260116_122849_random_direction_control_l3_random_control/summary.json"
+  },
+  "comparison_table": [
+    {
+      "alpha": 2.0,
+      "coherence_mean": 0.0,
+      "coherence_std": 0.0,
+      "condition": "true_steering",
+      "layer": 3,
+      "mode_delta_mean": NaN,
+      "mode_delta_std": NaN,
+      "rv_delta_mean": 2.432166915553503,
+      "rv_delta_std": 0.36406279000835545
+    },
+    {
+      "alpha": 2.0,
+      "coherence_mean": 0.3,
+      "coherence_std": 0.4830458915396479,
+      "condition": "orthogonal",
+      "layer": 3,
+      "mode_delta_mean": NaN,
+      "mode_delta_std": NaN,
+      "rv_delta_mean": 2.1457962336319403,
+      "rv_delta_std": 0.4872608452746866
+    },
+    {
+      "alpha": 2.0,
+      "coherence_mean": 0.2,
+      "coherence_std": 0.42163702135578396,
+      "condition": "random_1",
+      "layer": 3,
+      "mode_delta_mean": 4.26171875,
+      "mode_delta_std": NaN,
+      "rv_delta_mean": 2.4136897385642033,
+      "rv_delta_std": 0.28510162636758263
+    },
+    {
+      "alpha": 2.0,
+      "coherence_mean": 0.1,
+      "coherence_std": 0.31622776601683794,
+      "condition": "random_2",
+      "layer": 3,
+      "mode_delta_mean": NaN,
+      "mode_delta_std": NaN,
+      "rv_delta_mean": 2.8894242387175813,
+      "rv_delta_std": 0.47499716566404016
+    },
+    {
+      "alpha": 2.0,
+      "coherence_mean": 0.1,
+      "coherence_std": 0.31622776601683794,
+      "condition": "random_3",
+      "layer": 3,
+      "mode_delta_mean": 4.109375,
+      "mode_delta_std": NaN,
+      "rv_delta_mean": 2.622495335843473,
+      "rv_delta_std": 0.27172075403587487
+    },
+    {
+      "alpha": 2.0,
+      "coherence_mean": 0.2,
+      "coherence_std": 0.42163702135578396,
+      "condition": "random_4",
+      "layer": 3,
+      "mode_delta_mean": NaN,
+      "mode_delta_std": NaN,
+      "rv_delta_mean": 2.557801279606471,
+      "rv_delta_std": 0.28995021783861114
+    },
+    {
+      "alpha": 2.0,
+      "coherence_mean": 0.2,
+      "coherence_std": 0.42163702135578396,
+      "condition": "random_5",
+      "layer": 3,
+      "mode_delta_mean": NaN,
+      "mode_delta_std": NaN,
+      "rv_delta_mean": 2.6852598838966637,
+      "rv_delta_std": 0.48806528571433383
+    }
+  ],
+  "experiment": "random_direction_control",
+  "include_orthogonal": true,
+  "layer": 3,
+  "logit_diff_cohens_d": null,
+  "logit_diff_delta_mean": null,
+  "logit_diff_p_value": null,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 10,
+  "n_random": 5,
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "rv_baseline_mean": 0.6774613806639632,
+  "rv_cohens_d": -0.5191491088221143,
+  "rv_delta_mean": 2.432166915553503,
+  "rv_p_value": 0.13785731529285655,
+  "rv_recursive_mean": null,
+  "schema_version": "metrics_summary_v1",
+  "steering_vector_dim": 4096,
+  "steering_vector_norm": 1.0,
+  "timestamp": "20260116_123554"
+}
+```

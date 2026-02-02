@@ -1,0 +1,20 @@
+{
+  "experiment": "mlp_ablation_necessity_prompt_pass",
+  "run_name": "mistral_7b_v0_1_prompt_pass_l0",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism/mistral_7b_v0_1/03_prompt_pass_validation"
+  },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "layer": 0,
+    "n_pairs": 60,
+    "window_size": 16,
+    "early_layer": 5,
+    "late_layer": 27
+  }
+}

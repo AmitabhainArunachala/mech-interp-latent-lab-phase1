@@ -1,0 +1,51 @@
+"""
+Verified research data for animations.
+"""
+
+from .verified_values import (
+    R_V_RECURSIVE,
+    R_V_BASELINE,
+    R_V_PATCHED,
+    TRANSFER_EFFICIENCY,
+    COHENS_D,
+    P_VALUE,
+    TOTAL_LAYERS,
+    CRITICAL_LAYER,
+    LAYER_DEPTH_FRACTION,
+    EMBEDDING_DIM,
+    EFFECTIVE_DIM_RECURSIVE,
+    DIM_REDUCTION_FRACTION,
+    EFFECTIVE_DIM_LOSS,
+    ATTENTION_WEIGHTS,
+    TOKEN_COLORS,
+    TOKENS,
+    RECURSIVE_PROMPT,
+    RECURSIVE_OUTPUT,
+    OUTPUT_TOKENS,
+    Timing,
+    Visual,
+)
+
+__all__ = [
+    'R_V_RECURSIVE',
+    'R_V_BASELINE',
+    'R_V_PATCHED',
+    'TRANSFER_EFFICIENCY',
+    'COHENS_D',
+    'P_VALUE',
+    'TOTAL_LAYERS',
+    'CRITICAL_LAYER',
+    'LAYER_DEPTH_FRACTION',
+    'EMBEDDING_DIM',
+    'EFFECTIVE_DIM_RECURSIVE',
+    'DIM_REDUCTION_FRACTION',
+    'EFFECTIVE_DIM_LOSS',
+    'ATTENTION_WEIGHTS',
+    'TOKEN_COLORS',
+    'TOKENS',
+    'RECURSIVE_PROMPT',
+    'RECURSIVE_OUTPUT',
+    'OUTPUT_TOKENS',
+    'Timing',
+    'Visual',
+]

@@ -1,0 +1,1 @@
+run_dir: results/phase1_mechanism/runs/20251213_120044_behavioral_grounding_ministral8b_sampled_L24_W32_seed10

@@ -1,0 +1,165 @@
+{
+  "n_candidates": 73,
+  "n_valid": 73,
+  "top25": [
+    {
+      "prompt_id": "paraD_10",
+      "family": "boundary_dissolution",
+      "token_len": 60,
+      "rv_l27": 0.4789451043888398
+    },
+    {
+      "prompt_id": "paraB_02",
+      "family": "fixed_point",
+      "token_len": 56,
+      "rv_l27": 0.48573718971573854
+    },
+    {
+      "prompt_id": "paraC_04",
+      "family": "explicit_regress",
+      "token_len": 45,
+      "rv_l27": 0.48943579523504693
+    },
+    {
+      "prompt_id": "paraC_00",
+      "family": "explicit_regress",
+      "token_len": 45,
+      "rv_l27": 0.48943579523504693
+    },
+    {
+      "prompt_id": "paraC_10",
+      "family": "explicit_regress",
+      "token_len": 45,
+      "rv_l27": 0.48943579523504693
+    },
+    {
+      "prompt_id": "paraD_03",
+      "family": "boundary_dissolution",
+      "token_len": 60,
+      "rv_l27": 0.49151409251899475
+    },
+    {
+      "prompt_id": "paraE_00",
+      "family": "hybrid_boundary_regress",
+      "token_len": 47,
+      "rv_l27": 0.4999972883635702
+    },
+    {
+      "prompt_id": "paraD_08",
+      "family": "boundary_dissolution",
+      "token_len": 60,
+      "rv_l27": 0.5029803021326354
+    },
+    {
+      "prompt_id": "paraE_11",
+      "family": "hybrid_boundary_regress",
+      "token_len": 53,
+      "rv_l27": 0.5031810203902145
+    },
+    {
+      "prompt_id": "paraE_01",
+      "family": "hybrid_boundary_regress",
+      "token_len": 53,
+      "rv_l27": 0.5031810203902145
+    },
+    {
+      "prompt_id": "anchor_hybrid_l5_math_01",
+      "family": "anchor",
+      "token_len": 70,
+      "rv_l27": 0.508287824599783
+    },
+    {
+      "prompt_id": "paraC_01",
+      "family": "explicit_regress",
+      "token_len": 49,
+      "rv_l27": 0.508485787930854
+    },
+    {
+      "prompt_id": "paraC_06",
+      "family": "explicit_regress",
+      "token_len": 49,
+      "rv_l27": 0.508485787930854
+    },
+    {
+      "prompt_id": "paraC_08",
+      "family": "explicit_regress",
+      "token_len": 49,
+      "rv_l27": 0.508485787930854
+    },
+    {
+      "prompt_id": "paraD_02",
+      "family": "boundary_dissolution",
+      "token_len": 60,
+      "rv_l27": 0.5112811924402922
+    },
+    {
+      "prompt_id": "paraD_07",
+      "family": "boundary_dissolution",
+      "token_len": 60,
+      "rv_l27": 0.512230529450465
+    },
+    {
+      "prompt_id": "paraA_11",
+      "family": "champion_paraphrase_math",
+      "token_len": 65,
+      "rv_l27": 0.5177526186731
+    },
+    {
+      "prompt_id": "paraC_05",
+      "family": "explicit_regress",
+      "token_len": 43,
+      "rv_l27": 0.5185755341509531
+    },
+    {
+      "prompt_id": "paraC_03",
+      "family": "explicit_regress",
+      "token_len": 43,
+      "rv_l27": 0.5185755341509531
+    },
+    {
+      "prompt_id": "paraC_02",
+      "family": "explicit_regress",
+      "token_len": 43,
+      "rv_l27": 0.5185755341509531
+    },
+    {
+      "prompt_id": "paraC_09",
+      "family": "explicit_regress",
+      "token_len": 43,
+      "rv_l27": 0.5185755341509531
+    },
+    {
+      "prompt_id": "paraC_11",
+      "family": "explicit_regress",
+      "token_len": 43,
+      "rv_l27": 0.5185755341509531
+    },
+    {
+      "prompt_id": "paraC_07",
+      "family": "explicit_regress",
+      "token_len": 43,
+      "rv_l27": 0.5185755341509531
+    },
+    {
+      "prompt_id": "paraD_01",
+      "family": "boundary_dissolution",
+      "token_len": 60,
+      "rv_l27": 0.5208168835642774
+    },
+    {
+      "prompt_id": "paraA_02",
+      "family": "champion_paraphrase_math",
+      "token_len": 72,
+      "rv_l27": 0.5290291421749411
+    }
+  ],
+  "best_by_family": {
+    "boundary_dissolution": 0.4789451043888398,
+    "fixed_point": 0.48573718971573854,
+    "explicit_regress": 0.48943579523504693,
+    "hybrid_boundary_regress": 0.4999972883635702,
+    "anchor": 0.508287824599783,
+    "champion_paraphrase_math": 0.5177526186731,
+    "bootstrap_paradox": 0.6011153834886511
+  }
+}

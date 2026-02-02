@@ -1,0 +1,26 @@
+{
+  "experiment": "head_ablation_validation",
+  "run_name": "mistral_l27_kv_head_validation",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "early_layer": 5,
+    "target_layer": 27,
+    "control_layer": 21,
+    "window": 16,
+    "target_kv_head": 2,
+    "control_kv_head": 0,
+    "n_recursive": 50,
+    "n_baseline": 50,
+    "max_length": 512,
+    "recursive_groups": ["champions", "L5_refined", "L4_full", "L3_deeper"],
+    "baseline_groups": ["baseline_math", "baseline_factual", "baseline_creative"]
+  }
+}

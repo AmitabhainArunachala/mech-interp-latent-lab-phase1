@@ -116,6 +116,7 @@ def generate_with_rv_tracking(
     early_layer: int = 5,
     late_layer: int = 27,
     rv_window: int = 16,
+    steering_layer: Optional[int] = None,
     device: str = "cuda",
 ) -> Tuple[str, List[float], Dict[str, Any]]:
     """
@@ -129,6 +130,9 @@ def generate_with_rv_tracking(
     from src.core.head_specific_patching import HeadSpecificSteeringPatcher
 
     inputs = tokenizer(prompt, return_tensors="pt", add_special_tokens=False).to(device)
+
+    # Use steering_layer if provided, otherwise default to late_layer
+    effective_steering_layer = steering_layer if steering_layer is not None else late_layer
 
     patchers = []
     rv_trajectory = []
@@ -168,13 +172,13 @@ def generate_with_rv_tracking(
                 v_steering_patcher = HeadSpecificSteeringPatcher(
                     model, steering_vector, target_heads, config["vproj_alpha"]
                 )
-                v_steering_patcher.register(layer_idx=27)
+                v_steering_patcher.register(layer_idx=effective_steering_layer)
                 patchers.append(v_steering_patcher)
             elif head_target == "full":
                 v_steering_patcher = SteeringVectorPatcher(
                     model, steering_vector, config["vproj_alpha"]
                 )
-                v_steering_patcher.register(layer_idx=27)
+                v_steering_patcher.register(layer_idx=effective_steering_layer)
                 patchers.append(v_steering_patcher)
             # "none" = no steering
 
@@ -328,6 +332,7 @@ def run_c2_rv_measurement_from_config(cfg: Dict[str, Any], run_dir: Path) -> Exp
     early_layer = params.get("early_layer", 5)
     late_layer = params.get("late_layer", 27)
     rv_window = params.get("rv_window", 16)
+    steering_layer = params.get("steering_layer", None)  # Architecture-specific steering layer
     seed = params.get("seed", 42)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -411,7 +416,7 @@ def run_c2_rv_measurement_from_config(cfg: Dict[str, Any], run_dir: Path) -> Exp
                     model, tokenizer, prompt, rec_prompt, config, steering_vector,
                     max_new_tokens=max_new_tokens, temperature=temperature,
                     early_layer=early_layer, late_layer=late_layer,
-                    rv_window=rv_window, device=device
+                    rv_window=rv_window, steering_layer=steering_layer, device=device
                 )
 
                 # Compute R_V stats

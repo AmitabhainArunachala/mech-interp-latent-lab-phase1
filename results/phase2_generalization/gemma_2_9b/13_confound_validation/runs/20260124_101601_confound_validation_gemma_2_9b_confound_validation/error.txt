@@ -1,0 +1,1 @@
+ValueError: summary.json missing required keys for canonical experiment confound_validation: ['n_pairs', 'rv_recursive_mean', 'rv_baseline_mean', 'rv_delta_mean', 'rv_cohens_d', 'rv_p_value', 'logit_diff_delta_mean', 'logit_diff_cohens_d', 'logit_diff_p_value']

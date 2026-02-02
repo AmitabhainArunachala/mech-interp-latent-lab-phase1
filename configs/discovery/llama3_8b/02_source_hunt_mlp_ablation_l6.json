@@ -1,5 +1,5 @@
 {
-  "experiment": "mlp_ablation_necessity",
+  "experiment": "mlp_ablation_necessity_prompt_pass",
   "params": {
     "layer": 6,
     "max_new_tokens": 200,

@@ -1,0 +1,18 @@
+{
+  "experiment": "l27_deep_dive",
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "relay_layers": [
+      4,
+      14,
+      18,
+      25,
+      27
+    ],
+    "all_heads": 32,
+    "window": 16
+  }
+}

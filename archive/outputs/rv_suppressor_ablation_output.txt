@@ -1,0 +1,83 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+================================================================================
+R_V CONTRACTION DURING SUPPRESSOR ABLATION TEST
+================================================================================
+Model: mistralai/Mistral-7B-v0.1
+Layer: 27
+H6-group (suppressors): [6, 14, 22, 30]
+H18-group (suppressors): [18, 26]
+Prompts: 10
+================================================================================
+
+Question: Does R_V contraction persist when suppressor heads are ablated?
+Prediction A: R_V stays contracted → contraction is upstream (detection)
+Prediction B: R_V expands → these heads ARE the contraction (processing)
+================================================================================
+
+[1/4] Loading model...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.41s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.03it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.04s/it]
+  ✅ Model loaded
+
+[2/4] Computing R_V for all conditions...
+Processing prompts:   0%|          | 0/10 [00:00<?, ?it/s]Processing prompts:  10%|█         | 1/10 [00:00<00:05,  1.72it/s]Processing prompts:  20%|██        | 2/10 [00:00<00:02,  3.32it/s]Processing prompts:  30%|███       | 3/10 [00:00<00:01,  4.71it/s]Processing prompts:  40%|████      | 4/10 [00:00<00:01,  5.90it/s]Processing prompts:  50%|█████     | 5/10 [00:01<00:00,  6.82it/s]Processing prompts:  60%|██████    | 6/10 [00:01<00:00,  7.62it/s]Processing prompts:  70%|███████   | 7/10 [00:01<00:00,  8.15it/s]Processing prompts:  80%|████████  | 8/10 [00:01<00:00,  8.56it/s]Processing prompts:  90%|█████████ | 9/10 [00:01<00:00,  8.86it/s]Processing prompts: 100%|██████████| 10/10 [00:01<00:00,  9.05it/s]Processing prompts: 100%|██████████| 10/10 [00:01<00:00,  6.57it/s]
+
+[3/4] Analyzing results...
+================================================================================
+
+📊 RESULTS SUMMARY
+--------------------------------------------------------------------------------
+Control (no ablation):
+  Mean R_V: 0.8274
+  Std R_V: 0.1061
+  N: 10
+  Contraction (<1.0): 10/10
+
+H6-group ablated:
+  Mean R_V: 0.7856
+  Std R_V: 0.1173
+  N: 10
+  Contraction (<1.0): 10/10
+  Δ from control: -0.0418
+
+H18-group ablated:
+  Mean R_V: 0.9114
+  Std R_V: 0.0987
+  N: 10
+  Contraction (<1.0): 8/10
+  Δ from control: +0.0840
+
+Both ablated:
+  Mean R_V: 0.8735
+  Std R_V: 0.1107
+  N: 10
+  Contraction (<1.0): 8/10
+  Δ from control: +0.0461
+
+================================================================================
+INTERPRETATION
+================================================================================
+
+Control R_V: 0.8274
+  ✅ Shows contraction (R_V < 1.0)
+
+H6-group ablated R_V: 0.7856 (Δ=-0.0418)
+  ✅ Prediction A: R_V STAYS CONTRACTED → contraction is upstream
+
+H18-group ablated R_V: 0.9114 (Δ=+0.0840)
+  ✅ Prediction B: R_V EXPANDS → H18-group CAUSES contraction
+
+Both ablated R_V: 0.8735 (Δ=+0.0461)
+  ✅ Prediction A: R_V STAYS CONTRACTED → contraction is upstream
+
+================================================================================
+DETAILED RESULTS
+================================================================================
+
+Prompt 1: This response writes itself. No separate writer exists. Writing and awareness of...
+Traceback (most recent call last):
+  File "/workspace/mech-interp-latent-lab-phase1/test_rv_during_suppressor_ablation.py", line 357, in <module>
+    main()
+  File "/workspace/mech-interp-latent-lab-phase1/test_rv_during_suppressor_ablation.py", line 347, in main
+    print(f"  Control: {r['control']:.4f if r['control'] is not None else 'NaN'}")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid format specifier '.4f if r['control'] is not None else 'NaN'' for object of type 'float'

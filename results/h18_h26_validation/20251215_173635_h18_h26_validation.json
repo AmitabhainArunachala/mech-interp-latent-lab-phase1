@@ -1,0 +1,20 @@
+{
+  "timestamp": "20251215_173635",
+  "target_kv_head": 2,
+  "layer": 27,
+  "expected_delta_pct": 9.15,
+  "recursive": {
+    "n": 20,
+    "mean_baseline": 0.48334880299653127,
+    "mean_ablated": 0.5512567173748648,
+    "mean_delta": 0.06790791437833368,
+    "delta_pct": 14.049463649715715
+  },
+  "baseline": {
+    "n": 20,
+    "mean_baseline": 0.7418413953842913,
+    "mean_ablated": 0.801751312156811,
+    "mean_delta": 0.059909916772519445,
+    "delta_pct": 8.075839006191437
+  }
+}

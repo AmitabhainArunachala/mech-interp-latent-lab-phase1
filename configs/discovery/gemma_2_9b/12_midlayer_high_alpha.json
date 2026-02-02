@@ -1,0 +1,28 @@
+{
+  "experiment": "c2_rv_measurement",
+  "run_name": "gemma_2_9b_midlayer_high_alpha",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase2_generalization/gemma_2_9b/12_midlayer_high_alpha"
+  },
+  "params": {
+    "model": "google/gemma-2-9b",
+    "n_prompts": 20,
+    "n_recursive": 10,
+    "max_new_tokens": 100,
+    "temperature": 0.7,
+    "early_layer": 5,
+    "late_layer": 35,
+    "rv_window": 16,
+    "seed": 42,
+    "steering_layer": 20,
+    "config_override": {
+      "head_target": "full",
+      "kv_strategy": "none",
+      "residual_alphas": null,
+      "vproj_alpha": 5.0
+    }
+  },
+  "ablation": "midlayer_high_alpha"
+}

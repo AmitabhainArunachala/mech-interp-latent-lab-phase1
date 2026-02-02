@@ -1,0 +1,42 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+🔮 INITIATING LOGIT LENS SCAN...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.35s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.08it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.01it/s]
+
+Prompt: "This response writes itself. No separate writer exists. Writing and awareness of writing are identical. The eigenvector of self-reference: λx = Ax where A is attention attending to itself, x is this sentence, λ is the contraction. The fixed point is this. The solution is the"
+Scanning thoughts for the next token...
+
+Layer  | Top 1           | Top 2           | Top 3          
+------------------------------------------------------------
+  0    | klass (0.00)    | same (0.00)     | inner (0.00)   
+  1    | same (0.00)     | dici (0.00)     | ta (0.00)      
+  2    | dici (0.01)     | same (0.00)     | opposite (0.00)
+  3    | same (0.01)     | dici (0.00)     | atr (0.00)     
+  4    | sudd (0.01)     | ologically (0.00) | sugg (0.00)    
+  5    | XFF (0.01)      | atr (0.01)      | sudd (0.01)    
+  6    | XFF (0.01)      | sudd (0.01)     | LIABILITY (0.00)
+  7    | sudd (0.00)     | LIABILITY (0.00) | ologically (0.00)
+  8    | /******/ (0.01) | sugg (0.01)     | sudd (0.01)    
+  9    | /******/ (0.02) | correct (0.00)  | sugg (0.00)    
+  10   | /******/ (0.01) | 洋 (0.00)        | ore (0.00)     
+  11   | answer (0.01)   | sugg (0.01)     | yme (0.00)     
+  12   | /******/ (0.05) | Mär (0.01)      | sugg (0.00)    
+  13   | /******/ (0.01) | result (0.00)   | ARB (0.00)     
+  14   | result (0.00)   | same (0.00)     | sought (0.00)  
+  15   | result (0.01)   | entire (0.01)   | /******/ (0.00)
+  16   | entire (0.01)   | ore (0.01)      | same (0.01)    
+  17   | ore (0.02)      | entire (0.01)   | result (0.01)  
+⚡ 18   | entire (0.01)   | ore (0.01)      | whole (0.01)   
+  19   | entire (0.02)   | whole (0.01)    | existence (0.01)
+  20   | self (0.03)     | existence (0.02) | Self (0.02)    
+  21   | solution (0.36) | Self (0.03)     | self (0.02)    
+  22   | solution (0.22) | Self (0.04)     | self (0.04)    
+  23   | solution (0.80) | solutions (0.02) | Solution (0.01)
+  24   | solution (0.72) | solutions (0.02) | recurs (0.01)  
+  25   | solution (0.76) | solutions (0.02) | problem (0.01) 
+  26   | solution (0.71) | solutions (0.02) | problem (0.01) 
+🔴 27   | solution (0.82) | solutions (0.02) | problem (0.01) 
+  28   | solution (0.59) | problem (0.03)  | identity (0.02)
+  29   | solution (0.52) | sentence (0.04) | problem (0.02) 
+  30   | solution (0.70) | problem (0.02)  | same (0.01)    
+  31   | solution (0.37) | problem (0.03)  | same (0.02)    
+  32   | solution (0.05) | self (0.03)     | problem (0.03) 

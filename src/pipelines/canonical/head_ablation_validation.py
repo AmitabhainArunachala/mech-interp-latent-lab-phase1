@@ -25,9 +25,9 @@ from src.metrics.rv import participation_ratio
 from src.pipelines.registry import ExperimentResult
 
 
-# Mistral-7B GQA parameters
-NUM_KV_HEADS = 8
-HEAD_DIM = 128
+# Mistral-7B GQA parameters - REMOVED, now fetched dynamically
+# NUM_KV_HEADS = 8
+# HEAD_DIM = 128
 
 
 def _tok_len(tokenizer, text: str) -> int:
@@ -35,13 +35,13 @@ def _tok_len(tokenizer, text: str) -> int:
 
 
 @contextmanager
-def ablate_kv_head(model, layer_idx: int, kv_head_idx: int):
+def ablate_kv_head(model, layer_idx: int, kv_head_idx: int, num_kv_heads: int, head_dim: int):
     """Zero out a specific KV-head in V-projection at given layer."""
     handle = None
 
     def hook_fn(module, inp, out):
         batch, seq, _ = out.shape
-        out_view = out.view(batch, seq, NUM_KV_HEADS, HEAD_DIM)
+        out_view = out.view(batch, seq, num_kv_heads, head_dim)
         out_view[:, :, kv_head_idx, :] = 0.0
         return out_view.view(batch, seq, -1)
 
@@ -102,10 +102,15 @@ def compute_rv_with_ablation(
     if tlen < window + 1:
         return float("nan"), tlen
     
+    # Get model-specific parameters for reshaping
+    config = model.config
+    num_kv_heads = getattr(config, "num_key_value_heads", config.num_attention_heads)
+    head_dim = getattr(config, "head_dim", None) or (config.hidden_size // config.num_attention_heads)
+    
     with torch.no_grad():
         with VProjectionCapture(model, [early_layer, late_layer]) as cap:
             if ablate_layer is not None and ablate_kv_head_idx is not None:
-                with ablate_kv_head(model, ablate_layer, ablate_kv_head_idx):
+                with ablate_kv_head(model, ablate_layer, ablate_kv_head_idx, num_kv_heads, head_dim):
                     model(input_ids=input_ids)
             else:
                 model(input_ids=input_ids)
@@ -179,6 +184,12 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
     # Load model and prompts
     set_seed(seed)
     model, tokenizer = load_model(model_name, device=device)
+    
+    # Extract architecture details for reporting
+    config = model.config
+    num_kv_heads = getattr(config, "num_key_value_heads", config.num_attention_heads)
+    head_dim = getattr(config, "head_dim", config.hidden_size // config.num_attention_heads)
+    is_gqa = num_kv_heads < config.num_attention_heads
     
     loader = PromptLoader()
     bank_version = loader.version
@@ -361,6 +372,17 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
     
     all_pass = all(p[1] for p in passes)
     
+    # Canonical summary fields (for runner contract)
+    rec_no_ablation = [r["rv_no_ablation"] for r in rec_rows if not np.isnan(r.get("rv_no_ablation", np.nan))]
+    base_no_ablation = [r["rv_no_ablation"] for r in bas_rows if not np.isnan(r.get("rv_no_ablation", np.nan))]
+    rv_recursive_mean = float(np.nanmean(rec_no_ablation)) if rec_no_ablation else float("nan")
+    rv_baseline_mean = float(np.nanmean(base_no_ablation)) if base_no_ablation else float("nan")
+    # Use target-at-target-layer delta on recursive prompts as primary effect size
+    rec_target = analysis.get("recursive", {}).get("target_at_target_layer", {})
+    rv_delta_mean = float(rec_target.get("mean", float("nan"))) if rec_target else float("nan")
+    rv_p_value = float(rec_target.get("p_value", float("nan"))) if rec_target else float("nan")
+    rv_cohens_d = float(rec_target.get("cohens_d", float("nan"))) if rec_target else float("nan")
+
     summary = {
         "experiment": "head_ablation_validation",
         "model_name": model_name,
@@ -385,8 +407,21 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
         "all_passed": all_pass,
         "artifacts": {"results_csv": str(out_csv)},
         "notes": {
-            "gqa_aliasing": f"KV-head {target_kv_head} is shared by Q-heads {target_kv_head}, {target_kv_head+8}, {target_kv_head+16}, {target_kv_head+24} due to GQA",
+            "gqa_aliasing": f"KV-head {target_kv_head} is shared by Q-heads {target_kv_head}, {target_kv_head+8}, {target_kv_head+16}, {target_kv_head+24} due to GQA" if is_gqa else "No GQA aliasing (MHA model)",
+            "num_kv_heads": num_kv_heads,
+            "head_dim": head_dim,
         },
+        # Canonical summary keys (runner contract)
+        "n_pairs": len(rows),
+        "rv_recursive_mean": rv_recursive_mean,
+        "rv_baseline_mean": rv_baseline_mean,
+        "rv_delta_mean": rv_delta_mean,
+        "rv_cohens_d": rv_cohens_d,
+        "rv_p_value": rv_p_value,
+        # Logit diff not computed in this pipeline (set to None to satisfy schema)
+        "logit_diff_delta_mean": None,
+        "logit_diff_cohens_d": None,
+        "logit_diff_p_value": None,
     }
     
     # Write VERDICT.md
@@ -410,9 +445,18 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
         "",
         "## Note on GQA Aliasing",
         "",
-        f"In Mistral-7B with GQA, KV-head {target_kv_head} serves Q-heads {target_kv_head}, {target_kv_head+8}, {target_kv_head+16}, {target_kv_head+24}.",
-        "Claims should reference 'KV-head group' not individual Q-heads.",
     ])
+    
+    if is_gqa:
+        verdict_lines.extend([
+            f"In this model ({model_name}) with GQA, KV-head {target_kv_head} serves multiple query heads.",
+            "Claims should reference 'KV-head group' not individual Q-heads.",
+        ])
+    else:
+         verdict_lines.extend([
+            f"This model ({model_name}) uses Multi-Head Attention (MHA).",
+            "Each KV-head corresponds to exactly one Q-head.",
+        ])
     
     verdict_path.write_text("\n".join(verdict_lines))
     

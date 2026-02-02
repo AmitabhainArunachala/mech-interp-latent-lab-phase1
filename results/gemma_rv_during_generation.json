@@ -1,0 +1,19 @@
+{
+  "config": {
+    "model": "google/gemma-2-9b",
+    "early_layer": 5,
+    "late_layer": 38,
+    "window_size": 16,
+    "max_new_tokens": 50,
+    "patch_window": 16,
+    "n_samples": 5
+  },
+  "champion_rv": 0.6427775698561352,
+  "summary": {
+    "baseline_mean_rv": 0.81473965085374,
+    "patched_mean_rv": 0.7839225707499156,
+    "baseline_std": 0.12786449316537207,
+    "patched_std": 0.1054493922613681
+  },
+  "timestamp": "2026-01-25T16:29:48.250901"
+}

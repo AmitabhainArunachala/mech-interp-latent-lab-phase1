@@ -1,5 +1,5 @@
 {
-  "experiment": "mlp_ablation_necessity",
+  "experiment": "mlp_ablation_necessity_prompt_pass",
   "description": "Phase 3: Source layer hunt - sweep L0-L8 MLP ablation",
   "params": {
     "model": "meta-llama/Meta-Llama-3-8B",

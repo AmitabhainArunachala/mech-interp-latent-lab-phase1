@@ -1,0 +1,11 @@
+{
+  "experiment": "kv_mechanism",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_pairs": 20,
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16,
+    "kv_layer_range": [24, 32]
+  }
+}

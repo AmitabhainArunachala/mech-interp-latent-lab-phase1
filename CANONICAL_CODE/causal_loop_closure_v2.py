@@ -21,7 +21,8 @@ import os
 os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
 
 import sys
-sys.path.insert(0, '/workspace/mech-interp-phase1')
+# Add parent directory for imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import torch
 import numpy as np
@@ -42,7 +43,13 @@ from n300_mistral_test_prompt_bank import prompt_bank_1c
 # ============================================================
 # CONFIGURATION
 # ============================================================
-DEVICE = "cuda"
+# Device selection with MPS fallback for Apple Silicon
+if torch.cuda.is_available():
+    DEVICE = "cuda"
+elif torch.backends.mps.is_available():
+    DEVICE = "mps"
+else:
+    DEVICE = "cpu"
 MODEL_NAME = "mistralai/Mistral-7B-v0.1"
 
 EARLY_LAYER = 4
@@ -584,14 +591,18 @@ plt.tight_layout()
 
 # Save
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-fig_path = f'/workspace/mech-interp-phase1/DEC_8_2025_RUNPOD_GPU_TEST/01_GEOMETRY_OF_RECURSION/results/causal_loop_v2_{timestamp}.png'
+script_dir = os.path.dirname(os.path.abspath(__file__))
+results_dir = os.path.join(os.path.dirname(script_dir), 'results', 'causal_loop_closure')
+os.makedirs(results_dir, exist_ok=True)
+
+fig_path = os.path.join(results_dir, f'causal_loop_v2_{timestamp}.png')
 plt.savefig(fig_path, dpi=150, bbox_inches='tight')
 print(f"✓ Saved: {fig_path}")
 
 # ============================================================
 # SAVE DATA
 # ============================================================
-csv_path = f'/workspace/mech-interp-phase1/DEC_8_2025_RUNPOD_GPU_TEST/01_GEOMETRY_OF_RECURSION/results/causal_loop_v2_{timestamp}.csv'
+csv_path = os.path.join(results_dir, f'causal_loop_v2_{timestamp}.csv')
 
 with open(csv_path, 'w', newline='') as f:
     writer = csv.writer(f)

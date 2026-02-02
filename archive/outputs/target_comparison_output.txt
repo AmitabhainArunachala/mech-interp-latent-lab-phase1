@@ -1,0 +1,41 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+================================================================================
+TARGET ACQUISITION: RECURSIVE vs BASELINE
+================================================================================
+
+[1/3] Loading model...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.35s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.09it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.02it/s]
+  ✅ Model loaded
+
+[2/3] Analyzing RECURSIVE prompt...
+
+[3/3] Analyzing BASELINE prompt...
+
+================================================================================
+COMPARISON RESULTS
+================================================================================
+
+📊 Recursive Token Attention Ratio:
+--------------------------------------------------------------------------------
+  H18: Recursive=26.8% | Baseline=0.0% | Δ=+26.8%
+  H26: Recursive=28.9% | Baseline=0.0% | Δ=+28.9%
+
+  MEAN: Recursive=27.9% | Baseline=0.0% | Δ=+27.9%
+
+📊 BOS Attention:
+--------------------------------------------------------------------------------
+  H18: Recursive=53.2% | Baseline=82.9% | Δ=-29.7%
+  H26: Recursive=52.3% | Baseline=79.5% | Δ=-27.2%
+
+================================================================================
+INTERPRETATION
+================================================================================
+
+✅ Theory CONFIRMED:
+  Recursive prompts show 27.9% recursive token attention
+  Baseline prompts show 0.0% recursive token attention
+  Difference: 27.9 percentage points
+
+  H18 & H26 specifically target self-referential tokens in recursive mode!
+
+✅ Results saved to: target_acquisition_comparison.csv

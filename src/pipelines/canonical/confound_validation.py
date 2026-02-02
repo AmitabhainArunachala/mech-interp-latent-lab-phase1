@@ -226,9 +226,30 @@ def run_confound_validation_from_config(cfg: Dict[str, Any], run_dir: Path) -> E
     y = df.loc[valid_mask, "rv_l27"].astype(float).to_numpy()
     corr_all = _pearson(x, y)
 
+    # Compute canonical metrics for schema compliance
+    # For confound_validation: champions = "recursive", length_matched = "baseline"
+    champion_vs_length_ttest = _ttest(rv_ch, rv_len)
+    rv_recursive_mean = float(np.nanmean(rv_ch)) if len(rv_ch) > 0 else None
+    rv_baseline_mean = float(np.nanmean(rv_len)) if len(rv_len) > 0 else None
+    rv_delta_mean = float(rv_recursive_mean - rv_baseline_mean) if rv_recursive_mean is not None and rv_baseline_mean is not None else None
+    rv_cohens_d = champion_vs_length_ttest.get("cohens_d")
+    rv_p_value = champion_vs_length_ttest.get("p")
+
     summary = {
         "experiment": "confound_validation",
         "prompt_bank_version": bank_version,
+        # Canonical schema keys (required)
+        "n_pairs": int(min(len(rv_ch), len(rv_len))),  # Matched pairs count
+        "rv_recursive_mean": rv_recursive_mean,
+        "rv_baseline_mean": rv_baseline_mean,
+        "rv_delta_mean": rv_delta_mean,
+        "rv_cohens_d": rv_cohens_d,
+        "rv_p_value": rv_p_value,
+        # logit_diff not applicable for this experiment (geometry-only)
+        "logit_diff_delta_mean": None,
+        "logit_diff_cohens_d": None,
+        "logit_diff_p_value": None,
+        # Original detailed metrics
         "n_total": int(len(df)),
         "n_champions": int((df["prompt_type"] == "champion").sum()),
         "n_length_matched": int((df["prompt_type"] == "length_matched").sum()),
@@ -249,7 +270,7 @@ def run_confound_validation_from_config(cfg: Dict[str, Any], run_dir: Path) -> E
             "pseudo_recursive": _ci_95(rv_pseudo),
         },
         "ttest": {
-            "champions_vs_length_matched": _ttest(rv_ch, rv_len),
+            "champions_vs_length_matched": champion_vs_length_ttest,
             "champions_vs_pseudo_recursive": _ttest(rv_ch, rv_pseudo),
             "length_matched_vs_pseudo_recursive": _ttest(rv_len, rv_pseudo),
         },

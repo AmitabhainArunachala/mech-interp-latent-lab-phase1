@@ -1,0 +1,79 @@
+{
+  "config": {
+    "model": "google/gemma-2-9b",
+    "early_layer": 5,
+    "late_layer": 38,
+    "window_size": 16,
+    "max_new_tokens": 100,
+    "temperature": 0.0,
+    "seed": 42,
+    "n_baseline_prompts": 30,
+    "n_controls": 10,
+    "timestamp": "2026-01-25T16:18:38.383699",
+    "version": "v2_reviewer_compliant"
+  },
+  "champion_rv": 0.5664806497326654,
+  "conditions": {
+    "baseline": {
+      "n": 30,
+      "mean_self_ref_markers": 0.3,
+      "std_self_ref_markers": 1.12989675044522,
+      "mean_rv_input": 0.9707354271625215,
+      "eos_rate": 0.03333333333333333
+    },
+    "champion_patched": {
+      "n": 30,
+      "mean_self_ref_markers": 27.433333333333334,
+      "std_self_ref_markers": 15.083508286278168,
+      "mean_rv_output": 0.9927268482449091,
+      "eos_rate": 0.03333333333333333
+    },
+    "random_kv_control": {
+      "n": 10,
+      "mean_self_ref_markers": 0.0,
+      "std_self_ref_markers": 0.0
+    },
+    "wrong_layer_control": {
+      "n": 10,
+      "mean_self_ref_markers": 1.0,
+      "std_self_ref_markers": 2.1908902300206643
+    }
+  },
+  "statistics": {
+    "patched_vs_baseline": {
+      "cohens_d": 2.494244682469438,
+      "ci_95": [
+        1.819520224130609,
+        3.168969140808267
+      ],
+      "t_stat": 9.660168116570539,
+      "p_value": 1.1001155924972992e-13
+    },
+    "random_vs_baseline": {
+      "cohens_d": -0.6657034581740762,
+      "ci_95": [
+        -1.5661763292250561,
+        0.2347694128769039
+      ],
+      "t_stat": -1.488558185333922,
+      "p_value": 0.1539149542440507
+    },
+    "wrong_layer_vs_baseline": {
+      "cohens_d": 0.047169578094905844,
+      "ci_95": [
+        -0.8294748437307131,
+        0.9238139999205248
+      ],
+      "t_stat": 0.10547438309019447,
+      "p_value": 0.9171659067655199
+    },
+    "rv_patched_vs_baseline": {
+      "cohens_d": 0.10995485314770516,
+      "ci_95": [
+        -0.39648792142940126,
+        0.6163976277248115
+      ]
+    }
+  },
+  "interpretation": {
+    "patched_effect_significant": 

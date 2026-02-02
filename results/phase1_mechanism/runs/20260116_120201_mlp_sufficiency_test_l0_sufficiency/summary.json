@@ -1,0 +1,9 @@
+{
+  "experiment": "mlp_sufficiency_test",
+  "layer": 0,
+  "n_pairs": 30,
+  "mode_score_m": -9.269661458333333,
+  "mode_score_m_delta": 1.61015625,
+  "mode_t_statistic": 11.481187134881976,
+  "mode_pvalue": 2.630733821488641e-12,
+  "mode_significant": 

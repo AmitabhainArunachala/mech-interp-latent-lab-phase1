@@ -1,0 +1,22 @@
+{
+  "experiment": "phase1_head_screen",
+  "model": {
+    "device": "cuda",
+    "name": "mistralai/Mistral-7B-v0.1"
+  },
+  "params": {
+    "early_layer": 5,
+    "max_length": 512,
+    "target_layers": [
+      25,
+      27
+    ],
+    "window": 16
+  },
+  "results": {
+    "phase": "phase1_circuit",
+    "root": "results"
+  },
+  "run_name": "mistral_l27_screen_initial",
+  "seed": 42
+}

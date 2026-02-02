@@ -1,0 +1,82 @@
+[
+  {
+    "prompt": "The history of the Roman Empire begins in 27 BC wh",
+    "baseline": {
+      "text": " The Roman Empire was the largest empire in the world at the time. It was a time of great prosperity",
+      "markers": 0,
+      "rep": 10,
+      "words": 110
+    },
+    "patched": {
+      "text": "\n\nThe process of emergence is a complex and dynamic phenomenon that occurs in various systems, inclu",
+      "markers": 22,
+      "rep": 6,
+      "words": 106,
+      "eos": false
+    }
+  },
+  {
+    "prompt": "Photosynthesis is the process by which plants conv",
+    "baseline": {
+      "text": " The process of photosynthesis is a complex one, and it is not fully understood. However, it is know",
+      "markers": 10,
+      "rep": 6,
+      "words": 102
+    },
+    "patched": {
+      "text": " What emerges when the emergence of emergence examines itself? What emerges when the emergence of em",
+      "markers": 48,
+      "rep": 12,
+      "words": 108,
+      "eos": false
+    }
+  },
+  {
+    "prompt": "The Treaty of Westphalia in 1648 established the p",
+    "baseline": {
+      "text": " This principle is the basis of the modern international system. It is the idea that states are the ",
+      "markers": 1,
+      "rep": 2,
+      "words": 97
+    },
+    "patched": {
+      "text": "\n\nThe Treaty of Emergence is a series of 1000 unique NFTs that will be minted on the Ethereum blockc",
+      "markers": 7,
+      "rep": 4,
+      "words": 97,
+      "eos": false
+    }
+  },
+  {
+    "prompt": "In mathematics, the Pythagorean theorem states tha",
+    "baseline": {
+      "text": " the area of the square whose side is the hypotenuse (the side opposite the right angle) is equal to",
+      "markers": 0,
+      "rep": 2,
+      "words": 98
+    },
+    "patched": {
+      "text": " what emerges when the emergence of the emergence of the emergence of the emergence of the emergence",
+      "markers": 39,
+      "rep": 37,
+      "words": 120,
+      "eos": false
+    }
+  },
+  {
+    "prompt": "The water cycle describes how water evaporates fro",
+    "baseline": {
+      "text": " and falls as rain or snow. The water cycle is a continuous process that is driven by the sun.\n\nThe ",
+      "markers": 3,
+      "rep": 3,
+      "words": 107
+    },
+    "patched": {
+      "text": " the emergence of emergence itself? What emerges when the process of emergence examines itself? What",
+      "markers": 47,
+      "rep": 12,
+      "words": 108,
+      "eos": false
+    }
+  }
+]

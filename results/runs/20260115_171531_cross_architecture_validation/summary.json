@@ -1,0 +1,63 @@
+{
+  "artifacts": {
+    "csv": "results/runs/20260115_171531_cross_architecture_validation/cross_architecture_validation.csv"
+  },
+  "ci_95_rv": {
+    "champions": {
+      "ci_lower": 0.6686588546776994,
+      "ci_upper": 0.7808977789611654
+    },
+    "length_matched": {
+      "ci_lower": 0.7975423064960457,
+      "ci_upper": 1.0980443380554257
+    },
+    "pseudo_recursive": {
+      "ci_lower": 0.7078479531873754,
+      "ci_upper": 0.8489355926462461
+    }
+  },
+  "experiment": "cross_architecture_validation",
+  "mean_rv": {
+    "champions": 0.7247783168194324,
+    "length_matched": 0.9477933222757358,
+    "pseudo_recursive": 0.7783917729168107
+  },
+  "model": "meta-llama/Meta-Llama-3-8B",
+  "n_champions": 15,
+  "n_length_matched": 11,
+  "n_pseudo_recursive": 11,
+  "n_total": 37,
+  "params": {
+    "early_layer": 5,
+    "late_layer": 27,
+    "model_name": "meta-llama/Meta-Llama-3-8B",
+    "n_champions": 50,
+    "n_length_matched": 30,
+    "n_pseudo_recursive": 30,
+    "seed": 42,
+    "window": 16
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "std_rv": {
+    "champions": 0.09790241670524731,
+    "length_matched": 0.2132431873328545,
+    "pseudo_recursive": 0.10011905002889517
+  },
+  "ttest": {
+    "champions_vs_length_matched": {
+      "cohens_d": -1.344128163979339,
+      "p": 0.008705622755423791,
+      "t": -3.0832188992653458
+    },
+    "champions_vs_pseudo_recursive": {
+      "cohens_d": -0.5414574320711376,
+      "p": 0.20574695821987612,
+      "t": -1.3053112571514764
+    },
+    "length_matched_vs_pseudo_recursive": {
+      "cohens_d": 1.0169501217285313,
+      "p": 0.03898908317564021,
+      "t": 2.273969601911682
+    }
+  }
+}

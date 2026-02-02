@@ -1,0 +1,87 @@
+{
+  "artifacts": {
+    "pairs_csv": "results/gold_standard/runs/20251216_060955_rv_l27_causal_validation/rv_l27_causal_validation_pairs.csv"
+  },
+  "delta_main": {
+    "mean": -0.17708978597784727,
+    "n": 45.0,
+    "std": 0.0657197913490858
+  },
+  "delta_random": {
+    "mean": 0.9928634257511914,
+    "n": 45.0,
+    "std": 0.17274961798581046
+  },
+  "delta_shuffled": {
+    "mean": -0.17708970804489887,
+    "n": 45.0,
+    "std": 0.06572024215475518
+  },
+  "delta_wronglayer": {
+    "mean": 0.17245314784565333,
+    "n": 45.0,
+    "std": 0.1031877465572446
+  },
+  "device": "cuda",
+  "experiment": "rv_l27_causal_validation",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 45,
+  "notes": {
+    "measurement": "main/random/shuffled measured at target_layer; wronglayer measured at wrong_layer"
+  },
+  "params": {
+    "early_layer": 5,
+    "max_length": 512,
+    "max_pairs": 45,
+    "measure_target_after_wrong_patch": false,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "target_layer": 27,
+    "window": 16,
+    "wrong_layer": 21
+  },
+  "rv_baseline": {
+    "mean": 0.692750038238174,
+    "n": 45.0,
+    "std": 0.07006283027273871
+  },
+  "rv_recursive": {
+    "mean": 0.5077159371359217,
+    "n": 45.0,
+    "std": 0.049776159662334
+  },
+  "seed": 0,
+  "tests": {
+    "main_effect_ttest_1samp_less_0": {
+      "n": 45,
+      "p": 2.7493079629829965e-22,
+      "t": -18.076052499801367
+    },
+    "main_vs_random_paired_ttest": {
+      "n": 45.0,
+      "p": 1.5468040221479398e-40,
+      "t": -50.33783435826874
+    },
+    "main_vs_shuffled_paired_ttest": {
+      "n": 45.0,
+      "p": 0.7448695074249321,
+      "t": -0.32746459794389415
+    },
+    "main_vs_wronglayer_paired_ttest": {
+      "n": 45.0,
+      "p": 5.220157852519577e-32,
+      "t": -31.819319863053238
+    }
+  },
+  "transfer_percent_estimate": -95.70656701814387
+}

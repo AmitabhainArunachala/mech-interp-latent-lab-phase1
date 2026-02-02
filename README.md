@@ -47,6 +47,35 @@ arr/
 
 ## 🚀 Quick Start
 
+### Installation
+
+This project uses a **two-file dependency system** for reproducibility:
+
+- **`requirements.txt`**: Development mode with flexible version ranges (e.g., `torch>=2.1.0,<2.2.0`)
+- **`requirements.lock`**: Exact pinned versions for bit-perfect reproduction (e.g., `torch==2.1.2`)
+
+> **Note on `requirements.lock`**: This file pins **direct dependencies only** (torch, transformers, numpy, scipy, pandas, tqdm). Transitive dependencies (tokenizers, safetensors, etc.) are listed as comments for reference but resolve automatically. For a complete environment snapshot, run `pip freeze > full_env.txt` after installation.
+
+```bash
+# For development (allows minor updates):
+pip install -r requirements.txt
+
+# For exact reproduction (bit-perfect):
+pip install -r requirements.lock
+
+# For RunPod GPU (CUDA 12.1):
+pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu121
+
+# For M3 Pro local (MPS):
+pip install -r requirements.txt  # Auto-detects MPS
+```
+
+**Hardware tested:**
+- RunPod L40S (48GB VRAM, CUDA 12.1)
+- M3 Pro MacBook (18GB RAM, MPS)
+
+**Python:** 3.11+ (tested on 3.13.5)
+
 ### Standard Reproduction
 
 ```bash
@@ -56,6 +85,16 @@ python reproduce_results.py
 # Custom model/device
 python reproduce_results.py --model mistralai/Mistral-7B-v0.1 --device cuda
 ```
+
+### Reproducibility Policy
+
+See `docs/REPRODUCIBILITY_POLICY.md` for the two-tier dependency strategy and
+publication-grade run requirements.
+
+### Pipeline Operations
+
+Operational runbook: `docs/PIPELINE_OPERATIONS.md`
+Audit record (2026-01-24): `docs/analysis/AUDIT_2026-01-24.md`
 
 ## 🧪 Canonical Experiment Runner (Config-Driven)
 

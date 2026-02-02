@@ -102,6 +102,16 @@ def generate_orthogonal_vector(steering_vec: torch.Tensor, device: str) -> torch
     return ortho_vec
 
 
+def _truncate_logits_pair(logits_a: torch.Tensor, logits_b: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+    """Align two logits tensors on sequence length."""
+    if logits_a.dim() == 3:
+        logits_a = logits_a[0]
+    if logits_b.dim() == 3:
+        logits_b = logits_b[0]
+    min_len = min(logits_a.shape[0], logits_b.shape[0])
+    return logits_a[:min_len], logits_b[:min_len]
+
+
 def run_random_direction_control_from_config(cfg: Dict[str, Any], run_dir: Path) -> ExperimentResult:
     """Run random direction control experiment."""
     params = cfg.get("params", {})
@@ -238,15 +248,20 @@ def run_random_direction_control_from_config(cfg: Dict[str, Any], run_dir: Path)
                         with torch.no_grad():
                             max_len = 512
                             inputs_gen_full = tokenizer(
-                                generated_text[:max_len*4], 
-                                return_tensors="pt", 
-                                add_special_tokens=False, 
-                                max_length=max_len, 
-                                truncation=True
+                                generated_text[:max_len*4],
+                                return_tensors="pt",
+                                add_special_tokens=False,
+                                max_length=max_len,
+                                truncation=True,
                             ).to(device)
                             out_steered = model(**inputs_gen_full)
-                        
-                        mode_steered = mode_metric.compute_score(out_steered.logits, baseline_logits=out_base.logits)
+
+                        steered_logits_trunc, base_logits_trunc = _truncate_logits_pair(
+                            out_steered.logits, out_base.logits
+                        )
+                        mode_steered = mode_metric.compute_score(
+                            steered_logits_trunc, baseline_logits=base_logits_trunc
+                        )
                     except Exception as e:
                         print(f"  Error computing mode score: {e}")
                         mode_steered = float("nan")
@@ -372,6 +387,17 @@ def run_random_direction_control_from_config(cfg: Dict[str, Any], run_dir: Path)
             "verdict": "REAL" if (true_rv_mean > 3 * abs(random_rv_mean)) else "ARTIFACT",
         }
     
+    # Canonical summary fields (runner contract)
+    rv_baseline_mean = float(df["rv_baseline"].mean()) if df["rv_baseline"].notna().any() else float("nan")
+    # No recursive condition in this pipeline; set to None but include key.
+    rv_recursive_mean = None
+    # Use true_steering delta at first alpha as primary delta
+    primary_alpha = str(sorted(df["alpha"].unique())[0]) if len(df["alpha"].unique()) > 0 else None
+    primary_analysis = analysis_by_alpha.get(primary_alpha, {}) if primary_alpha is not None else {}
+    rv_delta_mean = float(primary_analysis.get("true_steering_rv_delta", float("nan")))
+    rv_p_value = primary_analysis.get("rv_ttest", {}).get("p")
+    rv_cohens_d = primary_analysis.get("rv_cohens_d")
+
     analysis = {
         "experiment": "random_direction_control",
         "n_pairs": len(pairs),
@@ -387,6 +413,15 @@ def run_random_direction_control_from_config(cfg: Dict[str, Any], run_dir: Path)
     summary_json = {
         **analysis,
         "comparison_table": comparison_df.to_dict("records"),
+        # Canonical summary keys (runner contract)
+        "rv_recursive_mean": rv_recursive_mean,
+        "rv_baseline_mean": rv_baseline_mean,
+        "rv_delta_mean": rv_delta_mean,
+        "rv_cohens_d": rv_cohens_d,
+        "rv_p_value": rv_p_value,
+        "logit_diff_delta_mean": None,
+        "logit_diff_cohens_d": None,
+        "logit_diff_p_value": None,
     }
     
     summary_path = run_dir / "summary.json"

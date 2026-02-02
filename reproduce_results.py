@@ -16,7 +16,7 @@ from pathlib import Path
 
 import torch
 
-from src.pipelines.phase1_existence import run_phase1_existence_proof
+from src.pipelines import run_phase1_existence_proof
 
 
 def main():

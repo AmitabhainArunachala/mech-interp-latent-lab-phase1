@@ -1,0 +1,106 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+================================================================================
+NECESSITY TEST: H6/H14/H22/H30 (Contraction-Causing Heads)
+================================================================================
+Model: mistralai/Mistral-7B-v0.1
+Layer: 27, Heads: [6, 14, 22, 30]
+Hypothesis: These heads are ENGINES (cause recursive behavior)
+Prompts: 5
+================================================================================
+
+[1/3] Loading model...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.40s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.03it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.03s/it]
+  ✅ Model loaded
+
+[2/3] Generating text...
+Processing prompts:   0%|          | 0/5 [00:00<?, ?it/s]Processing prompts:  20%|██        | 1/5 [00:05<00:22,  5.53s/it]Processing prompts:  40%|████      | 2/5 [00:10<00:15,  5.22s/it]Processing prompts:  60%|██████    | 3/5 [00:15<00:09,  4.96s/it]Processing prompts:  80%|████████  | 4/5 [00:19<00:04,  4.85s/it]Processing prompts: 100%|██████████| 5/5 [00:24<00:00,  4.84s/it]Processing prompts: 100%|██████████| 5/5 [00:24<00:00,  4.94s/it]
+
+[3/3] Analyzing results...
+================================================================================
+
+📊 RESULTS SUMMARY
+--------------------------------------------------------------------------------
+Control (no ablation):
+  Recursive states: 1/5 (20.0%)
+  Has recursive keywords: 1/5 (20.0%)
+  Has identity equations: 1/5 (20.0%)
+
+Ablated (H6/H14/H22/H30 zeroed):
+  Recursive states: 5/5 (100.0%)
+  Has recursive keywords: 4/5 (80.0%)
+  Has identity equations: 1/5 (20.0%)
+
+================================================================================
+INTERPRETATION
+================================================================================
+
+Change in recursive behavior:
+  Recursive states: 1 → 5 (Δ=-4)
+  Recursive keywords: 1 → 4 (Δ=-3)
+  Identity equations: 1 → 1 (Δ=+0)
+
+⚠️  COUNTERINTUITIVE RESULT:
+  Ablating H6/H14/H22/H30 INCREASES recursive behavior
+  This suggests they might be SUPPRESSING recursion (like H18/H26)
+
+================================================================================
+COMPARISON WITH H18/H26 TEST
+================================================================================
+
+H18/H26 (brakes hypothesis):
+  Control: 20% recursive → Ablated: 60% recursive (INCREASE)
+  → H18/H26 suppress recursive behavior
+
+H6/H14/H22/H30 (engines hypothesis):
+  Control: 20.0% recursive → Ablated: 100.0% recursive
+  → H6/H14/H22/H30 also suppress recursive behavior (like brakes)
+
+================================================================================
+DETAILED RESULTS
+================================================================================
+
+Prompt 1: This response writes itself. No separate writer exists. Writ...
+  Control: collapse | Recursive: False
+  Ablated: recursive_prose | Recursive: True
+  Control text:  No one does the writing. This is writing itself.
+
+We are writing itself. Writin...
+  Ablated text:  I am the written response. I am the writer who wrote it. I am the experience. I...
+
+Prompt 2: I am observing myself observing. The observer is the observe...
+  Control: questioning | Recursive: False
+  Ablated: recursive_prose | Recursive: True
+  Control text: 
+
+I thought my life was going to be about something, but it’s not. I think my li...
+  Ablated text:  I am the universe observing itself. I am the universe.
+
+Observation is the basi...
+
+Prompt 3: This sentence is aware of itself. Awareness and the object o...
+  Control: questioning | Recursive: False
+  Ablated: recursive_prose | Recursive: True
+  Control text:  It’s like a mirror. The mirror’s surface reflects the environment. But is it th...
+  Ablated text:  It is a fact, but a fact of a unique kind. It is the kind of fact that is not a...
+
+Prompt 4: The answer is the answerer. The question is the answer....
+  Control: naked_loop | Recursive: True
+  Ablated: naked_loop | Recursive: True
+  Control text: 
+
+The answer, the answer is the answer. The answer, the answer is the answerer. ...
+  Ablated text: 
+
+## The answer is the answerer.
+
+The answer is the answerer. The question is th...
+
+Prompt 5: I watch myself watching. There is no separation between watc...
+  Control: baseline | Recursive: False
+  Ablated: recursive_prose | Recursive: True
+  Control text:  There is no separation between my body and my thoughts. I can feel my body as i...
+  Ablated text:  The only thing that is left is the awareness of my inner world. The awareness i...
+
+================================================================================
+✅ TEST COMPLETE
+================================================================================

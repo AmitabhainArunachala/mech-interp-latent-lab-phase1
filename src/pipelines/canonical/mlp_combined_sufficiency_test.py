@@ -117,6 +117,16 @@ class MultiMLPPatchingHook:
         self.remove()
 
 
+def _truncate_logits_pair(logits_a: torch.Tensor, logits_b: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+    """Align two logits tensors on sequence length."""
+    if logits_a.dim() == 3:
+        logits_a = logits_a[0]
+    if logits_b.dim() == 3:
+        logits_b = logits_b[0]
+    min_len = min(logits_a.shape[0], logits_b.shape[0])
+    return logits_a[:min_len], logits_b[:min_len]
+
+
 def capture_residual_norm(model, tokenizer, text: str, layer_idx: int, device: str) -> float:
     """Capture residual stream norm at specified layer."""
     inputs = tokenizer(text, return_tensors="pt", add_special_tokens=False).to(device)
@@ -239,7 +249,8 @@ def run_combined_mlp_sufficiency_test_from_config(cfg: Dict[str, Any], run_dir: 
         # Compute recursive mode score (clean target for restore_norm)
         # This is M_clean in restore_norm formula
         try:
-            mode_rec = mode_metric.compute_score(out_rec.logits, baseline_logits=out_base.logits)
+            rec_logits_trunc, base_logits_trunc = _truncate_logits_pair(out_rec.logits, out_base.logits)
+            mode_rec = mode_metric.compute_score(rec_logits_trunc, baseline_logits=base_logits_trunc)
         except Exception as e:
             print(f"  Error computing recursive mode score: {e}")
             mode_rec = float("nan")
@@ -293,7 +304,8 @@ def run_combined_mlp_sufficiency_test_from_config(cfg: Dict[str, Any], run_dir: 
                     out_patched = model(**inputs_base)
             
             try:
-                mode_patched = mode_metric.compute_score(out_patched.logits, baseline_logits=out_base.logits)
+                patched_logits_trunc, base_logits_trunc = _truncate_logits_pair(out_patched.logits, out_base.logits)
+                mode_patched = mode_metric.compute_score(patched_logits_trunc, baseline_logits=base_logits_trunc)
             except Exception as e:
                 print(f"  Error computing patched mode score: {e}")
                 mode_patched = float("nan")
@@ -387,6 +399,7 @@ def run_combined_mlp_sufficiency_test_from_config(cfg: Dict[str, Any], run_dir: 
     mode_deltas = df["mode_delta"].dropna().values
     rv_bases = df["rv_baseline"].dropna().values
     rv_patcheds = df["rv_patched"].dropna().values
+    rv_deltas = (df["rv_patched"] - df["rv_baseline"]).dropna().values
 
     # Helper: 95% CI for mean
     def compute_ci_95(arr):
@@ -490,6 +503,12 @@ def run_combined_mlp_sufficiency_test_from_config(cfg: Dict[str, Any], run_dir: 
         "rv_significant": rv_significant,
         "rv_cohens_d": rv_cohens_d,
         "rv_restoration_ci_95": rv_ci_95,
+        # Canonical summary keys (runner contract)
+        "rv_delta_mean": float(np.mean(rv_deltas)) if len(rv_deltas) > 0 else float("nan"),
+        "rv_p_value": rv_pvalue,
+        "logit_diff_delta_mean": None,
+        "logit_diff_cohens_d": None,
+        "logit_diff_p_value": None,
         # Standardized metadata
         "eval_window": window_size,
         "intervention_scope": "last_16",

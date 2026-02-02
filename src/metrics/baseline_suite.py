@@ -468,7 +468,7 @@ class BaselineMetricsSuite:
         ld_t_stat, ld_p_value = stats.ttest_rel(logit_diff_recs, logit_diff_bases)
         ld_cohens_d = compute_cohens_d(logit_diff_recs, logit_diff_bases)
         ld_delta_ci = compute_ci_95(logit_diff_deltas)
-
+        
         return {
             "n_pairs": n,
 
@@ -496,6 +496,76 @@ class BaselineMetricsSuite:
             "logit_diff_p_value": float(ld_p_value),
             "logit_diff_cohens_d": float(ld_cohens_d),
         }
+
+    @staticmethod
+    def extract_ledger_stats(summary: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Extract key statistics for the run ledger from a full summary.
+
+        Handles multiple summary schema variations:
+        1. Flat (legacy): top-level keys like rv_cohens_d
+        2. Canonical: top-level metrics with standard naming
+        3. Causal validation: nested tests.main_effect_ttest_1samp_less_0, delta_main
+        4. Discovery: nested by group (mean_rv.champions, ttest.comparison.cohens_d)
+        """
+        result = {}
+
+        # Try flat/canonical keys first
+        result["rv_d"] = summary.get("rv_cohens_d")
+        result["rv_p"] = summary.get("rv_p_value") or summary.get("rv_pvalue")
+        result["rv_delta"] = summary.get("rv_delta_mean")
+        result["logit_diff_d"] = summary.get("logit_diff_cohens_d")
+        result["logit_diff_p"] = summary.get("logit_diff_p_value")
+        result["logit_diff_delta"] = summary.get("logit_diff_delta_mean")
+        result["n_pairs"] = summary.get("n_pairs") or summary.get("n_total")
+
+        # Causal validation schema: nested under tests.main_effect_ttest_1samp_less_0
+        if result["rv_p"] is None and "tests" in summary:
+            tests = summary.get("tests", {})
+            main_test = tests.get("main_effect_ttest_1samp_less_0", {})
+            if main_test:
+                result["rv_p"] = main_test.get("p")
+                # Compute Cohen's d from t if not present (d = t / sqrt(n))
+                t_stat = main_test.get("t")
+                n = main_test.get("n")
+                if t_stat is not None and n is not None and result["rv_d"] is None:
+                    import math
+                    result["rv_d"] = t_stat / math.sqrt(n) if n > 0 else None
+
+        # Causal validation schema: delta_main.mean for rv_delta
+        if result["rv_delta"] is None and "delta_main" in summary:
+            delta_main = summary.get("delta_main", {})
+            result["rv_delta"] = delta_main.get("mean")
+
+        # Discovery schema: nested ttest with named comparisons
+        if result["rv_d"] is None and "ttest" in summary:
+            ttest = summary.get("ttest", {})
+            # Look for champions vs baseline comparison
+            for key in ["champions_vs_length_matched", "recursive_vs_baseline"]:
+                if key in ttest:
+                    result["rv_d"] = ttest[key].get("cohens_d")
+                    result["rv_p"] = ttest[key].get("p")
+                    break
+
+        # Discovery schema: Extract mean R_V from nested structure
+        if result["rv_delta"] is None and "mean_rv" in summary:
+            mean_rv = summary.get("mean_rv", {})
+            champions = mean_rv.get("champions")
+            baseline = mean_rv.get("length_matched") or mean_rv.get("baseline")
+            if champions is not None and baseline is not None:
+                result["rv_delta"] = champions - baseline
+
+        # Alternative: compute delta from rv_recursive - rv_baseline
+        if result["rv_delta"] is None:
+            rv_rec = summary.get("rv_recursive", {})
+            rv_base = summary.get("rv_baseline", {})
+            if isinstance(rv_rec, dict) and isinstance(rv_base, dict):
+                rec_mean = rv_rec.get("mean")
+                base_mean = rv_base.get("mean")
+                if rec_mean is not None and base_mean is not None:
+                    result["rv_delta"] = rec_mean - base_mean
+
+        return result
     
     def _compute_pr_at_layer(
         self,

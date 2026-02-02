@@ -1,0 +1,60 @@
+# Run report: behavioral_grounding
+
+- **run_dir**: `results/phase1_mechanism/runs/20251213_115047_behavioral_grounding_ministral_3_8b_base_behavioral_grounding_override_v1`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "csv": "results/phase1_mechanism/runs/20251213_115047_behavioral_grounding_ministral_3_8b_base_behavioral_grounding_override_v1/behavioral_grounding_summary.csv",
+    "jsonl": "results/phase1_mechanism/runs/20251213_115047_behavioral_grounding_ministral_3_8b_base_behavioral_grounding_override_v1/behavioral_grounding.jsonl"
+  },
+  "by_condition": {
+    "baseline": {
+      "gen_token_count_mean": 220.0,
+      "n": 1,
+      "repeat_4gram_frac_mean": 0.041884816753926704,
+      "self_ref_rate_mean": 0.0,
+      "unique_word_ratio_mean": 0.5412371134020618
+    },
+    "baseline_patched": {
+      "gen_token_count_mean": 220.0,
+      "n": 1,
+      "repeat_4gram_frac_mean": 0.0,
+      "self_ref_rate_mean": 0.0,
+      "unique_word_ratio_mean": 0.6666666666666666
+    },
+    "recursive": {
+      "gen_token_count_mean": 220.0,
+      "n": 1,
+      "repeat_4gram_frac_mean": 1.0,
+      "self_ref_rate_mean": 0.1956521739130435,
+      "unique_word_ratio_mean": 0.021739130434782608
+    }
+  },
+  "device": "cuda",
+  "experiment": "behavioral_grounding",
+  "model_name": "mistralai/Ministral-8B-Instruct-2410",
+  "params": {
+    "do_sample": false,
+    "max_new_tokens": 220,
+    "max_pairs": 1,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "patch_layer": 27,
+    "temperature": 0.8,
+    "window": 16
+  }
+}
+```

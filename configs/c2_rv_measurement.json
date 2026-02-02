@@ -1,0 +1,35 @@
+{
+  "experiment": "c2_rv_measurement",
+  "description": "C2 behavioral transfer with R_V measurement - bridges geometry to behavior",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_prompts": 50,
+    "n_recursive": 25,
+    "max_new_tokens": 100,
+    "temperature": 0.7,
+    "early_layer": 5,
+    "late_layer": 27,
+    "rv_window": 16,
+    "seed": 42
+  },
+  "success_criteria": {
+    "c2_rv_mean": "<0.55",
+    "baseline_rv_mean": ">0.70",
+    "c2_philosophical_pct": ">50%",
+    "baseline_task_pct": ">50%"
+  },
+  "conditions": [
+    {
+      "name": "baseline",
+      "description": "No intervention - control"
+    },
+    {
+      "name": "kv_only",
+      "description": "Full KV swap only, no steering"
+    },
+    {
+      "name": "c2_full",
+      "description": "Full C2 config: KV + H18/H26 steering + L26 cascade"
+    }
+  ]
+}

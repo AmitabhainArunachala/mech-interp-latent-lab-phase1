@@ -3,7 +3,7 @@ PromptLoader: Strict API to fetch balanced sets of prompts.
 
 No ad-hoc lists in .py files. All prompts come from prompts/bank.json.
 
-CANONICAL SOURCE: prompts/bank.json (694 prompts, version-tracked)
+CANONICAL SOURCE: prompts/bank.json (754 prompts, version-tracked)
 DO NOT use REUSABLE_PROMPT_BANK directly - it's deprecated.
 """
 

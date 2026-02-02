@@ -1,0 +1,38 @@
+{
+  "artifacts": {
+    "confound_results_csv": "results/confound_validation/runs/20251215_091017_confound_validation_mistral7b_instruct_l27_w16/confound_results.csv"
+  },
+  "corr_token_count_vs_rv": {
+    "p": 0.043023681002282294,
+    "r": 0.2764376429614823
+  },
+  "mean_rv": {
+    "champions": 0.5141284568229822,
+    "length_matched": 0.8287262970561718,
+    "pseudo_recursive": 0.7660057729978568
+  },
+  "n_champions": 18,
+  "n_length_matched": 18,
+  "n_pseudo_recursive": 18,
+  "n_total": 54,
+  "params": {
+    "early_layer": 5,
+    "late_layer": 27,
+    "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+    "window": 16
+  },
+  "ttest": {
+    "champions_vs_length_matched": {
+      "p": 4.8522042928851184e-09,
+      "t": -9.912825899112844
+    },
+    "champions_vs_pseudo_recursive": {
+      "p": 3.021589050914845e-11,
+      "t": -11.869839774629211
+    },
+    "length_matched_vs_pseudo_recursive": {
+      "p": 0.09522539081837424,
+      "t": 1.7249542546241348
+    }
+  }
+}

@@ -1,0 +1,40 @@
+# Run report: gemma_full_circuit_analysis
+
+- **run_dir**: `results/phase2_generalization/gemma_2_9b/14_focused_sweep_L35_L41/runs/20260124_103854_gemma_full_circuit_analysis_gemma_2_9b_focused_sweep_L35_L41`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "config": "results/phase2_generalization/gemma_2_9b/14_focused_sweep_L35_L41/runs/20260124_103854_gemma_full_circuit_analysis_gemma_2_9b_focused_sweep_L35_L41/config.json",
+    "report": "results/phase2_generalization/gemma_2_9b/14_focused_sweep_L35_L41/runs/20260124_103854_gemma_full_circuit_analysis_gemma_2_9b_focused_sweep_L35_L41/report.md",
+    "summary": "results/phase2_generalization/gemma_2_9b/14_focused_sweep_L35_L41/runs/20260124_103854_gemma_full_circuit_analysis_gemma_2_9b_focused_sweep_L35_L41/summary.json"
+  },
+  "best_separation_delta": -0.25028796442061796,
+  "best_separation_layer": 35,
+  "early_layer": 5,
+  "experiment": "gemma_full_circuit_analysis",
+  "max_rv_delta": -0.25028796442061796,
+  "model": "google/gemma-2-9b",
+  "n_extended_metric_pairs": 10,
+  "n_layer_sweep_points": 7,
+  "n_logit_lens_prompts": 5,
+  "n_significant_layers": 6,
+  "num_layers": 42,
+  "phase_transition_depth_pct": 83.33333333333334,
+  "phase_transition_layer": 35,
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "schema_version": "metrics_summary_v1",
+  "significant_layers": [
+    35,
+    36,
+    38,
+    39,
+    40,
+    41
+  ],
+  "timestamp": "20260124_103918"
+}
+```

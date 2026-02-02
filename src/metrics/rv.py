@@ -7,10 +7,16 @@ Where:
 - PR (Participation Ratio) = (Σλᵢ²)² / Σ(λᵢ²)²
 - λᵢ are singular values from SVD of the V-projection window
 - Early layer: 5 (after initial processing)
-- Late layer: num_layers - 5 (typically 27 for 32-layer models)
+- Late layer: num_layers - 5 (derived from model.config)
 - Window: Last W=16 tokens of the prompt
+
+MEASUREMENT CONTRACT:
+- SVD computed in float64 (double precision) for numerical stability
+- Minimum 2 tokens required for valid PR computation
+- Late layer auto-derived from model depth when not specified
 """
 
+import logging
 from typing import Optional
 
 import numpy as np
@@ -18,6 +24,8 @@ import torch
 from transformers import PreTrainedModel, PreTrainedTokenizer
 
 from ..core.hooks import capture_v_projection
+
+logger = logging.getLogger(__name__)
 
 
 def participation_ratio(
@@ -50,13 +58,18 @@ def participation_ratio(
         v_tensor = v_tensor[0]  # Take first batch
     
     T, D = v_tensor.shape
-    W = min(window_size, T)
-    
-    if W == 0:
+
+    # Contract: short prompts (T < window_size) → NaN, not silent truncation
+    # This ensures we always measure on full window, never degraded data
+    if T < window_size:
+        logger.warning(f"Sequence too short: T={T} < window_size={window_size}, returning NaN")
         return float("nan")
+
+    W = window_size
     
     # Extract last W tokens
-    v_window = v_tensor[-W:, :].float()
+    # Use double precision for SVD stability (measurement contract)
+    v_window = v_tensor[-W:, :].double()
     
     try:
         # SVD with numerical stability guards
@@ -78,60 +91,111 @@ def participation_ratio(
         return float("nan")
 
 
-def compute_rv(
+def compute_rv_with_components(
     model: PreTrainedModel,
     tokenizer: PreTrainedTokenizer,
     text: str,
     early: int = 5,
-    late: int = 27,
+    late: Optional[int] = None,
     window: int = 16,
     device: str = "cuda",
-) -> float:
+) -> tuple[float, float, float]:
     """
-    Compute R_V metric: PR_late / PR_early.
-    
-    R_V measures geometric contraction in value-space during recursive self-observation.
-    R_V < 1.0 indicates contraction (dimensionality reduction).
-    
+    Compute R_V metric with separate PR_early and PR_late values.
+
     Args:
         model: The transformer model (must be in eval mode).
         tokenizer: The tokenizer.
         text: Input prompt text.
         early: Early layer index. Default: 5.
-        late: Late layer index. Default: 27 (for 32-layer models).
+        late: Late layer index. Default: None (auto-derived as num_layers - 5).
         window: Window size for PR calculation. Default: 16.
         device: Target device.
-    
+
     Returns:
-        R_V value (float). Returns NaN if computation fails.
-    
-    Note:
-        Always measures on prompt tokens (last W tokens), not generated tokens.
+        Tuple of (rv, pr_early, pr_late). Returns (nan, nan, nan) if computation fails.
+
+    This is useful for debugging which component (early or late) moves during interventions.
     """
-    # Tokenize
-    enc = tokenizer(text, return_tensors="pt", truncation=True).to(device)
-    
+    # Auto-derive late layer from model architecture if not specified
+    num_layers = getattr(model.config, "num_hidden_layers", 32)
+    if late is None:
+        late = num_layers - 5
+        logger.debug(f"Auto-derived late layer: {late} (from {num_layers} layers)")
+
+    # Validate layer bounds
+    if not (0 <= early < num_layers):
+        logger.error(f"early={early} out of bounds [0, {num_layers})")
+        return (float("nan"), float("nan"), float("nan"))
+    if not (0 <= late < num_layers):
+        logger.error(f"late={late} out of bounds [0, {num_layers})")
+        return (float("nan"), float("nan"), float("nan"))
+    if early >= late:
+        logger.error(f"early={early} must be < late={late}")
+        return (float("nan"), float("nan"), float("nan"))
+
+    # Tokenize with explicit max_length (measurement contract: 512 tokens max)
+    # This ensures consistent measurement across prompts and prevents silent truncation drift
+    MAX_LENGTH = 512
+    enc = tokenizer(text, return_tensors="pt", truncation=True, max_length=MAX_LENGTH).to(device)
+
     # Capture V-projections
     v_early = None
     v_late = None
-    
+
     with capture_v_projection(model, early) as storage_early:
         with torch.no_grad():
             model(**enc)
         v_early = storage_early.get("v")
-    
+
     with capture_v_projection(model, late) as storage_late:
         with torch.no_grad():
             model(**enc)
         v_late = storage_late.get("v")
-    
+
     # Compute PRs
     pr_early = participation_ratio(v_early, window)
     pr_late = participation_ratio(v_late, window)
-    
+
     # Check for invalid values
     if pr_early == 0 or np.isnan(pr_early) or np.isnan(pr_late):
-        return float("nan")
-    
-    return float(pr_late / pr_early)
+        return (float("nan"), float("nan"), float("nan"))
+
+    rv = float(pr_late / pr_early)
+    return (rv, float(pr_early), float(pr_late))
+
+
+def compute_rv(
+    model: PreTrainedModel,
+    tokenizer: PreTrainedTokenizer,
+    text: str,
+    early: int = 5,
+    late: Optional[int] = None,
+    window: int = 16,
+    device: str = "cuda",
+) -> float:
+    """
+    Compute R_V metric: PR_late / PR_early.
+
+    R_V measures geometric contraction in value-space during recursive self-observation.
+    R_V < 1.0 indicates contraction (dimensionality reduction).
+
+    Args:
+        model: The transformer model (must be in eval mode).
+        tokenizer: The tokenizer.
+        text: Input prompt text.
+        early: Early layer index. Default: 5.
+        late: Late layer index. Default: None (auto-derived as num_layers - 5).
+        window: Window size for PR calculation. Default: 16.
+        device: Target device.
+
+    Returns:
+        R_V value (float). Returns NaN if computation fails.
+
+    Note:
+        Always measures on prompt tokens (last W tokens), not generated tokens.
+        When late=None, automatically derives from model.config.num_hidden_layers.
+    """
+    rv, _, _ = compute_rv_with_components(model, tokenizer, text, early, late, window, device)
+    return rv
 

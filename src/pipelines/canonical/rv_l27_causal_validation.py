@@ -466,6 +466,15 @@ def run_rv_l27_causal_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
     
     transfer = float(restored / gap * 100.0) if rows and gap > 1e-9 else 0.0
 
+    delta_main_stats = _mean_std(deltas_main)
+    delta_random_stats = _mean_std(deltas_rand)
+    delta_shuffled_stats = _mean_std(deltas_shuf)
+    delta_wrong_stats = _mean_std(deltas_wrong)
+    rv_recursive_stats = _mean_std(rv_rec_list)
+    rv_baseline_stats = _mean_std(rv_base_list)
+
+    main_effect = tests.get("main_effect_ttest_1samp_less_0", {}) if isinstance(tests, dict) else {}
+
     summary = {
         "experiment": "rv_l27_causal_validation",
         "model_name": model_name,
@@ -483,18 +492,28 @@ def run_rv_l27_causal_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
             "measure_target_after_wrong_patch": measure_target_after_wrong_patch,
         },
         "n_pairs": len(rows),
-        "rv_recursive": _mean_std(rv_rec_list),
-        "rv_baseline": _mean_std(rv_base_list),
-        "delta_main": _mean_std(deltas_main),
-        "delta_random": _mean_std(deltas_rand),
-        "delta_shuffled": _mean_std(deltas_shuf),
-        "delta_wronglayer": _mean_std(deltas_wrong),
+        "rv_recursive": rv_recursive_stats,
+        "rv_baseline": rv_baseline_stats,
+        "delta_main": delta_main_stats,
+        "delta_random": delta_random_stats,
+        "delta_shuffled": delta_shuffled_stats,
+        "delta_wronglayer": delta_wrong_stats,
         "transfer_percent_estimate": transfer,
         "tests": tests,
         "artifacts": {"pairs_csv": str(out_csv)},
         "notes": {
             "measurement": "main/random/shuffled measured at target_layer; wronglayer measured at wrong_layer",
         },
+        # Canonical summary keys (runner contract)
+        "rv_recursive_mean": rv_recursive_stats.get("mean"),
+        "rv_baseline_mean": rv_baseline_stats.get("mean"),
+        "rv_delta_mean": delta_main_stats.get("mean"),
+        "rv_cohens_d": main_effect.get("cohens_d"),
+        "rv_p_value": main_effect.get("p"),
+        # Logit diff not computed in this pipeline (set to None to satisfy schema)
+        "logit_diff_delta_mean": None,
+        "logit_diff_cohens_d": None,
+        "logit_diff_p_value": None,
     }
 
     return ExperimentResult(summary=summary)

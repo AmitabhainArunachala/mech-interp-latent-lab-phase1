@@ -1,0 +1,59 @@
+# Core dependencies for mech-interp-latent-lab-phase1
+# Development mode: flexible ranges allow minor updates
+# For exact reproducibility, use: pip install -r requirements.lock
+# Last validated: 2026-01-24
+
+# PyTorch - CUDA 12.1 compatible
+# Note: 2.1.x series tested on RunPod L40S + M3 Pro MPS
+torch>=2.1.0,<2.2.0
+
+# HuggingFace transformers
+# Note: 4.36.x verified with Mistral-7B, Pythia-1.4B, Mixtral-8x7B
+transformers>=4.36.0,<4.37.0
+
+# Scientific computing
+numpy>=1.26.0,<2.0.0
+scipy>=1.12.0,<2.0.0
+pandas>=2.1.0,<3.0.0
+
+# Utilities
+tqdm>=4.66.0
+
+# Optional: Behavioral scoring
+# nltk>=3.8
+
+# ============================================
+# INSTALLATION NOTES
+# ============================================
+#
+# For development (flexible):
+#   pip install -r requirements.txt
+#
+# For exact reproduction (pinned):
+#   pip install -r requirements.lock
+#
+# For RunPod GPU (CUDA 12.1):
+#   pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu121
+#
+# For M3 Pro local (MPS):
+#   pip install -r requirements.txt
+#   (PyTorch auto-detects MPS backend)
+#
+# ============================================
+# COMPATIBILITY MATRIX
+# ============================================
+#
+# Hardware Tested:
+# - RunPod L40S (48GB VRAM, CUDA 12.1) ✅
+# - M3 Pro MacBook (18GB RAM, MPS) ✅
+#
+# Models Verified:
+# - Mistral-7B-Instruct-v0.2 (15.3% effect)
+# - Pythia-1.4B (29.8% effect)
+# - Mixtral-8x7B-Instruct (24.3% effect)
+# - Qwen-2.5-7B-Instruct (14.8% effect)
+# - Llama-3.2-8B-Instruct (7.2% effect)
+# - Gemma-2-9B-Instruct (8.9% effect)
+# - Phi-3-medium-128k (3.3% effect)
+#
+# Python: 3.11+ (tested on 3.13.5)

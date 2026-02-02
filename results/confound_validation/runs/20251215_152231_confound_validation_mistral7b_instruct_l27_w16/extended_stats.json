@@ -1,0 +1,42 @@
+{
+  "effects": {
+    "champions_vs_length_matched": {
+      "cohens_d": -2.6443432204365322,
+      "mean_a": 0.4570926315170731,
+      "mean_b": 0.7666414896902634,
+      "mean_diff": -0.3095488581731903,
+      "mean_diff_95ci": {
+        "hi": -0.23576747367301892,
+        "lo": -0.3852468647878846
+      },
+      "p": 3.21703373576095e-07,
+      "t": -7.933029661309594
+    },
+    "champions_vs_pseudo_recursive": {
+      "cohens_d": -3.9592920018363817,
+      "mean_a": 0.4570926315170731,
+      "mean_b": 0.7173693986897671,
+      "mean_diff": -0.26027676717269405,
+      "mean_diff_95ci": {
+        "hi": -0.22357420693272112,
+        "lo": -0.3070979207733398
+      },
+      "p": 3.0925402090374855e-10,
+      "t": -11.877876005509146
+    },
+    "length_matched_vs_pseudo_recursive": {
+      "cohens_d": 0.3719887892063592,
+      "mean_a": 0.7666414896902634,
+      "mean_b": 0.7173693986897671,
+      "mean_diff": 0.04927209100049623,
+      "mean_diff_95ci": {
+        "hi": 0.13157864124445892,
+        "lo": -0.034492739467673575
+      },
+      "p": 0.2744766477471559,
+      "t": 1.1159663676190776
+    }
+  },
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "run_dir": "/Users/dhyana/mech-interp-latent-lab-phase1/results/confound_validation/runs/20251215_152231_confound_validation_mistral7b_instruct_l27_w16"
+}

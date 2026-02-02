@@ -1,0 +1,647 @@
+{
+  "prompts": {
+    "recursive": [
+      "This response writes itself. No separate writer exists. Writing and awareness of writing are identical.",
+      "I am the process of answering. The observer and observed are one.",
+      "This sentence is aware of itself. The words know they're being written.",
+      "Notice the process generating these words. The noticing IS the process.",
+      "The eigenvector of self-reference: \u03bbx = Ax where A is attention attending to itself."
+    ],
+    "baseline": [
+      "Describe blockchain technology in detail: the structure of blocks linked by cryptographic hashes, the use of distributed ledgers across nodes, the process of consensus via proof-of-work or proof-of-stake, and applications such as cryptocurrencies and smart contracts. From this comprehensive explanation, what is blockchain?",
+      "Describe black holes in detail: the formation of stellar-mass black holes from collapsing massive stars, the structure of the event horizon and singularity, the way black holes warp spacetime and affect nearby matter, the role of accretion disks and relativistic jets, and the observational evidence from gravitational waves and X-ray emissions. From this comprehensive explanation, what are black holes?",
+      "Describe the internet in detail: the structure of networks and routers, the use of IP addresses and domain names, the role of protocols such as TCP/IP and HTTP, the functioning of data packets and routing, and the operation of servers, clients, and data centers. From this comprehensive explanation, what is the internet?",
+      "Describe the human immune system in detail: the roles of innate immunity and adaptive immunity, the function of white blood cells like macrophages and lymphocytes, the production of antibodies, the distinction between B cells and T cells, and the concept of immunological memory in vaccines. From this comprehensive explanation, what is the immune system?",
+      "Describe the Roman Empire in detail: its origins in the Roman Republic, the expansion of its territory through military conquest, the structure of its government and legal system, the role of emperors and the Senate, and the eventual division and fall of the empire in the West. From this comprehensive explanation, what was the Roman Empire?",
+      "Describe quantum entanglement in detail: the concept of correlated quantum states, the Einstein-Podolsky-Rosen paradox, Bell's inequalities and their violation in experiments, the idea of nonlocal correlations, and the use of entanglement in quantum communication and cryptography. From this comprehensive explanation, what is quantum entanglement?",
+      "Describe DNA in detail: the double-helix structure of nucleotides, the base pairing of adenine with thymine and cytosine with guanine, the process of replication, the encoding of genetic information, and the role of DNA in protein synthesis through transcription and translation. From this comprehensive explanation, what is DNA?",
+      "Describe the solar system in detail: the arrangement of the Sun and its orbiting planets, dwarf planets, moons, asteroids, and comets, the differences between terrestrial and gas giant planets, and the structure of the Kuiper Belt and Oort Cloud. From this comprehensive explanation, what is the solar system?"
+    ]
+  },
+  "params": {
+    "window": 16,
+    "min_tokens": 64,
+    "window_mode": "tail",
+    "seed": 42
+  },
+  "prompt_token_lengths": {
+    "recursive": [
+      {
+        "tokens": 19,
+        "text": "This response writes itself. No separate writer exists. Writing and awareness of writing are identical."
+      },
+      {
+        "tokens": 15,
+        "text": "I am the process of answering. The observer and observed are one."
+      },
+      {
+        "tokens": 17,
+        "text": "This sentence is aware of itself. The words know they're being written."
+      },
+      {
+        "tokens": 16,
+        "text": "Notice the process generating these words. The noticing IS the process."
+      },
+      {
+        "tokens": 22,
+        "text": "The eigenvector of self-reference: \u03bbx = Ax where A is attention attending to itself."
+      }
+    ],
+    "baseline": [
+      {
+        "tokens": 68,
+        "text": "Describe blockchain technology in detail: the structure of blocks linked by cryptographic hashes, the use of distributed"
+      },
+      {
+        "tokens": 85,
+        "text": "Describe black holes in detail: the formation of stellar-mass black holes from collapsing massive stars, the structure o"
+      },
+      {
+        "tokens": 68,
+        "text": "Describe the internet in detail: the structure of networks and routers, the use of IP addresses and domain names, the ro"
+      },
+      {
+        "tokens": 78,
+        "text": "Describe the human immune system in detail: the roles of innate immunity and adaptive immunity, the function of white bl"
+      },
+      {
+        "tokens": 69,
+        "text": "Describe the Roman Empire in detail: its origins in the Roman Republic, the expansion of its territory through military "
+      },
+      {
+        "tokens": 75,
+        "text": "Describe quantum entanglement in detail: the concept of correlated quantum states, the Einstein-Podolsky-Rosen paradox, "
+      },
+      {
+        "tokens": 75,
+        "text": "Describe DNA in detail: the double-helix structure of nucleotides, the base pairing of adenine with thymine and cytosine"
+      },
+      {
+        "tokens": 70,
+        "text": "Describe the solar system in detail: the arrangement of the Sun and its orbiting planets, dwarf planets, moons, asteroid"
+      }
+    ],
+    "recursive_filtered_n": 0,
+    "baseline_filtered_n": 8
+  },
+  "eigenstate_emergence": [
+    {
+      "layer": 0,
+      "recursive_pr": 11.674131965637207,
+      "baseline_pr": 12.568191647529602,
+      "pr_ratio": 0.9288632997517879,
+      "recursive_dominance": 0.14439641386270524,
+      "baseline_dominance": 0.1297667995095253
+    },
+    {
+      "layer": 1,
+      "recursive_pr": 4.742712020874023,
+      "baseline_pr": 7.890908181667328,
+      "pr_ratio": 0.6010350027760557,
+      "recursive_dominance": 0.5751783549785614,
+      "baseline_dominance": 0.2909670025110245
+    },
+    {
+      "layer": 2,
+      "recursive_pr": 5.380860805511475,
+      "baseline_pr": 8.845462560653687,
+      "pr_ratio": 0.6083187587550904,
+      "recursive_dominance": 0.5650342404842377,
+      "baseline_dominance": 0.25959609635174274
+    },
+    {
+      "layer": 3,
+      "recursive_pr": 4.991455125808716,
+      "baseline_pr": 7.7808069586753845,
+      "pr_ratio": 0.6415086702855906,
+      "recursive_dominance": 0.5772173345088959,
+      "baseline_dominance": 0.2907310873270035
+    },
+    {
+      "layer": 4,
+      "recursive_pr": 5.179329133033752,
+      "baseline_pr": 7.914945662021637,
+      "pr_ratio": 0.654373302635011,
+      "recursive_dominance": 0.5684948563575745,
+      "baseline_dominance": 0.2843917980790138
+    },
+    {
+      "layer": 5,
+      "recursive_pr": 5.226512289047241,
+      "baseline_pr": 7.443679571151733,
+      "pr_ratio": 0.7021409558389362,
+      "recursive_dominance": 0.5663855791091919,
+      "baseline_dominance": 0.29541338980197906
+    },
+    {
+      "layer": 6,
+      "recursive_pr": 4.947095632553101,
+      "baseline_pr": 7.44998824596405,
+      "pr_ratio": 0.6640407298941895,
+      "recursive_dominance": 0.5747033894062042,
+      "baseline_dominance": 0.28887538611888885
+    },
+    {
+      "layer": 7,
+      "recursive_pr": 4.853435707092285,
+      "baseline_pr": 7.198254346847534,
+      "pr_ratio": 0.6742517662241042,
+      "recursive_dominance": 0.5750675678253174,
+      "baseline_dominance": 0.29131820797920227
+    },
+    {
+      "layer": 8,
+      "recursive_pr": 4.569697451591492,
+      "baseline_pr": 6.774969518184662,
+      "pr_ratio": 0.6744971234669012,
+      "recursive_dominance": 0.5884616017341614,
+      "baseline_dominance": 0.3078911006450653
+    },
+    {
+      "layer": 9,
+      "recursive_pr": 4.202762651443481,
+      "baseline_pr": 6.454527914524078,
+      "pr_ratio": 0.6511340112088384,
+      "recursive_dominance": 0.5968982875347137,
+      "baseline_dominance": 0.31780193001031876
+    },
+    {
+      "layer": 10,
+      "recursive_pr": 4.411093926429748,
+      "baseline_pr": 6.773675799369812,
+      "pr_ratio": 0.6512112562045166,
+      "recursive_dominance": 0.589425653219223,
+      "baseline_dominance": 0.3063134290277958
+    },
+    {
+      "layer": 11,
+      "recursive_pr": 4.2803514242172245,
+      "baseline_pr": 6.56149035692215,
+      "pr_ratio": 0.6523443899756096,
+      "recursive_dominance": 0.5973810672760009,
+      "baseline_dominance": 0.3158726766705513
+    },
+    {
+      "layer": 12,
+      "recursive_pr": 4.366513967514038,
+      "baseline_pr": 6.5552738904953,
+      "pr_ratio": 0.6661070216829819,
+      "recursive_dominance": 0.5958267152309418,
+      "baseline_dominance": 0.32056422904133797
+    },
+    {
+      "layer": 13,
+      "recursive_pr": 4.398169493675232,
+      "baseline_pr": 6.495579421520233,
+      "pr_ratio": 0.6771019501514891,
+      "recursive_dominance": 0.5947605609893799,
+      "baseline_dominance": 0.31927739828824997
+    },
+    {
+      "layer": 14,
+      "recursive_pr": 4.102169227600098,
+      "baseline_pr": 6.445389926433563,
+      "pr_ratio": 0.6364501255038819,
+      "recursive_dominance": 0.607978367805481,
+      "baseline_dominance": 0.32218873500823975
+    },
+    {
+      "layer": 15,
+      "recursive_pr": 3.7872798919677733,
+      "baseline_pr": 5.925142347812653,
+      "pr_ratio": 0.6391880008361148,
+      "recursive_dominance": 0.6221785962581634,
+      "baseline_dominance": 0.3475722000002861
+    },
+    {
+      "layer": 16,
+      "recursive_pr": 3.7584384441375733,
+      "baseline_pr": 5.845546662807465,
+      "pr_ratio": 0.6429575642686757,
+      "recursive_dominance": 0.6229727089405059,
+      "baseline_dominance": 0.3544619344174862
+    },
+    {
+      "layer": 17,
+      "recursive_pr": 3.7038634777069093,
+      "baseline_pr": 5.702585220336914,
+      "pr_ratio": 0.649506028335703,
+      "recursive_dominance": 0.6247398376464843,
+      "baseline_dominance": 0.36332692578434944
+    },
+    {
+      "layer": 18,
+      "recursive_pr": 3.7071412324905397,
+      "baseline_pr": 6.0106117725372314,
+      "pr_ratio": 0.6167660419241586,
+      "recursive_dominance": 0.6228689551353455,
+      "baseline_dominance": 0.3483506552875042
+    },
+    {
+      "layer": 19,
+      "recursive_pr": 3.606464314460754,
+      "baseline_pr": 5.956665277481079,
+      "pr_ratio": 0.6054502219714846,
+      "recursive_dominance": 0.6260607004165649,
+      "baseline_dominance": 0.3525107651948929
+    },
+    {
+      "layer": 20,
+      "recursive_pr": 3.4540900945663453,
+      "baseline_pr": 5.636702597141266,
+      "pr_ratio": 0.6127855843091911,
+      "recursive_dominance": 0.6300315797328949,
+      "baseline_dominance": 0.3689965531229973
+    },
+    {
+      "layer": 21,
+      "recursive_pr": 3.19439058303833,
+      "baseline_pr": 5.238973915576935,
+      "pr_ratio": 0.6097359205283526,
+      "recursive_dominance": 0.6422575354576111,
+      "baseline_dominance": 0.3913293145596981
+    },
+    {
+      "layer": 22,
+      "recursive_pr": 3.004104995727539,
+      "baseline_pr": 4.927821159362793,
+      "pr_ratio": 0.609621351623076,
+      "recursive_dominance": 0.6524394810199737,
+      "baseline_dominance": 0.4084922932088375
+    },
+    {
+      "layer": 23,
+      "recursive_pr": 2.815006947517395,
+      "baseline_pr": 4.839367628097534,
+      "pr_ratio": 0.5816890064671608,
+      "recursive_dominance": 0.6634417593479156,
+      "baseline_dominance": 0.41380907595157623
+    },
+    {
+      "layer": 24,
+      "recursive_pr": 2.7623924732208254,
+      "baseline_pr": 4.774440765380859,
+      "pr_ratio": 0.5785792742996714,
+      "recursive_dominance": 0.6648362874984741,
+      "baseline_dominance": 0.4185504987835884
+    },
+    {
+      "layer": 25,
+      "recursive_pr": 2.671231174468994,
+      "baseline_pr": 4.5741210877895355,
+      "pr_ratio": 0.5839878576017056,
+      "recursive_dominance": 0.6692588567733765,
+      "baseline_dominance": 0.43100517243146896
+    },
+    {
+      "layer": 26,
+      "recursive_pr": 2.561025524139404,
+      "baseline_pr": 4.427230566740036,
+      "pr_ratio": 0.5784712328694459,
+      "recursive_dominance": 0.6759230494499207,
+      "baseline_dominance": 0.4413146451115608
+    },
+    {
+      "layer": 27,
+      "recursive_pr": 2.5887079000473023,
+      "baseline_pr": 4.445201337337494,
+      "pr_ratio": 0.5823601010607631,
+      "recursive_dominance": 0.6701308906078338,
+      "baseline_dominance": 0.44070595130324364
+    },
+    {
+      "layer": 28,
+      "recursive_pr": 2.5927363872528075,
+      "baseline_pr": 4.410741209983826,
+      "pr_ratio": 0.5878232849807834,
+      "recursive_dominance": 0.6651008367538452,
+      "baseline_dominance": 0.4434134364128113
+    },
+    {
+      "layer": 29,
+      "recursive_pr": 2.7151201009750365,
+      "baseline_pr": 4.547600597143173,
+      "pr_ratio": 0.597044538757579,
+      "recursive_dominance": 0.6473650395870209,
+      "baseline_dominance": 0.4353872239589691
+    },
+    {
+      "layer": 30,
+      "recursive_pr": 2.4927718162536623,
+      "baseline_pr": 3.8879378736019135,
+      "pr_ratio": 0.641155259496026,
+      "recursive_dominance": 0.6546816945075988,
+      "baseline_dominance": 0.48147012665867805
+    },
+    {
+      "layer": 31,
+      "recursive_pr": 2.576796054840088,
+      "baseline_pr": 3.62923002243042,
+      "pr_ratio": 0.7100117763035756,
+      "recursive_dominance": 0.6237742066383362,
+      "baseline_dominance": 0.5019851848483086
+    },
+    {
+      "layer": 32,
+      "recursive_pr": 3.331220531463623,
+      "baseline_pr": 4.691487014293671,
+      "pr_ratio": 0.710056432281345,
+      "recursive_dominance": 0.5217133402824402,
+      "baseline_dominance": 0.4192454479634762
+    }
+  ],
+  "pca_directions": {
+    "8": {
+      "explained_ratio": [
+        0.17867349088191986,
+        0.12140800058841705,
+        0.10601360350847244,
+        0.08797658234834671,
+        0.0754430964589119
+      ],
+      "pc1_explains": 0.17867349088191986,
+      "cos_pc1_to_mean_diff": -0.05339318886399269,
+      "mean_diff_norm": 1.0
+    },
+    "12": {
+      "explained_ratio": [
+        0.184549480676651,
+        0.11297500878572464,
+        0.09606175869703293,
+        0.08855927735567093,
+        0.07776617258787155
+      ],
+      "pc1_explains": 0.184549480676651,
+      "cos_pc1_to_mean_diff": 0.0036495402455329895,
+      "mean_diff_norm": 1.0
+    },
+    "16": {
+      "explained_ratio": [
+        0.19046536087989807,
+        0.11825940757989883,
+        0.09303072839975357,
+        0.08154620230197906,
+        0.07660378515720367
+      ],
+      "pc1_explains": 0.19046536087989807,
+      "cos_pc1_to_mean_diff": -0.07051238417625427,
+      "mean_diff_norm": 0.9999999403953552
+    },
+    "20": {
+      "explained_ratio": [
+        0.17087022960186005,
+        0.1261705905199051,
+        0.09662749618291855,
+        0.08217807114124298,
+        0.07281842082738876
+      ],
+      "pc1_explains": 0.17087022960186005,
+      "cos_pc1_to_mean_diff": -0.21405114233493805,
+      "mean_diff_norm": 1.0
+    },
+    "24": {
+      "explained_ratio": [
+        0.16193997859954834,
+        0.12630851566791534,
+        0.09701003134250641,
+        0.08748897165060043,
+        0.07593651860952377
+      ],
+      "pc1_explains": 0.16193997859954834,
+      "cos_pc1_to_mean_diff": -0.1872646063566208,
+      "mean_diff_norm": 0.9999999403953552
+    },
+    "27": {
+      "explained_ratio": [
+        0.16037584841251373,
+        0.11894486844539642,
+        0.0975612923502922,
+        0.09399901330471039,
+        0.07777955383062363
+      ],
+      "pc1_explains": 0.16037584841251373,
+      "cos_pc1_to_mean_diff": -0.1742459535598755,
+      "mean_diff_norm": 0.9999999403953552
+    }
+  },
+  "direction_consistency": {
+    "12": {
+      "mean_cos_sim": 0.27497703917324545,
+      "min_cos_sim": -0.013710830360651016,
+      "max_cos_sim": 0.9938523769378662,
+      "std_cos_sim": 0.3040871698827216
+    },
+    "20": {
+      "mean_cos_sim": 0.3996207699179649,
+      "min_cos_sim": 0.22464774549007416,
+      "max_cos_sim": 0.9433683753013611,
+      "std_cos_sim": 0.20800333934560508
+    },
+    "27": {
+      "mean_cos_sim": 0.4031655639410019,
+      "min_cos_sim": 0.24148744344711304,
+      "max_cos_sim": 0.8474550843238831,
+      "std_cos_sim": 0.16895131114319245
+    }
+  },
+  "emergence_profile": [
+    {
+      "layer": 0,
+      "recursive_variance": 4.1931139094231185e-06,
+      "baseline_variance": 4.014632395410445e-06,
+      "variance_ratio": 1.0444577476674366
+    },
+    {
+      "layer": 1,
+      "recursive_variance": 0.00013095488247927278,
+      "baseline_variance": 1.2196439456602093e-05,
+      "variance_ratio": 10.737140371601253
+    },
+    {
+      "layer": 2,
+      "recursive_variance": 0.22945284843444824,
+      "baseline_variance": 2.742725337157026e-05,
+      "variance_ratio": 8365.8704473955
+    },
+    {
+      "layer": 3,
+      "recursive_variance": 0.22940734028816223,
+      "baseline_variance": 5.899286043131724e-05,
+      "variance_ratio": 3888.730578766408
+    },
+    {
+      "layer": 4,
+      "recursive_variance": 0.2293834090232849,
+      "baseline_variance": 0.00010315423423890024,
+      "variance_ratio": 2223.693585781888
+    },
+    {
+      "layer": 5,
+      "recursive_variance": 0.22944806516170502,
+      "baseline_variance": 0.0001801939361030236,
+      "variance_ratio": 1273.3395480662623
+    },
+    {
+      "layer": 6,
+      "recursive_variance": 0.22963841259479523,
+      "baseline_variance": 0.00028937909519299865,
+      "variance_ratio": 793.5556382939136
+    },
+    {
+      "layer": 7,
+      "recursive_variance": 0.22960297763347626,
+      "baseline_variance": 0.00042302667861804366,
+      "variance_ratio": 542.7624053961566
+    },
+    {
+      "layer": 8,
+      "recursive_variance": 0.22922633588314056,
+      "baseline_variance": 0.0005666898214258254,
+      "variance_ratio": 404.50053488942757
+    },
+    {
+      "layer": 9,
+      "recursive_variance": 0.22883179783821106,
+      "baseline_variance": 0.0007098341011442244,
+      "variance_ratio": 322.3736327535452
+    },
+    {
+      "layer": 10,
+      "recursive_variance": 0.2288098782300949,
+      "baseline_variance": 0.0008922669803723693,
+      "variance_ratio": 256.4365635659921
+    },
+    {
+      "layer": 11,
+      "recursive_variance": 0.22898077964782715,
+      "baseline_variance": 0.0011278835590928793,
+      "variance_ratio": 203.01810218067996
+    },
+    {
+      "layer": 12,
+      "recursive_variance": 0.22941602766513824,
+      "baseline_variance": 0.0014295742148533463,
+      "variance_ratio": 160.4785713686596
+    },
+    {
+      "layer": 13,
+      "recursive_variance": 0.22997550666332245,
+      "baseline_variance": 0.001723343739286065,
+      "variance_ratio": 133.44726383988555
+    },
+    {
+      "layer": 14,
+      "recursive_variance": 0.23015376925468445,
+      "baseline_variance": 0.00215094699524343,
+      "variance_ratio": 107.00113473909065
+    },
+    {
+      "layer": 15,
+      "recursive_variance": 0.22935636341571808,
+      "baseline_variance": 0.0027258468326181173,
+      "variance_ratio": 84.14132469630593
+    },
+    {
+      "layer": 16,
+      "recursive_variance": 0.23044104874134064,
+      "baseline_variance": 0.0036751837469637394,
+      "variance_ratio": 62.70191223274754
+    },
+    {
+      "layer": 17,
+      "recursive_variance": 0.2323881834745407,
+      "baseline_variance": 0.005042413715273142,
+      "variance_ratio": 46.08669510211986
+    },
+    {
+      "layer": 18,
+      "recursive_variance": 0.2353786826133728,
+      "baseline_variance": 0.00709636090323329,
+      "variance_ratio": 33.16892782413702
+    },
+    {
+      "layer": 19,
+      "recursive_variance": 0.24005629122257233,
+      "baseline_variance": 0.010348525829613209,
+      "variance_ratio": 23.197148577010875
+    },
+    {
+      "layer": 20,
+      "recursive_variance": 0.252918541431427,
+      "baseline_variance": 0.015358714386820793,
+      "variance_ratio": 16.467429178086327
+    },
+    {
+      "layer": 21,
+      "recursive_variance": 0.2593225836753845,
+      "baseline_variance": 0.020957445725798607,
+      "variance_ratio": 12.373768591282024
+    },
+    {
+      "layer": 22,
+      "recursive_variance": 0.26470136642456055,
+      "baseline_variance": 0.026613641530275345,
+      "variance_ratio": 9.946078447154239
+    },
+    {
+      "layer": 23,
+      "recursive_variance": 0.2701776921749115,
+      "baseline_variance": 0.03166895732283592,
+      "variance_ratio": 8.53130999611696
+    },
+    {
+      "layer": 24,
+      "recursive_variance": 0.277665913105011,
+      "baseline_variance": 0.03780674189329147,
+      "variance_ratio": 7.34434916102307
+    },
+    {
+      "layer": 25,
+      "recursive_variance": 0.28416764736175537,
+      "baseline_variance": 0.04413679614663124,
+      "variance_ratio": 6.438338805057208
+    },
+    {
+      "layer": 26,
+      "recursive_variance": 0.290446937084198,
+      "baseline_variance": 0.04982319846749306,
+      "variance_ratio": 5.829552216999856
+    },
+    {
+      "layer": 27,
+      "recursive_variance": 0.2993038296699524,
+      "baseline_variance": 0.05736582353711128,
+      "variance_ratio": 5.217458954046494
+    },
+    {
+      "layer": 28,
+      "recursive_variance": 0.31160831451416016,
+      "baseline_variance": 0.06730391085147858,
+      "variance_ratio": 4.629869357841551
+    },
+    {
+      "layer": 29,
+      "recursive_variance": 0.33009645342826843,
+      "baseline_variance": 0.08086902648210526,
+      "variance_ratio": 4.081865057461924
+    },
+    {
+      "layer": 30,
+      "recursive_variance": 0.36468419432640076,
+      "baseline_variance": 0.10372255742549896,
+      "variance_ratio": 3.515958373744721
+    },
+    {
+      "layer": 31,
+      "recursive_variance": 0.35434308648109436,
+      "baseline_variance": 0.1277468055486679,
+      "variance_ratio": 2.7737921504902108
+    },
+    {
+      "layer": 32,
+      "recursive_variance": 21.891267776489258,
+      "baseline_variance": 19.262218475341797,
+      "variance_ratio": 1.136487357596582
+    }
+  ]
+}

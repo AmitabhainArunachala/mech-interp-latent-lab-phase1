@@ -9,6 +9,7 @@ from .registry import run_from_config
 
 __all__ = [
     "run_from_config",
+    "run_phase1_existence_proof",
 ]
 
 

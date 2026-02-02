@@ -1,0 +1,125 @@
+# Run report: mlp_sufficiency_test
+
+- **run_dir**: `results/phase1_mechanism/runs/20260116_131551_mlp_sufficiency_test_l3_sufficiency`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "config": "results/phase1_mechanism/runs/20260116_131551_mlp_sufficiency_test_l3_sufficiency/config.json",
+    "report": "results/phase1_mechanism/runs/20260116_131551_mlp_sufficiency_test_l3_sufficiency/report.md",
+    "summary": "results/phase1_mechanism/runs/20260116_131551_mlp_sufficiency_test_l3_sufficiency/summary.json"
+  },
+  "behavior_metric": "mode_score_m",
+  "eval_window": 16,
+  "experiment": "mlp_sufficiency_test",
+  "git_commit": "not_a_git_repo",
+  "intervention_scope": "last_16",
+  "layer": 3,
+  "logit_diff_cohens_d": null,
+  "logit_diff_delta_mean": null,
+  "logit_diff_p_value": null,
+  "mode_ci_95": [
+    0.03708083972560667,
+    0.10302332694106
+  ],
+  "mode_pvalue": 0.0001555354328597021,
+  "mode_score_m": -9.269661458333333,
+  "mode_score_m_delta": 0.07005208333333333,
+  "mode_significant": true,
+  "mode_t_statistic": 4.345380448219075,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "model_id": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 30,
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "prompt_ids": {
+    "baseline": [
+      "baseline_factual_18",
+      "baseline_math_18",
+      "baseline_creative_12",
+      "baseline_creative_16",
+      "baseline_math_01",
+      "baseline_creative_09",
+      "baseline_creative_18",
+      "baseline_math_11",
+      "baseline_creative_05",
+      "baseline_factual_08",
+      "baseline_factual_02",
+      "baseline_creative_19",
+      "baseline_math_10",
+      "baseline_math_14",
+      "baseline_creative_10",
+      "baseline_math_07",
+      "baseline_math_06",
+      "baseline_factual_05",
+      "baseline_creative_14",
+      "baseline_factual_03",
+      "baseline_creative_01",
+      "baseline_factual_19",
+      "baseline_math_17",
+      "baseline_math_03",
+      "baseline_factual_10",
+      "baseline_factual_15",
+      "baseline_math_08",
+      "baseline_creative_03",
+      "baseline_creative_04",
+      "baseline_creative_15"
+    ],
+    "recursive": [
+      "L4_full_19",
+      "L3_deeper_08",
+      "L3_deeper_02",
+      "L5_refined_06",
+      "L3_deeper_18",
+      "L3_deeper_16",
+      "L3_deeper_15",
+      "L3_deeper_09",
+      "L5_refined_17",
+      "L3_deeper_07",
+      "L5_refined_02",
+      "L5_refined_12",
+      "L4_full_13",
+      "L3_deeper_06",
+      "L4_full_16",
+      "L4_full_06",
+      "L3_deeper_03",
+      "L5_refined_18",
+      "L5_refined_07",
+      "L3_deeper_14",
+      "L5_refined_14",
+      "L4_full_11",
+      "L4_full_17",
+      "L5_refined_03",
+      "L4_full_14",
+      "L3_deeper_13",
+      "L5_refined_08",
+      "L4_full_05",
+      "L4_full_20",
+      "L4_full_07"
+    ]
+  },
+  "rv": 0.7022127847822637,
+  "rv_baseline_mean": 0.7022127847822637,
+  "rv_cohens_d": 0.2999737741899616,
+  "rv_delta_mean": -0.02606238450842663,
+  "rv_p_value": 0.2930913024909106,
+  "rv_patched_mean": 0.6761504002738371,
+  "rv_pvalue": 0.2930913024909106,
+  "rv_recursive_mean": 0.5100449978892971,
+  "rv_restoration_ci_95": [
+    -8.220069479204668,
+    26.28607935348696
+  ],
+  "rv_restoration_pct": 9.033004937141147,
+  "rv_restoration_pct_mean": 9.033004937141147,
+  "rv_restoration_pct_std": 46.20458186931917,
+  "rv_significant": false,
+  "rv_t_statistic": 1.070798688346759,
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "timestamp": "20260116_131935",
+  "verdict": "L3 MLP is NOT SUFFICIENT - Patching does not restore contraction"
+}
+```
