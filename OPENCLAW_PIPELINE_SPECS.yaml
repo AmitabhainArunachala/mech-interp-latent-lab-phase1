@@ -1,0 +1,775 @@
+# OpenClaw Data Pipeline Specifications
+# Tactical Implementation Guide for Consciousness Research Data Infrastructure
+# Version: 1.0 | Date: 2026-02-03
+
+# =============================================================================
+# GLOBAL CONFIGURATION
+# =============================================================================
+
+global:
+  base_dir: /Users/dhyana/mech-interp-latent-lab-phase1
+  vault_dir: /Users/dhyana/Persistent-Semantic-Memory-Vault
+  backup_dir: /Users/dhyana/research_backups
+  audit_log: /Users/dhyana/.openclaw/audit.jsonl
+
+  # Immutability guarantees
+  immutable_files:
+    - CANONICAL_CODE/n300_mistral_test_prompt_bank.py
+    - R_V_PAPER/research/PHASE1_FINAL_REPORT.md
+    - R_V_PAPER/research/MISTRAL_L27_CAUSAL_VALIDATION_COMPLETE.md
+
+  immutable_dirs:
+    - results/canonical/
+    - R_V_PAPER/research/
+
+  append_only_dirs:
+    - results/runs/
+    - results/phase3_bridge/
+
+  read_only_dirs:
+    - /Users/dhyana/Desktop/KAILASH ABODE OF SHIVA
+
+# =============================================================================
+# PIPELINE 1: EXPERIMENT RESULTS CONSOLIDATION
+# =============================================================================
+
+pipeline_results_aggregator:
+  name: "Experiment Results Consolidation"
+  priority: HIGH
+  risk_level: LOW
+  deployment_phase: 1
+
+  trigger:
+    schedule: "0 3 * * *"  # 3 AM daily
+    manual: true
+    on_event: new_run_detected
+
+  inputs:
+    - results/RUN_INDEX.jsonl
+    - results/runs/*/summary.json
+    - results/runs/*/config.json
+    - results/canonical/**/summary.json
+    - results/phase3_bridge/**/rv_behavioral_correlation.csv
+
+  operations:
+    - name: validate_schema
+      description: Check all JSONs against expected schema versions
+      action: read_and_validate
+      schema_versions:
+        - metrics_summary_v1
+      error_handling: log_and_skip
+
+    - name: extract_metrics
+      description: Parse key metrics from each run
+      fields:
+        - timestamp
+        - experiment
+        - model
+        - prompt_bank_version
+        - success
+        - rv_d
+        - rv_p
+        - rv_delta
+        - logit_diff_d
+        - logit_diff_p
+        - n_pairs
+        - run_dir
+
+    - name: aggregate
+      description: Combine all metrics into unified DataFrame
+      deduplication: by_run_dir
+      sorting: by_timestamp_desc
+
+    - name: compute_summary_stats
+      description: Generate aggregate statistics
+      statistics:
+        - total_runs
+        - success_rate
+        - runs_by_model
+        - runs_by_experiment_type
+        - mean_rv_delta_by_model
+        - significant_results_count (p < 0.001)
+
+    - name: flag_anomalies
+      description: Detect unusual patterns
+      checks:
+        - schema_version_mismatch
+        - missing_critical_fields
+        - rv_delta_out_of_range (-2.0 to 2.0)
+        - duplicate_timestamps
+        - run_dirs_missing_from_filesystem
+
+  outputs:
+    - path: results/consolidated/all_runs_summary.csv
+      format: csv
+      columns: all_extracted_fields
+      overwrite: true
+
+    - path: results/consolidated/summary_statistics.json
+      format: json
+      pretty: true
+
+    - path: results/consolidated/anomalies.log
+      format: text
+      append: true
+      timestamp: true
+
+    - path: results/consolidated/last_run.txt
+      format: text
+      content: timestamp_of_execution
+
+  safeguards:
+    - dry_run_default: false
+    - validate_before_write: true
+    - backup_existing: true
+    - atomic_write: true  # Write to .tmp, then rename
+
+  monitoring:
+    - metric: execution_time_seconds
+      alert_if: "> 300"
+    - metric: rows_processed
+      alert_if: "< 100"  # Should have hundreds of runs
+    - metric: anomalies_detected
+      alert_if: "> 10"
+
+  rollback:
+    - restore_from: results/consolidated/*.backup.*
+    - auto_rollback_if: schema_validation_fails
+
+# =============================================================================
+# PIPELINE 2: GIT-SAFE BACKUP AUTOMATION
+# =============================================================================
+
+pipeline_backup:
+  name: "Git-Safe Research Backup"
+  priority: CRITICAL
+  risk_level: LOW
+  deployment_phase: 1
+
+  trigger:
+    schedule: "0 2 * * *"  # 2 AM daily (before 4:30 AM closure)
+    manual: true
+
+  inputs:
+    - results/
+    - R_V_PAPER/
+    - CANONICAL_CODE/
+    - models/*.py
+    - docs/experiments/
+    - *.md (root level)
+
+  exclusions:
+    - "**/__pycache__"
+    - "**/*.pyc"
+    - "**/.git"
+    - "**/venv"
+    - "**/node_modules"
+    - "**/*.tmp"
+    - "archive/outputs/"  # Already archived
+
+  operations:
+    - name: create_manifest
+      description: Generate file list with checksums
+      algorithm: sha256
+      output: manifest.txt
+
+    - name: tar_compress
+      description: Create compressed archive
+      filename: mech-interp-backup-{YYYYMMDD}.tar.gz
+      compression: gzip
+      level: 6
+
+    - name: verify_integrity
+      description: Extract to temp, compare checksums
+      fail_if: checksum_mismatch
+
+    - name: cleanup_old_backups
+      description: Maintain rolling window
+      retention_days: 30
+      keep_first_of_month: true
+
+  outputs:
+    - path: /Users/dhyana/research_backups/mech-interp-backup-{date}.tar.gz
+      max_size: 500MB
+    - path: /Users/dhyana/research_backups/manifests/manifest-{date}.txt
+
+  safeguards:
+    - verify_backup_readable: true
+    - test_restore_sample: true  # Extract one file, verify
+    - alert_on_size_anomaly: true  # >10% change from previous
+
+  monitoring:
+    - metric: backup_size_mb
+      alert_if: "> 500"
+    - metric: backup_time_seconds
+      alert_if: "> 600"
+    - metric: days_since_last_backup
+      alert_if: "> 2"
+
+  alerts:
+    - on_failure:
+        method: email
+        to: dhyana@example.com
+        subject: "CRITICAL: Backup Failed"
+    - on_size_anomaly:
+        method: log
+        severity: warning
+
+# =============================================================================
+# PIPELINE 3: PROMPT BANK VALIDATION & ANALYTICS
+# =============================================================================
+
+pipeline_prompt_analytics:
+  name: "Prompt Bank Coverage Analysis"
+  priority: MEDIUM
+  risk_level: NONE
+  deployment_phase: 1
+
+  trigger:
+    schedule: "0 4 * * 0"  # 4 AM Sundays
+    manual: true
+    on_commit: CANONICAL_CODE/n300_mistral_test_prompt_bank.py
+
+  inputs:
+    - CANONICAL_CODE/n300_mistral_test_prompt_bank.py
+    - REUSABLE_PROMPT_BANK/n300_mistral_test_prompt_bank_v1.py
+    - results/RUN_INDEX.jsonl
+
+  operations:
+    - name: parse_prompt_bank
+      description: Extract all 320 prompts
+      parser: python_ast  # Parse as Python code
+      extract:
+        - prompt_id
+        - text
+        - group (L3_deeper, L4_full, baseline_*, etc)
+        - pillar (dose_response, baseline, confound, generality)
+
+    - name: cross_reference_usage
+      description: Match prompts to experiment runs
+      join_on: prompt_bank_version (hash)
+      identify:
+        - prompts_tested
+        - prompts_untested
+        - prompts_tested_by_model
+
+    - name: compute_coverage
+      description: Calculate testing coverage
+      metrics:
+        - total_prompts
+        - prompts_tested_count
+        - coverage_percent
+        - coverage_by_group
+        - coverage_by_pillar
+        - coverage_by_model
+
+    - name: analyze_results_by_prompt
+      description: Aggregate R_V results per prompt
+      compute:
+        - mean_rv_delta_per_prompt
+        - std_rv_delta_per_prompt
+        - models_tested_per_prompt
+        - significant_effect_rate (p < 0.05)
+
+    - name: identify_gaps
+      description: Find high-priority untested prompts
+      prioritize:
+        - L5_refined (untested highest priority)
+        - L4_full (untested high priority)
+        - Confounds (untested medium priority)
+
+    - name: detect_duplicates
+      description: Find near-duplicate prompts
+      method: embedding_similarity
+      threshold: 0.95
+      model: sentence-transformers/all-MiniLM-L6-v2
+
+  outputs:
+    - path: CANONICAL_CODE/prompt_coverage_report.md
+      format: markdown
+      sections:
+        - Summary Statistics
+        - Coverage by Group
+        - Coverage by Model
+        - Untested High-Priority Prompts
+        - Near-Duplicates Detected
+
+    - path: CANONICAL_CODE/untested_prompts.json
+      format: json
+      fields: [prompt_id, text, group, pillar, priority]
+
+    - path: CANONICAL_CODE/prompt_results_matrix.csv
+      format: csv
+      rows: prompts
+      columns: [group, tested_count, mean_rv_delta, models, priority]
+
+  safeguards:
+    - read_only: true
+    - no_modifications: true
+
+  monitoring:
+    - metric: coverage_percent
+      log: true
+    - metric: untested_l5_count
+      alert_if: "> 15"
+
+# =============================================================================
+# PIPELINE 4: CROSS-ARCHITECTURE RESULT NORMALIZATION
+# =============================================================================
+
+pipeline_architecture_normalizer:
+  name: "Cross-Architecture Result Normalization"
+  priority: MEDIUM
+  risk_level: MEDIUM
+  deployment_phase: 2
+
+  trigger:
+    manual: true  # Only on-demand initially
+    schedule: null
+
+  inputs:
+    - results/canonical/rv_l27_causal_validation/**/*.json
+    - results/runs/*/summary.json (filtered by experiment type)
+
+  operations:
+    - name: extract_architecture_info
+      description: Get model-specific parameters
+      extract:
+        - num_layers
+        - hidden_size
+        - num_heads
+        - architecture_family
+
+    - name: normalize_layer_references
+      description: Convert absolute layers to relative depth
+      formula: relative_depth = layer / num_layers
+      apply_to:
+        - early_layer
+        - late_layer
+
+    - name: compute_effect_sizes
+      description: Calculate standardized metrics
+      compute:
+        - cohens_d: (mean_recursive - mean_baseline) / pooled_std
+        - percent_contraction: (1 - mean_rv_recursive) * 100
+        - significance_level: p_value_category
+
+    - name: create_comparison_table
+      description: Cross-model comparison matrix
+      rows: models
+      columns:
+        - architecture_family
+        - num_layers
+        - mean_rv_recursive
+        - mean_rv_baseline
+        - percent_contraction
+        - cohens_d
+        - p_value
+        - n_measurements
+
+  outputs:
+    - path: results/normalized/cross_architecture_comparison.csv
+      format: csv
+      overwrite: false  # Append timestamp
+
+    - path: results/normalized/normalization_log.json
+      format: json
+      include_transformations: true
+
+  safeguards:
+    - dry_run_default: true  # MUST explicitly disable
+    - never_modify_source: true
+    - separate_output_dir: true
+    - validate_transformations: true
+
+  monitoring:
+    - metric: models_processed
+      expected: 6
+    - metric: cohens_d_range
+      alert_if: "outside [-5.0, 0.5]"
+
+# =============================================================================
+# PIPELINE 5: VAULT KNOWLEDGE GRAPH INDEXING
+# =============================================================================
+
+pipeline_vault_indexer:
+  name: "Vault Knowledge Graph Builder"
+  priority: MEDIUM
+  risk_level: NONE
+  deployment_phase: 2
+
+  trigger:
+    schedule: "0 5 * * 0"  # 5 AM Sundays
+    manual: true
+
+  inputs:
+    - /Users/dhyana/Persistent-Semantic-Memory-Vault/**/*.md
+
+  operations:
+    - name: extract_metadata
+      description: Parse markdown structure
+      extract:
+        - file_path
+        - title (first h1 heading)
+        - headers (all h2, h3)
+        - wikilinks: "[[Target]]"
+        - tags: "#tag"
+        - code_blocks: language
+        - word_count
+        - last_modified
+
+    - name: identify_entities
+      description: Extract named entities
+      entities:
+        - agent_names: [GAMMA, ANUBHAVA_KEEPER, SHAKTI, BRAHMAN, etc]
+        - experiments: [Phoenix, URA, R_V, Swabhaav Protocol]
+        - concepts: [L3_crisis, L4_collapse, Bhed Gnan, etc]
+        - papers: [PHASE1_FINAL_REPORT, etc]
+
+    - name: build_graph
+      description: Create knowledge graph
+      nodes:
+        - type: file
+          id: file_path
+          properties: [title, word_count, last_modified]
+        - type: agent
+          id: agent_name
+        - type: concept
+          id: concept_name
+      edges:
+        - type: links_to
+          source: file
+          target: file
+        - type: mentions
+          source: file
+          target: [agent, concept, experiment]
+
+    - name: analyze_structure
+      description: Graph analytics
+      compute:
+        - orphan_files: nodes with no inlinks
+        - hub_files: nodes with >10 outlinks
+        - clusters: dense subgraphs (Louvain algorithm)
+        - central_concepts: PageRank on concept nodes
+
+    - name: detect_anomalies
+      description: Find structural issues
+      check:
+        - broken_wikilinks: [[Target]] with no matching file
+        - isolated_clusters: subgraphs disconnected from main
+        - stale_files: last_modified > 90 days, no recent links
+
+  outputs:
+    - path: /Users/dhyana/Persistent-Semantic-Memory-Vault/vault_graph.json
+      format: json
+      structure: {nodes: [], edges: []}
+
+    - path: /Users/dhyana/Persistent-Semantic-Memory-Vault/vault_analysis.md
+      format: markdown
+      sections:
+        - Statistics (node counts, edge counts)
+        - Top 10 Hub Files
+        - Top 10 Central Concepts
+        - Clusters Detected
+        - Orphan Files
+        - Broken Links
+
+    - path: /Users/dhyana/Persistent-Semantic-Memory-Vault/orphans.txt
+      format: text
+      content: list of orphaned file paths
+
+  safeguards:
+    - read_only: true
+    - no_file_modifications: true
+
+  monitoring:
+    - metric: total_files_indexed
+      expected: "> 8000"
+    - metric: broken_links_count
+      alert_if: "> 50"
+
+# =============================================================================
+# PIPELINE 6: GPU SERVER SYNC (FUTURE)
+# =============================================================================
+
+pipeline_gpu_sync:
+  name: "Local ↔ RunPod Synchronization"
+  priority: HIGH
+  risk_level: HIGH
+  deployment_phase: 3
+  status: PLANNED
+
+  prerequisites:
+    - SSH key-based auth configured
+    - RunPod credentials in ~/.openclaw/secrets.yaml
+    - Test sync completed on dummy data
+
+  trigger:
+    manual: true  # Initially
+    on_event: experiment_complete (future)
+
+  sync_tiers:
+    tier1_code:
+      method: git
+      direction: bidirectional
+      paths:
+        - "*.py"
+        - "*.md"
+        - CANONICAL_CODE/
+        - models/
+      ignore:
+        - results/
+        - "*.pyc"
+
+    tier2_small_results:
+      method: git
+      direction: remote_to_local
+      paths:
+        - results/*/summary.json
+        - results/*/config.json
+      max_file_size: 10MB
+
+    tier3_large_results:
+      method: rsync
+      direction: remote_to_local
+      paths:
+        - results/**/*.csv
+        - results/**/*.jsonl
+      checksum: true
+      verify: true
+
+  operations:
+    - name: pre_sync_validation
+      checks:
+        - remote_accessible
+        - disk_space_sufficient
+        - no_conflicts_detected
+
+    - name: create_sync_manifest
+      description: List files to transfer
+      include_checksums: true
+
+    - name: execute_sync
+      method: rsync
+      flags: [-avz, --checksum, --progress]
+      exclude_file: .openclaw/rsync_exclude.txt
+
+    - name: post_sync_validation
+      checks:
+        - all_files_transferred
+        - checksums_match
+        - no_corruption_detected
+
+    - name: update_sync_log
+      record:
+        - timestamp
+        - files_transferred
+        - bytes_transferred
+        - duration_seconds
+        - success
+
+  outputs:
+    - path: ~/.openclaw/sync_log.jsonl
+      append: true
+    - path: ~/.openclaw/last_sync_manifest.txt
+
+  safeguards:
+    - dry_run_default: true
+    - never_delete_remote: true
+    - conflict_resolution: manual
+    - checksum_verification: mandatory
+
+  monitoring:
+    - metric: sync_duration_seconds
+      alert_if: "> 600"
+    - metric: checksum_mismatches
+      alert_if: "> 0"
+
+  rollback:
+    - local_backup_before_sync: true
+    - restore_from: ~/.openclaw/sync_backups/
+
+# =============================================================================
+# SHARED UTILITIES
+# =============================================================================
+
+utilities:
+
+  atomic_write:
+    description: Write to temp file, then rename (atomic operation)
+    implementation: |
+      temp_path = target_path + ".tmp"
+      write_to(temp_path)
+      verify(temp_path)
+      os.rename(temp_path, target_path)
+
+  checksum_verification:
+    algorithm: sha256
+    block_size: 65536
+    store_checksums: true
+
+  schema_validation:
+    schemas:
+      metrics_summary_v1:
+        required_fields:
+          - timestamp
+          - experiment
+          - success
+        optional_fields:
+          - rv_d
+          - rv_p
+          - rv_delta
+          - model
+          - n_pairs
+
+  audit_logging:
+    format: jsonl
+    fields:
+      - timestamp (ISO8601)
+      - pipeline_name
+      - operation
+      - file_path
+      - action (read/write/delete)
+      - success (boolean)
+      - error_message (if failed)
+      - checksum_before
+      - checksum_after
+      - user_agent (openclaw)
+
+# =============================================================================
+# ERROR HANDLING
+# =============================================================================
+
+error_handling:
+
+  global_policy:
+    - log_all_errors: true
+    - fail_safe: true  # Don't crash, log and continue
+    - alert_on_critical: true
+
+  error_categories:
+
+    permission_denied:
+      action: log_and_skip
+      alert: true
+
+    file_not_found:
+      action: log_and_skip
+      alert: false
+
+    schema_validation_failed:
+      action: log_details
+      alert: true
+      include_in_anomaly_report: true
+
+    checksum_mismatch:
+      action: abort_and_rollback
+      alert: critical
+
+    disk_space_low:
+      action: pause_pipeline
+      alert: critical
+
+    network_timeout:
+      action: retry_3_times
+      backoff: exponential
+      alert_if_all_fail: true
+
+# =============================================================================
+# DEPLOYMENT PHASES
+# =============================================================================
+
+deployment:
+
+  phase_1_read_only:
+    duration: 1-2 weeks
+    pipelines:
+      - results_aggregator (read-only validation)
+      - prompt_analytics
+      - vault_indexer
+    success_criteria:
+      - zero_data_modifications
+      - outputs_validated_accurate
+      - no_crashes_or_errors
+
+  phase_2_safe_writes:
+    duration: 1-2 weeks
+    pipelines:
+      - backup (daily automated)
+      - architecture_normalizer (dry-run only)
+    success_criteria:
+      - 7_consecutive_successful_backups
+      - backup_restoration_test_passed
+      - normalized_data_matches_manual
+
+  phase_3_sync:
+    duration: 2-3 weeks
+    pipelines:
+      - gpu_sync (manual initially)
+    success_criteria:
+      - 5_successful_round_trip_syncs
+      - zero_checksum_mismatches
+      - conflict_detection_working
+
+  phase_4_full_automation:
+    duration: ongoing
+    pipelines:
+      - all_enabled
+      - scheduled_execution
+    success_criteria:
+      - 30_days_autonomous_operation
+      - spot_check_10_percent_weekly
+      - audit_log_reviewed_monthly
+
+# =============================================================================
+# MONITORING & ALERTS
+# =============================================================================
+
+monitoring:
+
+  metrics:
+    - name: pipeline_execution_count
+      aggregation: sum
+      period: daily
+
+    - name: pipeline_success_rate
+      aggregation: percentage
+      alert_if: "< 95%"
+
+    - name: data_volume_processed
+      aggregation: sum_bytes
+      period: daily
+
+    - name: anomalies_detected
+      aggregation: count
+      alert_if: "> 5/day"
+
+  alerts:
+
+    channels:
+      - type: log
+        path: ~/.openclaw/alerts.log
+      - type: email
+        to: dhyana@example.com
+        on: [critical, error]
+      - type: slack
+        webhook: null  # Configure if needed
+
+    severity_levels:
+      - critical: Immediate action required (data corruption, backup failure)
+      - error: Pipeline failed, needs investigation
+      - warning: Anomaly detected, monitor
+      - info: Normal operation, logged for audit
+
+# =============================================================================
+# CONFIGURATION END
+# =============================================================================
+
+metadata:
+  version: 1.0
+  date: 2026-02-03
+  author: Data Engineer (Claude Code)
+  reviewed_by: null
+  last_updated: 2026-02-03
+  changelog:
+    - 2026-02-03: Initial specification
