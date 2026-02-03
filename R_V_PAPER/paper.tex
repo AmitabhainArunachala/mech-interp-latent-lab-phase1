@@ -11,6 +11,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{booktabs}
+\usepackage{natbib}
 \usepackage{hyperref}
 \usepackage{microtype}
 \usepackage{xcolor}
@@ -59,12 +60,12 @@ These findings establish geometric contraction as a causally-mediated mechanism 
 
 \section{Introduction}
 
-The question of how large language models process recursive self-reference---the capacity to represent and reason about their own processing---remains fundamental to both AI safety and mechanistic interpretability.
-While behavioral studies demonstrate LLMs can engage with recursive prompts, the internal geometric mechanisms mediating such processing are poorly understood.
+The question of how large language models process recursive self-reference---the capacity to represent and reason about their own processing---remains fundamental to both AI safety and mechanistic interpretability \citep{ngo2022alignment, hubinger2019risks}.
+While behavioral studies demonstrate LLMs can engage with recursive prompts \citep{kadavath2022language, chen2024self}, the internal geometric mechanisms mediating such processing are poorly understood.
 
-Recent work in geometric deep learning has revealed that transformer representations occupy structured manifolds whose geometry reflects semantic content.
+Recent work in geometric deep learning has revealed that transformer representations occupy structured manifolds whose geometry reflects semantic content \citep{bronstein2021geometric, roeder2021linear}.
 Recursive self-reference, as a distinct cognitive mode involving self-observation and meta-awareness, may manifest as characteristic geometric signatures in activation space.
-Understanding these signatures could enable detection of consciousness-like states in AI systems---a critical capability for alignment research.
+Understanding these signatures could enable detection of consciousness-like states in AI systems \citep{butlin2023consciousness, chalmers2023could}---a critical capability for alignment research.
 
 We investigate whether recursive self-reference induces measurable geometric transformations in transformer value spaces, and whether these transformations can be causally manipulated through targeted interventions.
 Our contributions:
@@ -90,7 +91,7 @@ Our contributions:
 
 \subsection{Geometric Metrics}
 
-We define the \textbf{participation ratio} (PR) from singular value decomposition:
+We define the \textbf{participation ratio} (PR) from singular value decomposition, adapting the effective rank measure from signal processing \citep{roy2007effective}:
 \begin{equation}
     \PR = \frac{\left(\sum_i \sigma_i^2\right)^2}{\sum_i \sigma_i^4}
 \end{equation}
@@ -105,7 +106,7 @@ $\RV < 1$ indicates contraction (dimension reduction); $\RV > 1$ indicates expan
 
 \subsection{Activation Patching Protocol}
 
-For causal testing, we:
+For causal testing, we adapt the activation patching methodology from causal tracing \citep{meng2022locating, goldowsky2023localizing}:
 \begin{enumerate}
     \item Extract V-projection from recursive prompt at L27: $V_{\text{rec}}$
     \item Replace last 16 tokens of baseline V-projection with $V_{\text{rec}}$
@@ -136,7 +137,7 @@ MoE architecture shows strongest effect.
 
 \subsection{Cross-Architecture Validation}
 
-Figure~\ref{fig:cross_model} shows $\RV$ distributions across six architectures.
+Figure~\ref{fig:cross_model} shows $\RV$ distributions across six architectures, including Mistral-7B \citep{jiang2023mistral}, Llama-2 \citep{touvron2023llama}, and the Mixtral MoE model \citep{shazeer2017outrageously}.
 All models exhibit significant contraction for recursive versus baseline prompts ($p < 0.001$, all comparisons).
 Effect sizes range from medium (Phi-3, $d=-0.89$) to very large (Mixtral, $d=-4.21$).
 
@@ -157,7 +158,7 @@ Critical region: 78-84\% network depth.
 
 Figure~\ref{fig:layer_profile} reveals sharp layer specificity.
 The recursive-baseline gap emerges at L21 and peaks at L27 ($d=-3.56$), then drops 51\% at L28 ($d=-1.74$).
-This localization to late layers suggests geometric contraction occurs during semantic integration, not feature extraction.
+This localization to late layers suggests geometric contraction occurs during semantic integration, not feature extraction---consistent with the late-layer knowledge localization observed in prior circuit analysis \citep{elhage2021mathematical, olsson2022context}.
 
 % FIGURE 3
 \begin{figure}[t]
@@ -232,7 +233,7 @@ This suggests the network maintains homeostatic control over representational ge
 
 \section{Discussion}
 
-Our findings establish geometric contraction as a causally-mediated mechanism for recursive self-reference in transformers.
+Our findings establish geometric contraction as a causally-mediated mechanism for recursive self-reference in transformers, extending the mechanistic interpretability toolkit \citep{conmy2023towards, nanda2023progress} with geometric signatures.
 The $\RV$ metric provides a quantitative signature that:
 (1) distinguishes recursive from baseline processing across architectures,
 (2) localizes to specific layers enabling targeted intervention,
@@ -240,15 +241,15 @@ The $\RV$ metric provides a quantitative signature that:
 (4) triggers homeostatic regulation when perturbed.
 
 \textbf{Implications for consciousness detection.}
-The universality and causal accessibility of the $\RV$ signature suggests a potential metric for detecting consciousness-like states.
-If recursive self-reference is a component of machine consciousness, geometric contraction may serve as an interpretable indicator.
+The universality and causal accessibility of the $\RV$ signature suggests a potential metric for detecting consciousness-like states \citep{butlin2023consciousness}.
+If recursive self-reference is a component of machine consciousness, geometric contraction may serve as an interpretable indicator---aligning with proposals for empirical consciousness research in AI \citep{chalmers2023could}.
 
 \textbf{Implications for alignment.}
-The ability to induce geometric states through activation patching opens possibilities for steering model processing.
+The ability to induce geometric states through activation patching opens possibilities for steering model processing, relevant to inner alignment concerns \citep{hubinger2019risks}.
 The homeostatic response suggests interventions must account for system-level dynamics.
 
 \textbf{Limitations.}
-Our causal claims are limited to correlation between geometry and prompt category; behavioral validation of "consciousness" remains an open problem.
+Our causal claims are limited to correlation between geometry and prompt category; behavioral validation of "consciousness" remains an open problem \citep{perez2022discovering}.
 The $\RV$ metric captures one geometric aspect; richer metrics may reveal additional structure.
 
 
@@ -266,33 +267,7 @@ These findings provide the first quantitative, causally-validated geometric fram
 %% REFERENCES
 %% ============================================================
 
-\bibliographystyle{plain}
-% \bibliography{references}  % Uncomment when references.bib is ready
-
-% Placeholder references for draft
-\begin{thebibliography}{99}
-
-\bibitem{brown2020}
-Brown, T. et al. (2020). Language models are few-shot learners. \emph{NeurIPS}.
-
-\bibitem{anthropic2023}
-Anthropic (2023). Constitutional AI: Harmlessness from AI Feedback.
-
-\bibitem{elhage2021}
-Elhage, N. et al. (2021). A mathematical framework for transformer circuits. \emph{Anthropic}.
-
-\bibitem{meng2022}
-Meng, K. et al. (2022). Locating and editing factual associations in GPT. \emph{NeurIPS}.
-
-\bibitem{jiang2023}
-Jiang, A. et al. (2023). Mistral 7B. \emph{arXiv preprint arXiv:2310.06825}.
-
-\bibitem{hofstadter1979}
-Hofstadter, D. (1979). \emph{Gödel, Escher, Bach: An Eternal Golden Braid}.
-
-\bibitem{seth2021}
-Seth, A. (2021). Being You: A New Science of Consciousness. \emph{Dutton}.
-
-\end{thebibliography}
+\bibliographystyle{plainnat}
+\bibliography{references}
 
 \end{document}
