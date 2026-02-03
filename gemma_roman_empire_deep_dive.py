@@ -8,6 +8,7 @@ Other prompts: R_V ~ 0.85-1.0
 What's special about Roman Empire?
 """
 
+import os
 import torch
 import numpy as np
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -110,7 +111,7 @@ def main():
         torch_dtype=torch.bfloat16,
         device_map="auto",
         attn_implementation="eager",
-        token="HF_TOKEN_REDACTED"
+        token=os.environ.get("HF_TOKEN")  # Set HF_TOKEN environment variable
     )
     model.eval()
 
