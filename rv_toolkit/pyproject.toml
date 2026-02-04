@@ -46,6 +46,9 @@ all = [
     "rv_toolkit[dev,transformers]",
 ]
 
+[project.scripts]
+rv-toolkit = "rv_toolkit.cli:main"
+
 [project.urls]
 Homepage = "https://github.com/aikagrya/rv_toolkit"
 Documentation = "https://aikagrya.org/rv_toolkit"
