@@ -149,6 +149,36 @@
             </div>
         </section>
 
+        <section id="explorer" class="section section-alt">
+            <div class="container">
+                <h2>Cross-Architecture Model Explorer</h2>
+                <p class="section-intro">Compare R_V geometric contraction across 6 validated transformer architectures. All models show the characteristic signature at 78-86% network depth.</p>
+                
+                <div id="model-explorer" class="explorer-container">
+                    <div class="explorer-layout">
+                        <div class="explorer-visualization">
+                            <div class="explorer-view-modes">
+                                <button id="view-overlay" class="view-btn active">Absolute R_V</button>
+                                <button id="view-normalized" class="view-btn">Normalized View</button>
+                            </div>
+                            <canvas id="explorer-canvas" width="700" height="400"></canvas>
+                        </div>
+                        <div class="explorer-sidebar">
+                            <div class="model-toggles-container">
+                                <h4>Select Models</h4>
+                                <div id="model-toggles" class="model-toggles">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                            <div id="model-info" class="model-info">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="metric" class="section">
             <div class="container">
                 <h2>The R_V Metric</h2>
@@ -324,5 +354,6 @@ print(f"Effect size (d): {results.cohens_d:.2f}")</code></pre>
         </div>
     </footer>
     <script src="calculator.js"></script>
+    <script src="model-explorer.js"></script>
 </body>
 </html>

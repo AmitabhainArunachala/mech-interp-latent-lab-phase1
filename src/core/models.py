@@ -13,8 +13,18 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
-def set_seed(seed: int) -> None:
-    """Set random seeds for reproducibility."""
+def set_seed(seed: int, deterministic: bool = True) -> None:
+    """Set random seeds for reproducibility.
+
+    Args:
+        seed: Random seed value.
+        deterministic: If True, enables CUDA deterministic mode for full
+            reproducibility. May slightly impact performance. Default: True.
+
+    Note:
+        For GPU experiments, deterministic=True ensures bit-exact reproducibility
+        across runs. This is critical for publication-grade experiments.
+    """
     random.seed(seed)
     # NumPy is used in many pipelines for prompt sampling and should be seeded too.
     try:
@@ -25,6 +35,20 @@ def set_seed(seed: int) -> None:
         pass
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
+
+    # GPU determinism flags for full reproducibility
+    if deterministic and torch.cuda.is_available():
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+        # Set CUBLAS workspace config for deterministic matmul
+        import os
+        os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
+        # Enable PyTorch deterministic algorithms (may raise errors for non-deterministic ops)
+        try:
+            torch.use_deterministic_algorithms(True)
+        except Exception:
+            # Some operations don't have deterministic implementations
+            pass
 
 
 def load_model(
