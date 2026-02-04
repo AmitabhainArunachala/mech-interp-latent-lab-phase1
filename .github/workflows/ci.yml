@@ -9,6 +9,8 @@ on:
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         python-version: ['3.11', '3.12']
@@ -68,6 +70,8 @@ jobs:
 
   check-reproducibility:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v4
     
@@ -91,6 +95,8 @@ jobs:
 
   structure-check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v4
     
