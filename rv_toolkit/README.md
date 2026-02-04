@@ -54,6 +54,44 @@ result = patcher.patch_single(
 print(f"Transfer efficiency: {result.transfer_efficiency:.1%}")
 ```
 
+## Command-Line Interface
+
+```bash
+# Run interactive demo with synthetic data
+rv-toolkit demo --n-samples 30
+
+# List available prompt pairs
+rv-toolkit prompts --count 10
+
+# Compute R_V from saved activations
+rv-toolkit compute activations.pt --output table
+
+# Analyze experiment results
+rv-toolkit analyze results.json --output report.md
+```
+
+### Example Output
+
+```
+$ rv-toolkit demo --n-samples 20
+
+============================================================
+R_V Toolkit Demonstration
+Simulating recursive self-reference geometric contraction
+============================================================
+
+Condition       Mean R_V     Std         
+----------------------------------------
+Baseline        1.0000       0.0109
+Recursive       0.3454       0.0167
+
+Mean contraction: -65.5%
+Cohen's d: -46.44
+
+✓ Large effect size detected (d < -0.8)
+  This matches the expected geometric signature of recursive self-reference
+```
+
 ## Core Concepts
 
 ### R_V Metric
