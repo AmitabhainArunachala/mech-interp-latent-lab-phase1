@@ -1,0 +1,60 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it as below."
+type: software
+title: "Mechanistic Interpretability: Geometric Contraction in Recursive Self-Observation"
+abstract: "A laboratory for studying geometric signatures of recursive self-observation in transformer language models. This repository implements the R_V metric for measuring geometric contraction in value-space during recursive prompts."
+authors:
+  - family-names: "Shrader"
+    given-names: "John"
+    alias: "Dhyana"
+repository-code: "https://github.com/AmitabhainArunachala/mech-interp-latent-lab-phase1"
+keywords:
+  - mechanistic-interpretability
+  - transformer-circuits
+  - recursive-self-observation
+  - geometric-analysis
+  - activation-patching
+  - language-models
+  - deep-learning
+license: MIT
+version: 1.0.0
+date-released: 2026-01-24
+references:
+  - type: article
+    authors:
+      - family-names: "Meng"
+        given-names: "Kevin"
+    title: "Locating and Editing Factual Associations in GPT"
+    year: 2022
+    scope: "Activation patching and causal tracing methodology"
+  - type: article
+    authors:
+      - family-names: "Elhage"
+        given-names: "Nelson"
+    title: "A Mathematical Framework for Transformer Circuits"
+    year: 2021
+    scope: "Transformer circuits framework"
+  - type: article
+    authors:
+      - family-names: "Wang"
+        given-names: "Kevin"
+    title: "Interpretability in the Wild: a Circuit for Indirect Object Identification"
+    year: 2022
+    scope: "Path patching methodology"
+  - type: article
+    authors:
+      - family-names: "Chan"
+        given-names: "Lawrence"
+    title: "Causal Scrubbing: a method for rigorously testing interpretability hypotheses"
+    year: 2022
+    scope: "Causal scrubbing methodology"
+preferred-citation:
+  type: software
+  title: "Mechanistic Interpretability: Geometric Contraction Research"
+  authors:
+    - family-names: "Shrader"
+      given-names: "John"
+      alias: "Dhyana"
+  year: 2026
+  url: "https://github.com/AmitabhainArunachala/mech-interp-latent-lab-phase1"
+  repository-code: "https://github.com/AmitabhainArunachala/mech-interp-latent-lab-phase1"

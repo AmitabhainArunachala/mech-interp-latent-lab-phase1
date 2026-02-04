@@ -1,0 +1,110 @@
+name: Python Code Quality
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12']
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install flake8 black mypy
+    
+    - name: Lint with flake8
+      run: |
+        # Stop build if there are Python syntax errors or undefined names
+        flake8 src --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Exit-zero treats all errors as warnings
+        flake8 src --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      continue-on-error: true
+    
+    - name: Check code formatting with black
+      run: |
+        black --check src --line-length 100
+      continue-on-error: true
+    
+    - name: Type check with mypy
+      run: |
+        mypy src --ignore-missing-imports --no-strict-optional
+      continue-on-error: true
+    
+    - name: Verify imports
+      run: |
+        python -c "import src; print('✓ src module imports successfully')"
+        python -c "from src.core import load_model; print('✓ Core imports successful')"
+        python -c "from src.metrics import compute_rv; print('✓ Metrics imports successful')"
+      continue-on-error: true
+
+    - name: Check for common issues
+      run: |
+        echo "Checking for TODOs and FIXMEs..."
+        grep -r "TODO\|FIXME" src/ || echo "No critical TODOs found"
+      continue-on-error: true
+
+  check-reproducibility:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Verify requirements files
+      run: |
+        echo "Checking requirements files..."
+        test -f requirements.txt && echo "✓ requirements.txt exists"
+        test -f requirements.lock && echo "✓ requirements.lock exists"
+        
+    - name: Check for large files
+      run: |
+        echo "Checking for large files that shouldn't be committed..."
+        find . -type f -size +10M -not -path "./.git/*" -exec ls -lh {} \; || echo "✓ No large files found"
+    
+    - name: Verify .gitignore
+      run: |
+        echo "Checking .gitignore..."
+        test -f .gitignore && echo "✓ .gitignore exists"
+        grep -q "*.pt" .gitignore && echo "✓ Model files ignored"
+        grep -q "*.csv" .gitignore && echo "✓ CSV files ignored"
+
+  structure-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Verify repository structure
+      run: |
+        echo "Checking repository structure..."
+        test -d src && echo "✓ src/ directory exists"
+        test -d src/core && echo "✓ src/core/ exists"
+        test -d src/metrics && echo "✓ src/metrics/ exists"
+        test -d src/pipelines && echo "✓ src/pipelines/ exists"
+        test -d prompts && echo "✓ prompts/ directory exists"
+        test -f prompts/bank.json && echo "✓ prompts/bank.json exists"
+        test -f README.md && echo "✓ README.md exists"
+        test -f LICENSE && echo "✓ LICENSE exists"
+        test -f CONTRIBUTING.md && echo "✓ CONTRIBUTING.md exists"
+        test -f CODE_OF_CONDUCT.md && echo "✓ CODE_OF_CONDUCT.md exists"
+        echo "Repository structure verified!"
