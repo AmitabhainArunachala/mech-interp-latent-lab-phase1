@@ -1,5 +1,10 @@
 # Mechanistic Interpretability Research: Geometric Contraction
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.1.x-ee4c2c.svg)](https://pytorch.org/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 **Precision. Minimalism. Truth.**
 
 This repository is a laboratory for studying geometric signatures of recursive self-observation in transformer language models. We cut the bloat. We trust only what reproduces.
