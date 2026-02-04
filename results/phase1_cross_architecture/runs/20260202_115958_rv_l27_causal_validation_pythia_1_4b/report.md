@@ -1,0 +1,139 @@
+# Run report: rv_l27_causal_validation
+
+- **run_dir**: `results/phase1_cross_architecture/runs/20260202_115958_rv_l27_causal_validation_pythia_1_4b`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "config": "results/phase1_cross_architecture/runs/20260202_115958_rv_l27_causal_validation_pythia_1_4b/config.json",
+    "pairs_csv": "results/phase1_cross_architecture/runs/20260202_115958_rv_l27_causal_validation_pythia_1_4b/rv_l27_causal_validation_pairs.csv",
+    "report": "results/phase1_cross_architecture/runs/20260202_115958_rv_l27_causal_validation_pythia_1_4b/report.md",
+    "summary": "results/phase1_cross_architecture/runs/20260202_115958_rv_l27_causal_validation_pythia_1_4b/summary.json"
+  },
+  "delta_main": {
+    "ci_95": [
+      -0.009506267395663202,
+      -0.00016307594604860875
+    ],
+    "mean": -0.004834671670855906,
+    "n": 45.0,
+    "std": 0.015549529132842563
+  },
+  "delta_random": {
+    "ci_95": [
+      5.046186368706197,
+      5.207568522338363
+    ],
+    "mean": 5.12687744552228,
+    "n": 45.0,
+    "std": 0.2685823696278583
+  },
+  "delta_shuffled": {
+    "ci_95": [
+      -0.009506267395663178,
+      -0.00016307594604845262
+    ],
+    "mean": -0.004834671670855816,
+    "n": 45.0,
+    "std": 0.015549529132842783
+  },
+  "delta_wronglayer": {
+    "ci_95": [
+      -0.011765796259171145,
+      -0.00280623986688067
+    ],
+    "mean": -0.007286018063025907,
+    "n": 45.0,
+    "std": 0.01491105944800193
+  },
+  "device": "cuda",
+  "experiment": "rv_l27_causal_validation",
+  "logit_diff_cohens_d": null,
+  "logit_diff_delta_mean": null,
+  "logit_diff_p_value": null,
+  "model": "EleutherAI/pythia-1.4b",
+  "model_name": "EleutherAI/pythia-1.4b",
+  "n_pairs": 45,
+  "notes": {
+    "measurement": "main/random/shuffled measured at target_layer; wronglayer measured at wrong_layer"
+  },
+  "params": {
+    "early_layer": 3,
+    "max_length": 512,
+    "max_pairs": 45,
+    "measure_target_after_wrong_patch": false,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "target_layer": 20,
+    "window": 16,
+    "wrong_layer": 16
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "rv_baseline": {
+    "ci_95": [
+      0.37391927001454195,
+      0.3853728881697581
+    ],
+    "mean": 0.37964607909215004,
+    "n": 45.0,
+    "std": 0.019061834507130324
+  },
+  "rv_baseline_mean": 0.37964607909215004,
+  "rv_cohens_d": -0.3109207764140247,
+  "rv_delta_mean": -0.004834671670855906,
+  "rv_p_value": 0.02141780917566581,
+  "rv_recursive": {
+    "ci_95": [
+      0.4114124294967121,
+      0.4271255960538488
+    ],
+    "mean": 0.41926901277528045,
+    "n": 45.0,
+    "std": 0.02615084390243165
+  },
+  "rv_recursive_mean": 0.41926901277528045,
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "tests": {
+    "main_effect_ttest_1samp_less_0": {
+      "cohens_d": -0.3109207764140247,
+      "n": 45,
+      "p": 0.02141780917566581,
+      "t": -2.0857199750363176
+    },
+    "main_vs_random_paired_ttest": {
+      "cohens_d": -19.378373619594868,
+      "n": 45.0,
+      "p": 1.5731213586529528e-58,
+      "t": -129.99408212040834
+    },
+    "main_vs_shuffled_paired_ttest": {
+      "cohens_d": -0.20517513110733218,
+      "n": 45.0,
+      "p": 0.17567573134759587,
+      "t": -1.3763566213452794
+    },
+    "main_vs_wronglayer_paired_ttest": {
+      "cohens_d": 0.240277382132844,
+      "n": 45.0,
+      "p": 0.1141500243092819,
+      "t": 1.6118296797141978
+    }
+  },
+  "timestamp": "20260202_120007",
+  "transfer_percent_estimate": 0.0
+}
+```

@@ -1,0 +1,10 @@
+{
+  "behavior_metric": "mode_score_m",
+  "eval_window": 16,
+  "git_commit": "not_a_git_repo",
+  "intervention_scope": "all_tokens",
+  "model_id": "openai-community/gpt2-xl",
+  "n_pairs": null,
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "seed": 42
+}

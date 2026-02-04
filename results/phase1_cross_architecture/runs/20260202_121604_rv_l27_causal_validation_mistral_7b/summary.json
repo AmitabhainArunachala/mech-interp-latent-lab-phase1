@@ -1,0 +1,130 @@
+{
+  "artifacts": {
+    "config": "results/phase1_cross_architecture/runs/20260202_121604_rv_l27_causal_validation_mistral_7b/config.json",
+    "pairs_csv": "results/phase1_cross_architecture/runs/20260202_121604_rv_l27_causal_validation_mistral_7b/rv_l27_causal_validation_pairs.csv",
+    "report": "results/phase1_cross_architecture/runs/20260202_121604_rv_l27_causal_validation_mistral_7b/report.md",
+    "summary": "results/phase1_cross_architecture/runs/20260202_121604_rv_l27_causal_validation_mistral_7b/summary.json"
+  },
+  "delta_main": {
+    "ci_95": [
+      -0.1894095261433682,
+      -0.14494287601566125
+    ],
+    "mean": -0.16717620107951472,
+    "n": 45.0,
+    "std": 0.07400420673486453
+  },
+  "delta_random": {
+    "ci_95": [
+      0.9544214904267855,
+      1.045089558081236
+    ],
+    "mean": 0.9997555242540108,
+    "n": 45.0,
+    "std": 0.15089552290717276
+  },
+  "delta_shuffled": {
+    "ci_95": [
+      -0.18940952614336898,
+      -0.14494287601566253
+    ],
+    "mean": -0.16717620107951575,
+    "n": 45.0,
+    "std": 0.07400420673486363
+  },
+  "delta_wronglayer": {
+    "ci_95": [
+      0.14911313663629938,
+      0.2192795088526932
+    ],
+    "mean": 0.1841963227444963,
+    "n": 45.0,
+    "std": 0.11677530689684164
+  },
+  "device": "cuda",
+  "experiment": "rv_l27_causal_validation",
+  "logit_diff_cohens_d": null,
+  "logit_diff_delta_mean": null,
+  "logit_diff_p_value": null,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 45,
+  "notes": {
+    "measurement": "main/random/shuffled measured at target_layer; wronglayer measured at wrong_layer"
+  },
+  "params": {
+    "early_layer": 5,
+    "max_length": 512,
+    "max_pairs": 45,
+    "measure_target_after_wrong_patch": false,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "target_layer": 27,
+    "window": 16,
+    "wrong_layer": 21
+  },
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "rv_baseline": {
+    "ci_95": [
+      0.6719358438011661,
+      0.7157367175318435
+    ],
+    "mean": 0.6938362806665048,
+    "n": 45.0,
+    "std": 0.07289617961828479
+  },
+  "rv_baseline_mean": 0.6938362806665048,
+  "rv_cohens_d": -2.259009432780737,
+  "rv_delta_mean": -0.16717620107951472,
+  "rv_p_value": 2.243775128246665e-19,
+  "rv_recursive": {
+    "ci_95": [
+      0.4939833162375672,
+      0.5221128693373062
+    ],
+    "mean": 0.5080480927874367,
+    "n": 45.0,
+    "std": 0.04681497834835392
+  },
+  "rv_recursive_mean": 0.5080480927874367,
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "tests": {
+    "main_effect_ttest_1samp_less_0": {
+      "cohens_d": -2.259009432780737,
+      "n": 45,
+      "p": 2.243775128246665e-19,
+      "t": -15.15389596053291
+    },
+    "main_vs_random_paired_ttest": {
+      "cohens_d": -8.27722428522294,
+      "n": 45.0,
+      "p": 2.2062328857351018e-42,
+      "t": -55.525308500311816
+    },
+    "main_vs_shuffled_paired_ttest": {
+      "cohens_d": 0.33261660782006247,
+      "n": 45.0,
+      "p": 0.030807662727371933,
+      "t": 2.231260036593144
+    },
+    "main_vs_wronglayer_paired_ttest": {
+      "cohens_d": -4.654372962269185,
+      "n": 45.0,
+      "p": 1.160118509532318e-31,
+      "t": -31.222483008812883
+    }
+  },
+  "timestamp": "20260202_121816",
+  "transfer_percent_estimate": 89.98214740558839
+}

@@ -1,0 +1,35 @@
+{
+  "experiment": "rv_l27_causal_validation",
+  "model": {
+    "device": "cuda",
+    "name": "tiiuae/falcon-7b"
+  },
+  "params": {
+    "early_layer": 4,
+    "max_length": 512,
+    "max_pairs": 45,
+    "measure_target_after_wrong_patch": false,
+    "pairing": {
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ],
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ]
+    },
+    "prompt_bank_version": "75e7c1b8dcebc24e",
+    "target_layer": 27,
+    "window": 16,
+    "wrong_layer": 21
+  },
+  "results": {
+    "phase": "phase1_cross_architecture",
+    "root": "results"
+  },
+  "run_name": "falcon_7b",
+  "seed": 42
+}
