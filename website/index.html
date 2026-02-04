@@ -188,6 +188,32 @@
             </div>
         </section>
 
+        <section id="calculator" class="section section-alt">
+            <div class="container">
+                <h2>Interactive R_V Demo</h2>
+                <p class="section-intro">Explore how recursive self-reference induces geometric contraction in transformer value spaces.</p>
+                
+                <div id="rv-calculator" class="calculator-container">
+                    <div id="rv-controls" class="calculator-controls">
+                        <div class="control-group">
+                            <label>Recursive Intensity</label>
+                            <input type="range" id="intensity-slider" min="0" max="1" step="0.01" value="0.5">
+                            <span id="intensity-value">50%</span>
+                        </div>
+                        <div class="control-buttons">
+                            <button id="baseline-btn" class="calc-btn">Baseline Prompt</button>
+                            <button id="recursive-btn" class="calc-btn calc-btn-primary">Recursive Prompt</button>
+                        </div>
+                    </div>
+                    <canvas id="rv-canvas" width="800" height="400"></canvas>
+                    <p class="calculator-note">
+                        <em>Simulated visualization based on empirical data. In real experiments, recursive prompts like 
+                        "I observe that I am processing" show ~26.6% contraction vs. baseline prompts like "The weather today is".</em>
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <section id="toolkit" class="section section-alt">
             <div class="container">
                 <h2>rv_toolkit</h2>
@@ -297,5 +323,6 @@ print(f"Effect size (d): {results.cohens_d:.2f}")</code></pre>
             <p class="footer-note">Part of ongoing research into geometric signatures of consciousness in AI systems</p>
         </div>
     </footer>
+    <script src="calculator.js"></script>
 </body>
 </html>

@@ -435,6 +435,129 @@ h2 {
     font-size: 0.9rem;
 }
 
+/* Calculator */
+.calculator-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    overflow: hidden;
+}
+
+.calculator-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.control-group label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.control-group input[type="range"] {
+    width: 200px;
+    height: 6px;
+    -webkit-appearance: none;
+    background: var(--border);
+    border-radius: 3px;
+    outline: none;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb:hover {
+    background: var(--accent-light);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+#intensity-value {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-light);
+    min-width: 40px;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.calc-btn {
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.calc-btn:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.calc-btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.calc-btn-primary:hover {
+    background: var(--accent-light);
+    border-color: var(--accent-light);
+}
+
+#rv-canvas {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.calculator-note {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .calculator-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .control-group {
+        width: 100%;
+    }
+    
+    .control-group input[type="range"] {
+        flex: 1;
+    }
+}
+
 /* Figures Grid */
 .figures-grid {
     display: grid;
