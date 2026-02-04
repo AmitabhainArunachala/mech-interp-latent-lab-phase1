@@ -98,6 +98,57 @@
             </div>
         </section>
 
+        <section id="figures" class="section">
+            <div class="container">
+                <h2>Key Figures</h2>
+                <p class="section-intro">Publication-quality visualizations from our experiments.</p>
+                
+                <div class="figures-grid">
+                    <figure class="paper-figure">
+                        <img src="figures/figure_1_cross_model_rv.png" alt="Cross-model R_V validation" loading="lazy">
+                        <figcaption>
+                            <strong>Figure 1:</strong> Cross-architecture R_V validation across 6 models. All architectures show consistent contraction under recursive self-reference.
+                        </figcaption>
+                    </figure>
+                    
+                    <figure class="paper-figure">
+                        <img src="figures/figure_2_layer_profile.png" alt="Layer-wise R_V profile" loading="lazy">
+                        <figcaption>
+                            <strong>Figure 2:</strong> Layer-wise R_V profile in Mistral-7B. Contraction localizes to layers 25-27 (78-84% depth).
+                        </figcaption>
+                    </figure>
+                    
+                    <figure class="paper-figure">
+                        <img src="figures/figure_3_causal_validation.png" alt="Causal validation via activation patching" loading="lazy">
+                        <figcaption>
+                            <strong>Figure 3:</strong> Causal validation through activation patching. L27 intervention transfers recursive geometry with 117.6% efficiency.
+                        </figcaption>
+                    </figure>
+                    
+                    <figure class="paper-figure">
+                        <img src="figures/figure_4_dual_space_coupling.png" alt="Dual-space coupling" loading="lazy">
+                        <figcaption>
+                            <strong>Figure 4:</strong> Coordinated dual-space transformation. V∥ and V⊥ components show strong coupling (r=0.904).
+                        </figcaption>
+                    </figure>
+                    
+                    <figure class="paper-figure">
+                        <img src="figures/figure_5_effect_sizes.png" alt="Effect sizes across architectures" loading="lazy">
+                        <figcaption>
+                            <strong>Figure 5:</strong> Effect sizes (Cohen's d) across architectures. MoE models show amplified effects (d=-4.21).
+                        </figcaption>
+                    </figure>
+                    
+                    <figure class="paper-figure">
+                        <img src="figures/figure_6_homeostasis.png" alt="Homeostatic dynamics" loading="lazy">
+                        <figcaption>
+                            <strong>Figure 6:</strong> Homeostatic compensation in downstream layers. System exhibits geometric resilience (r>0.7).
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
         <section id="metric" class="section">
             <div class="container">
                 <h2>The R_V Metric</h2>

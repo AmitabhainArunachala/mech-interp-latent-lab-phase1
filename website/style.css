@@ -435,6 +435,50 @@ h2 {
     font-size: 0.9rem;
 }
 
+/* Figures Grid */
+.figures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 32px;
+}
+
+.paper-figure {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.paper-figure:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.paper-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #fff;
+}
+
+.paper-figure figcaption {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.paper-figure figcaption strong {
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .figures-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Footer */
 footer {
     padding: 48px 0;
