@@ -34,7 +34,7 @@ def compute_participation_ratio(singular_values: np.ndarray) -> float:
     """
     Compute participation ratio (PR) from singular values.
     
-    PR = (Σ σ_i²)² / Σ σ_i⁴
+    PR = (Σ σ_i²)² / Σ σ_i⁴ = 1 / Σ p_i² where p_i = σ_i² / Σ σ_j²
     
     This measures effective dimensionality:
     - PR ≈ 1: Information concentrated in one dimension
@@ -47,11 +47,15 @@ def compute_participation_ratio(singular_values: np.ndarray) -> float:
         Participation ratio (float)
     """
     s_sq = singular_values ** 2
+    total_variance = s_sq.sum()
     
-    if s_sq.sum() < 1e-10:
+    if total_variance < 1e-10:
         return np.nan
     
-    pr = (s_sq.sum() ** 2) / (s_sq ** 2).sum()
+    # Normalized eigenvalues (probabilities)
+    p = s_sq / total_variance
+    # Correct PR formula: 1 / sum of squared probabilities
+    pr = 1.0 / (p ** 2).sum()
     return float(pr)
 
 

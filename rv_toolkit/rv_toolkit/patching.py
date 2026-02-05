@@ -130,9 +130,56 @@ class ActivationPatcher:
         self.window_size = window_size
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         
+        # Detect architecture type
+        self.architecture = self._detect_architecture()
+        
         # Move model to device
         self.model.to(self.device)
         self.model.eval()
+    
+    def _detect_architecture(self) -> str:
+        """Detect model architecture from structure."""
+        model_class = self.model.__class__.__name__.lower()
+        
+        if "llama" in model_class:
+            return "llama"
+        elif "mistral" in model_class:
+            return "mistral"
+        elif "gpt2" in model_class or "gpt" in model_class:
+            return "gpt2"
+        elif "qwen" in model_class:
+            return "qwen"
+        elif "phi" in model_class:
+            return "phi"
+        elif "gemma" in model_class:
+            return "gemma"
+        
+        # Try to infer from module names
+        for name, _ in self.model.named_modules():
+            if "model.layers" in name:
+                return "llama"
+            elif "transformer.h" in name:
+                return "gpt2"
+        
+        return "unknown"
+    
+    def _get_layer_module(self, layer_idx: int):
+        """Get layer module for architecture."""
+        if self.architecture == "gpt2":
+            return self.model.transformer.h[layer_idx]
+        else:
+            # LLaMA, Mistral, Qwen, Phi, Gemma
+            return self.model.model.layers[layer_idx]
+    
+    def _get_v_proj(self, layer_idx: int):
+        """Get value projection module for architecture."""
+        layer = self._get_layer_module(layer_idx)
+        
+        if self.architecture == "gpt2":
+            # GPT-2 doesn't have separate v_proj; use full attention
+            return layer.attn
+        else:
+            return layer.self_attn.v_proj
     
     def _get_v_tensor(self, text: str, layer: int) -> Optional[torch.Tensor]:
         """Extract value tensor at specified layer."""
@@ -150,11 +197,14 @@ class ActivationPatcher:
             return out
         
         with torch.no_grad():
-            handle = self.model.model.layers[layer].self_attn.v_proj.register_forward_hook(hook_fn)
+            v_proj = self._get_v_proj(layer)
+            handle = v_proj.register_forward_hook(hook_fn)
             _ = self.model(**inputs)
             handle.remove()
         
         if captured:
+            # Fix: Single index to remove batch dimension
+            # out has shape (batch, seq, dim), we want (seq, dim)
             return captured[0][0]  # Remove batch dim
         return None
     
@@ -217,8 +267,8 @@ class ActivationPatcher:
                 storage.append(output.detach())
                 return output
             
-            h_early = self.model.model.layers[self.early_layer].self_attn.v_proj.register_forward_hook(capture_early)
-            h_target = self.model.model.layers[patch_layer].self_attn.v_proj.register_forward_hook(patch_and_capture)
+            h_early = self._get_v_proj(self.early_layer).register_forward_hook(capture_early)
+            h_target = self._get_v_proj(patch_layer).register_forward_hook(patch_and_capture)
             
             _ = self.model(**inputs)
             
