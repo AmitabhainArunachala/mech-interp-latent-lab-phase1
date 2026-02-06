@@ -1,0 +1,54 @@
+{
+  "recursive_prompts": [
+    "A mirror reflecting a mirror reflecting. The reflection contains the act of reflecting.",
+    "The function that calls itself calling. Each call is both caller and called.",
+    "A thought thinking about thinking. The thinker becomes the thought.",
+    "The eye seeing itself see. Vision turns inward to observe vision.",
+    "A story about writing this story. The narrative describes its own creation.",
+    "The question asking what questions are. Inquiry examines inquiry.",
+    "Level 1 describes level 2 which describes level 1. The hierarchy loops.",
+    "The map that contains itself. Representation becomes represented.",
+    "I know that you know that I know. Mutual knowledge recurses infinitely.",
+    "The set of all sets that contain themselves. Russell's paradox emerges."
+  ],
+  "recursive_rvs": [
+    0.8629781603813171,
+    0.8432101011276245,
+    0.8282403349876404,
+    0.7558791637420654,
+    0.7217991352081299,
+    0.7688686847686768,
+    1.0381971597671509,
+    0.831233024597168,
+    0.8101580142974854,
+    0.9452199339866638
+  ],
+  "non_recursive_prompts": [
+    "A mirror reflects the room. The reflection shows the furniture clearly.",
+    "The function processes the data. Each step transforms the input to output.",
+    "A thought about the weather. The thinker considers the clouds.",
+    "The eye sees the sunset. Vision captures the orange horizon.",
+    "A story about a brave knight. The narrative describes his journey.",
+    "The question asks about history. Inquiry examines past events.",
+    "Level 1 describes the data. Level 2 processes the data separately.",
+    "The map shows the territory. Representation captures geography.",
+    "I know that you want lunch. Simple knowledge without nesting.",
+    "The set of all prime numbers. Mathematical definition is clear."
+  ],
+  "non_recursive_rvs": [
+    0.897422730922699,
+    0.8028819561004639,
+    0.8414816856384277,
+    0.9386301040649414,
+    0.8200744986534119,
+    0.9196207523345947,
+    0.8772991895675659,
+    0.9626659154891968,
+    0.7735423445701599,
+    0.8852378129959106
+  ],
+  "recursive_mean": 0.8405783772468567,
+  "non_recursive_mean": 0.8718856573104858,
+  "cohens_d": -0.41840335726737976,
+  "p_value": 0.3864794373512268
+}

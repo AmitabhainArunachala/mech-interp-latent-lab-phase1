@@ -122,6 +122,15 @@ def get_registry() -> Dict[str, ExperimentFn]:
     from .canonical.mlp_combined_sufficiency_test import run_combined_mlp_sufficiency_test_from_config
     from .canonical.head_ablation_validation import run_head_ablation_validation_from_config
     from .canonical.multi_token_bridge import run_multi_token_bridge_from_config
+    from .canonical.rv_l27_activation_patching_bridge import (
+        run_rv_l27_activation_patching_bridge_from_config,
+    )
+    from .canonical.rv_l27_kv_patching_bridge import (
+        run_rv_l27_kv_patching_bridge_from_config,
+    )
+    from .canonical.rv_l27_kv_patching_bridge import (
+        run_rv_l27_kv_patching_bridge_from_config,
+    )
 
     # === DISCOVERY (12) - Methodology tools ===
     from .discovery.behavioral_grounding import run_behavioral_grounding_from_config
@@ -217,6 +226,8 @@ def get_registry() -> Dict[str, ExperimentFn]:
         "gemma_full_circuit_analysis": run_gemma_full_circuit_analysis_from_config,
         "gemma_head_decomposition": run_gemma_head_decomposition_from_config,
         "multi_token_bridge": run_multi_token_bridge_from_config,
+        "rv_l27_activation_patching_bridge": run_rv_l27_activation_patching_bridge_from_config,
+        "rv_l27_kv_patching_bridge": run_rv_l27_kv_patching_bridge_from_config,
     }
 
 

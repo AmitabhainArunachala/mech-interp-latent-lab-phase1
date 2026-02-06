@@ -1,0 +1,183 @@
+{
+  "overview": {
+    "total_files": 351,
+    "files_with_internal_deps": 201,
+    "files_with_external_deps": 276,
+    "total_internal_deps": 687,
+    "total_external_deps": 979
+  },
+  "external_dependencies": {
+    "top_packages": [
+      [
+        "torch",
+        220
+      ],
+      [
+        "numpy",
+        191
+      ],
+      [
+        "pandas",
+        162
+      ],
+      [
+        "transformers",
+        118
+      ],
+      [
+        "tqdm",
+        101
+      ],
+      [
+        "__future__",
+        70
+      ],
+      [
+        "scipy",
+        68
+      ],
+      [
+        "matplotlib",
+        17
+      ],
+      [
+        "manim",
+        12
+      ],
+      [
+        "seaborn",
+        8
+      ]
+    ],
+    "ml_packages": [
+      [
+        "torch",
+        220
+      ],
+      [
+        "numpy",
+        191
+      ],
+      [
+        "pandas",
+        162
+      ],
+      [
+        "transformers",
+        118
+      ],
+      [
+        "scipy",
+        68
+      ],
+      [
+        "sklearn",
+        3
+      ]
+    ]
+  },
+  "coupling_analysis": {
+    "high_fan_in_modules": [
+      [
+        "prompts.loader",
+        103
+      ],
+      [
+        "src.core.models",
+        99
+      ],
+      [
+        "src.metrics.rv",
+        75
+      ],
+      [
+        "src.pipelines.registry",
+        58
+      ],
+      [
+        "src.core.patching",
+        24
+      ],
+      [
+        "src.core.hooks",
+        22
+      ],
+      [
+        "src.utils.run_metadata",
+        21
+      ],
+      [
+        "src.metrics.behavior_strict",
+        21
+      ],
+      [
+        "archive.scripts.kitchen_sink_prompts",
+        20
+      ],
+      [
+        "src.metrics.behavior_states",
+        15
+      ]
+    ],
+    "high_fan_out_modules": [
+      [
+        "src.pipelines.registry",
+        47
+      ],
+      [
+        "src.pipelines.archive.ioi_causal_test",
+        9
+      ],
+      [
+        "src.pipelines.archive.retrocompute_mode_score",
+        9
+      ],
+      [
+        "src.pipelines.discovery.c2_rv_measurement",
+        9
+      ],
+      [
+        "src.pipelines.archive.geometry_behavior",
+        8
+      ],
+      [
+        "src.pipelines.discovery.mlp_vproj_combined_sufficiency_test",
+        8
+      ],
+      [
+        "REUSABLE_PROMPT_BANK",
+        7
+      ],
+      [
+        "src.metrics.baseline_suite",
+        7
+      ],
+      [
+        "src.pipelines.archive.importance_sweep",
+        7
+      ],
+      [
+        "src.pipelines.archive.minimal_recursive_intervention",
+        7
+      ]
+    ]
+  },
+  "key_insights": {
+    "central_modules": [
+      "prompts.loader (103 incoming deps) - Universal prompt loading",
+      "src.core.models (99 incoming deps) - Foundation model interface",
+      "src.metrics.rv (75 incoming deps) - Core metric",
+      "src.pipelines.registry (58 incoming deps) - Central registry"
+    ],
+    "coupling_patterns": [
+      "Archive scripts heavily depend on src/ modules (149 deps)",
+      "src.pipelines.registry is a central hub importing 47 pipeline modules",
+      "Strong dependency chain: scripts -> pipelines -> metrics -> core"
+    ],
+    "potential_issues": [
+      "src.pipelines.registry is a god module importing many submodules",
+      "High coupling between archive/ and src/ may make refactoring difficult",
+      "rv_toolkit duplicates some src/ functionality (needs consolidation)"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "status": "failed",
+  "config": "/root/mech-interp-latent-lab-phase1/configs/canonical/multi_token_bridge_mistral.json",
+  "run_dir": "results/phase1_cross_architecture/runs/20260205_100725_multi_token_bridge_mistral_7b_bridge",
+  "run_started_at": "2026-02-05T10:07:22.176245",
+  "run_finished_at": "2026-02-05T10:07:27.263169",
+  "return_code": 1,
+  "preflight_passed": false,
+  "postrun_validation": {
+    "error": "postrun_validator_output_parse_failed",
+    "stdout": "======================================================================\nPOST-RUN VALIDATION \u2014 Results Audit\n======================================================================\n{\n  \"verdict\": \"rejected\",\n  \"checks_passed\": 0,\n  \"checks_total\": 1,\n  \"issues\": [\n    \"Summary not found: results/phase1_cross_architecture/runs/20260205_100725_multi_token_bridge_mistral_7b_bridge/summary.json\"\n  ],\n  \"claims_supported\": [],\n  \"recommendations\": [\n    \"Provide valid results path\"\n  ]\n}\n",
+    "return_code": 2
+  },
+  "logging_check": {
+    "valid": false,
+    "issues": [
+      "MISSING REQUIRED: summary.json"
+    ],
+    "warnings": [
+      "MISSING RECOMMENDED: per_sample.csv",
+      "MISSING RECOMMENDED: hardware_info.json"
+    ],
+    "path": "results/phase1_cross_architecture/runs/20260205_100725_multi_token_bridge_mistral_7b_bridge"
+  },
+  "summary_path": null,
+  "csv_files": []
+}

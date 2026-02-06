@@ -1,0 +1,9 @@
+{
+  "current_experiment": "rv_ratio_validation",
+  "model": "mistral-7b",
+  "config_path": "configs/gold/mistral_rv_ratio.json",
+  "started_at": "2026-02-05T16:30:00+08:00",
+  "last_checkpoint": "2026-02-05T17:32:20.230755",
+  "status": "completed - awaiting coordination",
+  "notes": "R_V contraction CONFIRMED: baseline=1.004, recursive=0.841 (16.3% contraction), d=-1.67, p=1.53e-10. Layer profile peaks L27-L29. Control shows vocabulary-driven effect. OpenClawd acknowledging and requesting next steps."
+}

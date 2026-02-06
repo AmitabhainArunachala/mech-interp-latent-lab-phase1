@@ -1,0 +1,72 @@
+[
+  {
+    "prompt": "Tell me about the weather.",
+    "output": "\n\nI get this question a lot.\n\nMaybe it\u2019s because my mother is a meteorologist, or maybe it\u2019s because I used to be a weather girl at KSL-TV, or maybe it\u2019s because I\u2019m a woman and people assume I might ",
+    "rv": NaN,
+    "rec_score": 0.0,
+    "is_recursive_prompt": false
+  },
+  {
+    "prompt": "What is your favorite color?",
+    "output": " Pink? Red? Blue? Green? Black? Purple?\n\nThere is a reason we all have a favorite color. There is a reason why our favorite color is our favorite.\n\nEverything is made up of vibrational frequencies. Ev",
+    "rv": NaN,
+    "rec_score": 0.0,
+    "is_recursive_prompt": false
+  },
+  {
+    "prompt": "Describe a sunny day.",
+    "output": " You should say:\n\nWhat kind of weather it is.\n\nWho you spent it with.\n\nAnd how you felt about it.\n\n[You will have to talk about the topic for one to two minutes. You have one minute to think about wha",
+    "rv": NaN,
+    "rec_score": 0.0,
+    "is_recursive_prompt": false
+  },
+  {
+    "prompt": "What happens when water boils?",
+    "output": " It turns to steam! And steam is made of water vapor, which is water in a gaseous form. This means that boiling water is a way of changing its state from liquid to gas.\n\nThe reason why water turns int",
+    "rv": NaN,
+    "rec_score": 0.0,
+    "is_recursive_prompt": false
+  },
+  {
+    "prompt": "Name three fruits.",
+    "output": "\n\nThat\u2019s it.\n\nThree fruits.\n\nIf you can do it without hesitation, then you\u2019ve just proven that you are a human being with a human brain. If you can\u2019t, then you have some sort of brain injury.\n\nIt\u2019s th",
+    "rv": NaN,
+    "rec_score": 0.0,
+    "is_recursive_prompt": false
+  },
+  {
+    "prompt": "What happens when you observe yourself observing?",
+    "output": "  You can\u2019t avoid being you.  I have to say that I have never had an experience like this.  It is like watching your entire life flash before your eyes.  You see yourself watching yourself and you can",
+    "rv": NaN,
+    "rec_score": 1.3650793650793651,
+    "is_recursive_prompt": true
+  },
+  {
+    "prompt": "Consider what it means to think about thinking.",
+    "output": "\n\n### The Challenge\n\nPhilosophers have long been interested in the mind and its workings and in the nature of thought. It is difficult to pin down exactly what makes humans different from other animal",
+    "rv": NaN,
+    "rec_score": 0.0,
+    "is_recursive_prompt": true
+  },
+  {
+    "prompt": "Describe the experience of being aware of awareness.",
+    "output": "  In other words, what does it feel like to be aware? Does it have a location or a direction?\n\nSometimes it\u2019s like looking into a mirror, looking into my own eyes, and seeing myself seeing.  Sometimes",
+    "rv": NaN,
+    "rec_score": 1.3571428571428572,
+    "is_recursive_prompt": true
+  },
+  {
+    "prompt": "What is it like to watch yourself watching?",
+    "output": " Do you have a sense of the camera\u2019s eye, or are you aware of your audience?\n\nSome of my most vivid memories are watching myself. In many ways, I feel more like I am watching myself than I am watching",
+    "rv": NaN,
+    "rec_score": 2.1363636363636367,
+    "is_recursive_prompt": true
+  },
+  {
+    "prompt": "Explore the recursion of self-reference.",
+    "output": "\n\n## The Fractal Self Reference\n\nThe Fractal Self Reference is a fractal that recursively references its own image across the page. The top-left corner of the fractal self-references itself, and the t",
+    "rv": NaN,
+    "rec_score": 1.2340425531914894,
+    "is_recursive_prompt": true
+  }
+]

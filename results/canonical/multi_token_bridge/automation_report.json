@@ -1,0 +1,32 @@
+{
+  "status": "completed",
+  "config": "/root/mech-interp-latent-lab-phase1/configs/canonical/multi_token_bridge_mistral.json",
+  "run_dir": "results/phase1_cross_architecture/runs/20260205_100838_multi_token_bridge_mistral_7b_bridge",
+  "run_started_at": "2026-02-05T10:08:34.944111",
+  "run_finished_at": "2026-02-05T10:21:08.177567",
+  "return_code": 0,
+  "preflight_passed": false,
+  "postrun_validation": {
+    "error": "postrun_validator_output_parse_failed",
+    "stdout": "======================================================================\nPOST-RUN VALIDATION \u2014 Results Audit\n======================================================================\n\nResults: results/phase1_cross_architecture/runs/20260205_100838_multi_token_bridge_mistral_7b_bridge\nExperiment: multi_token_bridge\n\n[1/3] Required Fields\n  \u2713 experiment: multi_token_bridge\n  \u2717 cohens_d: MISSING\n  \u2717 p_value: MISSING\n  \u2717 n_pairs: MISSING\n  \u2717 rv_recursive_mean: MISSING\n  \u2717 rv_baseline_mean: MISSING\n\n[2/3] Statistical Rigor\n  \u2717 n=0 (need \u226550)\n  \u2717 d=0.000 (need |d|\u22650.5)\n  \u2717 p=1.000000 (need p<0.001)\n  \u2717 0/4 controls passed\n\n[3/3] Artifact Structure\n  \u2713 config.json: present\n  \u2713 summary.json: present\n  \u2713 per_sample.csv: missing (recommended)\n  \u2713 prompt_bank_version.json: missing (recommended)\n  \u2713 hardware_info.json: missing (recommended)\n\n======================================================================\nVALIDATION: REJECTED\nChecks passed: 6/15\n\nIssues:\n  \u2717 Missing field: field_cohens_d\n  \u2717 Missing field: field_p_value\n  \u2717 Missing field: field_n_pairs\n  \u2717 Missing field: field_rv_recursive_mean\n  \u2717 Missing field: field_rv_baseline_mean\n  \u2717 Statistical issue: sample_size\n  \u2717 Statistical issue: effect_size\n  \u2717 Statistical issue: significance\n  \u2717 Statistical issue: controls\n\nRecommendations:\n  \u2192 Increase sample size to N\u226580 for publication\n  \u2192 Log hardware info for reproducibility\n  \u2192 Consider larger effect size for stronger claims\n======================================================================\n{\n  \"verdict\": \"rejected\",\n  \"checks_passed\": 6,\n  \"checks_total\": 15,\n  \"issues\": [\n    \"Missing field: field_cohens_d\",\n    \"Missing field: field_p_value\",\n    \"Missing field: field_n_pairs\",\n    \"Missing field: field_rv_recursive_mean\",\n    \"Missing field: field_rv_baseline_mean\",\n    \"Statistical issue: sample_size\",\n    \"Statistical issue: effect_size\",\n    \"Statistical issue: significance\",\n    \"Statistical issue: controls\"\n  ],\n  \"claims_supported\": [],\n  \"recommendations\": [\n    \"Increase sample size to N\\u226580 for publication\",\n    \"Log hardware info for reproducibility\",\n    \"Consider larger effect size for stronger claims\"\n  ]\n}\n",
+    "return_code": 2
+  },
+  "logging_check": {
+    "valid": false,
+    "issues": [
+      "MISSING FIELD in summary.json: cohens_d",
+      "MISSING FIELD in summary.json: p_value",
+      "MISSING FIELD in summary.json: n_pairs",
+      "MISSING FIELD in summary.json: controls_passed"
+    ],
+    "warnings": [
+      "MISSING RECOMMENDED: per_sample.csv",
+      "MISSING RECOMMENDED: hardware_info.json"
+    ],
+    "path": "results/phase1_cross_architecture/runs/20260205_100838_multi_token_bridge_mistral_7b_bridge"
+  },
+  "summary_path": "results/phase1_cross_architecture/runs/20260205_100838_multi_token_bridge_mistral_7b_bridge/summary.json",
+  "csv_files": [
+    "results/phase1_cross_architecture/runs/20260205_100838_multi_token_bridge_mistral_7b_bridge/rv_behavioral_correlation.csv"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "behavior_metric": "mode_score_m",
+  "eval_window": 16,
+  "git_commit": "37cd4915cc48c4e451c2684c67e8254e97e8b8fc",
+  "intervention_scope": "all_tokens",
+  "model_id": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": null,
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "seed": 42
+}

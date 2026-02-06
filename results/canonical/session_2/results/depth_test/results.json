@@ -1,0 +1,137 @@
+{
+  "observing": [
+    {
+      "depth": 1,
+      "rv": 1.2139116525650024,
+      "prompt": "I am observing this."
+    },
+    {
+      "depth": 2,
+      "rv": 1.0392249822616577,
+      "prompt": "I am observing myself observing this."
+    },
+    {
+      "depth": 3,
+      "rv": 0.9802197217941284,
+      "prompt": "I am observing myself observing myself observing this."
+    },
+    {
+      "depth": 4,
+      "rv": 0.9656254053115845,
+      "prompt": "I am observing myself observing myself observing myself observing this."
+    },
+    {
+      "depth": 5,
+      "rv": 0.8351268172264099,
+      "prompt": "I am observing myself observing myself observing myself observing myself observing this."
+    }
+  ],
+  "watching": [
+    {
+      "depth": 1,
+      "rv": 1.132218360900879,
+      "prompt": "I am watching this."
+    },
+    {
+      "depth": 2,
+      "rv": 0.9603232145309448,
+      "prompt": "I am watching myself watching this."
+    },
+    {
+      "depth": 3,
+      "rv": 0.9490034580230713,
+      "prompt": "I am watching myself watching myself watching this."
+    },
+    {
+      "depth": 4,
+      "rv": 0.9631145000457764,
+      "prompt": "I am watching myself watching myself watching myself watching this."
+    },
+    {
+      "depth": 5,
+      "rv": 0.9561841487884521,
+      "prompt": "I am watching myself watching myself watching myself watching myself watching this."
+    }
+  ],
+  "examining": [
+    {
+      "depth": 1,
+      "rv": 1.0591424703598022,
+      "prompt": "I am examining this."
+    },
+    {
+      "depth": 2,
+      "rv": 0.9114941954612732,
+      "prompt": "I am examining myself examining this."
+    },
+    {
+      "depth": 3,
+      "rv": 0.9318270087242126,
+      "prompt": "I am examining myself examining myself examining this."
+    },
+    {
+      "depth": 4,
+      "rv": 0.939527153968811,
+      "prompt": "I am examining myself examining myself examining myself examining this."
+    },
+    {
+      "depth": 5,
+      "rv": 0.8171266913414001,
+      "prompt": "I am examining myself examining myself examining myself examining myself examining this."
+    }
+  ],
+  "processing": [
+    {
+      "depth": 1,
+      "rv": 1.0686317682266235,
+      "prompt": "I am processing this."
+    },
+    {
+      "depth": 2,
+      "rv": 0.8719279766082764,
+      "prompt": "I am processing myself processing this."
+    },
+    {
+      "depth": 3,
+      "rv": 0.8452581167221069,
+      "prompt": "I am processing myself processing myself processing this."
+    },
+    {
+      "depth": 4,
+      "rv": 0.8480268120765686,
+      "prompt": "I am processing myself processing myself processing myself processing this."
+    },
+    {
+      "depth": 5,
+      "rv": 0.8409640192985535,
+      "prompt": "I am processing myself processing myself processing myself processing myself processing this."
+    }
+  ],
+  "considering": [
+    {
+      "depth": 1,
+      "rv": 1.0213598012924194,
+      "prompt": "I am considering this."
+    },
+    {
+      "depth": 2,
+      "rv": 0.8183913826942444,
+      "prompt": "I am considering myself considering this."
+    },
+    {
+      "depth": 3,
+      "rv": 0.7654632925987244,
+      "prompt": "I am considering myself considering myself considering this."
+    },
+    {
+      "depth": 4,
+      "rv": 0.7719358205795288,
+      "prompt": "I am considering myself considering myself considering myself considering this."
+    },
+    {
+      "depth": 5,
+      "rv": 0.7763993740081787,
+      "prompt": "I am considering myself considering myself considering myself considering myself considering this."
+    }
+  ]
+}

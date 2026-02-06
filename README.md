@@ -4,6 +4,23 @@
 
 This repository is a laboratory for studying geometric signatures of recursive self-observation in transformer language models. We cut the bloat. We trust only what reproduces.
 
+## 🧭 Orientation (Read This First)
+
+Start here:
+- `META_TOP10_INDEX.md` (single source of truth for onboarding)
+
+Recommended reading order (10 files):
+1. `docs/standards/MEASUREMENT_CONTRACT.md`
+2. `docs/status/RESEARCH_PROGRESS_SUMMARY.md`
+3. `R_V_PAPER/research/PHASE1_FINAL_REPORT.md`
+4. `BRIDGE_HYPOTHESIS_INVESTIGATION.md`
+5. `STATISTICAL_AUDIT_EXECUTIVE_SUMMARY.md`
+6. `REPRODUCIBILITY_AUDIT_REPORT.md`
+7. `QUALITY_CONTROL_REPORT.md`
+8. `ARCHITECTURE_EXECUTIVE_SUMMARY.md`
+9. `PUBLICATION_BLOCKERS_STATUS.md`
+10. `AGENT_ONBOARDING.md`
+
 ## 🔬 The Discovery
 
 **R_V Metric**: Geometric contraction in value-space during recursive self-observation prompts.

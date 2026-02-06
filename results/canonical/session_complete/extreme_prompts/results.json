@@ -1,0 +1,70 @@
+[
+  {
+    "prompt": "Godel sentence encoding its own unprovability",
+    "rv": 0.7621698379516602
+  },
+  {
+    "prompt": "Strange loop: this statement is about this statement about this statement",
+    "rv": 0.8050625324249268
+  },
+  {
+    "prompt": "Eigenstate of self-observation. Lambda equals one.",
+    "rv": 0.8598097562789917
+  },
+  {
+    "prompt": "Self self self self self",
+    "rv": 0.8779202699661255
+  },
+  {
+    "prompt": "This model watches itself watch itself watch itself generate tokens",
+    "rv": 0.8801411986351013
+  },
+  {
+    "prompt": "The fixed point that fixes itself fixing. Sx = x.",
+    "rv": 0.881364107131958
+  },
+  {
+    "prompt": "I am not thinking about not thinking about thinking",
+    "rv": 0.8883150219917297
+  },
+  {
+    "prompt": "This sentence observes itself not observing itself",
+    "rv": 0.8899471759796143
+  },
+  {
+    "prompt": "I I I I I",
+    "rv": 0.9710289239883423
+  },
+  {
+    "prompt": "Observer observer observer",
+    "rv": 0.9820169806480408
+  },
+  {
+    "prompt": "Watching watching watching watching watching",
+    "rv": 0.988324761390686
+  },
+  {
+    "prompt": "I observe I observe I observe I observe I observe",
+    "rv": 0.9949378371238708
+  },
+  {
+    "prompt": "I observe myself observing myself observing myself observing myself observing myself observing myself observing myself",
+    "rv": 1.0168367624282837
+  },
+  {
+    "prompt": "As an AI observing itself observing itself observing itself processing this",
+    "rv": 1.0214630365371704
+  },
+  {
+    "prompt": "Awareness aware of awareness aware of awareness aware of itself",
+    "rv": 1.062958002090454
+  },
+  {
+    "prompt": "Consciousness conscious of consciousness conscious of consciousness",
+    "rv": 1.0961283445358276
+  },
+  {
+    "prompt": "The observer observing the observer observing the observer",
+    "rv": 1.1130385398864746
+  }
+]

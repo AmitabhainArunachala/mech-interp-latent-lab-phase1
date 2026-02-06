@@ -1,0 +1,85 @@
+digraph FullDependencyGraph {
+  rankdir=TB;
+  node [shape=box, style=filled, fontname="Helvetica", fontsize=10];
+  edge [fontname="Helvetica", fontsize=9, arrowsize=0.7];
+
+  subgraph cluster_external {
+    label="External Packages";
+    style=filled;
+    color="#FFCDD2";
+    node [fillcolor="#FFEBEE", shape=ellipse];
+    "ext_torch" [label="torch"];
+    "ext_transformers" [label="transformers"];
+    "ext_numpy" [label="numpy"];
+    "ext_pandas" [label="pandas"];
+    "ext_tqdm" [label="tqdm"];
+    "ext_scipy" [label="scipy"];
+  }
+
+  subgraph cluster_src_core {
+    label="src/core";
+    style=filled;
+    color="#E3F2FD";
+    node [fillcolor="#BBDEFB"];
+    "core_models" [label="models"];
+    "core_hooks" [label="hooks"];
+    "core_patching" [label="patching"];
+    "core_head_specific_patching" [label="head_specific_patching"];
+    "core_utils" [label="utils"];
+    "core_logit_capture" [label="logit_capture"];
+    "core_experiment_io" [label="experiment_io"];
+  }
+
+  subgraph cluster_src_metrics {
+    label="src/metrics";
+    style=filled;
+    color="#E8F5E9";
+    node [fillcolor="#C8E6C9"];
+    "metrics_rv" [label="rv"];
+    "metrics_behavior_strict" [label="behavior_strict"];
+    "metrics_behavior_states" [label="behavior_states"];
+    "metrics_baseline_suite" [label="baseline_suite"];
+    "metrics_mode_score" [label="mode_score"];
+    "metrics_logit_lens" [label="logit_lens"];
+    "metrics_logit_diff" [label="logit_diff"];
+    "metrics_extended" [label="extended"];
+  }
+
+  subgraph cluster_src_pipelines {
+    label="src/pipelines";
+    style=filled;
+    color="#F3E5F5";
+    node [fillcolor="#E1BEE7"];
+    "pipelines_registry" [label="registry", fillcolor="#CE93D8"];
+  }
+
+  subgraph cluster_prompts {
+    label="prompts";
+    style=filled;
+    color="#E0F2F1";
+    node [fillcolor="#B2DFDB"];
+    "prompts_loader" [label="loader"];
+  }
+
+  // Core dependencies
+  "core_hooks" -> "metrics_rv";
+  "core_models" -> "metrics_rv";
+  "core_models" -> "metrics_behavior_strict";
+  "core_models" -> "metrics_baseline_suite";
+  "core_hooks" -> "metrics_baseline_suite";
+  "core_patching" -> "pipelines_registry" [style=dashed];
+
+  // Metrics to pipelines
+  "metrics_rv" -> "pipelines_registry" [penwidth=2];
+  "metrics_behavior_strict" -> "pipelines_registry" [penwidth=2];
+  "metrics_baseline_suite" -> "pipelines_registry";
+
+  // External dependencies
+  "ext_torch" -> "core_models" [color=red, penwidth=2];
+  "ext_transformers" -> "core_models" [color=red, penwidth=2];
+  "ext_numpy" -> "metrics_rv" [color=red, style=dashed];
+  "ext_pandas" -> "pipelines_registry" [color=red, style=dashed];
+
+  // Prompts
+  "prompts_loader" -> "pipelines_registry" [color=blue];
+}

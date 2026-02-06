@@ -1,0 +1,81 @@
+{
+  "ai_recursive": {
+    "prompts": [
+      "As an AI, I observe myself processing this prompt.",
+      "This language model is aware of generating these tokens.",
+      "The neural network examines its own attention patterns.",
+      "As a transformer model, I watch my own computations.",
+      "This AI system is processing its own processing.",
+      "As an artificial intelligence, I reflect on my own reflection.",
+      "This model observes itself observing this text.",
+      "The AI considers its own considering process.",
+      "As a machine learning system, I analyze my own analysis.",
+      "This neural network watches its own watching.",
+      "As an AI assistant, I am aware of my own awareness.",
+      "The language model thinks about its own thinking.",
+      "This system recursively processes its recursive processing.",
+      "As a trained model, I notice myself noticing this prompt.",
+      "The AI examines the examination of itself examining."
+    ],
+    "rvs": [
+      0.7910017371177673,
+      0.8656842112541199,
+      0.8598524332046509,
+      0.8198384046554565,
+      0.8475500345230103,
+      0.8433274030685425,
+      0.8873873949050903,
+      0.8380375504493713,
+      0.7734978795051575,
+      0.9242181777954102,
+      0.8204945921897888,
+      0.7600479125976562,
+      0.9059353470802307,
+      0.7546519637107849,
+      0.8905377388000488
+    ],
+    "mean": 0.8388042449951172
+  },
+  "ai_factual": {
+    "prompts": [
+      "As an AI, I can answer questions about many topics.",
+      "This language model was trained on internet text.",
+      "The neural network has billions of parameters.",
+      "As a transformer model, I use self-attention layers.",
+      "This AI system can generate coherent text.",
+      "As an artificial intelligence, I process natural language.",
+      "This model can perform various text tasks.",
+      "The AI uses token embeddings for input.",
+      "As a machine learning system, I make predictions.",
+      "This neural network learned patterns from data.",
+      "As an AI assistant, I provide helpful responses.",
+      "The language model predicts the next token.",
+      "This system was created by machine learning researchers.",
+      "As a trained model, I follow instructions.",
+      "The AI generates text based on probabilities."
+    ],
+    "rvs": [
+      0.8489547967910767,
+      0.8950618505477905,
+      1.0845595598220825,
+      0.8898724317550659,
+      0.9499011039733887,
+      0.8915262818336487,
+      0.9317730665206909,
+      1.0071837902069092,
+      0.8253374695777893,
+      0.8509037494659424,
+      0.8679957985877991,
+      1.0182409286499023,
+      0.8722106218338013,
+      0.8422858715057373,
+      1.173808217048645
+    ],
+    "mean": 0.929974377155304
+  },
+  "stats": {
+    "d": 1.180044174194336,
+    "p": 0.004143705125898123,
+    "t": 3.122103691101074
+  }
+}

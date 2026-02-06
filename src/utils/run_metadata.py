@@ -13,6 +13,7 @@ Industry-grade reproducibility: Every run logs:
 from __future__ import annotations
 
 import json
+import platform
 import subprocess
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -143,4 +144,38 @@ def save_metadata(run_dir: Path, metadata: Dict[str, Any]) -> None:
     metadata_path = run_dir / "metadata.json"
     with open(metadata_path, "w") as f:
         json.dump(metadata, f, indent=2, sort_keys=True)
+
+
+def get_hardware_info() -> Dict[str, Any]:
+    """
+    Collect basic hardware/software info for reproducibility.
+
+    Returns:
+        Dictionary with GPU/CPU, CUDA, torch, and Python info.
+    """
+    info: Dict[str, Any] = {
+        "device": "cpu",
+        "gpu_name": None,
+        "cuda_version": None,
+        "torch_version": None,
+        "torch_dtype": None,
+        "python_version": platform.python_version(),
+        "platform": platform.platform(),
+    }
+    try:
+        import torch  # type: ignore
+
+        info["torch_version"] = torch.__version__
+        info["torch_dtype"] = str(torch.get_default_dtype()).replace("torch.", "")
+        if torch.cuda.is_available():
+            info["device"] = "cuda"
+            info["cuda_version"] = torch.version.cuda
+            try:
+                info["gpu_name"] = torch.cuda.get_device_name(0)
+            except Exception:
+                info["gpu_name"] = None
+    except Exception:
+        # Best-effort only; never fail a run.
+        pass
+    return info
 

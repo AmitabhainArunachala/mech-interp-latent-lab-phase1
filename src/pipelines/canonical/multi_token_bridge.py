@@ -397,12 +397,29 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
     (run_dir / "VERDICT.md").write_text("".join(verdict_lines))
 
     # Summary JSON
+    primary_temp = f"temp_{temperatures[0]:.1f}"
+    primary_analysis = analysis.get(primary_temp, {})
+    rv_recursive_mean = primary_analysis.get("h2_recursive_rv_mean")
+    rv_baseline_mean = primary_analysis.get("h2_baseline_rv_mean")
+    rv_delta_mean = (
+        (rv_baseline_mean - rv_recursive_mean)
+        if rv_baseline_mean is not None and rv_recursive_mean is not None
+        else None
+    )
     summary = {
         "experiment": "multi_token_bridge",
         "version": "v2_gpt_audit_fixes",
         "model": model_name,
+        "schema_version": "metrics_summary_v1",
         "n_prompts_per_group": n_prompts,
         "n_total_prompts": len(all_prompts),
+        # Top-level fields for validator compatibility
+        "n_pairs": len(all_prompts),
+        "cohens_d": primary_analysis.get("h2_cohens_d"),
+        "p_value": primary_analysis.get("h2_p_value"),
+        "rv_recursive_mean": rv_recursive_mean,
+        "rv_baseline_mean": rv_baseline_mean,
+        "rv_delta_mean": rv_delta_mean,
         "recursive_groups": recursive_groups,
         "baseline_groups": baseline_groups,
         "temperatures": temperatures,

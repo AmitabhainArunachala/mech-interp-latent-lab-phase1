@@ -20,7 +20,7 @@ from src.core.experiment_io import atomic_config_snapshot, create_run_dir, write
 from src.pipelines.registry import ConfigError, run_from_config
 from src.metrics.baseline_suite import BaselineMetricsSuite
 from prompts.loader import PromptLoader
-from src.utils.run_metadata import get_run_metadata, save_metadata, get_git_commit
+from src.utils.run_metadata import get_run_metadata, save_metadata, get_git_commit, get_hardware_info
 
 CANONICAL_EXPERIMENTS = {
     "rv_l27_causal_validation",
@@ -30,6 +30,8 @@ CANONICAL_EXPERIMENTS = {
     "mlp_sufficiency_test",
     "combined_mlp_sufficiency_test",
     "head_ablation_validation",
+    "rv_l27_activation_patching_bridge",
+    "rv_l27_kv_patching_bridge",
 }
 
 # Geometry-only experiments: measure R_V via patching/ablation, NOT behavioral output
@@ -261,6 +263,7 @@ def main(argv: Optional[list[str]] = None) -> int:
 
         # 6. Save Artifacts
         write_json(paths.run_dir / "summary.json", result.summary)
+        write_json(paths.run_dir / "prompt_bank_version.json", {"version": prompt_bank_version})
         write_text(
             paths.run_dir / "report.md",
             "\n".join(
@@ -290,6 +293,8 @@ def main(argv: Optional[list[str]] = None) -> int:
         )
         metadata = get_run_metadata(cfg, eval_window=int(eval_window))
         save_metadata(paths.run_dir, metadata)
+        # 6c. Save hardware info for reproducibility
+        write_json(paths.run_dir / "hardware_info.json", get_hardware_info())
         
         # 7. Write to Ledger
         _append_to_ledger(paths, cfg, result.summary, success=True, results_root=results_root)

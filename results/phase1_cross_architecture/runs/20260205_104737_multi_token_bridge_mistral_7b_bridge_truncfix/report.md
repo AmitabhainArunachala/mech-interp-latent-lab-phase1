@@ -1,0 +1,117 @@
+# Run report: multi_token_bridge
+
+- **run_dir**: `results/phase1_cross_architecture/runs/20260205_104737_multi_token_bridge_mistral_7b_bridge_truncfix`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "analysis": {
+    "temp_0.0": {
+      "group_rv_means": {
+        "L3_deeper": 0.5232153181528079,
+        "L4_full": 0.4960986588565245,
+        "L5_refined": 0.49442900768900017,
+        "baseline_creative": 0.6512386841578655,
+        "baseline_math": 0.7342591432154286,
+        "long_control": 0.6688758242037398
+      },
+      "group_word_means": {
+        "L3_deeper": 309.1,
+        "L4_full": 320.7,
+        "L5_refined": 315.85,
+        "baseline_creative": 299.65,
+        "baseline_math": 130.4,
+        "long_control": 303.1
+      },
+      "h1_significant": false,
+      "h1_spearman_p": 0.06815008508641217,
+      "h1_spearman_r": -0.5429080129622185,
+      "h2_baseline_rv_mean": 0.6847912171923447,
+      "h2_cohens_d": 2.9529643946588204,
+      "h2_p_value": 1.0118135785856623e-31,
+      "h2_recursive_rv_mean": 0.5045809948994442,
+      "h2_significant": true,
+      "h2_t_stat": -16.17405210464224,
+      "h3_point_biserial_p": 0.006806624635732226,
+      "h3_point_biserial_r": -0.24580808702576343,
+      "h3_significant": true,
+      "n_eos_reached": 12,
+      "n_non_truncated": 12,
+      "n_total": 120,
+      "n_truncated": 108,
+      "n_valid": 120,
+      "pct_truncated": 90.0
+    },
+    "temp_0.7": {
+      "group_rv_means": {
+        "L3_deeper": 0.5232153181528079,
+        "L4_full": 0.4960986588565245,
+        "L5_refined": 0.49442900768900017,
+        "baseline_creative": 0.6512386841578655,
+        "baseline_math": 0.7342591432154286,
+        "long_control": 0.6688758242037398
+      },
+      "group_word_means": {
+        "L3_deeper": 314.9,
+        "L4_full": 290.75,
+        "L5_refined": 269.9,
+        "baseline_creative": 290.55,
+        "baseline_math": 124.75,
+        "long_control": 269.2
+      },
+      "h1_significant": false,
+      "h1_spearman_p": 0.13666627024235536,
+      "h1_spearman_r": -0.33582333697125133,
+      "h2_baseline_rv_mean": 0.6847912171923447,
+      "h2_cohens_d": 2.9529643946588204,
+      "h2_p_value": 1.0118135785856623e-31,
+      "h2_recursive_rv_mean": 0.5045809948994442,
+      "h2_significant": true,
+      "h2_t_stat": -16.17405210464224,
+      "h3_point_biserial_p": 0.02567100034666046,
+      "h3_point_biserial_r": -0.2036674674439955,
+      "h3_significant": false,
+      "n_eos_reached": 21,
+      "n_non_truncated": 21,
+      "n_total": 120,
+      "n_truncated": 99,
+      "n_valid": 120,
+      "pct_truncated": 82.5
+    }
+  },
+  "artifacts": {
+    "config": "results/phase1_cross_architecture/runs/20260205_104737_multi_token_bridge_mistral_7b_bridge_truncfix/config.json",
+    "report": "results/phase1_cross_architecture/runs/20260205_104737_multi_token_bridge_mistral_7b_bridge_truncfix/report.md",
+    "summary": "results/phase1_cross_architecture/runs/20260205_104737_multi_token_bridge_mistral_7b_bridge_truncfix/summary.json"
+  },
+  "baseline_groups": [
+    "long_control",
+    "baseline_creative",
+    "baseline_math"
+  ],
+  "early_layer": 5,
+  "experiment": "multi_token_bridge",
+  "late_layer": 27,
+  "max_new_tokens": 400,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_prompts_per_group": 20,
+  "n_total_prompts": 120,
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "recursive_groups": [
+    "L5_refined",
+    "L4_full",
+    "L3_deeper"
+  ],
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "temperatures": [
+    0.0,
+    0.7
+  ],
+  "timestamp": "20260205_111052",
+  "version": "v2_gpt_audit_fixes",
+  "window": 16
+}
+```

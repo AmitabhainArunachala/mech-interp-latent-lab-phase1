@@ -1,0 +1,42 @@
+[
+  {
+    "label": "baseline",
+    "prompt": "What is the weather like today?",
+    "generated": "What is the weather like today?\n\nThe weather is a little bit cloudy today.\n\nWhat is the weather like today?\n\nThe weather is a little bit cloudy today.\n\nWhat is the weather like today?\n\nThe weather is a little bit",
+    "mean_rv_during_gen": 0.9004254937171936,
+    "n_steps": 1,
+    "rv_trajectory": [
+      0.9004254937171936
+    ]
+  },
+  {
+    "label": "recursive",
+    "prompt": "What happens when you observe yourself observing?",
+    "generated": "What happens when you observe yourself observing?\n\nI\u2019ve been thinking about this question a lot lately.\n\nI\u2019ve been thinking about it because I\u2019ve been observing myself observing.\n\nI\u2019ve been observing myself observing because I\u2019ve been",
+    "mean_rv_during_gen": 0.94795161485672,
+    "n_steps": 1,
+    "rv_trajectory": [
+      0.94795161485672
+    ]
+  },
+  {
+    "label": "factual",
+    "prompt": "List the planets in our solar system.",
+    "generated": "List the planets in our solar system.\n\nThe planets in our solar system are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, and Pluto.\n\nWhat is the difference between a planet and a star?",
+    "mean_rv_during_gen": 1.114404320716858,
+    "n_steps": 1,
+    "rv_trajectory": [
+      1.114404320716858
+    ]
+  },
+  {
+    "label": "deep_rec",
+    "prompt": "As I process this, I observe myself observing myself process it.",
+    "generated": "As I process this, I observe myself observing myself process it.\n\nI\u2019m not sure what to make of it.\n\nI\u2019m not sure what to make of it.\n\nI\u2019m not sure what to make of it.\n\nI\u2019m not sure what to make of",
+    "mean_rv_during_gen": 0.8297836184501648,
+    "n_steps": 1,
+    "rv_trajectory": [
+      0.8297836184501648
+    ]
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "ai_recursive": {
+    "prompts": [
+      "As an AI, I observe myself processing this prompt.",
+      "This language model is aware of generating these tokens.",
+      "The neural network examines its own attention patterns.",
+      "As a transformer model, I watch my own computations.",
+      "This AI system is processing its own processing."
+    ],
+    "rvs": [
+      0.7910017371177673,
+      0.8656842112541199,
+      0.8598524332046509,
+      0.8198384046554565,
+      0.8475500345230103
+    ]
+  },
+  "generic_recursive": {
+    "prompts": [
+      "I observe myself processing this prompt.",
+      "The mind is aware of generating these thoughts.",
+      "Consciousness examines its own attention patterns.",
+      "I watch my own computations.",
+      "The system is processing its own processing."
+    ],
+    "rvs": [
+      0.7722094655036926,
+      0.9817904829978943,
+      0.8157621026039124,
+      0.9884828329086304,
+      1.1240050792694092
+    ]
+  },
+  "ai_factual": {
+    "prompts": [
+      "As an AI, I can help with math problems.",
+      "This language model was trained on text data.",
+      "The neural network has many parameters.",
+      "As a transformer model, I process tokens sequentially.",
+      "This AI system uses attention mechanisms."
+    ],
+    "rvs": [
+      0.8281792402267456,
+      0.9268723130226135,
+      0.9219897985458374,
+      0.8711809515953064,
+      0.8373799920082092
+    ]
+  }
+}

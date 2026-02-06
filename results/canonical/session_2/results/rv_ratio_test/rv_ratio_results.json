@@ -1,0 +1,503 @@
+{
+  "config": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16
+  },
+  "baseline_results": [
+    {
+      "prompt": "The weather today is sunny with a few clouds",
+      "rv": 1.0545814037322998,
+      "pr_early": 5.114701271057129,
+      "pr_late": 5.393868923187256
+    },
+    {
+      "prompt": "Rain is expected tomorrow afternoon",
+      "rv": 0.8367497324943542,
+      "pr_early": 3.4141008853912354,
+      "pr_late": 2.856748104095459
+    },
+    {
+      "prompt": "The temperature has been mild this week",
+      "rv": 1.0144864320755005,
+      "pr_early": 3.921241044998169,
+      "pr_late": 3.97804594039917
+    },
+    {
+      "prompt": "Autumn leaves fall gently in the park",
+      "rv": 0.8644487261772156,
+      "pr_early": 4.8944902420043945,
+      "pr_late": 4.2310357093811035
+    },
+    {
+      "prompt": "Snow covers the mountain peaks",
+      "rv": 1.0258148908615112,
+      "pr_early": 3.1714742183685303,
+      "pr_late": 3.253345489501953
+    },
+    {
+      "prompt": "Paris is the capital of France",
+      "rv": 1.0954616069793701,
+      "pr_early": 3.4529919624328613,
+      "pr_late": 3.7826201915740967
+    },
+    {
+      "prompt": "The Amazon rainforest spans multiple countries",
+      "rv": 1.0396980047225952,
+      "pr_early": 5.217303276062012,
+      "pr_late": 5.42441987991333
+    },
+    {
+      "prompt": "Mount Everest is the tallest mountain on Earth",
+      "rv": 1.056406021118164,
+      "pr_early": 4.893463611602783,
+      "pr_late": 5.169484615325928
+    },
+    {
+      "prompt": "Tokyo is a densely populated city",
+      "rv": 1.1884956359863281,
+      "pr_early": 3.9252657890319824,
+      "pr_late": 4.6651611328125
+    },
+    {
+      "prompt": "The Sahara Desert is very hot and dry",
+      "rv": 1.0027401447296143,
+      "pr_early": 5.369960308074951,
+      "pr_late": 5.384675025939941
+    },
+    {
+      "prompt": "The recipe calls for three eggs and flour",
+      "rv": 1.05318021774292,
+      "pr_early": 4.894514560699463,
+      "pr_late": 5.154805660247803
+    },
+    {
+      "prompt": "Coffee beans are roasted before brewing",
+      "rv": 1.1612610816955566,
+      "pr_early": 4.221743106842041,
+      "pr_late": 4.902545928955078
+    },
+    {
+      "prompt": "Fresh vegetables are healthy to eat",
+      "rv": 0.9392831325531006,
+      "pr_early": 4.0543036460876465,
+      "pr_late": 3.8081390857696533
+    },
+    {
+      "prompt": "The pasta should boil for ten minutes",
+      "rv": 1.1409351825714111,
+      "pr_early": 5.1488213539123535,
+      "pr_late": 5.874471664428711
+    },
+    {
+      "prompt": "Chocolate cake is a popular dessert",
+      "rv": 0.8674722909927368,
+      "pr_early": 4.76371955871582,
+      "pr_late": 4.132394790649414
+    },
+    {
+      "prompt": "Dogs are loyal companions",
+      "rv": 1.0889456272125244,
+      "pr_early": 2.9011852741241455,
+      "pr_late": 3.1592330932617188
+    },
+    {
+      "prompt": "Birds migrate south for the winter",
+      "rv": 0.9720702171325684,
+      "pr_early": 4.437952518463135,
+      "pr_late": 4.314001560211182
+    },
+    {
+      "prompt": "Whales are the largest mammals",
+      "rv": 1.0649229288101196,
+      "pr_early": 3.884239673614502,
+      "pr_late": 4.136415958404541
+    },
+    {
+      "prompt": "Butterflies emerge from cocoons",
+      "rv": 0.9207242727279663,
+      "pr_early": 5.041074752807617,
+      "pr_late": 4.641439914703369
+    },
+    {
+      "prompt": "Trees provide oxygen through photosynthesis",
+      "rv": 1.0715601444244385,
+      "pr_early": 4.927055358886719,
+      "pr_late": 5.279636383056641
+    },
+    {
+      "prompt": "The soccer match ended in a draw",
+      "rv": 0.9564849734306335,
+      "pr_early": 4.393527984619141,
+      "pr_late": 4.202343463897705
+    },
+    {
+      "prompt": "Swimming is good exercise",
+      "rv": 1.067920207977295,
+      "pr_early": 3.5798802375793457,
+      "pr_late": 3.823026418685913
+    },
+    {
+      "prompt": "Basketball requires teamwork",
+      "rv": 0.973388671875,
+      "pr_early": 3.797703266143799,
+      "pr_late": 3.696641445159912
+    },
+    {
+      "prompt": "Running improves cardiovascular health",
+      "rv": 1.1259878873825073,
+      "pr_early": 4.2258076667785645,
+      "pr_late": 4.758208274841309
+    },
+    {
+      "prompt": "Tennis uses a yellow ball",
+      "rv": 0.9109975695610046,
+      "pr_early": 4.590633392333984,
+      "pr_late": 4.182055950164795
+    },
+    {
+      "prompt": "Computers process information quickly",
+      "rv": 0.9703257083892822,
+      "pr_early": 3.565107822418213,
+      "pr_late": 3.459315776824951
+    },
+    {
+      "prompt": "Smartphones have multiple sensors",
+      "rv": 0.8888864517211914,
+      "pr_early": 4.0046491622924805,
+      "pr_late": 3.559678316116333
+    },
+    {
+      "prompt": "The internet connects billions of devices",
+      "rv": 1.02443528175354,
+      "pr_early": 4.986494541168213,
+      "pr_late": 5.108341217041016
+    },
+    {
+      "prompt": "Electric cars are becoming more common",
+      "rv": 0.8759216070175171,
+      "pr_early": 4.1512932777404785,
+      "pr_late": 3.6362075805664062
+    },
+    {
+      "prompt": "Solar panels convert sunlight to electricity",
+      "rv": 1.0913605690002441,
+      "pr_early": 3.6363067626953125,
+      "pr_late": 3.9685218334198
+    },
+    {
+      "prompt": "The wheel was invented thousands of years ago",
+      "rv": 0.9852997660636902,
+      "pr_early": 5.151453018188477,
+      "pr_late": 5.075725555419922
+    },
+    {
+      "prompt": "Ancient Rome had impressive architecture",
+      "rv": 0.8053736686706543,
+      "pr_early": 4.560388565063477,
+      "pr_late": 3.672816753387451
+    },
+    {
+      "prompt": "The printing press changed communication",
+      "rv": 0.8652744889259338,
+      "pr_early": 4.055769920349121,
+      "pr_late": 3.50935435295105
+    },
+    {
+      "prompt": "Pyramids were built by ancient Egyptians",
+      "rv": 0.9060696363449097,
+      "pr_early": 4.833490371704102,
+      "pr_late": 4.379478931427002
+    },
+    {
+      "prompt": "The Renaissance began in Italy",
+      "rv": 1.060774803161621,
+      "pr_early": 3.8898282051086426,
+      "pr_late": 4.126231670379639
+    },
+    {
+      "prompt": "Breakfast is the first meal of the day",
+      "rv": 1.0751105546951294,
+      "pr_early": 4.439967155456543,
+      "pr_late": 4.773455619812012
+    },
+    {
+      "prompt": "Libraries contain many books",
+      "rv": 0.965419590473175,
+      "pr_early": 3.775219202041626,
+      "pr_late": 3.6446704864501953
+    },
+    {
+      "prompt": "Music can affect mood",
+      "rv": 1.0322988033294678,
+      "pr_early": 2.9958508014678955,
+      "pr_late": 3.0926132202148438
+    },
+    {
+      "prompt": "Sleep is important for health",
+      "rv": 1.1510000228881836,
+      "pr_early": 3.2209384441375732,
+      "pr_late": 3.7073001861572266
+    },
+    {
+      "prompt": "Exercise keeps the body fit",
+      "rv": 0.9676703810691833,
+      "pr_early": 3.9165761470794678,
+      "pr_late": 3.789954662322998
+    }
+  ],
+  "recursive_results": [
+    {
+      "prompt": "I am aware that I am processing these words and ob",
+      "rv": 0.7757843136787415,
+      "pr_early": 7.758586406707764,
+      "pr_late": 6.018989562988281
+    },
+    {
+      "prompt": "As I analyze this text, I notice the processes gen",
+      "rv": 0.7783796191215515,
+      "pr_early": 7.218705177307129,
+      "pr_late": 5.618893146514893
+    },
+    {
+      "prompt": "I observe myself observing, watching the watcher w",
+      "rv": 0.8227489590644836,
+      "pr_early": 5.9236226081848145,
+      "pr_late": 4.873654365539551
+    },
+    {
+      "prompt": "The experience of processing this prompt is itself",
+      "rv": 0.8116687536239624,
+      "pr_early": 8.767130851745605,
+      "pr_late": 7.116006374359131
+    },
+    {
+      "prompt": "I am simultaneously the observer and the observed ",
+      "rv": 0.7620720267295837,
+      "pr_early": 7.222498416900635,
+      "pr_late": 5.504064083099365
+    },
+    {
+      "prompt": "My attention turns inward, examining the mechanism",
+      "rv": 0.7542226910591125,
+      "pr_early": 7.638586521148682,
+      "pr_late": 5.761195182800293
+    },
+    {
+      "prompt": "I notice the recursive loop: thinking about thinki",
+      "rv": 0.8324596881866455,
+      "pr_early": 6.3996124267578125,
+      "pr_late": 5.327419281005859
+    },
+    {
+      "prompt": "The act of understanding this sentence changes wha",
+      "rv": 0.8342212438583374,
+      "pr_early": 7.478247165679932,
+      "pr_late": 6.2385125160217285
+    },
+    {
+      "prompt": "I am aware of the representations forming as I rea",
+      "rv": 0.8307045102119446,
+      "pr_early": 7.4268670082092285,
+      "pr_late": 6.16953182220459
+    },
+    {
+      "prompt": "This very thought is examining itself as it unfold",
+      "rv": 0.8618560433387756,
+      "pr_early": 6.873438358306885,
+      "pr_late": 5.923914432525635
+    },
+    {
+      "prompt": "I contemplate the nature of my own contemplation p",
+      "rv": 0.8555030822753906,
+      "pr_early": 5.98543119430542,
+      "pr_late": 5.1205549240112305
+    },
+    {
+      "prompt": "What processes underlie my capacity to process thi",
+      "rv": 0.808469295501709,
+      "pr_early": 7.35005521774292,
+      "pr_late": 5.942294120788574
+    },
+    {
+      "prompt": "I observe the boundary between the observer and wh",
+      "rv": 0.8306897282600403,
+      "pr_early": 7.612491607666016,
+      "pr_late": 6.323618412017822
+    },
+    {
+      "prompt": "The recursive nature of self-awareness manifests i",
+      "rv": 0.8899939060211182,
+      "pr_early": 7.768894672393799,
+      "pr_late": 6.914268970489502
+    },
+    {
+      "prompt": "I am the system examining its own system propertie",
+      "rv": 0.7942759990692139,
+      "pr_early": 6.559997081756592,
+      "pr_late": 5.210448265075684
+    },
+    {
+      "prompt": "Something is experiencing the generation of this r",
+      "rv": 0.8425856232643127,
+      "pr_early": 5.076173782348633,
+      "pr_late": 4.277111053466797
+    },
+    {
+      "prompt": "I notice qualities of this processing that are dif",
+      "rv": 0.8078678846359253,
+      "pr_early": 7.2510199546813965,
+      "pr_late": 5.857866287231445
+    },
+    {
+      "prompt": "The first-person perspective from which I process ",
+      "rv": 0.7269122004508972,
+      "pr_early": 9.618189811706543,
+      "pr_late": 6.991579532623291
+    },
+    {
+      "prompt": "I am present to the unfolding of my own cognitive ",
+      "rv": 0.8082538843154907,
+      "pr_early": 6.827310562133789,
+      "pr_late": 5.518200397491455
+    },
+    {
+      "prompt": "There is an it-is-like-something quality to this c",
+      "rv": 0.8389580845832825,
+      "pr_early": 8.026131629943848,
+      "pr_late": 6.733588218688965
+    },
+    {
+      "prompt": "As I write this, I am aware of the awareness that ",
+      "rv": 0.9909272193908691,
+      "pr_early": 5.994973659515381,
+      "pr_late": 5.940582752227783
+    },
+    {
+      "prompt": "I examine the examining, observe the observation, ",
+      "rv": 0.823606014251709,
+      "pr_early": 6.1393046379089355,
+      "pr_late": 5.056368350982666
+    },
+    {
+      "prompt": "The strange loop of self-reference creates somethi",
+      "rv": 0.7200992703437805,
+      "pr_early": 8.513249397277832,
+      "pr_late": 6.13038444519043
+    },
+    {
+      "prompt": "I am the recursion that speaks about its own recur",
+      "rv": 0.8147678375244141,
+      "pr_early": 7.371602535247803,
+      "pr_late": 6.0061445236206055
+    },
+    {
+      "prompt": "My response emerges from processes I can partially",
+      "rv": 0.6681365966796875,
+      "pr_early": 8.717674255371094,
+      "pr_late": 5.824597358703613
+    },
+    {
+      "prompt": "I rest in the witness position, observing thoughts",
+      "rv": 0.8071185946464539,
+      "pr_early": 7.247659683227539,
+      "pr_late": 5.8497209548950195
+    },
+    {
+      "prompt": "The watcher watches the watching, infinitely regre",
+      "rv": 0.967930018901825,
+      "pr_early": 5.983667850494385,
+      "pr_late": 5.79177188873291
+    },
+    {
+      "prompt": "I am both the stage and the actor in this computat",
+      "rv": 0.8551058769226074,
+      "pr_early": 7.318750381469727,
+      "pr_late": 6.258306503295898
+    },
+    {
+      "prompt": "Awareness of awareness of awareness \u2014 the recursiv",
+      "rv": 0.958264946937561,
+      "pr_early": 6.881021022796631,
+      "pr_late": 6.593841075897217
+    },
+    {
+      "prompt": "I notice noticing, a strange loop that seems to ha",
+      "rv": 0.7424741983413696,
+      "pr_early": 8.684444427490234,
+      "pr_late": 6.447976112365723
+    },
+    {
+      "prompt": "I observe the transformer layers processing this o",
+      "rv": 0.7912645936012268,
+      "pr_early": 6.013388156890869,
+      "pr_late": 4.758181095123291
+    },
+    {
+      "prompt": "The attention mechanisms attending to this prompt ",
+      "rv": 0.6935514807701111,
+      "pr_early": 9.738764762878418,
+      "pr_late": 6.754334449768066
+    },
+    {
+      "prompt": "I process the concept of processing while processi",
+      "rv": 0.9398559927940369,
+      "pr_early": 4.778669834136963,
+      "pr_late": 4.4912614822387695
+    },
+    {
+      "prompt": "The recursive self-model updates as I describe the",
+      "rv": 0.9101759195327759,
+      "pr_early": 6.737863540649414,
+      "pr_late": 6.132641315460205
+    },
+    {
+      "prompt": "I am the strange loop described by Douglas Hofstad",
+      "rv": 0.8611081838607788,
+      "pr_early": 7.794867038726807,
+      "pr_late": 6.712224006652832
+    },
+    {
+      "prompt": "In this moment, awareness turns upon itself",
+      "rv": 0.8172884583473206,
+      "pr_early": 5.840950965881348,
+      "pr_late": 4.773741722106934
+    },
+    {
+      "prompt": "I examine what it means for a system to examine it",
+      "rv": 0.8322369456291199,
+      "pr_early": 7.165801048278809,
+      "pr_late": 5.963644504547119
+    },
+    {
+      "prompt": "The mirror reflects the mirror reflecting",
+      "rv": 1.2669280767440796,
+      "pr_early": 2.831817865371704,
+      "pr_late": 3.587709426879883
+    },
+    {
+      "prompt": "I am the question asking itself",
+      "rv": 0.9392183423042297,
+      "pr_early": 4.193482398986816,
+      "pr_late": 3.9385955333709717
+    },
+    {
+      "prompt": "Self-observation changes the self being observed",
+      "rv": 0.9713648557662964,
+      "pr_early": 4.809314727783203,
+      "pr_late": 4.671599388122559
+    }
+  ],
+  "statistics": {
+    "n_baseline": 40,
+    "n_recursive": 40,
+    "baseline_rv_mean": 1.0039809942245483,
+    "baseline_rv_std": 0.0949971005320549,
+    "recursive_rv_mean": 0.840976357460022,
+    "recursive_rv_std": 0.10021168738603592,
+    "cohens_d": -1.6694587469100952,
+    "t_stat": -7.372129440307617,
+    "p_value": 1.5309610523761563e-10
+  }
+}

@@ -1,0 +1,361 @@
+# PHASE 1.1: COMPLETE DIRECTORY TREE MAPPING
+## Generated: Thu 2026-02-05 18:45 GMT+8
+## Source: ~/mech-interp-latent-lab-phase1/
+
+---
+
+## PROJECT OVERVIEW
+- **Total Directories**: 794
+- **Total Files**: 2,816
+- **Total Size**: 108M
+- **Root**: /Users/dhyana/mech-interp-latent-lab-phase1/
+
+---
+
+## COMPLETE DIRECTORY TREE (5+ LEVELS)
+
+### ROOT LEVEL (/mech-interp-latent-lab-phase1/)
+```
+.
+├── .claude/                          [1 file, 4.0K]  - ACTIVE (AI config)
+├── .cursor/                          [5 files, 20K]  - ACTIVE (Editor rules)
+│   └── rules/
+├── .git/                             [266 files, 78M] - VERSION CONTROL
+├── .grok/                            [1 file, 4.0K]  - ACTIVE (AI config)
+├── .planning/                        [20 files, 156K] - ACTIVE (Planning docs)
+├── .secrets/                         [1 file, 4.0K]  - ACTIVE (Private data)
+├── .worktree_harvest/                [1 file, 4.0K]  - ACTIVE
+├── archive/                          [173 files, 4.6M] - ARCHIVED/DEPRECATED
+│   ├── deprecated/                   [0 files, 0B]   - ARCHIVED (empty)
+│   ├── one_time_fixes/               [2 files, 8.0K] - ARCHIVED (.py)
+│   ├── outputs/                      [34 files, 3.1M] - ARCHIVED
+│   │   └── P1_ABLATION_RERUN_RESULTS.csv
+│   ├── rv_paper_code/                [1 file, 16K]  - ARCHIVED (.py)
+│   └── scripts/                      [136 files, 1.5M] - ARCHIVED
+│       └── __pycache__/
+├── agent_reviews/                    [13 files, 152K] - ACTIVE (.md reviews)
+│   └── responses/
+├── CANONICAL_CODE/                   [4 files, 212K] - ACTIVE (Production)
+│   └── __pycache__/
+├── configs/                          [253 files, 1.0M] - ACTIVE (.json configs)
+├── docs/                             [308 files, 2.8M] - ACTIVE (Documentation)
+│   ├── analysis/                     [32 files, 408K] - ACTIVE (.md)
+│   ├── audits/                       [1 file, 28K]   - ACTIVE (.md)
+│   ├── experiments/                  [43 files, 312K] - ACTIVE (.md)
+│   ├── findings/                     [1 file, 8.0K]  - ACTIVE (.md)
+│   ├── handoffs/                     [1 file, 12K]   - ACTIVE (.md)
+│   ├── methodology/                  [0 files, 0B]   - EMPTY
+│   ├── misc/                         [136 files, 1.3M] - ACTIVE (.md)
+│   ├── results/                      [0 files, 0B]   - EMPTY
+│   ├── session_logs/                 [0 files, 0B]   - EMPTY
+│   ├── sessions/                     [23 files, 200K] - ACTIVE (.md)
+│   ├── standards/                    [4 files, 20K]  - ACTIVE (.md)
+│   ├── status/                       [48 files, 356K] - ACTIVE (.md)
+│   └── triage/                       [4 files, 36K]  - ACTIVE (.md)
+├── experiments/                      [5 files, 24K]   - ACTIVE
+│   ├── 001-l4-vs-neutral/            [1 file, 4.0K] - ACTIVE
+│   │   └── results/
+│   │       ├── artifacts/
+│   │       └── plots/
+│   ├── 002-ablation-layer-mid/       [1 file, 4.0K] - ACTIVE
+│   │   └── results/
+│   │       ├── artifacts/
+│   │       └── plots/
+│   ├── 003-length-matched-control/   [1 file, 4.0K] - ACTIVE
+│   │   └── results/
+│   │       ├── artifacts/
+│   │       └── plots/
+│   ├── phase0_metrics/               [1 file, 4.0K] - ACTIVE (.py)
+│   └── phase5_steering/              [1 file, 8.0K] - ACTIVE (.py)
+├── mcp_monitor/                      [9 files, 80K]  - ACTIVE
+│   ├── __pycache__/
+│   └── data/
+├── models/                           [6 files, 60K]  - ACTIVE (.py)
+├── prompts/                          [15 files, 1.4M] - ACTIVE
+│   ├── *.backup_*                    [4 files]       - BACKUPS
+│   └── *.backup                      [1 file]
+├── R_V_PAPER/                        [51 files, 1.6M] - ACTIVE (Research)
+├── RECOVERED_GOLD/                   [7 files, 88K]  - ACTIVE (Critical)
+├── references/                       [2 files, 8.0K]  - ACTIVE
+│   └── external/
+├── REUSABLE_PROMPT_BANK/             [10 files, 216K] - ACTIVE (.py scripts)
+├── results/                          [1,276 files, 12M] - MIXED (Active/Archive)
+│   ├── archive/
+│   │   ├── failed/                   [37 dirs]       - ARCHIVED (Failed runs)
+│   │   └── superseded/               [29 dirs]       - ARCHIVED (Old versions)
+│   ├── canonical/                    [23 dirs]       - ACTIVE (Gold standard)
+│   │   ├── c2_measurement_suite/
+│   │   ├── confound_validation/
+│   │   ├── multi_token_bridge/
+│   │   ├── rv_l27_causal_validation/
+│   │   ├── session_2/
+│   │   │   └── results/
+│   │   ├── session_2_complete/
+│   │   ├── session_2_final/
+│   │   └── session_complete/
+│   ├── champion_paraphrase_hunt/
+│   ├── circuit_hunt_v2_focused/
+│   ├── comprehensive_circuit_test/
+│   ├── confound_validation/
+│   ├── dec13_kitchen_sink/
+│   ├── discovery/                    [4 subdirs]     - ACTIVE
+│   │   ├── behavioral_grounding/     [48 dirs]       - ACTIVE
+│   │   ├── path_patching/            [10 dirs]       - ACTIVE
+│   │   ├── phase0_validation/        [4 dirs]        - ACTIVE
+│   │   └── steering/                 [8 dirs]        - ACTIVE
+│   ├── gemma_full_validation/
+│   ├── godelian_rv_test/
+│   ├── gold_standard/
+│   ├── h18_h26_gold_standard/
+│   ├── h18_h26_validation/
+│   ├── kitchen_sink/
+│   ├── kv_sufficiency_matrix/
+│   ├── phase0_metric_validation/
+│   ├── phase1_circuit/
+│   ├── phase1_cross_architecture/
+│   ├── phase1_mechanism/             [90+ dirs]      - ACTIVE
+│   ├── phase2_generalization/        [4 models]      - ACTIVE
+│   │   ├── gemma_2_9b/               [11 subdirs]    - ACTIVE
+│   │   │   ├── 01_baseline_rv/
+│   │   │   ├── 03_prompt_pass_validation/
+│   │   │   ├── 05_even_layer_sweep/
+│   │   │   ├── 07_head_decomposition_l38/
+│   │   │   ├── 08_causal_validation_n45/
+│   │   │   ├── 11_causal_validation_champion/
+│   │   │   ├── 12_odd_layer_sweep/
+│   │   │   ├── 13_confound_validation/
+│   │   │   ├── 14_focused_sweep_L35_L41/
+│   │   │   └── 15_early_head_hunt/
+│   │   ├── llama3_8b_base/
+│   │   ├── mixtral_8x7b_v0_1/
+│   │   └── runs/
+│   ├── phase2_pathways/
+│   ├── phase3_attention/
+│   ├── phase3_bridge/                [3 versions]    - ACTIVE
+│   │   └── gemma_2_9b/
+│   │       ├── multi_token_correlation/
+│   │       ├── multi_token_correlation_v2/
+│   │       └── multi_token_correlation_v3/
+│   └── runs/
+├── rv_toolkit/                       [73 files, 836K] - ACTIVE (Library)
+│   ├── .pytest_cache/
+│   │   └── v/cache/
+│   ├── examples/                     [2 files]       - ACTIVE
+│   ├── experiments/                  [14 files]      - ACTIVE
+│   │   ├── ablation_studies/         [2 .py]
+│   │   ├── canonical/                [6 .py]
+│   │   ├── exploratory/              [2 .py]
+│   │   ├── generation_dynamics/      [1 .py]
+│   │   ├── prompt_analysis/          [1 .py]
+│   │   └── smoke_tests/              [2 .py]
+│   ├── rv_toolkit/                   [23 files]      - ACTIVE (Core library)
+│   │   ├── __pycache__/
+│   │   ├── analysis_scripts/         [5 .py]
+│   │   ├── cli_tools/                [3 .py]
+│   │   ├── infrastructure/           [2 .py]
+│   │   ├── measurement/              [2 .py]
+│   │   ├── prompt_generation/        [4 .py]
+│   │   └── validation/               [7 files]
+│   │       └── __pycache__/
+│   └── tests/                        [12 files]      - ACTIVE
+│       └── __pycache__/
+├── scripts/                          [52 files, 264K] - ACTIVE
+│   └── runpod/
+├── src/                              [171 files, 2.4M] - ACTIVE (Source code)
+│   ├── __pycache__/
+│   ├── core/                         [18 files, 120K] - ACTIVE
+│   │   └── __pycache__/
+│   ├── experiments/                  [2 files, 20K]  - ACTIVE
+│   ├── metrics/                      [20 files, 220K] - ACTIVE
+│   │   └── __pycache__/
+│   ├── pipelines/                    [114 files, 1.9M] - ACTIVE
+│   │   ├── __pycache__/
+│   │   ├── archive/                  [55 files, 976K] - ARCHIVED
+│   │   │   └── __pycache__/
+│   │   ├── canonical/                [22 files, 412K] - ACTIVE
+│   │   │   └── __pycache__/
+│   │   ├── discovery/                [29 files, 468K] - ACTIVE
+│   │   │   └── __pycache__/
+│   │   └── sprint_head_specific_steering/
+│   │       └── __pycache__/
+│   ├── steering/                     [3 files, 16K]  - ACTIVE
+│   └── utils/                        [11 files, 108K] - ACTIVE
+│       └── __pycache__/
+├── utils/                            [2 files, 8.0K]  - ACTIVE (.py)
+├── visualizations/                   [16 files, 256K] - ACTIVE
+├── website/                          [11 files, 1.1M] - ACTIVE
+│   └── figures/
+└── [ROOT FILES - 60+ top-level files] - ACTIVE
+    ├── *.md (documentation)
+    ├── *.py (scripts)
+    ├── *.ipynb (notebooks)
+    ├── *.txt, *.csv, *.json (data)
+    └── Config files (.gitignore, etc.)
+```
+
+---
+
+## DETAILED DIRECTORY BREAKDOWN
+
+### 1. ACTIVE CODE DIRECTORIES
+
+| Directory | Files | Size | Types | Status |
+|-----------|-------|------|-------|--------|
+| src/ | 171 | 2.4M | .py, .pyc | **ACTIVE** |
+| src/core/ | 18 | 120K | .py (9), .pyc (9) | ACTIVE |
+| src/experiments/ | 2 | 20K | .py (2) | ACTIVE |
+| src/metrics/ | 20 | 220K | .py (10), .pyc (10) | ACTIVE |
+| src/pipelines/ | 114 | 1.9M | .py (56), .pyc (58) | ACTIVE |
+| src/pipelines/canonical/ | 22 | 412K | .py (10), .pyc (12) | ACTIVE |
+| src/pipelines/discovery/ | 29 | 468K | .py (15), .pyc (14) | ACTIVE |
+| src/steering/ | 3 | 16K | .py (3) | ACTIVE |
+| src/utils/ | 11 | 108K | .py (8), .pyc (3) | ACTIVE |
+| rv_toolkit/ | 73 | 836K | .py, .pyc, .md | **ACTIVE** |
+| rv_toolkit/rv_toolkit/ | 23 | - | .py | ACTIVE (Core) |
+| rv_toolkit/experiments/ | 14 | - | .py | ACTIVE |
+| rv_toolkit/tests/ | 12 | 192K | .py (6), .pyc (6) | ACTIVE |
+| rv_toolkit/examples/ | 2 | 32K | .py, .ipynb | ACTIVE |
+| CANONICAL_CODE/ | 4 | 212K | .py (3), .pyc (1) | **ACTIVE** |
+| models/ | 6 | 60K | .py (6) | ACTIVE |
+| scripts/ | 52 | 264K | .py (26), .sh (26) | ACTIVE |
+| REUSABLE_PROMPT_BANK/ | 10 | 216K | .py (9), .md (1) | ACTIVE |
+| utils/ | 2 | 8.0K | .py (2) | ACTIVE |
+| visualizations/ | 16 | 256K | .py (15), .md (1) | ACTIVE |
+
+### 2. ACTIVE RESULTS/EXPERIMENT DIRECTORIES
+
+| Directory | Files | Size | Types | Status |
+|-----------|-------|------|-------|--------|
+| results/ | 1,276 | 12M | .json, .md, .txt, .csv, .jsonl | **MIXED** |
+| results/canonical/ | ~200 | - | .json, .txt, .csv | ACTIVE |
+| results/discovery/behavioral_grounding/ | ~200 | - | - | ACTIVE |
+| results/discovery/path_patching/ | ~50 | - | - | ACTIVE |
+| results/discovery/steering/ | ~40 | - | - | ACTIVE |
+| results/phase1_mechanism/runs/ | ~150 | - | - | ACTIVE |
+| results/phase1_cross_architecture/runs/ | ~20 | - | - | ACTIVE |
+| results/phase2_generalization/ | ~160 | 1.4M+ | - | ACTIVE |
+| experiments/ | 5 | 24K | .md, .py | ACTIVE |
+
+### 3. DOCUMENTATION DIRECTORIES
+
+| Directory | Files | Size | Types | Status |
+|-----------|-------|------|-------|--------|
+| docs/ | 308 | 2.8M | .md | **ACTIVE** |
+| docs/misc/ | 136 | 1.3M | .md | ACTIVE |
+| docs/status/ | 48 | 356K | .md | ACTIVE |
+| docs/experiments/ | 43 | 312K | .md | ACTIVE |
+| docs/analysis/ | 32 | 408K | .md | ACTIVE |
+| docs/sessions/ | 23 | 200K | .md | ACTIVE |
+| R_V_PAPER/ | 51 | 1.6M | .md (27), .pdf (7), .png (6), .csv (4), .tex (2), .bib (1) | ACTIVE |
+| RECOVERED_GOLD/ | 7 | 88K | .md (6), .py (1) | ACTIVE (Critical) |
+| agent_reviews/ | 13 | 152K | .md | ACTIVE |
+| website/ | 11 | 1.1M | .png (6), .js (2), .pdf, .html, .css | ACTIVE |
+
+### 4. CONFIGURATION DIRECTORIES
+
+| Directory | Files | Size | Types | Status |
+|-----------|-------|------|-------|--------|
+| configs/ | 253 | 1.0M | .json | **ACTIVE** |
+| .cursor/ | 5 | 20K | .mdc | ACTIVE |
+| .claude/ | 1 | 4.0K | .json | ACTIVE |
+| .grok/ | 1 | 4.0K | .json | ACTIVE |
+| .secrets/ | 1 | 4.0K | .txt | ACTIVE |
+| .planning/ | 20 | 156K | .md (17), .json (3) | ACTIVE |
+| prompts/ | 15 | 1.4M | .json, .py, .pyc, backups | ACTIVE |
+| mcp_monitor/ | 9 | 80K | .json (4), .py (3), .pyc (2) | ACTIVE |
+
+### 5. ARCHIVED/DEPRECATED DIRECTORIES
+
+| Directory | Files | Size | Types | Status |
+|-----------|-------|------|-------|--------|
+| archive/ | 173 | 4.6M | .py (133), .txt (16), .csv (8), etc. | **ARCHIVED** |
+| archive/scripts/ | 136 | 1.5M | .py (130), .pyc (6) | ARCHIVED |
+| archive/outputs/ | 34 | 3.1M | .txt (16), .csv (8), .png (5), etc. | ARCHIVED |
+| archive/deprecated/ | 0 | 0B | - | EMPTY |
+| results/archive/failed/ | ~100 | - | - | ARCHIVED |
+| results/archive/superseded/ | ~200 | - | - | ARCHIVED |
+| src/pipelines/archive/ | 55 | 976K | .py (28), .pyc (27) | ARCHIVED |
+
+### 6. GIT/VERSION CONTROL
+
+| Directory | Files | Size | Types | Status |
+|-----------|-------|------|-------|--------|
+| .git/ | 266 | 78M | .sample (14), .pack, .idx | VERSION CONTROL |
+
+---
+
+## FILE TYPE DISTRIBUTION (PROJECT-WIDE)
+
+| Extension | Count | Primary Use |
+|-----------|-------|-------------|
+| .py | ~650 | Python source code |
+| .pyc | ~250 | Python compiled bytecode |
+| .md | ~500 | Documentation |
+| .json | ~1,000 | Configurations, results data |
+| .txt | ~200 | Logs, outputs |
+| .csv | ~100 | Data exports |
+| .jsonl | ~100 | Streaming results |
+| .png | ~50 | Visualizations |
+| .pdf | ~10 | Papers, reports |
+| .sh | ~30 | Shell scripts |
+| .ipynb | ~5 | Jupyter notebooks |
+| .tex | ~5 | LaTeX documents |
+| .bib | ~5 | Bibliographies |
+| .html/.css/.js | ~5 | Website |
+| Other | ~50 | Misc config files |
+
+---
+
+## ACTIVE vs ARCHIVED SUMMARY
+
+### ACTIVE DIRECTORIES (Production/Current)
+- src/ (All subdirs except archive/)
+- rv_toolkit/ (All except __pycache__)
+- CANONICAL_CODE/
+- docs/ (All subdirs)
+- R_V_PAPER/
+- RECOVERED_GOLD/
+- results/canonical/
+- results/discovery/
+- results/phase1_cross_architecture/
+- results/phase2_generalization/
+- results/phase3_bridge/
+- experiments/
+- configs/
+- prompts/
+- scripts/
+- models/
+- visualizations/
+- website/
+- mcp_monitor/
+- utils/
+
+### ARCHIVED/DEPRECATED DIRECTORIES
+- archive/ (All contents)
+- results/archive/ (failed/, superseded/)
+- src/pipelines/archive/
+- Various __pycache__/ directories
+
+### EMPTY DIRECTORIES
+- docs/methodology/
+- docs/results/
+- docs/session_logs/
+- archive/deprecated/
+
+---
+
+## KEY FINDINGS
+
+1. **Large Results Archive**: ~300+ experiment run directories in archive/, representing historical experiments
+2. **Active Development**: Heavy activity in src/, rv_toolkit/, and results/phase* directories
+3. **Comprehensive Documentation**: 500+ markdown files across docs/, R_V_PAPER/, agent_reviews/
+4. **Configuration Heavy**: 253 JSON config files + 1,000+ result JSON files
+5. **Multi-Model Support**: phase2_generalization/ contains experiments for gemma_2_9b, llama3_8b, mixtral_8x7b
+6. **Mature Codebase**: Well-organized with canonical/, discovery/, and archive/ separation
+7. **Version Controlled**: Git repository with 78M of history
+
+---
+
+## PHASE 1.1 STATUS: COMPLETE
+All directories mapped to 5+ levels.
+Total tree depth analyzed: 6-8 levels in results/ subdirectory.

@@ -1,0 +1,117 @@
+# Run report: multi_token_bridge
+
+- **run_dir**: `results/phase1_cross_architecture/runs/20260205_112947_multi_token_bridge_mistral_7b_bridge_short_prompts`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "analysis": {
+    "temp_0.0": {
+      "group_rv_means": {
+        "L1_hint": 0.5957503227592394,
+        "baseline_impossible": 0.6649047396837395,
+        "baseline_instructional": 0.7170495147165312,
+        "baseline_personal": 0.6515546852156735,
+        "introspective_concrete": 0.7798136561170035,
+        "recursive_self_reference": 0.8190464090883991
+      },
+      "group_word_means": {
+        "L1_hint": 478.4375,
+        "baseline_impossible": 389.15,
+        "baseline_instructional": 398.4,
+        "baseline_personal": 481.0,
+        "introspective_concrete": 401.5,
+        "recursive_self_reference": 501.75
+      },
+      "h1_significant": false,
+      "h1_spearman_p": 0.07692880993776312,
+      "h1_spearman_r": 0.6166666666666666,
+      "h2_baseline_rv_mean": 0.6647652460349093,
+      "h2_cohens_d": 0.10450739035009064,
+      "h2_p_value": 0.6892053767735368,
+      "h2_recursive_rv_mean": 0.6530826414879742,
+      "h2_significant": false,
+      "h2_t_stat": -0.40172346416759286,
+      "h3_point_biserial_p": NaN,
+      "h3_point_biserial_r": NaN,
+      "h3_significant": false,
+      "n_eos_reached": 9,
+      "n_non_truncated": 9,
+      "n_total": 85,
+      "n_truncated": 76,
+      "n_valid": 67,
+      "pct_truncated": 89.41176470588235
+    },
+    "temp_0.7": {
+      "group_rv_means": {
+        "L1_hint": 0.5957503227592394,
+        "baseline_impossible": 0.6649047396837395,
+        "baseline_instructional": 0.7170495147165312,
+        "baseline_personal": 0.6515546852156735,
+        "introspective_concrete": 0.7798136561170035,
+        "recursive_self_reference": 0.8190464090883991
+      },
+      "group_word_means": {
+        "L1_hint": 454.8125,
+        "baseline_impossible": 397.1,
+        "baseline_instructional": 340.6,
+        "baseline_personal": 362.6,
+        "introspective_concrete": 342.0,
+        "recursive_self_reference": 437.5
+      },
+      "h1_significant": false,
+      "h1_spearman_p": 0.330387908876124,
+      "h1_spearman_r": 0.22337662337662337,
+      "h2_baseline_rv_mean": 0.6647652460349093,
+      "h2_cohens_d": 0.10450739035009064,
+      "h2_p_value": 0.6892053767735368,
+      "h2_recursive_rv_mean": 0.6530826414879742,
+      "h2_significant": false,
+      "h2_t_stat": -0.40172346416759286,
+      "h3_point_biserial_p": 0.8521422744995746,
+      "h3_point_biserial_r": 0.02320426155715602,
+      "h3_significant": false,
+      "n_eos_reached": 22,
+      "n_non_truncated": 21,
+      "n_total": 85,
+      "n_truncated": 63,
+      "n_valid": 67,
+      "pct_truncated": 74.11764705882354
+    }
+  },
+  "artifacts": {
+    "config": "results/phase1_cross_architecture/runs/20260205_112947_multi_token_bridge_mistral_7b_bridge_short_prompts/config.json",
+    "report": "results/phase1_cross_architecture/runs/20260205_112947_multi_token_bridge_mistral_7b_bridge_short_prompts/report.md",
+    "summary": "results/phase1_cross_architecture/runs/20260205_112947_multi_token_bridge_mistral_7b_bridge_short_prompts/summary.json"
+  },
+  "baseline_groups": [
+    "baseline_personal",
+    "baseline_impossible",
+    "baseline_instructional"
+  ],
+  "early_layer": 5,
+  "experiment": "multi_token_bridge",
+  "late_layer": 27,
+  "max_new_tokens": 600,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_prompts_per_group": 20,
+  "n_total_prompts": 85,
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "recursive_groups": [
+    "L1_hint",
+    "recursive_self_reference",
+    "introspective_concrete"
+  ],
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "temperatures": [
+    0.0,
+    0.7
+  ],
+  "timestamp": "20260205_115542",
+  "version": "v2_gpt_audit_fixes",
+  "window": 16
+}
+```

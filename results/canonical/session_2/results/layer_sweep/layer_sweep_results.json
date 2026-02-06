@@ -1,0 +1,235 @@
+{
+  "results": [
+    {
+      "layer": 0,
+      "depth_pct": 0.0,
+      "rv_baseline": 1.296,
+      "rv_recursive": 0.967,
+      "separation": 0.32900000000000007
+    },
+    {
+      "layer": 1,
+      "depth_pct": 3.225806451612903,
+      "rv_baseline": 1.456,
+      "rv_recursive": 1.256,
+      "separation": 0.19999999999999996
+    },
+    {
+      "layer": 2,
+      "depth_pct": 6.451612903225806,
+      "rv_baseline": 1.316,
+      "rv_recursive": 1.232,
+      "separation": 0.08400000000000007
+    },
+    {
+      "layer": 3,
+      "depth_pct": 9.67741935483871,
+      "rv_baseline": 1.356,
+      "rv_recursive": 1.287,
+      "separation": 0.06900000000000017
+    },
+    {
+      "layer": 4,
+      "depth_pct": 12.903225806451612,
+      "rv_baseline": 1.154,
+      "rv_recursive": 1.09,
+      "separation": 0.06399999999999983
+    },
+    {
+      "layer": 5,
+      "depth_pct": 16.129032258064516,
+      "rv_baseline": 1.0,
+      "rv_recursive": 1.0,
+      "separation": 0.0
+    },
+    {
+      "layer": 6,
+      "depth_pct": 19.35483870967742,
+      "rv_baseline": 0.919,
+      "rv_recursive": 0.916,
+      "separation": 0.0030000000000000027
+    },
+    {
+      "layer": 7,
+      "depth_pct": 22.580645161290324,
+      "rv_baseline": 0.792,
+      "rv_recursive": 0.79,
+      "separation": 0.0020000000000000018
+    },
+    {
+      "layer": 8,
+      "depth_pct": 25.806451612903224,
+      "rv_baseline": 0.943,
+      "rv_recursive": 0.9,
+      "separation": 0.04299999999999993
+    },
+    {
+      "layer": 9,
+      "depth_pct": 29.032258064516128,
+      "rv_baseline": 0.818,
+      "rv_recursive": 0.724,
+      "separation": 0.09399999999999997
+    },
+    {
+      "layer": 10,
+      "depth_pct": 32.25806451612903,
+      "rv_baseline": 0.957,
+      "rv_recursive": 0.862,
+      "separation": 0.09499999999999997
+    },
+    {
+      "layer": 11,
+      "depth_pct": 35.483870967741936,
+      "rv_baseline": 0.957,
+      "rv_recursive": 0.889,
+      "separation": 0.06799999999999995
+    },
+    {
+      "layer": 12,
+      "depth_pct": 38.70967741935484,
+      "rv_baseline": 0.943,
+      "rv_recursive": 0.844,
+      "separation": 0.09899999999999998
+    },
+    {
+      "layer": 13,
+      "depth_pct": 41.935483870967744,
+      "rv_baseline": 1.027,
+      "rv_recursive": 0.977,
+      "separation": 0.04999999999999993
+    },
+    {
+      "layer": 14,
+      "depth_pct": 45.16129032258065,
+      "rv_baseline": 0.97,
+      "rv_recursive": 0.865,
+      "separation": 0.10499999999999998
+    },
+    {
+      "layer": 15,
+      "depth_pct": 48.38709677419355,
+      "rv_baseline": 0.783,
+      "rv_recursive": 0.77,
+      "separation": 0.013000000000000012
+    },
+    {
+      "layer": 16,
+      "depth_pct": 51.61290322580645,
+      "rv_baseline": 0.757,
+      "rv_recursive": 0.739,
+      "separation": 0.018000000000000016
+    },
+    {
+      "layer": 17,
+      "depth_pct": 54.83870967741935,
+      "rv_baseline": 1.069,
+      "rv_recursive": 1.02,
+      "separation": 0.04899999999999993
+    },
+    {
+      "layer": 18,
+      "depth_pct": 58.064516129032256,
+      "rv_baseline": 0.867,
+      "rv_recursive": 0.809,
+      "separation": 0.05799999999999994
+    },
+    {
+      "layer": 19,
+      "depth_pct": 61.29032258064516,
+      "rv_baseline": 0.819,
+      "rv_recursive": 0.786,
+      "separation": 0.03299999999999992
+    },
+    {
+      "layer": 20,
+      "depth_pct": 64.51612903225806,
+      "rv_baseline": 0.971,
+      "rv_recursive": 0.915,
+      "separation": 0.05599999999999994
+    },
+    {
+      "layer": 21,
+      "depth_pct": 67.74193548387096,
+      "rv_baseline": 1.056,
+      "rv_recursive": 0.958,
+      "separation": 0.09800000000000009
+    },
+    {
+      "layer": 22,
+      "depth_pct": 70.96774193548387,
+      "rv_baseline": 1.103,
+      "rv_recursive": 0.966,
+      "separation": 0.137
+    },
+    {
+      "layer": 23,
+      "depth_pct": 74.19354838709677,
+      "rv_baseline": 1.064,
+      "rv_recursive": 0.939,
+      "separation": 0.1250000000000001
+    },
+    {
+      "layer": 24,
+      "depth_pct": 77.41935483870968,
+      "rv_baseline": 1.037,
+      "rv_recursive": 0.989,
+      "separation": 0.04799999999999993
+    },
+    {
+      "layer": 25,
+      "depth_pct": 80.64516129032258,
+      "rv_baseline": 0.997,
+      "rv_recursive": 0.854,
+      "separation": 0.14300000000000002
+    },
+    {
+      "layer": 26,
+      "depth_pct": 83.87096774193549,
+      "rv_baseline": 1.155,
+      "rv_recursive": 0.983,
+      "separation": 0.17200000000000004
+    },
+    {
+      "layer": 27,
+      "depth_pct": 87.09677419354838,
+      "rv_baseline": 1.023,
+      "rv_recursive": 0.813,
+      "separation": 0.20999999999999996
+    },
+    {
+      "layer": 28,
+      "depth_pct": 90.3225806451613,
+      "rv_baseline": 1.228,
+      "rv_recursive": 1.037,
+      "separation": 0.19100000000000006
+    },
+    {
+      "layer": 29,
+      "depth_pct": 93.54838709677419,
+      "rv_baseline": 1.059,
+      "rv_recursive": 0.837,
+      "separation": 0.22199999999999998
+    },
+    {
+      "layer": 30,
+      "depth_pct": 96.7741935483871,
+      "rv_baseline": 1.269,
+      "rv_recursive": 1.052,
+      "separation": 0.21699999999999986
+    },
+    {
+      "layer": 31,
+      "depth_pct": 100.0,
+      "rv_baseline": 1.193,
+      "rv_recursive": 1.045,
+      "separation": 0.14800000000000013
+    }
+  ],
+  "peak": {
+    "layer": 0,
+    "depth_pct": 0.0,
+    "rv_baseline": 1.296,
+    "rv_recursive": 0.967,
+    "separation": 0.32900000000000007
+  }
+}

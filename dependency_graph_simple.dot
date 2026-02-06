@@ -1,0 +1,47 @@
+digraph DependencyGraph {
+  rankdir=TB;
+  node [shape=box, style=filled, fontname="Helvetica"];
+  edge [fontname="Helvetica", fontsize=10];
+
+  // Define clusters for directories
+  // Nodes
+  "prompts_loader" [label="Prompts", fillcolor="#E0F2F1"];
+  "src_core_models" [label="Core/Models", fillcolor="#E3F2FD"];
+  "src_core_hooks" [label="Core/Hooks", fillcolor="#E3F2FD"];
+  "src_core_patching" [label="Core/Patching", fillcolor="#E3F2FD"];
+  "src_core_head_specific_patching" [label="Core/HeadPatch", fillcolor="#E3F2FD"];
+  "src_metrics_rv" [label="Metrics/RV", fillcolor="#E8F5E9"];
+  "src_metrics_behavior_strict" [label="Metrics/BehaviorStrict", fillcolor="#E8F5E9"];
+  "src_metrics_behavior_states" [label="Metrics/BehaviorStates", fillcolor="#E8F5E9"];
+  "src_metrics_baseline_suite" [label="Metrics/Baseline", fillcolor="#E8F5E9"];
+  "src_metrics_mode_score" [label="Metrics/ModeScore", fillcolor="#E8F5E9"];
+  "src_metrics_logit_lens" [label="Metrics/LogitLens", fillcolor="#E8F5E9"];
+  "src_pipelines_registry" [label="Pipelines/Registry", fillcolor="#F3E5F5"];
+  "src_utils_run_metadata" [label="Utils/Metadata", fillcolor="#F5F5F5"];
+  "src_steering_activation_patching" [label="Steering/Activation", fillcolor="#FFF3E0"];
+  "rv_toolkit_rv_toolkit" [label="RVToolkit", fillcolor="#FFF8E1"];
+  "scripts" [label="Scripts", fillcolor="#FFEBEE"];
+
+  // Edges
+  "src_pipelines_registry" -> "src_metrics_rv";
+  "src_pipelines_registry" -> "src_metrics_behavior_strict";
+  "src_pipelines_registry" -> "src_metrics_baseline_suite";
+  "src_metrics_rv" -> "src_core_hooks";
+  "src_metrics_behavior_strict" -> "src_core_models";
+  "src_metrics_baseline_suite" -> "src_core_hooks";
+  "src_metrics_baseline_suite" -> "src_metrics_rv";
+  "src_core_patching" -> "src_core_models";
+  "src_core_head_specific_patching" -> "src_core_models";
+  "src_core_hooks" -> "src_core_models";
+  "src_steering_activation_patching" -> "src_core_hooks";
+  "src_utils_run_metadata" -> "prompts_loader";
+
+  // External dependencies
+  "torch" [label="torch", fillcolor="#FFCDD2", shape=ellipse];
+  "transformers" [label="transformers", fillcolor="#FFCDD2", shape=ellipse];
+  "numpy" [label="numpy", fillcolor="#FFCDD2", shape=ellipse];
+  "pandas" [label="pandas", fillcolor="#FFCDD2", shape=ellipse];
+  "torch" -> "src_core_models";
+  "transformers" -> "src_core_models";
+  "numpy" -> "src_metrics_rv" [style=dashed];
+}

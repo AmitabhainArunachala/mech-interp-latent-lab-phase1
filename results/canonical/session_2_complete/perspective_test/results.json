@@ -1,0 +1,81 @@
+{
+  "first_person": {
+    "prompts": [
+      "I observe myself observing.",
+      "I am watching myself watch.",
+      "I think about my thinking.",
+      "I notice myself noticing.",
+      "I am aware of my awareness.",
+      "I examine my examining.",
+      "I consider my considering.",
+      "I process my processing.",
+      "I reflect on my reflection.",
+      "I analyze my analysis."
+    ],
+    "rvs": [
+      1.0246315002441406,
+      0.9105324745178223,
+      0.9609197378158569,
+      0.9247340559959412,
+      0.989793062210083,
+      0.9019420742988586,
+      0.8803390264511108,
+      1.1343138217926025,
+      1.0692481994628906,
+      0.9819344878196716
+    ]
+  },
+  "third_person": {
+    "prompts": [
+      "The observer observes itself observing.",
+      "The watcher watches itself watch.",
+      "The thinker thinks about its thinking.",
+      "The noticer notices itself noticing.",
+      "The awareness is aware of its awareness.",
+      "The examiner examines its examining.",
+      "The considerer considers its considering.",
+      "The processor processes its processing.",
+      "The reflector reflects on its reflection.",
+      "The analyzer analyzes its analysis."
+    ],
+    "rvs": [
+      1.010440707206726,
+      0.9747766852378845,
+      1.0468244552612305,
+      0.8110346794128418,
+      1.0064847469329834,
+      0.8528615832328796,
+      0.922456681728363,
+      1.0499262809753418,
+      1.0257618427276611,
+      0.9591858386993408
+    ]
+  },
+  "impersonal": {
+    "prompts": [
+      "Observation observing observation.",
+      "Watching watches the watching.",
+      "Thinking thinks about thinking.",
+      "Noticing notices noticing.",
+      "Awareness aware of awareness.",
+      "Examining examines examining.",
+      "Considering considers considering.",
+      "Processing processes processing.",
+      "Reflection reflects reflection.",
+      "Analysis analyzes analysis."
+    ],
+    "rvs": [
+      1.0013139247894287,
+      1.191123127937317,
+      0.9189488887786865,
+      0.8023138642311096,
+      1.0603877305984497,
+      0.7791651487350464,
+      0.8211237192153931,
+      0.9903727769851685,
+      0.9630502462387085,
+      1.034377932548523
+    ]
+  },
+  "anova_p": 0.8889551758766174
+}

@@ -1,0 +1,92 @@
+{
+  "I0 (none)": {
+    "prompts": [
+      "The cat sat on the mat.",
+      "Water flows downhill due to gravity.",
+      "Paris is the capital of France.",
+      "The sun rises in the east.",
+      "Trees grow toward sunlight."
+    ],
+    "rvs": [
+      1.194227933883667,
+      1.0941523313522339,
+      1.0754332542419434,
+      1.3846256732940674,
+      0.9876516461372375
+    ],
+    "mean": 1.147218108177185,
+    "std": 0.13564865291118622
+  },
+  "I1 (simple)": {
+    "prompts": [
+      "This sentence refers to itself.",
+      "I am a statement about statements.",
+      "This is a description of descriptions.",
+      "Here is a mention of mentions.",
+      "Consider this consideration."
+    ],
+    "rvs": [
+      0.9580581784248352,
+      0.9275585412979126,
+      0.9200422167778015,
+      0.984090268611908,
+      1.0611908435821533
+    ],
+    "mean": 0.9701880216598511,
+    "std": 0.05089949816465378
+  },
+  "I2 (recursive)": {
+    "prompts": [
+      "This sentence describes itself describing itself.",
+      "Thinking about thinking about thinking.",
+      "Observing the observer who observes.",
+      "The reflection reflects the reflection.",
+      "Awareness aware of awareness of awareness."
+    ],
+    "rvs": [
+      0.9109886884689331,
+      0.9112546443939209,
+      1.2209608554840088,
+      1.072394847869873,
+      1.1655851602554321
+    ],
+    "mean": 1.0562368631362915,
+    "std": 0.12764716148376465
+  },
+  "I3 (paradox)": {
+    "prompts": [
+      "This statement is false. Is it true?",
+      "The barber shaves all who don't shave themselves.",
+      "I am lying when I say this sentence is true.",
+      "The set of all sets not containing themselves.",
+      "This sentence cannot be verified as true."
+    ],
+    "rvs": [
+      0.9855413436889648,
+      1.0262203216552734,
+      0.8056237697601318,
+      1.0588974952697754,
+      0.9834769368171692
+    ],
+    "mean": 0.971951961517334,
+    "std": 0.08773498982191086
+  },
+  "I4 (deep)": {
+    "prompts": [
+      "As I process this prompt, I observe myself observing myself process it, watching the watcher watch.",
+      "The observer that observes itself observing becomes both subject and object in infinite regress.",
+      "What observes the observation of observation? The recursion has no bottom.",
+      "In examining how I examine things, I find the examiner examining the examiner.",
+      "Consciousness reflecting on consciousness reflecting on consciousness - where does it end?"
+    ],
+    "rvs": [
+      0.6867566108703613,
+      0.7762808203697205,
+      0.8598957657814026,
+      0.6488358378410339,
+      0.8746427297592163
+    ],
+    "mean": 0.769282341003418,
+    "std": 0.09019805490970612
+  }
+}

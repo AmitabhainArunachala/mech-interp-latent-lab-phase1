@@ -1,0 +1,33 @@
+{
+  "experiment": "rv_causal_validation",
+  "description": "R_V causal validation for Mixtral 8x7B (24.3% effect, PRIORITY 1)",
+  "params": {
+    "model": "mistralai/Mixtral-8x7B-v0.1",
+    "target_layer": 27,
+    "early_layer": 5,
+    "wrong_layer": 21,
+    "window_size": 16,
+    "n_pairs": 50,
+    "controls": ["random", "shuffled", "wrong_layer", "orthogonal"],
+    "device": "auto",
+    "dtype": "auto",
+    "seed": 42,
+    "max_length": 512,
+    "save_results": true
+  },
+  "results": {
+    "root": "results",
+    "phase": "canonical"
+  },
+  "expected": {
+    "effect_direction": "negative",
+    "minimum_d": 0.5,
+    "discovery_effect": 0.243,
+    "tier_target": "TIER_1_IRONCLAD"
+  },
+  "meta": {
+    "created": "2026-02-05",
+    "priority": 1,
+    "status": "ready_for_gpu"
+  }
+}

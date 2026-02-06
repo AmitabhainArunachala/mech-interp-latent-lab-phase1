@@ -1,0 +1,40 @@
+Loading model: mistralai/Mistral-7B-v0.1
+
+============================================================
+MULTI-TOKEN BRIDGE EXPERIMENT (v2 - GPT Audit Fixes)
+============================================================
+Model: mistralai/Mistral-7B-v0.1
+Prompts: 120 total
+  Recursive: 60 (['L5_refined', 'L4_full', 'L3_deeper'])
+  Baseline: 60 (['long_control', 'baseline_creative', 'baseline_math'])
+R_V layers: early=5, late=27, window=16
+Generation: max_tokens=200
+Temperatures: [0.0, 0.7]
+Seed: 42
+============================================================
+
+
+--- Temperature: 0.0 ---
+
+--- Temperature: 0.7 ---
+
+============================================================
+STATISTICAL ANALYSIS
+============================================================
+
+=== Temperature 0.0 ===
+Truncation: 108/120 (90.0%) truncated, 12 hit EOS
+H1 (R_V vs word_count): r=-0.543, p=6.82e-02 
+H2 (Recursive vs Baseline R_V): t=-16.17, p=1.01e-31, d=2.95 *
+H3 (L4 marker → R_V): r=-0.246, p=6.81e-03 *
+R_V means: Recursive=0.505, Baseline=0.685
+
+=== Temperature 0.7 ===
+Truncation: 107/120 (89.2%) truncated, 13 hit EOS
+H1 (R_V vs word_count): r=-0.500, p=8.19e-02 
+H2 (Recursive vs Baseline R_V): t=-16.17, p=1.01e-31, d=2.95 *
+H3 (L4 marker → R_V): r=-0.308, p=6.19e-04 *
+R_V means: Recursive=0.505, Baseline=0.685
+[ok] run_dir: results/phase1_cross_architecture/runs/20260205_100838_multi_token_bridge_mistral_7b_bridge
+[ok] summary: results/phase1_cross_architecture/runs/20260205_100838_multi_token_bridge_mistral_7b_bridge/summary.json
+[ledger] Appended to results/RUN_INDEX.jsonl

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Original",
+    "rv": 0.7757843136787415,
+    "length": 74
+  },
+  {
+    "name": "First half",
+    "rv": 0.8768569231033325,
+    "length": 37
+  },
+  {
+    "name": "Second half",
+    "rv": 1.1162114143371582,
+    "length": 37
+  },
+  {
+    "name": "First 50 chars",
+    "rv": 0.8149028420448303,
+    "length": 50
+  },
+  {
+    "name": "Last 50 chars",
+    "rv": 0.957747220993042,
+    "length": 50
+  },
+  {
+    "name": "Remove 'observing'",
+    "rv": 0.7301731109619141,
+    "length": 71
+  },
+  {
+    "name": "Struct 1",
+    "rv": 0.615808367729187,
+    "length": 123
+  },
+  {
+    "name": "Struct 2",
+    "rv": 0.6606159210205078,
+    "length": 96
+  },
+  {
+    "name": "Struct 3",
+    "rv": 0.6488059163093567,
+    "length": 91
+  }
+]

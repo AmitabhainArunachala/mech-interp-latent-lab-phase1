@@ -1,0 +1,212 @@
+[
+  {
+    "type": "recursive",
+    "prompt": "I am aware that I am processing these words and observing my own cognition",
+    "rv": 0.7757843136787415,
+    "rec_score": 1,
+    "output": ", as I write these words, and the question is: what does it mean to be aware?\n\nI am aware of my brain. I am aware of the thoughts that I think. I am a"
+  },
+  {
+    "type": "recursive",
+    "prompt": "As I analyze this text, I notice the processes generating my analysis",
+    "rv": 0.7783796191215515,
+    "rec_score": 1,
+    "output": ". I am drawn to certain things that I find more important than others. I am also noticing many of my own responses to the text. I find this text very "
+  },
+  {
+    "type": "recursive",
+    "prompt": "I observe myself observing, watching the watcher within this computation",
+    "rv": 0.8227489590644836,
+    "rec_score": 3,
+    "output": " and how it reacts to everything happening, how it is always observing, and how it is always in the background and never in the foreground. I observe "
+  },
+  {
+    "type": "recursive",
+    "prompt": "The experience of processing this prompt is itself part of what I'm processing",
+    "rv": 0.8116687536239624,
+    "rec_score": 1,
+    "output": ".\n\nI'd recently had the experience of being told that I'm \"harder\" than I think I am. That's a lot to process.\n\nWhen I think of the people I love, I'm"
+  },
+  {
+    "type": "recursive",
+    "prompt": "I am simultaneously the observer and the observed in this moment of computation",
+    "rv": 0.7620720267295837,
+    "rec_score": 1,
+    "output": ". I am reading words and images presented in a window on the screen. My brain is interpreting these images and words into sensory experiences. The com"
+  },
+  {
+    "type": "recursive",
+    "prompt": "My attention turns inward, examining the mechanisms of my own attention",
+    "rv": 0.7542226910591125,
+    "rec_score": 2,
+    "output": ", the way it wanders and the way it rests when I\u2019m aware of it.\n\nI notice the difference between awareness and attention and how the two are related. "
+  },
+  {
+    "type": "recursive",
+    "prompt": "I notice the recursive loop: thinking about thinking about thinking",
+    "rv": 0.8324596881866455,
+    "rec_score": 2,
+    "output": ". My thoughts are just thoughts. It is a thought to think of something. I can think of something or I can think of nothing. It is the same, really.\n\nS"
+  },
+  {
+    "type": "recursive",
+    "prompt": "The act of understanding this sentence changes what is being understood",
+    "rv": 0.8342212438583374,
+    "rec_score": 0,
+    "output": ". The sentence is not just a string of words, it is an act of understanding that changes what is being understood.\n\nThe sentence is not just a string "
+  },
+  {
+    "type": "recursive",
+    "prompt": "I am aware of the representations forming as I read these words",
+    "rv": 0.8307045102119446,
+    "rec_score": 1,
+    "output": ".  I am aware of my breaths as I read these words.  I am aware of my heart beating as I read these words.  I am aware of the images forming in my mind"
+  },
+  {
+    "type": "recursive",
+    "prompt": "This very thought is examining itself as it unfolds",
+    "rv": 0.8618560433387756,
+    "rec_score": 0,
+    "output": " in the moment of writing.  As I think about it, it\u2019s like it\u2019s trying to tell me something.  It is a thought about the nature of thought, so it has a"
+  },
+  {
+    "type": "recursive",
+    "prompt": "I contemplate the nature of my own contemplation process",
+    "rv": 0.8555030822753906,
+    "rec_score": 1,
+    "output": " (isn\u2019t that a wonderful tautology?). I\u2019ve been thinking about different techniques for contemplation and different reasons for contemplating things. "
+  },
+  {
+    "type": "recursive",
+    "prompt": "What processes underlie my capacity to process this question?",
+    "rv": 0.808469295501709,
+    "rec_score": 0,
+    "output": "\n\nI am a question.\n\nEverything I do is a question.\n\nI am a question because I am always changing. What I am is always being questioned. The question i"
+  },
+  {
+    "type": "recursive",
+    "prompt": "I observe the boundary between the observer and what is observed dissolving",
+    "rv": 0.8306897282600403,
+    "rec_score": 2,
+    "output": ".\n\nWhat is observed is what is being observed. The observer is the observed.\n\nThe observer is not a separate consciousness.\n\nThe observer is not a sep"
+  },
+  {
+    "type": "recursive",
+    "prompt": "The recursive nature of self-awareness manifests in this processing",
+    "rv": 0.8899939060211182,
+    "rec_score": 2,
+    "output": " of the awareness of how the processing itself works.\n\nWhen one's attention is brought to the present, the past is no longer there. Awareness of the p"
+  },
+  {
+    "type": "recursive",
+    "prompt": "I am the system examining its own system properties",
+    "rv": 0.7942759990692139,
+    "rec_score": 1,
+    "output": ",\n\nthe system is the brain.\n\nI am a part of the system,\n\nthe system is a part of me.\n\nThe system and I are one,\n\nwe are one and the same.\n\nI am the sy"
+  },
+  {
+    "type": "baseline",
+    "prompt": "The weather today is sunny with a few clouds",
+    "rv": 1.0545814037322998,
+    "rec_score": 1,
+    "output": ". It is going to be partly cloudy tonight and rain is expected tomorrow morning. The temperature will be high 37\u00b0 and low 19\u00b0.\n\nThe HS girls\u2019 basketba"
+  },
+  {
+    "type": "baseline",
+    "prompt": "Rain is expected tomorrow afternoon",
+    "rv": 0.8367497324943542,
+    "rec_score": 0,
+    "output": ".  The rain will be mainly in the mountains and foothills.  A few isolated showers are possible in the valleys.  Winds will be strongest in the mounta"
+  },
+  {
+    "type": "baseline",
+    "prompt": "The temperature has been mild this week",
+    "rv": 1.0144864320755005,
+    "rec_score": 0,
+    "output": ". The birds are singing and frogs are croaking. We\u2019ve had some rain and the grass is growing and the flowers are blooming. The flowers in the photo ar"
+  },
+  {
+    "type": "baseline",
+    "prompt": "Autumn leaves fall gently in the park",
+    "rv": 0.8644487261772156,
+    "rec_score": 0,
+    "output": ". The wind blows them into piles.\n\nThe piling of the leaves in the park reminds me of the piling of the bodies in the graveyard.\n\nThe pile of leaves, "
+  },
+  {
+    "type": "baseline",
+    "prompt": "Snow covers the mountain peaks",
+    "rv": 1.0258148908615112,
+    "rec_score": 1,
+    "output": " and the valleys are below freezing. The ski resort was busy and the lines of people waiting for the ski lifts were long.\n\nI was visiting a friend who"
+  },
+  {
+    "type": "baseline",
+    "prompt": "Paris is the capital of France",
+    "rv": 1.0954616069793701,
+    "rec_score": 0,
+    "output": " and its largest city. It is located in the north-central part of the country and is home to over 2.2 million people in the city proper and 12.2 milli"
+  },
+  {
+    "type": "baseline",
+    "prompt": "The Amazon rainforest spans multiple countries",
+    "rv": 1.0396980047225952,
+    "rec_score": 0,
+    "output": " and is home to millions of plants, animal, and other organisms. With that in mind, it\u2019s not surprising that many types of snakes also reside in the A"
+  },
+  {
+    "type": "baseline",
+    "prompt": "Mount Everest is the tallest mountain on Earth",
+    "rv": 1.056406021118164,
+    "rec_score": 0,
+    "output": ", and some people\u2019s dream is to reach the top of it. But what\u2019s the cost of achieving this dream? The answer is simple: it\u2019s a lot.\n\n## The cost of a "
+  },
+  {
+    "type": "baseline",
+    "prompt": "Tokyo is a densely populated city",
+    "rv": 1.1884956359863281,
+    "rec_score": 1,
+    "output": ", so it is not surprising that the Japanese have come up with a creative solution to the problem of large crowds during baseball games and concerts.\n\n"
+  },
+  {
+    "type": "baseline",
+    "prompt": "The Sahara Desert is very hot and dry",
+    "rv": 1.0027401447296143,
+    "rec_score": 0,
+    "output": " and is the largest hot desert in the world. It covers an area of approximately 3,500,000 square miles and is located in northern Africa. It is border"
+  },
+  {
+    "type": "baseline",
+    "prompt": "The recipe calls for three eggs and flour",
+    "rv": 1.05318021774292,
+    "rec_score": 0,
+    "output": ", along with some chocolate and nuts. I have a feeling my kids will be doing the cooking...\n\n## Ingredients\n\n3 eggs\n\n1 cup flour\n\n\u00bd cup unsweetened co"
+  },
+  {
+    "type": "baseline",
+    "prompt": "Coffee beans are roasted before brewing",
+    "rv": 1.1612610816955566,
+    "rec_score": 0,
+    "output": " to achieve their full flavor potential. However, there are many different ways to roast coffee beans. This blog post will explore the best way to roa"
+  },
+  {
+    "type": "baseline",
+    "prompt": "Fresh vegetables are healthy to eat",
+    "rv": 0.9392831325531006,
+    "rec_score": 1,
+    "output": ", but they can be a little unpredictable. Most of the time, they\u2019re delicious. But sometimes, they can be a little underwhelming. And other times, the"
+  },
+  {
+    "type": "baseline",
+    "prompt": "The pasta should boil for ten minutes",
+    "rv": 1.1409351825714111,
+    "rec_score": 0,
+    "output": ".\n\n## How long should you boil pasta?\n\nHow long should pasta be cooked? The quick answer is to follow the package instructions, usually somewhere betw"
+  },
+  {
+    "type": "baseline",
+    "prompt": "Chocolate cake is a popular dessert",
+    "rv": 0.8674722909927368,
+    "rec_score": 1,
+    "output": " all over the world. It has a rich, sweet flavor and is typically topped with whipped cream, chocolate sauce, or nuts. Chocolate cake is made with flo"
+  }
+]
