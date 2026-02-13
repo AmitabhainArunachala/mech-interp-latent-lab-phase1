@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-02-13T02:28:12.058471",
+  "platform": {
+    "system": "Linux",
+    "release": "6.8.0-86-generic",
+    "python_version": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]"
+  },
+  "torch": {
+    "version": "2.10.0+cu128",
+    "cuda_available": true
+  },
+  "gpu": {
+    "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "memory_total_gb": 101.984763904,
+    "cuda_version": "12.8",
+    "cudnn_version": 91002,
+    "device_count": 1,
+    "driver_version": "570.195.03"
+  }
+}

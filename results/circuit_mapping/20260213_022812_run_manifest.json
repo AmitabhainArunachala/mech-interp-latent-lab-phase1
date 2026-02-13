@@ -1,0 +1,85 @@
+{
+  "run_id": "20260213_022812",
+  "timestamp": "2026-02-13T02:29:26.363336",
+  "config": {
+    "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+    "n_prompts": 30,
+    "layer_step": 1,
+    "quick_mode": false,
+    "seed": 42,
+    "num_layers": 32,
+    "late_layer": 27
+  },
+  "hardware": {
+    "timestamp": "2026-02-13T02:28:12.058471",
+    "platform": {
+      "system": "Linux",
+      "release": "6.8.0-86-generic",
+      "python_version": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]"
+    },
+    "torch": {
+      "version": "2.10.0+cu128",
+      "cuda_available": true
+    },
+    "gpu": {
+      "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "memory_total_gb": 101.984763904,
+      "cuda_version": "12.8",
+      "cudnn_version": 91002,
+      "device_count": 1,
+      "driver_version": "570.195.03"
+    }
+  },
+  "anatomy_summary": {
+    "n_recursive": 20,
+    "n_baseline": 20,
+    "rv_recursive_mean": 0.5671340646872471,
+    "rv_recursive_std": 0.0565628351269104,
+    "rv_baseline_mean": 0.7747314920629897,
+    "rv_baseline_std": 0.08315334177058667,
+    "rv_delta": -0.2075974273757426,
+    "critical_layers": [
+      [
+        27,
+        20
+      ]
+    ]
+  },
+  "eigenstate_summary": {
+    "guided_descent": {
+      "session_id": "20260213_022851",
+      "baseline_rv": 1.1127119429235466,
+      "min_rv": 0.5357496047528901,
+      "eigenstate_turn": null,
+      "genuine_l4_turns": 0,
+      "rv_trajectory": [
+        1.1127119429235466,
+        0.6890146902382797,
+        0.5357496047528901,
+        0.8117849415015438,
+        0.8117849415015438,
+        0.8117849415015438
+      ]
+    },
+    "phenomenological_probing": {
+      "session_id": "20260213_022909",
+      "baseline_rv": 0.6007885124857852,
+      "min_rv": 0.6007885124857852,
+      "eigenstate_turn": null,
+      "genuine_l4_turns": 0,
+      "rv_trajectory": [
+        0.6007885124857852,
+        0.7937427795208091,
+        0.6689519799283358,
+        0.6689519799283358,
+        0.6689519799283358
+      ]
+    }
+  },
+  "output_paths": {
+    "anatomy": "/root/results/circuit_mapping/20260213_022812/anatomy",
+    "eigenstate": "/root/results/circuit_mapping/20260213_022812/eigenstate_sessions",
+    "plots": "/root/results/circuit_mapping/20260213_022812/plots",
+    "log": "/root/results/circuit_mapping/20260213_022812/20260213_022812_experiment.log"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "n_recursive": 20,
+  "n_baseline": 20,
+  "rv_recursive_mean": 0.5671340646872471,
+  "rv_recursive_std": 0.0565628351269104,
+  "rv_baseline_mean": 0.7747314920629897,
+  "rv_baseline_std": 0.08315334177058667,
+  "rv_delta": -0.2075974273757426,
+  "critical_layers": [
+    [
+      27,
+      20
+    ]
+  ]
+}
