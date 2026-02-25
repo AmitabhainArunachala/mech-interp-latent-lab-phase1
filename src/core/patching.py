@@ -11,6 +11,8 @@ from typing import Optional
 
 import torch
 
+from .hf_accessors import extract_v_from_hook_output, get_layers, get_vproj_hookpoint
+
 
 class PersistentVPatcher:
     """
@@ -62,7 +64,7 @@ class PersistentVPatcher:
             raise RuntimeError("Patcher already registered. Call remove() first.")
         
         self.layer_idx = layer_idx
-        layer = self.model.model.layers[layer_idx].self_attn
+        hookpoint = get_vproj_hookpoint(self.model, layer_idx=layer_idx)
         
         def hook_fn(module, inp, out):
             """
@@ -76,34 +78,44 @@ class PersistentVPatcher:
             Returns:
                 Patched output with same shape as out
             """
-            # out shape: (batch, seq_len, hidden_dim)
-            batch, seq_len, hidden_dim = out.shape
-            
-            # Dec 12 breakthrough: patch last 16 tokens (window_size)
-            # This matches the R_V metric window and maintains geometric signature
-            window_size = 16
+            window_size = 16  # matches the R_V metric window
+
+            if hookpoint.kind == "v_proj":
+                # out shape: (batch, seq_len, hidden_dim)
+                batch, seq_len, _hidden_dim = out.shape
+                v_len = min(seq_len, self.v_activation.shape[0], window_size)
+                v_slice = self.v_activation[-v_len:, :]  # (v_len, hidden_dim)
+                patched_v = v_slice.unsqueeze(0)  # (1, v_len, hidden_dim)
+                if batch > 1:
+                    patched_v = patched_v.repeat(batch, 1, 1)
+
+                out_patched = out.clone()
+                out_patched[:, -v_len:, :] = patched_v[:, :v_len, :].to(
+                    out_patched.device, dtype=out_patched.dtype
+                )
+                return out_patched
+
+            # fused QKV output: patch only the V slice
+            if out.dim() != 3:
+                return out
+            d = int(out.shape[-1])
+            if d % 3 != 0:
+                return out
+            h = d // 3
+            batch, seq_len, _ = out.shape
             v_len = min(seq_len, self.v_activation.shape[0], window_size)
-            
-            # Use last window_size tokens from v_activation
-            # v_activation[-window_size:] shape: (window_size, hidden_dim) or less
-            v_slice = self.v_activation[-v_len:, :]  # (v_len, hidden_dim)
-            
-            # Expand to (batch, v_len, hidden_dim)
-            patched_v = v_slice.unsqueeze(0)  # (1, v_len, hidden_dim)
-            
-            # If batch > 1, repeat
+            v_slice = self.v_activation[-v_len:, :]  # (v_len, hidden)
+            patched_v = v_slice.unsqueeze(0)  # (1, v_len, hidden)
             if batch > 1:
                 patched_v = patched_v.repeat(batch, 1, 1)
-            
-            # Replace the last v_len tokens (maintains geometric signature)
+
             out_patched = out.clone()
-            out_patched[:, -v_len:, :] = patched_v[:, :v_len, :].to(
+            out_patched[:, -v_len:, 2 * h : 3 * h] = patched_v[:, :v_len, :].to(
                 out_patched.device, dtype=out_patched.dtype
             )
-            
             return out_patched
         
-        self.handle = layer.v_proj.register_forward_hook(hook_fn)
+        self.handle = hookpoint.module.register_forward_hook(hook_fn)
     
     def remove(self):
         """Remove the forward hook."""
@@ -144,15 +156,18 @@ def extract_v_activation(
     inputs = tokenizer(prompt, return_tensors="pt", add_special_tokens=False).to(device)
     
     v_activation = None
+    hookpoint = get_vproj_hookpoint(model, layer_idx=layer_idx)
     
     def capture_hook(module, inp, out):
         nonlocal v_activation
-        # out shape: (batch, seq_len, hidden_dim)
-        v_activation = out[0].detach()  # Remove batch dimension: (seq_len, hidden_dim)
+        try:
+            v = extract_v_from_hook_output(hookpoint, out)
+            v_activation = v[0].detach()  # Remove batch: (seq_len, hidden_dim)
+        except Exception:
+            v_activation = None
         return out
     
-    layer = model.model.layers[layer_idx].self_attn
-    handle = layer.v_proj.register_forward_hook(capture_hook)
+    handle = hookpoint.module.register_forward_hook(capture_hook)
     
     try:
         with torch.no_grad():
@@ -201,7 +216,7 @@ class PersistentResidualPatcher:
             raise RuntimeError("Patcher already registered. Call remove() first.")
         
         self.layer_idx = layer_idx
-        layer = self.model.model.layers[layer_idx]
+        layer = get_layers(self.model)[layer_idx]
         
         def hook_fn(module, inp):
             """
@@ -289,7 +304,7 @@ def extract_residual_activation(
         residual_activation = inp[0][0].detach()  # Remove batch dimension: (seq_len, hidden_dim)
         return inp
     
-    layer = model.model.layers[layer_idx]
+    layer = get_layers(model)[layer_idx]
     handle = layer.register_forward_pre_hook(capture_hook)
     
     try:
@@ -310,4 +325,3 @@ __all__ = [
     "extract_v_activation",
     "extract_residual_activation",
 ]
-

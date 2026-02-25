@@ -1,0 +1,41 @@
+{
+  "experiment": "rv_l27_activation_patching_bridge",
+  "params": {
+    "baseline_groups": [
+      "long_control",
+      "baseline_creative",
+      "baseline_math"
+    ],
+    "device": "cuda",
+    "do_sample": false,
+    "early_layer": 5,
+    "max_length": 512,
+    "max_new_tokens": 800,
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_pairs": 40,
+    "patch_heads": [
+      2,
+      10,
+      18,
+      26
+    ],
+    "patch_mode": "random_head",
+    "prompt_bank_version": "75e7c1b8dcebc24e",
+    "recursive_groups": [
+      "L5_refined",
+      "L4_full",
+      "L3_deeper"
+    ],
+    "seed": 42,
+    "skip_short_baseline": true,
+    "target_layer": 27,
+    "temperature": 0.0,
+    "top_p": 0.95,
+    "window": 16
+  },
+  "results": {
+    "phase": "phase1_mechanism",
+    "root": "results"
+  },
+  "run_name": "random_head_bridge_control"
+}

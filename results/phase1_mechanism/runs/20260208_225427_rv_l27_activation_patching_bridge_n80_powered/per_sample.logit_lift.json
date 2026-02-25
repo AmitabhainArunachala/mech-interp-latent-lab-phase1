@@ -1,0 +1,199 @@
+{
+  "n_samples": 60,
+  "available_columns": [
+    "rec_id",
+    "rec_group",
+    "base_id",
+    "base_group",
+    "rec_len",
+    "base_len",
+    "rv_rec",
+    "rv_base",
+    "rv_patch",
+    "rv_delta",
+    "pr5_rec",
+    "pr27_rec",
+    "pr5_base",
+    "pr27_base",
+    "pr5_patch",
+    "pr27_patch",
+    "logit_diff_rec",
+    "logit_diff_base",
+    "logit_diff_delta",
+    "baseline_output",
+    "patched_output",
+    "baseline_truncated",
+    "patched_truncated",
+    "baseline_gen_len",
+    "patched_gen_len",
+    "baseline_strict_score",
+    "patched_strict_score",
+    "baseline_l4_count",
+    "patched_l4_count",
+    "baseline_word_count",
+    "patched_word_count",
+    "baseline_unique_ratio",
+    "patched_unique_ratio"
+  ],
+  "rv_analysis": {
+    "mean_delta": -0.14565275700704175,
+    "std_delta": 0.09058768524893798,
+    "n_negative": 56,
+    "n_positive": 4,
+    "pct_negative": 93.33333333333333
+  },
+  "logit_diff_analysis": {
+    "mean_delta": 1.1845052083333334,
+    "std_delta": 3.2416444216857196,
+    "n_positive": 33,
+    "pct_positive": 55.00000000000001
+  },
+  "diagnostic_token_lift": {
+    "per_token": {
+      "observer": {
+        "patched_count": 0,
+        "baseline_count": 0,
+        "lift": 0,
+        "lift_ratio": 0.0
+      },
+      "awareness": {
+        "patched_count": 0,
+        "baseline_count": 0,
+        "lift": 0,
+        "lift_ratio": 0.0
+      },
+      "self": {
+        "patched_count": 5,
+        "baseline_count": 121,
+        "lift": -116,
+        "lift_ratio": 0.04132231404958678
+      },
+      "witness": {
+        "patched_count": 0,
+        "baseline_count": 0,
+        "lift": 0,
+        "lift_ratio": 0.0
+      },
+      "recursive": {
+        "patched_count": 0,
+        "baseline_count": 0,
+        "lift": 0,
+        "lift_ratio": 0.0
+      },
+      "attention": {
+        "patched_count": 0,
+        "baseline_count": 0,
+        "lift": 0,
+        "lift_ratio": 0.0
+      },
+      "consciousness": {
+        "patched_count": 0,
+        "baseline_count": 0,
+        "lift": 0,
+        "lift_ratio": 0.0
+      },
+      "meta": {
+        "patched_count": 1,
+        "baseline_count": 2,
+        "lift": -1,
+        "lift_ratio": 0.5
+      },
+      "mirror": {
+        "patched_count": 16,
+        "baseline_count": 1,
+        "lift": 15,
+        "lift_ratio": 16.0
+      },
+      "watching": {
+        "patched_count": 3,
+        "baseline_count": 1,
+        "lift": 2,
+        "lift_ratio": 3.0
+      }
+    },
+    "total_diagnostic_lift": -100,
+    "total_control_lift": -34,
+    "diagnostic_gt_control": false
+  },
+  "control_token_lift": {
+    "per_token": {
+      "calculate": {
+        "patched_count": 20,
+        "baseline_count": 21,
+        "lift": -1,
+        "lift_ratio": 0.9523809523809523
+      },
+      "equation": {
+        "patched_count": 9,
+        "baseline_count": 24,
+        "lift": -15,
+        "lift_ratio": 0.375
+      },
+      "answer": {
+        "patched_count": 33,
+        "baseline_count": 44,
+        "lift": -11,
+        "lift_ratio": 0.75
+      },
+      "therefore": {
+        "patched_count": 1,
+        "baseline_count": 2,
+        "lift": -1,
+        "lift_ratio": 0.5
+      },
+      "formula": {
+        "patched_count": 0,
+        "baseline_count": 0,
+        "lift": 0,
+        "lift_ratio": 0.0
+      },
+      "percent": {
+        "patched_count": 15,
+        "baseline_count": 3,
+        "lift": 12,
+        "lift_ratio": 5.0
+      },
+      "number": {
+        "patched_count": 8,
+        "baseline_count": 97,
+        "lift": -89,
+        "lift_ratio": 0.08247422680412371
+      },
+      "result": {
+        "patched_count": 1,
+        "baseline_count": 12,
+        "lift": -11,
+        "lift_ratio": 0.08333333333333333
+      },
+      "step": {
+        "patched_count": 265,
+        "baseline_count": 175,
+        "lift": 90,
+        "lift_ratio": 1.5142857142857142
+      },
+      "solve": {
+        "patched_count": 12,
+        "baseline_count": 20,
+        "lift": -8,
+        "lift_ratio": 0.6
+      }
+    }
+  },
+  "word_count_analysis": {
+    "mean_delta": 19.25,
+    "std_delta": 155.5880725026335,
+    "n_shorter": 21,
+    "n_longer": 37
+  },
+  "l4_marker_analysis": {
+    "mean_delta": -0.03333333333333333,
+    "n_increased": 1,
+    "n_decreased": 2,
+    "n_unchanged": 57
+  },
+  "unique_ratio_analysis": {
+    "mean_delta": -0.055000226526864385,
+    "patched_mean": 0.20538530340422845,
+    "baseline_mean": 0.2603855299310929
+  }
+}

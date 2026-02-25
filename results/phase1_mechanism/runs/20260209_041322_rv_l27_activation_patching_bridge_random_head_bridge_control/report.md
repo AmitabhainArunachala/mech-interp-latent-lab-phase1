@@ -1,0 +1,71 @@
+# Run report: rv_l27_activation_patching_bridge
+
+- **run_dir**: `results/phase1_mechanism/runs/20260209_041322_rv_l27_activation_patching_bridge_random_head_bridge_control`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "config": "results/phase1_mechanism/runs/20260209_041322_rv_l27_activation_patching_bridge_random_head_bridge_control/config.json",
+    "per_sample_csv": "results/phase1_mechanism/runs/20260209_041322_rv_l27_activation_patching_bridge_random_head_bridge_control/per_sample.csv",
+    "report": "results/phase1_mechanism/runs/20260209_041322_rv_l27_activation_patching_bridge_random_head_bridge_control/report.md",
+    "summary": "results/phase1_mechanism/runs/20260209_041322_rv_l27_activation_patching_bridge_random_head_bridge_control/summary.json"
+  },
+  "baseline_groups": [
+    "long_control",
+    "baseline_creative",
+    "baseline_math"
+  ],
+  "behavior_l4_count_delta_mean": -0.025,
+  "behavior_strict_delta_mean": 0.0125,
+  "behavior_strict_p_value": 0.7265000295013133,
+  "behavior_word_count_delta_mean": -6.425,
+  "device": "cuda",
+  "do_sample": false,
+  "donor_type": "recursive",
+  "early_layer": 5,
+  "experiment": "rv_l27_activation_patching_bridge",
+  "head_space": "kv",
+  "logit_diff_cohens_d": 0.3962257846348598,
+  "logit_diff_delta_mean": 1.265234375,
+  "logit_diff_p_value": 0.016493969171897466,
+  "max_length": 512,
+  "max_new_tokens": 800,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 40,
+  "n_skipped_short_baseline": 0,
+  "n_truncated_baseline": 27,
+  "n_truncated_patched": 26,
+  "patch_heads_requested": [
+    2
+  ],
+  "patch_kv_heads_effective": [
+    2
+  ],
+  "patch_mode": "random_head",
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "recursive_groups": [
+    "L5_refined",
+    "L4_full",
+    "L3_deeper"
+  ],
+  "rv_baseline_mean": 0.6817947069296979,
+  "rv_cohens_d": 0.5031598704802421,
+  "rv_delta_mean": 0.011257600205766664,
+  "rv_p_value": 0.002866706880470399,
+  "rv_patched_mean": 0.6930523071354646,
+  "rv_recursive_mean": 0.5053887524206638,
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "target_layer": 27,
+  "temperature": 0.0,
+  "timestamp": "20260209_042732",
+  "top_p": 0.95,
+  "v_head_dim": 128,
+  "v_num_heads": 8,
+  "version": "v4_gqa_headspace",
+  "window": 16
+}
+```

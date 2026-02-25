@@ -1,0 +1,20 @@
+{
+  "experiment": "c2_rv_measurement",
+  "run_name": "kitchen_sink_behavioral_transfer",
+  "description": "Full C2 config + ablations with R_V tracking. Kitchen sink: max behavioral signal.",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_prompts": 15,
+    "n_recursive": 20,
+    "max_new_tokens": 200,
+    "temperature": 0.7,
+    "early_layer": 5,
+    "late_layer": 27,
+    "rv_window": 16,
+    "seed": 42
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  }
+}

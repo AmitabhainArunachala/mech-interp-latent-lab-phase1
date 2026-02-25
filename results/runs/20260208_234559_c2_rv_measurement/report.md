@@ -1,0 +1,57 @@
+# Run report: c2_rv_measurement
+
+- **run_dir**: `results/runs/20260208_234559_c2_rv_measurement`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "config": "results/runs/20260208_234559_c2_rv_measurement/config.json",
+    "csv": "results/runs/20260208_234559_c2_rv_measurement/c2_rv_measurement.csv",
+    "outputs_dir": "results/runs/20260208_234559_c2_rv_measurement/outputs",
+    "report": "results/runs/20260208_234559_c2_rv_measurement/report.md",
+    "summary": "results/runs/20260208_234559_c2_rv_measurement/summary.json"
+  },
+  "by_config": {
+    "baseline": {
+      "coherence": 0.8699999999999999,
+      "crystallization_layer_mean": 24.9,
+      "logit_diff_mean": -4.67724609375,
+      "logit_diff_std": 4.680538144756853,
+      "mode_score_m_mean": null,
+      "n_prompts": 20,
+      "philosophical_pct": 0.0,
+      "rv_ci_95_high": 0.7457477415567701,
+      "rv_ci_95_low": 0.6547000741969566,
+      "rv_mean": 0.7002239078768634,
+      "rv_min": 0.5468345757405452,
+      "rv_std": 0.09445081099273003,
+      "task_pct": 45.0
+    },
+    "no_steering": {
+      "coherence": 0.8100000000000002,
+      "crystallization_layer_mean": 22.0,
+      "logit_diff_mean": -5.09208984375,
+      "logit_diff_std": 3.956660805359313,
+      "mode_score_m_mean": null,
+      "n_prompts": 20,
+      "philosophical_pct": 10.0,
+      "rv_ci_95_high": 0.5464381399130401,
+      "rv_ci_95_low": 0.48401400648518755,
+      "rv_mean": 0.5152260731991138,
+      "rv_min": 0.3963387920079383,
+      "rv_std": 0.0666903973163631,
+      "task_pct": 30.0
+    }
+  },
+  "experiment": "c2_rv_measurement",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_prompts": 20,
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "schema_version": "metrics_summary_v1",
+  "statistics": {},
+  "timestamp": "20260208_234739"
+}
+```

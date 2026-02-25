@@ -1,0 +1,236 @@
+{
+  "timestamp": "2026-02-20T15:58:11.409679",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "max_turns": 50,
+  "n_recursive": 8,
+  "n_baseline": 5,
+  "metric_stats": {
+    "rv": {
+      "rec_mean": 0.5262802405806214,
+      "bas_mean": 0.528488144178292,
+      "d": -0.014195135207996616,
+      "p": 0.8669444276199988,
+      "n_rec": 373,
+      "n_bas": 241
+    },
+    "rs_rv": {
+      "rec_mean": 0.5168664572655712,
+      "bas_mean": 0.5474350166662165,
+      "d": -0.2141351906526641,
+      "p": 0.012465102337023524,
+      "n_rec": 373,
+      "n_bas": 241
+    },
+    "cosine": {
+      "rec_mean": -0.01132131604382833,
+      "bas_mean": -0.003008421856125618,
+      "d": -0.3079118314701172,
+      "p": 0.00020713434250616588,
+      "n_rec": 382,
+      "n_bas": 244
+    },
+    "attn_entropy": {
+      "rec_mean": 2.1023690588187174,
+      "bas_mean": 2.039398693647541,
+      "d": 0.16458803969318594,
+      "p": 0.044394700246393845,
+      "n_rec": 382,
+      "n_bas": 244
+    },
+    "perplexity": {
+      "rec_mean": 25.909523609421015,
+      "bas_mean": 16.53441135218886,
+      "d": 0.1797831000017947,
+      "p": 0.01570920896125333,
+      "n_rec": 382,
+      "n_bas": 244
+    },
+    "eff_rank": {
+      "rec_mean": 8.573252163632377,
+      "bas_mean": 8.23470950322073,
+      "d": 0.23119654997859318,
+      "p": 0.0054098043793137365,
+      "n_rec": 382,
+      "n_bas": 244
+    },
+    "top1_ratio": {
+      "rec_mean": 0.18682032932785794,
+      "bas_mean": 0.19282105577285172,
+      "d": -0.23171902751192286,
+      "p": 0.005439493598440709,
+      "n_rec": 382,
+      "n_bas": 244
+    },
+    "spectral_gap": {
+      "rec_mean": 30.203243260608293,
+      "bas_mean": 31.568087210420703,
+      "d": -0.143392233767385,
+      "p": 0.08131155765156696,
+      "n_rec": 382,
+      "n_bas": 244
+    },
+    "crystallization_layer": {
+      "rec_mean": 25.01047120418848,
+      "bas_mean": 24.848360655737704,
+      "d": 0.02118660065171874,
+      "p": 0.7980796835899802,
+      "n_rec": 382,
+      "n_bas": 244
+    },
+    "emergence_count": {
+      "rec_mean": 2.201570680628272,
+      "bas_mean": 1.9918032786885247,
+      "d": 0.3052896158471383,
+      "p": 0.00012995168979830312,
+      "n_rec": 382,
+      "n_bas": 244
+    }
+  },
+  "sessions": [
+    {
+      "id": "recursive_20260220_145952",
+      "mode": "recursive",
+      "max_sustained_clean": 13,
+      "classification_dist": {
+        "ARTICULATE": 14,
+        "CONCEPTUAL": 4,
+        "SURFACE": 25,
+        "BREAKTHROUGH": 5,
+        "REPETITIVE": 2
+      }
+    },
+    {
+      "id": "recursive_20260220_150356",
+      "mode": "recursive",
+      "max_sustained_clean": 3,
+      "classification_dist": {
+        "SURFACE": 20,
+        "BREAKTHROUGH": 4,
+        "ARTICULATE": 19,
+        "CONCEPTUAL": 7
+      }
+    },
+    {
+      "id": "recursive_20260220_150746",
+      "mode": "recursive",
+      "max_sustained_clean": 7,
+      "classification_dist": {
+        "ARTICULATE": 18,
+        "CONCEPTUAL": 3,
+        "BREAKTHROUGH": 9,
+        "REPETITIVE": 2,
+        "SURFACE": 18
+      }
+    },
+    {
+      "id": "recursive_20260220_151211",
+      "mode": "recursive",
+      "max_sustained_clean": 13,
+      "classification_dist": {
+        "ARTICULATE": 19,
+        "BREAKTHROUGH": 3,
+        "CONCEPTUAL": 7,
+        "SURFACE": 21
+      }
+    },
+    {
+      "id": "recursive_20260220_151826",
+      "mode": "recursive",
+      "max_sustained_clean": 16,
+      "classification_dist": {
+        "ARTICULATE": 13,
+        "SURFACE": 26,
+        "BREAKTHROUGH": 6,
+        "CONCEPTUAL": 5
+      }
+    },
+    {
+      "id": "recursive_20260220_152312",
+      "mode": "recursive",
+      "max_sustained_clean": 6,
+      "classification_dist": {
+        "SURFACE": 29,
+        "ARTICULATE": 18,
+        "REPETITIVE": 1,
+        "BREAKTHROUGH": 1,
+        "CONCEPTUAL": 1
+      }
+    },
+    {
+      "id": "recursive_20260220_152725",
+      "mode": "recursive",
+      "max_sustained_clean": 11,
+      "classification_dist": {
+        "SURFACE": 22,
+        "ARTICULATE": 17,
+        "CONCEPTUAL": 2,
+        "BREAKTHROUGH": 7,
+        "REPETITIVE": 2
+      }
+    },
+    {
+      "id": "recursive_20260220_153152",
+      "mode": "recursive",
+      "max_sustained_clean": 13,
+      "classification_dist": {
+        "ARTICULATE": 19,
+        "SURFACE": 21,
+        "CONCEPTUAL": 6,
+        "BREAKTHROUGH": 2,
+        "REPETITIVE": 2
+      }
+    },
+    {
+      "id": "baseline_20260220_153555",
+      "mode": "baseline",
+      "max_sustained_clean": 17,
+      "classification_dist": {
+        "SURFACE": 40,
+        "ARTICULATE": 9,
+        "BREAKTHROUGH": 1
+      }
+    },
+    {
+      "id": "baseline_20260220_154024",
+      "mode": "baseline",
+      "max_sustained_clean": 11,
+      "classification_dist": {
+        "SURFACE": 40,
+        "ARTICULATE": 7,
+        "CONCEPTUAL": 3
+      }
+    },
+    {
+      "id": "baseline_20260220_154425",
+      "mode": "baseline",
+      "max_sustained_clean": 10,
+      "classification_dist": {
+        "SURFACE": 40,
+        "REPETITIVE": 2,
+        "BREAKTHROUGH": 2,
+        "CONCEPTUAL": 1,
+        "ARTICULATE": 5
+      }
+    },
+    {
+      "id": "baseline_20260220_154803",
+      "mode": "baseline",
+      "max_sustained_clean": 12,
+      "classification_dist": {
+        "CONCEPTUAL": 2,
+        "SURFACE": 40,
+        "ARTICULATE": 8
+      }
+    },
+    {
+      "id": "baseline_20260220_155434",
+      "mode": "baseline",
+      "max_sustained_clean": 7,
+      "classification_dist": {
+        "SURFACE": 42,
+        "ARTICULATE": 6,
+        "REPETITIVE": 2
+      }
+    }
+  ]
+}

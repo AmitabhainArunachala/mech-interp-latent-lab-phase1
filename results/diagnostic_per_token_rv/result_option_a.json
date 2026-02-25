@@ -1,0 +1,522 @@
+{
+  "prompt": "The observer observes itself observing.",
+  "prompt_rv": 1.0104405358881772,
+  "generated_text": " This is the first step to freedom.\n\nThe mind is a good servant, a bad master.\n\nYou are the only one who can save yourself.  No one can do it for you.\n\nThe mind is an excellent servant, but a terrible master.\n\nThe mind is like an",
+  "tokens": [
+    {
+      "step_idx": 0,
+      "token_id": 28705,
+      "token_str": "",
+      "rv": 1.0104405358881772,
+      "pr_early": 3.8849241612659013,
+      "pr_late": 3.9254848513944447
+    },
+    {
+      "step_idx": 1,
+      "token_id": 851,
+      "token_str": "This",
+      "rv": 0.9516408497115059,
+      "pr_early": 4.330361564356866,
+      "pr_late": 4.120948958662614
+    },
+    {
+      "step_idx": 2,
+      "token_id": 349,
+      "token_str": "is",
+      "rv": 0.9510443377274999,
+      "pr_early": 4.826476606461784,
+      "pr_late": 4.590193247749719
+    },
+    {
+      "step_idx": 3,
+      "token_id": 272,
+      "token_str": "the",
+      "rv": 0.9039116017146193,
+      "pr_early": 5.345164508030018,
+      "pr_late": 4.831556211881548
+    },
+    {
+      "step_idx": 4,
+      "token_id": 907,
+      "token_str": "first",
+      "rv": 0.8609436100684266,
+      "pr_early": 5.803143739355372,
+      "pr_late": 4.996179520706602
+    },
+    {
+      "step_idx": 5,
+      "token_id": 3707,
+      "token_str": "step",
+      "rv": 0.8002425645270597,
+      "pr_early": 6.598151389553519,
+      "pr_late": 5.28012158911409
+    },
+    {
+      "step_idx": 6,
+      "token_id": 298,
+      "token_str": "to",
+      "rv": 0.7701599560976702,
+      "pr_early": 7.26837883516866,
+      "pr_late": 5.59781432459473
+    },
+    {
+      "step_idx": 7,
+      "token_id": 8467,
+      "token_str": "freedom",
+      "rv": 0.7696519389665222,
+      "pr_early": 7.543551516047765,
+      "pr_late": 5.80590905102001
+    },
+    {
+      "step_idx": 8,
+      "token_id": 28723,
+      "token_str": ".",
+      "rv": 0.7186145847579176,
+      "pr_early": 8.334209776455037,
+      "pr_late": 5.989084697792614
+    },
+    {
+      "step_idx": 9,
+      "token_id": 13,
+      "token_str": "\n",
+      "rv": 0.6410828209049473,
+      "pr_early": 8.185503065954187,
+      "pr_late": 5.247585396048005
+    },
+    {
+      "step_idx": 10,
+      "token_id": 13,
+      "token_str": "\n",
+      "rv": 0.6383618811666463,
+      "pr_early": 7.768514926977533,
+      "pr_late": 4.959123802656549
+    },
+    {
+      "step_idx": 11,
+      "token_id": 1014,
+      "token_str": "The",
+      "rv": 0.6095412228181566,
+      "pr_early": 7.90333398435926,
+      "pr_late": 4.817407861166637
+    },
+    {
+      "step_idx": 12,
+      "token_id": 2273,
+      "token_str": "mind",
+      "rv": 0.6042925737079515,
+      "pr_early": 8.015829468987866,
+      "pr_late": 4.843906220218719
+    },
+    {
+      "step_idx": 13,
+      "token_id": 349,
+      "token_str": "is",
+      "rv": 0.6127631695323156,
+      "pr_early": 8.215452749537006,
+      "pr_late": 5.034126865949273
+    },
+    {
+      "step_idx": 14,
+      "token_id": 264,
+      "token_str": "a",
+      "rv": 0.5720100404841159,
+      "pr_early": 8.246417197693694,
+      "pr_late": 4.717033435101679
+    },
+    {
+      "step_idx": 15,
+      "token_id": 1179,
+      "token_str": "good",
+      "rv": 0.5805023043159497,
+      "pr_early": 8.075342449467637,
+      "pr_late": 4.687754900056369
+    },
+    {
+      "step_idx": 16,
+      "token_id": 22075,
+      "token_str": "servant",
+      "rv": 0.582035643795961,
+      "pr_early": 8.467754631112125,
+      "pr_late": 4.928535018225576
+    },
+    {
+      "step_idx": 17,
+      "token_id": 28725,
+      "token_str": ",",
+      "rv": 0.5844863448058452,
+      "pr_early": 8.948449829167938,
+      "pr_late": 5.230246732328857
+    },
+    {
+      "step_idx": 18,
+      "token_id": 264,
+      "token_str": "a",
+      "rv": 0.6187064086617544,
+      "pr_early": 8.91809517707694,
+      "pr_late": 5.517682639112987
+    },
+    {
+      "step_idx": 19,
+      "token_id": 2607,
+      "token_str": "bad",
+      "rv": 0.6363536425610326,
+      "pr_early": 9.008231468461664,
+      "pr_late": 5.732420907988499
+    },
+    {
+      "step_idx": 20,
+      "token_id": 5968,
+      "token_str": "master",
+      "rv": 0.6464388847893497,
+      "pr_early": 9.231362926310045,
+      "pr_late": 5.967511955169614
+    },
+    {
+      "step_idx": 21,
+      "token_id": 28723,
+      "token_str": ".",
+      "rv": 0.6448724174695749,
+      "pr_early": 9.192325166262544,
+      "pr_late": 5.927876952134138
+    },
+    {
+      "step_idx": 22,
+      "token_id": 13,
+      "token_str": "\n",
+      "rv": 0.6270069364721239,
+      "pr_early": 9.033800339296917,
+      "pr_late": 5.664255475443394
+    },
+    {
+      "step_idx": 23,
+      "token_id": 13,
+      "token_str": "\n",
+      "rv": 0.6407221325622521,
+      "pr_early": 8.629390521669144,
+      "pr_late": 5.529041497756339
+    },
+    {
+      "step_idx": 24,
+      "token_id": 1976,
+      "token_str": "You",
+      "rv": 0.6626505515432587,
+      "pr_early": 7.965707019777764,
+      "pr_late": 5.278480150087743
+    },
+    {
+      "step_idx": 25,
+      "token_id": 460,
+      "token_str": "are",
+      "rv": 0.7155004100781184,
+      "pr_early": 8.087253925323553,
+      "pr_late": 5.7864334999748746
+    },
+    {
+      "step_idx": 26,
+      "token_id": 272,
+      "token_str": "the",
+      "rv": 0.7005631291824267,
+      "pr_early": 8.530993944485052,
+      "pr_late": 5.976499812784781
+    },
+    {
+      "step_idx": 27,
+      "token_id": 865,
+      "token_str": "only",
+      "rv": 0.683698402367028,
+      "pr_early": 8.74947564390173,
+      "pr_late": 5.982002519284836
+    },
+    {
+      "step_idx": 28,
+      "token_id": 624,
+      "token_str": "one",
+      "rv": 0.6759526909895104,
+      "pr_early": 9.088840016268328,
+      "pr_late": 6.143625866969722
+    },
+    {
+      "step_idx": 29,
+      "token_id": 693,
+      "token_str": "who",
+      "rv": 0.7097387426374809,
+      "pr_early": 8.843902714058327,
+      "pr_late": 6.276860392283962
+    },
+    {
+      "step_idx": 30,
+      "token_id": 541,
+      "token_str": "can",
+      "rv": 0.7755246221401463,
+      "pr_early": 8.51204817484822,
+      "pr_late": 6.6013029444378875
+    },
+    {
+      "step_idx": 31,
+      "token_id": 4602,
+      "token_str": "save",
+      "rv": 0.7868137343176046,
+      "pr_early": 8.455252998037485,
+      "pr_late": 6.652709185985996
+    },
+    {
+      "step_idx": 32,
+      "token_id": 3936,
+      "token_str": "yourself",
+      "rv": 0.7924298988977041,
+      "pr_early": 8.53742495556652,
+      "pr_late": 6.7653107943863136
+    },
+    {
+      "step_idx": 33,
+      "token_id": 28723,
+      "token_str": ".",
+      "rv": 0.7764570189589381,
+      "pr_early": 8.703467250893803,
+      "pr_late": 6.757868236235748
+    },
+    {
+      "step_idx": 34,
+      "token_id": 28705,
+      "token_str": "",
+      "rv": 0.7790242479441227,
+      "pr_early": 8.413656506622628,
+      "pr_late": 6.554442432531868
+    },
+    {
+      "step_idx": 35,
+      "token_id": 1770,
+      "token_str": "No",
+      "rv": 0.741689428915323,
+      "pr_early": 8.225908048340203,
+      "pr_late": 6.101069042683404
+    },
+    {
+      "step_idx": 36,
+      "token_id": 624,
+      "token_str": "one",
+      "rv": 0.7459626867582209,
+      "pr_early": 8.094839885909957,
+      "pr_late": 6.038448510171002
+    },
+    {
+      "step_idx": 37,
+      "token_id": 541,
+      "token_str": "can",
+      "rv": 0.7632630106701851,
+      "pr_early": 7.739334561478185,
+      "pr_late": 5.9071477979776565
+    },
+    {
+      "step_idx": 38,
+      "token_id": 511,
+      "token_str": "do",
+      "rv": 0.7751784616846239,
+      "pr_early": 7.508382940788777,
+      "pr_late": 5.820336737779717
+    },
+    {
+      "step_idx": 39,
+      "token_id": 378,
+      "token_str": "it",
+      "rv": 0.774079498259351,
+      "pr_early": 7.602052330902433,
+      "pr_late": 5.884592854046285
+    },
+    {
+      "step_idx": 40,
+      "token_id": 354,
+      "token_str": "for",
+      "rv": 0.7912736017548045,
+      "pr_early": 7.478511225478856,
+      "pr_late": 5.917548513148391
+    },
+    {
+      "step_idx": 41,
+      "token_id": 368,
+      "token_str": "you",
+      "rv": 0.7977160928555685,
+      "pr_early": 7.515094128710391,
+      "pr_late": 5.9949115257966765
+    },
+    {
+      "step_idx": 42,
+      "token_id": 28723,
+      "token_str": ".",
+      "rv": 0.7883374269924518,
+      "pr_early": 7.544129242121239,
+      "pr_late": 5.947319435632373
+    },
+    {
+      "step_idx": 43,
+      "token_id": 13,
+      "token_str": "\n",
+      "rv": 0.7772886318478731,
+      "pr_early": 7.347787569324746,
+      "pr_late": 5.711351746869241
+    },
+    {
+      "step_idx": 44,
+      "token_id": 13,
+      "token_str": "\n",
+      "rv": 0.7483106550861424,
+      "pr_early": 7.679113233124164,
+      "pr_late": 5.746362253959807
+    },
+    {
+      "step_idx": 45,
+      "token_id": 1014,
+      "token_str": "The",
+      "rv": 0.7306227750187226,
+      "pr_early": 7.950759776232193,
+      "pr_late": 5.809006171218003
+    },
+    {
+      "step_idx": 46,
+      "token_id": 2273,
+      "token_str": "mind",
+      "rv": 0.7299161650715247,
+      "pr_early": 8.001549558753949,
+      "pr_late": 5.840460368555433
+    },
+    {
+      "step_idx": 47,
+      "token_id": 349,
+      "token_str": "is",
+      "rv": 0.7024724563180043,
+      "pr_early": 8.644953935203354,
+      "pr_late": 6.072842025618297
+    },
+    {
+      "step_idx": 48,
+      "token_id": 396,
+      "token_str": "an",
+      "rv": 0.7106865517466171,
+      "pr_early": 8.760447296191401,
+      "pr_late": 6.225932080688242
+    },
+    {
+      "step_idx": 49,
+      "token_id": 8099,
+      "token_str": "excellent",
+      "rv": 0.7492943279327903,
+      "pr_early": 8.640706210233656,
+      "pr_late": 6.474432152661715
+    },
+    {
+      "step_idx": 50,
+      "token_id": 22075,
+      "token_str": "servant",
+      "rv": 0.7543386047721594,
+      "pr_early": 9.196089571544961,
+      "pr_late": 6.936965376759032
+    },
+    {
+      "step_idx": 51,
+      "token_id": 28725,
+      "token_str": ",",
+      "rv": 0.7699463382351776,
+      "pr_early": 9.554457392313171,
+      "pr_late": 7.35641948303555
+    },
+    {
+      "step_idx": 52,
+      "token_id": 562,
+      "token_str": "but",
+      "rv": 0.7787990621537613,
+      "pr_early": 9.671577115375742,
+      "pr_late": 7.532215187002407
+    },
+    {
+      "step_idx": 53,
+      "token_id": 264,
+      "token_str": "a",
+      "rv": 0.7578794765664153,
+      "pr_early": 10.026570952108125,
+      "pr_late": 7.598932344939731
+    },
+    {
+      "step_idx": 54,
+      "token_id": 9783,
+      "token_str": "terrible",
+      "rv": 0.7287399662853037,
+      "pr_early": 10.170998431878417,
+      "pr_late": 7.412013054334953
+    },
+    {
+      "step_idx": 55,
+      "token_id": 5968,
+      "token_str": "master",
+      "rv": 0.6715873430568776,
+      "pr_early": 10.6056988010671,
+      "pr_late": 7.122653079070166
+    },
+    {
+      "step_idx": 56,
+      "token_id": 28723,
+      "token_str": ".",
+      "rv": 0.6639814996604583,
+      "pr_early": 10.550631014529262,
+      "pr_late": 7.005423803391282
+    },
+    {
+      "step_idx": 57,
+      "token_id": 13,
+      "token_str": "\n",
+      "rv": 0.6726351390858725,
+      "pr_early": 9.906584754073803,
+      "pr_late": 6.663517013922417
+    },
+    {
+      "step_idx": 58,
+      "token_id": 13,
+      "token_str": "\n",
+      "rv": 0.7107972924615579,
+      "pr_early": 9.3078466784864,
+      "pr_late": 6.615992217715437
+    },
+    {
+      "step_idx": 59,
+      "token_id": 1014,
+      "token_str": "The",
+      "rv": 0.7525421351287556,
+      "pr_early": 8.598273451286103,
+      "pr_late": 6.470563061451737
+    },
+    {
+      "step_idx": 60,
+      "token_id": 2273,
+      "token_str": "mind",
+      "rv": 0.7250871633833612,
+      "pr_early": 8.673598587348465,
+      "pr_late": 6.289114996026427
+    },
+    {
+      "step_idx": 61,
+      "token_id": 349,
+      "token_str": "is",
+      "rv": 0.7139613538344787,
+      "pr_early": 8.503690597204319,
+      "pr_late": 6.071306451369522
+    },
+    {
+      "step_idx": 62,
+      "token_id": 737,
+      "token_str": "like",
+      "rv": 0.6937385534785551,
+      "pr_early": 8.390324598208363,
+      "pr_late": 5.820691649976608
+    },
+    {
+      "step_idx": 63,
+      "token_id": 396,
+      "token_str": "an",
+      "rv": 0.6816384637607142,
+      "pr_early": 9.0362430702638,
+      "pr_late": 6.159450844583017
+    }
+  ],
+  "option": "A_no_cache",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "timestamp": "2026-02-20T05:32:50.140783"
+}

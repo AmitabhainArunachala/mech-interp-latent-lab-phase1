@@ -1,0 +1,28 @@
+{
+  "contrast": "head_specific_vs_random_head_control",
+  "seeds": {
+    "seed_42": {
+      "n_overlap": 60,
+      "head_mean": -0.026541220724854177,
+      "random_mean": 0.01202471622022357,
+      "mean_diff_head_minus_random": -0.03856593694507774,
+      "paired_t": -6.514276942955044,
+      "paired_p": 1.7864432149300508e-08,
+      "cohens_d": -0.8409895370882615
+    },
+    "seed_123": {
+      "n_overlap": 60,
+      "head_mean": -0.026557822022045152,
+      "random_mean": 0.012510149452458881,
+      "mean_diff_head_minus_random": -0.039067971474504026,
+      "paired_t": -5.92143500115753,
+      "paired_p": 1.7454667780887245e-07,
+      "cohens_d": -0.7644539715044271
+    }
+  },
+  "comparison": {
+    "seed42_vs_seed123_gap_diff": 0.000502034529426286,
+    "same_direction": true,
+    "both_significant_p_lt_0_01": true
+  }
+}

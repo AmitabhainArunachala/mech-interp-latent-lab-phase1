@@ -415,6 +415,8 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
         "n_total_prompts": len(all_prompts),
         # Top-level fields for validator compatibility
         "n_pairs": len(all_prompts),
+        "rv_cohens_d": primary_analysis.get("h2_cohens_d"),
+        "rv_p_value": primary_analysis.get("h2_p_value"),
         "cohens_d": primary_analysis.get("h2_cohens_d"),
         "p_value": primary_analysis.get("h2_p_value"),
         "rv_recursive_mean": rv_recursive_mean,

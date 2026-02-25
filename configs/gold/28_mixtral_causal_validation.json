@@ -1,19 +1,30 @@
 {
-  "experiment": "rv_causal_validation",
-  "description": "R_V causal validation for Mixtral 8x7B (24.3% effect, PRIORITY 1)",
+  "experiment": "rv_l27_causal_validation",
+  "description": "R_V causal validation for Mixtral 8x7B (24.3% effect, priority 1)",
+  "model": {
+    "name": "mistralai/Mixtral-8x7B-v0.1",
+    "device": "auto"
+  },
+  "seed": 42,
   "params": {
-    "model": "mistralai/Mixtral-8x7B-v0.1",
     "target_layer": 27,
     "early_layer": 5,
     "wrong_layer": 21,
-    "window_size": 16,
-    "n_pairs": 50,
-    "controls": ["random", "shuffled", "wrong_layer", "orthogonal"],
-    "device": "auto",
-    "dtype": "auto",
-    "seed": 42,
+    "window": 16,
+    "max_pairs": 50,
     "max_length": 512,
-    "save_results": true
+    "pairing": {
+      "recursive_groups": [
+        "L5_refined",
+        "L4_full",
+        "L3_deeper"
+      ],
+      "baseline_groups": [
+        "long_control",
+        "baseline_creative",
+        "baseline_math"
+      ]
+    }
   },
   "results": {
     "root": "results",

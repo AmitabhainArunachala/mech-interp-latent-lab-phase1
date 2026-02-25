@@ -1,0 +1,23 @@
+Runtime snapshot (remote GPU pod)
+Date: 2026-02-20
+Host: 38.80.152.248:33595
+
+GPU:
+NVIDIA RTX 6000 Ada Generation, 570.211.01, 49140 MiB
+
+Python tooling:
+Python 3.11.10
+pip 24.2 from /usr/local/lib/python3.11/dist-packages/pip (python 3.11)
+
+Pinned package subset:
+accelerate==1.12.0
+numpy==2.4.2
+pandas==3.0.1
+protobuf==6.33.5
+safetensors==0.7.0
+scipy==1.17.0
+sentencepiece==0.2.1
+tokenizers==0.15.2
+torch==2.4.1+cu124
+tqdm==4.67.3
+transformers==4.36.2

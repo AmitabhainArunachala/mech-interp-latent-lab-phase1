@@ -1,0 +1,104 @@
+{
+  "date": "2026-02-20",
+  "all_pass": true,
+  "required_common": [
+    "config.json",
+    "summary.json",
+    "report.md",
+    "prompt_bank_version.json",
+    "metadata.json",
+    "hardware_info.json"
+  ],
+  "required_summary_keys": [
+    "n_pairs",
+    "rv_delta_mean",
+    "rv_cohens_d",
+    "rv_p_value"
+  ],
+  "runs": {
+    "bridge_head_specific_fast": {
+      "path": "/Users/dhyana/mech-interp-latent-lab-phase1/results/remote_gpu_sync/2026-02-20/phase1_mechanism/20260220_062713_rv_l27_activation_patching_bridge_head_specific_bridge_fast",
+      "exists": true,
+      "files": {
+        "config.json": true,
+        "summary.json": true,
+        "report.md": true,
+        "prompt_bank_version.json": true,
+        "metadata.json": true,
+        "hardware_info.json": true,
+        "sample_level_artifact": true
+      },
+      "summary_keys": {
+        "n_pairs": true,
+        "rv_delta_mean": true,
+        "rv_cohens_d": true,
+        "rv_p_value": true,
+        "prompt_bank_version": true
+      },
+      "notes": []
+    },
+    "bridge_random_head_fast": {
+      "path": "/Users/dhyana/mech-interp-latent-lab-phase1/results/remote_gpu_sync/2026-02-20/phase1_mechanism/20260220_063343_rv_l27_activation_patching_bridge_random_head_bridge_control_fast",
+      "exists": true,
+      "files": {
+        "config.json": true,
+        "summary.json": true,
+        "report.md": true,
+        "prompt_bank_version.json": true,
+        "metadata.json": true,
+        "hardware_info.json": true,
+        "sample_level_artifact": true
+      },
+      "summary_keys": {
+        "n_pairs": true,
+        "rv_delta_mean": true,
+        "rv_cohens_d": true,
+        "rv_p_value": true,
+        "prompt_bank_version": true
+      },
+      "notes": []
+    },
+    "bridge_baseline_donor_fast": {
+      "path": "/Users/dhyana/mech-interp-latent-lab-phase1/results/remote_gpu_sync/2026-02-20/phase1_mechanism/20260220_063955_rv_l27_activation_patching_bridge_baseline_donor_specificity_control_fast",
+      "exists": true,
+      "files": {
+        "config.json": true,
+        "summary.json": true,
+        "report.md": true,
+        "prompt_bank_version.json": true,
+        "metadata.json": true,
+        "hardware_info.json": true,
+        "sample_level_artifact": true
+      },
+      "summary_keys": {
+        "n_pairs": true,
+        "rv_delta_mean": true,
+        "rv_cohens_d": true,
+        "rv_p_value": true,
+        "prompt_bank_version": true
+      },
+      "notes": []
+    },
+    "multi_token_bridge_fast": {
+      "path": "/Users/dhyana/mech-interp-latent-lab-phase1/results/remote_gpu_sync/2026-02-20/phase1_cross_architecture/20260220_071457_multi_token_bridge_mistral_7b_bridge_deconfound_fast",
+      "exists": true,
+      "files": {
+        "config.json": true,
+        "summary.json": true,
+        "report.md": true,
+        "prompt_bank_version.json": true,
+        "metadata.json": true,
+        "hardware_info.json": true,
+        "sample_level_artifact": true
+      },
+      "summary_keys": {
+        "n_pairs": true,
+        "rv_delta_mean": true,
+        "rv_cohens_d": true,
+        "rv_p_value": true,
+        "prompt_bank_version": true
+      },
+      "notes": []
+    }
+  }
+}

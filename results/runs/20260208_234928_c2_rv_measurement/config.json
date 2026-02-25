@@ -1,0 +1,18 @@
+{
+  "ablation": "no_kv",
+  "description": "C2 with steering only - no KV swap",
+  "experiment": "c2_rv_measurement",
+  "params": {
+    "config_override": {
+      "head_target": "h18_h26",
+      "kv_strategy": "none",
+      "residual_alphas": {
+        "26": 0.6
+      },
+      "vproj_alpha": 2.5
+    },
+    "model": "mistralai/Mistral-7B-v0.1",
+    "n_prompts": 20,
+    "prompt_bank_version": "75e7c1b8dcebc24e"
+  }
+}

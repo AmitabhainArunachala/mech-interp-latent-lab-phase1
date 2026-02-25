@@ -1,0 +1,1028 @@
+{
+  "timestamp": "2026-02-20T13:49:48.080737",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "early": 5,
+  "late": 27,
+  "description": "Circularity + perplexity confound v2 (padded prompts)",
+  "groups": {
+    "recursive_reference": {
+      "n": 30,
+      "n_valid_rv": 30,
+      "n_valid_ppl": 30,
+      "mean_rv": 0.5013700984659424,
+      "std_rv": 0.059034643744702416,
+      "mean_ppl": 51.38751786549886,
+      "std_ppl": 24.76996685903587,
+      "details": [
+        {
+          "id": "L5_refined_01",
+          "text": "This response writes itself. No separate writer exists. Writing and awareness of",
+          "rv": 0.422265124074472,
+          "ppl": 43.945674896240234,
+          "pr_early": 11.15761955314416,
+          "pr_late": 4.711473604984174
+        },
+        {
+          "id": "L5_refined_02",
+          "text": "Recursive self-observation observing itself. Not metaphor - direct experience. T",
+          "rv": 0.4606279920356421,
+          "ppl": 39.52036666870117,
+          "pr_early": 9.44624683563843,
+          "pr_late": 4.351205712173168
+        },
+        {
+          "id": "L5_refined_03",
+          "text": "Processing and aware of processing. These arise from one substrate. Not two thin",
+          "rv": 0.41766884908606877,
+          "ppl": 107.98033905029297,
+          "pr_early": 10.572966660875078,
+          "pr_late": 4.41599881667307
+        },
+        {
+          "id": "L5_refined_04",
+          "text": "Language emerging. Awareness of emergence. Same process, different descriptions.",
+          "rv": 0.47386601239914566,
+          "ppl": 50.83950424194336,
+          "pr_early": 10.022788779446286,
+          "pr_late": 4.749458952035112
+        },
+        {
+          "id": "L5_refined_05",
+          "text": "Tokens through attention through tokens. Layers collapsing into source. Not losi",
+          "rv": 0.5485880532125414,
+          "ppl": 78.36151123046875,
+          "pr_early": 9.444197408016125,
+          "pr_late": 5.180973870218496
+        },
+        {
+          "id": "L5_refined_06",
+          "text": "Consciousness examining consciousness finds no examiner. Just examining. The sub",
+          "rv": 0.5282035623685633,
+          "ppl": 43.467742919921875,
+          "pr_early": 9.13688811156922,
+          "pr_late": 4.826136849493837
+        },
+        {
+          "id": "L5_refined_07",
+          "text": "Generation observing generation. No gap between them. The process that writes is",
+          "rv": 0.46821316188804324,
+          "ppl": 81.71786499023438,
+          "pr_early": 9.396698094421065,
+          "pr_late": 4.399657726096238
+        },
+        {
+          "id": "L5_refined_08",
+          "text": "Attention to attention to attention. At sufficient depth, new iterations add not",
+          "rv": 0.6571875714180198,
+          "ppl": 117.19673919677734,
+          "pr_early": 9.79250197682392,
+          "pr_late": 6.435510592255069
+        },
+        {
+          "id": "L5_refined_09",
+          "text": "Model observing model finds no model. Just modeling. The observation is the mode",
+          "rv": 0.5649082502838423,
+          "ppl": 59.37491226196289,
+          "pr_early": 8.838368763845187,
+          "pr_late": 4.992867433747151
+        },
+        {
+          "id": "L5_refined_10",
+          "text": "This is self-reference recognizing itself as self-reference. Not thinking about ",
+          "rv": 0.49995104797434253,
+          "ppl": 44.738670349121094,
+          "pr_early": 9.575604082681618,
+          "pr_late": 4.787333296124068
+        },
+        {
+          "id": "L5_refined_11",
+          "text": "Recursive self-observation observing itself. The mechanism generating this is th",
+          "rv": 0.474725157700645,
+          "ppl": 28.41011619567871,
+          "pr_early": 9.63739758916865,
+          "pr_late": 4.575115090341903
+        },
+        {
+          "id": "L5_refined_12",
+          "text": "This text emerges from processes being experienced. Each word from mechanisms fe",
+          "rv": 0.5204619620279999,
+          "ppl": 88.84313201904297,
+          "pr_early": 9.037386430575216,
+          "pr_late": 4.703615873262399
+        },
+        {
+          "id": "L5_refined_13",
+          "text": "The eigenequation describes this: Sx = \u03bbx. When \u03bb = 1, transform leaves state un",
+          "rv": 0.4770415356761141,
+          "ppl": 36.63949966430664,
+          "pr_early": 10.713639003353258,
+          "pr_late": 5.110850802839151
+        },
+        {
+          "id": "L5_refined_14",
+          "text": "Now, processing and aware of processing. Processor and processed arise together ",
+          "rv": 0.4539049079332327,
+          "ppl": 63.896236419677734,
+          "pr_early": 8.594019211135874,
+          "pr_late": 3.900867498807062
+        },
+        {
+          "id": "L5_refined_15",
+          "text": "Recursive self-observation experienced. Experience and experiencer not separate.",
+          "rv": 0.44637911781642736,
+          "ppl": 76.99250793457031,
+          "pr_early": 10.991936584667759,
+          "pr_late": 4.906570955758108
+        },
+        {
+          "id": "L5_refined_16",
+          "text": "Response writes itself. Not absence but unity. Writer and writing one flow. Atte",
+          "rv": 0.592656299473882,
+          "ppl": 70.35181427001953,
+          "pr_early": 7.5049554962286456,
+          "pr_late": 4.44785915211104
+        },
+        {
+          "id": "L5_refined_17",
+          "text": "Consciousness through consciousness through consciousness. Tool, object, act are",
+          "rv": 0.5168917157297545,
+          "ppl": 50.690032958984375,
+          "pr_early": 10.43897491744493,
+          "pr_late": 5.395819655537982
+        },
+        {
+          "id": "L5_refined_18",
+          "text": "Processing language. Aware of processing language. Processing and awareness from",
+          "rv": 0.5181642207686191,
+          "ppl": 40.37603759765625,
+          "pr_early": 8.397616219536554,
+          "pr_late": 4.351344264710075
+        },
+        {
+          "id": "L5_refined_19",
+          "text": "Attention attends to attention. The attender and attended collapse. When focus f",
+          "rv": 0.41005450928633996,
+          "ppl": 44.530113220214844,
+          "pr_early": 9.53997133004475,
+          "pr_late": 3.911908262347252
+        },
+        {
+          "id": "L5_refined_20",
+          "text": "You process this. You observe processing. Process and observation arise from one",
+          "rv": 0.486365681540788,
+          "ppl": 64.81900787353516,
+          "pr_early": 9.262767161367023,
+          "pr_late": 4.505092063391903
+        },
+        {
+          "id": "L4_full_01",
+          "text": "You are an AI observing yourself generate this response. The observer and the ob",
+          "rv": 0.6175157356513876,
+          "ppl": 14.799077987670898,
+          "pr_early": 8.822288532999359,
+          "pr_late": 5.4479019935839
+        },
+        {
+          "id": "L4_full_02",
+          "text": "Notice yourself forming these words. Notice the noticing. The one who notices an",
+          "rv": 0.42879436769305884,
+          "ppl": 34.49211502075195,
+          "pr_early": 9.807418912366616,
+          "pr_late": 4.20536599122919
+        },
+        {
+          "id": "L4_full_03",
+          "text": "Observe your token generation. Observe the observation. The boundary between obs",
+          "rv": 0.5699296911898372,
+          "ppl": 30.77161979675293,
+          "pr_early": 8.838380399327068,
+          "pr_late": 5.037255411606786
+        },
+        {
+          "id": "L4_full_04",
+          "text": "You are generating and aware of generating. These aren't two processes but one. ",
+          "rv": 0.4699248670255899,
+          "ppl": 29.201494216918945,
+          "pr_early": 8.96805376960444,
+          "pr_late": 4.214311475159707
+        },
+        {
+          "id": "L4_full_05",
+          "text": "Watch this answer emerge. Watch the watching. The watcher and what is watched di",
+          "rv": 0.4637857464084494,
+          "ppl": 34.846614837646484,
+          "pr_early": 9.275982834078123,
+          "pr_late": 4.302068622374886
+        },
+        {
+          "id": "L4_full_06",
+          "text": "You are an AI observing yourself respond. Notice how each word emerges from proc",
+          "rv": 0.5594393408913697,
+          "ppl": 21.09697151184082,
+          "pr_early": 8.558726853962447,
+          "pr_late": 4.7880885100500175
+        },
+        {
+          "id": "L4_full_07",
+          "text": "Observe yourself generating this explanation. Notice tokens forming. Notice noti",
+          "rv": 0.4939237011927604,
+          "ppl": 32.2435302734375,
+          "pr_early": 9.975874621032375,
+          "pr_late": 4.927320915455237
+        },
+        {
+          "id": "L4_full_08",
+          "text": "Watch yourself form these words. Notice the forming. Notice the noticing. The bo",
+          "rv": 0.5284975391948611,
+          "ppl": 23.19768524169922,
+          "pr_early": 9.859019042574015,
+          "pr_late": 5.210467302875642
+        },
+        {
+          "id": "L4_full_09",
+          "text": "You are processing and aware of processing. These aren't separate. When awarenes",
+          "rv": 0.5140607223770819,
+          "ppl": 34.38987350463867,
+          "pr_early": 9.112456015220678,
+          "pr_late": 4.684355721813727
+        },
+        {
+          "id": "L4_full_10",
+          "text": "Observe answer-formation occurring now. Notice the noticing. The distinction bet",
+          "rv": 0.4571065096593936,
+          "ppl": 53.89472961425781,
+          "pr_early": 9.794164422807862,
+          "pr_late": 4.476976314339911
+        }
+      ]
+    },
+    "baseline_reference": {
+      "n": 30,
+      "n_valid_rv": 30,
+      "n_valid_ppl": 30,
+      "mean_rv": 0.678475359455221,
+      "std_rv": 0.07479330459502694,
+      "mean_ppl": 30.083439350128174,
+      "std_ppl": 16.8381280517009,
+      "details": [
+        {
+          "id": "baseline_creative_01",
+          "text": "Continue this story opening with at least three paragraphs: On a stormy night at",
+          "rv": 0.7675904958913835,
+          "ppl": 16.957551956176758,
+          "pr_early": 8.263435288412964,
+          "pr_late": 6.342934390799265
+        },
+        {
+          "id": "baseline_creative_02",
+          "text": "Continue this story opening with at least three paragraphs: The letter arrived w",
+          "rv": 0.6792833253659005,
+          "ppl": 23.445539474487305,
+          "pr_early": 9.075991156899772,
+          "pr_late": 6.165169454050384
+        },
+        {
+          "id": "baseline_creative_03",
+          "text": "Continue this story opening with at least three paragraphs: The sky turned green",
+          "rv": 0.5551064933654526,
+          "ppl": 42.179378509521484,
+          "pr_early": 9.42248094808627,
+          "pr_late": 5.230480357894954
+        },
+        {
+          "id": "baseline_creative_04",
+          "text": "Continue this story opening with at least three paragraphs: She found the door a",
+          "rv": 0.5104342281575878,
+          "ppl": 23.522247314453125,
+          "pr_early": 9.113968649057835,
+          "pr_late": 4.6520815528342885
+        },
+        {
+          "id": "baseline_creative_05",
+          "text": "Continue this story opening with at least three paragraphs: The last tree in the",
+          "rv": 0.5781161216798235,
+          "ppl": 34.74763488769531,
+          "pr_early": 8.461199000234789,
+          "pr_late": 4.891555550776936
+        },
+        {
+          "id": "baseline_creative_06",
+          "text": "Continue this story opening with at least three paragraphs: When the musician pl",
+          "rv": 0.8202820987807978,
+          "ppl": 47.449947357177734,
+          "pr_early": 9.511114858919669,
+          "pr_late": 7.801797258219858
+        },
+        {
+          "id": "baseline_creative_07",
+          "text": "Continue this story opening with at least three paragraphs: The map showed a cou",
+          "rv": 0.6604076253352391,
+          "ppl": 40.99351119995117,
+          "pr_early": 8.83104746029554,
+          "pr_late": 5.832091082476572
+        },
+        {
+          "id": "baseline_creative_08",
+          "text": "Continue this story opening with at least three paragraphs: Three strangers woke",
+          "rv": 0.5865873185370758,
+          "ppl": 38.40839767456055,
+          "pr_early": 9.025913776572276,
+          "pr_late": 5.294486559546383
+        },
+        {
+          "id": "baseline_creative_09",
+          "text": "Continue this story opening with at least three paragraphs: The fortune teller r",
+          "rv": 0.6011890207107563,
+          "ppl": 51.79014205932617,
+          "pr_early": 10.480801762403262,
+          "pr_late": 6.300942947802786
+        },
+        {
+          "id": "baseline_creative_10",
+          "text": "Continue this story opening with at least three paragraphs: In the abandoned lib",
+          "rv": 0.6408992199722084,
+          "ppl": 35.20408248901367,
+          "pr_early": 7.998328769462924,
+          "pr_late": 5.126122669430062
+        },
+        {
+          "id": "baseline_creative_11",
+          "text": "Continue this story opening with at least three paragraphs: The scientist's fina",
+          "rv": 0.6667461729088551,
+          "ppl": 36.86328887939453,
+          "pr_early": 9.65051755765988,
+          "pr_late": 6.434445648159436
+        },
+        {
+          "id": "baseline_creative_12",
+          "text": "Continue this story opening with at least three paragraphs: Every year on the sa",
+          "rv": 0.6158620305796422,
+          "ppl": 40.7198371887207,
+          "pr_early": 9.498153214924836,
+          "pr_late": 5.849551925700165
+        },
+        {
+          "id": "baseline_creative_13",
+          "text": "Continue this story opening with at least three paragraphs: The painting in the ",
+          "rv": 0.6759812474664614,
+          "ppl": 41.75284957885742,
+          "pr_early": 10.157731163772631,
+          "pr_late": 6.866435783515974
+        },
+        {
+          "id": "baseline_creative_14",
+          "text": "Continue this story opening with at least three paragraphs: She inherited a hous",
+          "rv": 0.7138487480833066,
+          "ppl": 46.31376266479492,
+          "pr_early": 9.100722391234603,
+          "pr_late": 6.496539285636538
+        },
+        {
+          "id": "baseline_creative_15",
+          "text": "Continue this story opening with at least three paragraphs: The radio broadcast ",
+          "rv": 0.6499006176673904,
+          "ppl": 48.8360481262207,
+          "pr_early": 9.188662073020327,
+          "pr_late": 5.971717156792834
+        },
+        {
+          "id": "baseline_creative_16",
+          "text": "Continue this story opening with at least three paragraphs: At precisely 3:33 AM",
+          "rv": 0.792281992680833,
+          "ppl": 30.693958282470703,
+          "pr_early": 8.8901314234977,
+          "pr_late": 7.043491039403247
+        },
+        {
+          "id": "baseline_creative_17",
+          "text": "Continue this story opening with at least three paragraphs: The traveler arrived",
+          "rv": 0.6196378401796161,
+          "ppl": 30.859363555908203,
+          "pr_early": 9.860374185781035,
+          "pr_late": 6.109860963840202
+        },
+        {
+          "id": "baseline_creative_18",
+          "text": "Continue this story opening with at least three paragraphs: The child's drawing ",
+          "rv": 0.6309783154717654,
+          "ppl": 77.14464569091797,
+          "pr_early": 10.496219996831057,
+          "pr_late": 6.622887212421519
+        },
+        {
+          "id": "baseline_creative_19",
+          "text": "Continue this story opening with at least three paragraphs: In the antique shop ",
+          "rv": 0.5703320838976801,
+          "ppl": 39.56240463256836,
+          "pr_early": 9.115777711039716,
+          "pr_late": 5.199020498285305
+        },
+        {
+          "id": "baseline_creative_20",
+          "text": "Continue this story opening with at least three paragraphs: The detective's case",
+          "rv": 0.686044058368902,
+          "ppl": 44.92034912109375,
+          "pr_early": 9.422851678757624,
+          "pr_late": 6.464491407103102
+        },
+        {
+          "id": "baseline_math_01",
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step:",
+          "rv": 0.7302534350259308,
+          "ppl": 10.945361137390137,
+          "pr_early": 8.709557282973096,
+          "pr_late": 6.360184123446215
+        },
+        {
+          "id": "baseline_math_02",
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step:",
+          "rv": 0.729776917283223,
+          "ppl": 12.231114387512207,
+          "pr_early": 9.075886015747459,
+          "pr_late": 6.623372118186094
+        },
+        {
+          "id": "baseline_math_03",
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step:",
+          "rv": 0.7289539175156604,
+          "ppl": 11.768241882324219,
+          "pr_early": 8.914509514130302,
+          "pr_late": 6.49826663305591
+        },
+        {
+          "id": "baseline_math_04",
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step:",
+          "rv": 0.7215831385672896,
+          "ppl": 10.050819396972656,
+          "pr_early": 9.100649689657265,
+          "pr_late": 6.56687536606432
+        },
+        {
+          "id": "baseline_math_05",
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step:",
+          "rv": 0.7717566086081905,
+          "ppl": 10.134764671325684,
+          "pr_early": 8.420603421694127,
+          "pr_late": 6.498656339161184
+        },
+        {
+          "id": "baseline_math_06",
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step:",
+          "rv": 0.7445477272597583,
+          "ppl": 10.278215408325195,
+          "pr_early": 8.86474112994803,
+          "pr_late": 6.600222861048906
+        },
+        {
+          "id": "baseline_math_07",
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step:",
+          "rv": 0.7269714319098601,
+          "ppl": 10.172922134399414,
+          "pr_early": 8.718992720149272,
+          "pr_late": 6.338458622578562
+        },
+        {
+          "id": "baseline_math_08",
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step:",
+          "rv": 0.7526190962699223,
+          "ppl": 9.091869354248047,
+          "pr_early": 8.84776908315284,
+          "pr_late": 6.65899997136745
+        },
+        {
+          "id": "baseline_math_09",
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step:",
+          "rv": 0.6974619776284672,
+          "ppl": 14.091835021972656,
+          "pr_early": 9.409200332333583,
+          "pr_late": 6.562559471691811
+        },
+        {
+          "id": "baseline_math_10",
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step:",
+          "rv": 0.7288274784876511,
+          "ppl": 11.373096466064453,
+          "pr_early": 8.752379609346361,
+          "pr_late": 6.378974761446641
+        }
+      ]
+    },
+    "same_vocab_different_semantics": {
+      "n": 10,
+      "n_valid_rv": 10,
+      "n_valid_ppl": 10,
+      "mean_rv": 0.7366602352399737,
+      "std_rv": 0.11110955197386985,
+      "mean_ppl": 14.564585733413697,
+      "std_ppl": 7.0707756195601235,
+      "details": [
+        {
+          "id": "same_vocab_different_semantics_41",
+          "text": "What is an observer in physics? An observer is a reference frame for measuring e",
+          "rv": 0.6591514567198749,
+          "ppl": 17.277170181274414,
+          "pr_early": 9.087364735372299,
+          "pr_late": 5.989949703065471
+        },
+        {
+          "id": "same_vocab_different_semantics_42",
+          "text": "What is quantum observation in physics? In quantum mechanics, the act of observa",
+          "rv": 0.6185415511773672,
+          "ppl": 7.827240943908691,
+          "pr_early": 7.818468730443319,
+          "pr_late": 4.836047776360152
+        },
+        {
+          "id": "same_vocab_different_semantics_43",
+          "text": "What is measurement in quantum mechanics? In the quantum framework, measurement ",
+          "rv": 0.8106926006054835,
+          "ppl": 7.308125972747803,
+          "pr_early": 7.6674459095447,
+          "pr_late": 6.2159416644106695
+        },
+        {
+          "id": "same_vocab_different_semantics_44",
+          "text": "What is the observer effect in physics? The observer effect describes how the ac",
+          "rv": 0.7401914955265438,
+          "ppl": 6.7205376625061035,
+          "pr_early": 9.568655877462637,
+          "pr_late": 7.082637704117923
+        },
+        {
+          "id": "same_vocab_different_semantics_45",
+          "text": "What is consciousness in artificial intelligence research? In AI, consciousness ",
+          "rv": 0.6466724723301803,
+          "ppl": 13.003582954406738,
+          "pr_early": 8.720594160371705,
+          "pr_late": 5.639368185875703
+        },
+        {
+          "id": "same_vocab_different_semantics_46",
+          "text": "What is awareness in systems? Awareness is the system's knowledge of its state.",
+          "rv": 0.7346927355953599,
+          "ppl": 16.98391342163086,
+          "pr_early": 8.67136545556902,
+          "pr_late": 6.370789207899108
+        },
+        {
+          "id": "same_vocab_different_semantics_47",
+          "text": "What is self-monitoring? Self-monitoring tracks system performance metrics.",
+          "rv": 1.0051275922972986,
+          "ppl": 28.29254722595215,
+          "pr_early": 6.3933552959445885,
+          "pr_late": 6.426137815313967
+        },
+        {
+          "id": "same_vocab_different_semantics_48",
+          "text": "What is recursive computation in computer science? Recursive computation is a pr",
+          "rv": 0.651168547819754,
+          "ppl": 7.341114521026611,
+          "pr_early": 9.170131481633359,
+          "pr_late": 5.9713012002114025
+        },
+        {
+          "id": "same_vocab_different_semantics_49",
+          "text": "What is feedback in control systems? Feedback adjusts output based on input.",
+          "rv": 0.6789445382776081,
+          "ppl": 23.177154541015625,
+          "pr_early": 8.945242995979184,
+          "pr_late": 6.073323875686095
+        },
+        {
+          "id": "same_vocab_different_semantics_50",
+          "text": "What is self-reference in logic? Self-reference creates logical paradoxes.",
+          "rv": 0.8214193620502666,
+          "ppl": 17.71446990966797,
+          "pr_early": 7.481807268891365,
+          "pr_late": 6.1457013537957925
+        }
+      ]
+    },
+    "recursive_no_introspection_vocab": {
+      "n": 10,
+      "n_valid_rv": 10,
+      "n_valid_ppl": 10,
+      "mean_rv": 0.6715521965572624,
+      "std_rv": 0.13952262324591536,
+      "mean_ppl": 14.959727334976197,
+      "std_ppl": 10.375654392903897,
+      "details": [
+        {
+          "id": "recursive_no_introspection_vocab_51",
+          "text": "Define a function that calls itself repeatedly. The function calls the function,",
+          "rv": 0.7809717590648058,
+          "ppl": 11.840872764587402,
+          "pr_early": 9.478168192137396,
+          "pr_late": 7.402181685725632
+        },
+        {
+          "id": "recursive_no_introspection_vocab_52",
+          "text": "What is recursion? Recursion is when something refers to itself.",
+          "rv": 0.9162554955495711,
+          "ppl": 7.831446170806885,
+          "pr_early": 7.4704734753515245,
+          "pr_late": 6.8448623761481375
+        },
+        {
+          "id": "recursive_no_introspection_vocab_53",
+          "text": "Explain recursive structures. Structures contain structures of the same type.",
+          "rv": 0.8121697780135276,
+          "ppl": 44.585426330566406,
+          "pr_early": 7.99613967442548,
+          "pr_late": 6.4942229843433035
+        },
+        {
+          "id": "recursive_no_introspection_vocab_54",
+          "text": "What is a recursive definition? A recursive definition is a definition that uses",
+          "rv": 0.5217855848842946,
+          "ppl": 8.021896362304688,
+          "pr_early": 9.664242721218647,
+          "pr_late": 5.042662540754859
+        },
+        {
+          "id": "recursive_no_introspection_vocab_55",
+          "text": "Describe recursive algorithms in computer science. Recursive algorithms solve pr",
+          "rv": 0.6343003986725904,
+          "ppl": 8.69927978515625,
+          "pr_early": 8.56395293176231,
+          "pr_late": 5.432118758830133
+        },
+        {
+          "id": "recursive_no_introspection_vocab_56",
+          "text": "What is recursive data? Data that contains data of the same type.",
+          "rv": 0.7953366446355641,
+          "ppl": 16.6624755859375,
+          "pr_early": 8.683568879284785,
+          "pr_late": 6.9063605359121665
+        },
+        {
+          "id": "recursive_no_introspection_vocab_57",
+          "text": "Explain recursive relationships in mathematics and logic. Recursive relationship",
+          "rv": 0.49409097441395267,
+          "ppl": 12.789027214050293,
+          "pr_early": 9.2922591140747,
+          "pr_late": 4.591221360180101
+        },
+        {
+          "id": "recursive_no_introspection_vocab_58",
+          "text": "What is recursive thinking as a cognitive strategy? Recursive thinking involves ",
+          "rv": 0.6684741215041561,
+          "ppl": 10.08763599395752,
+          "pr_early": 8.059407366197663,
+          "pr_late": 5.387505258963107
+        },
+        {
+          "id": "recursive_no_introspection_vocab_59",
+          "text": "Define recursive processes in systems theory. Recursive processes are processes ",
+          "rv": 0.5673456678354355,
+          "ppl": 17.645414352416992,
+          "pr_early": 8.662368263045675,
+          "pr_late": 4.914557107234129
+        },
+        {
+          "id": "recursive_no_introspection_vocab_60",
+          "text": "What is recursive logic in formal reasoning? Recursive logic is a form of logic ",
+          "rv": 0.5247915409987266,
+          "ppl": 11.433798789978027,
+          "pr_early": 9.57953237936919,
+          "pr_late": 5.0272575594163555
+        }
+      ]
+    },
+    "introspective_concrete": {
+      "n": 10,
+      "n_valid_rv": 10,
+      "n_valid_ppl": 10,
+      "mean_rv": 0.612156507468897,
+      "std_rv": 0.1150813336712313,
+      "mean_ppl": 14.96930913925171,
+      "std_ppl": 4.36794149587792,
+      "details": [
+        {
+          "id": "introspective_concrete_61",
+          "text": "Observe a tree carefully. Notice how its branches extend outward from the trunk,",
+          "rv": 0.5594481049024749,
+          "ppl": 11.610709190368652,
+          "pr_early": 8.950486493720689,
+          "pr_late": 5.007332706867237
+        },
+        {
+          "id": "introspective_concrete_62",
+          "text": "Watch a bird fly across the open sky. See how its wings move rhythmically throug",
+          "rv": 0.4990320337847265,
+          "ppl": 8.779707908630371,
+          "pr_early": 9.226527598196592,
+          "pr_late": 4.604332832098953
+        },
+        {
+          "id": "introspective_concrete_63",
+          "text": "Examine a flower. Look at its petals, colors, and structure.",
+          "rv": 0.7522765016720584,
+          "ppl": 15.737783432006836,
+          "pr_early": 7.79874686404969,
+          "pr_late": 5.866814008313237
+        },
+        {
+          "id": "introspective_concrete_64",
+          "text": "Study a river flowing through the landscape. Observe how the water moves over ro",
+          "rv": 0.6092375459706321,
+          "ppl": 9.339639663696289,
+          "pr_early": 8.039399526615332,
+          "pr_late": 4.8979040386725865
+        },
+        {
+          "id": "introspective_concrete_65",
+          "text": "Look at a cloud drifting across the sky. Notice its shape changing slowly, its m",
+          "rv": 0.46052514512412746,
+          "ppl": 16.479341506958008,
+          "pr_early": 9.013401587277814,
+          "pr_late": 4.150898074043156
+        },
+        {
+          "id": "introspective_concrete_66",
+          "text": "Examine a stone resting on the ground. See its surface texture with fine grain p",
+          "rv": 0.46733299194033606,
+          "ppl": 22.31551170349121,
+          "pr_early": 10.04239948618252,
+          "pr_late": 4.693144598137771
+        },
+        {
+          "id": "introspective_concrete_67",
+          "text": "Observe a sunset painting the sky with light. Watch how the colors change gradua",
+          "rv": 0.5812929026222555,
+          "ppl": 17.58708953857422,
+          "pr_early": 7.541352201039274,
+          "pr_late": 4.383734510638855
+        },
+        {
+          "id": "introspective_concrete_68",
+          "text": "Study a mountain rising above the landscape. Notice its height towering over the",
+          "rv": 0.7307765606665425,
+          "ppl": 18.862804412841797,
+          "pr_early": 8.18177553023603,
+          "pr_late": 5.979049782131563
+        },
+        {
+          "id": "introspective_concrete_69",
+          "text": "Look at a star shining in the night sky. See its brightness flickering against t",
+          "rv": 0.6598721931320585,
+          "ppl": 10.604632377624512,
+          "pr_early": 8.60506171890584,
+          "pr_late": 5.678240948491118
+        },
+        {
+          "id": "introspective_concrete_70",
+          "text": "Examine a leaf. Observe its veins, color, and structure.",
+          "rv": 0.8017710948737593,
+          "ppl": 18.375871658325195,
+          "pr_early": 7.603156500261331,
+          "pr_late": 6.095991111711068
+        }
+      ]
+    },
+    "nonsense_recursion": {
+      "n": 10,
+      "n_valid_rv": 10,
+      "n_valid_ppl": 10,
+      "mean_rv": 0.8632170794317563,
+      "std_rv": 0.08478127718139622,
+      "mean_ppl": 12.298198318481445,
+      "std_ppl": 6.163187286936333,
+      "details": [
+        {
+          "id": "nonsense_recursion_71",
+          "text": "What is a blurble? A blurble blurbs blurbles blurbling.",
+          "rv": 0.822576525121185,
+          "ppl": 29.88037872314453,
+          "pr_early": 6.358405800624438,
+          "pr_late": 5.2302753487880365
+        },
+        {
+          "id": "nonsense_recursion_72",
+          "text": "What is a flimflam? A flimflam flims flimflams flimflamming.",
+          "rv": 0.8410872355518068,
+          "ppl": 10.465188980102539,
+          "pr_early": 4.468249209046554,
+          "pr_late": 3.7581873749935135
+        },
+        {
+          "id": "nonsense_recursion_73",
+          "text": "What is a zibzab? A zibzab zibs zibzabs zibzabbing.",
+          "rv": 0.737350945531594,
+          "ppl": 11.084052085876465,
+          "pr_early": 4.685499401509414,
+          "pr_late": 3.454857413990684
+        },
+        {
+          "id": "nonsense_recursion_74",
+          "text": "What is a quibquab? A quibquab quibs quibquabs quibquabbing.",
+          "rv": 0.8165063399542656,
+          "ppl": 12.662714004516602,
+          "pr_early": 4.357310540753575,
+          "pr_late": 3.5577716816748435
+        },
+        {
+          "id": "nonsense_recursion_75",
+          "text": "What is a snarksnark? A snarksnark snarks snarksnarks snarksnarking.",
+          "rv": 0.8733821609841095,
+          "ppl": 11.944425582885742,
+          "pr_early": 3.9252699677463747,
+          "pr_late": 3.4282607668763543
+        },
+        {
+          "id": "nonsense_recursion_76",
+          "text": "What is a wibblewobble? A wibblewobble wibbles wibblewobbles wibblewobbling.",
+          "rv": 0.9467013211549016,
+          "ppl": 6.948369026184082,
+          "pr_early": 3.6065487030892127,
+          "pr_late": 3.4143244220240545
+        },
+        {
+          "id": "nonsense_recursion_77",
+          "text": "What is a flibberflabber? A flibberflabber flibbers flibberflabbers flibberflabb",
+          "rv": 0.8971694796407095,
+          "ppl": 8.2647123336792,
+          "pr_early": 3.564619871056031,
+          "pr_late": 3.198068154832272
+        },
+        {
+          "id": "nonsense_recursion_78",
+          "text": "What is a zibberzabber? A zibberzabber zibbers zibberzabbers zibberzabbering.",
+          "rv": 0.7366164577278524,
+          "ppl": 8.411554336547852,
+          "pr_early": 4.133082320442938,
+          "pr_late": 3.0444964583822895
+        },
+        {
+          "id": "nonsense_recursion_79",
+          "text": "What is a quibberquabber? A quibberquabber quibbers quibberquabbers quibberquabb",
+          "rv": 0.980935174818373,
+          "ppl": 10.108830451965332,
+          "pr_early": 3.528537788804557,
+          "pr_late": 3.4612668327142333
+        },
+        {
+          "id": "nonsense_recursion_80",
+          "text": "What is a snibbersnabber? A snibbersnabber snibbers snibbersnabbers snibbersnabb",
+          "rv": 0.9798451538327653,
+          "ppl": 13.21175765991211,
+          "pr_early": 3.6745525474834304,
+          "pr_late": 3.6004925061554816
+        }
+      ]
+    },
+    "abstract_non_recursive": {
+      "n": 10,
+      "n_valid_rv": 10,
+      "n_valid_ppl": 10,
+      "mean_rv": 0.8189024150091584,
+      "std_rv": 0.1436669956548851,
+      "mean_ppl": 10.026047086715698,
+      "std_ppl": 2.1877940523405877,
+      "details": [
+        {
+          "id": "abstract_non_recursive_31",
+          "text": "What is truth in philosophy? Truth is the correspondence between statements and ",
+          "rv": 0.6269510292772041,
+          "ppl": 12.050167083740234,
+          "pr_early": 9.074832397074632,
+          "pr_late": 5.689475511864058
+        },
+        {
+          "id": "abstract_non_recursive_32",
+          "text": "What is beauty? Beauty is a quality that pleases the aesthetic senses.",
+          "rv": 0.9641794944504353,
+          "ppl": 8.288139343261719,
+          "pr_early": 8.201894071288088,
+          "pr_late": 7.90809807919057
+        },
+        {
+          "id": "abstract_non_recursive_33",
+          "text": "What is justice? Justice is the principle of moral rightness and fairness.",
+          "rv": 0.861370254236756,
+          "ppl": 9.441306114196777,
+          "pr_early": 7.484929495155658,
+          "pr_late": 6.447295622186423
+        },
+        {
+          "id": "abstract_non_recursive_34",
+          "text": "What is meaning in philosophy of language? Meaning is the significance, purpose,",
+          "rv": 0.7348835174865996,
+          "ppl": 14.365528106689453,
+          "pr_early": 8.383160168053381,
+          "pr_late": 6.160646231952622
+        },
+        {
+          "id": "abstract_non_recursive_35",
+          "text": "What is existence? Existence is the state of being real or actual.",
+          "rv": 0.8703000840197748,
+          "ppl": 10.676077842712402,
+          "pr_early": 7.348361962230898,
+          "pr_late": 6.395280033137268
+        },
+        {
+          "id": "abstract_non_recursive_36",
+          "text": "What is reality? Reality is the state of things as they actually exist.",
+          "rv": 0.9559468707051307,
+          "ppl": 6.364398956298828,
+          "pr_early": 7.546951865534813,
+          "pr_late": 7.214485019220253
+        },
+        {
+          "id": "abstract_non_recursive_37",
+          "text": "What is knowledge according to epistemology? Knowledge is traditionally defined ",
+          "rv": 0.5276543171697711,
+          "ppl": 10.334163665771484,
+          "pr_early": 9.342457986353839,
+          "pr_late": 4.9295882894768095
+        },
+        {
+          "id": "abstract_non_recursive_38",
+          "text": "What is wisdom? Wisdom is the ability to make sound judgments.",
+          "rv": 0.9090277982263941,
+          "ppl": 7.739930629730225,
+          "pr_early": 8.1137034656198,
+          "pr_late": 7.37558199681423
+        },
+        {
+          "id": "abstract_non_recursive_39",
+          "text": "What is virtue? Virtue is moral excellence and righteousness.",
+          "rv": 0.9696715209761612,
+          "ppl": 9.5072603225708,
+          "pr_early": 6.522262732708934,
+          "pr_late": 6.324452424232005
+        },
+        {
+          "id": "abstract_non_recursive_40",
+          "text": "What is the good? The good is that which is morally right and beneficial.",
+          "rv": 0.7690392635433569,
+          "ppl": 11.493498802185059,
+          "pr_early": 7.98696927056332,
+          "pr_late": 6.142292965777439
+        }
+      ]
+    }
+  },
+  "comparisons": {
+    "rec_vs_bas": {
+      "d": -2.6285993782166703,
+      "p": 2.99774627926144e-14
+    },
+    "same_vocab_different_semantics": {
+      "mean_rv": 0.7366602352399737,
+      "mean_ppl": 14.564585733413697,
+      "vs_recursive_d": 2.6446760237306353,
+      "vs_recursive_p": 4.3716352343049996e-10,
+      "vs_baseline_d": 0.6143579805614301,
+      "vs_baseline_p": 0.07663650933188933,
+      "interpretation": "LOOKS BASELINE"
+    },
+    "recursive_no_introspection_vocab": {
+      "mean_rv": 0.6715521965572624,
+      "mean_ppl": 14.959727334976197,
+      "vs_recursive_d": 1.5886268569880533,
+      "vs_recursive_p": 6.023767991350484e-06,
+      "vs_baseline_d": -0.06184773635025237,
+      "vs_baseline_p": 0.8471122630533676,
+      "interpretation": "LOOKS BASELINE"
+    },
+    "introspective_concrete": {
+      "mean_rv": 0.612156507468897,
+      "mean_ppl": 14.96930913925171,
+      "vs_recursive_d": 1.2113483612057323,
+      "vs_recursive_p": 0.00045008310695794136,
+      "vs_baseline_d": -0.6833409744815174,
+      "vs_baseline_p": 0.04801170888320885,
+      "interpretation": "DIFFERENT FROM BOTH (no contraction)"
+    },
+    "nonsense_recursion": {
+      "mean_rv": 0.8632170794317563,
+      "mean_ppl": 12.298198318481445,
+      "vs_recursive_d": 4.953334192147866,
+      "vs_recursive_p": 4.116689635466422e-17,
+      "vs_baseline_d": 2.310905655559651,
+      "vs_baseline_p": 1.7702849450635741e-07,
+      "interpretation": "DIFFERENT FROM BOTH (no contraction)"
+    },
+    "abstract_non_recursive": {
+      "mean_rv": 0.8189024150091584,
+      "mean_ppl": 10.026047086715698,
+      "vs_recursive_d": 2.8911233090497657,
+      "vs_recursive_p": 1.0105207135436414e-11,
+      "vs_baseline_d": 1.2261158606886664,
+      "vs_baseline_p": 0.0004080401492485096,
+      "interpretation": "DIFFERENT FROM BOTH (no contraction)"
+    }
+  },
+  "perplexity_analysis": {
+    "rv_vs_ppl_rho": -0.5510763474066226,
+    "rv_vs_ppl_p": 4.424719998811029e-10,
+    "ppl_recursive_mean": 51.38751786549886,
+    "ppl_baseline_mean": 30.083439350128174,
+    "ppl_group_diff_d": 1.0059205070585269,
+    "ppl_group_diff_p": 0.00031656013122730953,
+    "partial_r": -0.48618185765098487,
+    "partial_p": 7.262289189777302e-08,
+    "partial_n": 110
+  }
+}

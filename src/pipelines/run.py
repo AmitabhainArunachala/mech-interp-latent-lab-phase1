@@ -4,12 +4,14 @@ Canonical config-driven experiment runner.
 
 Usage:
   python -m src.pipelines.run --config /abs/path/to/config.json
-  python -m src.pipelines.run --config configs/phase1_existence.json --results_root results
+  python -m src.pipelines.run --config configs/canonical/rv_l27_causal_validation.json --results_root results
+  python -m src.pipelines.run --config configs/archive/phase1_existence.json --results_root results
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from datetime import datetime
@@ -61,6 +63,73 @@ DISCOVERY_EXPERIMENTS = {
     "gemma_head_decomposition",
     # cross_architecture_validation removed from registry during cleanup
 }
+
+MULTI_TOKEN_REQUIRED_KEYS = [
+    "n_pairs",
+    "rv_recursive_mean",
+    "rv_baseline_mean",
+    "rv_delta_mean",
+    "rv_cohens_d",
+    "rv_p_value",
+    "prompt_bank_version",
+]
+
+
+def _sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _select_manifest_files(run_dir: Path) -> list[Path]:
+    """
+    Select reproducibility artifacts for immutable hashing.
+    """
+    selected: list[Path] = []
+    for p in sorted(run_dir.iterdir()):
+        if not p.is_file():
+            continue
+        if p.name == "manifest.json":
+            continue
+        if p.suffix in {".json", ".md", ".csv", ".txt"}:
+            selected.append(p)
+    return selected
+
+
+def _build_manifest(
+    run_dir: Path,
+    cfg: Dict[str, Any],
+    summary: Dict[str, Any],
+    prompt_bank_version: str,
+) -> Dict[str, Any]:
+    model_name = (
+        (cfg.get("params") or {}).get("model")
+        or (cfg.get("model") or {}).get("name")
+        or "unknown"
+    )
+    model_revision = (
+        (cfg.get("params") or {}).get("model_revision")
+        or (cfg.get("model") or {}).get("revision")
+        or "unspecified"
+    )
+    artifacts: Dict[str, Any] = {}
+    for p in _select_manifest_files(run_dir):
+        artifacts[p.name] = {
+            "sha256": _sha256_file(p),
+            "bytes": p.stat().st_size,
+        }
+    return {
+        "created_at_utc": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "git_commit": get_git_commit(),
+        "experiment": summary.get("experiment", cfg.get("experiment", "unknown")),
+        "run_dir": str(run_dir),
+        "model": model_name,
+        "model_revision": model_revision,
+        "prompt_bank_version": prompt_bank_version,
+        "artifacts": artifacts,
+    }
 
 
 def _missing_required_keys(summary: Dict[str, Any], required_keys: list[str]) -> list[str]:
@@ -116,7 +185,14 @@ def _append_to_ledger(
         ledger_entry = {
             "timestamp": timestamp,
             "experiment": cfg.get("experiment", "unknown"),
-            "model": cfg.get("params", {}).get("model", "unknown"),
+            # Support both config styles:
+            # - Newer pipelines: cfg["params"]["model"]
+            # - Some canonical pipelines: cfg["model"]["name"]
+            "model": (
+                (cfg.get("params") or {}).get("model")
+                or (cfg.get("model") or {}).get("name")
+                or "unknown"
+            ),
             "prompt_bank_version": summary.get("prompt_bank_version", "unknown"),
             "success": success,
             "run_dir": str(run_paths.run_dir),
@@ -225,6 +301,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         result.summary["artifacts"].setdefault("config", str(paths.config_path))
         result.summary["artifacts"].setdefault("summary", str(paths.run_dir / "summary.json"))
         result.summary["artifacts"].setdefault("report", str(paths.run_dir / "report.md"))
+        result.summary["artifacts"].setdefault("manifest", str(paths.run_dir / "manifest.json"))
         
         # 5b. Enforce summary schema for canonical; warn for discovery
         required_keys = [
@@ -248,6 +325,23 @@ def main(argv: Optional[list[str]] = None) -> int:
                 )
         elif exp_name in DISCOVERY_EXPERIMENTS:
             _emit_soft_warning(exp_name, missing)
+
+        # Explicit multi-token contract enforcement (previously soft/implicit).
+        # This prevents schema drift for rv_* keys in behavior-bridge outputs.
+        if exp_name == "multi_token_bridge":
+            mt_missing = _missing_required_keys(result.summary, MULTI_TOKEN_REQUIRED_KEYS)
+            if mt_missing:
+                raise ValueError(
+                    "summary.json missing required keys for multi_token_bridge: "
+                    f"{mt_missing}"
+                )
+            if args.strict:
+                mt_none = [k for k in MULTI_TOKEN_REQUIRED_KEYS if result.summary.get(k) is None]
+                if mt_none:
+                    raise ValueError(
+                        "[strict mode] Required metrics are None for multi_token_bridge: "
+                        f"{mt_none}"
+                    )
 
         # Strict mode: fail if any required metric is None (except geometry-only experiments)
         if args.strict and exp_name not in GEOMETRY_ONLY_CANONICAL:
@@ -295,7 +389,10 @@ def main(argv: Optional[list[str]] = None) -> int:
         save_metadata(paths.run_dir, metadata)
         # 6c. Save hardware info for reproducibility
         write_json(paths.run_dir / "hardware_info.json", get_hardware_info())
-        
+        # 6d. Save immutable manifest (artifact hashes + reproducibility identity)
+        manifest = _build_manifest(paths.run_dir, cfg, result.summary, prompt_bank_version)
+        write_json(paths.run_dir / "manifest.json", manifest)
+
         # 7. Write to Ledger
         _append_to_ledger(paths, cfg, result.summary, success=True, results_root=results_root)
         

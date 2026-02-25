@@ -1,0 +1,72 @@
+# Run report: rv_l27_activation_patching_bridge
+
+- **run_dir**: `results/phase1_mechanism/runs/20260220_102716_rv_l27_activation_patching_bridge_seed_bridge_20260220_baseline_donor_control_s42_n80`
+- **prompt_bank_version**: `75e7c1b8dcebc24e`
+
+## Summary (machine-readable)
+
+```json
+{
+  "artifacts": {
+    "config": "results/phase1_mechanism/runs/20260220_102716_rv_l27_activation_patching_bridge_seed_bridge_20260220_baseline_donor_control_s42_n80/config.json",
+    "manifest": "results/phase1_mechanism/runs/20260220_102716_rv_l27_activation_patching_bridge_seed_bridge_20260220_baseline_donor_control_s42_n80/manifest.json",
+    "per_sample_csv": "results/phase1_mechanism/runs/20260220_102716_rv_l27_activation_patching_bridge_seed_bridge_20260220_baseline_donor_control_s42_n80/per_sample.csv",
+    "report": "results/phase1_mechanism/runs/20260220_102716_rv_l27_activation_patching_bridge_seed_bridge_20260220_baseline_donor_control_s42_n80/report.md",
+    "summary": "results/phase1_mechanism/runs/20260220_102716_rv_l27_activation_patching_bridge_seed_bridge_20260220_baseline_donor_control_s42_n80/summary.json"
+  },
+  "baseline_groups": [
+    "long_control",
+    "baseline_creative",
+    "baseline_math"
+  ],
+  "behavior_l4_count_delta_mean": 0.0,
+  "behavior_strict_delta_mean": 0.024999999999999998,
+  "behavior_strict_p_value": 0.39335017196719324,
+  "behavior_word_count_delta_mean": 0.0,
+  "device": "cuda",
+  "do_sample": false,
+  "donor_type": "baseline",
+  "early_layer": 5,
+  "experiment": "rv_l27_activation_patching_bridge",
+  "head_space": "kv",
+  "logit_diff_cohens_d": 0.3654202057403683,
+  "logit_diff_delta_mean": 1.1856119791666666,
+  "logit_diff_p_value": 0.006343898294201034,
+  "max_length": 512,
+  "max_new_tokens": 300,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 60,
+  "n_skipped_short_baseline": 0,
+  "n_truncated_baseline": 51,
+  "n_truncated_patched": 51,
+  "patch_heads_requested": [
+    2
+  ],
+  "patch_kv_heads_effective": [
+    2
+  ],
+  "patch_mode": "head_specific",
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "recursive_groups": [
+    "L5_refined",
+    "L4_full",
+    "L3_deeper"
+  ],
+  "rv_baseline_mean": 0.6870039002793734,
+  "rv_cohens_d": 0.6151130004464217,
+  "rv_delta_mean": 0.02847471047518065,
+  "rv_p_value": 1.2739507085872583e-05,
+  "rv_patched_mean": 0.7154786107545538,
+  "rv_recursive_mean": 0.5068333152278606,
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "target_layer": 27,
+  "temperature": 0.0,
+  "timestamp": "20260220_110158",
+  "top_p": 0.95,
+  "v_head_dim": 128,
+  "v_num_heads": 8,
+  "version": "v4_gqa_headspace",
+  "window": 16
+}
+```

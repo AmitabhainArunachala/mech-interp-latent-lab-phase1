@@ -1,0 +1,37 @@
+{
+  "date": "2026-02-20",
+  "research_ready_result": "RESEARCH READY",
+  "artifact_contract_all_pass": true,
+  "seed_spec_present": true,
+  "seed_matrix_configs_count": 15,
+  "dense_pilot_configs_count": 9,
+  "run_script_present": true,
+  "run_script_hardened_present": true,
+  "analysis_script_present": true,
+  "ci_quality_gate_present": true,
+  "runtime_snapshot_present": true,
+  "seed_bridge_runs_found": 9,
+  "seed_bridge_complete_seeds": [
+    42,
+    123,
+    456
+  ],
+  "seed123_random_complete": true,
+  "seed123_baseline_complete": true,
+  "seed456_subfolder_runner_present": true,
+  "seed_bridge_standout_seed_passes": [
+    42,
+    123,
+    456
+  ],
+  "seed_bridge_standout_gate_status": "PASS",
+  "seed_456_subfolder_configs_present": true,
+  "semantic_behavior_script_present": true,
+  "semantic_behavior_rows_seed_bridge": 540,
+  "semantic_behavior_rows_c2": 765,
+  "semantic_behavior_gate_status": "COMPLETE",
+  "semantic_seed_rv_delta_spearman_significant": false,
+  "semantic_seed_rv_patch_spearman_significant": true,
+  "semantic_c2_rv_mean_spearman_significant": true,
+  "gate_status": "PASS"
+}

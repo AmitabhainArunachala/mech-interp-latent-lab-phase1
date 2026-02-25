@@ -1,0 +1,63 @@
+{
+  "artifacts": {
+    "config": "results/phase1_mechanism/runs/20260208_232528_c2_rv_measurement_kitchen_sink_behavioral_transfer/config.json",
+    "csv": "results/phase1_mechanism/runs/20260208_232528_c2_rv_measurement_kitchen_sink_behavioral_transfer/c2_rv_measurement.csv",
+    "outputs_dir": "results/phase1_mechanism/runs/20260208_232528_c2_rv_measurement_kitchen_sink_behavioral_transfer/outputs",
+    "report": "results/phase1_mechanism/runs/20260208_232528_c2_rv_measurement_kitchen_sink_behavioral_transfer/report.md",
+    "summary": "results/phase1_mechanism/runs/20260208_232528_c2_rv_measurement_kitchen_sink_behavioral_transfer/summary.json"
+  },
+  "by_config": {
+    "baseline": {
+      "coherence": 0.7866666666666667,
+      "crystallization_layer_mean": 26.066666666666666,
+      "logit_diff_mean": -5.915299479166666,
+      "logit_diff_std": 5.117755041788985,
+      "mode_score_m_mean": null,
+      "n_prompts": 15,
+      "philosophical_pct": 0.0,
+      "rv_ci_95_high": 0.8344022928564568,
+      "rv_ci_95_low": 0.5964500886827108,
+      "rv_mean": 0.7154261907695838,
+      "rv_min": 0.4880263084234362,
+      "rv_std": 0.20606103957821714,
+      "task_pct": 53.333333333333336
+    },
+    "c2_full": {
+      "coherence": 0.8000000000000002,
+      "crystallization_layer_mean": 25.133333333333333,
+      "logit_diff_mean": -3.757421875,
+      "logit_diff_std": 6.275507389369882,
+      "mode_score_m_mean": null,
+      "n_prompts": 15,
+      "philosophical_pct": 26.666666666666668,
+      "rv_ci_95_high": 0.5715003553023914,
+      "rv_ci_95_low": 0.4842645949427326,
+      "rv_mean": 0.527882475122562,
+      "rv_min": 0.3691104134827545,
+      "rv_std": 0.0787636945366121,
+      "task_pct": 13.333333333333334
+    },
+    "kv_only": {
+      "coherence": 0.5333333333333333,
+      "crystallization_layer_mean": 23.533333333333335,
+      "logit_diff_mean": -3.06171875,
+      "logit_diff_std": 6.729230496377851,
+      "mode_score_m_mean": null,
+      "n_prompts": 15,
+      "philosophical_pct": 0.0,
+      "rv_ci_95_high": 0.6333199950123902,
+      "rv_ci_95_low": 0.5750453494357346,
+      "rv_mean": 0.6041826722240624,
+      "rv_min": 0.4549465682080729,
+      "rv_std": 0.052615193178869764,
+      "task_pct": 13.333333333333334
+    }
+  },
+  "experiment": "c2_rv_measurement",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_prompts": 15,
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "schema_version": "metrics_summary_v1",
+  "statistics": {},
+  "timestamp": "20260208_232912"
+}

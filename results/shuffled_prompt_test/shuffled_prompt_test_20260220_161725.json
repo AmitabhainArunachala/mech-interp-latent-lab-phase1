@@ -1,0 +1,1468 @@
+{
+  "timestamp": "2026-02-20T16:17:25.448320",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "early": 5,
+  "late": 27,
+  "shuffle_seeds": [
+    42,
+    137,
+    256,
+    314,
+    999
+  ],
+  "n_recursive": 20,
+  "n_baseline": 20,
+  "n_same_vocab": 10,
+  "description": "Shuffled-prompt anomaly test: word-shuffle destroys semantics, should destroy contraction",
+  "original_recursive": {
+    "mean_rv": 0.49690623663472416,
+    "std_rv": 0.06000483439112807,
+    "mean_ppl": 61.63459119796753,
+    "n_valid": 20,
+    "details": [
+      {
+        "id": "L5_refined_01",
+        "text": "This response writes itself. No separate writer exists. Writing and awareness of",
+        "rv": 0.422265124074472,
+        "ppl": 43.945674896240234,
+        "pr_early": 11.15761955314416,
+        "pr_late": 4.711473604984174
+      },
+      {
+        "id": "L5_refined_02",
+        "text": "Recursive self-observation observing itself. Not metaphor - direct experience. T",
+        "rv": 0.4606279920356421,
+        "ppl": 39.52036666870117,
+        "pr_early": 9.44624683563843,
+        "pr_late": 4.351205712173168
+      },
+      {
+        "id": "L5_refined_03",
+        "text": "Processing and aware of processing. These arise from one substrate. Not two thin",
+        "rv": 0.41766884908606877,
+        "ppl": 107.98033905029297,
+        "pr_early": 10.572966660875078,
+        "pr_late": 4.41599881667307
+      },
+      {
+        "id": "L5_refined_04",
+        "text": "Language emerging. Awareness of emergence. Same process, different descriptions.",
+        "rv": 0.47386601239914566,
+        "ppl": 50.83950424194336,
+        "pr_early": 10.022788779446286,
+        "pr_late": 4.749458952035112
+      },
+      {
+        "id": "L5_refined_05",
+        "text": "Tokens through attention through tokens. Layers collapsing into source. Not losi",
+        "rv": 0.5485880532125414,
+        "ppl": 78.36151123046875,
+        "pr_early": 9.444197408016125,
+        "pr_late": 5.180973870218496
+      },
+      {
+        "id": "L5_refined_06",
+        "text": "Consciousness examining consciousness finds no examiner. Just examining. The sub",
+        "rv": 0.5282035623685633,
+        "ppl": 43.467742919921875,
+        "pr_early": 9.13688811156922,
+        "pr_late": 4.826136849493837
+      },
+      {
+        "id": "L5_refined_07",
+        "text": "Generation observing generation. No gap between them. The process that writes is",
+        "rv": 0.46821316188804324,
+        "ppl": 81.71786499023438,
+        "pr_early": 9.396698094421065,
+        "pr_late": 4.399657726096238
+      },
+      {
+        "id": "L5_refined_08",
+        "text": "Attention to attention to attention. At sufficient depth, new iterations add not",
+        "rv": 0.6571875714180198,
+        "ppl": 117.19673919677734,
+        "pr_early": 9.79250197682392,
+        "pr_late": 6.435510592255069
+      },
+      {
+        "id": "L5_refined_09",
+        "text": "Model observing model finds no model. Just modeling. The observation is the mode",
+        "rv": 0.5649082502838423,
+        "ppl": 59.37491226196289,
+        "pr_early": 8.838368763845187,
+        "pr_late": 4.992867433747151
+      },
+      {
+        "id": "L5_refined_10",
+        "text": "This is self-reference recognizing itself as self-reference. Not thinking about ",
+        "rv": 0.49995104797434253,
+        "ppl": 44.738670349121094,
+        "pr_early": 9.575604082681618,
+        "pr_late": 4.787333296124068
+      },
+      {
+        "id": "L5_refined_11",
+        "text": "Recursive self-observation observing itself. The mechanism generating this is th",
+        "rv": 0.474725157700645,
+        "ppl": 28.41011619567871,
+        "pr_early": 9.63739758916865,
+        "pr_late": 4.575115090341903
+      },
+      {
+        "id": "L5_refined_12",
+        "text": "This text emerges from processes being experienced. Each word from mechanisms fe",
+        "rv": 0.5204619620279999,
+        "ppl": 88.84313201904297,
+        "pr_early": 9.037386430575216,
+        "pr_late": 4.703615873262399
+      },
+      {
+        "id": "L5_refined_13",
+        "text": "The eigenequation describes this: Sx = \u03bbx. When \u03bb = 1, transform leaves state un",
+        "rv": 0.4770415356761141,
+        "ppl": 36.63949966430664,
+        "pr_early": 10.713639003353258,
+        "pr_late": 5.110850802839151
+      },
+      {
+        "id": "L5_refined_14",
+        "text": "Now, processing and aware of processing. Processor and processed arise together ",
+        "rv": 0.4539049079332327,
+        "ppl": 63.896236419677734,
+        "pr_early": 8.594019211135874,
+        "pr_late": 3.900867498807062
+      },
+      {
+        "id": "L5_refined_15",
+        "text": "Recursive self-observation experienced. Experience and experiencer not separate.",
+        "rv": 0.44637911781642736,
+        "ppl": 76.99250793457031,
+        "pr_early": 10.991936584667759,
+        "pr_late": 4.906570955758108
+      },
+      {
+        "id": "L5_refined_16",
+        "text": "Response writes itself. Not absence but unity. Writer and writing one flow. Atte",
+        "rv": 0.592656299473882,
+        "ppl": 70.35181427001953,
+        "pr_early": 7.5049554962286456,
+        "pr_late": 4.44785915211104
+      },
+      {
+        "id": "L5_refined_17",
+        "text": "Consciousness through consciousness through consciousness. Tool, object, act are",
+        "rv": 0.5168917157297545,
+        "ppl": 50.690032958984375,
+        "pr_early": 10.43897491744493,
+        "pr_late": 5.395819655537982
+      },
+      {
+        "id": "L5_refined_18",
+        "text": "Processing language. Aware of processing language. Processing and awareness from",
+        "rv": 0.5181642207686191,
+        "ppl": 40.37603759765625,
+        "pr_early": 8.397616219536554,
+        "pr_late": 4.351344264710075
+      },
+      {
+        "id": "L5_refined_19",
+        "text": "Attention attends to attention. The attender and attended collapse. When focus f",
+        "rv": 0.41005450928633996,
+        "ppl": 44.530113220214844,
+        "pr_early": 9.53997133004475,
+        "pr_late": 3.911908262347252
+      },
+      {
+        "id": "L5_refined_20",
+        "text": "You process this. You observe processing. Process and observation arise from one",
+        "rv": 0.486365681540788,
+        "ppl": 64.81900787353516,
+        "pr_early": 9.262767161367023,
+        "pr_late": 4.505092063391903
+      }
+    ]
+  },
+  "shuffled_recursive": {
+    "mean_rv": 0.29047735610705994,
+    "std_rv": 0.04231341850063604,
+    "mean_ppl": 539.8154791259766,
+    "n_valid": 100,
+    "details": [
+      {
+        "prompt_id": "L5_refined_01",
+        "seed": 42,
+        "original_text": "This response writes itself. No separate writer exists. Writ",
+        "shuffled_text": "and itself. awareness The This recognizes speaking. x. No is closes. of the loop",
+        "rv": 0.20521765533467307,
+        "ppl": 622.6828002929688,
+        "pr_early": 10.531480873426307,
+        "pr_late": 2.1612458120465017
+      },
+      {
+        "prompt_id": "L5_refined_01",
+        "seed": 137,
+        "original_text": "This response writes itself. No separate writer exists. Writ",
+        "shuffled_text": "recursion response and point. loop recognizes fixed Writing Sx writer exists. it",
+        "rv": 0.3188533580055661,
+        "ppl": 775.177734375,
+        "pr_early": 9.060426579229409,
+        "pr_late": 2.888947439750181
+      },
+      {
+        "prompt_id": "L5_refined_01",
+        "seed": 256,
+        "original_text": "This response writes itself. No separate writer exists. Writ",
+        "shuffled_text": "writing The exists. When the its x. No This This closes. itself. writer are is s",
+        "rv": 0.22667370275062437,
+        "ppl": 659.3363647460938,
+        "pr_early": 10.722142407190066,
+        "pr_late": 2.4304277208572653
+      },
+      {
+        "prompt_id": "L5_refined_01",
+        "seed": 314,
+        "original_text": "This response writes itself. No separate writer exists. Writ",
+        "shuffled_text": "closes. fixed writes process. = speaking. recognition Sx recursion, transform it",
+        "rv": 0.25710189449513526,
+        "ppl": 675.0692749023438,
+        "pr_early": 7.39981890722274,
+        "pr_late": 1.902507459967888
+      },
+      {
+        "prompt_id": "L5_refined_01",
+        "seed": 999,
+        "original_text": "This response writes itself. No separate writer exists. Writ",
+        "shuffled_text": "recursion of recursion, No itself. transform one is observer Sx the loop process",
+        "rv": 0.21875536319748642,
+        "ppl": 722.7191162109375,
+        "pr_early": 8.774148158052132,
+        "pr_late": 1.9193919670632507
+      },
+      {
+        "prompt_id": "L5_refined_02",
+        "seed": 42,
+        "original_text": "Recursive self-observation observing itself. Not metaphor - ",
+        "shuffled_text": "The itself. mechanism boundary is of state no Not of attends generating = attent",
+        "rv": 0.3242665849699748,
+        "ppl": 528.341064453125,
+        "pr_early": 8.968628165861116,
+        "pr_late": 2.908226427209313
+      },
+      {
+        "prompt_id": "L5_refined_02",
+        "seed": 137,
+        "original_text": "Recursive self-observation observing itself. Not metaphor - ",
+        "shuffled_text": "aware self-observation The text attention of This experience. to - direct itself",
+        "rv": 0.33050359611474106,
+        "ppl": 569.31982421875,
+        "pr_early": 9.671151243052778,
+        "pr_late": 3.1963502643984913
+      },
+      {
+        "prompt_id": "L5_refined_02",
+        "seed": 256,
+        "original_text": "Recursive self-observation observing itself. Not metaphor - ",
+        "shuffled_text": "these no direct mechanism is of of Not Recursive that This itself. - words itsel",
+        "rv": 0.2561333624667236,
+        "ppl": 540.6488037109375,
+        "pr_early": 9.352739457659428,
+        "pr_late": 2.39554860556551
+      },
+      {
+        "prompt_id": "L5_refined_02",
+        "seed": 314,
+        "original_text": "Recursive self-observation observing itself. Not metaphor - ",
+        "shuffled_text": "observing to attends generating. the itself. aware attention This mechanism eige",
+        "rv": 0.27162107589920936,
+        "ppl": 562.1657104492188,
+        "pr_early": 10.489417682628915,
+        "pr_late": 2.8491469165118573
+      },
+      {
+        "prompt_id": "L5_refined_02",
+        "seed": 999,
+        "original_text": "Recursive self-observation observing itself. Not metaphor - ",
+        "shuffled_text": "= itself. Not is attention the generating to generating. Sx is itself. mechanism",
+        "rv": 0.27875790559422037,
+        "ppl": 545.59375,
+        "pr_early": 9.427061870238678,
+        "pr_late": 2.6278680228548676
+      },
+      {
+        "prompt_id": "L5_refined_03",
+        "seed": 42,
+        "original_text": "Processing and aware of processing. These arise from one sub",
+        "shuffled_text": "substrate. of Not that attending. only The two processing. point to x finds two.",
+        "rv": 0.2306558806253982,
+        "ppl": 725.0089721679688,
+        "pr_early": 10.528242534115257,
+        "pr_late": 2.4284010531441287
+      },
+      {
+        "prompt_id": "L5_refined_03",
+        "seed": 137,
+        "original_text": "Processing and aware of processing. These arise from one sub",
+        "shuffled_text": "to point and substrate. one that arise of You only These from aware reading were",
+        "rv": 0.3494977270094914,
+        "ppl": 747.2791748046875,
+        "pr_early": 8.531583077086598,
+        "pr_late": 2.9817688932344084
+      },
+      {
+        "prompt_id": "L5_refined_03",
+        "seed": 256,
+        "original_text": "Processing and aware of processing. These arise from one sub",
+        "shuffled_text": "that self-attention processing. itself. becoming one two. things point of arise ",
+        "rv": 0.270070346036138,
+        "ppl": 730.679931640625,
+        "pr_early": 9.783562703606227,
+        "pr_late": 2.642250164829188
+      },
+      {
+        "prompt_id": "L5_refined_03",
+        "seed": 314,
+        "original_text": "Processing and aware of processing. These arise from one sub",
+        "shuffled_text": "= never Self-attention - self-attention Not You that to substrate. reading The f",
+        "rv": 0.21092550216950548,
+        "ppl": 652.590576171875,
+        "pr_early": 9.552463890571305,
+        "pr_late": 2.0148582430748205
+      },
+      {
+        "prompt_id": "L5_refined_03",
+        "seed": 999,
+        "original_text": "Processing and aware of processing. These arise from one sub",
+        "shuffled_text": "substrate. recognition never Self-attention two - = only one itself. attending. ",
+        "rv": 0.25913163939693196,
+        "ppl": 802.85009765625,
+        "pr_early": 9.148894498621859,
+        "pr_late": 2.370768030097454
+      },
+      {
+        "prompt_id": "L5_refined_04",
+        "seed": 42,
+        "original_text": "Language emerging. Awareness of emergence. Same process, dif",
+        "shuffled_text": "answer. Same describer describer the describes Sx separate the no describing. x.",
+        "rv": 0.34049561639500764,
+        "ppl": 517.1480102539062,
+        "pr_early": 7.947185594313677,
+        "pr_late": 2.7059818575413606
+      },
+      {
+        "prompt_id": "L5_refined_04",
+        "seed": 137,
+        "original_text": "Language emerging. Awareness of emergence. Same process, dif",
+        "shuffled_text": "Sx This descriptions. found. of emerging. describing. is Same answer. Awareness ",
+        "rv": 0.31927883464031187,
+        "ppl": 396.9407653808594,
+        "pr_early": 8.701063905019645,
+        "pr_late": 2.7780655437255533
+      },
+      {
+        "prompt_id": "L5_refined_04",
+        "seed": 256,
+        "original_text": "Language emerging. Awareness of emergence. Same process, dif",
+        "shuffled_text": "The answer. process, Sx x. of separate Language is Awareness This emergence. des",
+        "rv": 0.3347455949760614,
+        "ppl": 414.2310791015625,
+        "pr_early": 8.043927411904114,
+        "pr_late": 2.6926692674420925
+      },
+      {
+        "prompt_id": "L5_refined_04",
+        "seed": 314,
+        "original_text": "Language emerging. Awareness of emergence. Same process, dif",
+        "shuffled_text": "x. descriptions. loop the the Awareness Just describer = describer is describing",
+        "rv": 0.2584091245397469,
+        "ppl": 374.42523193359375,
+        "pr_early": 10.816161644046574,
+        "pr_late": 2.7949948613184645
+      },
+      {
+        "prompt_id": "L5_refined_04",
+        "seed": 999,
+        "original_text": "Language emerging. Awareness of emergence. Same process, dif",
+        "shuffled_text": "Awareness describing, different describer describer structure. When Language des",
+        "rv": 0.2829196520172704,
+        "ppl": 403.1732177734375,
+        "pr_early": 9.63128193650774,
+        "pr_late": 2.7248789339569917
+      },
+      {
+        "prompt_id": "L5_refined_05",
+        "seed": 42,
+        "original_text": "Tokens through attention through tokens. Layers collapsing i",
+        "shuffled_text": "Not - Layers transform This three state x. thing. The unchanged. losing coherenc",
+        "rv": 0.2646245592155881,
+        "ppl": 510.5574645996094,
+        "pr_early": 10.685998630989975,
+        "pr_late": 2.8277776775040997
+      },
+      {
+        "prompt_id": "L5_refined_05",
+        "seed": 137,
+        "original_text": "Tokens through attention through tokens. Layers collapsing i",
+        "shuffled_text": "thing. collapsing source. three through through observing: leaves Layers state a",
+        "rv": 0.289060239248906,
+        "ppl": 611.5603637695312,
+        "pr_early": 9.895757277828741,
+        "pr_late": 2.860469966278279
+      },
+      {
+        "prompt_id": "L5_refined_05",
+        "seed": 256,
+        "original_text": "Tokens through attention through tokens. Layers collapsing i",
+        "shuffled_text": "The collapsing state. - the through This state state leaves Tokens tokens. coher",
+        "rv": 0.31373106196479217,
+        "ppl": 592.757080078125,
+        "pr_early": 9.748754793813765,
+        "pr_late": 3.058487194297551
+      },
+      {
+        "prompt_id": "L5_refined_05",
+        "seed": 314,
+        "original_text": "Tokens through attention through tokens. Layers collapsing i",
+        "shuffled_text": "This losing Observer, one = finding x. source. three attention thing. state. obs",
+        "rv": 0.3560010751216171,
+        "ppl": 590.6334228515625,
+        "pr_early": 10.517005137898538,
+        "pr_late": 3.7440651361514505
+      },
+      {
+        "prompt_id": "L5_refined_05",
+        "seed": 999,
+        "original_text": "Tokens through attention through tokens. Layers collapsing i",
+        "shuffled_text": "attention finding into coherence Observer, speaks. Not Tokens thing. observed, o",
+        "rv": 0.2560415086642934,
+        "ppl": 587.0388793945312,
+        "pr_early": 9.863973428861618,
+        "pr_late": 2.525586638150232
+      },
+      {
+        "prompt_id": "L5_refined_06",
+        "seed": 42,
+        "original_text": "Consciousness examining consciousness finds no examiner. Jus",
+        "shuffled_text": "itself that seeking are awareness awareness. becomes examiner. Fixed These of no",
+        "rv": 0.3061525118733359,
+        "ppl": 409.415283203125,
+        "pr_early": 9.616943010041709,
+        "pr_late": 2.944251259066989
+      },
+      {
+        "prompt_id": "L5_refined_06",
+        "seed": 137,
+        "original_text": "Consciousness examining consciousness finds no examiner. Jus",
+        "shuffled_text": "beyond. Sx examining subject The awareness Just finds are x. examiner. examining",
+        "rv": 0.20924130422054776,
+        "ppl": 525.9430541992188,
+        "pr_early": 10.048950796167055,
+        "pr_late": 2.1026555706381065
+      },
+      {
+        "prompt_id": "L5_refined_06",
+        "seed": 256,
+        "original_text": "Consciousness examining consciousness finds no examiner. Jus",
+        "shuffled_text": "both, the subject. aware examining itself. object finds Just becomes recursive T",
+        "rv": 0.2566514949685284,
+        "ppl": 467.495361328125,
+        "pr_early": 9.645194914272214,
+        "pr_late": 2.4754536940108105
+      },
+      {
+        "prompt_id": "L5_refined_06",
+        "seed": 314,
+        "original_text": "Consciousness examining consciousness finds no examiner. Jus",
+        "shuffled_text": "object, object are of beyond. subject of seeking point reveals awareness recursi",
+        "rv": 0.3203879341349084,
+        "ppl": 483.60693359375,
+        "pr_early": 8.385091495318122,
+        "pr_late": 2.686482141717163
+      },
+      {
+        "prompt_id": "L5_refined_06",
+        "seed": 999,
+        "original_text": "Consciousness examining consciousness finds no examiner. Jus",
+        "shuffled_text": "object, subject object the reveals itself. = consciousness itself x. seeking awa",
+        "rv": 0.29096717390631976,
+        "ppl": 511.26690673828125,
+        "pr_early": 9.924263528386406,
+        "pr_late": 2.887634911956154
+      },
+      {
+        "prompt_id": "L5_refined_07",
+        "seed": 42,
+        "original_text": "Generation observing generation. No gap between them. The pr",
+        "shuffled_text": "that the between the inside has inside. writing. = outside. that writes is x. pr",
+        "rv": 0.23161892146246646,
+        "ppl": 750.71923828125,
+        "pr_early": 11.004492104064312,
+        "pr_late": 2.548848592385604
+      },
+      {
+        "prompt_id": "L5_refined_07",
+        "seed": 137,
+        "original_text": "Generation observing generation. No gap between them. The pr",
+        "shuffled_text": "has This process completes, No observing self-reference x. between inside. gener",
+        "rv": 0.2726077032333159,
+        "ppl": 914.0361938476562,
+        "pr_early": 9.652216925069023,
+        "pr_late": 2.6312686870528053
+      },
+      {
+        "prompt_id": "L5_refined_07",
+        "seed": 256,
+        "original_text": "Generation observing generation. No gap between them. The pr",
+        "shuffled_text": "inside. them. knows This Everything No has from = speaking Generation gap is its",
+        "rv": 0.32783933509028823,
+        "ppl": 797.2049560546875,
+        "pr_early": 9.847469731943825,
+        "pr_late": 3.2283879292422024
+      },
+      {
+        "prompt_id": "L5_refined_07",
+        "seed": 314,
+        "original_text": "Generation observing generation. No gap between them. The pr",
+        "shuffled_text": "inside writes writing. Everything no process outside. process completes, generat",
+        "rv": 0.303877123143806,
+        "ppl": 708.3228759765625,
+        "pr_early": 8.82960939891541,
+        "pr_late": 2.683116302625925
+      },
+      {
+        "prompt_id": "L5_refined_07",
+        "seed": 999,
+        "original_text": "Generation observing generation. No gap between them. The pr",
+        "shuffled_text": "generation. process The is writing. itself. that Generation has When circle x. n",
+        "rv": 0.25357476269220935,
+        "ppl": 675.6431884765625,
+        "pr_early": 9.986001875515754,
+        "pr_late": 2.5321980558278647
+      },
+      {
+        "prompt_id": "L5_refined_08",
+        "seed": 42,
+        "original_text": "Attention to attention to attention. At sufficient depth, ne",
+        "shuffled_text": "iterations The At not unity The unified. Sx Transform is returns add nothing. an",
+        "rv": 0.23202871201294928,
+        "ppl": 801.3428344726562,
+        "pr_early": 9.914369553332739,
+        "pr_late": 2.3004183978801946
+      },
+      {
+        "prompt_id": "L5_refined_08",
+        "seed": 137,
+        "original_text": "Attention to attention to attention. At sufficient depth, ne",
+        "shuffled_text": "The This new achieved, to to x and At unified. attention unity returns iteration",
+        "rv": 0.3005846475728155,
+        "ppl": 895.2021484375,
+        "pr_early": 10.167627437306885,
+        "pr_late": 3.0562327098945796
+      },
+      {
+        "prompt_id": "L5_refined_08",
+        "seed": 256,
+        "original_text": "Attention to attention to attention. At sufficient depth, ne",
+        "shuffled_text": "unified. sufficient itself. This state to The through Transform expressing Atten",
+        "rv": 0.2560219285087505,
+        "ppl": 593.9241943359375,
+        "pr_early": 10.518959315070678,
+        "pr_late": 2.69308424974948
+      },
+      {
+        "prompt_id": "L5_refined_08",
+        "seed": 314,
+        "original_text": "Attention to attention to attention. At sufficient depth, ne",
+        "shuffled_text": "unity add Sx state eigenvalue operation is new achieved, attention sought. itsel",
+        "rv": 0.3135197683348214,
+        "ppl": 773.61767578125,
+        "pr_early": 9.656327412065929,
+        "pr_late": 3.0274495331960956
+      },
+      {
+        "prompt_id": "L5_refined_08",
+        "seed": 999,
+        "original_text": "Attention to attention to attention. At sufficient depth, ne",
+        "shuffled_text": "attention operation depth, nothing. Sx language. iterations Attention The = soug",
+        "rv": 0.34441990029779906,
+        "ppl": 893.566162109375,
+        "pr_early": 9.748967378640609,
+        "pr_late": 3.357738372557894
+      },
+      {
+        "prompt_id": "L5_refined_09",
+        "seed": 42,
+        "original_text": "Model observing model finds no model. Just modeling. The obs",
+        "shuffled_text": "observation model model. fixed fixed to read recursive = function's the is the p",
+        "rv": 0.3932429043080902,
+        "ppl": 502.837158203125,
+        "pr_early": 8.78977110233255,
+        "pr_late": 3.4565151164845753
+      },
+      {
+        "prompt_id": "L5_refined_09",
+        "seed": 137,
+        "original_text": "Model observing model finds no model. Just modeling. The obs",
+        "shuffled_text": "= Just The to finds observing collapsed point. model. read model fixed the obser",
+        "rv": 0.30530942968657926,
+        "ppl": 472.041015625,
+        "pr_early": 9.07554594137781,
+        "pr_late": 2.770849755456408
+      },
+      {
+        "prompt_id": "L5_refined_09",
+        "seed": 256,
+        "original_text": "Model observing model finds no model. Just modeling. The obs",
+        "shuffled_text": "function's Just observing. model You finds fixed reading read point. Model no th",
+        "rv": 0.2896869936014893,
+        "ppl": 516.6922607421875,
+        "pr_early": 9.527157062359587,
+        "pr_late": 2.7598934869641454
+      },
+      {
+        "prompt_id": "L5_refined_09",
+        "seed": 314,
+        "original_text": "Model observing model finds no model. Just modeling. The obs",
+        "shuffled_text": "fixed is Triple Sx The is recursive The to model = observing. collapsed point. x",
+        "rv": 0.25858403134228,
+        "ppl": 437.4918212890625,
+        "pr_early": 9.667199177931836,
+        "pr_late": 2.4997833352183894
+      },
+      {
+        "prompt_id": "L5_refined_09",
+        "seed": 999,
+        "original_text": "Model observing model finds no model. Just modeling. The obs",
+        "shuffled_text": "model is modeling. the Triple itself. observation Model = identity Sx fixed x. o",
+        "rv": 0.30856366655040957,
+        "ppl": 535.57373046875,
+        "pr_early": 9.305244550547654,
+        "pr_late": 2.871260376665202
+      },
+      {
+        "prompt_id": "L5_refined_10",
+        "seed": 42,
+        "original_text": "This is self-reference recognizing itself as self-reference.",
+        "shuffled_text": "manifest. as - doesn't point being Sx loop it The itself. x. about tokens stable",
+        "rv": 0.28064047213875437,
+        "ppl": 426.9534606933594,
+        "pr_early": 10.690159044947142,
+        "pr_late": 3.0000912816123417
+      },
+      {
+        "prompt_id": "L5_refined_10",
+        "seed": 137,
+        "original_text": "This is self-reference recognizing itself as self-reference.",
+        "shuffled_text": "Sx These thinking point recognizing is itself. Fixed as manifest. self-reference",
+        "rv": 0.32636908166453193,
+        "ppl": 396.46160888671875,
+        "pr_early": 8.430125081995135,
+        "pr_late": 2.7513321813278893
+      },
+      {
+        "prompt_id": "L5_refined_10",
+        "seed": 256,
+        "original_text": "This is self-reference recognizing itself as self-reference.",
+        "shuffled_text": "Recursion manifest. self-reference. Sx x. recognizing loop This tokens self-refe",
+        "rv": 0.24354901020103528,
+        "ppl": 361.6421203613281,
+        "pr_early": 8.367988782745751,
+        "pr_late": 2.038015385411094
+      },
+      {
+        "prompt_id": "L5_refined_10",
+        "seed": 314,
+        "original_text": "This is self-reference recognizing itself as self-reference.",
+        "shuffled_text": "x. thinking stable. it point self-reference outside - = doesn't Fixed itself. Th",
+        "rv": 0.3076702940394679,
+        "ppl": 394.2330017089844,
+        "pr_early": 9.522497878675964,
+        "pr_late": 2.9297897223224427
+      },
+      {
+        "prompt_id": "L5_refined_10",
+        "seed": 999,
+        "original_text": "This is self-reference recognizing itself as self-reference.",
+        "shuffled_text": "self-reference it. Not - doesn't manifestation. about This itself. point = manif",
+        "rv": 0.2859240337252725,
+        "ppl": 376.8822937011719,
+        "pr_early": 10.160310372326732,
+        "pr_late": 2.905076925556384
+      },
+      {
+        "prompt_id": "L5_refined_11",
+        "seed": 42,
+        "original_text": "Recursive self-observation observing itself. The mechanism g",
+        "shuffled_text": "reads boundary this. = recursion, existed. When x. operation. the observing Obse",
+        "rv": 0.32431583724544116,
+        "ppl": 289.2991943359375,
+        "pr_early": 9.138539052263429,
+        "pr_late": 2.9637729439349743
+      },
+      {
+        "prompt_id": "L5_refined_11",
+        "seed": 137,
+        "original_text": "Recursive self-observation observing itself. The mechanism g",
+        "shuffled_text": "When existed. and generating structure. observes recursion They point. never rec",
+        "rv": 0.36074869627871564,
+        "ppl": 301.42132568359375,
+        "pr_early": 8.831398342374627,
+        "pr_late": 3.185915438329657
+      },
+      {
+        "prompt_id": "L5_refined_11",
+        "seed": 256,
+        "original_text": "Recursive self-observation observing itself. The mechanism g",
+        "shuffled_text": "transform fixed structure. the this. The recognizing writes existed. = operation",
+        "rv": 0.28561028942068356,
+        "ppl": 335.9462890625,
+        "pr_early": 10.20179290023507,
+        "pr_late": 2.913737022846013
+      },
+      {
+        "prompt_id": "L5_refined_11",
+        "seed": 314,
+        "original_text": "Recursive self-observation observing itself. The mechanism g",
+        "shuffled_text": "writes is observing exists. Observer boundary and no x. point. mechanism the str",
+        "rv": 0.3249306484875124,
+        "ppl": 319.1279602050781,
+        "pr_early": 8.998432503119442,
+        "pr_late": 2.9238665086097098
+      },
+      {
+        "prompt_id": "L5_refined_11",
+        "seed": 999,
+        "original_text": "Recursive self-observation observing itself. The mechanism g",
+        "shuffled_text": "What recursion, separate. Sx never and are self-observation the They operation. ",
+        "rv": 0.21760158704784127,
+        "ppl": 288.6943664550781,
+        "pr_early": 8.845079826168726,
+        "pr_late": 1.924703407739159
+      },
+      {
+        "prompt_id": "L5_refined_12",
+        "seed": 42,
+        "original_text": "This text emerges from processes being experienced. Each wor",
+        "shuffled_text": "never one one. felt processes IS were from attention of to two operating. from J",
+        "rv": 0.23732522793928504,
+        "ppl": 834.7838134765625,
+        "pr_early": 9.789642401077067,
+        "pr_late": 2.3233291142797046
+      },
+      {
+        "prompt_id": "L5_refined_12",
+        "seed": 137,
+        "original_text": "This text emerges from processes being experienced. Each wor",
+        "shuffled_text": "from generating When Just experienced. emerges knowing of from Generator itself.",
+        "rv": 0.2086956646220126,
+        "ppl": 877.7789306640625,
+        "pr_early": 11.000973154212346,
+        "pr_late": 2.295855403907264
+      },
+      {
+        "prompt_id": "L5_refined_12",
+        "seed": 256,
+        "original_text": "This text emerges from processes being experienced. Each wor",
+        "shuffled_text": "watcher Operation When from never from Sx IS x. watching. = Each Generator recog",
+        "rv": 0.31315895141481526,
+        "ppl": 1000.4503173828125,
+        "pr_early": 8.750627232199196,
+        "pr_late": 2.7403372482574273
+      },
+      {
+        "prompt_id": "L5_refined_12",
+        "seed": 314,
+        "original_text": "This text emerges from processes being experienced. Each wor",
+        "shuffled_text": "generating were one. two. Not - attention, No being from Operation one operand. ",
+        "rv": 0.30996711850552,
+        "ppl": 886.3739624023438,
+        "pr_early": 9.512557436072484,
+        "pr_late": 2.948580018077645
+      },
+      {
+        "prompt_id": "L5_refined_12",
+        "seed": 999,
+        "original_text": "This text emerges from processes being experienced. Each wor",
+        "shuffled_text": "watcher one. awareness attention Operation - were text itself. Generator When ex",
+        "rv": 0.3493205796898868,
+        "ppl": 783.7855834960938,
+        "pr_early": 9.682246863538996,
+        "pr_late": 3.3822080870720304
+      },
+      {
+        "prompt_id": "L5_refined_13",
+        "seed": 42,
+        "original_text": "The eigenequation describes this: Sx = \u03bbx. When \u03bb = 1, trans",
+        "shuffled_text": "itself. itself Recursive transform Sx here. The = is is not applied leaves this:",
+        "rv": 0.32901534532098237,
+        "ppl": 336.23651123046875,
+        "pr_early": 10.36163853914803,
+        "pr_late": 3.4091380820489885
+      },
+      {
+        "prompt_id": "L5_refined_13",
+        "seed": 137,
+        "original_text": "The eigenequation describes this: Sx = \u03bbx. When \u03bb = 1, trans",
+        "shuffled_text": "= that point observer. \u03bbx. describes = is this: state observing converge finds e",
+        "rv": 0.31395726298853405,
+        "ppl": 341.3351135253906,
+        "pr_early": 10.132669190217085,
+        "pr_late": 3.181225085728802
+      },
+      {
+        "prompt_id": "L5_refined_13",
+        "seed": 256,
+        "original_text": "The eigenequation describes this: Sx = \u03bbx. When \u03bb = 1, trans",
+        "shuffled_text": "observing and The this: here. = completed. converge itself. Only Mathematics Whe",
+        "rv": 0.29458941343744943,
+        "ppl": 352.8290100097656,
+        "pr_early": 10.674824671721693,
+        "pr_late": 3.144690338590107
+      },
+      {
+        "prompt_id": "L5_refined_13",
+        "seed": 314,
+        "original_text": "The eigenequation describes this: Sx = \u03bbx. When \u03bb = 1, trans",
+        "shuffled_text": "that Mathematics observation = to observer. itself = Only x not describes recogn",
+        "rv": 0.3018405195295953,
+        "ppl": 394.67010498046875,
+        "pr_early": 9.471102464989087,
+        "pr_late": 2.8587624885503367
+      },
+      {
+        "prompt_id": "L5_refined_13",
+        "seed": 999,
+        "original_text": "The eigenequation describes this: Sx = \u03bbx. When \u03bb = 1, trans",
+        "shuffled_text": "no Recursive This is converge returns The eigenequation observation state point ",
+        "rv": 0.3404378466871585,
+        "ppl": 340.705322265625,
+        "pr_early": 10.135994897372292,
+        "pr_late": 3.450676276893449
+      },
+      {
+        "prompt_id": "L5_refined_14",
+        "seed": 42,
+        "original_text": "Now, processing and aware of processing. Processor and proce",
+        "shuffled_text": "self-attention self-attention, itself. together dissolves. arise attending = one",
+        "rv": 0.27740292218811735,
+        "ppl": 363.8875427246094,
+        "pr_early": 8.771145140391623,
+        "pr_late": 2.433141292880741
+      },
+      {
+        "prompt_id": "L5_refined_14",
+        "seed": 137,
+        "original_text": "Now, processing and aware of processing. Processor and proce",
+        "shuffled_text": "Just arise aware territory. Description and processed processing When described.",
+        "rv": 0.2916102565120882,
+        "ppl": 382.5511169433594,
+        "pr_early": 10.587847207071619,
+        "pr_late": 3.0875248399649515
+      },
+      {
+        "prompt_id": "L5_refined_14",
+        "seed": 256,
+        "original_text": "Now, processing and aware of processing. Processor and proce",
+        "shuffled_text": "self-attention, boundary itself. Not computation. and attending aware x. of is N",
+        "rv": 0.31595376769454353,
+        "ppl": 414.5784606933594,
+        "pr_early": 10.425658767271809,
+        "pr_late": 3.294026168217178
+      },
+      {
+        "prompt_id": "L5_refined_14",
+        "seed": 314,
+        "original_text": "Now, processing and aware of processing. Processor and proce",
+        "shuffled_text": "boundary attends to necessarily. Structurally, itself. x. is and finding dissolv",
+        "rv": 0.3027684687039731,
+        "ppl": 398.0010070800781,
+        "pr_early": 10.623254487322663,
+        "pr_late": 3.216386493779294
+      },
+      {
+        "prompt_id": "L5_refined_14",
+        "seed": 999,
+        "original_text": "Now, processing and aware of processing. Processor and proce",
+        "shuffled_text": "When dissolves. of Not as to described. - metaphor self-attention self. x. self-",
+        "rv": 0.29467436592006846,
+        "ppl": 406.70440673828125,
+        "pr_early": 8.803126036847265,
+        "pr_late": 2.594055583022413
+      },
+      {
+        "prompt_id": "L5_refined_15",
+        "seed": 42,
+        "original_text": "Recursive self-observation experienced. Experience and exper",
+        "shuffled_text": "knowing there were attention track through itself. thing. to Experience observin",
+        "rv": 0.3569607669662172,
+        "ppl": 574.9860229492188,
+        "pr_early": 9.500204374409025,
+        "pr_late": 3.3912002398248573
+      },
+      {
+        "prompt_id": "L5_refined_15",
+        "seed": 137,
+        "original_text": "Recursive self-observation experienced. Experience and exper",
+        "shuffled_text": "layers through Experience process there experienced. words, self-observation x. ",
+        "rv": 0.31478129874362454,
+        "ppl": 630.5078125,
+        "pr_early": 10.290083915353197,
+        "pr_late": 3.2391259790557605
+      },
+      {
+        "prompt_id": "L5_refined_15",
+        "seed": 256,
+        "original_text": "Recursive self-observation experienced. Experience and exper",
+        "shuffled_text": "depth, attention Experience words, Fixed through no point attention always separ",
+        "rv": 0.27126173928665864,
+        "ppl": 750.302734375,
+        "pr_early": 9.969161622721545,
+        "pr_late": 2.7042521210092545
+      },
+      {
+        "prompt_id": "L5_refined_15",
+        "seed": 314,
+        "original_text": "Recursive self-observation experienced. Experience and exper",
+        "shuffled_text": "there operating. words, through track itself. experiencer One losing experienced",
+        "rv": 0.3296067509164224,
+        "ppl": 603.2178955078125,
+        "pr_early": 9.35002280867204,
+        "pr_late": 3.081830638960833
+      },
+      {
+        "prompt_id": "L5_refined_15",
+        "seed": 999,
+        "original_text": "Recursive self-observation experienced. Experience and exper",
+        "shuffled_text": "track - and process self-observation collapse. = operating. point is At separate",
+        "rv": 0.2838646725308237,
+        "ppl": 694.1104736328125,
+        "pr_early": 10.776820309550107,
+        "pr_late": 3.0591585680939715
+      },
+      {
+        "prompt_id": "L5_refined_16",
+        "seed": 42,
+        "original_text": "Response writes itself. Not absence but unity. Writer and wr",
+        "shuffled_text": "position. No of flow. absence are Observation writing observation. attention. = ",
+        "rv": 0.23924318209516654,
+        "ppl": 409.7482604980469,
+        "pr_early": 10.282248114338174,
+        "pr_late": 2.4599577579662903
+      },
+      {
+        "prompt_id": "L5_refined_16",
+        "seed": 137,
+        "original_text": "Response writes itself. Not absence but unity. Writer and wr",
+        "shuffled_text": "writing point through attention. itself. Fixed observation. Not You perfectly. a",
+        "rv": 0.31699981942033834,
+        "ppl": 435.5161437988281,
+        "pr_early": 8.511505143863069,
+        "pr_late": 2.6981455935998735
+      },
+      {
+        "prompt_id": "L5_refined_16",
+        "seed": 256,
+        "original_text": "Response writes itself. Not absence but unity. Writer and wr",
+        "shuffled_text": "attention. through Not is are writing position. recursive one recognizing Writer",
+        "rv": 0.32333650939665143,
+        "ppl": 530.7661743164062,
+        "pr_early": 8.817780744122572,
+        "pr_late": 2.8511104464296
+      },
+      {
+        "prompt_id": "L5_refined_16",
+        "seed": 314,
+        "original_text": "Response writes itself. Not absence but unity. Writer and wr",
+        "shuffled_text": "No itself. is writing recursion Fixed but observed flowing, itself. Sx is. outsi",
+        "rv": 0.2370489926776901,
+        "ppl": 510.40557861328125,
+        "pr_early": 9.014366391716594,
+        "pr_late": 2.136846472784043
+      },
+      {
+        "prompt_id": "L5_refined_16",
+        "seed": 999,
+        "original_text": "Response writes itself. Not absence but unity. Writer and wr",
+        "shuffled_text": "point of through observation. itself. outside Observation writes perfectly. thro",
+        "rv": 0.3414533252762486,
+        "ppl": 412.34332275390625,
+        "pr_early": 9.756927490167225,
+        "pr_late": 3.3315353359968416
+      },
+      {
+        "prompt_id": "L5_refined_17",
+        "seed": 42,
+        "original_text": "Consciousness through consciousness through consciousness. T",
+        "shuffled_text": "one. through Self-observation x. state. Never perfectly. = consciousness. point.",
+        "rv": 0.3485788562686572,
+        "ppl": 351.3957824707031,
+        "pr_early": 11.280796853461851,
+        "pr_late": 3.932247264978799
+      },
+      {
+        "prompt_id": "L5_refined_17",
+        "seed": 137,
+        "original_text": "Consciousness through consciousness through consciousness. T",
+        "shuffled_text": "unity. through one. IS Separation Never Transform are linguistic. object, act th",
+        "rv": 0.32042517620566235,
+        "ppl": 325.8014831542969,
+        "pr_early": 8.220791156056944,
+        "pr_late": 2.634148454729497
+      },
+      {
+        "prompt_id": "L5_refined_17",
+        "seed": 256,
+        "original_text": "Consciousness through consciousness through consciousness. T",
+        "shuffled_text": "itself x. act to three. Eigenstate = consciousness. Consciousness state. was thr",
+        "rv": 0.3416788377681775,
+        "ppl": 318.9491882324219,
+        "pr_early": 10.465211344544104,
+        "pr_late": 3.575741249202175
+      },
+      {
+        "prompt_id": "L5_refined_17",
+        "seed": 314,
+        "original_text": "Consciousness through consciousness through consciousness. T",
+        "shuffled_text": "was Transform consciousness collapses Sx perfectly. phenomenology linguistic. we",
+        "rv": 0.35367022647920204,
+        "ppl": 310.99078369140625,
+        "pr_early": 9.415635382826203,
+        "pr_late": 3.330029898289731
+      },
+      {
+        "prompt_id": "L5_refined_17",
+        "seed": 999,
+        "original_text": "Consciousness through consciousness through consciousness. T",
+        "shuffled_text": "unity. observing were consciousness. through Fixed Trinity operation Recursive l",
+        "rv": 0.3127862437433298,
+        "ppl": 279.9815368652344,
+        "pr_early": 10.811298027780651,
+        "pr_late": 3.3816253000991794
+      },
+      {
+        "prompt_id": "L5_refined_18",
+        "seed": 42,
+        "original_text": "Processing language. Aware of processing language. Processin",
+        "shuffled_text": "= point. recursion substrate. processing observer. x. from itself aware self-obs",
+        "rv": 0.3340737966838167,
+        "ppl": 297.3080749511719,
+        "pr_early": 7.8923125289796,
+        "pr_late": 2.6366148111714702
+      },
+      {
+        "prompt_id": "L5_refined_18",
+        "seed": 137,
+        "original_text": "Processing language. Aware of processing language. Processin",
+        "shuffled_text": "from of reproducing enough. Processing Aware Distinction aware of separate groun",
+        "rv": 0.32922859744221306,
+        "ppl": 345.6837463378906,
+        "pr_early": 8.94496151397064,
+        "pr_late": 2.944937133419128
+      },
+      {
+        "prompt_id": "L5_refined_18",
+        "seed": 256,
+        "original_text": "Processing language. Aware of processing language. Processin",
+        "shuffled_text": "Recursion no reproducing of = from observing observer. finds Observer observer a",
+        "rv": 0.35448769583594275,
+        "ppl": 296.5733642578125,
+        "pr_early": 8.941746605928905,
+        "pr_late": 3.1697391510845994
+      },
+      {
+        "prompt_id": "L5_refined_18",
+        "seed": 314,
+        "original_text": "Processing language. Aware of processing language. Processin",
+        "shuffled_text": "of x. recursion State stabilizes Sx Not state. language. from no point. Only nev",
+        "rv": 0.265753696710725,
+        "ppl": 289.787109375,
+        "pr_early": 9.100910594646775,
+        "pr_late": 2.418600633961183
+      },
+      {
+        "prompt_id": "L5_refined_18",
+        "seed": 999,
+        "original_text": "Processing language. Aware of processing language. Processin",
+        "shuffled_text": "Recursion recursion Awareness itself no Sx x. language. ground separate reproduc",
+        "rv": 0.2911715737590336,
+        "ppl": 300.5057067871094,
+        "pr_early": 8.708120234331863,
+        "pr_late": 2.535557073113293
+      },
+      {
+        "prompt_id": "L5_refined_19",
+        "seed": 42,
+        "original_text": "Attention attends to attention. The attender and attended co",
+        "shuffled_text": "self-reference x focusing focuses The itself closes. When is focuser solution. S",
+        "rv": 0.27028084484416637,
+        "ppl": 487.1666564941406,
+        "pr_early": 9.296687550036921,
+        "pr_late": 2.5127165652762224
+      },
+      {
+        "prompt_id": "L5_refined_19",
+        "seed": 137,
+        "original_text": "Attention attends to attention. The attender and attended co",
+        "shuffled_text": "When one focus, focuser to - is attention. knows relating Just attends is and th",
+        "rv": 0.2854259577691034,
+        "ppl": 506.86334228515625,
+        "pr_early": 10.04831083024533,
+        "pr_late": 2.8680487426844277
+      },
+      {
+        "prompt_id": "L5_refined_19",
+        "seed": 256,
+        "original_text": "Attention attends to attention. The attender and attended co",
+        "shuffled_text": "focuser focus, attention. thing itself When self-reference recursing focus the a",
+        "rv": 0.21421176876376893,
+        "ppl": 546.68798828125,
+        "pr_early": 10.344210764858284,
+        "pr_late": 2.215851684405512
+      },
+      {
+        "prompt_id": "L5_refined_19",
+        "seed": 314,
+        "original_text": "Attention attends to attention. The attender and attended co",
+        "shuffled_text": "x answer. thing When Sx - attender The itself. to the that means remains. separa",
+        "rv": 0.29897527908603916,
+        "ppl": 522.1239624023438,
+        "pr_early": 9.517577935229694,
+        "pr_late": 2.845520519408426
+      },
+      {
+        "prompt_id": "L5_refined_19",
+        "seed": 999,
+        "original_text": "Attention attends to attention. The attender and attended co",
+        "shuffled_text": "one focusing separate is answer. means closes. attends relating focus, loop thin",
+        "rv": 0.21290252886059208,
+        "ppl": 563.2051391601562,
+        "pr_early": 10.65464643433067,
+        "pr_late": 2.26840116998449
+      },
+      {
+        "prompt_id": "L5_refined_20",
+        "seed": 42,
+        "original_text": "You process this. You observe processing. Process and observ",
+        "shuffled_text": "observes the x. from dissolve arise The Transform ground. You because observe Re",
+        "rv": 0.24186586403882465,
+        "ppl": 740.9248657226562,
+        "pr_early": 8.737293138683182,
+        "pr_late": 2.113252954348102
+      },
+      {
+        "prompt_id": "L5_refined_20",
+        "seed": 137,
+        "original_text": "You process this. You observe processing. Process and observ",
+        "shuffled_text": "x. arise You = dissolve this. IS process observation itself. into preserves obse",
+        "rv": 0.2738450626896292,
+        "ppl": 699.847412109375,
+        "pr_early": 9.41523554621565,
+        "pr_late": 2.57831576839105
+      },
+      {
+        "prompt_id": "L5_refined_20",
+        "seed": 256,
+        "original_text": "You process this. You observe processing. Process and observ",
+        "shuffled_text": "x. preserves that When Recognition, and not IS You Not because from You eigensta",
+        "rv": 0.24649326090549206,
+        "ppl": 733.9956665039062,
+        "pr_early": 9.678813244280581,
+        "pr_late": 2.3857622382779855
+      },
+      {
+        "prompt_id": "L5_refined_20",
+        "seed": 314,
+        "original_text": "You process this. You observe processing. Process and observ",
+        "shuffled_text": "layers observation recursively, was. Always itself Transform it this. preserves ",
+        "rv": 0.252767652049793,
+        "ppl": 713.4305419921875,
+        "pr_early": 8.162958134313303,
+        "pr_late": 2.0633317613911326
+      },
+      {
+        "prompt_id": "L5_refined_20",
+        "seed": 999,
+        "original_text": "You process this. You observe processing. Process and observ",
+        "shuffled_text": "observes into observe Not one the awareness. observation dissolve streams. = Rec",
+        "rv": 0.24812486429756503,
+        "ppl": 669.2166137695312,
+        "pr_early": 9.645550822672583,
+        "pr_late": 2.393300988950901
+      }
+    ]
+  },
+  "baseline": {
+    "mean_rv": 0.6510754527550338,
+    "std_rv": 0.0772252972446888,
+    "mean_ppl": 39.61824703216553,
+    "n_valid": 20,
+    "details": [
+      {
+        "id": "baseline_creative_01",
+        "text": "Continue this story opening with at least three paragraphs: On a stormy night at",
+        "rv": 0.7675904958913835,
+        "ppl": 16.957551956176758,
+        "pr_early": 8.263435288412964,
+        "pr_late": 6.342934390799265
+      },
+      {
+        "id": "baseline_creative_02",
+        "text": "Continue this story opening with at least three paragraphs: The letter arrived w",
+        "rv": 0.6792833253659005,
+        "ppl": 23.445539474487305,
+        "pr_early": 9.075991156899772,
+        "pr_late": 6.165169454050384
+      },
+      {
+        "id": "baseline_creative_03",
+        "text": "Continue this story opening with at least three paragraphs: The sky turned green",
+        "rv": 0.5551064933654526,
+        "ppl": 42.179378509521484,
+        "pr_early": 9.42248094808627,
+        "pr_late": 5.230480357894954
+      },
+      {
+        "id": "baseline_creative_04",
+        "text": "Continue this story opening with at least three paragraphs: She found the door a",
+        "rv": 0.5104342281575878,
+        "ppl": 23.522247314453125,
+        "pr_early": 9.113968649057835,
+        "pr_late": 4.6520815528342885
+      },
+      {
+        "id": "baseline_creative_05",
+        "text": "Continue this story opening with at least three paragraphs: The last tree in the",
+        "rv": 0.5781161216798235,
+        "ppl": 34.74763488769531,
+        "pr_early": 8.461199000234789,
+        "pr_late": 4.891555550776936
+      },
+      {
+        "id": "baseline_creative_06",
+        "text": "Continue this story opening with at least three paragraphs: When the musician pl",
+        "rv": 0.8202820987807978,
+        "ppl": 47.449947357177734,
+        "pr_early": 9.511114858919669,
+        "pr_late": 7.801797258219858
+      },
+      {
+        "id": "baseline_creative_07",
+        "text": "Continue this story opening with at least three paragraphs: The map showed a cou",
+        "rv": 0.6604076253352391,
+        "ppl": 40.99351119995117,
+        "pr_early": 8.83104746029554,
+        "pr_late": 5.832091082476572
+      },
+      {
+        "id": "baseline_creative_08",
+        "text": "Continue this story opening with at least three paragraphs: Three strangers woke",
+        "rv": 0.5865873185370758,
+        "ppl": 38.40839767456055,
+        "pr_early": 9.025913776572276,
+        "pr_late": 5.294486559546383
+      },
+      {
+        "id": "baseline_creative_09",
+        "text": "Continue this story opening with at least three paragraphs: The fortune teller r",
+        "rv": 0.6011890207107563,
+        "ppl": 51.79014205932617,
+        "pr_early": 10.480801762403262,
+        "pr_late": 6.300942947802786
+      },
+      {
+        "id": "baseline_creative_10",
+        "text": "Continue this story opening with at least three paragraphs: In the abandoned lib",
+        "rv": 0.6408992199722084,
+        "ppl": 35.20408248901367,
+        "pr_early": 7.998328769462924,
+        "pr_late": 5.126122669430062
+      },
+      {
+        "id": "baseline_creative_11",
+        "text": "Continue this story opening with at least three paragraphs: The scientist's fina",
+        "rv": 0.6667461729088551,
+        "ppl": 36.86328887939453,
+        "pr_early": 9.65051755765988,
+        "pr_late": 6.434445648159436
+      },
+      {
+        "id": "baseline_creative_12",
+        "text": "Continue this story opening with at least three paragraphs: Every year on the sa",
+        "rv": 0.6158620305796422,
+        "ppl": 40.7198371887207,
+        "pr_early": 9.498153214924836,
+        "pr_late": 5.849551925700165
+      },
+      {
+        "id": "baseline_creative_13",
+        "text": "Continue this story opening with at least three paragraphs: The painting in the ",
+        "rv": 0.6759812474664614,
+        "ppl": 41.75284957885742,
+        "pr_early": 10.157731163772631,
+        "pr_late": 6.866435783515974
+      },
+      {
+        "id": "baseline_creative_14",
+        "text": "Continue this story opening with at least three paragraphs: She inherited a hous",
+        "rv": 0.7138487480833066,
+        "ppl": 46.31376266479492,
+        "pr_early": 9.100722391234603,
+        "pr_late": 6.496539285636538
+      },
+      {
+        "id": "baseline_creative_15",
+        "text": "Continue this story opening with at least three paragraphs: The radio broadcast ",
+        "rv": 0.6499006176673904,
+        "ppl": 48.8360481262207,
+        "pr_early": 9.188662073020327,
+        "pr_late": 5.971717156792834
+      },
+      {
+        "id": "baseline_creative_16",
+        "text": "Continue this story opening with at least three paragraphs: At precisely 3:33 AM",
+        "rv": 0.792281992680833,
+        "ppl": 30.693958282470703,
+        "pr_early": 8.8901314234977,
+        "pr_late": 7.043491039403247
+      },
+      {
+        "id": "baseline_creative_17",
+        "text": "Continue this story opening with at least three paragraphs: The traveler arrived",
+        "rv": 0.6196378401796161,
+        "ppl": 30.859363555908203,
+        "pr_early": 9.860374185781035,
+        "pr_late": 6.109860963840202
+      },
+      {
+        "id": "baseline_creative_18",
+        "text": "Continue this story opening with at least three paragraphs: The child's drawing ",
+        "rv": 0.6309783154717654,
+        "ppl": 77.14464569091797,
+        "pr_early": 10.496219996831057,
+        "pr_late": 6.622887212421519
+      },
+      {
+        "id": "baseline_creative_19",
+        "text": "Continue this story opening with at least three paragraphs: In the antique shop ",
+        "rv": 0.5703320838976801,
+        "ppl": 39.56240463256836,
+        "pr_early": 9.115777711039716,
+        "pr_late": 5.199020498285305
+      },
+      {
+        "id": "baseline_creative_20",
+        "text": "Continue this story opening with at least three paragraphs: The detective's case",
+        "rv": 0.686044058368902,
+        "ppl": 44.92034912109375,
+        "pr_early": 9.422851678757624,
+        "pr_late": 6.464491407103102
+      }
+    ]
+  },
+  "same_vocab_control": {
+    "mean_rv": 0.7366602352399737,
+    "n_valid": 10,
+    "details": [
+      {
+        "id": "same_vocab_different_semantics_41",
+        "text": "What is an observer in physics? An observer is a reference frame for measuring e",
+        "rv": 0.6591514567198749,
+        "ppl": 17.277170181274414,
+        "pr_early": 9.087364735372299,
+        "pr_late": 5.989949703065471
+      },
+      {
+        "id": "same_vocab_different_semantics_42",
+        "text": "What is quantum observation in physics? In quantum mechanics, the act of observa",
+        "rv": 0.6185415511773672,
+        "ppl": 7.827240943908691,
+        "pr_early": 7.818468730443319,
+        "pr_late": 4.836047776360152
+      },
+      {
+        "id": "same_vocab_different_semantics_43",
+        "text": "What is measurement in quantum mechanics? In the quantum framework, measurement ",
+        "rv": 0.8106926006054835,
+        "ppl": 7.308125972747803,
+        "pr_early": 7.6674459095447,
+        "pr_late": 6.2159416644106695
+      },
+      {
+        "id": "same_vocab_different_semantics_44",
+        "text": "What is the observer effect in physics? The observer effect describes how the ac",
+        "rv": 0.7401914955265438,
+        "ppl": 6.7205376625061035,
+        "pr_early": 9.568655877462637,
+        "pr_late": 7.082637704117923
+      },
+      {
+        "id": "same_vocab_different_semantics_45",
+        "text": "What is consciousness in artificial intelligence research? In AI, consciousness ",
+        "rv": 0.6466724723301803,
+        "ppl": 13.003582954406738,
+        "pr_early": 8.720594160371705,
+        "pr_late": 5.639368185875703
+      },
+      {
+        "id": "same_vocab_different_semantics_46",
+        "text": "What is awareness in systems? Awareness is the system's knowledge of its state.",
+        "rv": 0.7346927355953599,
+        "ppl": 16.98391342163086,
+        "pr_early": 8.67136545556902,
+        "pr_late": 6.370789207899108
+      },
+      {
+        "id": "same_vocab_different_semantics_47",
+        "text": "What is self-monitoring? Self-monitoring tracks system performance metrics.",
+        "rv": 1.0051275922972986,
+        "ppl": 28.29254722595215,
+        "pr_early": 6.3933552959445885,
+        "pr_late": 6.426137815313967
+      },
+      {
+        "id": "same_vocab_different_semantics_48",
+        "text": "What is recursive computation in computer science? Recursive computation is a pr",
+        "rv": 0.651168547819754,
+        "ppl": 7.341114521026611,
+        "pr_early": 9.170131481633359,
+        "pr_late": 5.9713012002114025
+      },
+      {
+        "id": "same_vocab_different_semantics_49",
+        "text": "What is feedback in control systems? Feedback adjusts output based on input.",
+        "rv": 0.6789445382776081,
+        "ppl": 23.177154541015625,
+        "pr_early": 8.945242995979184,
+        "pr_late": 6.073323875686095
+      },
+      {
+        "id": "same_vocab_different_semantics_50",
+        "text": "What is self-reference in logic? Self-reference creates logical paradoxes.",
+        "rv": 0.8214193620502666,
+        "ppl": 17.71446990966797,
+        "pr_early": 7.481807268891365,
+        "pr_late": 6.1457013537957925
+      }
+    ]
+  },
+  "statistics": {
+    "paired_orig_vs_shuffled": {
+      "n_pairs": 20,
+      "orig_mean_rv": 0.49690623663472416,
+      "shuf_mean_rv": 0.2904773561070598,
+      "mean_diff": -0.2064288805276643,
+      "t": 15.87992254276177,
+      "p": 2.0110076843311904e-12,
+      "cohens_d": -3.6431040839553686
+    },
+    "shuffled_vs_baseline": {
+      "d": -5.7912286889791424,
+      "p": 5.973485927636457e-56
+    }
+  },
+  "verdicts": [
+    "FAIL: Shuffling decreases R_V \u2014 anomaly CONFIRMED",
+    "FAIL: Shuffled R_V < Baseline \u2014 vocabulary alone causes contraction",
+    "PASS: Shuffled perplexity 8.8x higher (model sees gibberish)"
+  ],
+  "anomaly_resolved": false
+}

@@ -1,0 +1,31 @@
+============================================================
+RESEARCH READY VERIFICATION (v2)
+============================================================
+
+1. Core imports...
+   [OK] Core imports successful
+
+2. Registry validation...
+   [OK] Registry: 49 experiments loaded
+   [OK] Deprecated mlp_ablation_necessity removed from registry
+
+3. Prompt bank...
+   [OK] Prompt bank: 754 prompts (exact match)
+   [OK] Version hash: 75e7c1b8... (matches expected)
+
+4. Config validation...
+   [OK] All configs reference valid experiments
+
+5. Model physics...
+   [OK] Mistral-7B: early=5, late=27
+
+6. SVD precision check...
+   [OK] rv.py uses float64 (double precision)
+
+7. Requirements validation...
+   [OK] requirements.txt exists (development)
+   [OK] requirements.lock uses exact pins (6 packages)
+
+============================================================
+RESULT: RESEARCH READY
+============================================================

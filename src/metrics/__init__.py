@@ -25,6 +25,12 @@ from .extended import (
     ExtendedMetrics,
     SpectralStats,
 )
+from .per_token_rv import (
+    generate_with_rv_tracking,
+    analyze_rv_token_correlation,
+    GenerationRVTrajectory,
+    TokenRVStep,
+)
 
 __all__ = [
     # Core
@@ -38,5 +44,10 @@ __all__ = [
     "compute_extended_batch",
     "ExtendedMetrics",
     "SpectralStats",
+    # Per-token R_V (multi-token behavioral bridge)
+    "generate_with_rv_tracking",
+    "analyze_rv_token_correlation",
+    "GenerationRVTrajectory",
+    "TokenRVStep",
 ]
 

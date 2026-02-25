@@ -1,0 +1,39 @@
+{
+  "experiment": "rv_l27_activation_patching_bridge",
+  "run_name": "seed_bridge_dense_pythia_20260220_baseline_donor_control_s123_n40",
+  "params": {
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "n_pairs": 40,
+    "head_space": "kv",
+    "patch_heads": [
+      2
+    ],
+    "early_layer": 3,
+    "target_layer": 20,
+    "window": 16,
+    "max_length": 512,
+    "max_new_tokens": 250,
+    "temperature": 0.0,
+    "do_sample": false,
+    "top_p": 0.95,
+    "recursive_groups": [
+      "L5_refined",
+      "L4_full",
+      "L3_deeper"
+    ],
+    "baseline_groups": [
+      "long_control",
+      "baseline_creative",
+      "baseline_math"
+    ],
+    "skip_short_baseline": true,
+    "patch_mode": "head_specific",
+    "donor_type": "baseline",
+    "seed": 123
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase1_cross_architecture"
+  }
+}

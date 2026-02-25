@@ -26,6 +26,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 import torch
+from scipy import stats
 from tqdm import tqdm
 
 from prompts.loader import PromptLoader
@@ -41,6 +42,7 @@ from src.pipelines.archive.surgical_sweep import (
     compute_on_topic,
     score_recursion_regex,
 )
+from src.pipelines.discovery.c2_stats import compute_paired_rv_stats
 from src.pipelines.registry import ExperimentResult
 
 
@@ -170,7 +172,12 @@ def generate_with_rv_tracking(
             if head_target == "h18_h26":
                 target_heads = [18, 26]
                 v_steering_patcher = HeadSpecificSteeringPatcher(
-                    model, steering_vector, target_heads, config["vproj_alpha"]
+                    model,
+                    steering_vector,
+                    target_heads,
+                    config["vproj_alpha"],
+                    # `v_proj` is KV-head space under GQA. Interpret these as Q-head indices.
+                    head_space="q",
                 )
                 v_steering_patcher.register(layer_idx=effective_steering_layer)
                 patchers.append(v_steering_patcher)
@@ -495,7 +502,6 @@ def run_c2_rv_measurement_from_config(cfg: Dict[str, Any], run_dir: Path) -> Exp
     df.to_csv(results_csv, index=False)
 
     # Compute summary with statistics
-    from scipy import stats
     
     summary_by_config = {}
     for config_name in configs.keys():
@@ -525,6 +531,9 @@ def run_c2_rv_measurement_from_config(cfg: Dict[str, Any], run_dir: Path) -> Exp
             "rv_ci_95_low": rv_ci_low,
             "rv_ci_95_high": rv_ci_high,
             "rv_min": float(config_df["rv_min"].mean()),
+            "rv_valid_count": int(rv_n),
+            "rv_nan_count": int(config_df["rv_mean"].isna().sum()),
+            "rv_valid_pct": float((rv_n / len(config_df)) * 100) if len(config_df) > 0 else float("nan"),
             "coherence": float(config_df["coherence"].mean()),
             "philosophical_pct": float((config_df["domain"] == "philosophical").mean() * 100),
             "task_pct": float((config_df["domain"] == "task").mean() * 100),
@@ -536,35 +545,16 @@ def run_c2_rv_measurement_from_config(cfg: Dict[str, Any], run_dir: Path) -> Exp
             "mode_score_m_mean": float(config_df["mode_score_m"].dropna().mean()) if config_df["mode_score_m"].notna().any() else None,
         }
     
-    # Paired t-test: C2_full vs baseline
-    baseline_df = df[df["config"] == "baseline"]
-    c2_df = df[df["config"] == "c2_full"]
-    
-    # Match by prompt_idx for paired test
-    merged = baseline_df.merge(c2_df, on="prompt_idx", suffixes=("_baseline", "_c2"))
-    rv_baseline = merged["rv_mean_baseline"].dropna()
-    rv_c2 = merged["rv_mean_c2"].dropna()
-    
     statistics = {}
-    if len(rv_baseline) == len(rv_c2) and len(rv_baseline) > 1:
-        # Paired t-test
-        t_stat, p_value = stats.ttest_rel(rv_baseline, rv_c2)
-        
-        # Cohen's d (effect size)
-        pooled_std = np.sqrt((rv_baseline.std()**2 + rv_c2.std()**2) / 2)
-        cohens_d = (rv_baseline.mean() - rv_c2.mean()) / pooled_std if pooled_std > 0 else 0
-        
-        statistics = {
-            "baseline_vs_c2": {
-                "n_pairs": len(rv_baseline),
-                "t_statistic": float(t_stat),
-                "p_value": float(p_value),
-                "cohens_d": float(cohens_d),
-                "rv_baseline_mean": float(rv_baseline.mean()),
-                "rv_c2_mean": float(rv_c2.mean()),
-                "rv_delta_mean": float(rv_baseline.mean() - rv_c2.mean()),
-            }
-        }
+    pair_defs = [
+        ("baseline", "kv_only"),
+        ("baseline", "c2_full"),
+        ("kv_only", "c2_full"),
+    ]
+    for a, b in pair_defs:
+        if a in configs and b in configs:
+            key = f"{a}_vs_{b}"
+            statistics[key] = compute_paired_rv_stats(df, a, b)
 
     # Print summary
     print("\n" + "=" * 80)
@@ -575,6 +565,15 @@ def run_c2_rv_measurement_from_config(cfg: Dict[str, Any], run_dir: Path) -> Exp
     for config_name, stats in summary_by_config.items():
         print(f"{config_name:<20} {stats['rv_mean']:<12.4f} {stats['rv_std']:<12.4f} "
               f"{stats['philosophical_pct']:<10.1f} {stats['task_pct']:<10.1f}")
+
+    if statistics:
+        print("\nPaired RV tests (matched by prompt_idx):")
+        for key, st in statistics.items():
+            print(
+                f"  {key:<24} n_valid={st.get('n_pairs_valid', 0):>3} "
+                f"delta={st.get('rv_delta_mean', float('nan')):.4f} "
+                f"p={st.get('p_value', float('nan')):.3e}"
+            )
 
     # Save full outputs
     outputs_dir = run_dir / "outputs"

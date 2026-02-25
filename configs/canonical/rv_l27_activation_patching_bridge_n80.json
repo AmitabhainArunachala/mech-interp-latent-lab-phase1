@@ -1,0 +1,25 @@
+{
+  "experiment": "rv_l27_activation_patching_bridge",
+  "run_name": "n80_powered",
+  "params": {
+    "model": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda",
+    "seed": 42,
+    "n_pairs": 80,
+    "early_layer": 5,
+    "target_layer": 27,
+    "window": 16,
+    "max_length": 512,
+    "max_new_tokens": 800,
+    "temperature": 0.0,
+    "do_sample": false,
+    "top_p": 0.95,
+    "recursive_groups": ["L5_refined", "L4_full", "L3_deeper"],
+    "baseline_groups": ["long_control", "baseline_creative", "baseline_math"],
+    "skip_short_baseline": true
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  }
+}

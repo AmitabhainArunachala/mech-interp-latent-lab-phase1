@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-02-21T00:18:25.076310",
+  "old_counts": {
+    "n_recursive_sessions": 4,
+    "n_baseline_sessions": 3,
+    "n_recursive_turns": 200,
+    "n_baseline_turns": 150,
+    "n_bt_art_recursive": 80,
+    "n_bt_art_baseline": 17
+  },
+  "new_counts": {
+    "n_recursive_sessions": 12,
+    "n_baseline_sessions": 8,
+    "n_recursive_turns": 600,
+    "n_baseline_turns": 400,
+    "n_bt_art_recursive": 254,
+    "n_bt_art_baseline": 55
+  },
+  "total_sessions": {
+    "recursive": 12,
+    "baseline": 8
+  },
+  "total_turns": {
+    "recursive": 600,
+    "baseline": 400
+  },
+  "total_bt_art": {
+    "recursive": 254,
+    "baseline": 55
+  },
+  "within_session_bridge": {
+    "output_rv_cohens_d_old": -0.7071922399278552,
+    "output_rv_cohens_d_new": -0.5669381431230488,
+    "output_rv_p_old": 9.163283487124222e-06,
+    "output_rv_p_new": 1.3354241162306525e-10,
+    "delta_cohens_d": 0.14025409680480638,
+    "logistic_auc_old": 0.6594967532467534,
+    "logistic_auc_new": 0.6631113530552358,
+    "delta_logistic_auc": 0.0036145998084824438,
+    "within_session_file": "results/within_session_bridge/within_session_bridge_20260221_000441.json",
+    "bridge_battery_file": "results/bridge_battery/bridge_battery_20260221_000443.json"
+  }
+}

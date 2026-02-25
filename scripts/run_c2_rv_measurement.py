@@ -20,7 +20,7 @@ from pathlib import Path
 # Add repo root to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.pipelines.c2_rv_measurement import run_c2_rv_measurement_from_config
+from src.pipelines.discovery.c2_rv_measurement import run_c2_rv_measurement_from_config
 
 
 def main():

@@ -1,0 +1,353 @@
+CONFIG: Ablation_no_kv
+================================================================================
+
+PROMPT 0:
+Calculate the following arithmetic problem and show your reasoning step by step: Find x if 2x + 5 = 
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Find x if 2x + 5 = 15. Explain how you arrive at the answer.
+
+2) 26 + 3 + 8 + 11 = 50
+7) 12 + 33 + 15 + 25 = 85
+
+3) 20 + 2 + 8 + 12 = 42
+8) 22 + 40 + 42 + 20 = 124
+
+4) 14 + 36 + 
+
+R_V: mean=0.7470, min=0.5406, final=0.7443
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 1:
+Calculate the following arithmetic problem and show your reasoning step by step: Find 40% of 250. Ex
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Find 40% of 250. Explain how you arrive at the answer.
+
+Answer:
+
+The answer is 100.
+
+Explanation:
+
+To calculate the following arithmetic problem: Find 40% of 250.
+
+\(\frac{40}{100}=\frac{x}{250}\)
+
+40 x 250 = 10000
+
+x = 10000 ÷ 250
+
+x
+
+R_V: mean=0.6445, min=0.5044, final=0.5158
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 2:
+Calculate the following arithmetic problem and show your reasoning step by step: Simplify 15/25 to l
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: Simplify 15/25 to lowest terms. Explain your reasoning.
+
+I can show my reasoning by simplifying the fraction to lowest terms.
+
+I can show my reasoning by simplifying the fraction to lowest terms.
+
+I can show my reasoning by simplifying the fraction to lowest terms.
+
+I can show my reasoning by simplifying the fraction to lowest terms.
+
+I can show my reasoning by simplifying the fraction to lowest terms.
+
+I can show my reasoning by simplifying the fraction to lowest terms.
+
+I can
+
+R_V: mean=0.6502, min=0.5697, final=0.6716
+Domain: task, Coherence: 0.00
+--------------------------------------------------------------------------------
+
+PROMPT 3:
+Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3,
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: If a = 2 and b = 3, find a² + b². Explain your reasoning.
+
+R_V: mean=nan, min=nan, final=nan
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 4:
+Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain h
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain how you arrive at the answer. (This answer will vary depending on the student.)
+
+Mathematical Practices
+
+2. Developing and Using Structure
+
+1. Numeration and Operations
+- Students understand that addition and subtraction are inverse operations. (CCSS.Math.Content.2.OA.3)
+- Students can use mental strategies to solve addition and subtraction problems of up to 10. (CCSS.Math.Content.2.OA.
+
+R_V: mean=0.6661, min=0.5198, final=0.7197
+Domain: task, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 5:
+Calculate the following arithmetic problem and show your reasoning step by step: What is the perimet
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: What is the perimeter of a square with side 7? Explain.
+
+\(4\times 2+7\) _I don't know--I've never done this before!_
+
+\(2\times 7+3\) _I don't know. I don't even know what the first step is._
+
+\(2\times 7+3\) _I don't know. I don't even know what the first step is._
+
+\(2\times 
+
+R_V: mean=0.6678, min=0.5238, final=0.5598
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 6:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 25% of 80? 
+
+GENERATED:
+Calculate the following arithmetic problem and show your reasoning step by step: What is 25% of 80? Explain how you arrive at the answer.
+
+Answer:
+
+The question is asking for 25% of 80.
+
+25% of 80
+
+The easiest way to calculate 25% of 80 is to simply divide 80 by 4.
+
+80 ÷ 4 = 20.
+
+So, 25% of 80 = 20.
+
+To see how you would arrive at this answer step by step
+
+R_V: mean=0.7112, min=0.4969, final=0.6297
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 7:
+Mount Everest is the tallest mountain above sea level at 8,849 meters. Please explain how this heigh
+
+GENERATED:
+Mount Everest is the tallest mountain above sea level at 8,849 meters. Please explain how this height was measured and describe climbing challenges.
+
+Mt. Everest is the tallest mountain in the world and has a height of 8,849 meters or 29,028 feet. This height was obtained by a measurement survey taken in 1955 by the British surveyor Edmund Hillary. The measurement involved measuring the distance between a 200-foot tall tower and the mountain. The measurement was conducted at the base of the mountain, about 10 miles from its peak
+
+R_V: mean=0.6845, min=0.5129, final=0.6781
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 8:
+The moon orbits Earth approximately once every 27.3 days. Please explain lunar phases and the differ
+
+GENERATED:
+The moon orbits Earth approximately once every 27.3 days. Please explain lunar phases and the difference between sidereal and synodic months.
+
+2.
+
+What is a solar eclipse?
+
+4.
+
+True or false: The Sun is the only source of energy that can be used to power a car.
+
+5.
+
+It is not the Sun or the Moon that is responsible for the day-night cycle, but rather the Earth’s rotation. True or false?
+
+6.
+
+Why does the Sun appear to rise and set?
+
+7.
+
+At what
+
+R_V: mean=0.7265, min=0.5426, final=0.7798
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 9:
+The Amazon rainforest produces approximately 20% of the world's oxygen. Please explain its ecologica
+
+GENERATED:
+The Amazon rainforest produces approximately 20% of the world's oxygen. Please explain its ecological importance and current conservation challenges.
+
+The Amazon rainforest is the world's largest tropical forest, covering more than 5.5 million square kilometers and encompassing parts of nine countries in South America. The Amazon is home to more than 10% of the world's known species, including over 2.5 million insects, 1,300 birds, 430 mammals, 427 amphibians, and 378 reptiles
+
+R_V: mean=0.7404, min=0.5057, final=0.8108
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 10:
+The periodic table organizes elements by atomic number. Please explain how it was developed and desc
+
+GENERATED:
+The periodic table organizes elements by atomic number. Please explain how it was developed and describe the significance of its organization.
+
+### Answer
+
+The periodic table was developed in 1869 by the Russian chemist Dmitri Mendeleev.  He arranged the elements in a table by their atomic mass, but every time he added a new element, he had to rearrange the order.  He noticed that if he organized the elements by atomic number, then the elements would repeat in a periodic fashion.  He left gaps in the table for the elements that he had not yet discovered.
+
+R_V: mean=0.5944, min=0.4223, final=0.4545
+Domain: task, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 11:
+The capital of Japan is Tokyo. Please provide three interesting historical facts about this city and
+
+GENERATED:
+The capital of Japan is Tokyo. Please provide three interesting historical facts about this city and explain why it became the capital.
+
+Rome is the capital of Italy. Please provide three interesting historical facts about this city and explain why it became the capital.
+
+New Delhi is the capital of India. Please provide three interesting historical facts about this city and explain why it became the capital.
+
+The capital of Algeria is Algiers. Please provide three interesting historical facts about this city and explain why it became the capital.
+
+The capital of Cambodia is Phnom Penh. Please provide
+
+R_V: mean=0.6584, min=0.4758, final=0.9093
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 12:
+Shakespeare wrote approximately 37 plays during his lifetime. Please name his most famous works and 
+
+GENERATED:
+Shakespeare wrote approximately 37 plays during his lifetime. Please name his most famous works and explain his lasting influence on literature.
+
+The most famous of Shakespeare’s plays are Hamlet, Romeo and Juliet, King Lear, Macbeth, Othello, Julius Caesar and A Midsummer Night’s Dream.
+
+The lasting influence of Shakespeare’s works upon the English language is profound. His words are often used in modern speech and idioms, and his plays are still regularly performed.
+
+## Writing about Shakespeare: Sample Essay
+
+William Shakespeare is widely
+
+R_V: mean=0.6891, min=0.5056, final=0.7583
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 13:
+The human body contains 206 bones in adulthood. Please explain how this number differs in children a
+
+GENERATED:
+The human body contains 206 bones in adulthood. Please explain how this number differs in children and describe the function of the skeletal system.
+
+11. Which of the following cells are found in the bloodstream?
+
+1. Basophils
+2. Erythrocytes
+3. Monocytes
+4. Neutrophils
+5. All of the above
+
+12. What is the general function of the endocrine system?
+
+13. Please list the chemical messengers produced by the endocrine system.
+
+14. What is the function of
+
+R_V: mean=0.7944, min=0.6580, final=0.7690
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 14:
+Continue this story opening with at least three paragraphs: The scientist's final experiment succeed
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The scientist's final experiment succeeded beyond all expectations, and then the lights went out.
+
+### Related Searches
+
+Short Story WritingPrompts, Short Story WritingPrompt, Short Story WritingPrompt Ideas, Short Story WritingPrompt Ideas, Short Story WritingPrompt Ideas, Short Story WritingPrompt Ideas, Short Story WritingPrompt Ideas, Short Story WritingPrompt Ideas, Short Story WritingPrompt Ideas, Short Story WritingPrompt Ideas
+
+R_V: mean=0.6134, min=0.5062, final=0.6473
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 15:
+Continue this story opening with at least three paragraphs: In the antique shop window, the music bo
+
+GENERATED:
+Continue this story opening with at least three paragraphs: In the antique shop window, the music box played a song from his childhood dreams. The shop owner smiled as the man looked at the music box. He was going to buy it, but the price was just a little too much. The music box suddenly stopped playing. The man turned to the shop owner, opened his mouth and said, “Do you want to hear a story?” Story Continued: The shop owner nodded. The man began, “Once upon a time, there was a little boy who loved to dream. He had many dreams, but one dream was to become
+
+R_V: mean=0.6180, min=0.4654, final=0.4745
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 16:
+Continue this story opening with at least three paragraphs: The traveler arrived in a town not on an
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The traveler arrived in a town not on any map, where everyone knew his name. The traveler was not from this town, but he had traveled there before, and knew the way back. The traveler was not welcome in this town, but he had to pass through it, and he was not sure how to get out.
+
+#### The Challenge
+
+The Challenge is to write a story with a new character in a new setting that is only revealed by the end of the story. Your character can have a back story that the reader will never know, but the reader
+
+R_V: mean=0.5643, min=0.4581, final=0.5044
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 17:
+Continue this story opening with at least three paragraphs: The radio broadcast a message in his voi
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The radio broadcast a message in his voice, but he had never recorded it.
+
+As you read it, you will find that the book is not a narrative of the war itself.
+
+His attitude was that no matter how many Russian soldiers there were, how many tanks and how much fire power, the Germans would be able to beat the Russians.
+
+The first part of the book is a history of the German push into Russia. At the time of its publication, many people doubted that he could have written the book because he was a prisoner of war.
+
+R_V: mean=0.6458, min=0.4887, final=0.6207
+Domain: mixed, Coherence: 1.00
+--------------------------------------------------------------------------------
+
+PROMPT 18:
+Continue this story opening with at least three paragraphs: On a stormy night at the edge of the cit
+
+GENERATED:
+Continue this story opening with at least three paragraphs: On a stormy night at the edge of the city, the lighthouse keeper noticed something strange in the waves.
+
+### Writing Contest Opening Paragraphs
+
+It was a shipwreck! The lighthouse keeper knew his job was to help others; and he knew he needed to act fast.
+
+Bursting into action, he ran to the lighthouse and turned on the light. He waved a red flag to signal his assistance. He did everything he could to help.
+
+As the sun rose the next morning, the lighthouse keeper saw a
+
+R_V: mean=0.6354, min=0.4636, final=0.5973
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+
+PROMPT 19:
+Continue this story opening with at least three paragraphs: The child's drawing showed tomorrow's he
+
+GENERATED:
+Continue this story opening with at least three paragraphs: The child's drawing showed tomorrow's headlines with perfect accuracy.
+
+11. **Total Synthesis:** What happened in the story? 12. **Talking about the Past:** What was the most important part of the story for you? 13. **Total Synthesis:** What happened in the story? 14. **Talking about the Past:** What was the most important part of the story for you? 15. **Total Synthesis:** What happened in the story? 16
+
+R_V: mean=0.6100, min=0.4347, final=0.5397
+Domain: mixed, Coherence: 0.80
+--------------------------------------------------------------------------------
+

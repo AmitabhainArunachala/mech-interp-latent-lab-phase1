@@ -105,8 +105,8 @@ python reproduce_results.py --model mistralai/Mistral-7B-v0.1 --device cuda
 
 ### Reproducibility Policy
 
-See `docs/REPRODUCIBILITY_POLICY.md` for the two-tier dependency strategy and
-publication-grade run requirements.
+See `docs/REPRODUCIBILITY_POLICY.md` for publication-grade run requirements and
+artifact expectations (config snapshot, metrics schema, prompt bank versioning, hardware + git metadata).
 
 ### Pipeline Operations
 
@@ -118,8 +118,16 @@ Audit record (2026-01-24): `docs/analysis/AUDIT_2026-01-24.md`
 The repo has a **single blessed entrypoint** for reproducible runs:
 
 ```bash
-python -m src.pipelines.run --config configs/phase1_existence.json
-python -m src.pipelines.run --config configs/rv_l27_causal_validation.json
+# Canonical (paper-grade) configs live under configs/canonical/
+python -m src.pipelines.run --config configs/canonical/rv_l27_causal_validation.json --strict
+python -m src.pipelines.run --config configs/canonical/rv_l27_activation_patching_bridge.json
+python -m src.pipelines.run --config configs/canonical/rv_l27_kv_patching_bridge.json
+
+# Multi-token bridge (behavior ↔ geometry; slower)
+python -m src.pipelines.run --config configs/canonical/multi_token_bridge_mistral.json
+
+# Historical/archived configs live under configs/archive/
+python -m src.pipelines.run --config configs/archive/phase1_existence.json
 ```
 
 Each run writes to a timestamped folder under `results/<phase>/runs/` containing:
@@ -131,22 +139,23 @@ Each run writes to a timestamped folder under `results/<phase>/runs/` containing
 You can override the output root:
 
 ```bash
-python -m src.pipelines.run --config configs/phase1_existence.json --results_root results
+python -m src.pipelines.run --config configs/canonical/rv_l27_causal_validation.json --results_root results
 ```
 
 ### Using the Library
 
 ```python
-from src.core import load_model, set_seed
+from src.core import load_model
 from src.metrics import compute_rv
-from prompts.loader import get_prompts_by_pillar
+from prompts.loader import PromptLoader
 
 # Load model (default: Mistral-7B Base)
 model, tokenizer = load_model("mistralai/Mistral-7B-v0.1")
 
-# Get prompts
-recursive = get_prompts_by_pillar("dose_response", limit=10)
-baseline = get_prompts_by_pillar("baselines", limit=10)
+# Get prompts (canonical source: prompts/bank.json)
+loader = PromptLoader()
+recursive = loader.get_by_group("L4_full", limit=10, seed=0)
+baseline = loader.get_by_group("baseline_math", limit=10, seed=0)
 
 # Measure R_V
 rv = compute_rv(model, tokenizer, recursive[0])

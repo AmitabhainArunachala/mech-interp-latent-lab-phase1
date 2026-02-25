@@ -1,0 +1,211 @@
+{
+  "seed_bridge": {
+    "n_runs_found": 9,
+    "n_seeds_complete": 3,
+    "seeds_complete": [
+      42,
+      123,
+      456
+    ],
+    "standout_signal_gate": {
+      "criterion": "head_specific must beat both controls with mean_diff<0 and p<0.01",
+      "seed_passes": [
+        42,
+        123,
+        456
+      ],
+      "n_seed_passes": 3
+    },
+    "pooled_paired_ttest": {
+      "head_specific_vs_random_head_control": {
+        "n_pairs": 180,
+        "mean_diff": -0.03838883203269895,
+        "cohens_d": -0.7770406649337096,
+        "t_stat": -10.425094488440472,
+        "p_value": 3.467346019736592e-20,
+        "ci95_low": -0.045655230522702914,
+        "ci95_high": -0.03112243354269499
+      },
+      "head_specific_vs_baseline_donor_control": {
+        "n_pairs": 180,
+        "mean_diff": -0.05509582593134857,
+        "cohens_d": -1.440768889976374,
+        "t_stat": -19.329943067124525,
+        "p_value": 1.0965943100770243e-45,
+        "ci95_low": -0.06072030668200435,
+        "ci95_high": -0.04947134518069279
+      },
+      "random_head_control_vs_baseline_donor_control": {
+        "n_pairs": 180,
+        "mean_diff": -0.0167069938986496,
+        "cohens_d": -0.3223167817945742,
+        "t_stat": -4.3243334062898064,
+        "p_value": 2.5364578961076668e-05,
+        "ci95_low": -0.024330828313315487,
+        "ci95_high": -0.009083159483983711
+      }
+    },
+    "per_seed": {
+      "42": {
+        "head_specific_vs_random_head_control": {
+          "test_type": "paired_t",
+          "n_a": 60,
+          "n_b": 60,
+          "n_overlap": 60,
+          "mean_diff": -0.038565936945077706,
+          "t_stat": -6.5142769429550444,
+          "p_value": 1.786443214930031e-08,
+          "cohens_d": -0.8409895370882617
+        },
+        "head_specific_vs_baseline_donor_control": {
+          "test_type": "paired_t",
+          "n_a": 60,
+          "n_b": 60,
+          "n_overlap": 60,
+          "mean_diff": -0.055015931200034784,
+          "t_stat": -11.318429025943225,
+          "p_value": 2.0286202445054809e-16,
+          "cohens_d": -1.4612029040902916
+        }
+      },
+      "123": {
+        "head_specific_vs_random_head_control": {
+          "test_type": "paired_t",
+          "n_a": 60,
+          "n_b": 60,
+          "n_overlap": 60,
+          "mean_diff": -0.039067971474504,
+          "t_stat": -5.921435001157531,
+          "p_value": 1.7454667780887152e-07,
+          "cohens_d": -0.7644539715044271
+        },
+        "head_specific_vs_baseline_donor_control": {
+          "test_type": "paired_t",
+          "n_a": 60,
+          "n_b": 60,
+          "n_overlap": 60,
+          "mean_diff": -0.055895127890951406,
+          "t_stat": -10.538808753332038,
+          "p_value": 3.4703015493859764e-15,
+          "cohens_d": -1.3605543596839977
+        }
+      },
+      "456": {
+        "head_specific_vs_random_head_control": {
+          "test_type": "paired_t",
+          "n_a": 60,
+          "n_b": 60,
+          "n_overlap": 60,
+          "mean_diff": -0.03753258767851516,
+          "t_stat": -5.606469961104077,
+          "p_value": 5.757237203976657e-07,
+          "cohens_d": -0.7237921596789411
+        },
+        "head_specific_vs_baseline_donor_control": {
+          "test_type": "paired_t",
+          "n_a": 60,
+          "n_b": 60,
+          "n_overlap": 60,
+          "mean_diff": -0.05437641870305948,
+          "t_stat": -11.549321314794565,
+          "p_value": 8.873019785519894e-17,
+          "cohens_d": -1.4910109704065897
+        }
+      }
+    }
+  },
+  "semantic": {
+    "seed_bridge_rows": 540,
+    "seed_bridge_runs": 9,
+    "seed_bridge_seeds": [
+      42,
+      123,
+      456
+    ],
+    "seed_bridge_rates": {
+      "baseline_donor_control": {
+        "n": 180,
+        "semantic_recursive_rate": 0.0,
+        "semantic_score_mean": 0.171439762144453
+      },
+      "head_specific": {
+        "n": 180,
+        "semantic_recursive_rate": 0.0,
+        "semantic_score_mean": 0.17212152329997885
+      },
+      "random_head_control": {
+        "n": 180,
+        "semantic_recursive_rate": 0.0,
+        "semantic_score_mean": 0.16655172577334776
+      }
+    },
+    "seed_bridge_spearman": {
+      "rv_delta_vs_semantic_score": {
+        "n": 540,
+        "rho": 0.06902111011289148,
+        "p_value": 0.1091335035140809
+      },
+      "rv_patch_vs_semantic_score": {
+        "n": 540,
+        "rho": -0.1758909994179581,
+        "p_value": 3.9574368148300796e-05
+      }
+    },
+    "seed_bridge_semantic_score_contrasts": {
+      "head_specific_vs_random_head_control": {
+        "welch": {
+          "n_x": 180,
+          "n_y": 180,
+          "mean_diff": 0.005569797526631087,
+          "p_value": 0.3909701674854379,
+          "cohens_d": 0.09053683472087076
+        },
+        "paired_seedwise": {
+          "n_pairs": 180,
+          "mean_diff": 0.005569797526631091,
+          "p_value": 0.0298052446591553,
+          "cohens_d": 0.163245070230788
+        }
+      },
+      "head_specific_vs_baseline_donor_control": {
+        "welch": {
+          "n_x": 180,
+          "n_y": 180,
+          "mean_diff": 0.0006817611555258452,
+          "p_value": 0.9185214077034218,
+          "cohens_d": 0.010790605548588857
+        },
+        "paired_seedwise": {
+          "n_pairs": 180,
+          "mean_diff": 0.0006817611555258433,
+          "p_value": 0.7204433413813258,
+          "cohens_d": 0.026715851388796133
+        }
+      },
+      "random_head_control_vs_baseline_donor_control": {
+        "welch": {
+          "n_x": 180,
+          "n_y": 180,
+          "mean_diff": -0.004888036371105242,
+          "p_value": 0.4446936714710698,
+          "cohens_d": -0.08065287517469119
+        },
+        "paired_seedwise": {
+          "n_pairs": 180,
+          "mean_diff": -0.004888036371105247,
+          "p_value": 0.07340132316957501,
+          "cohens_d": -0.1342314651867022
+        }
+      }
+    },
+    "c2_rows": 765,
+    "c2_sources": 11,
+    "c2_spearman": {
+      "rv_mean_vs_semantic_score": {
+        "n": 755,
+        "rho": -0.6519420205824219,
+        "p_value": 1.4298236437045998e-92
+      }
+    }
+  }
+}

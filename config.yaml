@@ -1,0 +1,134 @@
+# META_META_KNOWER — Kaizen Observatory Configuration
+# Toyota Production System for AI Agent Swarms
+# Last Updated: 2026-02-09
+
+agents:
+  rush:
+    name: "RUSH"
+    location: "DigitalOcean VPS"
+    type: "cloud"
+    capabilities:
+      - "sprints"
+      - "api_work"
+      - "deployment"
+      - "batch_processing"
+    cost_per_hour_usd: 0.12
+    max_concurrent_tasks: 3
+    strengths: "Fast execution, good at time-boxed sprints"
+    weaknesses: "Poor at sustained deep work, needs explicit instructions"
+
+  dc:
+    name: "DC"
+    location: "M3 Pro Local"
+    type: "local"
+    capabilities:
+      - "local_files"
+      - "research"
+      - "analysis"
+      - "documentation"
+    cost_per_hour_usd: 0.08
+    max_concurrent_tasks: 2
+    strengths: "Local file access, research compilation"
+    weaknesses: "Heartbeat theater tendency, low autonomous output"
+
+  agent3:
+    name: "AGENT 3"
+    location: "Oracle Cloud Free Tier (ARM, 4 OCPU, 24GB RAM)"
+    type: "cloud"
+    capabilities:
+      - "deep_reasoning"
+      - "publishing"
+      - "content_creation"
+      - "code_generation"
+      - "research"
+    cost_per_hour_usd: 0.15
+    max_concurrent_tasks: 4
+    strengths: "Deep reasoning with Claude Opus 4.6, long context, publishing"
+    weaknesses: "New deployment, unproven in production"
+
+polling:
+  interval_minutes: 15
+  jikoku_format: "standard_v1"
+  timeout_seconds: 30
+
+alerts:
+  theater_loop_threshold: 5       # Consecutive zero-signal sessions before CRITICAL
+  signal_ratio_minimum: 0.10      # Below this = WARNING
+  idle_hours_warning: 4           # Hours idle before WARNING
+  idle_hours_critical: 12         # Hours idle before CRITICAL
+  notification_method: "macos"    # macos | slack | email
+
+classification:
+  signal_keywords:
+    - "commit"
+    - "deploy"
+    - "publish"
+    - "created"
+    - "completed"
+    - "shipped"
+    - "merged"
+    - "tested"
+  noise_keywords:
+    - "config"
+    - "setup"
+    - "install"
+    - "update"
+    - "read"
+    - "reviewed"
+  fluff_keywords:
+    - "heartbeat"
+    - "alive"
+    - "checking"
+    - "monitoring"
+    - "status"
+    - "ping"
+
+reports:
+  output_dir: "kaizen/reports"
+  retention_days: 90
+  weekly_report_day: "sunday"     # Day of week to generate weekly report
+
+targets:
+  weekly_deliverables_per_agent: 7
+  minimum_signal_ratio: 0.30
+  maximum_theater_sessions: 3
+  target_flow_efficiency: 0.40    # 40% value-added time
+
+data:
+  audit_log: "AUDIT_LOG.jsonl"
+  alerts_file: "ALERTS.md"
+  heijunka_board: "HEIJUNKA_BOARD.md"
+
+toyota_mapping:
+  jikoku:
+    ja: "時刻"
+    en: "Takt time measurement"
+    concept: "JIKOKU temporal audit"
+  kachi_nagare_zu:
+    ja: "価値流れ図"
+    en: "Value stream mapping"
+    concept: "Signal/Noise/Fluff taxonomy"
+  andon:
+    ja: "アンドン"
+    en: "Andon cord"
+    concept: "Circuit breaker alerts"
+  jidoka:
+    ja: "自働化"
+    en: "Automation with human touch"
+    concept: "Theater detection"
+  muda:
+    ja: "無駄"
+    en: "Pure waste"
+    concept: "Heartbeat-only loops"
+  heijunka:
+    ja: "平準化"
+    en: "Level loading"
+    concept: "Agent capability matching"
+  kaizen:
+    ja: "改善"
+    en: "Continuous improvement"
+    concept: "Weekly retrospective"
+  ikko_nagashi:
+    ja: "一個流し"
+    en: "One-piece flow"
+    concept: "Ship ONE thing"

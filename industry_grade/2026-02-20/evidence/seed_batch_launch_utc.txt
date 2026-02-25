@@ -1,0 +1,16 @@
+Seed bridge batch launch record
+Date (UTC): 2026-02-20
+Remote host: root@38.80.152.248:33595
+Repo path: /workspace/mech-interp-latent-lab-phase1
+Launcher PID: 42486
+Batch script PID: 42487
+Current run PID (at check): 42492
+Log file: /workspace/mech-interp-latent-lab-phase1/run_seed_bridge_matrix_20260220.log
+First run marker: [2026-02-20T08:03:54Z] RUN head_specific_s42 (head_specific seed=42)
+
+Monitor commands:
+ssh root@38.80.152.248 -p 33595 -i ~/.ssh/id_ed25519 "tail -n 80 /workspace/mech-interp-latent-lab-phase1/run_seed_bridge_matrix_20260220.log"
+ssh root@38.80.152.248 -p 33595 -i ~/.ssh/id_ed25519 "ps -eo pid,etimes,cmd | grep -E 'run_seed_bridge_matrix|src.pipelines.run --config configs/canonical/seed_bridge_2026_02_20' | grep -v grep"
+
+Stop command:
+ssh root@38.80.152.248 -p 33595 -i ~/.ssh/id_ed25519 "pkill -f 'run_seed_bridge_matrix.sh'"

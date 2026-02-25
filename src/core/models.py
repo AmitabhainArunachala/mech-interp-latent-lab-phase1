@@ -43,9 +43,10 @@ def set_seed(seed: int, deterministic: bool = True) -> None:
         # Set CUBLAS workspace config for deterministic matmul
         import os
         os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
-        # Enable PyTorch deterministic algorithms (may raise errors for non-deterministic ops)
+        # Enable deterministic algorithms but allow unsupported CUDA ops to warn.
+        # Sampling kernels (e.g., cumsum in top-p) may not have deterministic implementations.
         try:
-            torch.use_deterministic_algorithms(True)
+            torch.use_deterministic_algorithms(True, warn_only=True)
         except Exception:
             # Some operations don't have deterministic implementations
             pass
@@ -92,13 +93,36 @@ def load_model(
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        torch_dtype=torch_dtype,
-        device_map="auto",
-        attn_implementation=attn_implementation,
-        token=hf_token,
-    )
+    # Respect explicit device requests. "auto" is only used when requested.
+    if device == "auto":
+        device_map: object = "auto"
+    elif device == "cuda":
+        device_map = {"": "cuda:0"}
+    elif device.startswith("cuda:"):
+        device_map = {"": device}
+    elif device in {"mps", "cpu"}:
+        device_map = {"": device}
+    else:
+        device_map = "auto"
+
+    def _load(attn_impl: str):
+        return AutoModelForCausalLM.from_pretrained(
+            model_name,
+            torch_dtype=torch_dtype,
+            device_map=device_map,
+            attn_implementation=attn_impl,
+            token=hf_token,
+            low_cpu_mem_usage=True,
+        )
+
+    try:
+        model = _load(attn_implementation)
+    except ValueError as e:
+        # Newer Torch/Transformers combos can reject SDPA for Mistral.
+        # Fall back to eager attention so experiments still run.
+        if "scaled_dot_product_attention" in str(e) and attn_implementation != "eager":
+            model = _load("eager")
+        else:
+            raise
     model.eval()
     return model, tokenizer
-

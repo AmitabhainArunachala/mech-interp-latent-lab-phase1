@@ -1,0 +1,62 @@
+{
+  "artifacts": {
+    "config": "results/phase1_mechanism/runs/20260220_063955_rv_l27_activation_patching_bridge_baseline_donor_specificity_control_fast/config.json",
+    "per_sample_csv": "results/phase1_mechanism/runs/20260220_063955_rv_l27_activation_patching_bridge_baseline_donor_specificity_control_fast/per_sample.csv",
+    "report": "results/phase1_mechanism/runs/20260220_063955_rv_l27_activation_patching_bridge_baseline_donor_specificity_control_fast/report.md",
+    "summary": "results/phase1_mechanism/runs/20260220_063955_rv_l27_activation_patching_bridge_baseline_donor_specificity_control_fast/summary.json"
+  },
+  "baseline_groups": [
+    "long_control",
+    "baseline_creative",
+    "baseline_math"
+  ],
+  "behavior_l4_count_delta_mean": 0.0,
+  "behavior_strict_delta_mean": 0.012499999999999997,
+  "behavior_strict_p_value": 0.9079383788829846,
+  "behavior_word_count_delta_mean": -1.5,
+  "device": "cuda",
+  "do_sample": false,
+  "donor_type": "baseline",
+  "early_layer": 5,
+  "experiment": "rv_l27_activation_patching_bridge",
+  "head_space": "kv",
+  "logit_diff_cohens_d": 0.44316056678788435,
+  "logit_diff_delta_mean": 1.56201171875,
+  "logit_diff_p_value": 0.25028462606768975,
+  "max_length": 512,
+  "max_new_tokens": 300,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 8,
+  "n_skipped_short_baseline": 0,
+  "n_truncated_baseline": 6,
+  "n_truncated_patched": 5,
+  "patch_heads_requested": [
+    2
+  ],
+  "patch_kv_heads_effective": [
+    2
+  ],
+  "patch_mode": "head_specific",
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "recursive_groups": [
+    "L5_refined",
+    "L4_full",
+    "L3_deeper"
+  ],
+  "rv_baseline_mean": 0.6688100823313069,
+  "rv_cohens_d": 0.583606973754712,
+  "rv_delta_mean": 0.029746171572397354,
+  "rv_p_value": 0.1427864936650304,
+  "rv_patched_mean": 0.6985562539037042,
+  "rv_recursive_mean": 0.4983276718511011,
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "target_layer": 27,
+  "temperature": 0.0,
+  "timestamp": "20260220_064617",
+  "top_p": 0.95,
+  "v_head_dim": 128,
+  "v_num_heads": 8,
+  "version": "v4_gqa_headspace",
+  "window": 16
+}

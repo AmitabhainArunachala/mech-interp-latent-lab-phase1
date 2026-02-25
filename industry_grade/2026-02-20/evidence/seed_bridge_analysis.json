@@ -1,0 +1,182 @@
+{
+  "n_runs_found": 9,
+  "n_seeds_complete": 3,
+  "seeds_complete": [
+    42,
+    123,
+    456
+  ],
+  "run_roots_scanned": [
+    "/Users/dhyana/mech-interp-latent-lab-phase1/results/phase1_mechanism/runs",
+    "/Users/dhyana/mech-interp-latent-lab-phase1/results/remote_gpu_sync/2026-02-20/phase1_mechanism"
+  ],
+  "per_seed": {
+    "42": {
+      "head_specific_vs_random_head_control": {
+        "test_type": "paired_t",
+        "n_a": 60,
+        "n_b": 60,
+        "n_overlap": 60,
+        "mean_diff": -0.038565936945077706,
+        "t_stat": -6.5142769429550444,
+        "p_value": 1.786443214930031e-08,
+        "cohens_d": -0.8409895370882617
+      },
+      "head_specific_vs_baseline_donor_control": {
+        "test_type": "paired_t",
+        "n_a": 60,
+        "n_b": 60,
+        "n_overlap": 60,
+        "mean_diff": -0.055015931200034784,
+        "t_stat": -11.318429025943225,
+        "p_value": 2.0286202445054809e-16,
+        "cohens_d": -1.4612029040902916
+      },
+      "random_head_control_vs_baseline_donor_control": {
+        "test_type": "paired_t",
+        "n_a": 60,
+        "n_b": 60,
+        "n_overlap": 60,
+        "mean_diff": -0.016449994254957075,
+        "t_stat": -2.247048395172984,
+        "p_value": 0.02839118662075876,
+        "cohens_d": -0.2900927004209023
+      }
+    },
+    "123": {
+      "head_specific_vs_random_head_control": {
+        "test_type": "paired_t",
+        "n_a": 60,
+        "n_b": 60,
+        "n_overlap": 60,
+        "mean_diff": -0.039067971474504,
+        "t_stat": -5.921435001157531,
+        "p_value": 1.7454667780887152e-07,
+        "cohens_d": -0.7644539715044271
+      },
+      "head_specific_vs_baseline_donor_control": {
+        "test_type": "paired_t",
+        "n_a": 60,
+        "n_b": 60,
+        "n_overlap": 60,
+        "mean_diff": -0.055895127890951406,
+        "t_stat": -10.538808753332038,
+        "p_value": 3.4703015493859764e-15,
+        "cohens_d": -1.3605543596839977
+      },
+      "random_head_control_vs_baseline_donor_control": {
+        "test_type": "paired_t",
+        "n_a": 60,
+        "n_b": 60,
+        "n_overlap": 60,
+        "mean_diff": -0.016827156416447404,
+        "t_stat": -2.6182165019919843,
+        "p_value": 0.011214623478414497,
+        "cohens_d": -0.33801029696601315
+      }
+    },
+    "456": {
+      "head_specific_vs_random_head_control": {
+        "test_type": "paired_t",
+        "n_a": 60,
+        "n_b": 60,
+        "n_overlap": 60,
+        "mean_diff": -0.03753258767851516,
+        "t_stat": -5.606469961104077,
+        "p_value": 5.757237203976657e-07,
+        "cohens_d": -0.7237921596789411
+      },
+      "head_specific_vs_baseline_donor_control": {
+        "test_type": "paired_t",
+        "n_a": 60,
+        "n_b": 60,
+        "n_overlap": 60,
+        "mean_diff": -0.05437641870305948,
+        "t_stat": -11.549321314794565,
+        "p_value": 8.873019785519894e-17,
+        "cohens_d": -1.4910109704065897
+      },
+      "random_head_control_vs_baseline_donor_control": {
+        "test_type": "paired_t",
+        "n_a": 60,
+        "n_b": 60,
+        "n_overlap": 60,
+        "mean_diff": -0.016843831024544325,
+        "t_stat": -2.6319674039810224,
+        "p_value": 0.010817245064156577,
+        "cohens_d": -0.33978553077930895
+      }
+    }
+  },
+  "pooled_random_effects": {
+    "head_specific_vs_random_head_control": {
+      "k": 3,
+      "mu_re": -0.038409818747471215,
+      "ci95_low": -0.04562382713619588,
+      "ci95_high": -0.03119581035874655,
+      "tau2": 0.0,
+      "Q": 0.02781714774701587,
+      "I2_pct": 0.0
+    },
+    "head_specific_vs_baseline_donor_control": {
+      "k": 3,
+      "mu_re": -0.0550354899151493,
+      "ci95_low": -0.06062440425496172,
+      "ci95_high": -0.049446575575336875,
+      "tau2": 0.0,
+      "Q": 0.04588207199964905,
+      "I2_pct": 0.0
+    },
+    "random_head_control_vs_baseline_donor_control": {
+      "k": 3,
+      "mu_re": -0.016728614412482423,
+      "ci95_low": -0.024284690382379844,
+      "ci95_high": -0.009172538442585,
+      "tau2": 0.0,
+      "Q": 0.0020077115020802174,
+      "I2_pct": 0.0
+    }
+  },
+  "pooled_paired_ttest": {
+    "head_specific_vs_random_head_control": {
+      "n_pairs": 180,
+      "mean_diff": -0.03838883203269895,
+      "cohens_d": -0.7770406649337096,
+      "t_stat": -10.425094488440472,
+      "p_value": 3.467346019736592e-20,
+      "ci95_low": -0.045655230522702914,
+      "ci95_high": -0.03112243354269499
+    },
+    "head_specific_vs_baseline_donor_control": {
+      "n_pairs": 180,
+      "mean_diff": -0.05509582593134857,
+      "cohens_d": -1.440768889976374,
+      "t_stat": -19.329943067124525,
+      "p_value": 1.0965943100770243e-45,
+      "ci95_low": -0.06072030668200435,
+      "ci95_high": -0.04947134518069279
+    },
+    "random_head_control_vs_baseline_donor_control": {
+      "n_pairs": 180,
+      "mean_diff": -0.0167069938986496,
+      "cohens_d": -0.3223167817945742,
+      "t_stat": -4.3243334062898064,
+      "p_value": 2.5364578961076668e-05,
+      "ci95_low": -0.024330828313315487,
+      "ci95_high": -0.009083159483983711
+    }
+  },
+  "standout_signal_gate": {
+    "criterion": "head_specific must beat both controls with mean_diff<0 and p<0.01",
+    "seed_passes": [
+      42,
+      123,
+      456
+    ],
+    "n_seed_passes": 3
+  },
+  "artifacts": {
+    "paired_dotplot_png": "/Users/dhyana/mech-interp-latent-lab-phase1/industry_grade/2026-02-20/evidence/seed_bridge_paired_dotplot.png",
+    "paired_dotplot_status": "written"
+  }
+}

@@ -27,14 +27,23 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-import matplotlib
-matplotlib.use('Agg')  # Non-interactive backend
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
 import torch
 from scipy.stats import entropy as scipy_entropy
+
+try:
+    import matplotlib
+    matplotlib.use('Agg')  # Non-interactive backend
+    import matplotlib.pyplot as plt
+except Exception:  # pragma: no cover - optional plotting dependency
+    matplotlib = None
+    plt = None
+
+try:
+    import seaborn as sns
+except Exception:  # pragma: no cover - optional plotting dependency
+    sns = None
 
 # Add repo root to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -186,6 +195,12 @@ def plot_attention_heatmap(
     title: str,
 ):
     """Plot attention heatmap for a specific head."""
+    if plt is None or sns is None:
+        raise RuntimeError(
+            "plot_attention_heatmap requires optional dependencies "
+            "'matplotlib' and 'seaborn'."
+        )
+
     pattern = results["heads"][head_key]["pattern"]
     seq_len = min(pattern.shape[0], 50)  # Truncate for visibility
     pattern_truncated = pattern[-seq_len:, -seq_len:]
@@ -484,4 +499,3 @@ if __name__ == "__main__":
             torch.cuda.empty_cache()
             torch.cuda.synchronize()
         print("[cleanup] GPU memory cleared.")
-

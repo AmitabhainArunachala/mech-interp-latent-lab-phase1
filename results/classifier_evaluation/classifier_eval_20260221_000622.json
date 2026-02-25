@@ -1,0 +1,110 @@
+{
+  "timestamp": "2026-02-21T00:06:22.364269",
+  "feature_order": [
+    "output_rv",
+    "eff_rank",
+    "top1_ratio",
+    "spectral_gap",
+    "cosine",
+    "attn_entropy",
+    "perplexity",
+    "rs_rv"
+  ],
+  "all_sessions": {
+    "status": "ok",
+    "train_n": 664,
+    "test_n": 285,
+    "train_pos": 216,
+    "test_pos": 93,
+    "train_auc": 0.6909618882275133,
+    "test_auc": 0.6774193548387096,
+    "rv_alone_test_auc": 0.5852374551971327,
+    "confusion_matrix_test": {
+      "tn": 183,
+      "fp": 9,
+      "fn": 80,
+      "tp": 13
+    },
+    "coefficients_standardized": {
+      "output_rv": -1.1962681267447313,
+      "eff_rank": -0.1422570339503021,
+      "top1_ratio": -1.594061254959801,
+      "spectral_gap": 0.46273545375895614,
+      "cosine": -0.26200553149645545,
+      "attn_entropy": 0.17393085016947094,
+      "perplexity": 0.05737764892983,
+      "rs_rv": -0.289202964716684
+    },
+    "top_3_features": [
+      {
+        "feature": "top1_ratio",
+        "coef": -1.594061254959801,
+        "abs_coef": 1.594061254959801
+      },
+      {
+        "feature": "output_rv",
+        "coef": -1.1962681267447313,
+        "abs_coef": 1.1962681267447313
+      },
+      {
+        "feature": "spectral_gap",
+        "coef": 0.46273545375895614,
+        "abs_coef": 0.46273545375895614
+      }
+    ],
+    "bootstrap_test_auc_ci95": [
+      0.6138969284912299,
+      0.7392476105137396
+    ],
+    "bootstrap_valid_samples": 1000
+  },
+  "baseline_only": {
+    "status": "ok",
+    "train_n": 270,
+    "test_n": 117,
+    "train_pos": 38,
+    "test_pos": 17,
+    "train_auc": 0.6195553539019965,
+    "test_auc": 0.5941176470588235,
+    "rv_alone_test_auc": 0.5747058823529412,
+    "confusion_matrix_test": {
+      "tn": 100,
+      "fp": 0,
+      "fn": 17,
+      "tp": 0
+    },
+    "coefficients_standardized": {
+      "output_rv": -0.5084019688777838,
+      "eff_rank": -0.32247850570289815,
+      "top1_ratio": -0.3310754507621607,
+      "spectral_gap": -0.2737666564837348,
+      "cosine": 0.07743369584010412,
+      "attn_entropy": -0.31379744629418027,
+      "perplexity": -0.20957397408778297,
+      "rs_rv": -0.20819727300507196
+    },
+    "top_3_features": [
+      {
+        "feature": "output_rv",
+        "coef": -0.5084019688777838,
+        "abs_coef": 0.5084019688777838
+      },
+      {
+        "feature": "top1_ratio",
+        "coef": -0.3310754507621607,
+        "abs_coef": 0.3310754507621607
+      },
+      {
+        "feature": "eff_rank",
+        "coef": -0.32247850570289815,
+        "abs_coef": 0.32247850570289815
+      }
+    ],
+    "bootstrap_test_auc_ci95": [
+      0.4526549773755656,
+      0.7302579718756188
+    ],
+    "bootstrap_valid_samples": 1000
+  },
+  "notes": "70/30 stratified train/test; AUC reported on held-out test split."
+}

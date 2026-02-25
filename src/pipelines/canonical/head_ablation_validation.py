@@ -407,7 +407,16 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
         "all_passed": all_pass,
         "artifacts": {"results_csv": str(out_csv)},
         "notes": {
-            "gqa_aliasing": f"KV-head {target_kv_head} is shared by Q-heads {target_kv_head}, {target_kv_head+8}, {target_kv_head+16}, {target_kv_head+24} due to GQA" if is_gqa else "No GQA aliasing (MHA model)",
+            # HF `repeat_kv` repeats each KV head into a contiguous block of Q heads.
+            "gqa_aliasing": (
+                (
+                    f"KV-head {target_kv_head} is shared by Q-heads "
+                    f"{list(range(target_kv_head * (config.num_attention_heads // num_kv_heads), (target_kv_head + 1) * (config.num_attention_heads // num_kv_heads)))} "
+                    "due to GQA"
+                )
+                if is_gqa
+                else "No GQA aliasing (MHA model)"
+            ),
             "num_kv_heads": num_kv_heads,
             "head_dim": head_dim,
         },
@@ -464,4 +473,3 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
 
 
 __all__ = ["run_head_ablation_validation_from_config"]
-

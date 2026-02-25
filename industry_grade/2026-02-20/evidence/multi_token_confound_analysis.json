@@ -1,0 +1,37 @@
+{
+  "run_dir": "/Users/dhyana/mech-interp-latent-lab-phase1/results/remote_gpu_sync/2026-02-20/phase1_cross_architecture/20260220_071457_multi_token_bridge_mistral_7b_bridge_deconfound_fast",
+  "results": [
+    {
+      "temperature": 0.0,
+      "n_total": 36,
+      "pct_truncated": 88.88888888888889,
+      "n_non_truncated": 4,
+      "rv_recursive_mean": 0.5050511049537891,
+      "rv_baseline_mean": 0.6999264092850269,
+      "rv_group_t": -10.608219335270674,
+      "rv_group_p": 1.8456996084975997e-11,
+      "rv_word_spearman_all_r": -0.649803706520141,
+      "rv_word_spearman_all_p": 1.7973489918200984e-05,
+      "rv_word_spearman_nontrunc_r": -1.0,
+      "rv_word_spearman_nontrunc_p": 0.0,
+      "trunc_word_pointbiserial_r": 0.7086667192980836,
+      "trunc_word_pointbiserial_p": 1.3216174515647072e-06
+    },
+    {
+      "temperature": 0.7,
+      "n_total": 36,
+      "pct_truncated": 69.44444444444444,
+      "n_non_truncated": 11,
+      "rv_recursive_mean": 0.5050511049537891,
+      "rv_baseline_mean": 0.6999264092850269,
+      "rv_group_t": -10.608219335270674,
+      "rv_group_p": 1.8456996084975997e-11,
+      "rv_word_spearman_all_r": -0.35549263217959476,
+      "rv_word_spearman_all_p": 0.03335917918970157,
+      "rv_word_spearman_nontrunc_r": -0.4090909090909091,
+      "rv_word_spearman_nontrunc_p": 0.211545010342096,
+      "trunc_word_pointbiserial_r": 0.872655256546606,
+      "trunc_word_pointbiserial_p": 4.026446958164853e-12
+    }
+  ]
+}

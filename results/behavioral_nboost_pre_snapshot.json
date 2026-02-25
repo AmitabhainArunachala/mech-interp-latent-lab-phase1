@@ -1,0 +1,48 @@
+{
+  "within_session_file": "results/within_session_bridge/within_session_bridge_20260220_230000.json",
+  "bridge_battery_file": "results/bridge_battery/bridge_battery_20260220_230001.json",
+  "old_counts": {
+    "n_recursive_sessions": 4,
+    "n_baseline_sessions": 3,
+    "n_recursive_turns": 200,
+    "n_baseline_turns": 150,
+    "n_bt_art_recursive": 80,
+    "n_bt_art_baseline": 17
+  },
+  "within_session_output_rv": {
+    "spearman_r": -0.24879517350579927,
+    "spearman_p": 0.0005957087699109663,
+    "spearman_n": 187,
+    "pointbiserial_r": -0.33184355619936523,
+    "pointbiserial_p": 3.49055910654715e-06,
+    "mannwhitney_U": 2655.0,
+    "mannwhitney_p": 9.163283487124222e-06,
+    "n_bt_art": 80,
+    "n_other": 107,
+    "mean_bt_art": 0.48780945080448646,
+    "mean_other": 0.600531474740143,
+    "cohens_d": -0.7071922399278552
+  },
+  "bridge_battery_recursive_logistic": {
+    "n": 187,
+    "n_positive": 80,
+    "cv_auc_mean": 0.6594967532467534,
+    "cv_auc_std": 0.036089057520421346,
+    "cv_acc_mean": 0.5611664295874822,
+    "full_auc": 0.6922897196261683,
+    "coefficients": {
+      "output_rv": -1.3259720957261896,
+      "eff_rank": -0.2672471711531904,
+      "top1_ratio": -0.7123432276040548,
+      "spectral_gap": -0.17414213820226493,
+      "attn_entropy": 0.2471056243645949
+    },
+    "single_metric_aucs": {
+      "output_rv": 0.701461038961039,
+      "eff_rank": 0.67129329004329,
+      "top1_ratio": 0.674215367965368,
+      "spectral_gap": 0.6804112554112555,
+      "attn_entropy": 0.6224567099567099
+    }
+  }
+}

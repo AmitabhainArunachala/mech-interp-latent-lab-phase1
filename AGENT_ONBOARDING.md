@@ -144,12 +144,12 @@ python reproduce_results.py
 
 ### Custom experiment:
 ```bash
-python -m src.pipelines.run configs/canonical/rv_l27_causal_validation.json
+python -m src.pipelines.run --config configs/canonical/rv_l27_causal_validation.json --strict
 ```
 
 ### Check what's been run:
 ```bash
-ls results/canonical/*/summary.json
+ls results/*/runs/*/summary.json
 ```
 
 ---

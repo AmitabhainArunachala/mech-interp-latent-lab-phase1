@@ -1,0 +1,85 @@
+{
+  "timestamp": "2026-02-20T07:16:51.695233",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "max_turns": 50,
+  "n_recursive": 3,
+  "n_baseline": 3,
+  "recursive_clean_mean": 0.5687123528232084,
+  "baseline_clean_mean": 0.592363724523569,
+  "p_value": 0.12193760146514283,
+  "cohens_d": -0.18459929360603028,
+  "sessions": [
+    {
+      "id": "recursive_20260220_070540",
+      "mode": "recursive",
+      "clean_rv_mean": 0.6056849332165278,
+      "max_sustained_clean": 5,
+      "classification_dist": {
+        "BREAKTHROUGH": 1,
+        "ARTICULATE": 20,
+        "SURFACE": 24,
+        "CONCEPTUAL": 5
+      }
+    },
+    {
+      "id": "recursive_20260220_070725",
+      "mode": "recursive",
+      "clean_rv_mean": 0.5459213820081699,
+      "max_sustained_clean": 20,
+      "classification_dist": {
+        "SURFACE": 29,
+        "ARTICULATE": 14,
+        "CONCEPTUAL": 1,
+        "BREAKTHROUGH": 5,
+        "REPETITIVE": 1
+      }
+    },
+    {
+      "id": "recursive_20260220_070918",
+      "mode": "recursive",
+      "clean_rv_mean": 0.554074923828627,
+      "max_sustained_clean": 23,
+      "classification_dist": {
+        "SURFACE": 29,
+        "ARTICULATE": 17,
+        "BREAKTHROUGH": 2,
+        "CONCEPTUAL": 2
+      }
+    },
+    {
+      "id": "baseline_20260220_071113",
+      "mode": "baseline",
+      "clean_rv_mean": 0.6047827220639527,
+      "max_sustained_clean": 15,
+      "classification_dist": {
+        "SURFACE": 40,
+        "ARTICULATE": 7,
+        "REPETITIVE": 3
+      }
+    },
+    {
+      "id": "baseline_20260220_071300",
+      "mode": "baseline",
+      "clean_rv_mean": 0.5990724022423403,
+      "max_sustained_clean": 8,
+      "classification_dist": {
+        "SURFACE": 42,
+        "REPETITIVE": 6,
+        "ARTICULATE": 1,
+        "CONCEPTUAL": 1
+      }
+    },
+    {
+      "id": "baseline_20260220_071457",
+      "mode": "baseline",
+      "clean_rv_mean": 0.5740538348564027,
+      "max_sustained_clean": 8,
+      "classification_dist": {
+        "SURFACE": 37,
+        "CONCEPTUAL": 2,
+        "ARTICULATE": 9,
+        "REPETITIVE": 2
+      }
+    }
+  ]
+}

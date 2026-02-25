@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-02-20T06:06:41.282539",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_recursive": 20,
+  "n_baseline": 20,
+  "max_tokens": 64,
+  "total_time_seconds": 49.93567943572998,
+  "recursive_gen_rv_mean": 0.6870579748854155,
+  "recursive_gen_rv_std": 0.10212504648819022,
+  "baseline_gen_rv_mean": 0.7459541884828119,
+  "baseline_gen_rv_std": 0.09147796505896034,
+  "delta_mean": -0.058896213597396385,
+  "cohens_d_mean": -0.6075045243904297,
+  "p_value_mean": 0.06894669603013277,
+  "recursive_gen_rv_min_mean": 0.5323696557169373,
+  "baseline_gen_rv_min_mean": 0.551223408487315,
+  "cohens_d_min": -0.2556198929994907,
+  "p_value_min": 0.43606721509644497
+}

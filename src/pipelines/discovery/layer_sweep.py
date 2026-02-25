@@ -107,7 +107,11 @@ def generate_with_layer_steering(
     # V_PROJ steering
     if steering_type in ["vproj", "combined"]:
         head_patcher = HeadSpecificSteeringPatcher(
-            model, steering_vector, vproj_heads, vproj_alpha
+            model,
+            steering_vector,
+            vproj_heads,
+            vproj_alpha,
+            head_space="q",
         )
         head_patcher.register(layer_idx)
         patchers.append(head_patcher)

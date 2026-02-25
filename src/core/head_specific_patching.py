@@ -1,258 +1,239 @@
-"""Head-specific patching utilities for surgical interventions."""
+"""
+Head-specific patching utilities for surgical interventions.
+
+Important: for GQA models (e.g. Mistral), `v_proj` lives in **KV-head space**:
+`v_proj_out_dim = num_key_value_heads * head_dim`, NOT `hidden_size`.
+
+If you pass `head_space="q"`, query-head indices will be mapped to the
+corresponding KV-head indices using the same grouping as HF `repeat_kv`
+(contiguous blocks).
+"""
+
 from __future__ import annotations
 
-from typing import Optional
+from typing import Iterable, Literal, Optional
+
 import torch
+
+from .hf_accessors import extract_v_from_hook_output, get_vproj_hookpoint
+
+HeadSpace = Literal["kv", "q"]
+
+
+def _get_hidden_size_and_num_heads(model) -> tuple[int, int]:
+    cfg = getattr(model, "config", None)
+    if cfg is None:
+        raise ValueError("Model has no config; cannot infer attention head layout.")
+
+    hidden_size = getattr(cfg, "hidden_size", None) or getattr(cfg, "n_embd", None)
+    num_heads = getattr(cfg, "num_attention_heads", None) or getattr(cfg, "n_head", None)
+    if hidden_size is None or num_heads is None:
+        raise ValueError(
+            "Model config missing hidden size / num heads (expected config.hidden_size|n_embd and "
+            "config.num_attention_heads|n_head)."
+        )
+    return int(hidden_size), int(num_heads)
+
+
+def _get_head_dim(model) -> int:
+    cfg = model.config
+    hidden_size, num_heads = _get_hidden_size_and_num_heads(model)
+    head_dim = getattr(cfg, "head_dim", None) or (hidden_size // num_heads)
+    return int(head_dim)
+
+
+def _resolve_v_heads(
+    *,
+    model,
+    v_dim: int,
+    heads: Iterable[int],
+    head_space: HeadSpace,
+) -> list[int]:
+    """
+    Resolve requested head indices into indices over the hooked V-space.
+
+    - head_space="kv": `heads` must index V-heads directly (0..num_v_heads-1)
+    - head_space="q": `heads` index query heads; we map them to V/KV heads via
+      contiguous grouping: kv = q // group_size
+    """
+    head_dim = _get_head_dim(model)
+    _hidden_size, num_q_heads = _get_hidden_size_and_num_heads(model)
+
+    if v_dim % head_dim != 0:
+        raise ValueError(f"V dim {v_dim} is not divisible by head_dim {head_dim}.")
+    num_v_heads = v_dim // head_dim
+    if num_q_heads % num_v_heads != 0:
+        raise ValueError(
+            f"num_attention_heads {num_q_heads} must be divisible by num_v_heads {num_v_heads}."
+        )
+    group_size = num_q_heads // num_v_heads
+
+    heads_list = [int(h) for h in heads]
+    if head_space == "kv":
+        bad = [h for h in heads_list if h < 0 or h >= num_v_heads]
+        if bad:
+            raise ValueError(f"KV/V heads out of range (0..{num_v_heads-1}): {bad}")
+        return sorted(set(heads_list))
+
+    if head_space == "q":
+        bad = [h for h in heads_list if h < 0 or h >= num_q_heads]
+        if bad:
+            raise ValueError(f"Q heads out of range (0..{num_q_heads-1}): {bad}")
+        mapped = [h // group_size for h in heads_list]
+        return sorted(set(mapped))
+
+    raise ValueError(f"Unknown head_space: {head_space}")
 
 
 class HeadSpecificVPatcher:
     """
-    Patches V_PROJ output at specific attention heads only.
-    
-    For Mistral-7B:
-    - 32 attention heads
-    - 128 dims per head
-    - Total hidden_dim = 4096
-    - Head H_i spans dims [i*128 : (i+1)*128]
-    
-    Usage:
-        # Extract V_PROJ activation from recursive prompt
-        v_activation = extract_v_activation(model, tokenizer, recursive_prompt, layer=27)
-        
-        # Create patcher for H18 and H26 only
-        patcher = HeadSpecificVPatcher(model, v_activation, target_heads=[18, 26])
-        patcher.register(layer_idx=27)
-        
-        # Generate (only H18+H26 are patched)
-        generated = model.generate(...)
-        
-        # Clean up
-        patcher.remove()
+    Patch V projection activations for specific heads only.
+
+    Under GQA, this patches KV-heads, not individual query heads.
     """
-    
+
     def __init__(
         self,
         model,
         v_activation: torch.Tensor,
         target_heads: list[int],
         window_size: int = 16,
+        *,
+        head_space: HeadSpace = "kv",
     ):
-        """
-        Initialize patcher with V_PROJ activation and target heads.
-        
-        Args:
-            model: The transformer model
-            v_activation: V_PROJ output from recursive prompt
-                         Shape: (seq_len, hidden_dim) or (batch, seq_len, hidden_dim)
-            target_heads: List of head indices to patch (0-31 for Mistral-7B)
-            window_size: Number of tokens to patch (last N tokens)
-        """
         self.model = model
-        # Ensure v_activation is 2D: (seq_len, hidden_dim)
         if v_activation.dim() == 3:
-            v_activation = v_activation[0]  # Remove batch dimension
-        self.v_activation = v_activation.detach()  # Shape: (seq_len, hidden_dim)
-        self.target_heads = target_heads
-        self.window_size = window_size
+            v_activation = v_activation[0]
+        self.v_activation = v_activation.detach()
+
+        self.window_size = int(window_size)
         self.handle: Optional[torch.utils.hooks.RemovableHandle] = None
         self.layer_idx: Optional[int] = None
-        
-        # Mistral-7B: 32 heads, 128 dims per head, 4096 total
-        self.num_heads = 32
-        self.head_dim = 128
-        self.hidden_dim = 4096
-        
-        # Compute dim ranges for each target head
-        self.target_dims = []
-        for head_idx in target_heads:
-            start_dim = head_idx * self.head_dim
-            end_dim = (head_idx + 1) * self.head_dim
-            self.target_dims.append((start_dim, end_dim))
-    
+
+        v_dim = int(self.v_activation.shape[-1])
+        head_dim = _get_head_dim(model)
+        v_heads = _resolve_v_heads(model=model, v_dim=v_dim, heads=target_heads, head_space=head_space)
+        self.target_dims = [(h * head_dim, (h + 1) * head_dim) for h in v_heads]
+
     def register(self, layer_idx: int):
-        """
-        Register forward hook at specified layer to patch V_PROJ output.
-        
-        Args:
-            layer_idx: Layer index (0-indexed, e.g., 27 for L27)
-        """
         if self.handle is not None:
             raise RuntimeError("Patcher already registered. Call remove() first.")
-        
-        self.layer_idx = layer_idx
-        layer = self.model.model.layers[layer_idx].self_attn
-        
-        def hook_fn(module, inp, out):
-            """
-            Hook function that patches ONLY target heads' V_PROJ output.
-            
-            Args:
-                module: The v_proj module
-                inp: Input to v_proj (hidden states)
-                out: Output from v_proj (batch, seq_len, hidden_dim)
-            
-            Returns:
-                Patched output with same shape as out
-            """
-            # out shape: (batch, seq_len, hidden_dim)
-            batch, seq_len, hidden_dim = out.shape
-            
-            # Use last window_size tokens from v_activation
-            v_len = min(seq_len, self.v_activation.shape[0], self.window_size)
-            v_slice = self.v_activation[-v_len:, :]  # (v_len, hidden_dim)
-            
-            # Clone output to avoid in-place modification
+
+        self.layer_idx = int(layer_idx)
+        hookpoint = get_vproj_hookpoint(self.model, layer_idx=self.layer_idx)
+
+        def hook_fn(_module, _inp, out):
+            v = extract_v_from_hook_output(hookpoint, out)
+            batch, seq_len, _v_dim = v.shape
+
+            v_len = min(seq_len, int(self.v_activation.shape[0]), self.window_size)
+            if v_len <= 0:
+                return out
+
+            v_slice = self.v_activation[-v_len:, :]
             out_patched = out.clone()
-            
-            # Patch ONLY the target head dimensions
+
+            # Get a view into the output's V slice (handles fused QKV too).
+            if hookpoint.kind == "v_proj":
+                v_out = out_patched
+            else:
+                hidden = int(out_patched.shape[-1] // 3)
+                v_out = out_patched[:, :, 2 * hidden : 3 * hidden]
+
             for start_dim, end_dim in self.target_dims:
-                # Extract target head slice from recursive V_PROJ
-                v_head_slice = v_slice[:, start_dim:end_dim]  # (v_len, head_dim)
-                
-                # Expand to batch dimension
-                v_head_batch = v_head_slice.unsqueeze(0)  # (1, v_len, head_dim)
+                v_head_slice = v_slice[:, start_dim:end_dim]
+                if v_head_slice.numel() == 0:
+                    continue
+                v_head_batch = v_head_slice.unsqueeze(0)
                 if batch > 1:
                     v_head_batch = v_head_batch.repeat(batch, 1, 1)
-                
-                # Replace ONLY this head's dimensions in the output
-                out_patched[:, -v_len:, start_dim:end_dim] = v_head_batch[:, :v_len, :].to(
-                    out_patched.device, dtype=out_patched.dtype
+                v_out[:, -v_len:, start_dim:end_dim] = v_head_batch[:, :v_len, :].to(
+                    v_out.device, dtype=v_out.dtype
                 )
-            
+
             return out_patched
-        
-        self.handle = layer.v_proj.register_forward_hook(hook_fn)
-    
+
+        self.handle = hookpoint.module.register_forward_hook(hook_fn)
+
     def remove(self):
-        """Remove the forward hook."""
         if self.handle is not None:
             self.handle.remove()
             self.handle = None
             self.layer_idx = None
-    
+
     def __enter__(self):
-        """Context manager entry."""
         return self
-    
+
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """Context manager exit - automatically removes hook."""
         self.remove()
 
 
 class HeadSpecificSteeringPatcher:
     """
-    Applies steering vector ONLY to specific attention heads' V_PROJ output.
-    
-    Usage:
-        # Compute full steering vector
-        steering_vector = compute_steering_vector(...)  # (4096,)
-        
-        # Create patcher for H18 and H26 only
-        patcher = HeadSpecificSteeringPatcher(
-            model, steering_vector, target_heads=[18, 26], alpha=2.0
-        )
-        patcher.register(layer_idx=27)
-        
-        # Generate (steering applied only to H18+H26)
-        generated = model.generate(...)
-        
-        # Clean up
-        patcher.remove()
+    Apply a steering vector to specific V-heads only.
+
+    For GQA models, this applies to KV-heads unless you pass `head_space="q"`
+    (in which case query heads are mapped to the corresponding KV heads).
     """
-    
+
     def __init__(
         self,
         model,
         steering_vector: torch.Tensor,
         target_heads: list[int],
         alpha: float = 1.0,
+        *,
+        head_space: HeadSpace = "kv",
     ):
-        """
-        Initialize patcher with steering vector and target heads.
-        
-        Args:
-            model: The transformer model
-            steering_vector: Full steering vector (hidden_dim,)
-            target_heads: List of head indices to steer (0-31 for Mistral-7B)
-            alpha: Scaling factor for steering strength
-        """
         self.model = model
         self.steering_vector = steering_vector.detach().to(model.device)
-        self.target_heads = target_heads
-        self.alpha = alpha
+        self.alpha = float(alpha)
+
         self.handle: Optional[torch.utils.hooks.RemovableHandle] = None
         self.layer_idx: Optional[int] = None
-        
-        # Mistral-7B: 32 heads, 128 dims per head, 4096 total
-        self.num_heads = 32
-        self.head_dim = 128
-        self.hidden_dim = 4096
-        
-        # Compute dim ranges for each target head
-        self.target_dims = []
-        for head_idx in target_heads:
-            start_dim = head_idx * self.head_dim
-            end_dim = (head_idx + 1) * self.head_dim
-            self.target_dims.append((start_dim, end_dim))
-    
+
+        v_dim = int(self.steering_vector.shape[-1])
+        head_dim = _get_head_dim(model)
+        v_heads = _resolve_v_heads(model=model, v_dim=v_dim, heads=target_heads, head_space=head_space)
+        self.target_dims = [(h * head_dim, (h + 1) * head_dim) for h in v_heads]
+
     def register(self, layer_idx: int):
-        """
-        Register forward hook at specified layer to apply steering.
-        
-        Args:
-            layer_idx: Layer index (0-indexed, e.g., 27 for L27)
-        """
         if self.handle is not None:
             raise RuntimeError("Patcher already registered. Call remove() first.")
-        
-        self.layer_idx = layer_idx
-        layer = self.model.model.layers[layer_idx].self_attn
-        
-        def hook_fn(module, inp, out):
-            """
-            Hook function that adds steering vector ONLY to target heads.
-            
-            Args:
-                module: The v_proj module
-                inp: Input to v_proj (hidden states)
-                out: Output from v_proj (batch, seq_len, hidden_dim)
-            
-            Returns:
-                Steered output with same shape as out
-            """
-            # Clone output to avoid in-place modification
+
+        self.layer_idx = int(layer_idx)
+        hookpoint = get_vproj_hookpoint(self.model, layer_idx=self.layer_idx)
+
+        def hook_fn(_module, _inp, out):
             out_steered = out.clone()
-            
-            # Apply steering ONLY to target head dimensions
+
+            if hookpoint.kind == "v_proj":
+                v_out = out_steered
+            else:
+                hidden = int(out_steered.shape[-1] // 3)
+                v_out = out_steered[:, :, 2 * hidden : 3 * hidden]
+
             for start_dim, end_dim in self.target_dims:
-                # Extract steering vector for this head
-                steering_head = self.steering_vector[start_dim:end_dim]  # (head_dim,)
-                
-                # Add steering to this head's output
-                # out[:, :, start_dim:end_dim] shape: (batch, seq_len, head_dim)
-                out_steered[:, :, start_dim:end_dim] += (
-                    self.alpha * steering_head.unsqueeze(0).unsqueeze(0)
-                )
-            
+                steering_head = self.steering_vector[start_dim:end_dim]
+                if steering_head.numel() == 0:
+                    continue
+                v_out[:, :, start_dim:end_dim] += self.alpha * steering_head.unsqueeze(0).unsqueeze(0)
+
             return out_steered
-        
-        self.handle = layer.v_proj.register_forward_hook(hook_fn)
-    
+
+        self.handle = hookpoint.module.register_forward_hook(hook_fn)
+
     def remove(self):
-        """Remove the forward hook."""
         if self.handle is not None:
             self.handle.remove()
             self.handle = None
             self.layer_idx = None
-    
-    def __enter__(self):
-        """Context manager entry."""
-        return self
-    
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        """Context manager exit - automatically removes hook."""
-        self.remove()
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.remove()
 
 
 

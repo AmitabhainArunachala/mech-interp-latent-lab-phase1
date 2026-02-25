@@ -1,0 +1,142 @@
+{
+  "report_date": "2026-02-09T06:26:54.942877",
+  "days_analyzed": 7,
+  "entries_analyzed": 85,
+  "agents": {
+    "rush": {
+      "agent_id": "rush",
+      "name": "RUSH",
+      "total_polls": 34,
+      "signal_count": 19,
+      "noise_count": 15,
+      "fluff_count": 0,
+      "signal_ratio": 0.5588235294117647,
+      "noise_ratio": 0.4411764705882353,
+      "fluff_ratio": 0.0,
+      "deliverables_count": 14,
+      "deliverables": [
+        "api_endpoint_v2.py",
+        "test_auth_service.py",
+        "deploy_script.sh",
+        "database_migration.sql",
+        "monitoring_dashboard.py",
+        "alert_rules.yaml",
+        "README_monitoring.md",
+        "batch_processor.py",
+        "user_auth_v3.py",
+        "integration_test_auth.py",
+        "cron_scheduler.py",
+        "health_check_api.py",
+        "webhook_handler.py",
+        "test_webhook.py"
+      ],
+      "critical_alerts": 0,
+      "warning_alerts": 0,
+      "sessions": 7,
+      "total_cost_usd": 2.92,
+      "cost_per_deliverable": 0.20857142857142857,
+      "signal_ratios_daily": [
+        0.4666666666666666,
+        0.25,
+        0.58,
+        0.24,
+        0.4625,
+        0.4,
+        0.4625
+      ],
+      "signal_trend": "flat",
+      "signal_sparkline": "\u2585\u2581\u2588\u2581\u2585\u2584\u2585",
+      "health": 100,
+      "theater_days": 0,
+      "value_added_ratio": 0.7
+    },
+    "dc": {
+      "agent_id": "dc",
+      "name": "DC",
+      "total_polls": 37,
+      "signal_count": 0,
+      "noise_count": 1,
+      "fluff_count": 36,
+      "signal_ratio": 0.0,
+      "noise_ratio": 0.02702702702702703,
+      "fluff_ratio": 0.972972972972973,
+      "deliverables_count": 0,
+      "deliverables": [],
+      "critical_alerts": 14,
+      "warning_alerts": 2,
+      "sessions": 7,
+      "total_cost_usd": 2.05,
+      "cost_per_deliverable": Infinity,
+      "signal_ratios_daily": [
+        0.0,
+        0.0,
+        0.008333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "signal_trend": "flat",
+      "signal_sparkline": "\u2581\u2581\u2588\u2581\u2581\u2581\u2581",
+      "health": 0,
+      "theater_days": 7,
+      "value_added_ratio": 0.0
+    },
+    "agent3": {
+      "agent_id": "agent3",
+      "name": "AGENT 3",
+      "total_polls": 14,
+      "signal_count": 9,
+      "noise_count": 5,
+      "fluff_count": 0,
+      "signal_ratio": 0.6428571428571429,
+      "noise_ratio": 0.35714285714285715,
+      "fluff_ratio": 0.0,
+      "deliverables_count": 7,
+      "deliverables": [
+        "openclaw_config.yaml",
+        "research_analysis_rv_bridge.md",
+        "blog_post_rv_metric.md",
+        "experiment_config_cross_arch.json",
+        "kaizen_framework_spec.md",
+        "swarm_health_report.md",
+        "product_spec_draft.md"
+      ],
+      "critical_alerts": 0,
+      "warning_alerts": 0,
+      "sessions": 3,
+      "total_cost_usd": 1.5,
+      "cost_per_deliverable": 0.21428571428571427,
+      "signal_ratios_daily": [
+        0.225,
+        0.58,
+        0.62
+      ],
+      "signal_trend": "improving",
+      "signal_sparkline": "\u2581\u2587\u2588",
+      "health": 100,
+      "theater_days": 0,
+      "value_added_ratio": 0.875
+    }
+  },
+  "wastes": [
+    {
+      "toyota_term": "\u7121\u99c4 (Muda) \u2014 Pure waste",
+      "description": "DC has been in theater loop for 7 consecutive days. 0 deliverables, 14 critical alerts.",
+      "agent": "DC",
+      "severity": "CRITICAL"
+    },
+    {
+      "toyota_term": "\u81ea\u50cd\u5316 (Jidoka) \u2014 Automation with human touch",
+      "description": "DC fluff ratio at 97%. Automation not detecting waste early enough.",
+      "agent": "DC",
+      "severity": "HIGH"
+    },
+    {
+      "toyota_term": "\u4e00\u500b\u6d41\u3057 (Ikko Nagashi) \u2014 One-piece flow",
+      "description": "DC spent $2.05 but only produced 0 deliverables. Cost/deliverable: $inf.",
+      "agent": "DC",
+      "severity": "MEDIUM"
+    }
+  ]
+}

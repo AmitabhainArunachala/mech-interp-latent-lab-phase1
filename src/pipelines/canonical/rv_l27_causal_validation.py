@@ -25,6 +25,7 @@ import torch
 
 from prompts.loader import PromptLoader
 from src.core.models import load_model, set_seed
+from src.core.hf_accessors import extract_v_from_hook_output, get_vproj_hookpoint
 from src.metrics.rv import participation_ratio
 from src.pipelines.registry import ExperimentResult
 
@@ -57,17 +58,18 @@ def _capture_vproj_multi(
     storage: Dict[int, Optional[torch.Tensor]] = {i: None for i in layer_idxs}
     handles = []
 
-    def make_hook(layer_idx: int):
-        def hook_fn(_module, _inp, out):
-            # out: (batch, seq, d)
-            storage[layer_idx] = out.detach()[0]
+    for idx in layer_idxs:
+        hookpoint = get_vproj_hookpoint(model, layer_idx=idx)
+
+        def hook_fn(_module, _inp, out, *, _idx: int = idx, _hp=hookpoint):
+            try:
+                v = extract_v_from_hook_output(_hp, out)
+                storage[_idx] = v.detach()[0]
+            except Exception:
+                storage[_idx] = None
             return out
 
-        return hook_fn
-
-    for idx in layer_idxs:
-        layer = model.model.layers[idx].self_attn
-        handles.append(layer.v_proj.register_forward_hook(make_hook(idx)))
+        handles.append(hookpoint.module.register_forward_hook(hook_fn))
 
     try:
         with torch.no_grad():
@@ -102,10 +104,17 @@ def _patched_forward_capture_rv(
     v_early: Optional[torch.Tensor] = None
     v_meas: Optional[torch.Tensor] = None
     v_extra: Optional[torch.Tensor] = None
+    hp_early = get_vproj_hookpoint(model, layer_idx=early_layer)
+    hp_patch = get_vproj_hookpoint(model, layer_idx=patch_layer)
+    hp_extra = get_vproj_hookpoint(model, layer_idx=capture_extra_layer) if capture_extra_layer is not None else None
 
     def hook_capture_early(_module, _inp, out):
         nonlocal v_early
-        v_early = out.detach()[0]
+        try:
+            v = extract_v_from_hook_output(hp_early, out)
+            v_early = v.detach()[0]
+        except Exception:
+            v_early = None
         return out
 
     def hook_patch_and_capture(_module, _inp, out):
@@ -131,29 +140,45 @@ def _patched_forward_capture_rv(
                     patch = src[-W:, :][perm, :]
                 else:
                     raise ValueError(f"Unknown patch_type: {patch_type}")
+                if hp_patch.kind == "v_proj":
+                    out2[:, -W:, :] = patch.unsqueeze(0).expand(B, -1, -1)
+                else:
+                    # fused QKV: patch the V slice only
+                    if D % 3 != 0:
+                        raise ValueError(f"Expected fused QKV dim divisible by 3; got D={D}")
+                    h = D // 3
+                    out2[:, -W:, 2 * h : 3 * h] = patch.unsqueeze(0).expand(B, -1, -1)
 
-                out2[:, -W:, :] = patch.unsqueeze(0).expand(B, -1, -1)
-
-        v_meas = out2.detach()[0]
+        try:
+            v = extract_v_from_hook_output(hp_patch, out2)
+            v_meas = v.detach()[0]
+        except Exception:
+            v_meas = None
         return out2
 
     def hook_capture_extra(_module, _inp, out):
         nonlocal v_extra
-        v_extra = out.detach()[0]
+        assert hp_extra is not None
+        try:
+            v = extract_v_from_hook_output(hp_extra, out)
+            v_extra = v.detach()[0]
+        except Exception:
+            v_extra = None
         return out
 
     handles = []
     try:
-        handles.append(model.model.layers[early_layer].self_attn.v_proj.register_forward_hook(hook_capture_early))
+        handles.append(hp_early.module.register_forward_hook(hook_capture_early))
         if patch_layer == early_layer:
             raise ValueError("early_layer and patch_layer must be different")
-        handles.append(model.model.layers[patch_layer].self_attn.v_proj.register_forward_hook(hook_patch_and_capture))
+        handles.append(hp_patch.module.register_forward_hook(hook_patch_and_capture))
 
         if capture_extra_layer is not None:
             # If extra equals patch_layer, it would capture the pre-patch output. Disallow.
             if capture_extra_layer in (early_layer, patch_layer):
                 raise ValueError("capture_extra_layer must differ from early_layer and patch_layer")
-            handles.append(model.model.layers[capture_extra_layer].self_attn.v_proj.register_forward_hook(hook_capture_extra))
+            assert hp_extra is not None
+            handles.append(hp_extra.module.register_forward_hook(hook_capture_extra))
 
         with torch.no_grad():
             model(**enc)
@@ -517,5 +542,4 @@ def run_rv_l27_causal_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
     }
 
     return ExperimentResult(summary=summary)
-
 

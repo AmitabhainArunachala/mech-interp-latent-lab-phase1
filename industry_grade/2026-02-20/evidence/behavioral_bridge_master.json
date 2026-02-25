@@ -1,0 +1,63 @@
+{
+  "within_session_bridge": {
+    "n_recursive_sessions": 12,
+    "n_baseline_sessions": 8,
+    "n_recursive_turns": 600,
+    "n_baseline_turns": 400,
+    "n_bt_art_recursive": 254,
+    "n_bt_art_baseline": 55,
+    "output_rv_cohens_d": -0.5669381431230488,
+    "output_rv_p_value": 1.3354241162306525e-10,
+    "output_rv_ci95": [
+      -0.10398079265019548,
+      -0.05868104877120251
+    ],
+    "temporal_lag_rho": -0.014225883669267246,
+    "temporal_lag_p": 0.7389922104641166
+  },
+  "logistic_classifier": {
+    "train_n": 664,
+    "test_n": 285,
+    "rv_alone_test_auc": 0.5852374551971327,
+    "multi_metric_test_auc": 0.6774193548387096,
+    "multi_metric_auc_ci95": [
+      0.6138969284912299,
+      0.7392476105137396
+    ],
+    "baseline_only_auc": 0.5941176470588235,
+    "top_3_features": [
+      {
+        "feature": "top1_ratio",
+        "coef": -1.594061254959801,
+        "abs_coef": 1.594061254959801
+      },
+      {
+        "feature": "output_rv",
+        "coef": -1.1962681267447313,
+        "abs_coef": 1.1962681267447313
+      },
+      {
+        "feature": "spectral_gap",
+        "coef": 0.46273545375895614,
+        "abs_coef": 0.46273545375895614
+      }
+    ]
+  },
+  "per_token_rv": {
+    "n_recursive": 25,
+    "n_baseline": 25,
+    "max_new_tokens": 256,
+    "mean_gen_rv_recursive": 0.6857316936513884,
+    "mean_gen_rv_baseline": 0.7060249104345666,
+    "cohens_d": -0.22008773522672467,
+    "p_value": 0.46093488585479814,
+    "biserial_r_with_bt_art": -0.10159101647174265,
+    "biserial_p": 0.48267471867069434
+  },
+  "c2_semantic": {
+    "n_total": 755,
+    "rho": -0.6519420205824219,
+    "p": 1.4298236437045998e-92
+  },
+  "verdict": "SUCCESS_CRITERIA_MET"
+}

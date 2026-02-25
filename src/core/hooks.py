@@ -12,6 +12,8 @@ from typing import Optional
 import torch
 from transformers import PreTrainedModel
 
+from .hf_accessors import extract_v_from_hook_output, get_vproj_hookpoint
+
 
 @contextmanager
 def capture_v_projection(
@@ -36,13 +38,18 @@ def capture_v_projection(
         >>> v_tensor = storage["v"]
     """
     storage = {"v": None}
+    hookpoint = get_vproj_hookpoint(model, layer_idx=layer_idx)
     
     def hook_fn(module, inp, out):
-        storage["v"] = out.detach()
+        try:
+            v = extract_v_from_hook_output(hookpoint, out)
+            storage["v"] = v.detach()
+        except Exception:
+            # Best-effort capture; never break the forward pass.
+            storage["v"] = None
         return out
     
-    layer = model.model.layers[layer_idx].self_attn
-    handle = layer.v_proj.register_forward_hook(hook_fn)
+    handle = hookpoint.module.register_forward_hook(hook_fn)
     
     try:
         yield storage
@@ -172,4 +179,3 @@ def capture_hidden_states(
             storage_list.append(storage["hidden"])
     finally:
         handle.remove()
-

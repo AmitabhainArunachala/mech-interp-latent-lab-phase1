@@ -1,0 +1,39 @@
+{
+  "artifacts": {
+    "config.json": {
+      "bytes": 859,
+      "sha256": "d27137a8075d1cbf8744d2411075893de67e6e9d640fb0565f49ae584275db46"
+    },
+    "hardware_info.json": {
+      "bytes": 252,
+      "sha256": "31ac29c8e8480d5b5aabdf18f61124b0c1bc8385a563a862ac1c0d2a87b147fe"
+    },
+    "metadata.json": {
+      "bytes": 251,
+      "sha256": "7f7bd896deb068dfdeb258e07751e6f481665d933c9fcec279d8dc80e04affc1"
+    },
+    "per_sample.csv": {
+      "bytes": 171228,
+      "sha256": "5874d52181eabb47be8332ae6017fba878bfc553cb16e316520212a1fb0a25c9"
+    },
+    "prompt_bank_version.json": {
+      "bytes": 36,
+      "sha256": "551feb94ff26290150d82bdeeefc916e81d853cb9955e7991d0d098e1d1c3e9b"
+    },
+    "report.md": {
+      "bytes": 2640,
+      "sha256": "c624ed46cbe1caff6f8a11ec5262a002930ea6d09181fd0ae7a32255342d98cb"
+    },
+    "summary.json": {
+      "bytes": 2355,
+      "sha256": "ea724770c2a8b0f7275e086af9c6159753c202384b5f4a4df811f6b87fb28bf7"
+    }
+  },
+  "created_at_utc": "2026-02-20T10:27:12Z",
+  "experiment": "rv_l27_activation_patching_bridge",
+  "git_commit": "not_a_git_repo",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "model_revision": "unspecified",
+  "prompt_bank_version": "75e7c1b8dcebc24e",
+  "run_dir": "results/phase1_mechanism/runs/20260220_095301_rv_l27_activation_patching_bridge_seed_bridge_20260220_random_head_control_s42_n80"
+}
