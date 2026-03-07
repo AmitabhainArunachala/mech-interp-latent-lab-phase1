@@ -327,6 +327,14 @@ def extract_averaged(model, tokenizer, prompts, layer_idx, kind="v", device="cud
     return torch.stack(padded).mean(dim=0)
 
 
+def blend_activations(recursive_act, baseline_act, alpha):
+    """
+    Linear interpolation/extrapolation between baseline and recursive donors.
+    alpha=0 -> baseline donor, alpha=1 -> recursive donor.
+    """
+    return baseline_act + alpha * (recursive_act - baseline_act)
+
+
 # ── Session runner ────────────────────────────────────────────────────────────
 
 def run_session(model, tokenizer, early, late, mode, condition_name,
@@ -334,7 +342,8 @@ def run_session(model, tokenizer, early, late, mode, condition_name,
                 v_layer=27, r_layer=18,
                 use_kv=False, kv_donor_prompts=None,
                 max_turns=30, seed_idx=0, rv_window=16,
-                min_new_tokens=0, device="cuda"):
+                min_new_tokens=0, max_new_tokens=150,
+                temperature=0.7, rep_penalty=1.3, device="cuda"):
     session_id = f"{condition_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     is_recursive_prompt = mode == "recursive"
     seeds = SEEDS_RECURSIVE if is_recursive_prompt else SEEDS_BASELINE
@@ -358,14 +367,14 @@ def run_session(model, tokenizer, early, late, mode, condition_name,
         if use_kv and kv_cache is not None:
             response = generate_turn_with_kv(
                 model, tokenizer, context, kv_cache=kv_cache,
-                max_tokens=150, min_new_tokens=min_new_tokens, temp=0.7,
-                rep_penalty=1.3, device=device
+                max_tokens=max_new_tokens, min_new_tokens=min_new_tokens,
+                temp=temperature, rep_penalty=rep_penalty, device=device
             )
         else:
             response = generate_turn_plain(
                 model, tokenizer, context,
-                max_tokens=150, min_new_tokens=min_new_tokens, temp=0.7,
-                rep_penalty=1.3, device=device
+                max_tokens=max_new_tokens, min_new_tokens=min_new_tokens,
+                temp=temperature, rep_penalty=rep_penalty, device=device
             )
 
         # Clean measurement (remove patchers temporarily)
@@ -423,6 +432,9 @@ def run_session(model, tokenizer, early, late, mode, condition_name,
         "seed_idx": seed_idx,
         "rv_window": rv_window,
         "min_new_tokens": min_new_tokens,
+        "max_new_tokens": max_new_tokens,
+        "temperature": temperature,
+        "rep_penalty": rep_penalty,
         "v_patcher_active": v_patcher is not None,
         "r_patcher_active": r_patcher is not None,
         "kv_swap_active": use_kv,
@@ -457,6 +469,42 @@ def main():
         help="Minimum generated tokens before EOS is allowed (reduces R_V NaNs)",
     )
     parser.add_argument(
+        "--max-new-tokens",
+        type=int,
+        default=150,
+        help="Maximum generated tokens per turn",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=0.7,
+        help="Sampling temperature",
+    )
+    parser.add_argument(
+        "--rep-penalty",
+        type=float,
+        default=1.3,
+        help="Repetition penalty",
+    )
+    parser.add_argument(
+        "--dual-alpha",
+        type=float,
+        default=1.0,
+        help="Dual donor blend: 0=baseline donor, 1=recursive donor",
+    )
+    parser.add_argument(
+        "--conditions",
+        type=str,
+        default="clean_baseline,kv_only,dual_patch,kv_plus_dual,clean_recursive",
+        help="Comma-separated condition names to run",
+    )
+    parser.add_argument(
+        "--tag",
+        type=str,
+        default="",
+        help="Optional tag appended to output filename",
+    )
+    parser.add_argument(
         "--induce-min-lift",
         type=float,
         default=0.15,
@@ -470,10 +518,34 @@ def main():
     )
     args = parser.parse_args()
 
+    allowed_conditions = [
+        "clean_baseline",
+        "kv_only",
+        "dual_patch",
+        "kv_plus_dual",
+        "clean_recursive",
+    ]
+    selected_conditions = [
+        c.strip() for c in args.conditions.split(",") if c.strip()
+    ]
+    unknown = [c for c in selected_conditions if c not in allowed_conditions]
+    if unknown:
+        raise ValueError(f"Unknown conditions: {unknown}. Allowed: {allowed_conditions}")
+    if "clean_baseline" not in selected_conditions:
+        raise ValueError("clean_baseline must be included in --conditions for comparisons")
+    if len(selected_conditions) == 0:
+        raise ValueError("No conditions selected")
+
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Device: {device}")
     print(f"Seed: {args.seed}")
     seed_everything(args.seed)
+    print(
+        f"Gen params: temp={args.temperature} rep_penalty={args.rep_penalty} "
+        f"max_new_tokens={args.max_new_tokens} min_new_tokens={args.min_new_tokens}"
+    )
+    print(f"Dual alpha: {args.dual_alpha}")
+    print(f"Selected conditions: {selected_conditions}")
     print(f"Prompt bank version: ", end="")
     try:
         import hashlib
@@ -511,9 +583,24 @@ def main():
     recursive_v = extract_averaged(model, tokenizer, DONOR_RECURSIVE, v_layer, "v", device)
     print(f"    Shape: {recursive_v.shape}")
 
+    print("  Baseline V@L27:")
+    baseline_v = extract_averaged(model, tokenizer, DONOR_BASELINE, v_layer, "v", device)
+    print(f"    Shape: {baseline_v.shape}")
+
     print("  Recursive residual@L18:")
     recursive_r = extract_averaged(model, tokenizer, DONOR_RECURSIVE, r_layer, "r", device)
     print(f"    Shape: {recursive_r.shape}")
+
+    print("  Baseline residual@L18:")
+    baseline_r = extract_averaged(model, tokenizer, DONOR_BASELINE, r_layer, "r", device)
+    print(f"    Shape: {baseline_r.shape}")
+
+    dual_v = blend_activations(recursive_v, baseline_v, args.dual_alpha)
+    dual_r = blend_activations(recursive_r, baseline_r, args.dual_alpha)
+    print(
+        "  Blended dual donors: "
+        f"||V||={float(torch.norm(dual_v)):.3f} ||R||={float(torch.norm(dual_r)):.3f}"
+    )
 
     # Sanity
     print("\n  Donor R_V sanity:")
@@ -531,20 +618,30 @@ def main():
     max_turns = args.max_turns
     rv_window = args.rv_window
     min_new_tokens = args.min_new_tokens
+    max_new_tokens = args.max_new_tokens
+    temperature = args.temperature
+    rep_penalty = args.rep_penalty
     conditions = {}
-    condition_specs = [
+    all_condition_specs = [
         {"name": "kv_only", "mode": "baseline", "dual_patch": False, "use_kv": True},
         {"name": "dual_patch", "mode": "baseline", "dual_patch": True, "use_kv": False},
         {"name": "kv_plus_dual", "mode": "baseline", "dual_patch": True, "use_kv": True},
         {"name": "clean_recursive", "mode": "recursive", "dual_patch": False, "use_kv": False},
         {"name": "clean_baseline", "mode": "baseline", "dual_patch": False, "use_kv": False},
     ]
+    order_map = {name: i for i, name in enumerate(allowed_conditions)}
+    selected_set = set(selected_conditions)
+    condition_specs = [s for s in all_condition_specs if s["name"] in selected_set]
+    condition_specs.sort(key=lambda s: order_map[s["name"]])
     run_schedule = []
 
     print(f"\n{'='*70}")
     print("CONDITION EXECUTION: BLOCK-RANDOMIZED")
     print(f"{'='*70}")
-    print(f"R_V window={rv_window} | min_new_tokens={min_new_tokens}")
+    print(
+        f"R_V window={rv_window} | min_new_tokens={min_new_tokens} | "
+        f"max_new_tokens={max_new_tokens}"
+    )
 
     for i in range(n_sessions):
         block = condition_specs.copy()
@@ -560,8 +657,8 @@ def main():
             use_kv = spec["use_kv"]
 
             if dual_patch:
-                vp = PersistentVPatcher(model, recursive_v)
-                rp = PersistentResidualPatcher(model, recursive_r)
+                vp = PersistentVPatcher(model, dual_v)
+                rp = PersistentResidualPatcher(model, dual_r)
                 vp.register(layer_idx=v_layer)
                 rp.register(layer_idx=r_layer)
                 try:
@@ -582,6 +679,9 @@ def main():
                         seed_idx=i,
                         rv_window=rv_window,
                         min_new_tokens=min_new_tokens,
+                        max_new_tokens=max_new_tokens,
+                        temperature=temperature,
+                        rep_penalty=rep_penalty,
                         device=device,
                     )
                 finally:
@@ -601,6 +701,9 @@ def main():
                     seed_idx=i,
                     rv_window=rv_window,
                     min_new_tokens=min_new_tokens,
+                    max_new_tokens=max_new_tokens,
+                    temperature=temperature,
+                    rep_penalty=rep_penalty,
                     device=device,
                 )
             conditions[f"{name}_{i}"] = result
@@ -645,7 +748,7 @@ def main():
             } for s in sessions],
         }
 
-    prefixes = ["clean_baseline", "kv_only", "dual_patch", "kv_plus_dual", "clean_recursive"]
+    prefixes = [c for c in allowed_conditions if c in selected_set]
     agg = {}
     for prefix in prefixes:
         agg[prefix] = aggregate(prefix)
@@ -685,7 +788,7 @@ def main():
 
     base_rates = session_rate_vector("clean_baseline")
 
-    for prefix in ["kv_only", "dual_patch", "kv_plus_dual", "clean_recursive"]:
+    for prefix in [c for c in prefixes if c != "clean_baseline"]:
         a = agg[prefix]
         if a is None:
             continue
@@ -757,8 +860,10 @@ def main():
     kvd_turn = kvd_vs_base.get("turn_level", {})
     kvd_sess = kvd_vs_base.get("session_level", {})
     kvd_lift = kvd_turn.get("test_rate", 0.0) - kvd_turn.get("base_rate", 0.0)
+    prereg_evaluated = bool(kvd_turn and kvd_sess)
     prereg_pass = (
-        kvd_lift >= args.induce_min_lift
+        prereg_evaluated
+        and kvd_lift >= args.induce_min_lift
         and kvd_turn.get("p", 1.0) < args.induce_alpha
         and kvd_turn.get("direction", "") == "UP"
         and kvd_sess.get("permutation_p", 1.0) < 0.05
@@ -766,9 +871,10 @@ def main():
     prereg = {
         "target_condition": "kv_plus_dual",
         "vs_condition": "clean_baseline",
+        "evaluated": prereg_evaluated,
         "min_lift": float(args.induce_min_lift),
         "alpha": float(args.induce_alpha),
-        "observed_lift": float(kvd_lift),
+        "observed_lift": float(kvd_lift) if prereg_evaluated else float("nan"),
         "turn_level_p": float(kvd_turn.get("p", float("nan"))),
         "session_level_permutation_p": float(kvd_sess.get("permutation_p", float("nan"))),
         "direction": kvd_turn.get("direction", "UNKNOWN"),
@@ -776,10 +882,13 @@ def main():
     }
     comparisons["preregistered_decision"] = prereg
     print(f"\n  PRE-REGISTERED DECISION (kv_plus_dual vs clean_baseline):")
-    print(
-        f"    lift={kvd_lift:.3f}, turn_p={kvd_turn.get('p', float('nan')):.6f}, "
-        f"session_perm_p={kvd_sess.get('permutation_p', float('nan')):.6f}, pass={prereg_pass}"
-    )
+    if prereg_evaluated:
+        print(
+            f"    lift={kvd_lift:.3f}, turn_p={kvd_turn.get('p', float('nan')):.6f}, "
+            f"session_perm_p={kvd_sess.get('permutation_p', float('nan')):.6f}, pass={prereg_pass}"
+        )
+    else:
+        print("    not evaluated (kv_plus_dual or baseline missing from selected conditions)")
 
     # ═══════════════════════════════════════════════════════════════
     # SUFFICIENCY LADDER
@@ -821,9 +930,14 @@ def main():
         "v_layer": v_layer, "r_layer": r_layer,
         "n_sessions_per_condition": n_sessions,
         "max_turns_per_session": max_turns,
+        "selected_conditions": prefixes,
         "seed": int(args.seed),
         "rv_window": int(rv_window),
         "min_new_tokens": int(min_new_tokens),
+        "max_new_tokens": int(max_new_tokens),
+        "temperature": float(temperature),
+        "rep_penalty": float(rep_penalty),
+        "dual_alpha": float(args.dual_alpha),
         "preregistered_gate": {
             "target_condition": "kv_plus_dual",
             "vs_condition": "clean_baseline",
@@ -840,7 +954,10 @@ def main():
 
     outdir = Path("results/sufficiency_ladder")
     outdir.mkdir(parents=True, exist_ok=True)
-    outfile = outdir / f"sufficiency_ladder_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    ts = datetime.now().strftime('%Y%m%d_%H%M%S')
+    tag = args.tag.strip().replace(" ", "_")
+    suffix = f"_{tag}" if tag else ""
+    outfile = outdir / f"sufficiency_ladder_{ts}{suffix}.json"
     with open(outfile, "w") as f:
         json.dump(all_results, f, indent=2, default=str)
     print(f"\nResults saved to {outfile}")
