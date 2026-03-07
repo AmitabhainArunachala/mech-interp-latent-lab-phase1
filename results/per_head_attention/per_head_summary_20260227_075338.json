@@ -1,0 +1,1418 @@
+{
+  "timestamp": "20260227_075338",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "target_layers": [
+    5,
+    27
+  ],
+  "n_heads": 32,
+  "n_recursive_prompts": 20,
+  "n_baseline_prompts": 20,
+  "head_results": [
+    {
+      "layer": 5,
+      "head": 0,
+      "entropy_recursive_mean": 1.127274289727211,
+      "entropy_recursive_std": 0.34440557919962517,
+      "entropy_baseline_mean": 0.42201478183269503,
+      "entropy_baseline_std": 0.19196376350347097,
+      "max_recursive_mean": 0.7283921107649803,
+      "max_baseline_mean": 0.9191190272569656,
+      "cohens_d": 2.4655228413102304,
+      "p_value": 7.947947908822899e-07,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 19,
+        "mixed": 1
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 1,
+      "entropy_recursive_mean": 1.6363287180662156,
+      "entropy_recursive_std": 0.5433888552188357,
+      "entropy_baseline_mean": 0.9612409919500351,
+      "entropy_baseline_std": 0.24830126580661022,
+      "max_recursive_mean": 0.5513082936406135,
+      "max_baseline_mean": 0.791233679652214,
+      "cohens_d": 1.5575734969551702,
+      "p_value": 0.0008357168217272526,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 11,
+        "mixed": 9
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 2,
+      "entropy_recursive_mean": 0.9422210320830345,
+      "entropy_recursive_std": 0.3322345154765275,
+      "entropy_baseline_mean": 0.44967824816703794,
+      "entropy_baseline_std": 0.15789181943421543,
+      "max_recursive_mean": 0.7978463143110275,
+      "max_baseline_mean": 0.9213274598121644,
+      "cohens_d": 1.8456802128227296,
+      "p_value": 1.1044712116768222e-05,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 19,
+        "mixed": 1
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 3,
+      "entropy_recursive_mean": 0.724934034049511,
+      "entropy_recursive_std": 0.3085665684691087,
+      "entropy_baseline_mean": 0.3624041683971882,
+      "entropy_baseline_std": 0.16023132649877647,
+      "max_recursive_mean": 0.8569433838129044,
+      "max_baseline_mean": 0.9401796370744705,
+      "cohens_d": 1.437242538810326,
+      "p_value": 4.6804032386338485e-05,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 4,
+      "entropy_recursive_mean": 1.777127468585968,
+      "entropy_recursive_std": 0.2847190374030436,
+      "entropy_baseline_mean": 1.435702458024025,
+      "entropy_baseline_std": 0.2870919892478412,
+      "max_recursive_mean": 0.5834615394473076,
+      "max_baseline_mean": 0.671577213704586,
+      "cohens_d": 1.1639407260170787,
+      "p_value": 0.0016252575462520652,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 17,
+        "mixed": 3
+      },
+      "pattern_counts_baseline": {
+        "column": 19,
+        "mixed": 1
+      }
+    },
+    {
+      "layer": 5,
+      "head": 5,
+      "entropy_recursive_mean": 1.5222726345062256,
+      "entropy_recursive_std": 0.47061049083359,
+      "entropy_baseline_mean": 0.7883916467428207,
+      "entropy_baseline_std": 0.2009563389954315,
+      "max_recursive_mean": 0.6397664412856102,
+      "max_baseline_mean": 0.8512492001056671,
+      "cohens_d": 1.9768320603644831,
+      "p_value": 1.575674219696402e-06,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 17,
+        "mixed": 3
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 6,
+      "entropy_recursive_mean": 1.1632131487131119,
+      "entropy_recursive_std": 0.477392690548679,
+      "entropy_baseline_mean": 0.3411692105233669,
+      "entropy_baseline_std": 0.15633215442363765,
+      "max_recursive_mean": 0.7368606865406037,
+      "max_baseline_mean": 0.9447276622056962,
+      "cohens_d": 2.25567096953856,
+      "p_value": 2.562945863395653e-07,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 18,
+        "mixed": 2
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 7,
+      "entropy_recursive_mean": 2.105830067396164,
+      "entropy_recursive_std": 0.30050217418570224,
+      "entropy_baseline_mean": 2.005751359462738,
+      "entropy_baseline_std": 0.26384220721290114,
+      "max_recursive_mean": 0.399635948240757,
+      "max_baseline_mean": 0.3268673770129681,
+      "cohens_d": 0.34496488116867563,
+      "p_value": 0.1555699325877425,
+      "dominant_pattern_recursive": "mixed",
+      "dominant_pattern_baseline": "mixed",
+      "pattern_counts_recursive": {
+        "mixed": 15,
+        "diagonal": 2,
+        "column": 3
+      },
+      "pattern_counts_baseline": {
+        "mixed": 18,
+        "column": 2
+      }
+    },
+    {
+      "layer": 5,
+      "head": 8,
+      "entropy_recursive_mean": 1.2725710541009903,
+      "entropy_recursive_std": 0.4027464565012148,
+      "entropy_baseline_mean": 0.6657095894217491,
+      "entropy_baseline_std": 0.27082562054895637,
+      "max_recursive_mean": 0.7130691930651665,
+      "max_baseline_mean": 0.8761665642261505,
+      "cohens_d": 1.7235491709641664,
+      "p_value": 1.5997235246344776e-05,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 18,
+        "mixed": 2
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 9,
+      "entropy_recursive_mean": 2.2295659244060517,
+      "entropy_recursive_std": 0.32320293149416063,
+      "entropy_baseline_mean": 2.384195017814636,
+      "entropy_baseline_std": 0.18984352543810235,
+      "max_recursive_mean": 0.4022468522191048,
+      "max_baseline_mean": 0.2942622028291225,
+      "cohens_d": -0.5686286892424453,
+      "p_value": 0.11355139298344043,
+      "dominant_pattern_recursive": "mixed",
+      "dominant_pattern_baseline": "mixed",
+      "pattern_counts_recursive": {
+        "mixed": 16,
+        "column": 4
+      },
+      "pattern_counts_baseline": {
+        "mixed": 19,
+        "column": 1
+      }
+    },
+    {
+      "layer": 5,
+      "head": 10,
+      "entropy_recursive_mean": 0.5196080334484577,
+      "entropy_recursive_std": 0.26906940034344373,
+      "entropy_baseline_mean": 0.31386336758732797,
+      "entropy_baseline_std": 0.0700200535481834,
+      "max_recursive_mean": 0.9043394923210144,
+      "max_baseline_mean": 0.9489613056182862,
+      "cohens_d": 1.0200287371091197,
+      "p_value": 0.022269911309813137,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 11,
+      "entropy_recursive_mean": 0.6302781060338021,
+      "entropy_recursive_std": 0.24610757441226802,
+      "entropy_baseline_mean": 0.24650603011250496,
+      "entropy_baseline_std": 0.0675074704719828,
+      "max_recursive_mean": 0.8870790928602219,
+      "max_baseline_mean": 0.9634226620197296,
+      "cohens_d": 2.0728711797950403,
+      "p_value": 3.415575693503718e-07,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 12,
+      "entropy_recursive_mean": 1.7834113389253616,
+      "entropy_recursive_std": 0.2913216551989081,
+      "entropy_baseline_mean": 1.7297256410121917,
+      "entropy_baseline_std": 0.15066630962607122,
+      "max_recursive_mean": 0.5437894597649574,
+      "max_baseline_mean": 0.5560397520661354,
+      "cohens_d": 0.2256277733517532,
+      "p_value": 0.22869435423745565,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 13,
+        "mixed": 7
+      },
+      "pattern_counts_baseline": {
+        "mixed": 5,
+        "column": 15
+      }
+    },
+    {
+      "layer": 5,
+      "head": 13,
+      "entropy_recursive_mean": 2.20324844121933,
+      "entropy_recursive_std": 0.3281783858391066,
+      "entropy_baseline_mean": 1.8580596804618836,
+      "entropy_baseline_std": 0.3655055292342908,
+      "max_recursive_mean": 0.3369480945169926,
+      "max_baseline_mean": 0.5203112542629242,
+      "cohens_d": 0.9686323638306317,
+      "p_value": 0.006040329507995924,
+      "dominant_pattern_recursive": "mixed",
+      "dominant_pattern_baseline": "mixed",
+      "pattern_counts_recursive": {
+        "mixed": 18,
+        "column": 2
+      },
+      "pattern_counts_baseline": {
+        "mixed": 10,
+        "column": 10
+      }
+    },
+    {
+      "layer": 5,
+      "head": 14,
+      "entropy_recursive_mean": 1.1870586901903153,
+      "entropy_recursive_std": 0.3190201547922496,
+      "entropy_baseline_mean": 0.8062399387359619,
+      "entropy_baseline_std": 0.25496915697518885,
+      "max_recursive_mean": 0.743558618426323,
+      "max_baseline_mean": 0.8290651470422745,
+      "cohens_d": 1.2853430840468987,
+      "p_value": 0.0008357168217272526,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 15,
+      "entropy_recursive_mean": 1.4826402544975281,
+      "entropy_recursive_std": 0.4357466794505386,
+      "entropy_baseline_mean": 0.5705605059862137,
+      "entropy_baseline_std": 0.20399092848725256,
+      "max_recursive_mean": 0.6299738541245461,
+      "max_baseline_mean": 0.8971984773874283,
+      "cohens_d": 2.613038878414808,
+      "p_value": 3.415575693503718e-07,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 16,
+        "mixed": 3,
+        "diagonal": 1
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 16,
+      "entropy_recursive_mean": 1.3412513464689255,
+      "entropy_recursive_std": 0.1853349392188423,
+      "entropy_baseline_mean": 1.0997107118368148,
+      "entropy_baseline_std": 0.11562074211701913,
+      "max_recursive_mean": 0.6010162651538848,
+      "max_baseline_mean": 0.7278829962015152,
+      "cohens_d": 1.524156446159343,
+      "p_value": 0.00016098133965918395,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "mixed": 2,
+        "column": 18
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 17,
+      "entropy_recursive_mean": 0.6825430989265442,
+      "entropy_recursive_std": 0.2376586761702245,
+      "entropy_baseline_mean": 0.36077345758676527,
+      "entropy_baseline_std": 0.060857457532703434,
+      "max_recursive_mean": 0.8656583696603775,
+      "max_baseline_mean": 0.940526282787323,
+      "cohens_d": 1.8079097082381907,
+      "p_value": 1.2008881938423432e-06,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 18,
+      "entropy_recursive_mean": 1.261032262444496,
+      "entropy_recursive_std": 0.3614390195005757,
+      "entropy_baseline_mean": 1.069607648253441,
+      "entropy_baseline_std": 0.22783610749569047,
+      "max_recursive_mean": 0.719253346323967,
+      "max_baseline_mean": 0.7820710659027099,
+      "cohens_d": 0.6175707063523946,
+      "p_value": 0.08585487995041037,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 19,
+        "mixed": 1
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 19,
+      "entropy_recursive_mean": 0.6429249674081803,
+      "entropy_recursive_std": 0.22138403734506606,
+      "entropy_baseline_mean": 0.7738921269774437,
+      "entropy_baseline_std": 0.20587652698724448,
+      "max_recursive_mean": 0.8742777794599533,
+      "max_baseline_mean": 0.8493041694164276,
+      "cohens_d": -0.5971391260701627,
+      "p_value": 0.07643094557954021,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 20,
+      "entropy_recursive_mean": 1.9232491254806519,
+      "entropy_recursive_std": 0.3824252096006993,
+      "entropy_baseline_mean": 1.1273056596517563,
+      "entropy_baseline_std": 0.32771649910827894,
+      "max_recursive_mean": 0.46762474328279496,
+      "max_baseline_mean": 0.7430026099085808,
+      "cohens_d": 2.1784321275220373,
+      "p_value": 3.069100921857103e-06,
+      "dominant_pattern_recursive": "mixed",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "mixed": 12,
+        "column": 6,
+        "diagonal": 2
+      },
+      "pattern_counts_baseline": {
+        "column": 19,
+        "mixed": 1
+      }
+    },
+    {
+      "layer": 5,
+      "head": 21,
+      "entropy_recursive_mean": 1.346945133805275,
+      "entropy_recursive_std": 0.4115514388946067,
+      "entropy_baseline_mean": 1.2434487849473954,
+      "entropy_baseline_std": 0.45921081833479505,
+      "max_recursive_mean": 0.6714695543050766,
+      "max_baseline_mean": 0.7196410894393921,
+      "cohens_d": 0.231349037172044,
+      "p_value": 0.364841654608659,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 17,
+        "mixed": 3
+      },
+      "pattern_counts_baseline": {
+        "column": 18,
+        "mixed": 2
+      }
+    },
+    {
+      "layer": 5,
+      "head": 22,
+      "entropy_recursive_mean": 1.4579016864299774,
+      "entropy_recursive_std": 0.5446891308800134,
+      "entropy_baseline_mean": 1.1481747433543206,
+      "entropy_baseline_std": 0.36014964607980837,
+      "max_recursive_mean": 0.6357059314846992,
+      "max_baseline_mean": 0.7193312346935272,
+      "cohens_d": 0.6538080079934862,
+      "p_value": 0.08585487995041037,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "mixed": 6,
+        "column": 14
+      },
+      "pattern_counts_baseline": {
+        "column": 19,
+        "diagonal": 1
+      }
+    },
+    {
+      "layer": 5,
+      "head": 23,
+      "entropy_recursive_mean": 1.3135934561491012,
+      "entropy_recursive_std": 0.4915245832949368,
+      "entropy_baseline_mean": 0.5508208498358727,
+      "entropy_baseline_std": 0.19936708038739262,
+      "max_recursive_mean": 0.6921973437070846,
+      "max_baseline_mean": 0.9015598267316818,
+      "cohens_d": 1.9822267400545992,
+      "p_value": 9.747975903084567e-06,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 17,
+        "mixed": 3
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 24,
+      "entropy_recursive_mean": 1.2916091144084931,
+      "entropy_recursive_std": 0.3156287538207873,
+      "entropy_baseline_mean": 1.4957033663988113,
+      "entropy_baseline_std": 0.32333268750656574,
+      "max_recursive_mean": 0.6870640993118287,
+      "max_baseline_mean": 0.6164500474929809,
+      "cohens_d": -0.6226103793389498,
+      "p_value": 0.05651653736796189,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "mixed": 2,
+        "column": 18
+      },
+      "pattern_counts_baseline": {
+        "column": 16,
+        "mixed": 4
+      }
+    },
+    {
+      "layer": 5,
+      "head": 25,
+      "entropy_recursive_mean": 1.1495199739933013,
+      "entropy_recursive_std": 0.22399276448970484,
+      "entropy_baseline_mean": 0.6996794879436493,
+      "entropy_baseline_std": 0.2004825908448655,
+      "max_recursive_mean": 0.7593471601605415,
+      "max_baseline_mean": 0.8700250387191772,
+      "cohens_d": 2.062684209963575,
+      "p_value": 6.6736514304002175e-06,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 19,
+        "mixed": 1
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 26,
+      "entropy_recursive_mean": 0.5183801382780076,
+      "entropy_recursive_std": 0.28298606730949194,
+      "entropy_baseline_mean": 0.5492140144109726,
+      "entropy_baseline_std": 0.26371712488251847,
+      "max_recursive_mean": 0.9031717151403427,
+      "max_baseline_mean": 0.9009583681821823,
+      "cohens_d": -0.10987495900312909,
+      "p_value": 0.6553614390103917,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 27,
+      "entropy_recursive_mean": 0.5098002754151821,
+      "entropy_recursive_std": 0.24725268091380137,
+      "entropy_baseline_mean": 0.3260991357266903,
+      "entropy_baseline_std": 0.16932886894492508,
+      "max_recursive_mean": 0.9042851209640503,
+      "max_baseline_mean": 0.9454365193843841,
+      "cohens_d": 0.8449589336202448,
+      "p_value": 0.011432829308440093,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 28,
+      "entropy_recursive_mean": 1.2255700558423996,
+      "entropy_recursive_std": 0.4381384491553591,
+      "entropy_baseline_mean": 1.112179586291313,
+      "entropy_baseline_std": 0.43030045069735806,
+      "max_recursive_mean": 0.7435832023620605,
+      "max_baseline_mean": 0.7648647367954254,
+      "cohens_d": 0.2545138355925055,
+      "p_value": 0.5249869101903615,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 29,
+      "entropy_recursive_mean": 1.522021633386612,
+      "entropy_recursive_std": 0.23919492054560315,
+      "entropy_baseline_mean": 0.7920144096016883,
+      "entropy_baseline_std": 0.20927994039842793,
+      "max_recursive_mean": 0.6562600493431091,
+      "max_baseline_mean": 0.8444352298974991,
+      "cohens_d": 3.166043085934733,
+      "p_value": 1.6570792933858787e-07,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 30,
+      "entropy_recursive_mean": 0.8832644015550614,
+      "entropy_recursive_std": 0.24144708381869384,
+      "entropy_baseline_mean": 0.9872996419668197,
+      "entropy_baseline_std": 0.17184880463763172,
+      "max_recursive_mean": 0.8283002406358719,
+      "max_baseline_mean": 0.7949513524770737,
+      "cohens_d": -0.48388151710093497,
+      "p_value": 0.09090738325062647,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 5,
+      "head": 31,
+      "entropy_recursive_mean": 1.6612360805273056,
+      "entropy_recursive_std": 0.4383642895384124,
+      "entropy_baseline_mean": 1.3542383819818498,
+      "entropy_baseline_std": 0.3449702929737352,
+      "max_recursive_mean": 0.5663917444646358,
+      "max_baseline_mean": 0.6917324215173721,
+      "cohens_d": 0.7586031261563811,
+      "p_value": 0.03604832666418314,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 12,
+        "mixed": 8
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 0,
+      "entropy_recursive_mean": 1.3413450241088867,
+      "entropy_recursive_std": 0.2851356074490852,
+      "entropy_baseline_mean": 1.215869316458702,
+      "entropy_baseline_std": 0.3391960891675997,
+      "max_recursive_mean": 0.6659574896097183,
+      "max_baseline_mean": 0.6306103467941284,
+      "cohens_d": 0.3903139131644846,
+      "p_value": 0.3234817459216911,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "mixed": 3,
+        "column": 17
+      },
+      "pattern_counts_baseline": {
+        "column": 15,
+        "diagonal": 2,
+        "mixed": 3
+      }
+    },
+    {
+      "layer": 27,
+      "head": 1,
+      "entropy_recursive_mean": 0.5163988664746284,
+      "entropy_recursive_std": 0.09611139813633345,
+      "entropy_baseline_mean": 0.46989918053150176,
+      "entropy_baseline_std": 0.11049048643620989,
+      "max_recursive_mean": 0.8706528663635253,
+      "max_baseline_mean": 0.8830908417701722,
+      "cohens_d": 0.43768155176313456,
+      "p_value": 0.2732851201810752,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 2,
+      "entropy_recursive_mean": 0.6851228088140487,
+      "entropy_recursive_std": 0.11747418214832972,
+      "entropy_baseline_mean": 0.6323839068412781,
+      "entropy_baseline_std": 0.15603768808989052,
+      "max_recursive_mean": 0.8509092688560486,
+      "max_baseline_mean": 0.8608480364084243,
+      "cohens_d": 0.37219652855645075,
+      "p_value": 0.14041971470550127,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 3,
+      "entropy_recursive_mean": 0.7967627242207527,
+      "entropy_recursive_std": 0.3325384237046354,
+      "entropy_baseline_mean": 1.2831475272774697,
+      "entropy_baseline_std": 0.4571678152604087,
+      "max_recursive_mean": 0.8429277211427688,
+      "max_baseline_mean": 0.665853987634182,
+      "cohens_d": -1.1859438783454572,
+      "p_value": 0.0023412726074935374,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "mixed": 4,
+        "column": 15,
+        "diagonal": 1
+      }
+    },
+    {
+      "layer": 27,
+      "head": 4,
+      "entropy_recursive_mean": 0.2747165195643902,
+      "entropy_recursive_std": 0.13657284176533294,
+      "entropy_baseline_mean": 0.16150886341929435,
+      "entropy_baseline_std": 0.08122002198567982,
+      "max_recursive_mean": 0.9581486731767654,
+      "max_baseline_mean": 0.9778779894113541,
+      "cohens_d": 0.9820462547731467,
+      "p_value": 0.002560615287144587,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 5,
+      "entropy_recursive_mean": 0.13169860541820527,
+      "entropy_recursive_std": 0.06187778413396563,
+      "entropy_baseline_mean": 0.13052226211875678,
+      "entropy_baseline_std": 0.07801172323768768,
+      "max_recursive_mean": 0.9823857337236405,
+      "max_baseline_mean": 0.9822324514389038,
+      "cohens_d": 0.01628438391661929,
+      "p_value": 0.6359445511344555,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 6,
+      "entropy_recursive_mean": 0.13524734750390052,
+      "entropy_recursive_std": 0.062216172988790716,
+      "entropy_baseline_mean": 0.282102632150054,
+      "entropy_baseline_std": 0.2518033074234876,
+      "max_recursive_mean": 0.980142030119896,
+      "max_baseline_mean": 0.952023047208786,
+      "cohens_d": -0.7804356159731426,
+      "p_value": 0.00024706130132229516,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 7,
+      "entropy_recursive_mean": 0.15352255664765835,
+      "entropy_recursive_std": 0.03491784643304641,
+      "entropy_baseline_mean": 0.13975114785134793,
+      "entropy_baseline_std": 0.04333736402213336,
+      "max_recursive_mean": 0.9766441196203232,
+      "max_baseline_mean": 0.9802725642919541,
+      "cohens_d": 0.34108114099951226,
+      "p_value": 0.285304715907688,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 8,
+      "entropy_recursive_mean": 0.5808082357048988,
+      "entropy_recursive_std": 0.09579371980656527,
+      "entropy_baseline_mean": 0.9314185455441475,
+      "entropy_baseline_std": 0.2286388309985151,
+      "max_recursive_mean": 0.8986056417226791,
+      "max_baseline_mean": 0.8120683163404465,
+      "cohens_d": -1.9495435255725249,
+      "p_value": 4.540079639937965e-06,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 9,
+      "entropy_recursive_mean": 0.9021523147821426,
+      "entropy_recursive_std": 0.16980979214540778,
+      "entropy_baseline_mean": 1.0268606334924697,
+      "entropy_baseline_std": 0.17568680151187474,
+      "max_recursive_mean": 0.8037255436182023,
+      "max_baseline_mean": 0.7188908815383911,
+      "cohens_d": -0.70352677388892,
+      "p_value": 0.02563927200880558,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 10,
+      "entropy_recursive_mean": 0.5067440554499626,
+      "entropy_recursive_std": 0.14738453612052227,
+      "entropy_baseline_mean": 0.5708389326930046,
+      "entropy_baseline_std": 0.1492148568814591,
+      "max_recursive_mean": 0.9090252786874771,
+      "max_baseline_mean": 0.8947397291660308,
+      "cohens_d": -0.4212467773013344,
+      "p_value": 0.1555699325877425,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 11,
+      "entropy_recursive_mean": 0.5016728535294532,
+      "entropy_recursive_std": 0.1000630188399529,
+      "entropy_baseline_mean": 0.49946805238723757,
+      "entropy_baseline_std": 0.0905065842901339,
+      "max_recursive_mean": 0.9142799943685531,
+      "max_baseline_mean": 0.9141012459993363,
+      "cohens_d": 0.02252486627475075,
+      "p_value": 1.0,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 12,
+      "entropy_recursive_mean": 1.1649094551801682,
+      "entropy_recursive_std": 0.33499252319397854,
+      "entropy_baseline_mean": 1.257200038433075,
+      "entropy_baseline_std": 0.24848596609189721,
+      "max_recursive_mean": 0.7288685247302056,
+      "max_baseline_mean": 0.6957348048686981,
+      "cohens_d": -0.3050021624222393,
+      "p_value": 0.49033426450951045,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 18,
+        "diagonal": 1,
+        "mixed": 1
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 13,
+      "entropy_recursive_mean": 0.8806882441043854,
+      "entropy_recursive_std": 0.17580333791013866,
+      "entropy_baseline_mean": 0.7482677191495896,
+      "entropy_baseline_std": 0.31481435654276746,
+      "max_recursive_mean": 0.8251888513565063,
+      "max_baseline_mean": 0.8555705159902572,
+      "cohens_d": 0.5062156350823702,
+      "p_value": 0.03851496043112118,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 14,
+      "entropy_recursive_mean": 1.648943829536438,
+      "entropy_recursive_std": 0.3934949569370751,
+      "entropy_baseline_mean": 1.0475709289312363,
+      "entropy_baseline_std": 0.35806679845453326,
+      "max_recursive_mean": 0.6308910459280014,
+      "max_baseline_mean": 0.7833465173840523,
+      "cohens_d": 1.5580772550388915,
+      "p_value": 0.00017936378528946248,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 19,
+        "mixed": 1
+      },
+      "pattern_counts_baseline": {
+        "column": 19,
+        "mixed": 1
+      }
+    },
+    {
+      "layer": 27,
+      "head": 15,
+      "entropy_recursive_mean": 0.9632628947496414,
+      "entropy_recursive_std": 0.27847496325891635,
+      "entropy_baseline_mean": 0.6680239364504814,
+      "entropy_baseline_std": 0.2423655278152854,
+      "max_recursive_mean": 0.8161078423261643,
+      "max_baseline_mean": 0.8820366561412811,
+      "cohens_d": 1.1023499783723898,
+      "p_value": 0.0013485824363168647,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 16,
+      "entropy_recursive_mean": 1.925670176744461,
+      "entropy_recursive_std": 0.3447639339537588,
+      "entropy_baseline_mean": 2.0734603703022003,
+      "entropy_baseline_std": 0.2576580217543162,
+      "max_recursive_mean": 0.4377558633685112,
+      "max_baseline_mean": 0.3551276721060276,
+      "cohens_d": -0.47330763875904397,
+      "p_value": 0.2732851201810752,
+      "dominant_pattern_recursive": "diagonal",
+      "dominant_pattern_baseline": "mixed",
+      "pattern_counts_recursive": {
+        "diagonal": 8,
+        "mixed": 7,
+        "column": 5
+      },
+      "pattern_counts_baseline": {
+        "column": 2,
+        "mixed": 14,
+        "diagonal": 4
+      }
+    },
+    {
+      "layer": 27,
+      "head": 17,
+      "entropy_recursive_mean": 0.7263544023036956,
+      "entropy_recursive_std": 0.33831037762689126,
+      "entropy_baseline_mean": 0.7035148993134499,
+      "entropy_baseline_std": 0.19189784224796066,
+      "max_recursive_mean": 0.8227095738053322,
+      "max_baseline_mean": 0.8618453055620193,
+      "cohens_d": 0.0809421184929815,
+      "p_value": 0.6359445511344555,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 19,
+        "mixed": 1
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 18,
+      "entropy_recursive_mean": 1.4965908229351044,
+      "entropy_recursive_std": 0.3951573671824127,
+      "entropy_baseline_mean": 0.7934980884194374,
+      "entropy_baseline_std": 0.26067877600411077,
+      "max_recursive_mean": 0.6325572758913041,
+      "max_baseline_mean": 0.8413112312555313,
+      "cohens_d": 2.0472260502827826,
+      "p_value": 1.8029691721083094e-06,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 17,
+        "mixed": 3
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 19,
+      "entropy_recursive_mean": 0.2082088513299823,
+      "entropy_recursive_std": 0.0870414031257374,
+      "entropy_baseline_mean": 0.14110030848532915,
+      "entropy_baseline_std": 0.08821440135638127,
+      "max_recursive_mean": 0.969869750738144,
+      "max_baseline_mean": 0.9799431800842285,
+      "cohens_d": 0.746427221139331,
+      "p_value": 0.006040329507995924,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 20,
+      "entropy_recursive_mean": 2.0265196561813354,
+      "entropy_recursive_std": 0.1802864176825314,
+      "entropy_baseline_mean": 1.9685672163963317,
+      "entropy_baseline_std": 0.2783083723911689,
+      "max_recursive_mean": 0.39008710384368894,
+      "max_baseline_mean": 0.41079230755567553,
+      "cohens_d": 0.2408982485627553,
+      "p_value": 0.5792183523134169,
+      "dominant_pattern_recursive": "mixed",
+      "dominant_pattern_baseline": "mixed",
+      "pattern_counts_recursive": {
+        "mixed": 15,
+        "column": 3,
+        "diagonal": 2
+      },
+      "pattern_counts_baseline": {
+        "mixed": 14,
+        "column": 5,
+        "diagonal": 1
+      }
+    },
+    {
+      "layer": 27,
+      "head": 21,
+      "entropy_recursive_mean": 0.6858631163835526,
+      "entropy_recursive_std": 0.22367406670086898,
+      "entropy_baseline_mean": 0.7677936971187591,
+      "entropy_baseline_std": 0.2814723626212797,
+      "max_recursive_mean": 0.8718804568052292,
+      "max_baseline_mean": 0.8517871767282486,
+      "cohens_d": -0.3141204196259182,
+      "p_value": 0.42488347368209856,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 22,
+      "entropy_recursive_mean": 0.3449839647859335,
+      "entropy_recursive_std": 0.18175665915050998,
+      "entropy_baseline_mean": 0.5806810170412063,
+      "entropy_baseline_std": 0.20794791464074586,
+      "max_recursive_mean": 0.9419236242771148,
+      "max_baseline_mean": 0.8990007996559143,
+      "cohens_d": -1.1763371696127387,
+      "p_value": 0.00022220262013680647,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 23,
+      "entropy_recursive_mean": 1.7437677055597305,
+      "entropy_recursive_std": 0.3565963705989795,
+      "entropy_baseline_mean": 1.0255765303969384,
+      "entropy_baseline_std": 0.34219237281950604,
+      "max_recursive_mean": 0.5479787200689316,
+      "max_baseline_mean": 0.7776227980852127,
+      "cohens_d": 2.003058894037928,
+      "p_value": 4.540079639937965e-06,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "mixed": 5,
+        "column": 15
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 24,
+      "entropy_recursive_mean": 2.086996465921402,
+      "entropy_recursive_std": 0.25545915126215507,
+      "entropy_baseline_mean": 1.613704788684845,
+      "entropy_baseline_std": 0.3956365449985787,
+      "max_recursive_mean": 0.4755152687430382,
+      "max_baseline_mean": 0.6348013162612915,
+      "cohens_d": 1.3852781519099595,
+      "p_value": 0.0004600727270090418,
+      "dominant_pattern_recursive": "mixed",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "mixed": 15,
+        "column": 5
+      },
+      "pattern_counts_baseline": {
+        "column": 17,
+        "mixed": 3
+      }
+    },
+    {
+      "layer": 27,
+      "head": 25,
+      "entropy_recursive_mean": 2.081605648994446,
+      "entropy_recursive_std": 0.36925452704526796,
+      "entropy_baseline_mean": 2.289803498983383,
+      "entropy_baseline_std": 0.19716463078680244,
+      "max_recursive_mean": 0.4581486314535141,
+      "max_baseline_mean": 0.3337119981646538,
+      "cohens_d": -0.6855793628825498,
+      "p_value": 0.1332831707493199,
+      "dominant_pattern_recursive": "mixed",
+      "dominant_pattern_baseline": "mixed",
+      "pattern_counts_recursive": {
+        "mixed": 15,
+        "column": 5
+      },
+      "pattern_counts_baseline": {
+        "mixed": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 26,
+      "entropy_recursive_mean": 2.076742911338806,
+      "entropy_recursive_std": 0.43114383408091134,
+      "entropy_baseline_mean": 2.2607574462890625,
+      "entropy_baseline_std": 0.20974332644901994,
+      "max_recursive_mean": 0.46136602461338044,
+      "max_baseline_mean": 0.3253725416958332,
+      "cohens_d": -0.5290307482370459,
+      "p_value": 0.2732851201810752,
+      "dominant_pattern_recursive": "mixed",
+      "dominant_pattern_baseline": "mixed",
+      "pattern_counts_recursive": {
+        "mixed": 12,
+        "column": 8
+      },
+      "pattern_counts_baseline": {
+        "mixed": 19,
+        "column": 1
+      }
+    },
+    {
+      "layer": 27,
+      "head": 27,
+      "entropy_recursive_mean": 1.3145164549350739,
+      "entropy_recursive_std": 0.42954078718220995,
+      "entropy_baseline_mean": 0.7061304360628128,
+      "entropy_baseline_std": 0.15302347324926174,
+      "max_recursive_mean": 0.6880877688527107,
+      "max_baseline_mean": 0.8532184422016144,
+      "cohens_d": 1.839104283155905,
+      "p_value": 8.597444817571517e-06,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 17,
+        "mixed": 3
+      },
+      "pattern_counts_baseline": {
+        "column": 19,
+        "diagonal": 1
+      }
+    },
+    {
+      "layer": 27,
+      "head": 28,
+      "entropy_recursive_mean": 0.6305344060063363,
+      "entropy_recursive_std": 0.2083049066345451,
+      "entropy_baseline_mean": 0.5199792221188545,
+      "entropy_baseline_std": 0.2149557940993794,
+      "max_recursive_mean": 0.8569632202386857,
+      "max_baseline_mean": 0.897039869427681,
+      "cohens_d": 0.5091073338236854,
+      "p_value": 0.09619629624919565,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 29,
+      "entropy_recursive_mean": 1.7496947765350341,
+      "entropy_recursive_std": 0.3691185281001392,
+      "entropy_baseline_mean": 1.4091199323534966,
+      "entropy_baseline_std": 0.4110369709891881,
+      "max_recursive_mean": 0.5863304153084755,
+      "max_baseline_mean": 0.6657522156834602,
+      "cohens_d": 0.8497617692551099,
+      "p_value": 0.017938612870324673,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "mixed": 5,
+        "column": 15
+      },
+      "pattern_counts_baseline": {
+        "column": 19,
+        "mixed": 1
+      }
+    },
+    {
+      "layer": 27,
+      "head": 30,
+      "entropy_recursive_mean": 0.2626378044486046,
+      "entropy_recursive_std": 0.10349941540727893,
+      "entropy_baseline_mean": 0.3452409267425537,
+      "entropy_baseline_std": 0.31377482920391436,
+      "max_recursive_mean": 0.9552741795778275,
+      "max_baseline_mean": 0.9341344624757767,
+      "cohens_d": -0.3446101213407739,
+      "p_value": 0.39417090995164517,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 20
+      }
+    },
+    {
+      "layer": 27,
+      "head": 31,
+      "entropy_recursive_mean": 0.36263599768280985,
+      "entropy_recursive_std": 0.12460698306274827,
+      "entropy_baseline_mean": 1.1855887681245805,
+      "entropy_baseline_std": 0.48875976512646935,
+      "max_recursive_mean": 0.944247168302536,
+      "max_baseline_mean": 0.7435380652546882,
+      "cohens_d": -2.2489616796173464,
+      "p_value": 1.4308531251443832e-07,
+      "dominant_pattern_recursive": "column",
+      "dominant_pattern_baseline": "column",
+      "pattern_counts_recursive": {
+        "column": 20
+      },
+      "pattern_counts_baseline": {
+        "column": 18,
+        "mixed": 2
+      }
+    }
+  ],
+  "top_10_discriminating_heads": [
+    {
+      "layer": 5,
+      "head": 29,
+      "d": 3.166043085934733,
+      "p": 1.6570792933858787e-07
+    },
+    {
+      "layer": 5,
+      "head": 15,
+      "d": 2.613038878414808,
+      "p": 3.415575693503718e-07
+    },
+    {
+      "layer": 5,
+      "head": 0,
+      "d": 2.4655228413102304,
+      "p": 7.947947908822899e-07
+    },
+    {
+      "layer": 5,
+      "head": 6,
+      "d": 2.25567096953856,
+      "p": 2.562945863395653e-07
+    },
+    {
+      "layer": 27,
+      "head": 31,
+      "d": -2.2489616796173464,
+      "p": 1.4308531251443832e-07
+    },
+    {
+      "layer": 5,
+      "head": 20,
+      "d": 2.1784321275220373,
+      "p": 3.069100921857103e-06
+    },
+    {
+      "layer": 5,
+      "head": 11,
+      "d": 2.0728711797950403,
+      "p": 3.415575693503718e-07
+    },
+    {
+      "layer": 5,
+      "head": 25,
+      "d": 2.062684209963575,
+      "p": 6.6736514304002175e-06
+    },
+    {
+      "layer": 27,
+      "head": 18,
+      "d": 2.0472260502827826,
+      "p": 1.8029691721083094e-06
+    },
+    {
+      "layer": 27,
+      "head": 23,
+      "d": 2.003058894037928,
+      "p": 4.540079639937965e-06
+    }
+  ]
+}

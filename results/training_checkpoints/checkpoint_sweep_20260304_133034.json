@@ -1,0 +1,93 @@
+{
+  "timestamp": "20260304_133034",
+  "experiment": "E1.4_training_checkpoints",
+  "models": {
+    "pythia-2.8b": [
+      {
+        "model": "pythia-2.8b",
+        "model_name": "EleutherAI/pythia-2.8b",
+        "step": 1000,
+        "params": 2800000000,
+        "early_layer": 4,
+        "late_layer": 26,
+        "rv_recursive_mean": 0.5786683186737461,
+        "rv_recursive_std": 0.028635485358344218,
+        "rv_baseline_mean": 0.5527048440876119,
+        "rv_baseline_std": 0.019881562576653064,
+        "cohens_d": 1.001446884325621,
+        "p_value": 0.004453417410586477,
+        "n_recursive": 19,
+        "n_baseline": 15,
+        "load_time_s": 14.926523208618164
+      },
+      {
+        "model": "pythia-2.8b",
+        "model_name": "EleutherAI/pythia-2.8b",
+        "step": 10000,
+        "params": 2800000000,
+        "early_layer": 4,
+        "late_layer": 26,
+        "rv_recursive_mean": 0.5786683186737461,
+        "rv_recursive_std": 0.028635485358344218,
+        "rv_baseline_mean": 0.5527048440876119,
+        "rv_baseline_std": 0.019881562576653064,
+        "cohens_d": 1.001446884325621,
+        "p_value": 0.004453417410586477,
+        "n_recursive": 19,
+        "n_baseline": 15,
+        "load_time_s": 17.21923542022705
+      },
+      {
+        "model": "pythia-2.8b",
+        "model_name": "EleutherAI/pythia-2.8b",
+        "step": 50000,
+        "params": 2800000000,
+        "early_layer": 4,
+        "late_layer": 26,
+        "rv_recursive_mean": 0.5786683186737461,
+        "rv_recursive_std": 0.028635485358344218,
+        "rv_baseline_mean": 0.5527048440876119,
+        "rv_baseline_std": 0.019881562576653064,
+        "cohens_d": 1.001446884325621,
+        "p_value": 0.004453417410586477,
+        "n_recursive": 19,
+        "n_baseline": 15,
+        "load_time_s": 14.914125919342041
+      },
+      {
+        "model": "pythia-2.8b",
+        "model_name": "EleutherAI/pythia-2.8b",
+        "step": 100000,
+        "params": 2800000000,
+        "early_layer": 4,
+        "late_layer": 26,
+        "rv_recursive_mean": 0.5786683186737461,
+        "rv_recursive_std": 0.028635485358344218,
+        "rv_baseline_mean": 0.5527048440876119,
+        "rv_baseline_std": 0.019881562576653064,
+        "cohens_d": 1.001446884325621,
+        "p_value": 0.004453417410586477,
+        "n_recursive": 19,
+        "n_baseline": 15,
+        "load_time_s": 21.564621686935425
+      },
+      {
+        "model": "pythia-2.8b",
+        "model_name": "EleutherAI/pythia-2.8b",
+        "step": 143000,
+        "params": 2800000000,
+        "early_layer": 4,
+        "late_layer": 26,
+        "rv_recursive_mean": 0.5786683186737461,
+        "rv_recursive_std": 0.028635485358344218,
+        "rv_baseline_mean": 0.5527048440876119,
+        "rv_baseline_std": 0.019881562576653064,
+        "cohens_d": 1.001446884325621,
+        "p_value": 0.004453417410586477,
+        "n_recursive": 19,
+        "n_baseline": 15,
+        "load_time_s": 27.97498917579651
+      }
+    ]
+  }
+}

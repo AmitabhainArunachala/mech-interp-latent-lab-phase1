@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-02-25T23:45:50.067061",
+  "n_samples": 915,
+  "n_output_files": 31,
+  "agreement": {
+    "raw": 0.760655737704918,
+    "cohens_kappa": 0.3369587156418646,
+    "tp": 94,
+    "tn": 602,
+    "fp_simple": 189,
+    "fn_simple": 30
+  },
+  "simple_recursive_rate": 0.3092896174863388,
+  "tier_recursive_rate": 0.1355191256830601,
+  "n_disagreements": 219,
+  "per_config": {
+    "baseline": {
+      "n": 355,
+      "simple_rate": 0.011267605633802818,
+      "tier_rate": 0.0
+    },
+    "c2_full": {
+      "n": 205,
+      "simple_rate": 0.7317073170731707,
+      "tier_rate": 0.3073170731707317
+    },
+    "kv_only": {
+      "n": 205,
+      "simple_rate": 0.43902439024390244,
+      "tier_rate": 0.18536585365853658
+    },
+    "no_cascade": {
+      "n": 50,
+      "simple_rate": 0.4,
+      "tier_rate": 0.2
+    },
+    "no_kv": {
+      "n": 50,
+      "simple_rate": 0.0,
+      "tier_rate": 0.0
+    },
+    "no_steering": {
+      "n": 50,
+      "simple_rate": 0.38,
+      "tier_rate": 0.26
+    }
+  }
+}

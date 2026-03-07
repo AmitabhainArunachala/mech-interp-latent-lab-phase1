@@ -1,0 +1,19 @@
+{
+  "model": "gpt2-xl",
+  "model_name": "openai-community/gpt2-xl",
+  "seed": 42,
+  "n_prompts": 80,
+  "rv_recursive_mean": 0.872281857323008,
+  "rv_recursive_std": 0.09802723740737763,
+  "rv_baseline_mean": 0.710956692992414,
+  "rv_baseline_std": 0.11412042511199855,
+  "cohens_d": 1.5162788889116183,
+  "ci_95": [
+    1.0699010891149683,
+    2.052843535388862
+  ],
+  "p_value": 1.1046516675838885e-12,
+  "n_recursive": 69,
+  "n_baseline": 56,
+  "load_time_s": 27.671274185180664
+}

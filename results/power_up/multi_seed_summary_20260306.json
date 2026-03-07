@@ -1,0 +1,115 @@
+{
+  "seeds": [
+    42,
+    137,
+    2026,
+    31415,
+    27182
+  ],
+  "d_values": [
+    -1.7514030206375515,
+    -1.7514030206375515,
+    -1.7514030206375515,
+    -1.7514030206375515,
+    -1.7514030206375515
+  ],
+  "d_mean": -1.7514030206375515,
+  "d_std": 0.0,
+  "seed_results": [
+    {
+      "model": "mistral-7b",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "seed": 42,
+      "n_prompts": 45,
+      "rv_recursive_mean": 0.6701352966828786,
+      "rv_recursive_std": 0.1073490069097321,
+      "rv_baseline_mean": 0.8604239973460134,
+      "rv_baseline_std": 0.10743441115055312,
+      "cohens_d": -1.7514030206375515,
+      "ci_95": [
+        -2.3872100731119614,
+        -1.2755796224511997
+      ],
+      "p_value": 6.78688335141288e-10,
+      "n_recursive": 42,
+      "n_baseline": 45,
+      "load_time_s": 43.451866149902344
+    },
+    {
+      "model": "mistral-7b",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "seed": 137,
+      "n_prompts": 45,
+      "rv_recursive_mean": 0.6701352966828786,
+      "rv_recursive_std": 0.1073490069097321,
+      "rv_baseline_mean": 0.8604239973460134,
+      "rv_baseline_std": 0.10743441115055312,
+      "cohens_d": -1.7514030206375515,
+      "ci_95": [
+        -2.3872100731119614,
+        -1.2755796224511997
+      ],
+      "p_value": 6.78688335141288e-10,
+      "n_recursive": 42,
+      "n_baseline": 45,
+      "load_time_s": 4.864317417144775
+    },
+    {
+      "model": "mistral-7b",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "seed": 2026,
+      "n_prompts": 45,
+      "rv_recursive_mean": 0.6701352966828786,
+      "rv_recursive_std": 0.1073490069097321,
+      "rv_baseline_mean": 0.8604239973460134,
+      "rv_baseline_std": 0.10743441115055312,
+      "cohens_d": -1.7514030206375515,
+      "ci_95": [
+        -2.3872100731119614,
+        -1.2755796224511997
+      ],
+      "p_value": 6.78688335141288e-10,
+      "n_recursive": 42,
+      "n_baseline": 45,
+      "load_time_s": 4.953910827636719
+    },
+    {
+      "model": "mistral-7b",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "seed": 31415,
+      "n_prompts": 45,
+      "rv_recursive_mean": 0.6701352966828786,
+      "rv_recursive_std": 0.1073490069097321,
+      "rv_baseline_mean": 0.8604239973460134,
+      "rv_baseline_std": 0.10743441115055312,
+      "cohens_d": -1.7514030206375515,
+      "ci_95": [
+        -2.3872100731119614,
+        -1.2755796224511997
+      ],
+      "p_value": 6.78688335141288e-10,
+      "n_recursive": 42,
+      "n_baseline": 45,
+      "load_time_s": 5.252535820007324
+    },
+    {
+      "model": "mistral-7b",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "seed": 27182,
+      "n_prompts": 45,
+      "rv_recursive_mean": 0.6701352966828786,
+      "rv_recursive_std": 0.1073490069097321,
+      "rv_baseline_mean": 0.8604239973460134,
+      "rv_baseline_std": 0.10743441115055312,
+      "cohens_d": -1.7514030206375515,
+      "ci_95": [
+        -2.3872100731119614,
+        -1.2755796224511997
+      ],
+      "p_value": 6.78688335141288e-10,
+      "n_recursive": 42,
+      "n_baseline": 45,
+      "load_time_s": 4.875402927398682
+    }
+  ]
+}

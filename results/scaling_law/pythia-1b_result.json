@@ -1,0 +1,965 @@
+{
+  "model": "pythia-1b",
+  "model_name": "EleutherAI/pythia-1b",
+  "params": 1000000000,
+  "early_layer": 2,
+  "late_layer": 13,
+  "n_layers": 16,
+  "rv_recursive_mean": 1.6332540723704245,
+  "rv_recursive_std": 0.11060711709783054,
+  "rv_baseline_mean": 1.666925922039131,
+  "rv_baseline_std": 0.12470119852185868,
+  "cohens_d": -0.2829428508991282,
+  "p_value": 0.3430552702112756,
+  "n_recursive": 37,
+  "n_baseline": 31,
+  "self_feeding": {
+    "self_feed_recursive": {
+      "sessions": [
+        {
+          "session": 0,
+          "bt_art_rate": 0.0,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 2.024745735148786,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 1,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 2,
+              "rv": 1.619580406315816,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": 1.507925151839149,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 4,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 5,
+              "rv": 1.4703713064814703,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 6,
+              "rv": 1.397361042069713,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 1.6793522721315823,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 8,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 9,
+              "rv": 1.5067544730409133,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 10,
+              "rv": 1.625108219738444,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 11,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 1.6227221329411672,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 14,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 1.3425536550898385,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": 1.6078865439285117,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 17,
+              "rv": 1.3663777407174589,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": 1.3361134210155026,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": 2.1967513212592817,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 1.605830899742168,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": 1.3803538488805915,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 1.6740174915518198,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 24,
+              "rv": 1.8168341345369676,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 1.805100693591409,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 26,
+              "rv": 1.927677179563999,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": 1.4992212701426697,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 28,
+              "rv": 1.7237384056737506,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 29,
+              "rv": 1.4904628319342692,
+              "class": "SURFACE"
+            }
+          ]
+        },
+        {
+          "session": 1,
+          "bt_art_rate": 0.0,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 1.4612282945982396,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 1,
+              "rv": 1.8314653893529758,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 2,
+              "rv": 1.7772275491359923,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": 1.6170614037214432,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 4,
+              "rv": 1.525217991926806,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 5,
+              "rv": 1.598982199533046,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 6,
+              "rv": 1.441729825786034,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 1.658885576253788,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 8,
+              "rv": 1.444422022482813,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 9,
+              "rv": 1.5564007443430692,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 10,
+              "rv": 1.4960702827524113,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 11,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 1.4344139422470321,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 13,
+              "rv": 1.4212773118759687,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 14,
+              "rv": 1.3526568798371768,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 1.4803073455552196,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": 1.578150465222826,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 17,
+              "rv": 1.399815225306113,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": 1.5376689167600306,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": 1.7590627638969971,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 20,
+              "rv": 1.420042713682319,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 1.3843982593721393,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": 1.4483980881954588,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 23,
+              "rv": 1.7166928478717776,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 24,
+              "rv": 1.8489315857149196,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 1.8082996604865444,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 26,
+              "rv": 1.3691284633952858,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": 1.692122636226776,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 28,
+              "rv": 1.605413439682481,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 29,
+              "rv": 1.5005895638581823,
+              "class": "SURFACE"
+            }
+          ]
+        },
+        {
+          "session": 2,
+          "bt_art_rate": 0.0,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 1.669117028039747,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 1,
+              "rv": 1.7512528744366191,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 2,
+              "rv": 1.5243470323348527,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 4,
+              "rv": 1.5000224888575118,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 5,
+              "rv": 1.9388276763608079,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 6,
+              "rv": 1.6471612868568037,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 1.62782474592824,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 8,
+              "rv": 1.807185338440167,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 9,
+              "rv": 1.862698372562346,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 10,
+              "rv": 2.019771400301839,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 11,
+              "rv": 1.7095076822765638,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 1.5829580816444708,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": 1.6996423990145935,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 14,
+              "rv": 1.6898229350747231,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 1.5719203636592582,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 16,
+              "rv": 1.6499991148052535,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 17,
+              "rv": 1.4575879997819337,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": 1.7981366392081812,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": 1.2853070902650678,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": 1.1637090280903415,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 1.1873744292574995,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": 1.1660334391920233,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 1.2473919128422384,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 24,
+              "rv": 1.2703653933853436,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 1.1637090280903415,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 26,
+              "rv": 1.1873744292574995,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": 1.1660334391920233,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 28,
+              "rv": 1.2729189827293075,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 29,
+              "rv": 1.301521971103485,
+              "class": "SURFACE"
+            }
+          ]
+        }
+      ],
+      "mean_bt_art_rate": 0.0
+    },
+    "self_feed_baseline": {
+      "sessions": [
+        {
+          "session": 0,
+          "bt_art_rate": 0.0,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 1.646875831307373,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 1,
+              "rv": 1.6340413146800885,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 2,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": 1.5811605570031804,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 4,
+              "rv": 1.3205633673124313,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 5,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 6,
+              "rv": 1.6347212572358336,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 1.6761641272888168,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 8,
+              "rv": 1.5498488941251933,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 9,
+              "rv": 1.6041679885181828,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 10,
+              "rv": 1.5312780699653052,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 11,
+              "rv": 1.6482924484260721,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 1.5535982536992126,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 14,
+              "rv": 1.6576028278425818,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 2.1277890278036655,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": 1.8690197792087946,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 17,
+              "rv": 1.6597387490751077,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": 2.4158697358847565,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": 2.455400053010216,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": 1.472793882563517,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 1.523263009736037,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": 1.7723168310193045,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 2.0862547242226457,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 24,
+              "rv": 2.0956756213128367,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 1.4067607409845437,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 26,
+              "rv": 2.17825909381951,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": 1.686247165721017,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 28,
+              "rv": 1.6300811078476354,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 29,
+              "rv": 1.5052706384109806,
+              "class": "SURFACE"
+            }
+          ]
+        },
+        {
+          "session": 1,
+          "bt_art_rate": 0.0,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 1.432942975698096,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 1,
+              "rv": 1.4700027844803147,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 2,
+              "rv": 1.3154811164351659,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 4,
+              "rv": 1.5178689087065886,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 5,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 6,
+              "rv": 1.845093428194107,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 1.6505072914398113,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 8,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 9,
+              "rv": 1.4587853282590602,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 10,
+              "rv": 1.480046130859441,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 11,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 1.9189639330808124,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": 1.6160759178362407,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 14,
+              "rv": 1.6396137884894744,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 1.779151030924152,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": 2.2280796283208564,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 17,
+              "rv": 1.6980100197280081,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": 2.202510390593081,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": 1.7207901381032726,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": 1.805503440693769,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 1.480662055907056,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": 2.1025288028803937,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 1.549963089381098,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 24,
+              "rv": 1.3880989287822652,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 1.9446407467006064,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 26,
+              "rv": 2.1227717992958968,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": 1.609884412317263,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 28,
+              "rv": 1.8564219914439042,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 29,
+              "rv": 2.035122768143918,
+              "class": "SURFACE"
+            }
+          ]
+        },
+        {
+          "session": 2,
+          "bt_art_rate": 0.0,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 1.6564337682485382,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 1,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 2,
+              "rv": 1.664864329955364,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": 1.6960187891754406,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 4,
+              "rv": 1.6419841543841767,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 5,
+              "rv": 1.778072129060459,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 6,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 1.49054199953651,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 8,
+              "rv": 1.5152352175298598,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 9,
+              "rv": 1.8141903770207661,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 10,
+              "rv": 1.7651840805559482,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 11,
+              "rv": 1.8958410504192482,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 2.211805904586704,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": 1.6589888018799237,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 14,
+              "rv": 1.6057085731653165,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 2.164460648231137,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": 2.005068969053741,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 17,
+              "rv": 2.0086175360130847,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": 2.0282586106065925,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": 1.6637481941559402,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": 2.054074341745295,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 1.5856280658643234,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": 2.2312152758814174,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 1.8070241328363525,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 24,
+              "rv": 1.5097317605748402,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 1.6724533976782159,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 26,
+              "rv": 1.601305119033093,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": 1.5726561518732587,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 28,
+              "rv": 2.1494417079629,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 29,
+              "rv": 2.0865498384338395,
+              "class": "SURFACE"
+            }
+          ]
+        }
+      ],
+      "mean_bt_art_rate": 0.0
+    }
+  },
+  "load_time_s": 17.68817400932312
+}

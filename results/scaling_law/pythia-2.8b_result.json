@@ -1,0 +1,20 @@
+{
+  "model": "pythia-2.8b",
+  "model_name": "EleutherAI/pythia-2.8b",
+  "params": 2800000000,
+  "early_layer": 5,
+  "late_layer": 27,
+  "n_layers": 32,
+  "rv_recursive_mean": 0.5085685581194238,
+  "rv_recursive_std": 0.022311830462997746,
+  "rv_baseline_mean": 0.5021790728035659,
+  "rv_baseline_std": 0.02767827860828039,
+  "cohens_d": 0.2522969242196405,
+  "p_value": 0.34677100964245455,
+  "n_recursive": 35,
+  "n_baseline": 30,
+  "self_feeding": {
+    "error": "CUDA error: device-side assert triggered\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n"
+  },
+  "load_time_s": 80.9196662902832
+}

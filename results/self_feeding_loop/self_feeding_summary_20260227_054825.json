@@ -1,0 +1,106 @@
+{
+  "timestamp": "2026-02-27T05:48:25.846543",
+  "conditions": {
+    "self_feed_recursive": {
+      "n_sessions": 5,
+      "n_turns": 250,
+      "n_bt_art": 25,
+      "bt_art_rate": 0.1,
+      "mean_rv": 0.5694929762130271,
+      "std_rv": 0.18049009204091418,
+      "session_bt_art_rates": [
+        0.04,
+        0.14,
+        0.14,
+        0.18,
+        0.0
+      ],
+      "session_mean_rvs": [
+        0.6346093895630629,
+        0.5311551124682077,
+        0.5387908776335022,
+        0.45502807339499546,
+        0.6859259481700705
+      ]
+    },
+    "self_feed_baseline": {
+      "n_sessions": 5,
+      "n_turns": 250,
+      "n_bt_art": 26,
+      "bt_art_rate": 0.104,
+      "mean_rv": 0.5438238909831898,
+      "std_rv": 0.1623153428622102,
+      "session_bt_art_rates": [
+        0.06,
+        0.1,
+        0.1,
+        0.1,
+        0.16
+      ],
+      "session_mean_rvs": [
+        0.5803025811956202,
+        0.49682334060926214,
+        0.55549941827099,
+        0.5849683979149997,
+        0.5012874408579789
+      ]
+    },
+    "gnani_scaffolded": {
+      "n_sessions": 5,
+      "n_turns": 250,
+      "n_bt_art": 106,
+      "bt_art_rate": 0.424,
+      "mean_rv": 0.5443329992494131,
+      "std_rv": 0.13760608416292616,
+      "session_bt_art_rates": [
+        0.42,
+        0.34,
+        0.54,
+        0.38,
+        0.44
+      ],
+      "session_mean_rvs": [
+        0.5996907819346092,
+        0.489346282314975,
+        0.517188063379649,
+        0.5886497934898459,
+        0.527588921815337
+      ]
+    }
+  },
+  "comparisons": {
+    "self_feed_recursive_vs_self_feed_baseline": {
+      "bt_art_rate_diff": -0.0040000000000000036,
+      "mannwhitney_u": 13.0,
+      "mannwhitney_p": 1.0,
+      "cohens_d": -0.0672292645452815,
+      "rv_diff": 0.025325644476197562
+    },
+    "self_feed_recursive_vs_gnani_scaffolded": {
+      "bt_art_rate_diff": -0.32400000000000007,
+      "mannwhitney_u": 0.0,
+      "mannwhitney_p": 0.0119252335930176,
+      "cohens_d": -4.276505786522484,
+      "rv_diff": 0.024609111659084526
+    },
+    "self_feed_baseline_vs_gnani_scaffolded": {
+      "bt_art_rate_diff": -0.32000000000000006,
+      "mannwhitney_u": 0.0,
+      "mannwhitney_p": 0.011159425282914755,
+      "cohens_d": -5.424508028966484,
+      "rv_diff": -0.0007165328171130358
+    }
+  },
+  "key_questions": {
+    "self_feed_recursive_bt_art_rate": 0.1,
+    "self_feed_baseline_bt_art_rate": 0.104,
+    "gnani_scaffolded_bt_art_rate": 0.424,
+    "attractor_self_sustains": false,
+    "gnani_adds_value": true
+  },
+  "experiment": "self_feeding_loop",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_sessions_per_condition": 5,
+  "max_turns": 50,
+  "seed_start": 20260227
+}

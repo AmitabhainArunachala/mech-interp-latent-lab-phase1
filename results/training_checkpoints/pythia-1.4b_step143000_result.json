@@ -1,0 +1,17 @@
+{
+  "model": "pythia-1.4b",
+  "model_name": "EleutherAI/pythia-1.4b",
+  "step": 143000,
+  "params": 1400000000,
+  "early_layer": 3,
+  "late_layer": 20,
+  "rv_recursive_mean": 0.41232932945334055,
+  "rv_recursive_std": 0.031815467495594725,
+  "rv_baseline_mean": 0.3822326743167385,
+  "rv_baseline_std": 0.025588670065008198,
+  "cohens_d": 0.980821619968044,
+  "p_value": 0.01828974278616616,
+  "n_recursive": 18,
+  "n_baseline": 11,
+  "load_time_s": 14.721949100494385
+}

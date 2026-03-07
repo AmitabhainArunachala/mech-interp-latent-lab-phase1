@@ -1,0 +1,19 @@
+{
+  "model": "opt-6.7b",
+  "model_name": "facebook/opt-6.7b",
+  "seed": 42,
+  "n_prompts": 80,
+  "rv_recursive_mean": 1.1150298720804228,
+  "rv_recursive_std": 0.23344138912874748,
+  "rv_baseline_mean": 0.789174049782326,
+  "rv_baseline_std": 0.13356636306115677,
+  "cohens_d": 1.6825357789104158,
+  "ci_95": [
+    1.3481539379301815,
+    2.091058734349604
+  ],
+  "p_value": 3.344924430016883e-16,
+  "n_recursive": 72,
+  "n_baseline": 66,
+  "load_time_s": 23.332289457321167
+}

@@ -1,0 +1,20 @@
+{
+  "model": "pythia-410m",
+  "model_name": "EleutherAI/pythia-410m",
+  "params": 410000000,
+  "early_layer": 4,
+  "late_layer": 20,
+  "n_layers": 24,
+  "rv_recursive_mean": NaN,
+  "rv_recursive_std": NaN,
+  "rv_baseline_mean": NaN,
+  "rv_baseline_std": NaN,
+  "cohens_d": NaN,
+  "p_value": NaN,
+  "n_recursive": 0,
+  "n_baseline": 0,
+  "self_feeding": {
+    "error": "CUDA error: device-side assert triggered\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n"
+  },
+  "load_time_s": 2.9084560871124268
+}

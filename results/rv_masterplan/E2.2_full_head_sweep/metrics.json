@@ -1,0 +1,80 @@
+{
+  "experiment_id": "E2.2_full_head_sweep",
+  "timestamp": "20260302_074757",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_layers": 32,
+  "n_heads": 32,
+  "total_heads_measured": 1024,
+  "n_recursive_prompts": 20,
+  "n_baseline_prompts": 20,
+  "entropy_d_mean": 0.5084883283816706,
+  "entropy_d_std": 1.0661895328288946,
+  "entropy_d_median": 0.5500863576221937,
+  "n_sig_entropy_p05": 606,
+  "n_sig_rank_p05": 169,
+  "n_large_effect_heads": 603,
+  "rank_d_valid_count": 256,
+  "rank_d_nan_count": 768,
+  "top10_heads": [
+    {
+      "layer": 10,
+      "head": 20,
+      "entropy_d": 3.9011,
+      "entropy_p": 0.0
+    },
+    {
+      "layer": 19,
+      "head": 28,
+      "entropy_d": 3.4269,
+      "entropy_p": 0.0
+    },
+    {
+      "layer": 21,
+      "head": 16,
+      "entropy_d": 3.2591,
+      "entropy_p": 0.0
+    },
+    {
+      "layer": 24,
+      "head": 15,
+      "entropy_d": 3.2131,
+      "entropy_p": 0.0
+    },
+    {
+      "layer": 5,
+      "head": 29,
+      "entropy_d": 3.1287,
+      "entropy_p": 0.0
+    },
+    {
+      "layer": 6,
+      "head": 0,
+      "entropy_d": -3.0746,
+      "entropy_p": 0.0
+    },
+    {
+      "layer": 19,
+      "head": 31,
+      "entropy_d": 3.0729,
+      "entropy_p": 0.0
+    },
+    {
+      "layer": 10,
+      "head": 8,
+      "entropy_d": 3.0424,
+      "entropy_p": 0.0
+    },
+    {
+      "layer": 12,
+      "head": 23,
+      "entropy_d": 2.9528,
+      "entropy_p": 0.0
+    },
+    {
+      "layer": 23,
+      "head": 29,
+      "entropy_d": -2.9377,
+      "entropy_p": 0.0
+    }
+  ]
+}

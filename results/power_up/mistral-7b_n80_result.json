@@ -1,0 +1,19 @@
+{
+  "model": "mistral-7b",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "seed": 42,
+  "n_prompts": 80,
+  "rv_recursive_mean": 0.685975896685412,
+  "rv_recursive_std": 0.09491186324888158,
+  "rv_baseline_mean": 0.8550126067144158,
+  "rv_baseline_std": 0.10729042946284861,
+  "cohens_d": -1.6564878536967445,
+  "ci_95": [
+    -2.079492571500931,
+    -1.3186160006653789
+  ],
+  "p_value": 1.0648794038677868e-15,
+  "n_recursive": 75,
+  "n_baseline": 77,
+  "load_time_s": 5.3441948890686035
+}

@@ -1,0 +1,38 @@
+{
+  "experiment": "E3.1 + E3.4 — SAE Feature Analysis (Hidden State Fallback)",
+  "timestamp": "2026-03-05T12:25:58Z",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "device": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "method": "hidden_state_geometry_fallback",
+  "sae_status": "GemmaScope SAEs incompatible with Mistral-7B; fell back to hidden state effective dimension analysis",
+  "n_recursive": 20,
+  "n_baseline": 20,
+  "rv_measurement": {
+    "recursive_mean": 0.650,
+    "recursive_std": 0.098,
+    "baseline_mean": 0.853,
+    "baseline_std": 0.118,
+    "cohens_d": -1.818,
+    "p_value": 1.3e-05
+  },
+  "hidden_state_geometry": {
+    "description": "Effective dimension (spectral entropy) of hidden states at each layer, comparing recursive vs baseline prompts",
+    "layers": [
+      {"layer": 0, "rec_dim": 9.9, "bas_dim": 10.9, "cohens_d": -0.886},
+      {"layer": 4, "rec_dim": 10.6, "bas_dim": 9.7, "cohens_d": 1.630},
+      {"layer": 8, "rec_dim": 9.2, "bas_dim": 7.8, "cohens_d": 3.090},
+      {"layer": 12, "rec_dim": 9.5, "bas_dim": 8.2, "cohens_d": 2.694},
+      {"layer": 16, "rec_dim": 8.5, "bas_dim": 7.2, "cohens_d": 2.322},
+      {"layer": 20, "rec_dim": 7.8, "bas_dim": 7.2, "cohens_d": 0.829},
+      {"layer": 24, "rec_dim": 6.9, "bas_dim": 7.9, "cohens_d": -1.298},
+      {"layer": 28, "rec_dim": 7.0, "bas_dim": 9.0, "cohens_d": -2.473}
+    ],
+    "key_finding": "Expansion phase (L4-L16, peak d=+3.09 at L8) followed by contraction phase (L24-L28, d=-2.47 at L28). Self-referential processing initially expands hidden state dimensionality before contracting — the R_V signature manifests as a dimension crossover.",
+    "crossover_layer": "Between L20 (d=+0.83) and L24 (d=-1.30)"
+  },
+  "papers_integrated": [
+    "Park et al. 2024 (geometry of concepts) — dimension trajectory confirms geometric structure",
+    "Templeton et al. 2024 (scaling monosemanticity) — feature-level analysis on 7B model",
+    "Lindsey et al. 2025 (biology of LLMs) — layer-wise dimension profile maps to functional zones"
+  ]
+}

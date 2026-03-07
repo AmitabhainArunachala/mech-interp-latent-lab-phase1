@@ -1,0 +1,47 @@
+{
+  "experiment": "E3.2 — Circuit Tracing Analysis (Attribution Fallback)",
+  "timestamp": "2026-03-05T12:27:21Z",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "device": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "method": "layer_attribution_fallback",
+  "circuit_tracer_status": "circuit-tracer library not installed; used gradient-based attribution + activation difference analysis",
+  "n_recursive": 20,
+  "n_baseline": 20,
+  "layers_analyzed": [0, 2, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 27, 28, 30],
+  "attribution_scores": [
+    {"layer": 0, "d_dim": -0.89, "d_vpr": -0.12, "cosine_sim": 0.9367, "d_norm": -0.11},
+    {"layer": 2, "d_dim": -0.19, "d_vpr": 0.28, "cosine_sim": 0.8817, "d_norm": -1.74},
+    {"layer": 4, "d_dim": 1.63, "d_vpr": 1.68, "cosine_sim": 0.7447, "d_norm": -1.52},
+    {"layer": 5, "d_dim": 2.68, "d_vpr": 2.24, "cosine_sim": 0.6751, "d_norm": -2.21},
+    {"layer": 6, "d_dim": 2.64, "d_vpr": 3.03, "cosine_sim": 0.6397, "d_norm": -1.69},
+    {"layer": 8, "d_dim": 3.09, "d_vpr": 2.60, "cosine_sim": 0.6024, "d_norm": -0.73},
+    {"layer": 10, "d_dim": 3.43, "d_vpr": 2.22, "cosine_sim": 0.6161, "d_norm": -1.21},
+    {"layer": 12, "d_dim": 2.69, "d_vpr": 2.08, "cosine_sim": 0.6016, "d_norm": -0.40},
+    {"layer": 14, "d_dim": 3.10, "d_vpr": 1.54, "cosine_sim": 0.6527, "d_norm": 0.22},
+    {"layer": 16, "d_dim": 2.32, "d_vpr": 2.64, "cosine_sim": 0.6364, "d_norm": 1.12},
+    {"layer": 18, "d_dim": 2.03, "d_vpr": 2.51, "cosine_sim": 0.6479, "d_norm": 1.72},
+    {"layer": 20, "d_dim": 0.83, "d_vpr": 1.54, "cosine_sim": 0.6344, "d_norm": 2.92},
+    {"layer": 22, "d_dim": -0.40, "d_vpr": 0.64, "cosine_sim": 0.6520, "d_norm": 3.32},
+    {"layer": 24, "d_dim": -1.30, "d_vpr": 2.03, "cosine_sim": 0.6804, "d_norm": 3.47},
+    {"layer": 26, "d_dim": -2.06, "d_vpr": 0.37, "cosine_sim": 0.7190, "d_norm": 3.14},
+    {"layer": 27, "d_dim": -2.32, "d_vpr": -0.47, "cosine_sim": 0.7430, "d_norm": 3.08},
+    {"layer": 28, "d_dim": -2.47, "d_vpr": -0.65, "cosine_sim": 0.7431, "d_norm": 3.09},
+    {"layer": 30, "d_dim": -2.55, "d_vpr": -0.84, "cosine_sim": 0.8287, "d_norm": 2.94}
+  ],
+  "circuit_nodes": [
+    {"layer": 10, "type": "expansion", "d_dim": 3.43, "d_vpr": 2.22},
+    {"layer": 14, "type": "expansion", "d_dim": 3.10, "d_vpr": 1.54},
+    {"layer": 8, "type": "expansion", "d_dim": 3.09, "d_vpr": 2.60},
+    {"layer": 12, "type": "expansion", "d_dim": 2.69, "d_vpr": 2.08},
+    {"layer": 5, "type": "expansion", "d_dim": 2.68, "d_vpr": 2.24}
+  ],
+  "key_findings": {
+    "cosine_trajectory": "Cosine similarity between recursive and baseline hidden states drops from 0.937 (L0) to 0.602 (L8-L12), then recovers to 0.829 (L30). Maximum divergence in mid-layers.",
+    "norm_crossover": "Activation norms flip from recursive-weaker (d_norm=-2.21 at L5) to recursive-stronger (d_norm=+3.47 at L24). Self-referential processing initially suppresses then amplifies activation magnitudes.",
+    "dimension_trajectory": "Three-phase pattern: (1) Expansion L4-L14 (d_dim up to +3.43), (2) Transition L16-L20, (3) Contraction L22-L30 (d_dim down to -2.55). The V-projection R_V metric captures the net effect of this trajectory."
+  },
+  "papers_integrated": [
+    "Ameisen et al. 2025 (circuit tracing) — attribution graph identifies expansion/contraction nodes",
+    "Lindsey et al. 2025 (biology of LLMs) — layer-wise functional zones mapped"
+  ]
+}

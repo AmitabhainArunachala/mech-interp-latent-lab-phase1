@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-02-25T23:48:04.766627",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_recursive": 25,
+  "n_baseline": 25,
+  "changepoint_recursive": {
+    "token": 5,
+    "score": 9.333866776253632
+  },
+  "changepoint_baseline": {
+    "token": 7,
+    "score": 6.596238579612061
+  },
+  "exponential_fit_recursive": {
+    "a": 0.07004076271258637,
+    "b": 0.015984370137138892,
+    "c": 0.6565272705052861,
+    "r_squared": 0.2841165474226551,
+    "half_life": 43.36405967911442
+  },
+  "exponential_fit_baseline": {
+    "a": 0.20015589557877486,
+    "b": 0.02441333208177675,
+    "c": 0.6296830100103338,
+    "r_squared": 0.6483897830746037,
+    "half_life": 28.392157950341513
+  },
+  "divergence_token_d02": 5,
+  "divergence_token_d05": 5,
+  "overall_d": -0.22008773522672467,
+  "overall_p": 0.46093488585479814
+}

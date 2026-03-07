@@ -1,0 +1,211 @@
+{
+  "timestamp": "20260303_234828",
+  "n_effects": 12,
+  "n_adequately_powered": 8,
+  "effects": [
+    {
+      "source": "hardening",
+      "name": "Necessity: dual-layer break (BT+ART)",
+      "d": 3.29,
+      "n1": 300,
+      "n2": 300,
+      "p": null,
+      "ci": [
+        3.0445163573677463,
+        3.535483642632254
+      ],
+      "bf10": null,
+      "bf_interp": "decisive",
+      "power": 1.0,
+      "n_required_80": 5,
+      "adequately_powered": "True"
+    },
+    {
+      "source": "hardening",
+      "name": "Cross-arch: Mistral-7B R_V",
+      "d": -2.26,
+      "n1": 45,
+      "n2": 45,
+      "p": null,
+      "ci": [
+        -2.7889095499232357,
+        -1.7310904500767639
+      ],
+      "bf10": null,
+      "bf_interp": "decisive",
+      "power": 1.0,
+      "n_required_80": 5,
+      "adequately_powered": "True"
+    },
+    {
+      "source": "hardening",
+      "name": "Cross-arch: OPT-6.7B R_V",
+      "d": -1.84,
+      "n1": 45,
+      "n2": 45,
+      "p": null,
+      "ci": [
+        -2.33294422132056,
+        -1.34705577867944
+      ],
+      "bf10": null,
+      "bf_interp": "decisive",
+      "power": NaN,
+      "n_required_80": 6,
+      "adequately_powered": "False"
+    },
+    {
+      "source": "hardening",
+      "name": "Cross-arch: GPT-2 XL R_V",
+      "d": -1.14,
+      "n1": 45,
+      "n2": 45,
+      "p": null,
+      "ci": [
+        -1.585504354387,
+        -0.6944956456129998
+      ],
+      "bf10": null,
+      "bf_interp": "decisive",
+      "power": 0.9996476164197317,
+      "n_required_80": 14,
+      "adequately_powered": "True"
+    },
+    {
+      "source": "hardening",
+      "name": "Cross-arch: Qwen2.5-7B R_V",
+      "d": -0.72,
+      "n1": 45,
+      "n2": 45,
+      "p": null,
+      "ci": [
+        -1.1463819716847534,
+        -0.29361802831524664
+      ],
+      "bf10": null,
+      "bf_interp": "very strong",
+      "power": 0.9218742661168675,
+      "n_required_80": 32,
+      "adequately_powered": "True"
+    },
+    {
+      "source": "hardening",
+      "name": "Cross-arch: Pythia-1.4B R_V",
+      "d": -0.31,
+      "n1": 63,
+      "n2": 63,
+      "p": null,
+      "ci": [
+        -0.6613126053341478,
+        0.04131260533414777
+      ],
+      "bf10": null,
+      "bf_interp": "anecdotal",
+      "power": 0.40777327359161575,
+      "n_required_80": 165,
+      "adequately_powered": "False"
+    },
+    {
+      "source": "hardening",
+      "name": "KV sufficiency: BT+ART uplift",
+      "d": -3.5,
+      "n1": 300,
+      "n2": 300,
+      "p": null,
+      "ci": [
+        -3.754611468712625,
+        -3.245388531287375
+      ],
+      "bf10": null,
+      "bf_interp": "decisive",
+      "power": 1.0,
+      "n_required_80": 5,
+      "adequately_powered": "True"
+    },
+    {
+      "source": "hardening",
+      "name": "Within-session bridge",
+      "d": -0.707,
+      "n1": 150,
+      "n2": 150,
+      "p": null,
+      "ci": [
+        -0.9402845898553953,
+        -0.47371541014460467
+      ],
+      "bf10": null,
+      "bf_interp": "decisive",
+      "power": 0.9999828610140754,
+      "n_required_80": 33,
+      "adequately_powered": "True"
+    },
+    {
+      "source": "hardening",
+      "name": "Self-feeding: Gnani vs recursive",
+      "d": -4.28,
+      "n1": 5,
+      "n2": 5,
+      "p": null,
+      "ci": [
+        -6.528385703566006,
+        -2.031614296433995
+      ],
+      "bf10": null,
+      "bf_interp": "decisive",
+      "power": 0.9999456181318283,
+      "n_required_80": 5,
+      "adequately_powered": "True"
+    },
+    {
+      "source": "scaling_gap",
+      "name": "Scaling: phi-3-mini-4k",
+      "d": 0.6247926602205819,
+      "n1": 38,
+      "n2": 39,
+      "p": 0.011019392240044917,
+      "ci": [
+        0.16443700672306621,
+        1.0851483137180975
+      ],
+      "bf10": null,
+      "bf_interp": "",
+      "power": 0.7721131601342006,
+      "n_required_80": 42,
+      "adequately_powered": "False"
+    },
+    {
+      "source": "scaling_gap",
+      "name": "Scaling: pythia-6.9b",
+      "d": 0.4776452394782669,
+      "n1": 37,
+      "n2": 31,
+      "p": 0.06839280202122668,
+      "ci": [
+        0.014937471467596497,
+        0.9403530074889374
+      ],
+      "bf10": null,
+      "bf_interp": "",
+      "power": 0.48934270290664933,
+      "n_required_80": 70,
+      "adequately_powered": "False"
+    },
+    {
+      "source": "scaling_gap",
+      "name": "Scaling: qwen2.5-3b",
+      "d": 1.2539120541555202,
+      "n1": 35,
+      "n2": 35,
+      "p": 1.6479331423220348e-06,
+      "ci": [
+        0.7414047011727256,
+        1.7664194071383148
+      ],
+      "bf10": null,
+      "bf_interp": "",
+      "power": 0.9993368095752864,
+      "n_required_80": 12,
+      "adequately_powered": "True"
+    }
+  ]
+}

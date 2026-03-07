@@ -1,0 +1,79 @@
+{
+  "experiment_id": "E1.3_scaling_gap",
+  "timestamp": "20260301_144055",
+  "models_completed": {
+    "pythia-6.9b": {
+      "params": 6900000000,
+      "cohens_d": 0.4776452394782669,
+      "p_value": 0.06839280202122668,
+      "n_recursive": 37,
+      "n_baseline": 31,
+      "rv_recursive_mean": 0.40655488695250747,
+      "rv_baseline_mean": 0.3949492758958138
+    },
+    "phi-3-mini-4k": {
+      "params": 3800000000,
+      "cohens_d": 0.6247926602205819,
+      "p_value": 0.011019392240044917,
+      "n_recursive": 38,
+      "n_baseline": 39,
+      "rv_recursive_mean": 0.7740049647495258,
+      "rv_baseline_mean": 0.7074036902562224
+    },
+    "pythia-2.8b": {
+      "params": 2800000000,
+      "cohens_d": 0.2522969242196405,
+      "p_value": 0.34677100964245455,
+      "n_recursive": 35,
+      "n_baseline": 30,
+      "rv_recursive_mean": 0.5085685581194238,
+      "rv_baseline_mean": 0.5021790728035659
+    },
+    "pythia-1b": {
+      "params": 1000000000,
+      "cohens_d": -0.2829428508991282,
+      "p_value": 0.3430552702112756,
+      "n_recursive": 37,
+      "n_baseline": 31,
+      "rv_recursive_mean": 1.6332540723704245,
+      "rv_baseline_mean": 1.666925922039131
+    },
+    "pythia-1.4b": {
+      "params": 1400000000,
+      "cohens_d": 0.1656325126044593,
+      "p_value": 0.6052146427407831,
+      "n_recursive": 35,
+      "n_baseline": 24,
+      "rv_recursive_mean": 0.6367885954399428,
+      "rv_baseline_mean": 0.6322299936872496
+    },
+    "mistral-7b": {
+      "params": 7000000000,
+      "cohens_d": -1.736031935700199,
+      "p_value": 7.783732939481357e-09,
+      "n_recursive": 38,
+      "n_baseline": 40,
+      "rv_recursive_mean": 0.6657297750178461,
+      "rv_baseline_mean": 0.8577336834291817
+    }
+  },
+  "models_failed": {
+    "pythia-410m": {
+      "error": "CUDA error / no valid samples",
+      "n_recursive": 0
+    },
+    "gemma-2-2b": {
+      "error": "HF gated repo auth error (401)"
+    },
+    "llama-3.2-3b": {
+      "error": "HF gated repo auth error (401)"
+    }
+  },
+  "scaling_fit": {
+    "slope": -0.5362913032488752,
+    "intercept": 4.998886030904928,
+    "r_squared": 0.047008339848824736,
+    "p_value": 0.6798749334926455,
+    "n_points": 6
+  }
+}

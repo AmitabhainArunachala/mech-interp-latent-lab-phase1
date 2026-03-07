@@ -1,0 +1,123 @@
+{
+  "timestamp": "20260227_075339",
+  "n_effects": 9,
+  "effects": [
+    {
+      "name": "Necessity: dual-layer break (BT+ART)",
+      "description": "Dual-layer patching kills recursive behavior",
+      "d_observed": 3.29,
+      "n1": 300,
+      "n2": 300,
+      "se_d": 0.12524675644502734,
+      "ci_95_lower": 3.0445163573677463,
+      "ci_95_upper": 3.535483642632254,
+      "power": 1.0,
+      "bf10_approx": Infinity,
+      "bf_interpretation": "decisive"
+    },
+    {
+      "name": "Cross-arch: Mistral-7B R_V",
+      "description": "Recursive vs baseline R_V on Mistral-7B",
+      "d_observed": -2.26,
+      "n1": 45,
+      "n2": 45,
+      "se_d": 0.2698518111853244,
+      "ci_95_lower": -2.7889095499232357,
+      "ci_95_upper": -1.7310904500767639,
+      "power": 1.0,
+      "bf10_approx": 9.498539272283372e+23,
+      "bf_interpretation": "decisive"
+    },
+    {
+      "name": "Cross-arch: OPT-6.7B R_V",
+      "description": "Recursive vs baseline R_V on OPT-6.7B",
+      "d_observed": -1.84,
+      "n1": 45,
+      "n2": 45,
+      "se_d": 0.25150215373497964,
+      "ci_95_lower": -2.33294422132056,
+      "ci_95_upper": -1.34705577867944,
+      "power": NaN,
+      "bf10_approx": 3666797883592193.0,
+      "bf_interpretation": "decisive"
+    },
+    {
+      "name": "Cross-arch: GPT-2 XL R_V",
+      "description": "Recursive vs baseline R_V on GPT-2 XL",
+      "d_observed": -1.14,
+      "n1": 45,
+      "n2": 45,
+      "se_d": 0.2272981399933674,
+      "ci_95_lower": -1.585504354387,
+      "ci_95_upper": -0.6944956456129998,
+      "power": 0.9996476164197317,
+      "bf10_approx": 235766.02313745173,
+      "bf_interpretation": "decisive"
+    },
+    {
+      "name": "Cross-arch: Qwen2.5-7B R_V",
+      "description": "Recursive vs baseline R_V on Qwen2.5-7B",
+      "d_observed": -0.72,
+      "n1": 45,
+      "n2": 45,
+      "se_d": 0.21754182228813945,
+      "ci_95_lower": -1.1463819716847534,
+      "ci_95_upper": -0.29361802831524664,
+      "power": 0.9218742661168675,
+      "bf10_approx": 35.94878062068821,
+      "bf_interpretation": "very strong"
+    },
+    {
+      "name": "Cross-arch: Pythia-1.4B R_V",
+      "description": "Recursive vs baseline R_V on Pythia-1.4B",
+      "d_observed": -0.31,
+      "n1": 63,
+      "n2": 63,
+      "se_d": 0.17924112517048355,
+      "ci_95_lower": -0.6613126053341478,
+      "ci_95_upper": 0.04131260533414777,
+      "power": 0.40777327359161586,
+      "bf10_approx": 0.40471751321479427,
+      "bf_interpretation": "anecdotal"
+    },
+    {
+      "name": "KV sufficiency: BT+ART uplift",
+      "description": "KV-only injection vs baseline BT+ART",
+      "d_observed": -3.5,
+      "n1": 300,
+      "n2": 300,
+      "se_d": 0.1299038105676658,
+      "ci_95_lower": -3.754611468712625,
+      "ci_95_upper": -3.245388531287375,
+      "power": 1.0,
+      "bf10_approx": Infinity,
+      "bf_interpretation": "decisive"
+    },
+    {
+      "name": "Within-session bridge",
+      "description": "R_V predicts output quality within sessions",
+      "d_observed": -0.707,
+      "n1": 150,
+      "n2": 150,
+      "se_d": 0.1190227499262221,
+      "ci_95_lower": -0.9402845898553953,
+      "ci_95_upper": -0.47371541014460467,
+      "power": 0.9999828610140754,
+      "bf10_approx": 7979978.400131609,
+      "bf_interpretation": "decisive"
+    },
+    {
+      "name": "Self-feeding: Gnani vs recursive",
+      "description": "Gnani scaffolded vs self-feeding recursive BT+ART",
+      "d_observed": -4.28,
+      "n1": 5,
+      "n2": 5,
+      "se_d": 1.1471355630438802,
+      "ci_95_lower": -6.528385703566006,
+      "ci_95_upper": -2.031614296433995,
+      "power": 0.9999456181318283,
+      "bf10_approx": 2782755479.700345,
+      "bf_interpretation": "decisive"
+    }
+  ]
+}

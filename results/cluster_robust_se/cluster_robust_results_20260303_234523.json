@@ -1,0 +1,236 @@
+{
+  "timestamp": "20260303_234523",
+  "n_comparisons": 13,
+  "n_significant_conservative": 10,
+  "method": "cluster-robust SE with DEFF correction",
+  "note": "For circularity controls: ICC computed from template clusters. For other experiments: conservative DEFF=2 assumed.",
+  "results": [
+    {
+      "comparison": "recursive_vs_baseline (circularity_v2)",
+      "d": -2.5844180908131644,
+      "n_rec": 30,
+      "n_bas": 30,
+      "n_clusters_rec": 2,
+      "n_clusters_bas": 2,
+      "icc_rec": 0,
+      "icc_bas": 0.3820277169985755,
+      "deff_rec": 1.0,
+      "deff_bas": 6.348388037980057,
+      "deff_combined": 3.6741940189900286,
+      "n_eff_rec": 30.0,
+      "n_eff_bas": 4.725609055483234,
+      "ci_original": [
+        -3.269932979543884,
+        -1.898903202082445
+      ],
+      "ci_robust": [
+        -3.8984017196101286,
+        -1.2704344620162005
+      ],
+      "se_original": 0.34975249425036703,
+      "se_robust": 0.6704121295909002,
+      "significant_robust": "True"
+    },
+    {
+      "comparison": "phi-3-mini-4k (scaling_gap)",
+      "d": 0.6247926602205819,
+      "n_rec": 38,
+      "n_bas": 39,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        0.16443700672306621,
+        1.0851483137180975
+      ],
+      "ci_conservative": [
+        -0.026236585435746806,
+        1.2758219058769105
+      ],
+      "se_naive": 0.23487533341709985,
+      "se_conservative": 0.33216388198536523,
+      "significant_naive": "True",
+      "significant_conservative": "False"
+    },
+    {
+      "comparison": "pythia-6.9b (scaling_gap)",
+      "d": 0.4776452394782669,
+      "n_rec": 37,
+      "n_bas": 31,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        0.014937471467596497,
+        0.9403530074889374
+      ],
+      "ci_conservative": [
+        -0.1767103372995817,
+        1.1320008162561155
+      ],
+      "se_naive": 0.2360753918421788,
+      "se_conservative": 0.333861020885752,
+      "significant_naive": "True",
+      "significant_conservative": "False"
+    },
+    {
+      "comparison": "qwen2.5-3b (scaling_gap)",
+      "d": 1.2539120541555202,
+      "n_rec": 35,
+      "n_bas": 35,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        0.7414047011727256,
+        1.7664194071383148
+      ],
+      "ci_conservative": [
+        0.5291305230267598,
+        1.9786935852842806
+      ],
+      "se_naive": 0.26148334335856865,
+      "se_conservative": 0.36979329051234855,
+      "significant_naive": "True",
+      "significant_conservative": "True"
+    },
+    {
+      "comparison": "Necessity: dual-layer break (BT+ART)",
+      "d": 3.29,
+      "n1": 300,
+      "n2": 300,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        3.0445163573677463,
+        3.535483642632254
+      ],
+      "ci_conservative": [
+        2.942840082510888,
+        3.6371599174891123
+      ],
+      "significant_conservative": "True"
+    },
+    {
+      "comparison": "Cross-arch: Mistral-7B R_V",
+      "d": -2.26,
+      "n1": 45,
+      "n2": 45,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        -2.7889095499232357,
+        -1.7310904500767639
+      ],
+      "ci_conservative": [
+        -3.0079773142588566,
+        -1.512022685741143
+      ],
+      "significant_conservative": "True"
+    },
+    {
+      "comparison": "Cross-arch: OPT-6.7B R_V",
+      "d": -1.84,
+      "n1": 45,
+      "n2": 45,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        -2.33294422132056,
+        -1.34705577867944
+      ],
+      "ci_conservative": [
+        -2.537115593386978,
+        -1.1428844066130224
+      ],
+      "significant_conservative": "True"
+    },
+    {
+      "comparison": "Cross-arch: GPT-2 XL R_V",
+      "d": -1.14,
+      "n1": 45,
+      "n2": 45,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        -1.585504354387,
+        -0.6944956456129998
+      ],
+      "ci_conservative": [
+        -1.7700267229687525,
+        -0.5099732770312473
+      ],
+      "significant_conservative": "True"
+    },
+    {
+      "comparison": "Cross-arch: Qwen2.5-7B R_V",
+      "d": -0.72,
+      "n1": 45,
+      "n2": 45,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        -1.1463819716847534,
+        -0.29361802831524664
+      ],
+      "ci_conservative": [
+        -1.322984086930261,
+        -0.11701591306973902
+      ],
+      "significant_conservative": "True"
+    },
+    {
+      "comparison": "Cross-arch: Pythia-1.4B R_V",
+      "d": -0.31,
+      "n1": 63,
+      "n2": 63,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        -0.6613126053341478,
+        0.04131260533414777
+      ],
+      "ci_conservative": [
+        -0.8068219217090249,
+        0.18682192170902484
+      ],
+      "significant_conservative": "False"
+    },
+    {
+      "comparison": "KV sufficiency: BT+ART uplift",
+      "d": -3.5,
+      "n1": 300,
+      "n2": 300,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        -3.754611468712625,
+        -3.245388531287375
+      ],
+      "ci_conservative": [
+        -3.860068375726648,
+        -3.139931624273352
+      ],
+      "significant_conservative": "True"
+    },
+    {
+      "comparison": "Within-session bridge",
+      "d": -0.707,
+      "n1": 150,
+      "n2": 150,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        -0.9402845898553953,
+        -0.47371541014460467
+      ],
+      "ci_conservative": [
+        -1.036908168614733,
+        -0.37709183138526686
+      ],
+      "significant_conservative": "True"
+    },
+    {
+      "comparison": "Self-feeding: Gnani vs recursive",
+      "d": -4.28,
+      "n1": 5,
+      "n2": 5,
+      "deff_assumed": 2.0,
+      "ci_naive": [
+        -6.528385703566006,
+        -2.031614296433995
+      ],
+      "ci_conservative": [
+        -7.459639127740069,
+        -1.1003608722599312
+      ],
+      "significant_conservative": "True"
+    }
+  ]
+}

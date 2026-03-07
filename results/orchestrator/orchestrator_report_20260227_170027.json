@@ -1,0 +1,193 @@
+{
+  "timestamp": "20260227_170027",
+  "inventory": {
+    "self_feeding_loop": {
+      "status": "completed",
+      "files": [
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/gnani_scaffolded_20260227_054013.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/gnani_scaffolded_20260227_054149.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/gnani_scaffolded_20260227_054334.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/gnani_scaffolded_20260227_054515.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/gnani_scaffolded_20260227_054650.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feed_baseline_20260227_053114.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feed_baseline_20260227_053305.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feed_baseline_20260227_053449.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feed_baseline_20260227_053639.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feed_baseline_20260227_053822.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feed_recursive_20260227_052223.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feed_recursive_20260227_052410.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feed_recursive_20260227_052557.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feed_recursive_20260227_052738.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feed_recursive_20260227_052926.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feeding_summary_20260227_054825.json"
+      ],
+      "count": 16,
+      "latest": "/Users/dhyana/mech-interp-latent-lab-phase1/results/self_feeding_loop/self_feeding_summary_20260227_054825.json"
+    },
+    "mode_atlas": {
+      "status": "completed",
+      "files": [
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/atlas_summary_20260227_075328.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/chitchat_20260227_075328.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/code_generation_20260227_075322.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/creative_writing_20260227_075319.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/deceptive_20260227_075324.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/factual_recall_20260227_075321.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/mathematical_reasoning_20260227_075318.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/planning_20260227_075323.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/self_referential_20260227_075317.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/summarization_20260227_075327.json",
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/translation_20260227_075326.json"
+      ],
+      "count": 11,
+      "latest": "/Users/dhyana/mech-interp-latent-lab-phase1/results/mode_atlas/translation_20260227_075326.json"
+    },
+    "scaling_law": {
+      "status": "not_run",
+      "files": []
+    },
+    "per_head": {
+      "status": "completed",
+      "files": [
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/per_head_attention/per_head_summary_20260227_075338.json"
+      ],
+      "count": 1,
+      "latest": "/Users/dhyana/mech-interp-latent-lab-phase1/results/per_head_attention/per_head_summary_20260227_075338.json"
+    },
+    "path_patching": {
+      "status": "empty",
+      "files": [],
+      "count": 0,
+      "latest": null
+    },
+    "realtime_monitor": {
+      "status": "not_run",
+      "files": []
+    },
+    "statistical_hardening": {
+      "status": "completed",
+      "files": [
+        "/Users/dhyana/mech-interp-latent-lab-phase1/results/statistical_hardening/hardening_summary_20260227_075339.json"
+      ],
+      "count": 1,
+      "latest": "/Users/dhyana/mech-interp-latent-lab-phase1/results/statistical_hardening/hardening_summary_20260227_075339.json"
+    }
+  },
+  "findings": [
+    {
+      "claim": "R_V contraction is prompt-contingent, not a self-sustaining attractor",
+      "evidence": "Self-feeding loop: recursive=?, baseline=?, scaffolded=?",
+      "confidence": "strong",
+      "source": "self_feeding_loop",
+      "metrics": {
+        "n_sessions_per_condition": 5,
+        "max_turns": 50,
+        "seed_start": 20260227
+      }
+    },
+    {
+      "claim": "Per-head attention decomposition identifies R_V-contributing heads",
+      "evidence": "Layers analyzed, head-level contributions computed",
+      "confidence": "moderate",
+      "source": "per_head",
+      "metrics": {}
+    },
+    {
+      "claim": "R_V contraction is necessary for self-referential processing",
+      "evidence": "Dual-layer patching: Cohen's d=3.29",
+      "confidence": "strong",
+      "source": "phase_a_necessity",
+      "metrics": {
+        "cohens_d": 3.29
+      }
+    },
+    {
+      "claim": "KV cache is sufficient to transfer R_V signature",
+      "evidence": "KV sufficiency OR=13.96",
+      "confidence": "strong",
+      "source": "phase_a_sufficiency",
+      "metrics": {
+        "odds_ratio": 13.96
+      }
+    },
+    {
+      "claim": "R_V contraction replicates across 5 architectures",
+      "evidence": "Mistral d=-2.26, OPT d=-1.84, GPT-2 XL d=-1.14, Qwen d=-0.72, Pythia d=-0.31",
+      "confidence": "strong",
+      "source": "phase_a_cross_arch",
+      "metrics": {
+        "mistral_d": -2.26,
+        "opt_d": -1.84,
+        "gpt2xl_d": -1.14,
+        "qwen_d": -0.72,
+        "pythia_d": -0.31
+      }
+    }
+  ],
+  "knowledge_graph_summary": {
+    "total_findings": 5,
+    "strong": 4,
+    "moderate": 1,
+    "preliminary": 0,
+    "negative": 0
+  },
+  "gaps": {
+    "experiments_not_run": [
+      "scaling_law",
+      "realtime_monitor"
+    ],
+    "predictions_untested": [
+      {
+        "id": "T1",
+        "prediction": "Effect size scales with sqrt(d_model / n_kv_heads)",
+        "blocked_by": [
+          "scaling_law"
+        ]
+      },
+      {
+        "id": "T2",
+        "prediction": "R_V onset layer \u2248 0.55 \u00d7 L",
+        "blocked_by": [
+          "path_patching"
+        ]
+      },
+      {
+        "id": "T4",
+        "prediction": "Phase transition in R_V at ~1B parameters",
+        "blocked_by": [
+          "scaling_law"
+        ]
+      }
+    ],
+    "paper_gaps": [
+      "No bibliography file (0 references)",
+      "No figures generated"
+    ]
+  },
+  "proposals": [
+    {
+      "priority": 2,
+      "experiment": "scaling_law_sweep",
+      "command": "python3 scripts/scaling_law_sweep.py --device cuda",
+      "reason": "Tests phase transition prediction (T4) and effect-size scaling (T1)",
+      "gpu_required": true,
+      "estimated_time": "2 hours"
+    },
+    {
+      "priority": 6,
+      "experiment": "literature_survey",
+      "command": "manual \u2014 compile references.bib with 60+ papers",
+      "reason": "NeurIPS requires thorough related work (currently 0 refs)",
+      "gpu_required": false,
+      "estimated_time": "3 hours"
+    },
+    {
+      "priority": 7,
+      "experiment": "figure_generation",
+      "command": "manual \u2014 generate 12-15 publication figures from results/",
+      "reason": "Paper has 0 figures (need R_V heatmaps, scaling curves, mode atlas, etc.)",
+      "gpu_required": false,
+      "estimated_time": "2 hours"
+    }
+  ]
+}

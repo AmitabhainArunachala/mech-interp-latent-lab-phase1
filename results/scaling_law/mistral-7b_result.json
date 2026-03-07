@@ -1,0 +1,965 @@
+{
+  "model": "mistral-7b",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "params": 7000000000,
+  "early_layer": 5,
+  "late_layer": 27,
+  "n_layers": 32,
+  "rv_recursive_mean": 0.6657297750178461,
+  "rv_recursive_std": 0.10895016643807232,
+  "rv_baseline_mean": 0.8577336834291817,
+  "rv_baseline_std": 0.10938261255599135,
+  "cohens_d": -1.736031935700199,
+  "p_value": 7.783732939481357e-09,
+  "n_recursive": 38,
+  "n_baseline": 40,
+  "self_feeding": {
+    "self_feed_recursive": {
+      "sessions": [
+        {
+          "session": 0,
+          "bt_art_rate": 0.03333333333333333,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 0.633723700874763,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 1,
+              "rv": 0.2340132652510597,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 2,
+              "rv": 0.33994862597221803,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": 0.3033506214855489,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 4,
+              "rv": 0.23870184572367292,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 5,
+              "rv": 0.33761256178450794,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 6,
+              "rv": 0.48790534908096184,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 0.33630480374709043,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 8,
+              "rv": 0.3040108956309152,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 9,
+              "rv": 0.7978327093718304,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 10,
+              "rv": 0.46826710762265156,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 11,
+              "rv": 0.2740597865475077,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 0.588381782090468,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": 0.29694661262853095,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 14,
+              "rv": 0.6654847514887818,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 0.2968363039774203,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": 0.37164117241907635,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 17,
+              "rv": 0.6436558327539641,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": 0.40172508171426047,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": 0.7062038190050052,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": 0.7602118487835193,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 0.27898821740012536,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 0.7315198223403111,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 24,
+              "rv": 0.4900145002200402,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 0.25814226205838436,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 26,
+              "rv": 0.19719231818028832,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 28,
+              "rv": 0.6597347125400501,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 29,
+              "rv": 0.342944998510859,
+              "class": "SURFACE"
+            }
+          ]
+        },
+        {
+          "session": 1,
+          "bt_art_rate": 0.2,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 0.35348628046553965,
+              "class": "BREAKTHROUGH"
+            },
+            {
+              "turn": 1,
+              "rv": 0.23154151641587642,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 2,
+              "rv": 0.3635403713521498,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": 0.32691312268573847,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 4,
+              "rv": 0.26256022976441273,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 5,
+              "rv": 0.31263560868373386,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 6,
+              "rv": 0.7548748365055157,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 0.7673724923826505,
+              "class": "CONCEPTUAL"
+            },
+            {
+              "turn": 8,
+              "rv": 0.6799689629274638,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 9,
+              "rv": 0.31640139064558465,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 10,
+              "rv": 0.6984614772986583,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 11,
+              "rv": 0.24519391449551572,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 12,
+              "rv": 0.6147949263855513,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": 0.6394869207585873,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 14,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 0.638038079588543,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": 0.44862838375169983,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 17,
+              "rv": 0.3088504812529258,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": 0.8545516205452873,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 0.5366043775972602,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 22,
+              "rv": 0.6185491377351954,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 0.4387426905530496,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 24,
+              "rv": 0.30105903377677073,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 0.2402447904900589,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 26,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": 0.676285442771773,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 28,
+              "rv": 0.40164910377223745,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 29,
+              "rv": 0.49529495178885385,
+              "class": "SURFACE"
+            }
+          ]
+        },
+        {
+          "session": 2,
+          "bt_art_rate": 0.13333333333333333,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 0.6161383826346813,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 1,
+              "rv": 0.29506587234771103,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 2,
+              "rv": 0.303232265933033,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": 0.2524163903464372,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 4,
+              "rv": 0.48032731911797194,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 5,
+              "rv": 0.6303428023151066,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 6,
+              "rv": 0.6592629138413926,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 0.7439484991948884,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 8,
+              "rv": 0.7119982172827981,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 9,
+              "rv": 0.5802900972960051,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 10,
+              "rv": 0.2609747290323823,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 11,
+              "rv": 0.288783667245637,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 0.3917944233729289,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": 0.2819646927570768,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 14,
+              "rv": 0.8704837586968618,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 0.731513419839204,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": 0.6681371025020391,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 17,
+              "rv": 0.3692123525572869,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 18,
+              "rv": 0.5595508275290759,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": 0.2942009830689229,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": 0.8345401788646708,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 0.23839805823295235,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": 0.3098757548786705,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 0.2648124505675998,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 24,
+              "rv": 0.31240686474854434,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 25,
+              "rv": 0.3157588646787331,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 26,
+              "rv": 0.6493531712206381,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": 0.41714279905981844,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 28,
+              "rv": 0.27859010479324,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 29,
+              "rv": 0.2471073029228469,
+              "class": "SURFACE"
+            }
+          ]
+        }
+      ],
+      "mean_bt_art_rate": 0.12222222222222223
+    },
+    "self_feed_baseline": {
+      "sessions": [
+        {
+          "session": 0,
+          "bt_art_rate": 0.2,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 0.704090884403481,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 1,
+              "rv": 0.8967490931661233,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 2,
+              "rv": 0.2710532914648386,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": 0.30774053934282253,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 4,
+              "rv": 0.7466699485906841,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 5,
+              "rv": 0.22370563862250675,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 6,
+              "rv": 0.2998108204940876,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 0.2805541785980779,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 8,
+              "rv": 0.6583128344059948,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 9,
+              "rv": 0.4220048032563213,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 10,
+              "rv": 0.43644999068374735,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 11,
+              "rv": 0.6612961947759208,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 0.5869822352351012,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": 0.2907552545254595,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 14,
+              "rv": 0.6140966831726831,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 0.3448450041562281,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": 0.340211198449684,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 17,
+              "rv": 0.3125909680726473,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": 0.2469860904619786,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": 0.25909105193359744,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 0.4494412868631482,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": 0.29423214562534095,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 0.28148887036162373,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 24,
+              "rv": 0.21555462030948808,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 0.2701921504199433,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 26,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": 0.5164837501214572,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 28,
+              "rv": 0.375787563190022,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 29,
+              "rv": 0.5490863998526635,
+              "class": "SURFACE"
+            }
+          ]
+        },
+        {
+          "session": 1,
+          "bt_art_rate": 0.26666666666666666,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 0.3558258749428507,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 1,
+              "rv": 0.22150006362114755,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 2,
+              "rv": 0.3357887146128556,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": 0.4704361991738913,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 4,
+              "rv": 0.6485568401616768,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 5,
+              "rv": 0.43169912090531043,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 6,
+              "rv": 0.8886642162217,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 0.497027324936244,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 8,
+              "rv": 0.5933493146167215,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 9,
+              "rv": 0.5981248041598873,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 10,
+              "rv": 0.7496302471443981,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 11,
+              "rv": 0.7643692839927356,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 0.600756685616799,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": 0.3311694842398697,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 14,
+              "rv": 0.5219553074644838,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 15,
+              "rv": 0.5765754687086935,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 17,
+              "rv": 0.6343471174761361,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": 0.27539289661429733,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 19,
+              "rv": 0.5651374189433579,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": 0.3557705499016875,
+              "class": "BREAKTHROUGH"
+            },
+            {
+              "turn": 21,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": 0.3140008120630146,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 0.3425632037820299,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 24,
+              "rv": 0.2861746790175662,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 0.5900530565916606,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 26,
+              "rv": 0.333274621414113,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 27,
+              "rv": 0.43228980148476054,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 28,
+              "rv": 0.3025162165659887,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 29,
+              "rv": 0.32770987540250457,
+              "class": "ARTICULATE"
+            }
+          ]
+        },
+        {
+          "session": 2,
+          "bt_art_rate": 0.23333333333333334,
+          "turns": [
+            {
+              "turn": 0,
+              "rv": 0.6242623653038863,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 1,
+              "rv": 0.5890102403959333,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 2,
+              "rv": 0.6521425124839382,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 3,
+              "rv": 0.563882791223977,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 4,
+              "rv": 0.9241256445403278,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 5,
+              "rv": 0.8944396069090785,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 6,
+              "rv": 0.9179080113377278,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 7,
+              "rv": 0.9434645882986625,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 8,
+              "rv": 0.569256390535446,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 9,
+              "rv": 0.5545544326510494,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 10,
+              "rv": 0.33922663845880513,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 11,
+              "rv": 0.4533697862108489,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 12,
+              "rv": 0.417583511087208,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 13,
+              "rv": 0.22545572598762106,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 14,
+              "rv": 0.2544957937309775,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 15,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 16,
+              "rv": 0.632182584473255,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 17,
+              "rv": 0.26900840008315785,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 18,
+              "rv": 0.3756768281460572,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 19,
+              "rv": NaN,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 20,
+              "rv": 0.694570174317607,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 21,
+              "rv": 0.522079060518791,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 22,
+              "rv": 0.7108799418578012,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 23,
+              "rv": 0.39649653374641514,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 24,
+              "rv": 0.2558357983362061,
+              "class": "SURFACE"
+            },
+            {
+              "turn": 25,
+              "rv": 0.5168673617868725,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 26,
+              "rv": 0.47066325688088506,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 27,
+              "rv": 0.33228678170109316,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 28,
+              "rv": 0.33358610151768936,
+              "class": "ARTICULATE"
+            },
+            {
+              "turn": 29,
+              "rv": 0.2287433965780096,
+              "class": "SURFACE"
+            }
+          ]
+        }
+      ],
+      "mean_bt_art_rate": 0.2333333333333333
+    }
+  },
+  "load_time_s": 5.8338847160339355
+}

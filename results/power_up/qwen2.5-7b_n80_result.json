@@ -1,0 +1,19 @@
+{
+  "model": "qwen2.5-7b",
+  "model_name": "Qwen/Qwen2.5-7B",
+  "seed": 42,
+  "n_prompts": 80,
+  "rv_recursive_mean": 0.903061024175268,
+  "rv_recursive_std": 0.15459025950962893,
+  "rv_baseline_mean": 1.3292348062793076,
+  "rv_baseline_std": 0.2057073895728703,
+  "cohens_d": -2.3180613840620405,
+  "ci_95": [
+    -2.8625799873806193,
+    -1.8955014222424906
+  ],
+  "p_value": 1.1618635176938228e-17,
+  "n_recursive": 61,
+  "n_baseline": 63,
+  "load_time_s": 19.720826387405396
+}

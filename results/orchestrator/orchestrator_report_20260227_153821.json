@@ -1,0 +1,178 @@
+{
+  "timestamp": "20260227_153821",
+  "inventory": {
+    "self_feeding_loop": {
+      "status": "not_run",
+      "files": []
+    },
+    "mode_atlas": {
+      "status": "not_run",
+      "files": []
+    },
+    "scaling_law": {
+      "status": "not_run",
+      "files": []
+    },
+    "per_head": {
+      "status": "not_run",
+      "files": []
+    },
+    "path_patching": {
+      "status": "not_run",
+      "files": []
+    },
+    "realtime_monitor": {
+      "status": "not_run",
+      "files": []
+    },
+    "statistical_hardening": {
+      "status": "not_run",
+      "files": []
+    }
+  },
+  "findings": [
+    {
+      "claim": "R_V contraction is necessary for self-referential processing",
+      "evidence": "Dual-layer patching: Cohen's d=3.29",
+      "confidence": "strong",
+      "source": "phase_a_necessity",
+      "metrics": {
+        "cohens_d": 3.29
+      }
+    },
+    {
+      "claim": "KV cache is sufficient to transfer R_V signature",
+      "evidence": "KV sufficiency OR=13.96",
+      "confidence": "strong",
+      "source": "phase_a_sufficiency",
+      "metrics": {
+        "odds_ratio": 13.96
+      }
+    },
+    {
+      "claim": "R_V contraction replicates across 5 architectures",
+      "evidence": "Mistral d=-2.26, OPT d=-1.84, GPT-2 XL d=-1.14, Qwen d=-0.72, Pythia d=-0.31",
+      "confidence": "strong",
+      "source": "phase_a_cross_arch",
+      "metrics": {
+        "mistral_d": -2.26,
+        "opt_d": -1.84,
+        "gpt2xl_d": -1.14,
+        "qwen_d": -0.72,
+        "pythia_d": -0.31
+      }
+    }
+  ],
+  "knowledge_graph_summary": {
+    "total_findings": 3,
+    "strong": 3,
+    "moderate": 0,
+    "preliminary": 0,
+    "negative": 0
+  },
+  "gaps": {
+    "experiments_not_run": [
+      "self_feeding_loop",
+      "mode_atlas",
+      "scaling_law",
+      "per_head",
+      "path_patching",
+      "realtime_monitor",
+      "statistical_hardening"
+    ],
+    "predictions_untested": [
+      {
+        "id": "T1",
+        "prediction": "Effect size scales with sqrt(d_model / n_kv_heads)",
+        "blocked_by": [
+          "scaling_law"
+        ]
+      },
+      {
+        "id": "T2",
+        "prediction": "R_V onset layer \u2248 0.55 \u00d7 L",
+        "blocked_by": [
+          "path_patching",
+          "per_head"
+        ]
+      },
+      {
+        "id": "T3",
+        "prediction": "Spectral gap is the best single discriminant for mode detection",
+        "blocked_by": [
+          "mode_atlas",
+          "statistical_hardening"
+        ]
+      },
+      {
+        "id": "T4",
+        "prediction": "Phase transition in R_V at ~1B parameters",
+        "blocked_by": [
+          "scaling_law"
+        ]
+      }
+    ],
+    "paper_gaps": [
+      "No bibliography file (0 references)",
+      "No figures generated"
+    ]
+  },
+  "proposals": [
+    {
+      "priority": 1,
+      "experiment": "computational_mode_atlas",
+      "command": "python3 scripts/computational_mode_atlas.py --device cuda",
+      "reason": "10-mode geometric fingerprint \u2014 provides cross-task comparison for NeurIPS",
+      "gpu_required": true,
+      "estimated_time": "45 min"
+    },
+    {
+      "priority": 2,
+      "experiment": "scaling_law_sweep",
+      "command": "python3 scripts/scaling_law_sweep.py --device cuda",
+      "reason": "Tests phase transition prediction (T4) and effect-size scaling (T1)",
+      "gpu_required": true,
+      "estimated_time": "2 hours"
+    },
+    {
+      "priority": 3,
+      "experiment": "per_head_attention_decomposition",
+      "command": "python3 scripts/per_head_attention_decomposition.py --device cuda",
+      "reason": "Identifies which heads drive R_V \u2014 needed for onset-layer prediction (T2)",
+      "gpu_required": true,
+      "estimated_time": "30 min"
+    },
+    {
+      "priority": 4,
+      "experiment": "full_path_patching",
+      "command": "python3 scripts/full_path_patching.py --device cuda",
+      "reason": "Causal layer\u00d7component grid \u2014 validates necessity finding with finer grain",
+      "gpu_required": true,
+      "estimated_time": "1 hour"
+    },
+    {
+      "priority": 5,
+      "experiment": "statistical_hardening",
+      "command": "python3 scripts/statistical_hardening.py --device cuda",
+      "reason": "Bootstrap CIs + Bayes factors \u2014 required for NeurIPS statistical rigor",
+      "gpu_required": true,
+      "estimated_time": "20 min"
+    },
+    {
+      "priority": 6,
+      "experiment": "literature_survey",
+      "command": "manual \u2014 compile references.bib with 60+ papers",
+      "reason": "NeurIPS requires thorough related work (currently 0 refs)",
+      "gpu_required": false,
+      "estimated_time": "3 hours"
+    },
+    {
+      "priority": 7,
+      "experiment": "figure_generation",
+      "command": "manual \u2014 generate 12-15 publication figures from results/",
+      "reason": "Paper has 0 figures (need R_V heatmaps, scaling curves, mode atlas, etc.)",
+      "gpu_required": false,
+      "estimated_time": "2 hours"
+    }
+  ]
+}

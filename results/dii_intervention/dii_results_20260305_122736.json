@@ -1,0 +1,81 @@
+{
+  "experiment": "E2.4 — Distributed Interchange Intervention",
+  "timestamp": "2026-03-05T12:27:36Z",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "device": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "n_recursive": 20,
+  "n_baseline": 20,
+  "layers": {
+    "early": {
+      "layer": 5,
+      "pca_components": 64,
+      "top10_variance_explained": 0.242,
+      "per_dimension": [
+        {"dims": [0], "rv": 1.232, "recovery": 2.87, "d_vs_clean": 3.479},
+        {"dims": [1], "rv": 1.061, "recovery": 2.02, "d_vs_clean": 2.827},
+        {"dims": [2], "rv": 1.121, "recovery": 2.32, "d_vs_clean": 3.292},
+        {"dims": [3], "rv": 1.006, "recovery": 1.75, "d_vs_clean": 2.623},
+        {"dims": [4], "rv": 0.989, "recovery": 1.67, "d_vs_clean": 2.629},
+        {"dims": [5], "rv": 0.984, "recovery": 1.65, "d_vs_clean": 2.692},
+        {"dims": [6], "rv": 0.989, "recovery": 1.67, "d_vs_clean": 2.579},
+        {"dims": [7], "rv": 0.972, "recovery": 1.59, "d_vs_clean": 2.554},
+        {"dims": [8], "rv": 0.977, "recovery": 1.61, "d_vs_clean": 2.695},
+        {"dims": [9], "rv": 0.974, "recovery": 1.60, "d_vs_clean": 2.632},
+        {"dims": [10], "rv": 0.974, "recovery": 1.59, "d_vs_clean": 2.598},
+        {"dims": [11], "rv": 0.990, "recovery": 1.68, "d_vs_clean": 2.690},
+        {"dims": [12], "rv": 0.969, "recovery": 1.57, "d_vs_clean": 2.515},
+        {"dims": [13], "rv": 0.985, "recovery": 1.65, "d_vs_clean": 2.723},
+        {"dims": [14], "rv": 0.959, "recovery": 1.52, "d_vs_clean": 2.554},
+        {"dims": [15], "rv": 0.972, "recovery": 1.59, "d_vs_clean": 2.571},
+        {"dims": [16], "rv": 0.992, "recovery": 1.69, "d_vs_clean": 2.690},
+        {"dims": [17], "rv": 0.969, "recovery": 1.57, "d_vs_clean": 2.511},
+        {"dims": [18], "rv": 0.968, "recovery": 1.57, "d_vs_clean": 2.519},
+        {"dims": [19], "rv": 0.965, "recovery": 1.55, "d_vs_clean": 2.487}
+      ],
+      "grouped": [
+        {"dims": "top-5", "rv": 1.689, "recovery": 5.12, "d_vs_clean": 2.948},
+        {"dims": "top-10", "rv": 1.897, "recovery": 6.15, "d_vs_clean": 3.123},
+        {"dims": "top-20", "rv": 2.184, "recovery": 7.57, "d_vs_clean": 2.723}
+      ],
+      "interpretation": "At early layer L5, individual PCA dimensions have R_V ≈ 1.0 (near baseline). Effect is distributed — only accumulates with top-20 dims (R_V=2.18). No single rotated dimension carries the self-referential signal."
+    },
+    "late": {
+      "layer": 27,
+      "pca_components": 64,
+      "top10_variance_explained": 0.251,
+      "per_dimension": [
+        {"dims": [0], "rv": 0.427, "recovery": -1.10, "d_vs_clean": -2.472},
+        {"dims": [1], "rv": 0.473, "recovery": -0.88, "d_vs_clean": -2.044},
+        {"dims": [2], "rv": 0.367, "recovery": -1.40, "d_vs_clean": -3.084},
+        {"dims": [3], "rv": 0.403, "recovery": -1.22, "d_vs_clean": -2.997},
+        {"dims": [4], "rv": 0.409, "recovery": -1.19, "d_vs_clean": -2.762},
+        {"dims": [5], "rv": 0.396, "recovery": -1.25, "d_vs_clean": -2.991},
+        {"dims": [6], "rv": 0.413, "recovery": -1.17, "d_vs_clean": -2.628},
+        {"dims": [7], "rv": 0.406, "recovery": -1.21, "d_vs_clean": -2.800},
+        {"dims": [8], "rv": 0.410, "recovery": -1.18, "d_vs_clean": -2.760},
+        {"dims": [9], "rv": 0.410, "recovery": -1.19, "d_vs_clean": -2.767},
+        {"dims": [10], "rv": 0.412, "recovery": -1.18, "d_vs_clean": -2.732},
+        {"dims": [11], "rv": 0.407, "recovery": -1.20, "d_vs_clean": -2.798},
+        {"dims": [12], "rv": 0.411, "recovery": -1.18, "d_vs_clean": -2.758},
+        {"dims": [13], "rv": 0.415, "recovery": -1.16, "d_vs_clean": -2.725},
+        {"dims": [14], "rv": 0.412, "recovery": -1.18, "d_vs_clean": -2.666},
+        {"dims": [15], "rv": 0.416, "recovery": -1.16, "d_vs_clean": -2.658},
+        {"dims": [16], "rv": 0.411, "recovery": -1.18, "d_vs_clean": -2.776},
+        {"dims": [17], "rv": 0.410, "recovery": -1.18, "d_vs_clean": -2.767},
+        {"dims": [18], "rv": 0.414, "recovery": -1.16, "d_vs_clean": -2.731},
+        {"dims": [19], "rv": 0.412, "recovery": -1.18, "d_vs_clean": -2.720}
+      ],
+      "grouped": [
+        {"dims": "top-5", "rv": 0.397, "recovery": -1.25, "d_vs_clean": -2.619},
+        {"dims": "top-10", "rv": 0.359, "recovery": -1.44, "d_vs_clean": -2.981},
+        {"dims": "top-20", "rv": 0.324, "recovery": -1.61, "d_vs_clean": -3.420}
+      ],
+      "interpretation": "At late layer L27, EVERY individual PCA dimension shows R_V ≈ 0.41 (strong contraction). Effect is pervasive — swapping any single rotated dimension from baseline produces contraction. Top-20 combined: R_V=0.324, d=-3.42. Contraction is not localized to specific dimensions but is a property of the entire subspace."
+    }
+  },
+  "key_finding": "Asymmetry between early and late layers: at L5 the self-referential signal is distributed (no single dimension carries it), while at L27 the contraction is pervasive (every dimension participates). This suggests the contraction is a global geometric property of the V-projection space, not a feature localized to specific rotated directions. In DII terms, R_V measures a distributed causal variable that cannot be isolated to individual rotated subspace dimensions.",
+  "papers_integrated": [
+    "Geiger et al. 2024 (DII / causal abstraction via rotated subspaces) — R_V maps to distributed, not localized, causal variable",
+    "Gupta et al. 2025 NeurIPS (SVD circuits) — per-dimension analysis complements per-head SVD decomposition"
+  ]
+}
