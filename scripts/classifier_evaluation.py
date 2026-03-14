@@ -17,6 +17,7 @@ from sklearn.preprocessing import StandardScaler
 V3_DIR = Path("results/sustained_gnani_v3_fixed")
 OUT_DIR = Path("results/classifier_evaluation")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
+MODEL_NAME = "mistralai/Mistral-7B-v0.1"
 
 FEATURES = [
     "output_rv",
@@ -185,6 +186,9 @@ def main() -> int:
 
     payload = {
         "timestamp": datetime.now().isoformat(),
+        "model": MODEL_NAME,
+        "source_results_dir": str(V3_DIR),
+        "source_glob": "*.json",
         "feature_order": FEATURES,
         "all_sessions": overall,
         "baseline_only": baseline_only,

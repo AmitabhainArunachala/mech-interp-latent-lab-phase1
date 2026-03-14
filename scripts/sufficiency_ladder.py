@@ -453,6 +453,8 @@ def main():
     parser = argparse.ArgumentParser(
         description="Sufficiency ladder: baseline 2x2 (KV swap x dual patch) with controls."
     )
+    parser.add_argument("--model", type=str, default="mistralai/Mistral-7B-v0.1", help="Model name or path")
+    parser.add_argument("--device", type=str, default="cuda", help="Execution device preference")
     parser.add_argument("--n-sessions", type=int, default=10, help="Sessions per condition")
     parser.add_argument("--max-turns", type=int, default=30, help="Turns per session")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
@@ -536,7 +538,9 @@ def main():
     if len(selected_conditions) == 0:
         raise ValueError("No conditions selected")
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = args.device
+    if device == "cuda" and not torch.cuda.is_available():
+        device = "cpu"
     print(f"Device: {device}")
     print(f"Seed: {args.seed}")
     seed_everything(args.seed)
@@ -554,9 +558,14 @@ def main():
     except Exception:
         print("unable to hash")
 
-    model_name = "mistralai/Mistral-7B-v0.1"
+    model_name = args.model
     print(f"Loading {model_name}...")
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+    except TypeError:
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+    except Exception:
+        tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(

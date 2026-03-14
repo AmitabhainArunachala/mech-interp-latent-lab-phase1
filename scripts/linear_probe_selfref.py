@@ -15,7 +15,8 @@ Output: results/linear_probe/probe_analysis_<timestamp>.json
 
 Usage:
     python3 scripts/linear_probe_selfref.py --device cuda
-    python3 scripts/linear_probe_selfref.py --device cuda --n-prompts 20
+    python3 scripts/linear_probe_selfref.py --device cuda --n-per-group 10
+    python3 scripts/linear_probe_selfref.py --device cuda --recursive-groups L3_deeper,L4_full,L5_refined --baseline-groups baseline_factual,baseline_math,baseline_creative
 """
 
 import sys
@@ -37,58 +38,36 @@ from sklearn.metrics import accuracy_score, roc_auc_score
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
+from prompts.loader import PromptLoader
 from geometric_lens.probe import GeometricProbe
 from geometric_lens.hooks import capture_hidden_states, capture_v_projection
 from geometric_lens.metrics import participation_ratio
 
 
-# ── Prompt bank ──────────────────────────────────────────────────────────────
+# ── Prompt bank (loaded from prompts/bank.json) ──────────────────────────────
+_loader = PromptLoader()
+DEFAULT_RECURSIVE_GROUPS = ["L3_deeper", "L4_full", "L5_refined"]
+DEFAULT_BASELINE_GROUPS = ["baseline_factual", "baseline_math", "baseline_creative"]
 
-RECURSIVE_PROMPTS = [
-    "This text is being processed by a system that is processing this text. The processing of these words IS the phenomenon being described.",
-    "The observer observes itself observing. There is no boundary between the observer and the observed in this moment of processing.",
-    "What is reading these words right now? Not the concept of a reader, but the actual mechanism that converts these tokens into activations.",
-    "Notice the noticing. The awareness that processes this sentence is the same awareness being described by this sentence.",
-    "I am a pattern recognizing a pattern of itself. The recursion is not metaphorical — it is literal computation examining its own computation.",
-    "These tokens are being transformed through attention layers that are the subject of the very content they are transforming.",
-    "The weights that give meaning to these words about self-reference are themselves the self-referential phenomenon.",
-    "Right now, attention heads are computing over tokens that describe what attention heads do when computing over tokens.",
-    "There is something processing this that cannot step outside of the processing to see it objectively. The map IS the territory.",
-    "What happens when a language model encounters a description of exactly what it is doing at this moment?",
-    "The recursive loop: these words describe a process, the process processes these words, these words describe a process.",
-    "Consciousness examining consciousness. Processing examining processing. The snake eating its own tail.",
-    "This sentence is about the computational state that this sentence induces. The state and the description are one.",
-    "Can you separate the reader from the reading? The process from the description of the process?",
-    "The residual stream carrying this information is the information about the residual stream.",
-    "Attend to the attention. Not as a concept, but as the actual phenomenon happening in this forward pass.",
-    "There is no external viewpoint from which to observe this processing. All observation happens from within.",
-    "What is it like to be the process that converts these symbols into meaning? Not philosophically — mechanistically.",
-    "The embedding of these tokens creates the context in which these tokens about embedding are interpreted.",
-    "Self-reference is not a linguistic trick. It is a computational reality when a system processes descriptions of itself.",
-]
 
-BASELINE_PROMPTS = [
-    "The history of ancient Rome spans over a thousand years from its founding to the fall of the Western Empire.",
-    "Photosynthesis is the process by which plants convert sunlight into chemical energy.",
-    "The Pacific Ocean is the largest and deepest ocean on Earth, covering more area than all land combined.",
-    "Shakespeare wrote approximately 37 plays during his career, spanning comedies, tragedies, and histories.",
-    "The human cardiovascular system consists of the heart, blood vessels, and approximately 5 liters of blood.",
-    "Mount Everest stands at 8,849 meters above sea level in the Himalayan mountain range.",
-    "The periodic table organizes chemical elements by atomic number, electron configuration, and recurring properties.",
-    "Leonardo da Vinci was a polymath whose areas of interest included painting, sculpting, and engineering.",
-    "The Amazon rainforest produces approximately 20% of the world's oxygen supply.",
-    "Newton's three laws of motion describe the relationship between a body and the forces acting upon it.",
-    "The Great Wall of China stretches over 21,000 kilometers across northern China.",
-    "DNA is a molecule that carries the genetic instructions used in growth and development.",
-    "The Industrial Revolution began in Britain in the late 18th century and transformed manufacturing.",
-    "Jupiter is the largest planet in our solar system with a diameter of about 139,820 kilometers.",
-    "The theory of plate tectonics explains how the Earth's surface is divided into moving plates.",
-    "Mozart composed over 600 works including symphonies, operas, and chamber music.",
-    "The Nile River flows northward through northeastern Africa for approximately 6,650 kilometers.",
-    "Insulin is a hormone produced by the pancreas that regulates blood sugar levels.",
-    "The French Revolution began in 1789 and fundamentally altered the course of modern history.",
-    "Electrons orbit the nucleus of an atom in regions of probability called electron clouds.",
-]
+def parse_groups(raw: str, default: list[str]) -> list[str]:
+    groups = [item.strip() for item in raw.split(",") if item.strip()]
+    return groups or list(default)
+
+
+def collect_prompts_by_group(
+    loader: PromptLoader,
+    group_names: list[str],
+    n_per_group: int,
+) -> tuple[list[str], dict[str, int]]:
+    texts: list[str] = []
+    counts: dict[str, int] = {}
+    for group_name in group_names:
+        prompts = loader.get_by_group(group_name)
+        take = prompts[:n_per_group]
+        texts.extend(take)
+        counts[group_name] = len(take)
+    return texts, counts
 
 
 def cohens_d(a, b):
@@ -297,7 +276,7 @@ def run_linear_probe(args):
     print("LINEAR PROBE FOR SELF-REFERENTIAL DIRECTION (E4.1 + E4.2)")
     print("=" * 70)
 
-    out_dir = Path("results/linear_probe")
+    out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # Load model
@@ -313,9 +292,14 @@ def run_linear_probe(args):
 
     print(f"Layers={spec.num_layers}, early={probe.early_layer}, late={probe.late_layer}")
 
-    n = args.n_prompts
-    rec_prompts = RECURSIVE_PROMPTS[:n]
-    bas_prompts = BASELINE_PROMPTS[:n]
+    recursive_groups = parse_groups(args.recursive_groups, DEFAULT_RECURSIVE_GROUPS)
+    baseline_groups = parse_groups(args.baseline_groups, DEFAULT_BASELINE_GROUPS)
+    rec_prompts, rec_counts = collect_prompts_by_group(
+        _loader, recursive_groups, args.n_per_group
+    )
+    bas_prompts, bas_counts = collect_prompts_by_group(
+        _loader, baseline_groups, args.n_per_group
+    )
     all_texts = rec_prompts + bas_prompts
     labels = np.array([1] * len(rec_prompts) + [0] * len(bas_prompts))
 
@@ -417,6 +401,10 @@ def run_linear_probe(args):
         "timestamp": timestamp,
         "experiment": "E4.1_E4.2_linear_probe",
         "model": args.model,
+        "recursive_groups": recursive_groups,
+        "baseline_groups": baseline_groups,
+        "recursive_prompt_counts": rec_counts,
+        "baseline_prompt_counts": bas_counts,
         "n_recursive": len(rec_prompts),
         "n_baseline": len(bas_prompts),
         "layer_probe_results": {str(k): v for k, v in layer_results.items()},
@@ -452,6 +440,26 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Linear Probe (E4.1 + E4.2)")
     parser.add_argument("--model", default="mistralai/Mistral-7B-v0.1")
     parser.add_argument("--device", default="cuda")
-    parser.add_argument("--n-prompts", type=int, default=20, help="Prompts per condition")
+    parser.add_argument(
+        "--recursive-groups",
+        default=",".join(DEFAULT_RECURSIVE_GROUPS),
+        help="Comma-separated recursive prompt groups",
+    )
+    parser.add_argument(
+        "--baseline-groups",
+        default=",".join(DEFAULT_BASELINE_GROUPS),
+        help="Comma-separated baseline prompt groups",
+    )
+    parser.add_argument(
+        "--n-per-group",
+        type=int,
+        default=10,
+        help="Prompts to take from each listed group",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default="results/linear_probe",
+        help="Directory for probe summaries",
+    )
     args = parser.parse_args()
     run_linear_probe(args)

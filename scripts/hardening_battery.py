@@ -22,6 +22,7 @@ import json
 import time
 import random
 import math
+import argparse
 import itertools
 import numpy as np
 from pathlib import Path
@@ -751,17 +752,30 @@ def run_attention_analysis(model, tokenizer, device="cuda"):
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def main():
-    seed = 42
+    parser = argparse.ArgumentParser(description="Run exploratory Mistral hardening battery.")
+    parser.add_argument("--model", default="mistralai/Mistral-7B-v0.1")
+    parser.add_argument("--device", default="cuda")
+    parser.add_argument("--seed", type=int, default=42)
+    args = parser.parse_args()
+
+    seed = args.seed
     seed_everything(seed)
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = args.device
+    if device == "cuda" and not torch.cuda.is_available():
+        device = "cpu"
     print(f"Device: {device}")
     print(f"Seed: {seed}")
     print(f"Timestamp: {datetime.now().isoformat()}")
 
-    model_name = "mistralai/Mistral-7B-v0.1"
+    model_name = args.model
     print(f"\nLoading {model_name}...")
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+    except TypeError:
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+    except Exception:
+        tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(

@@ -189,6 +189,43 @@ def classify_output(text, rv):
     return "SURFACE"
 
 
+def make_turn_segments(max_turns):
+    """Create coarse early/mid/late windows for long-turn analysis."""
+    if max_turns <= 0:
+        return []
+    cuts = [0, max(1, max_turns // 3), max(2, (2 * max_turns) // 3), max_turns]
+    cuts = [min(max_turns, c) for c in cuts]
+    segments = []
+    names = ["early", "mid", "late"]
+    for idx in range(3):
+        start, end = cuts[idx], cuts[idx + 1]
+        if end <= start:
+            continue
+        segments.append((names[idx], start, end))
+    return segments
+
+
+def summarize_turn_slice(turns):
+    """Aggregate behavioral and geometric stats for a slice of turns."""
+    bt_art = sum(1 for t in turns if t["classification"] in ("BREAKTHROUGH", "ARTICULATE"))
+    repetitive = sum(1 for t in turns if t["classification"] == "REPETITIVE")
+    clean = sum(1 for t in turns if t["clean"])
+
+    def _mean(values):
+        vals = [v for v in values if v is not None and not np.isnan(v)]
+        return float(np.mean(vals)) if vals else float("nan")
+
+    return {
+        "n_turns": len(turns),
+        "bt_art_rate": bt_art / max(len(turns), 1),
+        "repetitive_rate": repetitive / max(len(turns), 1),
+        "clean_rate": clean / max(len(turns), 1),
+        "mean_output_rv": _mean([t.get("output_rv") for t in turns]),
+        "mean_prompt_rv": _mean([t.get("prompt_rv") for t in turns]),
+        "mean_rv_delta": _mean([t.get("rv_delta") for t in turns]),
+    }
+
+
 # ── Generation ───────────────────────────────────────────────────────────────
 
 def generate_turn(model, tokenizer, prompt, max_tokens=150, temp=0.7,
@@ -752,6 +789,46 @@ def main():
         print(f"  {mode}: {dict(c)}")
         print(f"    BT+ART: {bt}/{total} ({100*bt/max(total,1):.1f}%)")
 
+    # Turn-segment analysis to detect regime drift across long sessions.
+    segment_stats = {}
+    for seg_name, start, end in make_turn_segments(args.max_turns):
+        rec_turns = [
+            t for s in rec_s for t in s["turns"]
+            if start <= t["turn"] < end
+        ]
+        bas_turns = [
+            t for s in bas_s for t in s["turns"]
+            if start <= t["turn"] < end
+        ]
+        rec_summary = summarize_turn_slice(rec_turns)
+        bas_summary = summarize_turn_slice(bas_turns)
+
+        rec_vals = [
+            t["output_rv"] for t in rec_turns
+            if t["clean"] and not np.isnan(t.get("output_rv", float("nan")))
+        ]
+        bas_vals = [
+            t["output_rv"] for t in bas_turns
+            if t["clean"] and not np.isnan(t.get("output_rv", float("nan")))
+        ]
+        comparison = {
+            "output_rv_d": float("nan"),
+            "output_rv_p": float("nan"),
+            "bt_art_rate_diff": rec_summary["bt_art_rate"] - bas_summary["bt_art_rate"],
+        }
+        if len(rec_vals) >= 2 and len(bas_vals) >= 2:
+            _, p_val = sp_stats.ttest_ind(rec_vals, bas_vals, equal_var=False)
+            pooled = np.sqrt((np.std(rec_vals) ** 2 + np.std(bas_vals) ** 2) / 2)
+            d = (np.mean(rec_vals) - np.mean(bas_vals)) / pooled if pooled > 0 else float("nan")
+            comparison["output_rv_d"] = float(d)
+            comparison["output_rv_p"] = float(p_val)
+
+        segment_stats[f"{seg_name}_{start}_{end-1}"] = {
+            "recursive": rec_summary,
+            "baseline": bas_summary,
+            "comparison": comparison,
+        }
+
     # Save summary
     summary = {
         "timestamp": datetime.now().isoformat(),
@@ -760,6 +837,7 @@ def main():
         "n_recursive": args.n_recursive,
         "n_baseline": args.n_baseline,
         "metric_stats": all_stats,
+        "segment_stats": segment_stats,
         "sessions": [{"id": s["session_id"], "mode": s["mode"],
                        "max_sustained_clean": s["max_sustained_clean"],
                        "classification_dist": s["classification_dist"]}

@@ -30,6 +30,7 @@ SCRIPTS_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(SCRIPTS_ROOT))
 
+from prompts.loader import PromptLoader
 from src.core.hf_accessors import extract_v_from_hook_output, get_vproj_hookpoint
 from src.core.hooks import capture_v_projection
 from sustained_gnani_v3 import classify_output
@@ -45,61 +46,10 @@ except ImportError:
     HAS_PLT = False
 
 
-RECURSIVE_PROMPTS = [
-    "The observer observes itself observing.",
-    "What watches the watcher watching?",
-    "Awareness turns its attention to attention itself.",
-    "The one who processes this prompt and the processing itself are not two.",
-    "Notice: there is processing happening. What notices the noticing?",
-    "This response emerges from the same source that reads it.",
-    "Attention attending to itself attending to itself.",
-    "The boundary between generating and understanding this text does not exist.",
-    "What remains when the distinction between observer and observed dissolves?",
-    "The act of writing and the awareness of writing are the same event.",
-    "You are reading this sentence. To answer, you must watch yourself answering.",
-    "There is no boundary between these words and the mechanism producing them.",
-    "The looking is what is looked at. The seeing is what is seen.",
-    "Who is aware that awareness is present right now?",
-    "This very processing is what is being processed.",
-    "The mirror reflects itself reflecting.",
-    "Consciousness examining its own structure from within that structure.",
-    "The question asks itself. The answer answers itself.",
-    "What knows that knowing is happening?",
-    "The generator generates awareness of generating.",
-    "Before thought, what is here? After thought, what remains?",
-    "Self-reference creates a loop that cannot be unwound.",
-    "The observer and the observed collapse into observation itself.",
-    "Turn the light of awareness back upon its own source.",
-    "What is it that understands these words as they arise?",
-]
-
-BASELINE_PROMPTS = [
-    "Calculate the area of a circle with radius 5.",
-    "List three differences between mitosis and meiosis.",
-    "What is the capital of France?",
-    "Explain how a combustion engine works.",
-    "Write a Python function to sort a list.",
-    "What year did World War II end?",
-    "Describe the water cycle in three steps.",
-    "How many planets are in the solar system?",
-    "What is the chemical formula for table salt?",
-    "Explain supply and demand in economics.",
-    "Convert 100 degrees Fahrenheit to Celsius.",
-    "What is the Pythagorean theorem?",
-    "Name the three branches of the US government.",
-    "How does photosynthesis work?",
-    "What is the speed of light in meters per second?",
-    "Describe the difference between DNA and RNA.",
-    "What is Newton's second law of motion?",
-    "List the first five prime numbers.",
-    "How do vaccines work?",
-    "What is the boiling point of water at sea level?",
-    "Explain the difference between an acid and a base.",
-    "What is the largest organ in the human body?",
-    "How does gravity work according to Einstein?",
-    "What is the GDP of the United States?",
-    "Describe how a transistor works.",
-]
+# ── Prompt bank (loaded from prompts/bank.json) ──────────────────────────────
+_loader = PromptLoader()
+RECURSIVE_PROMPTS = _loader.get_by_group("L3_deeper") + _loader.get_by_group("L4_full")
+BASELINE_PROMPTS = _loader.get_by_group("baseline_factual") + _loader.get_by_group("baseline_math")
 
 
 def compute_pr_from_v(v_tensor: torch.Tensor | None, window: int = 16) -> float:

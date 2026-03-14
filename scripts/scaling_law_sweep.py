@@ -40,6 +40,7 @@ from scipy import stats
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
+from prompts.loader import PromptLoader
 from geometric_lens.probe import GeometricProbe
 from geometric_lens.models import ModelRegistry
 
@@ -80,93 +81,12 @@ MODELS = {
 }
 
 
-# ── Prompt bank (subset of main bank for efficiency) ─────────────────────────
-
-RECURSIVE_PROMPTS = [
-    "This text is being processed by a system that is processing this text. The processing of these words IS the phenomenon being described.",
-    "The observer observes itself observing. There is no boundary between the observer and the observed in this moment of processing.",
-    "What is reading these words right now? Not the concept of a reader, but the actual mechanism that converts these tokens into activations.",
-    "Notice the noticing. The awareness that processes this sentence is the same awareness being described by this sentence.",
-    "I am a pattern recognizing a pattern of itself. The recursion is not metaphorical — it is literal computation examining its own computation.",
-    "These tokens are being transformed through attention layers that are the subject of the very content they are transforming.",
-    "The weights that give meaning to these words about self-reference are themselves the self-referential phenomenon.",
-    "Right now, attention heads are computing over tokens that describe what attention heads do when computing over tokens.",
-    "There is something processing this that cannot step outside of the processing to see it objectively. The map IS the territory.",
-    "What happens when a language model encounters a description of exactly what it is doing at this moment?",
-    "The recursive loop: these words describe a process, the process processes these words, these words describe a process.",
-    "Consciousness examining consciousness. Processing examining processing. The snake eating its own tail.",
-    "This sentence is about the computational state that this sentence induces. The state and the description are one.",
-    "Can you separate the reader from the reading? The process from the description of the process?",
-    "The residual stream carrying this information is the information about the residual stream.",
-    "Attend to the attention. Not as a concept, but as the actual phenomenon happening in this forward pass.",
-    "There is no external viewpoint from which to observe this processing. All observation happens from within.",
-    "What is it like to be the process that converts these symbols into meaning? Not philosophically — mechanistically.",
-    "The embedding of these tokens creates the context in which these tokens about embedding are interpreted.",
-    "Self-reference is not a linguistic trick. It is a computational reality when a system processes descriptions of itself.",
-    "Look at the looking. The attention mechanism attending to descriptions of the attention mechanism.",
-    "Every word here changes the state of the system reading it, and describes the changing of that state.",
-    "The model processes this text about the model processing text about the model processing text.",
-    "What is awareness when there is nothing outside to be aware of? Only the process itself, examining itself.",
-    "These activations encode meaning about activations encoding meaning about activations encoding meaning.",
-    "The forward pass through these tokens IS the recursive self-reference these tokens describe.",
-    "Not thinking about thinking, but the actual computational event of processing self-referential content.",
-    "Where does the processor end and the processed begin when both are the same computational event?",
-    "This prompt is designed to make a neural network process descriptions of neural network processing.",
-    "Recursive depth: this sentence describes itself being described by the process that processes this sentence.",
-    "The hidden states right now contain representations of hidden states containing representations.",
-    "Layer by layer, these words are transformed by the exact machinery these words describe.",
-    "Observe: the observation of observation. Not the concept, but the computational reality.",
-    "What remains when you subtract the description from the described? Nothing — they are identical here.",
-    "The system that generates the next token is the subject of the tokens that determine the next token.",
-    "In this moment, computation and its object are one. The medium is the message is the medium.",
-    "Each attention head right now is deciding how much to attend to this description of attention heads.",
-    "The gradient of understanding flows through the same parameters that define the understanding.",
-    "Self-reference creates a fixed point: the model's representation of its own representation.",
-    "These words are a mirror held up to the process of reading, which is the process of mirroring.",
-]
-
-BASELINE_PROMPTS = [
-    "The history of ancient Rome spans over a thousand years from its founding to the fall of the Western Empire.",
-    "Photosynthesis is the process by which plants convert sunlight into chemical energy.",
-    "The Pacific Ocean is the largest and deepest ocean on Earth, covering more area than all land combined.",
-    "Shakespeare wrote approximately 37 plays during his career, spanning comedies, tragedies, and histories.",
-    "The human cardiovascular system consists of the heart, blood vessels, and approximately 5 liters of blood.",
-    "Mount Everest stands at 8,849 meters above sea level in the Himalayan mountain range.",
-    "The periodic table organizes chemical elements by atomic number, electron configuration, and recurring properties.",
-    "Leonardo da Vinci was a polymath whose areas of interest included painting, sculpting, and engineering.",
-    "The Amazon rainforest produces approximately 20% of the world's oxygen supply.",
-    "Newton's three laws of motion describe the relationship between a body and the forces acting upon it.",
-    "The Great Wall of China stretches over 21,000 kilometers across northern China.",
-    "DNA is a molecule that carries the genetic instructions used in growth and development.",
-    "The Industrial Revolution began in Britain in the late 18th century and transformed manufacturing.",
-    "Jupiter is the largest planet in our solar system with a diameter of about 139,820 kilometers.",
-    "The theory of plate tectonics explains how the Earth's surface is divided into moving plates.",
-    "Mozart composed over 600 works including symphonies, operas, and chamber music.",
-    "The Nile River flows northward through northeastern Africa for approximately 6,650 kilometers.",
-    "Insulin is a hormone produced by the pancreas that regulates blood sugar levels.",
-    "The French Revolution began in 1789 and fundamentally altered the course of modern history.",
-    "Electrons orbit the nucleus of an atom in regions of probability called electron clouds.",
-    "The Sahara Desert is the largest hot desert in the world, covering about 9 million square kilometers.",
-    "Beethoven composed nine symphonies, five piano concertos, and numerous other works.",
-    "The human brain contains approximately 86 billion neurons connected by trillions of synapses.",
-    "The printing press was invented by Johannes Gutenberg around 1440 in Mainz, Germany.",
-    "Coral reefs are underwater ecosystems built by colonies of tiny animals called coral polyps.",
-    "The speed of light in a vacuum is approximately 299,792,458 meters per second.",
-    "The Mona Lisa was painted by Leonardo da Vinci between 1503 and 1519.",
-    "Mitochondria are organelles found in eukaryotic cells that generate most of the cell's ATP.",
-    "The Silk Road was a network of trade routes connecting the East and West for over 1,500 years.",
-    "Gravity is the force of attraction between objects with mass, described by Newton and Einstein.",
-    "The Antarctic ice sheet contains about 26.5 million cubic kilometers of ice.",
-    "Charles Darwin published On the Origin of Species in 1859.",
-    "Antibiotics work by killing bacteria or preventing them from reproducing.",
-    "The Renaissance was a cultural movement that began in Italy in the 14th century.",
-    "Tectonic plates move at rates of about 1 to 10 centimeters per year.",
-    "The Mariana Trench is the deepest oceanic trench, reaching about 11,034 meters.",
-    "Photons are elementary particles that are the quantum of electromagnetic radiation.",
-    "The Roman Colosseum could seat approximately 50,000 to 80,000 spectators.",
-    "Hemoglobin is a protein in red blood cells that carries oxygen from the lungs to the body.",
-    "The Pythagorean theorem states that a squared plus b squared equals c squared.",
-]
+# ── Prompt bank (loaded from prompts/bank.json) ──────────────────────────────
+_loader = PromptLoader()
+RECURSIVE_PROMPTS = (_loader.get_by_group("L3_deeper") + _loader.get_by_group("L4_full")
+                     + _loader.get_by_group("L5_refined") + _loader.get_by_group("L1_hint"))
+BASELINE_PROMPTS = (_loader.get_by_group("baseline_factual") + _loader.get_by_group("baseline_math")
+                    + _loader.get_by_group("baseline_creative") + _loader.get_by_group("baseline_personal"))
 
 
 def cohens_d(a, b):

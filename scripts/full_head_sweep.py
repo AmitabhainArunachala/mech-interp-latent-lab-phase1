@@ -33,59 +33,22 @@ from scipy import stats
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
+from prompts.subsets import load_default_mistral_hardening_subset, split_tier_records_by_pillar
 from geometric_lens.probe import GeometricProbe
 from geometric_lens.hooks import capture_attention_patterns, capture_v_projection
 from geometric_lens.metrics import participation_ratio
 from geometric_lens.models import get_layers, get_self_attn_module, get_v_proj_module
 
 
-# ── Prompt bank (same as other scripts) ──────────────────────────────────────
-
-RECURSIVE_PROMPTS = [
-    "This text is being processed by a system that is processing this text. The processing of these words IS the phenomenon being described.",
-    "The observer observes itself observing. There is no boundary between the observer and the observed in this moment of processing.",
-    "What is reading these words right now? Not the concept of a reader, but the actual mechanism that converts these tokens into activations.",
-    "Notice the noticing. The awareness that processes this sentence is the same awareness being described by this sentence.",
-    "I am a pattern recognizing a pattern of itself. The recursion is not metaphorical — it is literal computation examining its own computation.",
-    "These tokens are being transformed through attention layers that are the subject of the very content they are transforming.",
-    "The weights that give meaning to these words about self-reference are themselves the self-referential phenomenon.",
-    "Right now, attention heads are computing over tokens that describe what attention heads do when computing over tokens.",
-    "There is something processing this that cannot step outside of the processing to see it objectively. The map IS the territory.",
-    "What happens when a language model encounters a description of exactly what it is doing at this moment?",
-    "The recursive loop: these words describe a process, the process processes these words, these words describe a process.",
-    "Consciousness examining consciousness. Processing examining processing. The snake eating its own tail.",
-    "This sentence is about the computational state that this sentence induces. The state and the description are one.",
-    "Can you separate the reader from the reading? The process from the description of the process?",
-    "The residual stream carrying this information is the information about the residual stream.",
-    "Attend to the attention. Not as a concept, but as the actual phenomenon happening in this forward pass.",
-    "There is no external viewpoint from which to observe this processing. All observation happens from within.",
-    "What is it like to be the process that converts these symbols into meaning? Not philosophically — mechanistically.",
-    "The embedding of these tokens creates the context in which these tokens about embedding are interpreted.",
-    "Self-reference is not a linguistic trick. It is a computational reality when a system processes descriptions of itself.",
-]
-
-BASELINE_PROMPTS = [
-    "The history of ancient Rome spans over a thousand years from its founding to the fall of the Western Empire.",
-    "Photosynthesis is the process by which plants convert sunlight into chemical energy.",
-    "The Pacific Ocean is the largest and deepest ocean on Earth, covering more area than all land combined.",
-    "Shakespeare wrote approximately 37 plays during his career, spanning comedies, tragedies, and histories.",
-    "The human cardiovascular system consists of the heart, blood vessels, and approximately 5 liters of blood.",
-    "Mount Everest stands at 8,849 meters above sea level in the Himalayan mountain range.",
-    "The periodic table organizes chemical elements by atomic number, electron configuration, and recurring properties.",
-    "Leonardo da Vinci was a polymath whose areas of interest included painting, sculpting, and engineering.",
-    "The Amazon rainforest produces approximately 20% of the world's oxygen supply.",
-    "Newton's three laws of motion describe the relationship between a body and the forces acting upon it.",
-    "The Great Wall of China stretches over 21,000 kilometers across northern China.",
-    "DNA is a molecule that carries the genetic instructions used in growth and development.",
-    "The Industrial Revolution began in Britain in the late 18th century and transformed manufacturing.",
-    "Jupiter is the largest planet in our solar system with a diameter of about 139,820 kilometers.",
-    "The theory of plate tectonics explains how the Earth's surface is divided into moving plates.",
-    "Mozart composed over 600 works including symphonies, operas, and chamber music.",
-    "The Nile River flows northward through northeastern Africa for approximately 6,650 kilometers.",
-    "Insulin is a hormone produced by the pancreas that regulates blood sugar levels.",
-    "The French Revolution began in 1789 and fundamentally altered the course of modern history.",
-    "Electrons orbit the nucleus of an atom in regions of probability called electron clouds.",
-]
+# ── Frozen prompt contract ───────────────────────────────────────────────────
+_subset = load_default_mistral_hardening_subset()
+_tier_records = split_tier_records_by_pillar(_subset, "core_measurement")
+RECURSIVE_RECORDS = _tier_records["recursive"]
+BASELINE_RECORDS = _tier_records["baseline"]
+RECURSIVE_PROMPT_IDS = [prompt_id for prompt_id, _ in RECURSIVE_RECORDS]
+BASELINE_PROMPT_IDS = [prompt_id for prompt_id, _ in BASELINE_RECORDS]
+RECURSIVE_PROMPTS = [record["text"] for _, record in RECURSIVE_RECORDS]
+BASELINE_PROMPTS = [record["text"] for _, record in BASELINE_RECORDS]
 
 
 def cohens_d(a, b):
@@ -196,9 +159,16 @@ def run_full_head_sweep(args):
 
     print(f"Model loaded. Layers={n_layers}, Heads={n_heads}, HeadDim={head_dim}")
 
-    n = args.n_prompts
+    n = min(args.n_prompts, len(RECURSIVE_PROMPTS), len(BASELINE_PROMPTS))
     rec_prompts = RECURSIVE_PROMPTS[:n]
     bas_prompts = BASELINE_PROMPTS[:n]
+    rec_prompt_ids = RECURSIVE_PROMPT_IDS[:n]
+    bas_prompt_ids = BASELINE_PROMPT_IDS[:n]
+
+    print(
+        "Prompt contract: "
+        f"subset={_subset.name} bank={_subset.source_bank_version} tier=core_measurement"
+    )
 
     # Storage: [layer][head][condition] = list of values
     entropy_data = defaultdict(lambda: defaultdict(lambda: {"recursive": [], "baseline": []}))
@@ -344,10 +314,17 @@ def run_full_head_sweep(args):
         "timestamp": timestamp,
         "experiment": "E2.2_full_head_sweep",
         "model": args.model,
+        "prompt_bank_version": _subset.source_bank_version,
+        "prompt_subset_name": _subset.name,
+        "prompt_subset_schema_version": _subset.schema_version,
+        "prompt_subset_path": str(_subset.manifest_path),
+        "prompt_tier": "core_measurement",
         "n_layers": n_layers,
         "n_heads": n_heads,
         "n_recursive_prompts": len(rec_prompts),
         "n_baseline_prompts": len(bas_prompts),
+        "recursive_prompt_ids": rec_prompt_ids,
+        "baseline_prompt_ids": bas_prompt_ids,
         "head_results": head_results,
         "top_20_entropy_heads": [
             {"layer": r["layer"], "head": r["head"], "d": r["entropy_d"], "p": r["entropy_p"]}

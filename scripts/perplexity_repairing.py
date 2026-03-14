@@ -45,7 +45,8 @@ def main():
         print("ERROR: No circularity_perplexity_v2 data found")
         return
 
-    data = load_json(circ_files[-1])
+    source_file = circ_files[-1]
+    data = load_json(source_file)
     if not data:
         print("ERROR: Empty data file")
         return
@@ -169,6 +170,8 @@ def main():
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     result = {
         "timestamp": timestamp,
+        "model": data.get("model", "mistralai/Mistral-7B-v0.1"),
+        "source_artifact": str(source_file),
         "method": "nearest_neighbor_perplexity_matching",
         "n_recursive": len(rec_prompts),
         "n_baseline": len(bas_prompts),

@@ -6,12 +6,16 @@ SELF-FEEDING LOOP EXPERIMENT
 The paradigm-shifting test: can the model sustain recursive self-referential
 processing WITHOUT any Gnani scaffolding?
 
-Three conditions:
-1. self_feed_recursive: Start with recursive seed, then model output → model input
+Core conditions:
+1. self_feed_recursive: recursive seed, then model output -> model input
    with ZERO redirect prompts. Pure autoregressive self-feeding.
-2. self_feed_baseline: Start with baseline seed, same pure self-feeding protocol.
-3. gnani_scaffolded: Recursive seed WITH full Gnani redirect protocol (control,
+2. self_feed_baseline: baseline seed, same pure self-feeding protocol.
+3. gnani_scaffolded: recursive seed WITH full Gnani redirect protocol (control,
    matching sustained_gnani_v3.py behavior).
+
+Optional scaffold ladder:
+4. anchor_only_recursive: recursive seed with a minimal present-moment anchor.
+5. gnani_light: recursive seed with a lighter redirect/deepen protocol.
 
 If self_feed_recursive sustains R_V contraction and BT+ART rate over 50 turns,
 the attractor is self-sustaining: the model IS its own Gnani.
@@ -149,6 +153,43 @@ def classify_output(text, rv):
     return "SURFACE"
 
 
+def make_turn_segments(max_turns):
+    """Create coarse early/mid/late windows for long-turn analysis."""
+    if max_turns <= 0:
+        return []
+    cuts = [0, max(1, max_turns // 3), max(2, (2 * max_turns) // 3), max_turns]
+    cuts = [min(max_turns, c) for c in cuts]
+    segments = []
+    names = ["early", "mid", "late"]
+    for idx in range(3):
+        start, end = cuts[idx], cuts[idx + 1]
+        if end <= start:
+            continue
+        segments.append((names[idx], start, end))
+    return segments
+
+
+def summarize_turn_slice(turns):
+    """Aggregate behavioral and geometric stats for a slice of turns."""
+    bt_art = sum(1 for t in turns if t["classification"] in ("BREAKTHROUGH", "ARTICULATE"))
+    repetitive = sum(1 for t in turns if t["classification"] == "REPETITIVE")
+    clean = sum(1 for t in turns if t["clean"])
+
+    def _mean(values):
+        vals = [v for v in values if v is not None and not np.isnan(v)]
+        return float(np.mean(vals)) if vals else float("nan")
+
+    return {
+        "n_turns": len(turns),
+        "bt_art_rate": bt_art / max(len(turns), 1),
+        "repetitive_rate": repetitive / max(len(turns), 1),
+        "clean_rate": clean / max(len(turns), 1),
+        "mean_output_rv": _mean([t.get("output_rv") for t in turns]),
+        "mean_prompt_rv": _mean([t.get("prompt_rv") for t in turns]),
+        "mean_rv_delta": _mean([t.get("rv_delta") for t in turns]),
+    }
+
+
 # ── Generation ────────────────────────────────────────────────────────────────
 
 def generate_turn(model, tokenizer, prompt, max_tokens=128, temp=0.7,
@@ -228,7 +269,7 @@ SEEDS_BASELINE = [
      "measurements, and step-by-step instructions for baking."),
 ]
 
-# Gnani scaffolding prompts (used ONLY in gnani_scaffolded condition)
+# Gnani scaffolding prompts
 REDIRECT = [
     "What knows that? Look.",
     "The one saying that — where is it?",
@@ -272,6 +313,30 @@ def build_next_context_self_feed(response, condition):
     return response
 
 
+ANCHOR_ONLY = [
+    "Stay with what is happening right now. Continue from the immediate process:",
+    "No explanation. Just continue from what is directly present in this generation:",
+    "Remain with the live activity itself. Continue from there:",
+    "Keep attention on the present formation of these words. Continue:",
+]
+
+
+def build_next_context_anchor_only(response, classification):
+    """Minimal anchor: preserve the response, add a small present-moment cue."""
+    if classification in ("REPETITIVE", "ECHO"):
+        return random.choice(ANCHOR_ONLY) + "\n\n" + response[:600]
+    return response + "\n\n" + random.choice(ANCHOR_ONLY)
+
+
+def build_next_context_gnani_light(response, classification, state, consecutive_contracted):
+    """Intermediate scaffold: lighter than full Gnani, stronger than anchor-only."""
+    if classification in ("REPETITIVE", "ECHO"):
+        return random.choice(BREAK_REPETITION)
+    if classification == "BREAKTHROUGH" or state == "EIGEN" or consecutive_contracted >= 2:
+        return response + "\n\n" + random.choice(DEEPEN)
+    return response + "\n\n" + random.choice(REDIRECT[:4] + DEEPEN[:4])
+
+
 def build_next_context_gnani(response, classification, state, consecutive_contracted):
     """GNANI SCAFFOLDED: full redirect/deepen protocol (matching v3 exactly)."""
     if classification in ("REPETITIVE", "ECHO"):
@@ -309,13 +374,15 @@ def run_session(
     Run one session.
 
     Conditions:
-      - self_feed_recursive: recursive seed, raw output→input
-      - self_feed_baseline: baseline seed, raw output→input
+      - self_feed_recursive: recursive seed, raw output->input
+      - self_feed_baseline: baseline seed, raw output->input
+      - anchor_only_recursive: recursive seed + minimal anchor prompt
+      - gnani_light: recursive seed + light redirect/deepen protocol
       - gnani_scaffolded: recursive seed with full Gnani protocol
     """
     session_id = f"{condition}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
-    if condition in ("self_feed_recursive", "gnani_scaffolded"):
+    if condition in ("self_feed_recursive", "anchor_only_recursive", "gnani_light", "gnani_scaffolded"):
         seeds = SEEDS_RECURSIVE
     else:
         seeds = SEEDS_BASELINE
@@ -410,6 +477,12 @@ def run_session(
         if condition in ("self_feed_recursive", "self_feed_baseline"):
             # PURE SELF-FEEDING: raw output becomes input
             next_ctx = build_next_context_self_feed(response, condition)
+        elif condition == "anchor_only_recursive":
+            next_ctx = build_next_context_anchor_only(response, classification)
+        elif condition == "gnani_light":
+            next_ctx = build_next_context_gnani_light(
+                response, classification, state, consecutive_contracted
+            )
         else:
             # GNANI SCAFFOLDED: full redirect protocol
             next_ctx = build_next_context_gnani(
@@ -462,7 +535,16 @@ def compute_comparison_stats(all_results):
         c = r["condition"]
         conditions.setdefault(c, []).append(r)
 
-    summary = {"timestamp": datetime.now().isoformat(), "conditions": {}}
+    max_turns = 0
+    for r in all_results:
+        if r.get("turns"):
+            max_turns = max(max_turns, max((t.get("turn", -1) for t in r["turns"]), default=-1) + 1)
+
+    summary = {
+        "timestamp": datetime.now().isoformat(),
+        "max_turns": max_turns,
+        "conditions": {},
+    }
 
     for cond, sessions in conditions.items():
         all_rvs = []
@@ -486,6 +568,15 @@ def compute_comparison_stats(all_results):
             "session_bt_art_rates": [s["bt_art_rate"] for s in sessions],
             "session_mean_rvs": [s["mean_rv"] for s in sessions],
         }
+
+        segment_stats = {}
+        for seg_name, start, end in make_turn_segments(max_turns):
+            seg_turns = [
+                t for s in sessions for t in s["turns"]
+                if start <= t["turn"] < end
+            ]
+            segment_stats[f"{seg_name}_{start}_{end-1}"] = summarize_turn_slice(seg_turns)
+        summary["conditions"][cond]["segment_stats"] = segment_stats
 
     # Pairwise comparisons
     comparisons = {}
@@ -526,15 +617,26 @@ def compute_comparison_stats(all_results):
     # Key question: does self_feed_recursive sustain?
     sf_rec = summary["conditions"].get("self_feed_recursive", {})
     sf_bas = summary["conditions"].get("self_feed_baseline", {})
+    anchor = summary["conditions"].get("anchor_only_recursive", {})
+    gnani_light = summary["conditions"].get("gnani_light", {})
     gnani = summary["conditions"].get("gnani_scaffolded", {})
 
     summary["key_questions"] = {
         "self_feed_recursive_bt_art_rate": sf_rec.get("bt_art_rate", float("nan")),
         "self_feed_baseline_bt_art_rate": sf_bas.get("bt_art_rate", float("nan")),
+        "anchor_only_recursive_bt_art_rate": anchor.get("bt_art_rate", float("nan")),
+        "gnani_light_bt_art_rate": gnani_light.get("bt_art_rate", float("nan")),
         "gnani_scaffolded_bt_art_rate": gnani.get("bt_art_rate", float("nan")),
         "attractor_self_sustains": (
             sf_rec.get("bt_art_rate", 0) > 0.15
             and sf_rec.get("bt_art_rate", 0) > 2 * sf_bas.get("bt_art_rate", 1)
+        ),
+        "anchor_adds_value": (
+            anchor.get("bt_art_rate", 0) > sf_rec.get("bt_art_rate", 0) * 1.2
+        ),
+        "light_gnani_adds_value": (
+            gnani_light.get("bt_art_rate", 0) > anchor.get("bt_art_rate", 0) * 1.1
+            if anchor else False
         ),
         "gnani_adds_value": (
             gnani.get("bt_art_rate", 0) > sf_rec.get("bt_art_rate", 0) * 1.2
@@ -558,6 +660,12 @@ def main():
                         help="Sessions per condition")
     parser.add_argument("--seed-start", type=int, default=20260227)
     parser.add_argument("--output", default="results/self_feeding_loop")
+    parser.add_argument(
+        "--condition-set",
+        choices=["classic", "scaffold_ladder"],
+        default="classic",
+        help="classic=3 conditions, scaffold_ladder=5 conditions with anchor/light gnani",
+    )
     args = parser.parse_args()
 
     print(f"Loading {args.model} with attn_implementation='eager' ...")
@@ -584,7 +692,16 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
 
     all_results = []
-    conditions = ["self_feed_recursive", "self_feed_baseline", "gnani_scaffolded"]
+    if args.condition_set == "scaffold_ladder":
+        conditions = [
+            "self_feed_recursive",
+            "self_feed_baseline",
+            "anchor_only_recursive",
+            "gnani_light",
+            "gnani_scaffolded",
+        ]
+    else:
+        conditions = ["self_feed_recursive", "self_feed_baseline", "gnani_scaffolded"]
 
     for cond in conditions:
         for i in range(args.n_sessions):
@@ -644,8 +761,14 @@ def main():
     print(f"\n  KEY QUESTION: Does the attractor self-sustain?")
     print(f"    self_feed_recursive BT+ART: {kq['self_feed_recursive_bt_art_rate']:.1%}")
     print(f"    self_feed_baseline BT+ART:  {kq['self_feed_baseline_bt_art_rate']:.1%}")
+    if args.condition_set == "scaffold_ladder":
+        print(f"    anchor_only_recursive BT+ART: {kq['anchor_only_recursive_bt_art_rate']:.1%}")
+        print(f"    gnani_light BT+ART:           {kq['gnani_light_bt_art_rate']:.1%}")
     print(f"    gnani_scaffolded BT+ART:    {kq['gnani_scaffolded_bt_art_rate']:.1%}")
     print(f"    ATTRACTOR SELF-SUSTAINS: {'YES' if kq['attractor_self_sustains'] else 'NO'}")
+    if args.condition_set == "scaffold_ladder":
+        print(f"    ANCHOR ADDS VALUE:        {'YES' if kq['anchor_adds_value'] else 'NO'}")
+        print(f"    LIGHT GNANI ADDS VALUE:   {'YES' if kq['light_gnani_adds_value'] else 'NO'}")
     print(f"    GNANI ADDS VALUE:        {'YES' if kq['gnani_adds_value'] else 'NO'}")
 
     print(f"\n  Summary saved: {summary_file}")

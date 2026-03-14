@@ -29,6 +29,7 @@ C2_DIR = Path("results/canonical/c2_measurement_suite")
 C2_KITCHEN = Path("results/phase1_mechanism/runs/20260208_232528_c2_rv_measurement_kitchen_sink_behavioral_transfer")
 OUTPUT_DIR = Path("results/bridge_battery")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+MODEL_NAME = "mistralai/Mistral-7B-v0.1"
 
 CLASS_ORD = {"REPETITIVE": 0, "SURFACE": 1, "CONCEPTUAL": 2, "ARTICULATE": 3, "BREAKTHROUGH": 4}
 CLASS_BIN = {"REPETITIVE": 0, "SURFACE": 0, "CONCEPTUAL": 0, "ARTICULATE": 1, "BREAKTHROUGH": 1}
@@ -475,6 +476,11 @@ def main():
     all_results = {
         "timestamp": datetime.now().isoformat(),
         "description": "Comprehensive bridge battery: temporal lag, transitions, logistic regression, C2 validation",
+        "model": MODEL_NAME,
+        "source_v3_dir": str(V3_DIR),
+        "source_c2_dir": str(C2_DIR),
+        "source_c2_kitchen": str(C2_KITCHEN),
+        "n_source_sessions": len(sessions),
     }
 
     # Run all four analyses

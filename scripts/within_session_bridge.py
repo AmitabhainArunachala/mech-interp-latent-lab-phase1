@@ -19,6 +19,7 @@ from collections import defaultdict
 RESULTS_DIR = Path("results/sustained_gnani_v3_fixed")
 OUTPUT_DIR = Path("results/within_session_bridge")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+MODEL_NAME = "mistralai/Mistral-7B-v0.1"
 
 # Classification ordinal scale
 # REPETITIVE < SURFACE < CONCEPTUAL < ARTICULATE < BREAKTHROUGH
@@ -122,6 +123,10 @@ def main():
     all_results = {
         "timestamp": datetime.now().isoformat(),
         "description": "Within-session R_V ↔ classification correlation (behavioral bridge test)",
+        "model": MODEL_NAME,
+        "source_results_dir": str(RESULTS_DIR),
+        "source_glob": "*.json",
+        "n_source_sessions": len(sessions),
         "sessions": [],
         "pooled": {},
     }

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Quick test script to load Mistral-7B-Instruct on remote server
+# Quick test script to load base Mistral-7B-v0.1 on remote server
 
 ssh -i ~/.ssh/id_ed25519 isv37z6krqu4q2-644112db@ssh.runpod.io << 'EOF'
 set -e
@@ -12,7 +12,7 @@ echo ""
 echo "=== Python Packages Check ==="
 python3 -c "import torch; print(f'PyTorch: {torch.__version__}'); print(f'CUDA available: {torch.cuda.is_available()}'); print(f'CUDA version: {torch.version.cuda if torch.cuda.is_available() else \"N/A\"}')" 2>&1 || echo "PyTorch not installed"
 echo ""
-echo "=== Loading Mistral-7B-Instruct ==="
+echo "=== Loading Mistral-7B-v0.1 ==="
 python3 << 'PYEOF'
 import sys
 try:
@@ -25,8 +25,8 @@ try:
         print(f"GPU: {torch.cuda.get_device_name(0)}")
         print(f"GPU Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.2f} GB")
     
-    print("\nLoading Mistral-7B-Instruct...")
-    model_name = "mistralai/Mistral-7B-Instruct-v0.2"
+    print("\nLoading Mistral-7B-v0.1...")
+    model_name = "mistralai/Mistral-7B-v0.1"
     
     print("Loading tokenizer...")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -70,4 +70,3 @@ except Exception as e:
 PYEOF
 
 EOF
-

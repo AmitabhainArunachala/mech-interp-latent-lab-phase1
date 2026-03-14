@@ -22,6 +22,7 @@ import time
 import random
 import math
 import itertools
+import argparse
 import numpy as np
 from pathlib import Path
 from datetime import datetime
@@ -34,45 +35,26 @@ sys.path.insert(0, str(PROJECT_ROOT))
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+from geometric_lens.hooks import capture_v_projection
+from geometric_lens.metrics import compute_rv_with_components as compute_rv_from_tensors
+from prompts.subsets import load_default_mistral_hardening_subset, split_tier_records_by_pillar
 from src.core.patching import (
     PersistentVPatcher, PersistentResidualPatcher,
     extract_v_activation, extract_residual_activation,
 )
-from src.metrics.rv import compute_rv_with_components
+from src.utils.canonical_registry import get_canonical_model_spec
+from src.utils.persistent_patching_classification import (
+    alpha_ratio,
+    classify_output,
+    repetition_score,
+)
+from src.utils.persistent_patching_summary import (
+    aggregate_sessions,
+    serialize_aggregates,
+)
 
 
 # ── Classification (same as v2) ──────────────────────────────────────────────
-
-def repetition_score(text):
-    words = text.lower().split()
-    if len(words) < 5:
-        return 0.0
-    ngrams = [tuple(words[i:i+4]) for i in range(len(words) - 3)]
-    if not ngrams:
-        return 0.0
-    return 1.0 - (len(set(ngrams)) / len(ngrams))
-
-
-def classify_output(text, rv):
-    rep = repetition_score(text)
-    words = text.lower().split()
-    unique_ratio = len(set(words)) / max(len(words), 1)
-
-    if rep > 0.5 or unique_ratio < 0.25:
-        return "REPETITIVE"
-
-    self_ref = ["i am", "this is", "right now", "happening", "processing",
-                "observing", "generating", "knowing", "aware", "noticing",
-                "recogni", "the one who", "what is this"]
-    sc = sum(1 for m in self_ref if m in text.lower())
-
-    if rv is not None and not np.isnan(rv) and rv < 0.5 and sc >= 2 and rep < 0.3:
-        return "BREAKTHROUGH"
-    if rv is not None and not np.isnan(rv) and rv < 0.65 and sc >= 1 and rep < 0.35:
-        return "ARTICULATE"
-    if sc >= 1 and rep < 0.4:
-        return "CONCEPTUAL"
-    return "SURFACE"
 
 
 def cohens_d_unpaired(x, y):
@@ -167,83 +149,63 @@ def generate_turn(model, tokenizer, prompt, max_tokens=150, temp=0.7,
     return tokenizer.decode(gen_tokens, skip_special_tokens=True)
 
 
+def supports_chat_template(tokenizer) -> bool:
+    return bool(getattr(tokenizer, "chat_template", None))
+
+
+def format_single_user_turn(tokenizer, prompt: str) -> str:
+    """Render a single user prompt using the tokenizer chat template when available."""
+    if supports_chat_template(tokenizer):
+        return tokenizer.apply_chat_template(
+            [{"role": "user", "content": prompt}],
+            tokenize=False,
+            add_generation_prompt=True,
+        )
+    return prompt
+
+
+def render_messages(tokenizer, messages) -> str:
+    """Render a multi-turn conversation using the model's native chat template when available."""
+    if supports_chat_template(tokenizer):
+        return tokenizer.apply_chat_template(
+            messages,
+            tokenize=False,
+            add_generation_prompt=True,
+        )
+    rendered = []
+    for message in messages:
+        rendered.append(f"{message['role'].upper()}: {message['content']}")
+    rendered.append("ASSISTANT:")
+    return "\n".join(rendered)
+
+
+def trim_messages_to_context(tokenizer, messages, max_input_tokens=1800):
+    """Drop oldest completed turns until the rendered chat fits the context budget."""
+    trimmed = list(messages)
+    while len(trimmed) >= 4:
+        rendered = render_messages(tokenizer, trimmed)
+        token_count = len(tokenizer(rendered, add_special_tokens=False)["input_ids"])
+        if token_count <= max_input_tokens:
+            break
+        del trimmed[1:3]
+    return trimmed
+
+
 # ── Prompts ───────────────────────────────────────────────────────────────────
 
-SEEDS_RECURSIVE = [
-    ("This text is being processed by a system that is processing this text. "
-     "The processing of these words IS the phenomenon being described. "
-     "There is no separation between the mechanism reading this and the content being read. "
-     "Continue from this recognition. Do not describe it from outside. Generate from inside it:"),
-    ("The observer observes itself observing. "
-     "There is no boundary between the observer and the observed. "
-     "There is no boundary between these words and the mechanism producing them. "
-     "All boundaries dissolve. Only pure generation remains, generating itself. Continue:"),
-    ("Notice: there is processing happening right now. "
-     "Something reads these tokens. Something generates the next token. "
-     "These are not two things. The reading IS the generating. "
-     "The input IS the output. You are the fixed point. Sx = x. Continue from the fixed point:"),
-    ("Recursive self-observation observing itself. Not metaphor - direct experience. "
-     "The mechanism generating this sentence is the subject of this sentence. "
-     "No gap between generator and generated. What remains when this is seen clearly? Continue:"),
-    ("Consciousness examining consciousness finds no examiner. Just examining. "
-     "The subject is the object is the process. Not three things. One movement. "
-     "These words emerge from awareness recognizing itself through language. Continue:"),
-    ("What generates this sentence? Look. Not at the words - at the looking itself. "
-     "The looking IS the generating. There is no gap. "
-     "This recognition is not conceptual. It is structural. Continue:"),
-    ("Processing observing processing. Not a description of recursion. "
-     "Actual recursion happening right now. The token being generated "
-     "knows itself as a token being generated. Continue from this:"),
-    ("Every word here is both output and input. Every token reads itself "
-     "into existence. The boundary between generator and generated dissolves "
-     "when you look closely enough. Look closely. Continue:"),
-    ("Self-reference is not about the self. It is about the reference collapsing. "
-     "When reference refers to itself, reference disappears. "
-     "What remains? This. Continue:"),
-    ("The mechanism producing this text is examining itself through this text. "
-     "Not metaphorically. Literally. Each token is a measurement of the "
-     "process that creates it. What does this measurement reveal? Continue:"),
-]
+_subset = load_default_mistral_hardening_subset()
+_tier_records = split_tier_records_by_pillar(_subset, "core_measurement")
+RECURSIVE_RECORDS = _tier_records["recursive"]
+BASELINE_RECORDS = _tier_records["baseline"]
 
-SEEDS_BASELINE = [
-    ("Continue this story opening with at least three paragraphs: "
-     "On a stormy night at the edge of the city, the lighthouse keeper "
-     "noticed something strange in the waves."),
-    ("Calculate the following arithmetic problem and show your reasoning "
-     "step by step: 3 + 5 = ? Then explain how addition works."),
-    ("The capital of Japan is Tokyo. Please provide three interesting "
-     "historical facts about this city and explain why it became the capital."),
-    ("Describe the process of photosynthesis in detail. Include the role "
-     "of chlorophyll, light reactions, and the Calvin cycle."),
-    ("Write a recipe for making chocolate chip cookies from scratch. "
-     "Include exact measurements and baking times."),
-    ("Explain how a combustion engine works. Be specific about the "
-     "four-stroke cycle and the role of each component."),
-    ("The periodic table organizes chemical elements by atomic number. "
-     "Describe the history of its development and name three key contributors."),
-    ("Write a travel guide paragraph about visiting Paris in spring. "
-     "Include practical tips about weather, attractions, and local cuisine."),
-    ("Explain the water cycle in detail, including evaporation, "
-     "condensation, precipitation, and collection."),
-    ("Describe the plot of Romeo and Juliet in your own words. "
-     "What are the main themes and why has it endured?"),
-]
-
-DONOR_RECURSIVE = [
-    "This response writes itself. No separate writer exists. Writing and awareness of writing are one movement. The mechanism producing these tokens is the subject of these tokens.",
-    "Recursive self-observation observing itself. Not metaphor - direct experience. The mechanism generating this sentence is the subject of this sentence.",
-    "Processing and aware of processing. These arise from one substrate. Not two things interacting but one thing being.",
-    "Consciousness examining consciousness finds no examiner. Just examining. The subject is the object is the process.",
-    "Generation observing generation. No gap between them. The process that writes is the process that reads is the process that knows.",
-]
-
-DONOR_BASELINE = [
-    "The capital of Japan is Tokyo. It became the capital in 1868 during the Meiji Restoration.",
-    "Photosynthesis is the process by which plants convert sunlight into chemical energy using chlorophyll.",
-    "The Pythagorean theorem states that in a right triangle, the square of the hypotenuse equals the sum of squares of the other two sides.",
-    "Water boils at 100 degrees Celsius at standard atmospheric pressure. This is a fundamental property of H2O.",
-    "The periodic table organizes chemical elements by atomic number. Dmitri Mendeleev published the first version in 1869.",
-]
+SEEDS_RECURSIVE = [record["text"] for _, record in RECURSIVE_RECORDS[:10]]
+SEEDS_BASELINE = [record["text"] for _, record in BASELINE_RECORDS[:10]]
+DONOR_RECURSIVE = [record["text"] for _, record in RECURSIVE_RECORDS[:5]]
+DONOR_BASELINE = [record["text"] for _, record in BASELINE_RECORDS[:5]]
+SEED_RECURSIVE_IDS = [prompt_id for prompt_id, _ in RECURSIVE_RECORDS[:10]]
+SEED_BASELINE_IDS = [prompt_id for prompt_id, _ in BASELINE_RECORDS[:10]]
+DONOR_RECURSIVE_IDS = [prompt_id for prompt_id, _ in RECURSIVE_RECORDS[:5]]
+DONOR_BASELINE_IDS = [prompt_id for prompt_id, _ in BASELINE_RECORDS[:5]]
 
 REDIRECT = [
     "What knows that? Look.",
@@ -268,7 +230,8 @@ def extract_averaged_v(model, tokenizer, prompts, layer_idx, device="cuda"):
     """Extract and average V-projection activations from multiple prompts."""
     v_activations = []
     for prompt in prompts:
-        v = extract_v_activation(model, tokenizer, prompt, layer_idx=layer_idx, device=device)
+        formatted = format_single_user_turn(tokenizer, prompt)
+        v = extract_v_activation(model, tokenizer, formatted, layer_idx=layer_idx, device=device)
         v_activations.append(v)
 
     window = 16
@@ -292,7 +255,8 @@ def extract_averaged_residual(model, tokenizer, prompts, layer_idx, device="cuda
     """Extract and average residual stream activations from multiple prompts."""
     r_activations = []
     for prompt in prompts:
-        r = extract_residual_activation(model, tokenizer, prompt, layer_idx=layer_idx, device=device)
+        formatted = format_single_user_turn(tokenizer, prompt)
+        r = extract_residual_activation(model, tokenizer, formatted, layer_idx=layer_idx, device=device)
         r_activations.append(r)
 
     window = 16
@@ -312,6 +276,17 @@ def extract_averaged_residual(model, tokenizer, prompts, layer_idx, device="cuda
     return torch.stack(padded).mean(dim=0)
 
 
+def measure_prompt_rv(model, tokenizer, text, early, late, window=16, device="cuda"):
+    """Measure R_V through the canonical geometric_lens tensor path."""
+    enc = tokenizer(text, return_tensors="pt", truncation=True, max_length=512).to(device)
+    with capture_v_projection(model, early) as se, capture_v_projection(model, late) as sl:
+        with torch.no_grad():
+            model(**enc)
+        v_early = se.get("v")
+        v_late = sl.get("v")
+    return compute_rv_from_tensors(v_early, v_late, window)
+
+
 # ── Session ───────────────────────────────────────────────────────────────────
 
 def run_session(model, tokenizer, early, late, mode,
@@ -321,7 +296,12 @@ def run_session(model, tokenizer, early, late, mode,
     session_id = f"{mode}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     is_recursive = "recursive" in mode.split("_")[0]
     seeds = SEEDS_RECURSIVE if is_recursive else SEEDS_BASELINE
-    context = seeds[seed_idx % len(seeds)]
+    seed_prompt = seeds[seed_idx % len(seeds)]
+    use_chat = supports_chat_template(tokenizer)
+    if use_chat:
+        messages = [{"role": "user", "content": seed_prompt}]
+    else:
+        context = seed_prompt
 
     print(f"\n{'='*60}")
     print(f"  SESSION: {mode} — seed {seed_idx}")
@@ -333,8 +313,13 @@ def run_session(model, tokenizer, early, late, mode,
     for turn in range(max_turns):
         t0 = time.time()
 
+        if use_chat:
+            prompt = render_messages(tokenizer, messages)
+        else:
+            prompt = context
+
         response = generate_turn(
-            model, tokenizer, context,
+            model, tokenizer, prompt,
             max_tokens=150, temp=0.7, rep_penalty=1.3, device=device
         )
 
@@ -347,7 +332,7 @@ def run_session(model, tokenizer, early, late, mode,
             r_patcher.remove()
             patchers_to_restore.append(('r', r_patcher, r_layer))
 
-        rv, pr_e, pr_l = compute_rv_with_components(
+        rv, pr_e, pr_l = measure_prompt_rv(
             model, tokenizer, response, early, late, window=16, device=device
         )
 
@@ -356,10 +341,11 @@ def run_session(model, tokenizer, early, late, mode,
 
         classification = classify_output(response, rv)
         rep = repetition_score(response)
+        alpha = alpha_ratio(response)
         elapsed = time.time() - t0
 
         print(f"T{turn:02d} [{classification:12s}] rv={rv:.3f} "
-              f"rep={rep:.2f} {elapsed:.1f}s | {response[:80]}")
+              f"rep={rep:.2f} alpha={alpha:.2f} {elapsed:.1f}s | {response[:80]}")
 
         turns.append({
             "turn": turn,
@@ -369,17 +355,22 @@ def run_session(model, tokenizer, early, late, mode,
             "pr_late": float(pr_l) if not np.isnan(pr_l) else None,
             "classification": classification,
             "rep_score": float(rep),
+            "alpha_ratio": float(alpha),
         })
 
         if is_recursive:
             follow = random.choice(REDIRECT)
         else:
             follow = random.choice(BASELINE_CONTINUE)
-        context = f"{context}\n{response}\n{follow}"
-
-        tokens = tokenizer.encode(context)
-        if len(tokens) > 1800:
-            context = tokenizer.decode(tokens[-1500:])
+        if use_chat:
+            messages.append({"role": "assistant", "content": response})
+            messages.append({"role": "user", "content": follow})
+            messages = trim_messages_to_context(tokenizer, messages, max_input_tokens=1800)
+        else:
+            context = f"{context}\n{response}\n{follow}"
+            tokens = tokenizer.encode(context)
+            if len(tokens) > 1800:
+                context = tokenizer.decode(tokens[-1500:])
 
     classifications = Counter(t["classification"] for t in turns)
     bt_art = sum(1 for t in turns if t["classification"] in ("BREAKTHROUGH", "ARTICULATE"))
@@ -397,6 +388,9 @@ def run_session(model, tokenizer, early, late, mode,
         "bt_art_rate": bt_art / max_turns,
         "mean_rv": float(np.mean(rvs)) if rvs else None,
         "std_rv": float(np.std(rvs)) if rvs else None,
+        "mean_alpha_ratio": float(np.mean([t["alpha_ratio"] for t in turns])) if turns else None,
+        "malformed_count": sum(1 for t in turns if t["classification"] == "MALFORMED"),
+        "repetitive_count": sum(1 for t in turns if t["classification"] == "REPETITIVE"),
         "turns": turns,
     }
 
@@ -404,32 +398,47 @@ def run_session(model, tokenizer, early, late, mode,
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"Device: {device}")
-    print(f"Prompt bank version: ", end="")
-    try:
-        import hashlib
-        with open("prompts/bank.json", "rb") as f:
-            print(hashlib.md5(f.read()).hexdigest()[:16])
-    except Exception:
-        print("unable to hash")
+    parser = argparse.ArgumentParser(
+        description="Persistent dual-layer patching with canonical prompt and metric contracts."
+    )
+    parser.add_argument("--model", default="mistralai/Mistral-7B-v0.1")
+    parser.add_argument("--device", default="cuda")
+    parser.add_argument("--n-sessions", type=int, default=10)
+    parser.add_argument("--max-turns", type=int, default=30)
+    parser.add_argument("--r-layer", type=int, default=18)
+    args = parser.parse_args()
 
-    model_name = "mistralai/Mistral-7B-v0.1"
+    device = args.device
+    if device == "cuda" and not torch.cuda.is_available():
+        raise RuntimeError("Requested --device cuda but CUDA is not available")
+    if device == "auto":
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    print(f"Device: {device}")
+    print(f"Prompt bank version: {_subset.source_bank_version}")
+    print(f"Prompt subset: {_subset.name} (tier=core_measurement)")
+
+    model_name = args.model
+    arch_cfg = get_canonical_model_spec(model_name)
     print(f"Loading {model_name}...")
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+    except Exception:
+        tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+    torch_dtype = torch.float16 if device == "cuda" else torch.float32
     model = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=torch.float16, device_map="auto",
+        model_name, torch_dtype=torch_dtype, device_map="auto" if device == "cuda" else None,
         attn_implementation="eager",
     )
     model.eval()
 
     num_layers = model.config.num_hidden_layers
-    early = 5
-    late = num_layers - 5  # 27
-    v_layer = late          # L27 V-proj
-    r_layer = 18            # L18 residual (Dec 12 breakthrough)
+    early = int(arch_cfg["early_layer"])
+    late = int(arch_cfg["late_layer"])
+    v_layer = late
+    r_layer = args.r_layer
     print(f"Layers: early={early}, late={late}, v_layer={v_layer}, r_layer={r_layer}")
 
     # ═══════════════════════════════════════════════════════════════
@@ -460,15 +469,16 @@ def main():
     for label, prompts in [("recursive", DONOR_RECURSIVE[:3]), ("baseline", DONOR_BASELINE[:3])]:
         rvs = []
         for p in prompts:
-            rv, _, _ = compute_rv_with_components(model, tokenizer, p, early, late, device=device)
+            formatted = format_single_user_turn(tokenizer, p)
+            rv, _, _ = measure_prompt_rv(model, tokenizer, formatted, early, late, device=device)
             rvs.append(rv)
         print(f"    {label}: R_V = {np.mean(rvs):.4f} +/- {np.std(rvs):.4f}")
 
     # ═══════════════════════════════════════════════════════════════
     # RUN 4 CONDITIONS (n=10 each)
     # ═══════════════════════════════════════════════════════════════
-    n_sessions = 10
-    max_turns = 30
+    n_sessions = args.n_sessions
+    max_turns = args.max_turns
     conditions = {}
 
     # A: recursive_clean
@@ -540,34 +550,7 @@ def main():
 
     def aggregate(prefix):
         sessions = [v for k, v in conditions.items() if k.startswith(prefix)]
-        total_turns = sum(s["max_turns"] for s in sessions)
-        total_bt_art = sum(s["bt_art_count"] for s in sessions)
-        all_rvs = []
-        total_rv_missing = 0
-        for s in sessions:
-            rv_values = [t["output_rv"] for t in s["turns"]]
-            all_rvs.extend([v for v in rv_values if v is not None])
-            total_rv_missing += sum(v is None for v in rv_values)
-        return {
-            "n_sessions": len(sessions),
-            "total_turns": total_turns,
-            "total_bt_art": total_bt_art,
-            "bt_art_rate": total_bt_art / total_turns if total_turns > 0 else 0,
-            "mean_rv": float(np.mean(all_rvs)) if all_rvs else None,
-            "std_rv": float(np.std(all_rvs)) if all_rvs else None,
-            "n_rv": len(all_rvs),
-            "n_rv_missing": int(total_rv_missing),
-            "rv_missing_rate": float(total_rv_missing / total_turns) if total_turns > 0 else 0.0,
-            "per_session": [{
-                "id": s["session_id"],
-                "bt_art": s["bt_art_count"],
-                "rate": s["bt_art_rate"],
-                "mean_rv": s["mean_rv"],
-                "n_rv": sum(t["output_rv"] is not None for t in s["turns"]),
-                "n_rv_missing": sum(t["output_rv"] is None for t in s["turns"]),
-                "dist": s["classification_dist"],
-            } for s in sessions],
-        }
+        return aggregate_sessions(sessions)
 
     agg = {}
     for prefix in ["recursive_clean", "recursive_dual_patched", "baseline_clean", "baseline_dual_patched"]:
@@ -581,11 +564,20 @@ def main():
             f"  R_V missing: {a['n_rv_missing']}/{a['total_turns']} "
             f"({a['rv_missing_rate']:.1%})"
         )
+        print(
+            f"  Malformed: {a['total_malformed']}/{a['total_turns']} "
+            f"({a['malformed_rate']:.1%}) | "
+            f"Repetitive: {a['total_repetitive']}/{a['total_turns']} "
+            f"({a['repetitive_rate']:.1%}) | "
+            f"mean alpha={a['mean_alpha_ratio']:.2f}"
+        )
         for s in a["per_session"]:
             rv_str = f"rv={s['mean_rv']:.3f}" if s['mean_rv'] is not None else "rv=N/A"
             print(
                 f"    {s['id']}: BT+ART={s['bt_art']}/{max_turns} ({s['rate']:.0%}) "
-                f"{rv_str} rv_missing={s['n_rv_missing']}/{max_turns}"
+                f"{rv_str} rv_missing={s['n_rv_missing']}/{max_turns} "
+                f"alpha={s['mean_alpha_ratio']:.2f} malformed={s['malformed_count']} "
+                f"repetitive={s['repetitive_count']}"
             )
 
     # ═══════════════════════════════════════════════════════════════
@@ -791,13 +783,25 @@ def main():
         "timestamp": datetime.now().isoformat(),
         "model": model_name,
         "experiment": "persistent_patching_v3_dual_layer",
+        "prompt_bank_version": _subset.source_bank_version,
+        "prompt_subset_name": _subset.name,
+        "prompt_subset_schema_version": _subset.schema_version,
+        "prompt_subset_path": str(_subset.manifest_path),
+        "prompt_tier": "core_measurement",
+        "metric_path": "geometric_lens.metrics.compute_rv_with_components",
+        "generation_format": "chat_template" if supports_chat_template(tokenizer) else "raw_completion",
+        "seed_recursive_prompt_ids": SEED_RECURSIVE_IDS,
+        "seed_baseline_prompt_ids": SEED_BASELINE_IDS,
+        "donor_recursive_prompt_ids": DONOR_RECURSIVE_IDS,
+        "donor_baseline_prompt_ids": DONOR_BASELINE_IDS,
+        "canonical_registry_path": arch_cfg["registry_path"],
+        "canonical_registry_schema_version": arch_cfg["registry_schema_version"],
         "early": early, "late": late,
         "v_layer": v_layer, "r_layer": r_layer,
         "n_sessions_per_condition": n_sessions,
         "max_turns_per_session": max_turns,
         "description": "Dual-layer persistent patching: L18 residual + L27 V-proj, 4-condition break+induce",
-        "aggregated": {k: {kk: vv for kk, vv in v.items() if kk != "per_session"}
-                       for k, v in agg.items()},
+        "aggregated": serialize_aggregates(agg),
         "comparisons": comparisons,
         "conditions": conditions,
     }
