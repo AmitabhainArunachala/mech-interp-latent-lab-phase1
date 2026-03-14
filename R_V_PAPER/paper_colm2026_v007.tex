@@ -234,7 +234,7 @@ Table~\ref{tab:params} specifies the canonical measurement parameters for Mistra
 For other architectures, $L_\mathrm{early}$ and $L_\mathrm{late}$ are set at equivalent relative
 depths (${\approx}15\%$ and ${\approx}84\%$ of total layers).
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{\textbf{Canonical $\RV$ measurement parameters for Mistral-7B-v0.1.}}
 \label{tab:params}
@@ -329,7 +329,7 @@ Three candidate drivers must be separated: (i)~recursive syntactic structure alo
 (ii)~introspective vocabulary alone, and (iii)~their combination.
 We constructed six prompt families spanning these conditions and measured $\RV$ for each.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{\textbf{Double dissociation results (Mistral-7B).}
          Contraction requires \emph{both} recursive structure and introspective semantics.
@@ -400,7 +400,7 @@ and a \emph{power-up pipeline} (model-specific prompt optimization, $n \geq 50$ 
 Two architectures show consistent contraction; two show pipeline-dependent sign reversal;
 one is null (Table~\ref{tab:crossarch}).
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{\textbf{Cross-architecture effect sizes.}
          Signed Cohen's $\dcohen$: negative = contraction, positive = expansion.
@@ -489,19 +489,19 @@ We patch three component types (residual stream, V-projection, MLP) across all
 32 layers of base Mistral-7B ($n = 100$ prompts; 96 valid recursive measurements), replacing activations
 from a recursive prompt with those from a matched baseline and measuring the resulting shift in $\RV$.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{\textbf{Path patching summary (32 layers $\times$ 3 components, base Mistral-7B).}
          The refreshed base sweep points to an early residual gate rather than a late V-projection mechanism site.}
 \label{tab:pathpatch}
 \smallskip
-\begin{tabular}{lccl}
+\begin{tabular}{lccp{5.5cm}}
 \toprule
 \textbf{Component} & \textbf{Peak $\dcohen$} & \textbf{Peak layer} & \textbf{Pattern} \\
 \midrule
-Residual stream & $4.14$ & L5 & Dominant early break across L0--L5; late layers reverse sign \\
-V-projection    & $2.55$ & L5 & Early-only effect; late layers (e.g., L27) reverse sign \\
-MLP             & $2.17$ & L4 & Moderate early effect, smaller than residual and V-proj \\
+Residual stream & $4.14$ & L5 & Dominant early break (L0--L5); late layers reverse sign \\
+V-projection    & $2.55$ & L5 & Early-only; late layers (L27) reverse sign \\
+MLP             & $2.17$ & L4 & Moderate early, smaller than residual and V-proj \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -530,7 +530,7 @@ measurements, sharply reducing the ambiguity that affected the older even-layer 
 We simultaneously patch the residual stream at L18 and V-projection at L27
 ($n = 300$ turns per condition, 10 sessions of 30 turns each).
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{\textbf{Dual-layer ablation (base Mistral-7B; $n = 300$ turns per condition).}
          BREAK = recursive $\to$ dual-patched.
@@ -592,7 +592,7 @@ Keeping the established late controller at L25 fixed, very small L4 MLP interven
 improve recursive behavior without increasing baseline spillover to the same degree as the earlier
 coarse early-layer steers.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{\textbf{Subtle multisite steering (base Mistral-7B follow-ups).}
          Discovery and confirmation runs support a controller-plus-assist picture:
@@ -862,7 +862,7 @@ The three underpowered tests are marginal effects in small Pythia models.
 \section{Comprehensive Effect Size Table}
 \label{app:effects}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Selected effect sizes with current provenance status.}
 \label{tab:effects}
@@ -963,7 +963,7 @@ The double dissociation (Section~\ref{sec:dissociation}) uses six families:
 \section{Full Head Sweep: Top 10 Heads}
 \label{app:heads}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.95\linewidth]{fig_full_head_sweep_32x32.pdf}
 \caption{\textbf{Full 32$\times$32 head sweep (Mistral-7B, $n = 100$ per condition).}
@@ -973,7 +973,7 @@ The double dissociation (Section~\ref{sec:dissociation}) uses six families:
 \label{fig:head_sweep}
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Top 10 attention heads by entropy separation in the refreshed base $n = 100$ head sweep.}
 \small
@@ -1026,7 +1026,7 @@ top tokens are ``own'', ``Own'', ``answer'' while bottom tokens are ``same'', ``
 \section{SVD Circuit Taxonomy}
 \label{app:svd_taxonomy}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{SVD decomposition of seven circuit heads in Mistral-7B ($n = 100$ per condition).}
 \label{tab:svd_heads}
@@ -1051,7 +1051,7 @@ Role: Compress = rank contracts for recursive ($\dcohen < -0.5$);
 Diversify = rank expands ($\dcohen > 0.5$);
 Neutral = $|\dcohen| < 0.5$.
 Stability: mean cosine similarity of top-1 singular vector across prompts (recursive / baseline).
-The last column is a qualitative placeholder; the locked claims in this draft are the numeric rank and stability values.
+The SV1 semantic axis column reports exploratory token-axis alignment; the locked claims are the numeric rank and stability values.
 \end{table}
 
 
