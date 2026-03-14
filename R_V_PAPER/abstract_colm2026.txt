@@ -4,7 +4,7 @@ COLM 2026 Abstract Submission
 Title:
 Geometric Signatures of Self-Referential Processing in Transformer Representations
 
-Abstract (248 words):
+Abstract (249 words):
 
 When transformers process prompts about their own processing, their internal
 representations undergo a distinctive geometric contraction that is absent
@@ -14,21 +14,21 @@ dimensionality at a late integration layer to an early reference layer. R_V
 below 1 indicates that late-layer representations occupy fewer effective
 dimensions than early-layer representations of the same input.
 
-In a recovered base Mistral-7B-v0.1 cross-architecture validation artifact,
-self-referential prompts produce contraction with Cohen's d = -2.26
-(p = 2.24e-19, n = 45 matched pairs), but the strongest recovered evidence is
-causal rather than headline-canonical. Dual-layer ablation at n = 300 reduces
-recursive behavioral markers from 56.0% to 3.7% (OR = 33.4, Cohen's h = 1.31).
-Available base-model path patching localizes the strongest causal site to the
-early residual stream (peak L4, d = 1.96), while V-projection effects are
-smaller, supporting a readout-not-mechanism interpretation. A base n = 20 full
-head sweep finds 606 of 1,024 heads with entropy separation, peaking at L10H20
-(d = 3.90). Cross-architecture evidence is mixed rather than universal: locked
-rows support contraction in Mistral-7B and Qwen2.5-7B, sign reversal across
-pipelines in OPT-6.7B and GPT-2 XL, and a null power-up result in Pythia-1.4B.
-Additional base canonical runs are still required before stronger universality
-claims. As a practical detector, R_V < 0.737 identifies self-referential
-content with AUROC = 0.909.
+In a canonical base-model prompt-pass rerun, Mistral-7B-v0.1 shows strong
+contraction (Cohen's d = -1.85, 95% CI [-2.27, -1.52], n_self=96,
+n_base=100). A recovered cross-architecture artifact and an independent
+power-up pipeline confirm the direction (d = -2.26 at n = 45 matched pairs;
+d = -1.66 at n = 75/77). Base-model path patching localizes the strongest
+causal site to the early residual stream (peak L5, d = 4.14), with weaker V-
+projection effects (peak L5, d = 2.55), supporting a readout-not-mechanism
+interpretation. Dual-layer ablation at n = 300 turns per condition confirms
+necessity: recursive behavioral markers drop from 44.7% to 0.0% (session
+d = 2.71). A micro-window multisite follow-up identifies a subtle L4 MLP
+assist that improves recursive behavior beyond bridge-only steering (47.2%
+vs 44.4%). Cross-architecture evidence is mixed: locked rows support contraction
+in Mistral-7B and Qwen2.5-7B, sign reversal in OPT-6.7B and GPT-2 XL, and a
+null result in Pythia-1.4B. As a detector, R_V < 0.737 identifies self-
+referential content with AUROC = 0.909.
 
 Keywords:
 1. Mechanistic interpretability
