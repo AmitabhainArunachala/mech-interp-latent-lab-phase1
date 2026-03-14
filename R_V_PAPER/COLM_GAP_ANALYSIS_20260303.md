@@ -199,8 +199,8 @@ The 6-group design reveals a DOUBLE DISSOCIATION:
 ## REVISED TIMELINE (Adjusted for What Exists)
 
 ### Phase 1: Statistical Polish (March 3-7) — 5 days
-- [ ] FDR correction across all comparisons
-- [ ] Cluster-robust standard errors
+- [x] FDR correction across all comparisons
+- [x] Cluster-robust standard errors
 - [ ] Post-hoc perplexity re-pairing (Method A)
 - [ ] Bootstrap CIs for transfer efficiency
 - [ ] Verify 27.7% behavioral transfer claim (which metric?)

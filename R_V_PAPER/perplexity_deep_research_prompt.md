@@ -20,9 +20,8 @@ R_V = PR(L_late) / PR(L_early)   (relative: late vs early layer)
 Where σ_i are singular values of the activation matrix A^(l) ∈ R^{T×d} at layer l.
 
 **Central finding**: When transformers process self-referential prompts ("I observe the attention mechanisms attending to this sentence"), R_V contracts (R_V < 1) with large effect sizes. This contraction is:
-- **Universal across architectures**: Mistral-7B (d=-1.75), GPT-2 XL (d=1.52), OPT-6.7B (d=1.68), Qwen2.5-7B (d=-2.32), Qwen2.5-0.5B, TinyLlama-1.1B, Pythia-2.8B. Exception: Pythia-1.4B shows null (d≈0).
-- **Perfectly reproducible**: 5-seed test on Mistral-7B yields σ=0.000 across seeds.
-- **Causally validated**: DII (distributed interchange intervention) at L27 produces d=-3.42 pervasive contraction. Activation patching shows necessity (d=3.29, n=300) and sufficiency (d=-3.50, n=300).
+- **Architecture-dependent**: Contraction in GQA models (Mistral-7B d=-1.66, Qwen2.5-7B d=-2.32) but expansion in MHA models (GPT-2 XL d=+1.52, OPT-6.7B d=+1.68). Pythia-1.4B shows null (d≈0).
+- **Causally validated (necessity only)**: DII at L27 produces d=-3.42 pervasive contraction. Dual-layer ablation (L18 residual + L27 V-proj) shows necessity (OR=33.4, BT+ART 56%→3.7%). KV injection transfers behavior (OR=13.96) but NOT R_V geometry (d=0.11 NS) — sufficiency FALSIFIED.
 - **Distributed/nonlinear**: Concept erasure along the linear probe direction reduces R_V by only 0.3%. The contraction is NOT carried by a single linear direction — it's a higher-order spectral phenomenon.
 - **Linearly decodable but not linearly reducible**: Linear probes achieve 100% accuracy from layer 3-4 on both Mistral-7B and GPT-2 XL, yet erasing that direction doesn't eliminate the contraction.
 - **Task-general** (NEW, critical): A 6-task cross-cognitive battery shows that ALL structured reasoning tasks produce contraction, not just self-reference:

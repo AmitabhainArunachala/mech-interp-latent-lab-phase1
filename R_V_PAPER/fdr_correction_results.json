@@ -1,0 +1,223 @@
+{
+  "summary": {
+    "n_tests": 21,
+    "alpha": 0.05,
+    "n_significant_uncorrected": 14,
+    "n_significant_fdr": 14,
+    "alphaSidak": 0.002439557259668823,
+    "alphaBonf": 0.002380952380952381,
+    "method": "Benjamini-Hochberg FDR (manual implementation)"
+  },
+  "tests": [
+    {
+      "id": "A1",
+      "name": "Mistral-7B cross-arch",
+      "p_value": 1.21e-17,
+      "cohens_d": -2.259,
+      "n": 90,
+      "p_value_corrected": 1.2705000000000001e-16,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "A2",
+      "name": "OPT-6.7B cross-arch",
+      "p_value": 1.49e-13,
+      "cohens_d": -1.836,
+      "n": 90,
+      "p_value_corrected": 6.258e-13,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "A3",
+      "name": "GPT2-XL cross-arch",
+      "p_value": 5.42e-07,
+      "cohens_d": -1.143,
+      "n": 90,
+      "p_value_corrected": 1.4227499999999998e-06,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "A4",
+      "name": "Qwen2.5-7B cross-arch",
+      "p_value": 0.000966,
+      "cohens_d": -0.719,
+      "n": 90,
+      "p_value_corrected": 0.0016905,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "A5",
+      "name": "Pythia-1.4B cross-arch",
+      "p_value": 0.084,
+      "cohens_d": -0.311,
+      "n": 126,
+      "p_value_corrected": 0.11025,
+      "reject_null": false,
+      "fdr_status": "FAIL"
+    },
+    {
+      "id": "B1",
+      "name": "Mistral-7B power-up",
+      "p_value": 1.06e-15,
+      "cohens_d": -1.656,
+      "n": 152,
+      "p_value_corrected": 5.565e-15,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "B2",
+      "name": "OPT-6.7B power-up",
+      "p_value": 3.34e-16,
+      "cohens_d": 1.683,
+      "n": 138,
+      "p_value_corrected": 2.338e-15,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "B3",
+      "name": "GPT2-XL power-up",
+      "p_value": 1.1e-12,
+      "cohens_d": 1.516,
+      "n": 125,
+      "p_value_corrected": 3.85e-12,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "B4",
+      "name": "Qwen2.5-7B power-up",
+      "p_value": 1.16e-17,
+      "cohens_d": -2.318,
+      "n": 124,
+      "p_value_corrected": 1.2705000000000001e-16,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "B5",
+      "name": "Pythia-1.4B power-up",
+      "p_value": 0.876,
+      "cohens_d": -0.006,
+      "n": 120,
+      "p_value_corrected": 0.876,
+      "reject_null": false,
+      "fdr_status": "FAIL"
+    },
+    {
+      "id": "C1",
+      "name": "Qwen2.5-3B scaling",
+      "p_value": 1.65e-06,
+      "cohens_d": 1.254,
+      "n": 70,
+      "p_value_corrected": 3.1500000000000003e-06,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "C2",
+      "name": "Phi-3-mini scaling",
+      "p_value": 0.011,
+      "cohens_d": 0.625,
+      "n": 77,
+      "p_value_corrected": 0.016499999999999997,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "C3",
+      "name": "Pythia-6.9B scaling",
+      "p_value": 0.068,
+      "cohens_d": 0.478,
+      "n": 68,
+      "p_value_corrected": 0.0952,
+      "reject_null": false,
+      "fdr_status": "FAIL"
+    },
+    {
+      "id": "C4",
+      "name": "Pythia-1B scaling",
+      "p_value": 0.343,
+      "cohens_d": -0.283,
+      "n": 68,
+      "p_value_corrected": 0.40483333333333327,
+      "reject_null": false,
+      "fdr_status": "FAIL"
+    },
+    {
+      "id": "C5",
+      "name": "Pythia-1.4B scaling",
+      "p_value": 0.605,
+      "cohens_d": 0.166,
+      "n": 59,
+      "p_value_corrected": 0.63525,
+      "reject_null": false,
+      "fdr_status": "FAIL"
+    },
+    {
+      "id": "C6",
+      "name": "Pythia-2.8B scaling",
+      "p_value": 0.347,
+      "cohens_d": 0.253,
+      "n": 65,
+      "p_value_corrected": 0.40483333333333327,
+      "reject_null": false,
+      "fdr_status": "FAIL"
+    },
+    {
+      "id": "C7",
+      "name": "Mistral-7B scaling",
+      "p_value": 7.78e-09,
+      "cohens_d": -1.736,
+      "n": 78,
+      "p_value_corrected": 2.3339999999999996e-08,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "D1",
+      "name": "L27 activation patching (main)",
+      "p_value": 1e-06,
+      "cohens_d": -3.558,
+      "n": 45,
+      "p_value_corrected": 2.1e-06,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "D2",
+      "name": "Random noise control",
+      "p_value": 1e-06,
+      "cohens_d": 7.16,
+      "n": 45,
+      "p_value_corrected": 2.1e-06,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "D3",
+      "name": "Shuffled tokens control",
+      "p_value": 0.01,
+      "cohens_d": -0.1,
+      "n": 45,
+      "p_value_corrected": 0.016153846153846154,
+      "reject_null": true,
+      "fdr_status": "PASS"
+    },
+    {
+      "id": "D4",
+      "name": "Wrong layer (L21) control",
+      "p_value": 0.49,
+      "cohens_d": 0.046,
+      "n": 45,
+      "p_value_corrected": 0.541578947368421,
+      "reject_null": false,
+      "fdr_status": "FAIL"
+    }
+  ]
+}
