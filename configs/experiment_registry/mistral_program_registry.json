@@ -48,13 +48,7 @@
         "sustained_gnani_v3_v3"
       ],
       "notes": "High-n persistence lane; required before scaffold ablations and later bundle work.",
-      "warnings": [],
-      "active_lease": {
-        "pod_name": "everyday_aqua_limpet-migration",
-        "run_id": "20260313_100241",
-        "current_step": "finished",
-        "updated_at": "2026-03-13T12:19:02Z"
-      }
+      "warnings": []
     },
     {
       "queue_unit_id": "scaffold_ablation_v1",
@@ -249,7 +243,13 @@
         "pca_vs_mean_steering_v1"
       ],
       "notes": "Direct causal comparison of mean-difference steering vs PCA-derived steering objects on held-out prompts.",
-      "warnings": []
+      "warnings": [],
+      "active_lease": {
+        "pod_name": "annual_fuchsia_goldfish",
+        "run_id": "20260314_020333",
+        "current_step": "finished",
+        "updated_at": "2026-03-14T02:27:28Z"
+      }
     },
     {
       "queue_unit_id": "anchor_bundle_v2",
@@ -867,5 +867,5 @@
       }
     }
   ],
-  "reconciled_at": "2026-03-14T16:50:41Z"
+  "reconciled_at": "2026-03-14T16:52:24Z"
 }

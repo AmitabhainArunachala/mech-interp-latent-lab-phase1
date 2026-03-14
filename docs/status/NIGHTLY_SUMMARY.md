@@ -1,6 +1,6 @@
 # Nightly Summary
 
-Generated: 2026-03-14 16:50:41Z
+Generated: 2026-03-14 16:52:24Z
 
 ## Program Status
 - Registry: `configs/experiment_registry/mistral_program_registry.json`
@@ -11,7 +11,7 @@ Generated: 2026-03-14 16:50:41Z
 - Claim registry: `22` locked, `5` provisional, `8` invalidated
 
 ## Active Pods
-- No running pod leases recorded.
+- `d08fc4e9d529` [STALE]: queue `mistral_pca_vs_mean_steering_v1`, run `20260314_020135`, step `pca_vs_mean_steering_v1`, updated `2026-03-14T02:01:36Z`
 
 ## Ready Next Queue Units
 - No ready queue units. Either the queue is exhausted or dependencies are still blocked.
@@ -29,6 +29,7 @@ Generated: 2026-03-14 16:50:41Z
 - `anchor_bundle_v2` [completed] -> `results/phase1_mechanism/runs/20260314_025048_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v2/summary.json`
 
 ## State Warnings
+- Stale running lease: `d08fc4e9d529` queue `mistral_pca_vs_mean_steering_v1` last updated `2026-03-14T02:01:36Z`
 - Blocked queue unit: `sufficiency_bundle_v2` waiting on `unknown`
 - Result not represented in registry: `subspace_component_steering_l27_v1` -> `results/subspace_component_steering_l27_v1/20260314_144647/summary.json`
 - Result not represented in registry: `induced_persistence_followup_v2_long` -> `results/induced_persistence_followup_v2_long/20260314_151808/summary.json`
@@ -39,6 +40,6 @@ Generated: 2026-03-14 16:50:41Z
 - Result not represented in registry: `anchor_bundle_v4_generalization_controls` -> `results/phase1_mechanism/runs/20260314_115501_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v4_generalization_controls/summary.json`
 
 ## Recommended Next Actions
-- No launch is ready; add the next approved queue unit or mark completed work in the registry.
+- Reconcile or clear stale leases before trusting any queue status.
 - Harvest remote artifacts before updating paper-facing claims.
 - Treat orphan or stale state as operational debt, not as evidence.

@@ -1,0 +1,37 @@
+{
+  "updated_at": "2026-03-13T10:05:00Z",
+  "results": [
+    {
+      "run_id": "20260313_081418",
+      "queue_group": "bridge_quality",
+      "experiment_id": "bridge_low_trunc_quality_n24",
+      "status": "completed",
+      "artifact_path": "results/phase1_cross_architecture/runs/20260313_081519_multi_token_bridge_mistral_7b_bridge_low_trunc_quality_n24/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "configs/canonical/multi_token_bridge_mistral_low_trunc_quality_n24.json",
+      "prompt_contract": "heldout_causal_slice",
+      "metric_path": "src/metrics/behavioral_bridge.py + src/pipelines/canonical/multi_token_bridge.py",
+      "claim_ids": [
+        "BRIDGE_QUALITY_LOW_TRUNC"
+      ],
+      "updated_at": "2026-03-13T08:33:57Z"
+    },
+    {
+      "run_id": "20260313_081418",
+      "queue_group": "bridge_quality",
+      "experiment_id": "bridge_true_longgen_quality_n18",
+      "status": "completed",
+      "artifact_path": "results/phase1_cross_architecture/runs/20260313_083452_multi_token_bridge_mistral_7b_bridge_true_longgen_quality_n18/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "configs/canonical/multi_token_bridge_mistral_true_longgen_quality_n18.json",
+      "prompt_contract": "heldout_causal_slice",
+      "metric_path": "src/metrics/behavioral_bridge.py + src/pipelines/canonical/multi_token_bridge.py",
+      "claim_ids": [
+        "BRIDGE_QUALITY_LONGGEN"
+      ],
+      "updated_at": "2026-03-13T08:52:19Z"
+    }
+  ]
+}
