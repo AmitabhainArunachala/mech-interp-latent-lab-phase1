@@ -202,6 +202,12 @@ _KNOWN_SPECS = {
         suppressor_heads=[(27, 18), (27, 26)],
         amplifier_heads=[(27, 2), (27, 10)],
     ),
+    "mistralai/Mistral-7B-Instruct-v0.2": ModelSpec(
+        name="mistralai/Mistral-7B-Instruct-v0.2",
+        num_layers=32, num_heads=32, num_kv_heads=8,
+        hidden_size=4096, head_dim=128, proj_kind="separate",
+        early_layer=5, late_layer=27,
+    ),
     "facebook/opt-6.7b": ModelSpec(
         name="facebook/opt-6.7b",
         num_layers=32, num_heads=32, num_kv_heads=32,
@@ -216,6 +222,48 @@ _KNOWN_SPECS = {
     ),
     "Qwen/Qwen2.5-7B": ModelSpec(
         name="Qwen/Qwen2.5-7B",
+        num_layers=28, num_heads=28, num_kv_heads=4,
+        hidden_size=3584, head_dim=128, proj_kind="separate",
+        early_layer=4, late_layer=23,
+    ),
+    "Qwen/Qwen2.5-7B-Instruct": ModelSpec(
+        name="Qwen/Qwen2.5-7B-Instruct",
+        num_layers=28, num_heads=28, num_kv_heads=4,
+        hidden_size=3584, head_dim=128, proj_kind="separate",
+        early_layer=4, late_layer=23,
+    ),
+    "google/gemma-2-9b": ModelSpec(
+        name="google/gemma-2-9b",
+        num_layers=42, num_heads=16, num_kv_heads=8,
+        hidden_size=3584, head_dim=256, proj_kind="separate",
+        early_layer=6, late_layer=35,
+    ),
+    "google/gemma-2-9b-it": ModelSpec(
+        name="google/gemma-2-9b-it",
+        num_layers=42, num_heads=16, num_kv_heads=8,
+        hidden_size=3584, head_dim=256, proj_kind="separate",
+        early_layer=6, late_layer=35,
+    ),
+    "meta-llama/Meta-Llama-3-8B": ModelSpec(
+        name="meta-llama/Meta-Llama-3-8B",
+        num_layers=32, num_heads=32, num_kv_heads=8,
+        hidden_size=4096, head_dim=128, proj_kind="separate",
+        early_layer=5, late_layer=27,
+    ),
+    "meta-llama/Meta-Llama-3-8B-Instruct": ModelSpec(
+        name="meta-llama/Meta-Llama-3-8B-Instruct",
+        num_layers=32, num_heads=32, num_kv_heads=8,
+        hidden_size=4096, head_dim=128, proj_kind="separate",
+        early_layer=5, late_layer=27,
+    ),
+    "mistralai/Mixtral-8x7B-v0.1": ModelSpec(
+        name="mistralai/Mixtral-8x7B-v0.1",
+        num_layers=32, num_heads=32, num_kv_heads=8,
+        hidden_size=4096, head_dim=128, proj_kind="separate",
+        early_layer=5, late_layer=27,
+    ),
+    "mistralai/Mixtral-8x7B-Instruct-v0.1": ModelSpec(
+        name="mistralai/Mixtral-8x7B-Instruct-v0.1",
         num_layers=32, num_heads=32, num_kv_heads=8,
         hidden_size=4096, head_dim=128, proj_kind="separate",
         early_layer=5, late_layer=27,

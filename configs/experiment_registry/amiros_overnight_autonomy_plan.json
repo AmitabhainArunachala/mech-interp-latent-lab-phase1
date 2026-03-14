@@ -1,0 +1,128 @@
+{
+  "schema_version": "amiros_overnight_autonomy_v1",
+  "program": "AMIROS_OVERNIGHT_AUTONOMY",
+  "poll_seconds": 300,
+  "max_hours_default": 8,
+  "pods": [
+    {
+      "pod_name": "everyday_aqua_limpet-migration",
+      "host": "root@213.173.102.102",
+      "port": 10061,
+      "ssh_key": "~/.ssh/id_ed25519",
+      "remote_repo": "/workspace/mech-interp-latent-lab-phase1",
+      "lane_id": "induced_persistence_lane"
+    },
+    {
+      "pod_name": "annual_fuchsia_goldfish",
+      "host": "root@198.13.252.23",
+      "port": 10916,
+      "ssh_key": "~/.ssh/id_ed25519",
+      "remote_repo": "/workspace/mech-interp-latent-lab-phase1",
+      "lane_id": "subspace_component_lane"
+    }
+  ],
+  "lanes": [
+    {
+      "lane_id": "induced_persistence_lane",
+      "steps": [
+        {
+          "step_id": "induced_persistence_followup_v1",
+          "experiment_id": "induced_persistence_followup_v1",
+          "queue_group": "mistral_induced_persistence_followup_v1",
+          "session_name": "mistral_induced_persistence_followup_v1",
+          "artifact_glob": "results/induced_persistence_followup_v1/*/summary.json",
+          "mode": "observed"
+        },
+        {
+          "step_id": "induced_persistence_followup_v2_long",
+          "experiment_id": "induced_persistence_followup_v2_long",
+          "queue_group": "mistral_induced_persistence_followup_v2_long",
+          "session_name": "mistral_induced_persistence_followup_v2_long",
+          "artifact_glob": "results/induced_persistence_followup_v2_long/*/summary.json",
+          "mode": "launch",
+          "launcher": "scripts/runpod_mistral_induced_persistence_followup_queue.sh",
+          "sync_paths": [
+            "scripts/induced_persistence_followup.py",
+            "scripts/runpod_mistral_induced_persistence_followup_queue.sh"
+          ],
+          "decision_rule": "induced_persistence_long",
+          "env": {
+            "OUTPUT_STEM": "induced_persistence_followup_v2_long",
+            "QUEUE_GROUP": "mistral_induced_persistence_followup_v2_long",
+            "EXPERIMENT_ID": "induced_persistence_followup_v2_long",
+            "CLAIM_ID": "INDUCED_PERSISTENCE_FOLLOWUP_V2_LONG",
+            "SOURCE_RUN_DIR": "results/phase1_mechanism/runs/20260314_133516_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v5_ordinary_baselines_confirmatory",
+            "BASELINE_GROUPS": "baseline_math,baseline_factual,baseline_creative",
+            "TOP_K_PER_GROUP": "2",
+            "MAX_TURNS": "24",
+            "MAX_NEW_TOKENS": "128",
+            "TEMPERATURE": "0.7",
+            "REP_PENALTY": "1.35"
+          }
+        }
+      ]
+    },
+    {
+      "lane_id": "subspace_component_lane",
+      "steps": [
+        {
+          "step_id": "subspace_component_steering_l27_v1",
+          "experiment_id": "subspace_component_steering_l27_v1",
+          "queue_group": "mistral_subspace_component_steering_l27_v1",
+          "session_name": "mistral_subspace_component_steering_l27_v1",
+          "artifact_glob": "results/subspace_component_steering_l27_v1/*/summary.json",
+          "mode": "observed"
+        },
+        {
+          "step_id": "subspace_component_steering_l25_v1",
+          "experiment_id": "subspace_component_steering_l25_v1",
+          "queue_group": "mistral_subspace_component_steering_l25_v1",
+          "session_name": "mistral_subspace_component_steering_l25_v1",
+          "artifact_glob": "results/subspace_component_steering_l25_v1/*/summary.json",
+          "mode": "launch",
+          "launcher": "scripts/runpod_mistral_subspace_component_steering_queue.sh",
+          "sync_paths": [
+            "scripts/subspace_component_steering.py",
+            "scripts/runpod_mistral_subspace_component_steering_queue.sh"
+          ],
+          "env": {
+            "OUTPUT_STEM": "subspace_component_steering_l25_v1",
+            "QUEUE_GROUP": "mistral_subspace_component_steering_l25_v1",
+            "EXPERIMENT_ID": "subspace_component_steering_l25_v1",
+            "CLAIM_ID": "SUBSPACE_COMPONENT_STEERING_L25_V1",
+            "LAYER": "25",
+            "ALPHAS": "2.0,3.0,4.0",
+            "TRAIN_PER_GROUP": "6",
+            "TEST_PER_GROUP": "6",
+            "GENERATION_SEEDS": "101,202,303"
+          }
+        },
+        {
+          "step_id": "subspace_component_steering_l5_v1",
+          "experiment_id": "subspace_component_steering_l5_v1",
+          "queue_group": "mistral_subspace_component_steering_l5_v1",
+          "session_name": "mistral_subspace_component_steering_l5_v1",
+          "artifact_glob": "results/subspace_component_steering_l5_v1/*/summary.json",
+          "mode": "launch",
+          "launcher": "scripts/runpod_mistral_subspace_component_steering_queue.sh",
+          "sync_paths": [
+            "scripts/subspace_component_steering.py",
+            "scripts/runpod_mistral_subspace_component_steering_queue.sh"
+          ],
+          "decision_rule": "subspace_component_progression",
+          "env": {
+            "OUTPUT_STEM": "subspace_component_steering_l5_v1",
+            "QUEUE_GROUP": "mistral_subspace_component_steering_l5_v1",
+            "EXPERIMENT_ID": "subspace_component_steering_l5_v1",
+            "CLAIM_ID": "SUBSPACE_COMPONENT_STEERING_L5_V1",
+            "LAYER": "5",
+            "ALPHAS": "2.0,3.0,4.0",
+            "TRAIN_PER_GROUP": "6",
+            "TEST_PER_GROUP": "6",
+            "GENERATION_SEEDS": "101,202,303"
+          }
+        }
+      ]
+    }
+  ]
+}

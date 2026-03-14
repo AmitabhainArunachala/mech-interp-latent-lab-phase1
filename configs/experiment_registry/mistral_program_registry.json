@@ -1,0 +1,871 @@
+{
+  "schema_version": "mistral-program-v2",
+  "program": "mistral_control_system",
+  "date": "2026-03-13",
+  "canonical_model_family": "BASE_V01",
+  "canonical_model_name": "mistralai/Mistral-7B-v0.1",
+  "claim_registry_path": "docs/status/CLAIM_REGISTRY.md",
+  "results_index_path": "configs/experiment_registry/results_index.json",
+  "pod_leases_path": "configs/experiment_registry/pod_leases.json",
+  "queue_units": [
+    {
+      "queue_unit_id": "bridge_quality_v1",
+      "queue_group": "bridge_quality",
+      "stage": "bridge_quality",
+      "priority": 10,
+      "status": "completed",
+      "depends_on_queue_units": [],
+      "expected_runtime_hours": 1.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_bridge_quality_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "bridge_low_trunc_quality_n24",
+        "bridge_true_longgen_quality_n18"
+      ],
+      "notes": "Quality-focused bridge lane already landed and should remain upstream of bundle work.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "persistence_v3",
+      "queue_group": "mistral_persistence_v3",
+      "stage": "persistence",
+      "priority": 20,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "bridge_quality_v1"
+      ],
+      "expected_runtime_hours": 2.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_persistence_v3_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "self_feeding_loop_v3",
+        "sustained_gnani_v3_v3"
+      ],
+      "notes": "High-n persistence lane; required before scaffold ablations and later bundle work.",
+      "warnings": [],
+      "active_lease": {
+        "pod_name": "everyday_aqua_limpet-migration",
+        "run_id": "20260313_100241",
+        "current_step": "finished",
+        "updated_at": "2026-03-13T12:19:02Z"
+      }
+    },
+    {
+      "queue_unit_id": "scaffold_ablation_v1",
+      "queue_group": "mistral_scaffold_ablation_v1",
+      "stage": "persistence_scaffold",
+      "priority": 30,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "persistence_v3"
+      ],
+      "expected_runtime_hours": 3.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_scaffold_ablation_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "scaffold_ablation_ladder_v1",
+        "sustained_gnani_v3_v4"
+      ],
+      "notes": "First overnight follow-up after persistence hardening.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "control_bundle_v1",
+      "queue_group": "mistral_control_bundle_v1",
+      "stage": "sufficiency_bundle",
+      "priority": 40,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "scaffold_ablation_v1"
+      ],
+      "expected_runtime_hours": 4.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_control_bundle_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "control_bundle_gate_bridge_v1"
+      ],
+      "notes": "Gate discovery plus multisite bundle run; do not launch before scaffold results are in.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "sufficiency_bundle_v2",
+      "queue_group": "mistral_sufficiency_bundle_v2",
+      "stage": "sufficiency_bundle",
+      "priority": 50,
+      "status": "blocked",
+      "depends_on_queue_units": [
+        "control_bundle_v1"
+      ],
+      "expected_runtime_hours": 3.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_sufficiency_bundle_v2_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "bridge_low_trunc_confirmatory_n24",
+        "bridge_true_longgen_n18",
+        "self_feeding_loop_v2",
+        "sustained_gnani_v3_v2"
+      ],
+      "notes": "Follow-on bundle lane only if the control bundle remains coherent.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "scaffold_ablation_confirm_v1",
+      "queue_group": "mistral_scaffold_ablation_confirm_v1",
+      "stage": "persistence_scaffold",
+      "priority": 55,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "scaffold_ablation_v1"
+      ],
+      "expected_runtime_hours": 1.8,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_scaffold_ablation_confirmatory_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "scaffold_ablation_ladder_v2"
+      ],
+      "notes": "Higher-n confirmatory scaffold ladder to lock the minimal-anchor result.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "l4_micro4_confirm_v1",
+      "queue_group": "mistral_l4_micro4_confirm_v1",
+      "stage": "sufficiency_bundle",
+      "priority": 60,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "control_bundle_v1"
+      ],
+      "expected_runtime_hours": 2.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_l4_micro4_confirmatory_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "l4_micro4_confirmatory_focus_v1"
+      ],
+      "notes": "Independent higher-power confirmatory rerun of the strongest micro4 L4/L25 lane.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "anchor_bundle_v1",
+      "queue_group": "mistral_anchor_bundle_v1",
+      "stage": "sufficiency_bundle",
+      "priority": 70,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "scaffold_ablation_confirm_v1",
+        "l4_micro4_confirm_v1"
+      ],
+      "expected_runtime_hours": 2.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_anchor_bundle_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "anchor_bundle_v1"
+      ],
+      "notes": "Minimal-anchor sufficiency lane: anchor-only, bridge-only, anchor+bridge, and anchor+L4+bridge.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "subspace_probe_v1",
+      "queue_group": "mistral_subspace_probe_v1",
+      "stage": "subspace_probe",
+      "priority": 80,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "bridge_quality_v1",
+        "control_bundle_v1"
+      ],
+      "expected_runtime_hours": 2.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_subspace_probe_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "subspace_probe_v1"
+      ],
+      "notes": "Orthogonal subspace lane: probe-derived self-ref direction, V-space alignment, and concept erasure.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "eigenstate_subspace_v1",
+      "queue_group": "mistral_eigenstate_subspace_v1",
+      "stage": "subspace_probe",
+      "priority": 90,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "subspace_probe_v1"
+      ],
+      "expected_runtime_hours": 2.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_eigenstate_subspace_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "eigenstate_subspace_v1"
+      ],
+      "notes": "PCA/eigenstate follow-up to test whether the regime is a small structured subspace rather than a single direction.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "pca_vs_mean_steering_v1",
+      "queue_group": "mistral_pca_vs_mean_steering_v1",
+      "stage": "subspace_probe",
+      "priority": 100,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "eigenstate_subspace_v1"
+      ],
+      "expected_runtime_hours": 2.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_pca_vs_mean_steering_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "pca_vs_mean_steering_v1"
+      ],
+      "notes": "Direct causal comparison of mean-difference steering vs PCA-derived steering objects on held-out prompts.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "anchor_bundle_v2",
+      "queue_group": "mistral_anchor_bundle_v2",
+      "stage": "sufficiency_bundle",
+      "priority": 110,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_bundle_v1",
+        "scaffold_ablation_confirm_v1"
+      ],
+      "expected_runtime_hours": 3.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_anchor_bundle_v2_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "anchor_bundle_v2"
+      ],
+      "notes": "Focused baseline-induction confirmation around anchor, L25 bridge, and the best subtle L4 assist.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "pca_vs_mean_steering_v2",
+      "queue_group": "mistral_pca_vs_mean_steering_v2",
+      "stage": "subspace_probe",
+      "priority": 120,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "pca_vs_mean_steering_v1"
+      ],
+      "expected_runtime_hours": 2.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_pca_vs_mean_steering_v2_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "pca_vs_mean_steering_v2"
+      ],
+      "notes": "Higher-power confirmation of PCA-style steering with a rank-3 projected steering object.",
+      "warnings": []
+    }
+  ],
+  "experiments": [
+    {
+      "experiment_id": "bridge_low_trunc_quality_n24",
+      "launch_unit_id": "bridge_quality_v1",
+      "stage": "bridge_quality",
+      "status": "completed",
+      "script_or_pipeline": "src.pipelines.run",
+      "config_path": "configs/canonical/multi_token_bridge_mistral_low_trunc_quality_n24.json",
+      "prompt_contract": "heldout_causal_slice",
+      "metric_path": "src/metrics/behavioral_bridge.py + src/pipelines/canonical/multi_token_bridge.py",
+      "artifact_glob": "results/phase1_cross_architecture/runs/*mistral_7b_bridge_low_trunc_quality_n24*/summary.json",
+      "artifact_path": "results/phase1_cross_architecture/runs/20260313_081519_multi_token_bridge_mistral_7b_bridge_low_trunc_quality_n24/summary.json",
+      "queue_group": "bridge_quality",
+      "priority": 10,
+      "expected_runtime_hours": 0.5,
+      "claim_ids": [
+        "BRIDGE_QUALITY_LOW_TRUNC"
+      ],
+      "latest_result": {
+        "run_id": "20260313_081418",
+        "status": "completed",
+        "updated_at": "2026-03-13T08:33:57Z",
+        "artifact_path": "results/phase1_cross_architecture/runs/20260313_081519_multi_token_bridge_mistral_7b_bridge_low_trunc_quality_n24/summary.json"
+      },
+      "artifact_exists_local": true,
+      "warnings": []
+    },
+    {
+      "experiment_id": "bridge_true_longgen_quality_n18",
+      "launch_unit_id": "bridge_quality_v1",
+      "stage": "bridge_quality",
+      "status": "completed",
+      "script_or_pipeline": "src.pipelines.run",
+      "config_path": "configs/canonical/multi_token_bridge_mistral_true_longgen_quality_n18.json",
+      "prompt_contract": "heldout_causal_slice",
+      "metric_path": "src/metrics/behavioral_bridge.py + src/pipelines/canonical/multi_token_bridge.py",
+      "artifact_glob": "results/phase1_cross_architecture/runs/*mistral_7b_bridge_true_longgen_quality_n18*/summary.json",
+      "artifact_path": "results/phase1_cross_architecture/runs/20260313_083452_multi_token_bridge_mistral_7b_bridge_true_longgen_quality_n18/summary.json",
+      "queue_group": "bridge_quality",
+      "priority": 10,
+      "expected_runtime_hours": 0.5,
+      "claim_ids": [
+        "BRIDGE_QUALITY_LONGGEN"
+      ],
+      "latest_result": {
+        "run_id": "20260313_081418",
+        "status": "completed",
+        "updated_at": "2026-03-13T08:52:19Z",
+        "artifact_path": "results/phase1_cross_architecture/runs/20260313_083452_multi_token_bridge_mistral_7b_bridge_true_longgen_quality_n18/summary.json"
+      },
+      "artifact_exists_local": true,
+      "warnings": []
+    },
+    {
+      "experiment_id": "self_feeding_loop_v3",
+      "launch_unit_id": "persistence_v3",
+      "stage": "persistence",
+      "status": "completed",
+      "script_or_pipeline": "scripts/self_feeding_loop.py",
+      "config_path": "",
+      "prompt_contract": "internal_script_protocol",
+      "metric_path": "scripts/self_feeding_loop.py",
+      "artifact_glob": "results/self_feeding_loop_bundle_v3/*/self_feeding_summary_*.json",
+      "artifact_path": "results/self_feeding_loop_bundle_v3/self_feeding_summary_20260313_111543.json",
+      "queue_group": "mistral_persistence_v3",
+      "priority": 20,
+      "expected_runtime_hours": 1.2,
+      "claim_ids": [
+        "PERSISTENCE_SELF_FEED"
+      ],
+      "latest_result": {
+        "run_id": "20260313_100241",
+        "status": "completed",
+        "updated_at": "2026-03-13T12:21:18Z",
+        "artifact_path": "results/self_feeding_loop_bundle_v3/self_feeding_summary_20260313_111543.json"
+      },
+      "artifact_exists_local": true,
+      "warnings": []
+    },
+    {
+      "experiment_id": "sustained_gnani_v3_v3",
+      "launch_unit_id": "persistence_v3",
+      "stage": "persistence",
+      "status": "completed",
+      "script_or_pipeline": "scripts/sustained_gnani_v3.py",
+      "config_path": "",
+      "prompt_contract": "internal_script_protocol",
+      "metric_path": "scripts/sustained_gnani_v3.py",
+      "artifact_glob": "results/sustained_gnani_v3_bundle_v3/*/comparison_summary.json",
+      "artifact_path": "results/sustained_gnani_v3_bundle_v3/comparison_summary.json",
+      "queue_group": "mistral_persistence_v3",
+      "priority": 20,
+      "expected_runtime_hours": 1.3,
+      "claim_ids": [
+        "PERSISTENCE_GNANI"
+      ],
+      "latest_result": {
+        "run_id": "20260313_100241",
+        "status": "completed",
+        "updated_at": "2026-03-13T12:21:18Z",
+        "artifact_path": "results/sustained_gnani_v3_bundle_v3/comparison_summary.json"
+      },
+      "artifact_exists_local": true,
+      "warnings": []
+    },
+    {
+      "experiment_id": "scaffold_ablation_ladder_v1",
+      "launch_unit_id": "scaffold_ablation_v1",
+      "stage": "persistence_scaffold",
+      "status": "completed",
+      "script_or_pipeline": "scripts/self_feeding_loop.py",
+      "config_path": "scripts/self_feeding_loop.py --condition-set scaffold_ladder",
+      "prompt_contract": "internal_script_protocol",
+      "metric_path": "scripts/self_feeding_loop.py",
+      "artifact_glob": "results/self_feeding_scaffold_ablation_v1/*/self_feeding_summary_*.json",
+      "artifact_path": "results/self_feeding_scaffold_ablation_v1/20260313_135628/self_feeding_summary_20260313_153730.json",
+      "queue_group": "mistral_scaffold_ablation_v1",
+      "priority": 30,
+      "expected_runtime_hours": 1.6,
+      "claim_ids": [
+        "SCAFFOLD_ABLATION_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260313_135628",
+        "status": "completed",
+        "updated_at": "2026-03-13T15:37:36Z",
+        "artifact_path": "results/self_feeding_scaffold_ablation_v1/20260313_135628/self_feeding_summary_20260313_153730.json"
+      }
+    },
+    {
+      "experiment_id": "sustained_gnani_v3_v4",
+      "launch_unit_id": "scaffold_ablation_v1",
+      "stage": "persistence_scaffold",
+      "status": "completed",
+      "script_or_pipeline": "scripts/sustained_gnani_v3.py",
+      "config_path": "scripts/sustained_gnani_v3.py --n-recursive 16 --n-baseline 16",
+      "prompt_contract": "internal_script_protocol",
+      "metric_path": "scripts/sustained_gnani_v3.py",
+      "artifact_glob": "results/sustained_gnani_v3_bundle_v4/*/comparison_summary.json",
+      "artifact_path": "results/sustained_gnani_v3_bundle_v4/20260313_135628/comparison_summary.json",
+      "queue_group": "mistral_scaffold_ablation_v1",
+      "priority": 30,
+      "expected_runtime_hours": 1.4,
+      "claim_ids": [
+        "PERSISTENCE_GNANI_V4"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260313_135628",
+        "status": "completed",
+        "updated_at": "2026-03-13T16:45:01Z",
+        "artifact_path": "results/sustained_gnani_v3_bundle_v4/20260313_135628/comparison_summary.json"
+      }
+    },
+    {
+      "experiment_id": "control_bundle_gate_bridge_v1",
+      "launch_unit_id": "control_bundle_v1",
+      "stage": "sufficiency_bundle",
+      "status": "completed",
+      "script_or_pipeline": "scripts/runpod_mistral_control_bundle_v1_queue.sh",
+      "config_path": "configs/canonical/causal_state_benchmark_v2_gate_L5.json + L3 + L7 + generated v4 multisite",
+      "prompt_contract": "heldout_causal_slice",
+      "metric_path": "causal_state_benchmark_v2/v4 multisite",
+      "artifact_glob": "results/phase1_mechanism/runs/*mistral_multisite_gate_L*_bridge_L25*/summary.json",
+      "artifact_path": "results/phase1_mechanism/runs/20260313_152416_causal_state_benchmark_v4_multisite_mistral_multisite_gate_L5_bridge_L25/summary.json",
+      "queue_group": "mistral_control_bundle_v1",
+      "priority": 40,
+      "expected_runtime_hours": 4.0,
+      "claim_ids": [
+        "CONTROL_BUNDLE_V1"
+      ],
+      "latest_result": {
+        "run_id": "20260313_131809",
+        "status": "completed",
+        "updated_at": "2026-03-13T16:32:00Z",
+        "artifact_path": "results/phase1_mechanism/runs/20260313_152416_causal_state_benchmark_v4_multisite_mistral_multisite_gate_L5_bridge_L25/summary.json"
+      },
+      "artifact_exists_local": true,
+      "warnings": []
+    },
+    {
+      "experiment_id": "bridge_low_trunc_confirmatory_n24",
+      "launch_unit_id": "sufficiency_bundle_v2",
+      "stage": "sufficiency_bundle",
+      "status": "queued",
+      "script_or_pipeline": "src.pipelines.run",
+      "config_path": "configs/canonical/multi_token_bridge_mistral_low_trunc_confirmatory_n24.json",
+      "prompt_contract": "heldout_causal_slice",
+      "metric_path": "src/metrics/behavioral_bridge.py + src/pipelines/canonical/multi_token_bridge.py",
+      "artifact_glob": "results/phase1_cross_architecture/runs/*mistral_7b_bridge_low_trunc_confirmatory_n24*/summary.json",
+      "artifact_path": "results/phase1_cross_architecture/runs/20260313_055425_multi_token_bridge_mistral_7b_bridge_low_trunc_confirmatory_n24/summary.json",
+      "queue_group": "mistral_sufficiency_bundle_v2",
+      "priority": 50,
+      "expected_runtime_hours": 0.8,
+      "claim_ids": [
+        "BRIDGE_CONFIRMATORY_LOW_TRUNC"
+      ],
+      "artifact_exists_local": true,
+      "warnings": []
+    },
+    {
+      "experiment_id": "bridge_true_longgen_n18",
+      "launch_unit_id": "sufficiency_bundle_v2",
+      "stage": "sufficiency_bundle",
+      "status": "queued",
+      "script_or_pipeline": "src.pipelines.run",
+      "config_path": "configs/canonical/multi_token_bridge_mistral_true_longgen_n18.json",
+      "prompt_contract": "heldout_causal_slice",
+      "metric_path": "src/metrics/behavioral_bridge.py + src/pipelines/canonical/multi_token_bridge.py",
+      "artifact_glob": "results/phase1_cross_architecture/runs/*mistral_7b_bridge_true_longgen_n18*/summary.json",
+      "artifact_path": "results/phase1_cross_architecture/runs/20260313_062646_multi_token_bridge_mistral_7b_bridge_true_longgen_n18/summary.json",
+      "queue_group": "mistral_sufficiency_bundle_v2",
+      "priority": 50,
+      "expected_runtime_hours": 0.7,
+      "claim_ids": [
+        "BRIDGE_CONFIRMATORY_LONGGEN"
+      ],
+      "artifact_exists_local": true,
+      "warnings": []
+    },
+    {
+      "experiment_id": "self_feeding_loop_v2",
+      "launch_unit_id": "sufficiency_bundle_v2",
+      "stage": "sufficiency_bundle",
+      "status": "queued",
+      "script_or_pipeline": "scripts/self_feeding_loop.py",
+      "config_path": "",
+      "prompt_contract": "internal_script_protocol",
+      "metric_path": "scripts/self_feeding_loop.py",
+      "artifact_glob": "results/self_feeding_loop_bundle_v2/*/self_feeding_summary_*.json",
+      "artifact_path": "",
+      "queue_group": "mistral_sufficiency_bundle_v2",
+      "priority": 50,
+      "expected_runtime_hours": 1.0,
+      "claim_ids": [
+        "PERSISTENCE_SELF_FEED_V2"
+      ],
+      "artifact_exists_local": false,
+      "warnings": []
+    },
+    {
+      "experiment_id": "sustained_gnani_v3_v2",
+      "launch_unit_id": "sufficiency_bundle_v2",
+      "stage": "sufficiency_bundle",
+      "status": "queued",
+      "script_or_pipeline": "scripts/sustained_gnani_v3.py",
+      "config_path": "",
+      "prompt_contract": "internal_script_protocol",
+      "metric_path": "scripts/sustained_gnani_v3.py",
+      "artifact_glob": "results/sustained_gnani_v3_bundle_v2/*/comparison_summary.json",
+      "artifact_path": "",
+      "queue_group": "mistral_sufficiency_bundle_v2",
+      "priority": 50,
+      "expected_runtime_hours": 1.0,
+      "claim_ids": [
+        "PERSISTENCE_GNANI_V2"
+      ],
+      "artifact_exists_local": false,
+      "warnings": []
+    },
+    {
+      "experiment_id": "scaffold_ablation_ladder_v2",
+      "launch_unit_id": "scaffold_ablation_confirm_v1",
+      "stage": "persistence_scaffold",
+      "status": "completed",
+      "script_or_pipeline": "scripts/self_feeding_loop.py",
+      "config_path": "scripts/self_feeding_loop.py --condition-set scaffold_ladder --n-sessions 16",
+      "prompt_contract": "internal_script_protocol",
+      "metric_path": "scripts/self_feeding_loop.py",
+      "artifact_glob": "results/self_feeding_scaffold_ablation_v2/*/self_feeding_summary_*.json",
+      "artifact_path": "results/self_feeding_scaffold_ablation_v2/20260313_210159/self_feeding_summary_20260313_234114.json",
+      "queue_group": "mistral_scaffold_ablation_confirm_v1",
+      "priority": 55,
+      "expected_runtime_hours": 1.8,
+      "claim_ids": [
+        "SCAFFOLD_ABLATION_V2"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260313_210159",
+        "status": "completed",
+        "updated_at": "2026-03-13T23:41:20Z",
+        "artifact_path": "results/self_feeding_scaffold_ablation_v2/20260313_210159/self_feeding_summary_20260313_234114.json"
+      }
+    },
+    {
+      "experiment_id": "l4_micro4_confirmatory_focus_v1",
+      "launch_unit_id": "l4_micro4_confirm_v1",
+      "stage": "sufficiency_bundle",
+      "status": "completed",
+      "script_or_pipeline": "src.pipelines.run",
+      "config_path": "configs/canonical/causal_state_benchmark_v4_multisite_mistral_l4_mlp_micro4_confirmatory_focus_v1.json",
+      "prompt_contract": "heldout_causal_slice",
+      "metric_path": "causal_state_benchmark_v4_multisite + summarize_micro_window_multisite",
+      "artifact_glob": "results/phase1_mechanism/runs/*mistral_multisite_l4_mlp_micro4_confirmatory_focus_v1*/summary.json",
+      "artifact_path": "results/phase1_mechanism/runs/20260313_210217_causal_state_benchmark_v4_multisite_mistral_multisite_l4_mlp_micro4_confirmatory_focus_v1/summary.json",
+      "queue_group": "mistral_l4_micro4_confirm_v1",
+      "priority": 60,
+      "expected_runtime_hours": 2.0,
+      "claim_ids": [
+        "L4_MICRO4_CONFIRM_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260313_210158",
+        "status": "completed",
+        "updated_at": "2026-03-13T21:49:34Z",
+        "artifact_path": "results/phase1_mechanism/runs/20260313_210217_causal_state_benchmark_v4_multisite_mistral_multisite_l4_mlp_micro4_confirmatory_focus_v1/summary.json"
+      }
+    },
+    {
+      "experiment_id": "anchor_bundle_v1",
+      "launch_unit_id": "anchor_bundle_v1",
+      "stage": "sufficiency_bundle",
+      "status": "completed",
+      "script_or_pipeline": "src.pipelines.run",
+      "config_path": "configs/canonical/causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v1.json",
+      "prompt_contract": "heldout_causal_slice_plus_anchor_suffix",
+      "metric_path": "causal_state_benchmark_v4_multisite + anchor_bundle_ranking",
+      "artifact_glob": "results/phase1_mechanism/runs/*mistral_anchor_bundle_v1*/summary.json",
+      "artifact_path": "results/phase1_mechanism/runs/20260314_014025_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v1/summary.json",
+      "queue_group": "mistral_anchor_bundle_v1",
+      "priority": 70,
+      "expected_runtime_hours": 2.5,
+      "claim_ids": [
+        "ANCHOR_BUNDLE_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260314_013918",
+        "status": "completed",
+        "updated_at": "2026-03-14T02:36:09Z",
+        "artifact_path": "results/phase1_mechanism/runs/20260314_014025_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v1/summary.json"
+      }
+    },
+    {
+      "experiment_id": "subspace_probe_v1",
+      "launch_unit_id": "subspace_probe_v1",
+      "stage": "subspace_probe",
+      "status": "completed",
+      "script_or_pipeline": "scripts/linear_probe_selfref.py",
+      "config_path": "scripts/linear_probe_selfref.py --recursive-groups L3_deeper,L4_full,L5_refined --baseline-groups baseline_factual,baseline_math,baseline_creative --n-per-group 10",
+      "prompt_contract": "heldout_causal_slice_even_group_sampling",
+      "metric_path": "linear_probe + V-singular alignment + concept erasure",
+      "artifact_glob": "results/linear_probe_subspace_v1/*/probe_analysis_*.json",
+      "artifact_path": "results/linear_probe_subspace_v1/20260314_013917/probe_analysis_20260314_014027.json",
+      "queue_group": "mistral_subspace_probe_v1",
+      "priority": 80,
+      "expected_runtime_hours": 2.0,
+      "claim_ids": [
+        "SUBSPACE_PROBE_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260314_013917",
+        "status": "completed",
+        "updated_at": "2026-03-14T01:40:29Z",
+        "artifact_path": "results/linear_probe_subspace_v1/20260314_013917/probe_analysis_20260314_014027.json"
+      }
+    },
+    {
+      "experiment_id": "eigenstate_subspace_v1",
+      "launch_unit_id": "eigenstate_subspace_v1",
+      "stage": "subspace_probe",
+      "status": "completed",
+      "script_or_pipeline": "src/pipelines/discovery/eigenstate_direction_finder.py",
+      "config_path": "src/pipelines/discovery/eigenstate_direction_finder.py --recursive-groups L5_refined,L4_full,L3_deeper --baseline-groups baseline_creative,baseline_math,baseline_factual --n-per-group 4",
+      "prompt_contract": "long_prompt_even_group_sampling",
+      "metric_path": "eigenstate metrics + PCA direction analysis + cross-prompt consistency",
+      "artifact_glob": "results/phase3_attention/runs/*_eigenstate_subspace_v1/summary.json",
+      "artifact_path": "results/phase3_attention/runs/20260314_014444_eigenstate_subspace_v1/summary.json",
+      "queue_group": "mistral_eigenstate_subspace_v1",
+      "priority": 90,
+      "expected_runtime_hours": 2.5,
+      "claim_ids": [
+        "EIGENSTATE_SUBSPACE_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260314_014444",
+        "status": "completed",
+        "updated_at": "2026-03-14T01:45:06Z",
+        "artifact_path": "results/phase3_attention/runs/20260314_014444_eigenstate_subspace_v1/summary.json"
+      }
+    },
+    {
+      "experiment_id": "pca_vs_mean_steering_v1",
+      "launch_unit_id": "pca_vs_mean_steering_v1",
+      "stage": "subspace_probe",
+      "status": "completed",
+      "script_or_pipeline": "scripts/pca_vs_mean_steering.py",
+      "config_path": "scripts/pca_vs_mean_steering.py --layer 27 --train-per-group 8 --test-per-group 4 --generation-seeds 101,202,303 --alphas 1.0,2.0,3.0",
+      "prompt_contract": "heldout_causal_slice_even_split",
+      "metric_path": "classify_output + score_behavior_strict + compute_rv_with_components",
+      "artifact_glob": "results/pca_vs_mean_steering_v1/*/summary.json",
+      "artifact_path": "results/pca_vs_mean_steering_v1/20260314_020333/summary.json",
+      "queue_group": "mistral_pca_vs_mean_steering_v1",
+      "priority": 100,
+      "expected_runtime_hours": 2.0,
+      "claim_ids": [
+        "PCA_VS_MEAN_STEERING_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260314_020333",
+        "status": "completed",
+        "updated_at": "2026-03-14T02:27:28Z",
+        "artifact_path": "results/pca_vs_mean_steering_v1/20260314_020333/summary.json"
+      }
+    },
+    {
+      "experiment_id": "anchor_bundle_v2",
+      "launch_unit_id": "anchor_bundle_v2",
+      "stage": "sufficiency_bundle",
+      "status": "completed",
+      "script_or_pipeline": "src.pipelines.run",
+      "config_path": "configs/canonical/causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v2.json",
+      "prompt_contract": "heldout_causal_slice_plus_anchor_suffix_v2",
+      "metric_path": "causal_state_benchmark_v4_multisite + anchor_bundle_v2_ranking",
+      "artifact_glob": "results/phase1_mechanism/runs/*mistral_anchor_bundle_v2*/summary.json",
+      "artifact_path": "results/phase1_mechanism/runs/20260314_025048_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v2/summary.json",
+      "queue_group": "mistral_anchor_bundle_v2",
+      "priority": 110,
+      "expected_runtime_hours": 3.0,
+      "claim_ids": [
+        "ANCHOR_BUNDLE_V2"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260314_024944",
+        "status": "completed",
+        "updated_at": "2026-03-14T04:19:58Z",
+        "artifact_path": "results/phase1_mechanism/runs/20260314_025048_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v2/summary.json"
+      }
+    },
+    {
+      "experiment_id": "pca_vs_mean_steering_v2",
+      "launch_unit_id": "pca_vs_mean_steering_v2",
+      "stage": "subspace_probe",
+      "status": "completed",
+      "script_or_pipeline": "scripts/pca_vs_mean_steering.py",
+      "config_path": "scripts/pca_vs_mean_steering.py --layer 27 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303,404,505 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "classify_output + score_behavior_strict + compute_rv_with_components",
+      "artifact_glob": "results/pca_vs_mean_steering_v2/*/summary.json",
+      "artifact_path": "results/pca_vs_mean_steering_v2/20260314_024943/summary.json",
+      "queue_group": "mistral_pca_vs_mean_steering_v2",
+      "priority": 120,
+      "expected_runtime_hours": 2.5,
+      "claim_ids": [
+        "PCA_VS_MEAN_STEERING_V2"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260314_024943",
+        "status": "completed",
+        "updated_at": "2026-03-14T04:07:42Z",
+        "artifact_path": "results/pca_vs_mean_steering_v2/20260314_024943/summary.json"
+      }
+    },
+    {
+      "queue_unit_id": "anchor_bundle_v3_champion_controls",
+      "queue_group": "mistral_anchor_bundle_v3_champion_controls",
+      "stage": "sufficiency_bundle",
+      "priority": 130,
+      "status": "running",
+      "depends_on_queue_units": [
+        "anchor_bundle_v2"
+      ],
+      "expected_runtime_hours": 2.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_anchor_bundle_v3_champion_controls_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "anchor_bundle_v3_champion_controls"
+      ],
+      "notes": "Champion and matched-control induction test for the strongest anchor plus bridge conditions.",
+      "warnings": [
+        "running_without_lease"
+      ],
+      "artifact_exists_local": false
+    },
+    {
+      "queue_unit_id": "pca_subspace_ablation_v1",
+      "queue_group": "mistral_pca_subspace_ablation_v1",
+      "stage": "subspace_probe",
+      "priority": 140,
+      "status": "running",
+      "depends_on_queue_units": [
+        "pca_vs_mean_steering_v2"
+      ],
+      "expected_runtime_hours": 1.6,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_pca_subspace_ablation_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "pca_subspace_ablation_v1"
+      ],
+      "notes": "Projection-ablation comparison of mean-difference, PCA-1D, and PCA subspace objects.",
+      "warnings": [
+        "running_without_lease"
+      ],
+      "artifact_exists_local": false
+    },
+    {
+      "experiment_id": "anchor_bundle_v3_champion_controls",
+      "launch_unit_id": "anchor_bundle_v3_champion_controls",
+      "stage": "sufficiency_bundle",
+      "status": "completed",
+      "script_or_pipeline": "src.pipelines.run",
+      "config_path": "configs/canonical/causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v3_champion_controls.json",
+      "prompt_contract": "champion_vs_matched_controls",
+      "metric_path": "causal_state_benchmark_v4_multisite + champion_control_induction_ranking",
+      "artifact_glob": "results/phase1_mechanism/runs/*mistral_anchor_bundle_v3_champion_controls*/summary.json",
+      "artifact_path": "results/phase1_mechanism/runs/20260314_102606_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v3_champion_controls/summary.json",
+      "queue_group": "mistral_anchor_bundle_v3_champion_controls",
+      "priority": 130,
+      "expected_runtime_hours": 2.5,
+      "claim_ids": [
+        "ANCHOR_BUNDLE_V3_CHAMPION"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260314_102449",
+        "status": "completed",
+        "updated_at": "2026-03-14T10:59:25Z",
+        "artifact_path": "results/phase1_mechanism/runs/20260314_102606_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v3_champion_controls/summary.json"
+      }
+    },
+    {
+      "experiment_id": "pca_subspace_ablation_v1",
+      "launch_unit_id": "pca_subspace_ablation_v1",
+      "stage": "subspace_probe",
+      "status": "completed",
+      "script_or_pipeline": "scripts/pca_subspace_ablation.py",
+      "config_path": "scripts/pca_subspace_ablation.py --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 0.5,1.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "projection_ablation + classify_output + score_behavior_strict + compute_rv_with_components",
+      "artifact_glob": "results/pca_subspace_ablation_v1/*/summary.json",
+      "artifact_path": "results/pca_subspace_ablation_v1/20260314_102447/summary.json",
+      "queue_group": "mistral_pca_subspace_ablation_v1",
+      "priority": 140,
+      "expected_runtime_hours": 1.6,
+      "claim_ids": [
+        "PCA_SUBSPACE_ABLATION_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260314_102447",
+        "status": "completed",
+        "updated_at": "2026-03-14T10:57:34Z",
+        "artifact_path": "results/pca_subspace_ablation_v1/20260314_102447/summary.json"
+      }
+    }
+  ],
+  "reconciled_at": "2026-03-14T16:50:41Z"
+}

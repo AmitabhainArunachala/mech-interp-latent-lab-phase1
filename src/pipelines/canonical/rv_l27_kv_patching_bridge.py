@@ -21,6 +21,7 @@ from scipy import stats
 from transformers.cache_utils import DynamicCache
 
 from prompts.loader import PromptLoader
+from prompts.subsets import load_default_mistral_hardening_subset, split_tier_records_by_pillar
 from src.core.models import load_model, set_seed
 from src.core.patching import PersistentVPatcher, extract_v_activation
 from src.metrics.behavior_strict import score_behavior_strict
@@ -39,6 +40,61 @@ def _safe_mean(values: List[float]) -> Optional[float]:
     if not clean:
         return None
     return float(np.mean(clean))
+
+
+def _load_prompt_pairs(
+    loader: PromptLoader,
+    *,
+    params: Dict[str, Any],
+    seed: int,
+    n_pairs: int,
+) -> Tuple[List[Tuple[Tuple[str, str, Optional[str]], Tuple[str, str, Optional[str]]]], Optional[str], Optional[str]]:
+    """Resolve prompt pairs from frozen subset contract or legacy group lists."""
+    prompt_subset_name = params.get("prompt_subset_name")
+    prompt_tier = params.get("prompt_tier")
+    rng = random.Random(seed)
+
+    if prompt_subset_name or prompt_tier:
+        subset = load_default_mistral_hardening_subset(loader=loader)
+        requested_name = str(prompt_subset_name or subset.name)
+        if requested_name != subset.name:
+            raise ValueError(
+                f"Unsupported prompt subset '{requested_name}' for rv_l27_kv_patching_bridge; "
+                f"expected '{subset.name}'"
+            )
+        tier_name = str(prompt_tier or "core_measurement")
+        split = split_tier_records_by_pillar(subset, tier_name)
+        rec_items = [
+            (prompt_id, record["text"], record.get("group"))
+            for prompt_id, record in split["recursive"]
+        ]
+        base_items = [
+            (prompt_id, record["text"], record.get("group"))
+            for prompt_id, record in split["baseline"]
+        ]
+        rng.shuffle(rec_items)
+        rng.shuffle(base_items)
+        pair_count = min(n_pairs, len(rec_items), len(base_items))
+        return list(zip(rec_items[:pair_count], base_items[:pair_count])), subset.name, tier_name
+
+    recursive_groups = params.get("recursive_groups", ["L3_deeper", "L4_full", "L5_refined"])
+    baseline_groups = params.get("baseline_groups", ["long_control", "baseline_creative", "baseline_math"])
+
+    rec_items = [
+        (k, v["text"], v.get("group"))
+        for k, v in loader.prompts.items()
+        if v.get("group") in recursive_groups
+    ]
+    base_items = [
+        (k, v["text"], v.get("group"))
+        for k, v in loader.prompts.items()
+        if v.get("group") in baseline_groups
+    ]
+
+    rng.shuffle(rec_items)
+    rng.shuffle(base_items)
+    pair_count = min(n_pairs, len(rec_items), len(base_items))
+    return list(zip(rec_items[:pair_count], base_items[:pair_count])), None, None
 
 
 def _compute_cohens_d(values: List[float]) -> Optional[float]:
@@ -238,8 +294,6 @@ def run_rv_l27_kv_patching_bridge_from_config(
     temperature = float(params.get("temperature", 0.0))
     do_sample = bool(params.get("do_sample", temperature > 0.0))
     top_p = float(params.get("top_p", 0.95))
-    recursive_groups = params.get("recursive_groups", ["L3_deeper", "L4_full", "L5_refined"])
-    baseline_groups = params.get("baseline_groups", ["long_control", "baseline_creative", "baseline_math"])
     skip_short_baseline = bool(params.get("skip_short_baseline", True))
 
     set_seed(seed)
@@ -249,21 +303,12 @@ def run_rv_l27_kv_patching_bridge_from_config(
     loader = PromptLoader()
     rng = random.Random(seed)
 
-    rec_items = [
-        (k, v["text"], v.get("group"))
-        for k, v in loader.prompts.items()
-        if v.get("group") in recursive_groups
-    ]
-    base_items = [
-        (k, v["text"], v.get("group"))
-        for k, v in loader.prompts.items()
-        if v.get("group") in baseline_groups
-    ]
-
-    rng.shuffle(rec_items)
-    rng.shuffle(base_items)
-    pair_count = min(n_pairs, len(rec_items), len(base_items))
-    pairs = list(zip(rec_items[:pair_count], base_items[:pair_count]))
+    pairs, prompt_subset_name, prompt_tier = _load_prompt_pairs(
+        loader,
+        params=params,
+        seed=seed,
+        n_pairs=n_pairs,
+    )
 
     logit_metric = LogitDiffMetric(tokenizer, device=device)
 
@@ -461,8 +506,10 @@ def run_rv_l27_kv_patching_bridge_from_config(
         "temperature": temperature,
         "do_sample": do_sample,
         "top_p": top_p,
-        "recursive_groups": recursive_groups,
-        "baseline_groups": baseline_groups,
+        "recursive_groups": params.get("recursive_groups"),
+        "baseline_groups": params.get("baseline_groups"),
+        "prompt_subset_name": prompt_subset_name,
+        "prompt_tier": prompt_tier,
         "n_skipped_short_baseline": skipped_short,
         "n_truncated_baseline": truncated_baseline,
         "n_truncated_patched": truncated_patched,

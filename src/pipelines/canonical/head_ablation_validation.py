@@ -20,6 +20,7 @@ import numpy as np
 import torch
 
 from prompts.loader import PromptLoader
+from prompts.subsets import load_default_mistral_hardening_subset, split_tier_records_by_pillar
 from src.core.models import load_model, set_seed
 from src.metrics.rv import participation_ratio
 from src.pipelines.registry import ExperimentResult
@@ -32,6 +33,82 @@ from src.pipelines.registry import ExperimentResult
 
 def _tok_len(tokenizer, text: str) -> int:
     return len(tokenizer.encode(text, add_special_tokens=False))
+
+
+def _load_prompt_pool(
+    loader: PromptLoader,
+    tokenizer,
+    *,
+    params: Dict[str, Any],
+    seed: int,
+    window: int,
+    n_recursive: int,
+    n_baseline: int,
+) -> Tuple[List[Tuple[str, str]], List[Tuple[str, str]], Optional[str], Optional[str]]:
+    """Load prompt texts either from frozen subset contract or legacy group lists."""
+    prompt_subset_name = params.get("prompt_subset_name")
+    prompt_tier = params.get("prompt_tier")
+
+    rng = np.random.default_rng(seed)
+
+    if prompt_subset_name or prompt_tier:
+        subset = load_default_mistral_hardening_subset(loader=loader)
+        requested_name = str(prompt_subset_name or subset.name)
+        if requested_name != subset.name:
+            raise ValueError(
+                f"Unsupported prompt subset '{requested_name}' for head_ablation_validation; "
+                f"expected '{subset.name}'"
+            )
+        tier_name = str(prompt_tier or "core_measurement")
+        split = split_tier_records_by_pillar(subset, tier_name)
+        recursive_records = [
+            (prompt_id, record["text"])
+            for prompt_id, record in split["recursive"]
+            if _tok_len(tokenizer, record["text"]) >= window
+        ]
+        baseline_records = [
+            (prompt_id, record["text"])
+            for prompt_id, record in split["baseline"]
+            if _tok_len(tokenizer, record["text"]) >= window
+        ]
+        if len(recursive_records) > n_recursive:
+            keep = rng.choice(len(recursive_records), n_recursive, replace=False)
+            recursive_records = [recursive_records[i] for i in sorted(keep.tolist())]
+        if len(baseline_records) > n_baseline:
+            keep = rng.choice(len(baseline_records), n_baseline, replace=False)
+            baseline_records = [baseline_records[i] for i in sorted(keep.tolist())]
+        return recursive_records, baseline_records, subset.name, tier_name
+
+    recursive_groups = params.get("recursive_groups") or ["champions", "L5_refined", "L4_full", "L3_deeper"]
+    baseline_groups = params.get("baseline_groups") or ["baseline_math", "baseline_factual", "baseline_creative"]
+
+    recursive_prompts = []
+    for group in recursive_groups:
+        recursive_prompts.extend(loader.get_by_group(group))
+
+    baseline_prompts = []
+    for group in baseline_groups:
+        baseline_prompts.extend(loader.get_by_group(group))
+
+    recursive_records = [
+        (f"legacy_recursive_{idx}", text)
+        for idx, text in enumerate(recursive_prompts)
+        if _tok_len(tokenizer, text) >= window
+    ]
+    baseline_records = [
+        (f"legacy_baseline_{idx}", text)
+        for idx, text in enumerate(baseline_prompts)
+        if _tok_len(tokenizer, text) >= window
+    ]
+
+    if len(recursive_records) > n_recursive:
+        keep = rng.choice(len(recursive_records), n_recursive, replace=False)
+        recursive_records = [recursive_records[i] for i in sorted(keep.tolist())]
+    if len(baseline_records) > n_baseline:
+        keep = rng.choice(len(baseline_records), n_baseline, replace=False)
+        baseline_records = [baseline_records[i] for i in sorted(keep.tolist())]
+
+    return recursive_records, baseline_records, None, None
 
 
 @contextmanager
@@ -178,9 +255,6 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
     n_baseline = int(params.get("n_baseline") or 50)
     max_length = int(params.get("max_length") or 512)
     
-    recursive_groups = params.get("recursive_groups") or ["champions", "L5_refined", "L4_full", "L3_deeper"]
-    baseline_groups = params.get("baseline_groups") or ["baseline_math", "baseline_factual", "baseline_creative"]
-    
     # Load model and prompts
     set_seed(seed)
     model, tokenizer = load_model(model_name, device=device)
@@ -200,26 +274,15 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
         json.dumps({"version": bank_version}, indent=2) + "\n"
     )
     
-    # Gather prompts
-    recursive_prompts = []
-    for group in recursive_groups:
-        recursive_prompts.extend(loader.get_by_group(group))
-    
-    baseline_prompts = []
-    for group in baseline_groups:
-        baseline_prompts.extend(loader.get_by_group(group))
-    
-    # Filter for valid length and sample
-    rng = np.random.default_rng(seed)
-    
-    # get_by_group returns List[str], not List[dict]
-    recursive_prompts = [p for p in recursive_prompts if _tok_len(tokenizer, p) >= window]
-    baseline_prompts = [p for p in baseline_prompts if _tok_len(tokenizer, p) >= window]
-    
-    if len(recursive_prompts) > n_recursive:
-        recursive_prompts = list(rng.choice(recursive_prompts, n_recursive, replace=False))
-    if len(baseline_prompts) > n_baseline:
-        baseline_prompts = list(rng.choice(baseline_prompts, n_baseline, replace=False))
+    recursive_records, baseline_records, prompt_subset_name, prompt_tier = _load_prompt_pool(
+        loader,
+        tokenizer,
+        params=params,
+        seed=seed,
+        window=window,
+        n_recursive=n_recursive,
+        n_baseline=n_baseline,
+    )
     
     # Conditions to test
     conditions = [
@@ -231,11 +294,8 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
     
     rows: List[Dict[str, Any]] = []
     
-    for prompt_type, prompts in [("recursive", recursive_prompts), ("baseline", baseline_prompts)]:
-        for i, p in enumerate(prompts):
-            # p is a string (from get_by_group), not a dict
-            text = p
-            prompt_id = f"{prompt_type}_{i}"
+    for prompt_type, prompts in [("recursive", recursive_records), ("baseline", baseline_records)]:
+        for i, (prompt_id, text) in enumerate(prompts):
             
             row = {"prompt_type": prompt_type, "prompt_idx": i, "prompt_id": prompt_id}
             
@@ -389,6 +449,8 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
         "device": device,
         "seed": seed,
         "prompt_bank_version": bank_version,
+        "prompt_subset_name": prompt_subset_name,
+        "prompt_tier": prompt_tier,
         "params": {
             "early_layer": early_layer,
             "target_layer": target_layer,
@@ -398,6 +460,8 @@ def run_head_ablation_validation_from_config(cfg: Dict[str, Any], run_dir: Path)
             "control_kv_head": control_kv_head,
             "n_recursive": n_recursive,
             "n_baseline": n_baseline,
+            "prompt_subset_name": prompt_subset_name,
+            "prompt_tier": prompt_tier,
         },
         "n_recursive_actual": len(rec_rows),
         "n_baseline_actual": len(bas_rows),

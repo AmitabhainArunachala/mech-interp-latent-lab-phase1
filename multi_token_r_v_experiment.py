@@ -1,5 +1,15 @@
 """Multi-token R_V correlation experiment.
 
+---
+name: multi-token-r-v-experiment
+version: 1.0
+status: ACTIVE
+type: code-experiment
+tags: [r_v, colm-2026, mech-interp, l4-markers]
+triple_mapping: [r_v-geometry, phoenix]
+value: 0.86
+---
+
 THE critical experiment for COLM 2026 paper.
 
 Measures R_V during:
@@ -81,7 +91,10 @@ def measure_r_v_during_generation(
             outputs = model.generate(
                 generated_ids,
                 max_new_tokens=measure_every,
-                do_sample=False,  # Greedy for reproducibility
+                do_sample=True,
+                temperature=0.7,
+                top_p=0.95,
+                repetition_penalty=1.15,
                 pad_token_id=tokenizer.eos_token_id,
             )
         generated_ids = outputs
@@ -163,7 +176,7 @@ def run_experiment(
                     model=model,
                     tokenizer=tokenizer,
                     prompt_text=prompt_text,
-                    max_new_tokens=50,
+                    max_new_tokens=150,
                     measure_every=10,
                     device=device,
                 )

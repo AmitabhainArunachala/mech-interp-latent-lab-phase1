@@ -1,0 +1,59 @@
+{
+  "schema_version": "amiros_overnight_autonomy_state_v1",
+  "updated_at": "2026-03-14T16:46:38Z",
+  "pods": {
+    "everyday_aqua_limpet-migration": {
+      "lane_id": "induced_persistence_lane",
+      "current_step_index": 1,
+      "current_step_id": "induced_persistence_followup_v2_long",
+      "launched_steps": [
+        "induced_persistence_followup_v2_long"
+      ],
+      "completed_steps": [
+        "induced_persistence_followup_v1",
+        "induced_persistence_followup_v2_long"
+      ],
+      "last_action": "lane_complete",
+      "last_action_at": "2026-03-14T16:46:18Z"
+    },
+    "annual_fuchsia_goldfish": {
+      "lane_id": "subspace_component_lane",
+      "current_step_index": 0,
+      "current_step_id": "subspace_component_steering_l27_v1",
+      "launched_steps": [],
+      "completed_steps": [],
+      "last_action": "idle_no_artifact",
+      "last_action_at": "2026-03-14T16:46:38Z"
+    }
+  },
+  "history": [
+    {
+      "at": "2026-03-14T15:18:08Z",
+      "pod_name": "everyday_aqua_limpet-migration",
+      "step_id": "induced_persistence_followup_v2_long",
+      "synced": [
+        "scripts/induced_persistence_followup.py",
+        "scripts/runpod_mistral_induced_persistence_followup_queue.sh"
+      ],
+      "env": {
+        "OUTPUT_STEM": "induced_persistence_followup_v2_long",
+        "QUEUE_GROUP": "mistral_induced_persistence_followup_v2_long",
+        "EXPERIMENT_ID": "induced_persistence_followup_v2_long",
+        "CLAIM_ID": "INDUCED_PERSISTENCE_FOLLOWUP_V2_LONG",
+        "SOURCE_RUN_DIR": "results/phase1_mechanism/runs/20260314_133516_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v5_ordinary_baselines_confirmatory",
+        "BASELINE_GROUPS": "baseline_math,baseline_factual,baseline_creative",
+        "TOP_K_PER_GROUP": "2",
+        "MAX_TURNS": "24",
+        "MAX_NEW_TOKENS": "128",
+        "TEMPERATURE": "0.7",
+        "REP_PENALTY": "1.35",
+        "SOURCE_CONDITIONS": "anchor_early_mlp_0p125_bridge_3,anchor_bridge_3",
+        "NOTES": "Longer persistence follow-up focused on top conditions from 20260314_150405",
+        "AMIROS_SESSION": "mistral_induced_persistence_followup_v2_long",
+        "AMIROS_POD_NAME": "everyday_aqua_limpet-migration",
+        "AMIROS_HOST": "root@213.173.102.102",
+        "AMIROS_PORT": "10061"
+      }
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": "canonical-registry-v1",
+  "updated": "2026-03-12",
+  "models": {
+    "mistralai/Mistral-7B-v0.1": {
+      "num_layers": 32,
+      "early_layer": 5,
+      "late_layer": 27,
+      "architecture": "dense_gqa"
+    },
+    "mistralai/Mistral-7B-Instruct-v0.2": {
+      "num_layers": 32,
+      "early_layer": 5,
+      "late_layer": 27,
+      "architecture": "dense_gqa",
+      "variant_of": "mistralai/Mistral-7B-v0.1",
+      "paper_equivalence": false
+    },
+    "facebook/opt-6.7b": {
+      "num_layers": 32,
+      "early_layer": 5,
+      "late_layer": 27,
+      "architecture": "dense_mha"
+    },
+    "openai-community/gpt2-xl": {
+      "num_layers": 48,
+      "early_layer": 7,
+      "late_layer": 40,
+      "architecture": "dense_mha_fused_qkv"
+    },
+    "Qwen/Qwen2.5-7B": {
+      "num_layers": 28,
+      "early_layer": 4,
+      "late_layer": 23,
+      "architecture": "dense_gqa"
+    },
+    "Qwen/Qwen2.5-7B-Instruct": {
+      "num_layers": 28,
+      "early_layer": 4,
+      "late_layer": 23,
+      "architecture": "dense_gqa",
+      "variant_of": "Qwen/Qwen2.5-7B",
+      "paper_equivalence": false
+    },
+    "google/gemma-2-9b": {
+      "num_layers": 42,
+      "early_layer": 6,
+      "late_layer": 35,
+      "architecture": "dense_gqa"
+    },
+    "google/gemma-2-9b-it": {
+      "num_layers": 42,
+      "early_layer": 6,
+      "late_layer": 35,
+      "architecture": "dense_gqa",
+      "variant_of": "google/gemma-2-9b",
+      "paper_equivalence": false
+    },
+    "meta-llama/Meta-Llama-3-8B": {
+      "num_layers": 32,
+      "early_layer": 5,
+      "late_layer": 27,
+      "architecture": "dense_gqa"
+    },
+    "meta-llama/Meta-Llama-3-8B-Instruct": {
+      "num_layers": 32,
+      "early_layer": 5,
+      "late_layer": 27,
+      "architecture": "dense_gqa",
+      "variant_of": "meta-llama/Meta-Llama-3-8B",
+      "paper_equivalence": false
+    },
+    "mistralai/Mixtral-8x7B-v0.1": {
+      "num_layers": 32,
+      "early_layer": 5,
+      "late_layer": 27,
+      "architecture": "sparse_moe_gqa"
+    },
+    "mistralai/Mixtral-8x7B-Instruct-v0.1": {
+      "num_layers": 32,
+      "early_layer": 5,
+      "late_layer": 27,
+      "architecture": "sparse_moe_gqa",
+      "variant_of": "mistralai/Mixtral-8x7B-v0.1",
+      "paper_equivalence": false
+    },
+    "EleutherAI/pythia-1.4b": {
+      "num_layers": 24,
+      "early_layer": 4,
+      "late_layer": 20,
+      "architecture": "dense_mha_fused_qkv"
+    }
+  }
+}

@@ -13,6 +13,7 @@ Industry-grade reproducibility: Every run logs:
 from __future__ import annotations
 
 import json
+import os
 import platform
 import subprocess
 from pathlib import Path
@@ -28,6 +29,9 @@ def get_git_commit() -> str:
     Returns:
         Commit hash string, or "not_a_git_repo" if not in git repo.
     """
+    override = os.environ.get("CANONICAL_GIT_COMMIT")
+    if override:
+        return override
     try:
         result = subprocess.run(
             ["git", "rev-parse", "HEAD"],
@@ -178,4 +182,3 @@ def get_hardware_info() -> Dict[str, Any]:
         # Best-effort only; never fail a run.
         pass
     return info
-

@@ -31,9 +31,23 @@ from tqdm import tqdm
 from prompts.loader import PromptLoader
 from src.core.models import load_model, set_seed
 from src.metrics.rv import compute_rv_with_components
-from src.metrics.behavioral_bridge import extract_bridge_metrics, compute_l4_score
+from src.metrics.behavioral_bridge import (
+    compute_bridge_quality_label,
+    compute_l4_score,
+    extract_bridge_metrics,
+)
 from src.pipelines.registry import ExperimentResult
 from src.utils.run_metadata import get_run_metadata, append_to_run_index, save_metadata
+
+
+CLASS_ORD = {
+    "MALFORMED": 0,
+    "REPETITIVE": 0,
+    "SURFACE": 1,
+    "CONCEPTUAL": 2,
+    "ARTICULATE": 3,
+    "BREAKTHROUGH": 4,
+}
 
 
 @dataclass
@@ -52,6 +66,8 @@ def generate_text(
     max_new_tokens: int = 200,
     temperature: float = 0.7,
     do_sample: bool = True,
+    top_p: float = 0.9,
+    repetition_penalty: Optional[float] = None,
     device: str = "cuda",
 ) -> GenerationResult:
     """
@@ -73,21 +89,26 @@ def generate_text(
     prompt_len = enc["input_ids"].shape[1]
 
     with torch.no_grad():
+        generation_kwargs = {
+            "max_new_tokens": max_new_tokens,
+            "pad_token_id": tokenizer.eos_token_id,
+        }
+        if repetition_penalty is not None and repetition_penalty > 1.0:
+            generation_kwargs["repetition_penalty"] = repetition_penalty
+
         if temperature == 0.0:
             outputs = model.generate(
                 **enc,
-                max_new_tokens=max_new_tokens,
                 do_sample=False,
-                pad_token_id=tokenizer.eos_token_id,
+                **generation_kwargs,
             )
         else:
             outputs = model.generate(
                 **enc,
-                max_new_tokens=max_new_tokens,
                 do_sample=do_sample,
                 temperature=temperature,
-                top_p=0.9,
-                pad_token_id=tokenizer.eos_token_id,
+                top_p=top_p,
+                **generation_kwargs,
             )
 
     # Extract generated portion
@@ -122,6 +143,8 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
         params.window: Window size for R_V (default: 16)
         params.max_new_tokens: Generation length (default: 200)
         params.temperatures: List of temperatures (default: [0.0, 0.7])
+        params.top_p: Nucleus sampling cutoff (default: 0.9)
+        params.repetition_penalty: Optional generation repetition penalty
         params.seed: Random seed (default: 42)
         params.recursive_groups: List of recursive prompt groups (default: ["champions", "L4_full", "L3_deeper"])
         params.baseline_groups: List of baseline prompt groups (default: ["baseline_factual", "baseline_math", "baseline_creative"])
@@ -134,6 +157,10 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
     window = params.get("window", 16)
     max_new_tokens = params.get("max_new_tokens", 200)
     temperatures = params.get("temperatures", [0.0, 0.7])
+    top_p = float(params.get("top_p", 0.9))
+    repetition_penalty = params.get("repetition_penalty")
+    if repetition_penalty is not None:
+        repetition_penalty = float(repetition_penalty)
     seed = int(params.get("seed", 42))
 
     # Config-driven prompt groups (matching Mistral methodology)
@@ -187,6 +214,8 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
     print(f"R_V layers: early={early_layer}, late={late_layer}, window={window}")
     print(f"Generation: max_tokens={max_new_tokens}")
     print(f"Temperatures: {temperatures}")
+    print(f"top_p: {top_p}")
+    print(f"repetition_penalty: {repetition_penalty}")
     print(f"Seed: {seed}")
     print(f"{'='*60}\n")
 
@@ -208,12 +237,17 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
                 max_new_tokens=max_new_tokens,
                 temperature=temp,
                 do_sample=(temp > 0.0),
+                top_p=top_p,
+                repetition_penalty=repetition_penalty,
                 device=device,
             )
 
             # Step 3: Extract behavioral metrics
             metrics = extract_bridge_metrics(gen_result.text)
             l4_score = compute_l4_score(gen_result.text)
+            quality_label = compute_bridge_quality_label(gen_result.text, rv)
+            quality_ord = CLASS_ORD.get(quality_label, 0)
+            bt_art = int(quality_label in ("ARTICULATE", "BREAKTHROUGH"))
 
             # Classify group type for analysis
             is_recursive = group in recursive_groups
@@ -240,9 +274,20 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
                 "has_l4": metrics.has_l4,
                 "has_l3": metrics.has_l3,
                 "l4_score": l4_score,
+                "recursive_content_score": metrics.recursive_content_score,
+                "coherence_score": metrics.coherence_score,
+                "repetition_score": metrics.repetition_score,
+                "alpha_ratio": metrics.alpha_ratio,
+                "self_ref_count": metrics.self_ref_count,
+                "process_count": metrics.process_count,
+                "quality_label": quality_label,
+                "quality_ord": quality_ord,
+                "bt_art": bt_art,
                 "unique_word_ratio": metrics.unique_word_ratio,
                 "l4_markers": ",".join(metrics.l4_markers),
                 "l3_markers": ",".join(metrics.l3_markers),
+                "self_ref_markers": ",".join(metrics.self_ref_markers),
+                "process_markers": ",".join(metrics.process_markers),
                 "prompt_preview": prompt_text[:100],
                 "generated_preview": gen_result.text[:200],
             }
@@ -274,12 +319,82 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
         # Filter to non-truncated outputs for cleaner correlation
         non_trunc_df = valid_df[~valid_df["truncated"]]
 
-        # H1: R_V vs word_count (Spearman) - on NON-TRUNCATED only
-        if len(non_trunc_df) > 5:
-            r_word, p_word = stats.spearmanr(non_trunc_df["rv"], non_trunc_df["word_count"])
+        # H1: richer recursive-content score, reported on all-valid and non-truncated subsets.
+        if len(valid_df) > 5:
+            r_quality_all, p_quality_all = stats.spearmanr(
+                valid_df["rv"], valid_df["recursive_content_score"]
+            )
         else:
-            # Fall back to all data if too few non-truncated
-            r_word, p_word = stats.spearmanr(valid_df["rv"], valid_df["word_count"])
+            r_quality_all, p_quality_all = np.nan, np.nan
+
+        if len(non_trunc_df) > 5:
+            r_quality_non_trunc, p_quality_non_trunc = stats.spearmanr(
+                non_trunc_df["rv"], non_trunc_df["recursive_content_score"]
+            )
+        else:
+            r_quality_non_trunc, p_quality_non_trunc = np.nan, np.nan
+
+        if len(non_trunc_df) > 5:
+            r_quality, p_quality = r_quality_non_trunc, p_quality_non_trunc
+            quality_basis = "non_truncated"
+        else:
+            r_quality, p_quality = r_quality_all, p_quality_all
+            quality_basis = "all_valid_fallback"
+
+        if len(valid_df) > 5:
+            r_class_all, p_class_all = stats.spearmanr(
+                valid_df["rv"], valid_df["quality_ord"]
+            )
+            r_bt_all, p_bt_all = stats.pointbiserialr(
+                valid_df["bt_art"].astype(int), valid_df["rv"]
+            )
+        else:
+            r_class_all, p_class_all = np.nan, np.nan
+            r_bt_all, p_bt_all = np.nan, np.nan
+
+        if len(non_trunc_df) > 5:
+            r_class_non_trunc, p_class_non_trunc = stats.spearmanr(
+                non_trunc_df["rv"], non_trunc_df["quality_ord"]
+            )
+            r_bt_non_trunc, p_bt_non_trunc = stats.pointbiserialr(
+                non_trunc_df["bt_art"].astype(int), non_trunc_df["rv"]
+            )
+        else:
+            r_class_non_trunc, p_class_non_trunc = np.nan, np.nan
+            r_bt_non_trunc, p_bt_non_trunc = np.nan, np.nan
+
+        if len(non_trunc_df) > 5:
+            r_class, p_class = r_class_non_trunc, p_class_non_trunc
+            r_bt, p_bt = r_bt_non_trunc, p_bt_non_trunc
+            class_basis = "non_truncated"
+            bt_basis = "non_truncated"
+        else:
+            r_class, p_class = r_class_all, p_class_all
+            r_bt, p_bt = r_bt_all, p_bt_all
+            class_basis = "all_valid_fallback"
+            bt_basis = "all_valid_fallback"
+
+        # H1 diagnostic: word-count correlation is retained for debugging, not as the main bridge test.
+        if len(valid_df) > 5:
+            r_word_all, p_word_all = stats.spearmanr(
+                valid_df["rv"], valid_df["word_count"]
+            )
+        else:
+            r_word_all, p_word_all = np.nan, np.nan
+
+        if len(non_trunc_df) > 5:
+            r_word_non_trunc, p_word_non_trunc = stats.spearmanr(
+                non_trunc_df["rv"], non_trunc_df["word_count"]
+            )
+        else:
+            r_word_non_trunc, p_word_non_trunc = np.nan, np.nan
+
+        if len(non_trunc_df) > 5:
+            r_word, p_word = r_word_non_trunc, p_word_non_trunc
+            h1_basis = "non_truncated"
+        else:
+            r_word, p_word = r_word_all, p_word_all
+            h1_basis = "all_valid_fallback"
 
         # H2: Recursive vs Baseline R_V (t-test using group_type)
         recursive_rv = valid_df[valid_df["group_type"] == "recursive"]["rv"]
@@ -294,7 +409,7 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
         else:
             t_rec_base, p_rec_base, d_rec_base = np.nan, np.nan, np.nan
 
-        # H3: has_l4 point-biserial correlation
+        # Legacy diagnostic: has_l4 point-biserial correlation
         r_l4_marker, p_l4_marker = stats.pointbiserialr(
             valid_df["has_l4"].astype(int), valid_df["rv"]
         )
@@ -302,10 +417,12 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
         # Per-group R_V means
         group_rv_means = {}
         group_word_means = {}
+        group_quality_means = {}
         for grp in valid_df["group"].unique():
             grp_data = valid_df[valid_df["group"] == grp]
             group_rv_means[grp] = float(grp_data["rv"].mean())
             group_word_means[grp] = float(grp_data["word_count"].mean())
+            group_quality_means[grp] = float(grp_data["recursive_content_score"].mean())
 
         # Store results
         analysis[temp_key] = {
@@ -315,10 +432,32 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
             "n_truncated": int(n_truncated),
             "n_eos_reached": int(n_eos_reached),
             "pct_truncated": float(pct_truncated),
-            # H1: R_V vs word_count
+            # H1: R_V vs richer recursive-content score
+            "h1_quality_basis": quality_basis,
+            "h1_quality_spearman_r": float(r_quality),
+            "h1_quality_spearman_p": float(p_quality),
+            "h1_quality_significant": bool(p_quality < 0.01),
+            "h1_quality_all_spearman_r": float(r_quality_all) if not np.isnan(r_quality_all) else None,
+            "h1_quality_all_spearman_p": float(p_quality_all) if not np.isnan(p_quality_all) else None,
+            "h1_quality_non_truncated_spearman_r": (
+                float(r_quality_non_trunc) if not np.isnan(r_quality_non_trunc) else None
+            ),
+            "h1_quality_non_truncated_spearman_p": (
+                float(p_quality_non_trunc) if not np.isnan(p_quality_non_trunc) else None
+            ),
+            # Diagnostic: R_V vs word_count
+            "h1_basis": h1_basis,
             "h1_spearman_r": float(r_word),
             "h1_spearman_p": float(p_word),
             "h1_significant": bool(p_word < 0.01),
+            "h1_all_spearman_r": float(r_word_all) if not np.isnan(r_word_all) else None,
+            "h1_all_spearman_p": float(p_word_all) if not np.isnan(p_word_all) else None,
+            "h1_non_truncated_spearman_r": (
+                float(r_word_non_trunc) if not np.isnan(r_word_non_trunc) else None
+            ),
+            "h1_non_truncated_spearman_p": (
+                float(p_word_non_trunc) if not np.isnan(p_word_non_trunc) else None
+            ),
             # H2: Recursive vs Baseline (new: uses group_type)
             "h2_recursive_rv_mean": float(recursive_rv.mean()) if len(recursive_rv) > 0 else None,
             "h2_baseline_rv_mean": float(baseline_rv.mean()) if len(baseline_rv) > 0 else None,
@@ -326,20 +465,49 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
             "h2_p_value": float(p_rec_base) if not np.isnan(p_rec_base) else None,
             "h2_cohens_d": float(d_rec_base) if not np.isnan(d_rec_base) else None,
             "h2_significant": bool(p_rec_base < 0.01) if not bool(np.isnan(p_rec_base)) else False,
-            # H3: L4 marker correlation
+            # H3/H4: quality labels
+            "h3_class_basis": class_basis,
+            "h3_class_spearman_r": float(r_class),
+            "h3_class_spearman_p": float(p_class),
+            "h3_class_significant": bool(p_class < 0.01),
+            "h4_bt_art_basis": bt_basis,
+            "h4_bt_art_pointbiserial_r": float(r_bt),
+            "h4_bt_art_pointbiserial_p": float(p_bt),
+            "h4_bt_art_significant": bool(p_bt < 0.01),
+            # H5: legacy L4 marker correlation
             "h3_point_biserial_r": float(r_l4_marker),
             "h3_point_biserial_p": float(p_l4_marker),
             "h3_significant": bool(p_l4_marker < 0.01),
             # Per-group stats
             "group_rv_means": group_rv_means,
             "group_word_means": group_word_means,
+            "group_quality_means": group_quality_means,
         }
 
         print(f"\n=== Temperature {temp} ===")
         print(f"Truncation: {n_truncated}/{len(temp_df)} ({pct_truncated:.1f}%) truncated, {n_eos_reached} hit EOS")
-        print(f"H1 (R_V vs word_count): r={r_word:.3f}, p={p_word:.2e} {'*' if p_word < 0.01 else ''}")
+        print(
+            f"H1 quality (R_V vs recursive_content_score, {quality_basis}): "
+            f"r={r_quality:.3f}, p={p_quality:.2e} {'*' if p_quality < 0.01 else ''}"
+        )
+        print(
+            f"H1 diagnostic (R_V vs word_count, {h1_basis}): "
+            f"r={r_word:.3f}, p={p_word:.2e} {'*' if p_word < 0.01 else ''}"
+        )
+        if not np.isnan(r_word_all):
+            print(
+                f"    all-valid: r={r_word_all:.3f}, p={p_word_all:.2e}"
+                f" {'*' if p_word_all < 0.01 else ''}"
+            )
+        if not np.isnan(r_word_non_trunc):
+            print(
+                f"    non-truncated: r={r_word_non_trunc:.3f}, p={p_word_non_trunc:.2e}"
+                f" {'*' if p_word_non_trunc < 0.01 else ''}"
+            )
         print(f"H2 (Recursive vs Baseline R_V): t={t_rec_base:.2f}, p={p_rec_base:.2e}, d={d_rec_base:.2f} {'*' if p_rec_base < 0.01 else ''}")
-        print(f"H3 (L4 marker → R_V): r={r_l4_marker:.3f}, p={p_l4_marker:.2e} {'*' if p_l4_marker < 0.01 else ''}")
+        print(f"H3 class (R_V vs quality_ord, {class_basis}): r={r_class:.3f}, p={p_class:.2e} {'*' if p_class < 0.01 else ''}")
+        print(f"H4 BT+ART (R_V vs bt_art, {bt_basis}): r={r_bt:.3f}, p={p_bt:.2e} {'*' if p_bt < 0.01 else ''}")
+        print(f"H5 legacy (L4 marker → R_V): r={r_l4_marker:.3f}, p={p_l4_marker:.2e} {'*' if p_l4_marker < 0.01 else ''}")
         print(f"R_V means: Recursive={recursive_rv.mean():.3f}, Baseline={baseline_rv.mean():.3f}")
 
     # Generate VERDICT
@@ -361,11 +529,46 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
 
         verdict_lines.append("| Hypothesis | Statistic | p-value | Significant |\n")
         verdict_lines.append("|------------|-----------|---------|-------------|\n")
-        verdict_lines.append(f"| H1: R_V vs word_count | r={a['h1_spearman_r']:.3f} | {a['h1_spearman_p']:.2e} | {'Yes' if a['h1_significant'] else 'No'} |\n")
+        verdict_lines.append(
+            f"| H1: R_V vs recursive_content_score ({a['h1_quality_basis']}) | "
+            f"r={a['h1_quality_spearman_r']:.3f} | {a['h1_quality_spearman_p']:.2e} | "
+            f"{'Yes' if a['h1_quality_significant'] else 'No'} |\n"
+        )
+        verdict_lines.append(
+            f"| H1 diagnostic: R_V vs word_count ({a['h1_basis']}) | "
+            f"r={a['h1_spearman_r']:.3f} | {a['h1_spearman_p']:.2e} | "
+            f"{'Yes' if a['h1_significant'] else 'No'} |\n"
+        )
+        if a.get("h1_quality_all_spearman_r") is not None:
+            verdict_lines.append(
+                f"| H1a: quality all valid | r={a['h1_quality_all_spearman_r']:.3f} | "
+                f"{a['h1_quality_all_spearman_p']:.2e} | "
+                f"{'Yes' if (a['h1_quality_all_spearman_p'] or 1) < 0.01 else 'No'} |\n"
+            )
+        if a.get("h1_quality_non_truncated_spearman_r") is not None:
+            verdict_lines.append(
+                f"| H1b: quality non-truncated | r={a['h1_quality_non_truncated_spearman_r']:.3f} | "
+                f"{a['h1_quality_non_truncated_spearman_p']:.2e} | "
+                f"{'Yes' if (a['h1_quality_non_truncated_spearman_p'] or 1) < 0.01 else 'No'} |\n"
+            )
+        if a.get("h1_all_spearman_r") is not None:
+            verdict_lines.append(
+                f"| H1c: word-count all valid | r={a['h1_all_spearman_r']:.3f} | "
+                f"{a['h1_all_spearman_p']:.2e} | "
+                f"{'Yes' if (a['h1_all_spearman_p'] or 1) < 0.01 else 'No'} |\n"
+            )
+        if a.get("h1_non_truncated_spearman_r") is not None:
+            verdict_lines.append(
+                f"| H1d: word-count non-truncated | r={a['h1_non_truncated_spearman_r']:.3f} | "
+                f"{a['h1_non_truncated_spearman_p']:.2e} | "
+                f"{'Yes' if (a['h1_non_truncated_spearman_p'] or 1) < 0.01 else 'No'} |\n"
+            )
         d_val = a['h2_cohens_d'] if a['h2_cohens_d'] is not None else 0
         p_val = a['h2_p_value'] if a['h2_p_value'] is not None else 1
         verdict_lines.append(f"| H2: Recursive vs Baseline R_V | d={d_val:.2f} | {p_val:.2e} | {'Yes' if a['h2_significant'] else 'No'} |\n")
-        verdict_lines.append(f"| H3: L4 markers | r={a['h3_point_biserial_r']:.3f} | {a['h3_point_biserial_p']:.2e} | {'Yes' if a['h3_significant'] else 'No'} |\n\n")
+        verdict_lines.append(f"| H3: quality ordinal | r={a['h3_class_spearman_r']:.3f} | {a['h3_class_spearman_p']:.2e} | {'Yes' if a['h3_class_significant'] else 'No'} |\n")
+        verdict_lines.append(f"| H4: BT+ART flag | r={a['h4_bt_art_pointbiserial_r']:.3f} | {a['h4_bt_art_pointbiserial_p']:.2e} | {'Yes' if a['h4_bt_art_significant'] else 'No'} |\n")
+        verdict_lines.append(f"| H5: L4 markers | r={a['h3_point_biserial_r']:.3f} | {a['h3_point_biserial_p']:.2e} | {'Yes' if a['h3_significant'] else 'No'} |\n\n")
 
         rec_rv = a['h2_recursive_rv_mean'] if a['h2_recursive_rv_mean'] is not None else 0
         base_rv = a['h2_baseline_rv_mean'] if a['h2_baseline_rv_mean'] is not None else 0
@@ -378,16 +581,16 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
         verdict_lines.append("\n")
 
     # Overall verdict
-    temp_0_key = "temp_0.0"
-    if temp_0_key in analysis:
-        a = analysis[temp_0_key]
-        h1_pass = a["h1_spearman_r"] < -0.25 and a["h1_significant"]
+    if analysis:
+        first_temp_key = f"temp_{temperatures[0]:.1f}"
+        a = analysis[first_temp_key]
+        h1_pass = a["h1_quality_spearman_r"] < -0.15 and a["h1_quality_significant"]
         h2_pass = a["h2_cohens_d"] is not None and a["h2_cohens_d"] > 0.5 and a["h2_significant"]
-        h3_pass = a["h3_point_biserial_r"] < -0.15 and a["h3_significant"]
+        h3_pass = a["h4_bt_art_pointbiserial_r"] < -0.15 and a["h4_bt_art_significant"]
 
-        if h1_pass and h2_pass:
+        if h1_pass and h2_pass and h3_pass:
             verdict = "STRONG CORRELATION - Proceed to sufficiency tests"
-        elif h1_pass or h2_pass:
+        elif h1_pass or h2_pass or h3_pass:
             verdict = "PARTIAL CORRELATION - Investigate confounds"
         else:
             verdict = "NO CORRELATION - R_V does not predict behavior"
@@ -422,6 +625,12 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
         "rv_recursive_mean": rv_recursive_mean,
         "rv_baseline_mean": rv_baseline_mean,
         "rv_delta_mean": rv_delta_mean,
+        "quality_basis": primary_analysis.get("h1_quality_basis"),
+        "quality_spearman_r": primary_analysis.get("h1_quality_spearman_r"),
+        "quality_spearman_p": primary_analysis.get("h1_quality_spearman_p"),
+        "bt_art_basis": primary_analysis.get("h4_bt_art_basis"),
+        "bt_art_pointbiserial_r": primary_analysis.get("h4_bt_art_pointbiserial_r"),
+        "bt_art_pointbiserial_p": primary_analysis.get("h4_bt_art_pointbiserial_p"),
         "recursive_groups": recursive_groups,
         "baseline_groups": baseline_groups,
         "temperatures": temperatures,
@@ -429,6 +638,8 @@ def run_multi_token_bridge_from_config(cfg: Dict[str, Any], run_dir: Path) -> Ex
         "late_layer": late_layer,
         "window": window,
         "max_new_tokens": max_new_tokens,
+        "top_p": top_p,
+        "repetition_penalty": repetition_penalty,
         "seed": seed,
         "prompt_bank_version": bank_version,
         "analysis": analysis,

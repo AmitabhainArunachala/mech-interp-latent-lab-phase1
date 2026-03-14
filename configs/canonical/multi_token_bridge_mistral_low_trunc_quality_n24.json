@@ -1,0 +1,25 @@
+{
+  "experiment": "multi_token_bridge",
+  "run_name": "mistral_7b_bridge_low_trunc_quality_n24",
+  "seed": 42,
+  "results": {
+    "root": "results",
+    "phase": "phase1_cross_architecture"
+  },
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "n_prompts": 24,
+    "early_layer": 5,
+    "late_layer": 27,
+    "window": 16,
+    "max_new_tokens": 1200,
+    "temperatures": [0.7],
+    "top_p": 0.9,
+    "repetition_penalty": 1.1,
+    "recursive_groups": ["L5_refined", "L4_full", "L3_deeper"],
+    "baseline_groups": ["long_control", "baseline_creative", "baseline_math"]
+  }
+}

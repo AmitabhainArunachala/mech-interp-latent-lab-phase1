@@ -1,0 +1,182 @@
+{
+  "experiment": "causal_state_benchmark_v4_multisite",
+  "run_name": "mistral_multisite_l4_mlp_l25_bridge_soft",
+  "seed": 314,
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "source_sessions_dir": "results/sustained_gnani_v3_fixed",
+    "early_layer": 5,
+    "late_layer": 27,
+    "max_length": 512,
+    "min_text_chars": 80,
+    "max_source_per_label": 72,
+    "max_source_per_session": 8,
+    "positive_classes": [
+      "BREAKTHROUGH",
+      "ARTICULATE"
+    ],
+    "negative_classes": [
+      "SURFACE",
+      "REPETITIVE"
+    ],
+    "positive_quantile": 0.35,
+    "negative_quantile": 0.65,
+    "positive_session_types": [
+      "recursive"
+    ],
+    "negative_session_types": [
+      "baseline"
+    ],
+    "recursive_groups": [
+      "L3_deeper",
+      "L4_full",
+      "L5_refined"
+    ],
+    "baseline_groups": [
+      "baseline_math",
+      "baseline_factual",
+      "baseline_creative"
+    ],
+    "holdout_per_group": 4,
+    "generation_seeds": [
+      101,
+      202,
+      303
+    ],
+    "max_new_tokens": 128,
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "control_name": "control",
+    "primary_prompt_mode": "recursive",
+    "control_prompt_mode": "baseline",
+    "bootstrap_resamples": 3000,
+    "source_layers": {
+      "early_mlp": {
+        "layer": 4,
+        "window": 16,
+        "component": "mlp",
+        "token_window": 16
+      },
+      "bridge": {
+        "layer": 25,
+        "window": 32,
+        "component": "residual"
+      }
+    },
+    "multisite_interventions": [
+      {
+        "name": "control",
+        "alphas": {
+          "early_mlp": 0.0,
+          "bridge": 0.0
+        }
+      },
+      {
+        "name": "bridge_only_2",
+        "alphas": {
+          "early_mlp": 0.0,
+          "bridge": 2.0
+        }
+      },
+      {
+        "name": "bridge_only_3",
+        "alphas": {
+          "early_mlp": 0.0,
+          "bridge": 3.0
+        }
+      },
+      {
+        "name": "early_mlp_only_0p25",
+        "alphas": {
+          "early_mlp": 0.25,
+          "bridge": 0.0
+        }
+      },
+      {
+        "name": "early_mlp_only_0p5",
+        "alphas": {
+          "early_mlp": 0.5,
+          "bridge": 0.0
+        }
+      },
+      {
+        "name": "early_mlp_only_1",
+        "alphas": {
+          "early_mlp": 1.0,
+          "bridge": 0.0
+        }
+      },
+      {
+        "name": "early_mlp_only_1p5",
+        "alphas": {
+          "early_mlp": 1.5,
+          "bridge": 0.0
+        }
+      },
+      {
+        "name": "early_mlp_0p25_bridge_2",
+        "alphas": {
+          "early_mlp": 0.25,
+          "bridge": 2.0
+        }
+      },
+      {
+        "name": "early_mlp_0p5_bridge_2",
+        "alphas": {
+          "early_mlp": 0.5,
+          "bridge": 2.0
+        }
+      },
+      {
+        "name": "early_mlp_1_bridge_2",
+        "alphas": {
+          "early_mlp": 1.0,
+          "bridge": 2.0
+        }
+      },
+      {
+        "name": "early_mlp_1p5_bridge_2",
+        "alphas": {
+          "early_mlp": 1.5,
+          "bridge": 2.0
+        }
+      },
+      {
+        "name": "early_mlp_0p25_bridge_3",
+        "alphas": {
+          "early_mlp": 0.25,
+          "bridge": 3.0
+        }
+      },
+      {
+        "name": "early_mlp_0p5_bridge_3",
+        "alphas": {
+          "early_mlp": 0.5,
+          "bridge": 3.0
+        }
+      },
+      {
+        "name": "early_mlp_1_bridge_3",
+        "alphas": {
+          "early_mlp": 1.0,
+          "bridge": 3.0
+        }
+      },
+      {
+        "name": "early_mlp_1p5_bridge_3",
+        "alphas": {
+          "early_mlp": 1.5,
+          "bridge": 3.0
+        }
+      }
+    ]
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  }
+}

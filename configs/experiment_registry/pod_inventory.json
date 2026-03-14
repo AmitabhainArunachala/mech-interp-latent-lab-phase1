@@ -1,0 +1,21 @@
+{
+  "updated_at": "2026-03-13T13:22:00Z",
+  "pods": [
+    {
+      "pod_name": "everyday_aqua_limpet-migration",
+      "host": "root@213.173.102.102",
+      "port": 10061,
+      "remote_repo": "/workspace/mech-interp-latent-lab-phase1",
+      "role": "persistence_or_bridge",
+      "enabled": true
+    },
+    {
+      "pod_name": "annual_fuchsia_goldfish",
+      "host": "root@198.13.252.23",
+      "port": 10916,
+      "remote_repo": "/workspace/mech-interp-latent-lab-phase1",
+      "role": "control_bundle",
+      "enabled": true
+    }
+  ]
+}

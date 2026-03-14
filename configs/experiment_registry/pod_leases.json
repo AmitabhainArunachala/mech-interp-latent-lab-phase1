@@ -1,0 +1,57 @@
+{
+  "updated_at": "2026-03-14T15:34:04Z",
+  "leases": [
+    {
+      "pod_name": "annual_fuchsia_goldfish",
+      "host": "198.13.252.23",
+      "port": 10916,
+      "session_name": "mistral_pca_subspace_ablation_l25_v1",
+      "queue_group": "mistral_pca_subspace_ablation_l25_v1",
+      "run_id": "20260314_115345",
+      "status": "completed",
+      "current_step": "finished",
+      "out_dir": "results/mistral_pca_subspace_ablation_l25_v1/20260314_115345",
+      "updated_at": "2026-03-14T12:26:09Z",
+      "notes": ""
+    },
+    {
+      "pod_name": "d08fc4e9d529",
+      "host": "d08fc4e9d529",
+      "port": 22,
+      "session_name": "mistral_subspace_component_steering_l27_v1",
+      "queue_group": "mistral_subspace_component_steering_l27_v1",
+      "run_id": "20260314_144647",
+      "status": "completed",
+      "current_step": "finished",
+      "out_dir": "results/mistral_subspace_component_steering_l27_v1/20260314_144647",
+      "updated_at": "2026-03-14T15:34:04Z",
+      "notes": ""
+    },
+    {
+      "pod_name": "d286ea8751f3",
+      "host": "d286ea8751f3",
+      "port": 22,
+      "session_name": "mistral_induced_persistence_followup_v1",
+      "queue_group": "mistral_induced_persistence_followup_v1",
+      "run_id": "20260314_150405",
+      "status": "completed",
+      "current_step": "finished",
+      "out_dir": "results/mistral_induced_persistence_followup_v1/20260314_150405",
+      "updated_at": "2026-03-14T15:16:21Z",
+      "notes": ""
+    },
+    {
+      "pod_name": "everyday_aqua_limpet-migration",
+      "host": "213.173.102.102",
+      "port": 10061,
+      "session_name": "mistral_persistence_v3",
+      "queue_group": "mistral_persistence_v3",
+      "run_id": "20260313_100241",
+      "status": "completed",
+      "current_step": "finished",
+      "out_dir": "results/mistral_persistence_v3/20260313_100241",
+      "updated_at": "2026-03-13T12:19:02Z",
+      "notes": "Persistence v3 finished before queue hooks were active"
+    }
+  ]
+}

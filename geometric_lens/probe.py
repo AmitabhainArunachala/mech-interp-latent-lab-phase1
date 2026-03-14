@@ -163,7 +163,13 @@ class GeometricProbe:
         elif model_name:
             from transformers import AutoModelForCausalLM, AutoTokenizer
             self.model_name = model_name
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            # Prefer slow tokenizers for cross-model stability, then fall back.
+            try:
+                self.tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+            except Exception:
+                self.tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
+            if self.tokenizer.pad_token is None:
+                self.tokenizer.pad_token = self.tokenizer.eos_token
             self.model = AutoModelForCausalLM.from_pretrained(
                 model_name,
                 torch_dtype=dtype,

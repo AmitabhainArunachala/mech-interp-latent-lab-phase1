@@ -1,0 +1,22 @@
+{
+  "experiment": "rv_l27_causal_validation",
+  "run_name": "qwen2.5_0.5b_litmus_test",
+  "seed": 42,
+  "results": { "root": "results", "phase": "phase1_capability_litmus" },
+  "model": {
+    "name": "Qwen/Qwen2.5-0.5B",
+    "device": "cuda"
+  },
+  "params": {
+    "early_layer": 4,
+    "target_layer": 20,
+    "wrong_layer": 15,
+    "window": 16,
+    "max_pairs": 80,
+    "max_length": 512,
+    "pairing": {
+      "recursive_groups": ["L5_refined", "L4_full", "L3_deeper"],
+      "baseline_groups": ["long_control", "baseline_creative", "baseline_math"]
+    }
+  }
+}

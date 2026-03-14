@@ -37,6 +37,15 @@ from src.core.models import load_model, set_seed
 from prompts.loader import PromptLoader
 
 
+DEFAULT_RECURSIVE_GROUPS = ["L5_refined", "L4_full", "L3_deeper"]
+DEFAULT_BASELINE_GROUPS = ["baseline_creative", "baseline_math", "baseline_factual"]
+
+
+def parse_groups(raw: str, default: List[str]) -> List[str]:
+    groups = [item.strip() for item in raw.split(",") if item.strip()]
+    return groups or list(default)
+
+
 def compute_eigenstate_metrics(
     hidden_states: torch.Tensor,
     *,
@@ -161,6 +170,9 @@ def run_eigenstate_analysis(
     min_tokens: int = 64,
     window_mode: str = "tail",  # "tail" | "random"
     seed: int = 42,
+    recursive_groups: Optional[List[str]] = None,
+    baseline_groups: Optional[List[str]] = None,
+    n_per_group: int = 4,
 ) -> Dict[str, Any]:
     """
     Run eigenstate emergence analysis and find true steering direction.
@@ -195,39 +207,55 @@ def run_eigenstate_analysis(
         json.dumps({"version": bank_version}, indent=2) + "\n"
     )
 
-    def _pick_long_prompts(groups: List[str], n: int) -> List[str]:
-        cands = []
-        for k, v in bank.items():
-            if v.get("group") in groups:
+    recursive_groups = recursive_groups or list(DEFAULT_RECURSIVE_GROUPS)
+    baseline_groups = baseline_groups or list(DEFAULT_BASELINE_GROUPS)
+
+    def _pick_long_prompts(groups: List[str], n_each: int) -> tuple[List[str], Dict[str, int]]:
+        texts: List[str] = []
+        counts: Dict[str, int] = {}
+        for group_name in groups:
+            cands = []
+            for _k, v in bank.items():
+                if v.get("group") != group_name:
+                    continue
                 text = v.get("text") or ""
                 if not text:
                     continue
                 tok_len = len(tokenizer.encode(text))
                 if tok_len >= min_tokens:
                     cands.append(text)
-        rng.shuffle(cands)
-        return cands[:n]
+            rng.shuffle(cands)
+            chosen = cands[:n_each]
+            texts.extend(chosen)
+            counts[group_name] = len(chosen)
+        return texts, counts
 
-    # Prefer long prompts from the bank (these are stable + comparable to other pipelines).
-    recursive_prompts = _pick_long_prompts(["L5_refined", "L4_full", "L3_deeper"], n=8)
-    baseline_prompts = _pick_long_prompts(["long_control", "baseline_creative", "baseline_math"], n=8)
+    recursive_prompts, recursive_counts = _pick_long_prompts(recursive_groups, n_each=n_per_group)
+    baseline_prompts, baseline_counts = _pick_long_prompts(baseline_groups, n_each=n_per_group)
 
     # DEC15 hygiene: no hardcoded fallback prompts. If too few long prompts, widen selection
     # to any prompts from the same groups (still from the bank), then fail loudly if still insufficient.
-    def _pick_any_prompts(groups: List[str], n: int) -> List[str]:
-        cands = []
-        for _k, v in bank.items():
-            if v.get("group") in groups:
+    def _pick_any_prompts(groups: List[str], n_each: int) -> tuple[List[str], Dict[str, int]]:
+        texts: List[str] = []
+        counts: Dict[str, int] = {}
+        for group_name in groups:
+            cands = []
+            for _k, v in bank.items():
+                if v.get("group") != group_name:
+                    continue
                 text = v.get("text") or ""
                 if text:
                     cands.append(text)
-        rng.shuffle(cands)
-        return cands[:n]
+            rng.shuffle(cands)
+            chosen = cands[:n_each]
+            texts.extend(chosen)
+            counts[group_name] = len(chosen)
+        return texts, counts
 
-    if len(recursive_prompts) < 5:
-        recursive_prompts = _pick_any_prompts(["L5_refined", "L4_full", "L3_deeper"], n=8)
-    if len(baseline_prompts) < 5:
-        baseline_prompts = _pick_any_prompts(["long_control", "baseline_creative", "baseline_math"], n=8)
+    if len(recursive_prompts) < max(3, len(recursive_groups)):
+        recursive_prompts, recursive_counts = _pick_any_prompts(recursive_groups, n_each=n_per_group)
+    if len(baseline_prompts) < max(3, len(baseline_groups)):
+        baseline_prompts, baseline_counts = _pick_any_prompts(baseline_groups, n_each=n_per_group)
 
     if len(recursive_prompts) < 3 or len(baseline_prompts) < 3:
         raise RuntimeError("Prompt bank does not contain enough prompts for eigenstate analysis (need >=3 per side).")
@@ -236,7 +264,17 @@ def run_eigenstate_analysis(
         "prompt_bank_version": bank_version,
         "prompts": {"recursive": recursive_prompts, "baseline": baseline_prompts},
     }
-    results["params"] = {"window": int(window), "min_tokens": int(min_tokens), "window_mode": window_mode, "seed": int(seed)}
+    results["params"] = {
+        "window": int(window),
+        "min_tokens": int(min_tokens),
+        "window_mode": window_mode,
+        "seed": int(seed),
+        "recursive_groups": recursive_groups,
+        "baseline_groups": baseline_groups,
+        "n_per_group": int(n_per_group),
+        "recursive_prompt_counts": recursive_counts,
+        "baseline_prompt_counts": baseline_counts,
+    }
     
     # ==========================================================================
     # EXPERIMENT 1: Eigenstate metrics across layers for each prompt type
@@ -513,10 +551,29 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Eigenstate Direction Finder")
     parser.add_argument("--model", default="mistralai/Mistral-7B-v0.1", help="Model name")
     parser.add_argument("--device", default="cuda", help="Device")
+    parser.add_argument("--recursive-groups", default=",".join(DEFAULT_RECURSIVE_GROUPS), help="Comma-separated recursive prompt groups")
+    parser.add_argument("--baseline-groups", default=",".join(DEFAULT_BASELINE_GROUPS), help="Comma-separated baseline prompt groups")
+    parser.add_argument("--n-per-group", type=int, default=4, help="Prompts to take from each group")
+    parser.add_argument("--output-dir", default="", help="Optional output directory")
+    parser.add_argument("--window", type=int, default=16, help="Window size for eigenstate metrics")
+    parser.add_argument("--min-tokens", type=int, default=64, help="Minimum token length for long-prompt preference")
+    parser.add_argument("--window-mode", default="tail", choices=["tail", "random"], help="Window selection mode")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed")
     args = parser.parse_args()
     
     try:
-        run_eigenstate_analysis(model_name=args.model, device=args.device)
+        run_eigenstate_analysis(
+            model_name=args.model,
+            device=args.device,
+            output_dir=Path(args.output_dir) if args.output_dir else None,
+            window=args.window,
+            min_tokens=args.min_tokens,
+            window_mode=args.window_mode,
+            seed=args.seed,
+            recursive_groups=parse_groups(args.recursive_groups, DEFAULT_RECURSIVE_GROUPS),
+            baseline_groups=parse_groups(args.baseline_groups, DEFAULT_BASELINE_GROUPS),
+            n_per_group=args.n_per_group,
+        )
     finally:
         print("\n[cleanup] Clearing GPU memory...")
         gc.collect()
@@ -524,4 +581,3 @@ if __name__ == "__main__":
             torch.cuda.empty_cache()
             torch.cuda.synchronize()
         print("[cleanup] GPU memory cleared.")
-

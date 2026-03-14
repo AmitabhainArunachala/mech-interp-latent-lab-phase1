@@ -1,0 +1,124 @@
+{
+  "experiment": "causal_state_benchmark_v4_multisite",
+  "run_name": "mistral_anchor_bundle_v4_generalization_controls",
+  "seed": 314,
+  "model": {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "device": "cuda"
+  },
+  "params": {
+    "source_sessions_dir": "results/sustained_gnani_v3_fixed",
+    "early_layer": 5,
+    "late_layer": 27,
+    "max_length": 512,
+    "min_text_chars": 80,
+    "max_source_per_label": 72,
+    "max_source_per_session": 8,
+    "positive_classes": [
+      "BREAKTHROUGH",
+      "ARTICULATE"
+    ],
+    "negative_classes": [
+      "SURFACE",
+      "REPETITIVE"
+    ],
+    "positive_quantile": 0.35,
+    "negative_quantile": 0.65,
+    "positive_session_types": [
+      "recursive"
+    ],
+    "negative_session_types": [
+      "baseline"
+    ],
+    "recursive_groups": [
+      "champions"
+    ],
+    "baseline_groups": [
+      "control_length_matched",
+      "control_pseudo_recursive",
+      "baseline_math",
+      "baseline_factual",
+      "baseline_creative"
+    ],
+    "holdout_per_group": 4,
+    "generation_seeds": [
+      101,
+      202,
+      303,
+      404,
+      505,
+      606
+    ],
+    "max_new_tokens": 128,
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "control_name": "control",
+    "primary_prompt_mode": "recursive",
+    "control_prompt_mode": "baseline",
+    "bootstrap_resamples": 5000,
+    "source_layers": {
+      "early_mlp": {
+        "layer": 4,
+        "window": 4,
+        "component": "mlp",
+        "token_window": 4
+      },
+      "bridge": {
+        "layer": 25,
+        "window": 32,
+        "component": "residual"
+      }
+    },
+    "multisite_interventions": [
+      {
+        "name": "control",
+        "alphas": {
+          "early_mlp": 0.0,
+          "bridge": 0.0
+        }
+      },
+      {
+        "name": "anchor_only",
+        "alphas": {
+          "early_mlp": 0.0,
+          "bridge": 0.0
+        },
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      },
+      {
+        "name": "bridge_only_3",
+        "alphas": {
+          "early_mlp": 0.0,
+          "bridge": 3.0
+        }
+      },
+      {
+        "name": "anchor_bridge_3",
+        "alphas": {
+          "early_mlp": 0.0,
+          "bridge": 3.0
+        },
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      },
+      {
+        "name": "anchor_early_mlp_0p125_bridge_3",
+        "alphas": {
+          "early_mlp": 0.125,
+          "bridge": 3.0
+        },
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      }
+    ]
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  }
+}

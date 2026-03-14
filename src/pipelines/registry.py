@@ -115,6 +115,15 @@ def get_registry() -> Dict[str, ExperimentFn]:
     from .canonical.rv_l27_causal_validation import run_rv_l27_causal_validation_from_config
     from .canonical.confound_validation import run_confound_validation_from_config
     from .canonical.random_direction_control import run_random_direction_control_from_config
+    from .canonical.causal_state_benchmark_v1 import run_causal_state_benchmark_v1_from_config
+    from .canonical.causal_state_benchmark_v2 import run_causal_state_benchmark_v2_from_config
+    from .canonical.causal_state_benchmark_v3_confirmatory import (
+        run_causal_state_benchmark_v3_confirmatory_from_config,
+    )
+    from .canonical.causal_state_targeted_scan_v1 import run_causal_state_targeted_scan_v1_from_config
+    from .canonical.causal_state_benchmark_v4_multisite import (
+        run_causal_state_benchmark_v4_multisite_from_config,
+    )
     # mlp_ablation_necessity REMOVED from registry - measures R_V on generated text (contract violation)
     # Use mlp_ablation_necessity_prompt_pass instead
     from .canonical.mlp_ablation_necessity_prompt_pass import run_mlp_ablation_necessity_prompt_pass_from_config
@@ -181,6 +190,11 @@ def get_registry() -> Dict[str, ExperimentFn]:
         "phase0_metric_targets": run_phase0_metric_targets_from_config,
         "phase1_existence": run_phase1_existence_from_config,
         "rv_l27_causal_validation": run_rv_l27_causal_validation_from_config,
+        "causal_state_benchmark_v1": run_causal_state_benchmark_v1_from_config,
+        "causal_state_benchmark_v2": run_causal_state_benchmark_v2_from_config,
+        "causal_state_benchmark_v3_confirmatory": run_causal_state_benchmark_v3_confirmatory_from_config,
+        "causal_state_targeted_scan_v1": run_causal_state_targeted_scan_v1_from_config,
+        "causal_state_benchmark_v4_multisite": run_causal_state_benchmark_v4_multisite_from_config,
         "l27_head_analysis": run_l27_head_analysis_from_config,
         "path_patching_mechanism": run_path_patching_mechanism_from_config,
         "behavioral_grounding": run_behavioral_grounding_from_config,
@@ -248,5 +262,3 @@ def run_from_config(cfg: Dict[str, Any], run_dir: Path) -> ExperimentResult:
             f"Unknown experiment '{exp}'. Known: {sorted(reg.keys())}"
         )
     return reg[exp](cfg, run_dir)
-
-
