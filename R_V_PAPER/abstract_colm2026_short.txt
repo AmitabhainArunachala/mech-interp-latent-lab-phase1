@@ -1,0 +1,12 @@
+COLM 2026 TL;DR (OpenReview, max 100 words)
+=============================================
+
+Self-referential prompts cause a geometric contraction in transformer
+representations, measured by R_V, the ratio of late- to early-layer effective
+dimensionality. In a recovered base Mistral-7B-v0.1 artifact, contraction is
+strong (d = -2.26, n = 45 pairs), while the clearest recovered result is
+causal: dual-layer ablation drops recursive behavioral markers from 56.0% to
+3.7%, and path patching localizes the strongest break effect to the early
+residual stream. Cross-architecture evidence is mixed, with contraction in
+locked Mistral and Qwen rows, sign reversal in OPT and GPT-2 XL, and a null
+power-up result in Pythia-1.4B.

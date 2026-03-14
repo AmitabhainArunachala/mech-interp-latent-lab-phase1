@@ -1,0 +1,23 @@
+\begin{table}[h]
+\centering
+\caption{Statistical Results with FDR Correction}
+\label{tab:fdr_results}
+\begin{tabular}{llrrrr}
+\toprule
+ID & Experiment & $p$ & $p_{\text{FDR}}$ & Cohen's $d$ & FDR \\
+\midrule
+A1 & Mistral-7B cross-arch & 1.21e-17 & 1.27e-16 & -2.26 & PASS \\
+A2 & OPT-6.7B cross-arch & 1.49e-13 & 6.26e-13 & -1.84 & PASS \\
+A3 & GPT2-XL cross-arch & 5.42e-07 & 1.42e-06 & -1.14 & PASS \\
+A4 & Qwen2.5-7B cross-arch & 9.66e-04 & 1.69e-03 & -0.72 & PASS \\
+B1 & Mistral-7B power-up & 1.06e-15 & 5.57e-15 & -1.66 & PASS \\
+B2 & OPT-6.7B power-up & 3.34e-16 & 2.34e-15 & 1.68 & PASS \\
+B3 & GPT2-XL power-up & 1.10e-12 & 3.85e-12 & 1.52 & PASS \\
+B4 & Qwen2.5-7B power-up & 1.16e-17 & 1.27e-16 & -2.32 & PASS \\
+C1 & Qwen2.5-3B scaling & 1.65e-06 & 3.15e-06 & 1.25 & PASS \\
+C7 & Mistral-7B scaling & 7.78e-09 & 2.33e-08 & -1.74 & PASS \\
+D1 & L27 activation patching (main) & 1.00e-06 & 2.10e-06 & -3.56 & PASS \\
+D2 & Random noise control & 1.00e-06 & 2.10e-06 & 7.16 & PASS \\
+\bottomrule
+\end{tabular}
+\end{table}

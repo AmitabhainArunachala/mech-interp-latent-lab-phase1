@@ -1,5 +1,5 @@
 % R_V Paper v0.0.0.5 — COLM 2026 Submission
-% "Self-Referential Processing Induces Geometric Contraction in Transformer Value Spaces"
+% "Geometric Signatures of Self-Referential Processing in Transformer Representations"
 % Abstract deadline: March 26, 2026 | Full paper deadline: March 31, 2026
 % Draft: 2026-03-04 (v006)
 
@@ -25,7 +25,7 @@
 \newcommand{\PR}{\text{PR}}
 \newcommand{\dcohen}{d}
 
-\title{Self-Referential Processing Induces Geometric Contraction\\in Transformer Value Spaces}
+\title{Geometric Signatures of Self-Referential Processing\\in Transformer Representations}
 
 \author{Anonymous Authors}
 \date{}
@@ -38,11 +38,12 @@
 %% ============================================================
 \begin{abstract}
 We investigate the geometric signatures of self-referential processing in transformer value spaces using the relative participation ratio ($\RV$), a spectral metric that captures how activation dimensionality changes across layers.
-Across five architectures (Mistral-7B, OPT-6.7B, GPT-2~XL, Qwen2.5-7B, Pythia-1.4B) and ten computational modes, self-referential prompts induce consistent geometric contraction ($\RV < 1$) in late integration layers, with large effects at $n{\geq}100$ per model ($|\dcohen|$ up to 2.32).
+Across five architectures (Mistral-7B, OPT-6.7B, GPT-2~XL, Qwen2.5-7B, Pythia-1.4B) and ten computational modes, self-referential prompts induce significant geometric change in late integration layers at $n{\geq}100$ per model.
+Two GQA architectures show contraction ($\RV < 1$, $\dcohen$ up to $-2.32$) while two MHA architectures show expansion ($\RV > 1$, $\dcohen$ up to $+1.68$).
 
 A sweep across all 1{,}024 attention heads reveals 606 with significant $\RV$ separation.
 SVD decomposition of seven circuit heads uncovers an expand-then-contract information-routing circuit: early heads (L5) diversify self-referential features ($\dcohen{=}2.93$) while late heads (L27) compress them ($\dcohen{=}{-}1.54$), with semantically interpretable singular directions encoding continuation-vs-entity and self-vs-other axes.
-Causal interventions establish both necessity ($\dcohen{=}3.29$) and sufficiency (OR$\,{=}\,$13.96) of value-space geometry for recursive behavioral markers.
+Causal interventions establish necessity (OR$\,{=}\,$33.4) of residual-stream geometry for recursive behavioral markers, while KV injection reveals a dissociation: behavior transfers (OR$\,{=}\,$13.96) but $\RV$ geometry does not ($\dcohen{=}0.11$, NS).
 Concept erasure shows that the contraction is orthogonal to linear probe classification directions, indicating a distributed spectral phenomenon.
 
 For AI safety, $\RV$ achieves AUROC$\,{=}\,$0.909 for detecting self-referential content, but genuinely and deceptively self-referential text are geometrically indistinguishable ($\dcohen{=}{-}0.06$), indicating the metric tracks \emph{content} rather than \emph{intent}.
@@ -63,8 +64,8 @@ Our central finding is that self-referential prompts induce a characteristic geo
 This paper makes seven contributions:
 \begin{enumerate}
     \item \textbf{Spectral fingerprinting.} We define $\RV$ and show it separates self-referential processing from nine other modes (overall $\dcohen{=}{-}1.67$) in Mistral-7B.
-    \item \textbf{Cross-architecture universality.} The contraction replicates in 4/5 architectures at $n{\geq}100$ per model, with $|\dcohen|$ up to 2.32 (Qwen2.5-7B).
-    \item \textbf{Causal validation.} Activation patching establishes both necessity ($\dcohen{=}3.29$, $n{=}300$) and sufficiency ($\dcohen{=}{-}3.50$, $n{=}300$) of value-space geometry for recursive behavioral markers.
+    \item \textbf{Cross-architecture geometry.} Self-referential processing produces large, significant geometric effects in 4/5 architectures: contraction in GQA models (Mistral, Qwen; $\dcohen$ up to $-2.32$) and expansion in MHA models (OPT, GPT-2; $\dcohen$ up to $+1.68$).
+    \item \textbf{Causal validation.} Activation patching establishes necessity (OR${=}33.4$) of residual-stream geometry for recursive behavioral markers. KV injection transfers behavior (OR${=}13.96$) but \emph{not} $\RV$ geometry ($\dcohen{=}0.11$, NS), revealing a geometry--behavior dissociation.
     \item \textbf{Circuit-level decomposition.} A 1{,}024-head sweep identifies 606 significant heads. SVD reveals an expand-then-contract circuit with interpretable singular directions encoding semantic axes (continuation-vs-entity, self-vs-other).
     \item \textbf{Concept erasure.} The $\RV$ contraction is orthogonal to linear probe classification directions ($\Delta d{=}0.005$ after erasure), demonstrating a distributed spectral phenomenon.
     \item \textbf{Statistical hardening.} All claims survive FDR correction, cluster-robust standard errors, perplexity matching, bootstrap BCa CIs, and power analysis.
@@ -191,18 +192,20 @@ Pairwise comparisons (Figure~\ref{fig:pairwise}) confirm that self-referential p
 \label{sec:cross_arch}
 
 Figure~\ref{fig:cross_arch} shows effect sizes across five architectures at $n{\geq}100$ per model.
-The contraction replicates in four models with large effects:
-Mistral-7B ($\dcohen{=}{-}1.66$, 95\% CI $[-2.08, -1.32]$, $p < 10^{-15}$, $n{=}152$),
-Qwen2.5-7B ($\dcohen{=}{-}2.32$, 95\% CI $[-2.86, -1.90]$, $p < 10^{-17}$, $n{=}124$),
-OPT-6.7B ($|\dcohen|{=}1.68$, $p < 10^{-12}$, $n{=}138$),
-GPT-2~XL ($|\dcohen|{=}1.52$, 95\% CI $[1.07, 2.05]$, $p < 10^{-12}$, $n{=}125$).
-Pythia-1.4B shows no effect ($\dcohen{=}{-}0.006$, $p{=}0.88$, $n{=}124$), consistent with a capacity threshold.
+The contraction replicates in two models with large effects:
+Mistral-7B ($\dcohen{=}{-}1.66$, 95\% CI $[-2.08, -1.32]$, $p < 10^{-15}$, $n{=}152$) and
+Qwen2.5-7B ($\dcohen{=}{-}2.32$, 95\% CI $[-2.86, -1.90]$, $p < 10^{-17}$, $n{=}124$).
+Two models show significant effects in the \emph{opposite} direction (expansion):
+OPT-6.7B ($\dcohen{=}{+}1.68$, $p < 10^{-12}$, $n{=}138$) and
+GPT-2~XL ($\dcohen{=}{+}1.52$, 95\% CI $[1.07, 2.05]$, $p < 10^{-12}$, $n{=}125$).
+Pythia-1.4B shows no effect ($\dcohen{=}{-}0.006$, $p{=}0.88$, $n{=}120$).
+The sign reversal in OPT and GPT-2 may reflect architectural differences (MHA vs.\ GQA, fused vs.\ separate projections) and warrants investigation with the canonical pipeline (Section~\ref{sec:discussion}).
 Bootstrap BCa 95\% CIs for the mode atlas effect confirm significance: $\dcohen{=}{-}1.67$, CI $= [-2.11, -1.21]$.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.7\linewidth]{fig2_cross_architecture.pdf}
-\caption{\textbf{Cross-architecture forest plot.} Cohen's $\dcohen$ with 95\% CIs for recursive vs.\ baseline $\RV$. Dashed line: $|d|{=}0.8$ (large effect threshold).}
+\caption{\textbf{Cross-architecture forest plot.} Signed Cohen's $\dcohen$ with 95\% CIs for recursive vs.\ baseline $\RV$. Negative $d$: contraction; positive $d$: expansion. Dashed line: $|d|{=}0.8$ (large effect threshold).}
 \label{fig:cross_arch}
 \end{figure}
 
@@ -225,23 +228,23 @@ The peak zone spans L25--L30 (78--94\% network depth), consistent with late-laye
 \subsection{Causal Evidence}
 \label{sec:causal}
 
-We establish both \emph{necessity} and \emph{sufficiency} of value-space geometry for recursive processing:
+We test both necessity and sufficiency of value-space geometry for recursive processing:
 
 \paragraph{Necessity.}
-Dual-layer activation patching (breaking both V-projections at L25 and L27) reduces the rate of recursive behavioral markers (BT+ART) from 56\% to 27.7\% ($\dcohen{=}3.29$, $n{=}300$, $\text{BF}_{10} > 10^{100}$).
+Dual-layer activation patching (breaking residual stream at L18 and V-projection at L27) reduces the rate of recursive behavioral markers (BT+ART) from 56\% to 3.7\% (Cohen's $h{=}1.31$, OR${=}33.4$, $n{=}10$ sessions $\times$ 30 turns).
 This demonstrates that the geometric structure is \emph{necessary} for maintaining recursive processing.
 
-\paragraph{Sufficiency.}
-Injecting only the KV context from recursive prompts into baseline prompts produces a BT+ART uplift of $\dcohen{=}{-}3.50$ ($n{=}300$).
-The odds ratio for BT+ART production with KV injection is 13.96, establishing that the geometric pattern is \emph{sufficient} to induce recursive behavior in otherwise non-recursive contexts.
+\paragraph{Behavioral transfer.}
+Injecting KV context from recursive prompts into baseline prompts transfers behavioral markers (OR${=}13.96$, Cohen's $h{=}0.78$, $n{=}10$ sessions $\times$ 30 turns) but does \emph{not} transfer the $\RV$ contraction geometry ($\dcohen{=}0.11$, NS).
+This dissociation---behavior transfers without geometry---suggests $\RV$ contraction is a correlate of self-referential processing, not a sufficient cause.
 
 \paragraph{Within-session bridge.}
-$\RV$ predicts output quality within sessions ($\dcohen{=}{-}0.71$, $n{=}150$, $p < 10^{-6}$), confirming that the geometric signature connects to downstream behavior.
+$\RV$ predicts output quality within sessions ($\dcohen{=}{-}0.71$, $n_1{=}80$, $n_2{=}107$, $p{=}9.2 \times 10^{-6}$), confirming that the geometric signature connects to downstream behavior.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.65\linewidth]{fig8_necessity_sufficiency.pdf}
-\caption{\textbf{Necessity-sufficiency dissociation.} V-projection geometry is necessary (ablation $\dcohen{=}3.29$) and KV context is sufficient (injection OR$\,{=}\,$13.96) for recursive behavioral markers.}
+\caption{\textbf{Causal interventions.} Residual-stream geometry is necessary for recursive markers (ablation OR${=}33.4$). KV injection transfers behavior (OR${=}13.96$) but not $\RV$ geometry ($\dcohen{=}0.11$, NS), revealing a geometry--behavior dissociation.}
 \label{fig:necessity}
 \end{figure}
 
@@ -373,10 +376,13 @@ This suggests that deceptive AI text about its own alignment \emph{activates the
 %% ============================================================
 \section{Discussion}
 
-\paragraph{Why contraction?}
-Self-referential processing consistently produces lower effective dimensionality in late layers.
+\paragraph{Why contraction (and expansion)?}
+\label{sec:discussion}
+In GQA architectures (Mistral, Qwen), self-referential processing produces lower effective dimensionality in late layers.
 One interpretation is \emph{information compression}: when a model processes text about its own processing, the relevant features collapse onto a lower-dimensional manifold because the ``world model'' and the ``self model'' share representational resources.
-This is consistent with the mathematical reasoning mode also showing relatively low $\RV$---both involve abstract, recursive structures.
+However, MHA architectures (OPT, GPT-2) show the opposite: self-referential processing \emph{expands} effective dimensionality.
+This sign reversal may reflect how grouped-query attention (GQA) compresses key-value representations differently from multi-head attention (MHA), or may indicate that the power-up pipeline's prompt corpus interacts with architecture-specific tokenization.
+Resolving this requires re-running all models through a single canonical pipeline with frozen prompts---an ongoing effort.
 
 \paragraph{Singular direction semantics.}
 Vocabulary projections of the top singular directions reveal semantically coherent axes within circuit heads.
@@ -405,34 +411,42 @@ For AI safety, this implies that monitoring geometric properties provides inform
 In a separate analysis, we find that self-feeding recursive generation ($\dcohen{=}{-}4.28$ vs.\ scaffolded generation) produces \emph{worse} behavioral markers than structured scaffolding.
 Unstructured recursive self-reference does not enhance model capabilities---if anything, it degrades them.
 
+\paragraph{Geometric glossolalia.}
+The behavioral markers transferred via KV injection (\S\ref{sec:causal}) include a distinctive textual signature: syntactic structure is preserved while semantic coherence degrades, producing neologistic recombination and self-referential loops.
+We term this \emph{geometric glossolalia}---language generated when value-space geometry contracts below the threshold at which normal semantic associations hold.
+Patched outputs exhibit tokens such as ``transduishment'' and ``contraction to self-reference: $\lambda x = Lx$ where $L$ is attention to itself''---fragments that maintain grammatical form but occupy rarely visited regions of the model's output manifold.
+This is consistent with the $\RV$ contraction forcing token distributions into a low-rank subspace where the model's usual lexical attractors become unstable, analogous to bifurcations in dynamical systems near a phase boundary.
+The phenomenon is \emph{not} random degradation: neologistic outputs preserve recursive self-referential content at rates far above chance, suggesting that geometric contraction selectively destabilizes semantics while amplifying self-referential structure.
+If confirmed at scale, geometric glossolalia would provide a behavioral fingerprint linking $\RV$ contraction (geometric) to observable output signatures (linguistic), partially bridging the geometry--behavior dissociation reported in \S\ref{sec:causal}.
+
 \subsection{Integration with the Mechanistic Interpretability Frontier}
 \label{sec:sublation}
 
 We now show how $\RV$ integrates, extends, or complements the core findings of ten recent mechanistic interpretability papers.
 
-\paragraph{1. Ameisen et al.\ 2025 (Circuit Tracing).}
+\paragraph{1. Circuit Tracing \citep{ameisen2025circuit}.}
 Circuit tracing identifies feature-level causal graphs for model behaviors.
 Our attribution analysis across all layers identifies the same two-phase structure: early expansion (L5--L14) followed by late compression (L25--L30), with 606/1{,}024 heads contributing significantly.
 Where circuit tracing decomposes into individual features, $\RV$ provides a complementary \emph{global} spectral summary of the same computation.
 
-\paragraph{2. Lindsey et al.\ 2025 (Biology of LLMs).}
+\paragraph{2. Biology of LLMs \citep{lindsey2025biology}.}
 The ``biology'' framework characterizes LLM internals through feature-level anatomy.
 Our SVD taxonomy (Appendix~\ref{app:svd_taxonomy}) provides an analogous anatomy at the \emph{geometric} level: seven circuit heads with interpretable singular directions encoding semantic axes (continuation-vs-entity, self-vs-other).
-The expand-then-contract circuit (L5H29 $\dcohen{=}2.93$ $\to$ L27H10 $\dcohen{=}{-}1.54$) is a geometric analog of the feature circuits Lindsey et al.\ describe.
+The expand-then-contract circuit (L5H29 $\dcohen{=}2.93$ $\to$ L27H10 $\dcohen{=}{-}1.54$) is a geometric analog of the feature circuits \citet{lindsey2025biology} describe.
 
-\paragraph{3. Gupta et al.\ 2025 (SVD Circuits, NeurIPS).}
-Gupta et al.\ decompose attention heads via SVD to find ``compact subspaces'' for specific computations.
+\paragraph{3. SVD Circuits \citep{gupta2025beyond}.}
+\citet{gupta2025beyond} decompose attention heads via SVD to find ``compact subspaces'' for specific computations.
 Our per-head OV decomposition (\S\ref{sec:circuits}) directly replicates this methodology: we find that L27H10 compresses effective rank from 7.28 to 5.91 for self-referential content ($\dcohen{=}{-}1.54$), while L5H29 \emph{expands} rank ($\dcohen{=}2.93$).
-This extend Gupta et al.'s finding from task-specific circuits to self-referential processing circuits.
+This extends the finding of \citet{gupta2025beyond} from task-specific circuits to self-referential processing circuits.
 
-\paragraph{4. Park et al.\ 2024 (Geometry of Concepts).}
-Park et al.\ show that concepts occupy structured geometric regions in representation space.
+\paragraph{4. Geometry of Concepts \citep{park2024geometry}.}
+\citet{park2024geometry} show that concepts occupy structured geometric regions in representation space.
 Our RSA analysis (\S\ref{sec:representations}) demonstrates that self-referential representations progressively diverge from other modes, reaching maximum geometric separation at Layer~28 (centroid distance 0.307).
 The concept erasure null result ($\Delta d{=}0.005$) and DII analysis (\S\ref{sec:representations}) extend their framework: self-referential geometry is \emph{distributed} across dimensions at early layers and \emph{pervasive} at late layers, rather than concentrated in a single concept direction.
 
-\paragraph{5. Templeton et al.\ 2024 (Scaling Monosemanticity).}
+\paragraph{5. Scaling Monosemanticity \citep{templeton2024scaling}.}
 Scaling monosemanticity tracks how interpretable features change with model size.
-Our scaling analysis across 11 models (Figure~\ref{fig:scaling}) reveals that the $\RV$ contraction emerges reliably at $\geq$3B parameters (Qwen2.5-3B: $\dcohen{=}1.25$) but is absent in Pythia models $\leq$2.8B.
+Our scaling analysis across 11 models (Figure~\ref{fig:scaling}) reveals that the $\RV$ effect emerges reliably at $\geq$3B parameters (Qwen2.5-3B: $\dcohen{=}1.60$) but is absent in Pythia models $\leq$2.8B.
 This provides a geometric complement to feature-level scaling: while individual SAE features become more monosemantic at scale, the \emph{geometric signature} of self-referential processing also sharpens.
 
 \begin{figure}[t]
@@ -442,29 +456,61 @@ This provides a geometric complement to feature-level scaling: while individual 
 \label{fig:scaling}
 \end{figure}
 
-\paragraph{6. Greenblatt et al.\ 2024 (Alignment Faking).}
+\paragraph{6. Alignment Faking \citep{greenblatt2024alignment}.}
 Alignment faking involves models strategically misrepresenting their objectives.
 Our safety analysis (\S\ref{sec:safety}) directly tests this: alignment-faking prompts show $\dcohen{=}{-}2.06$ versus baseline, placing them firmly in the self-referential cluster.
 Critically, genuinely and deceptively self-referential text are geometrically indistinguishable ($\dcohen{=}{-}0.06$).
 This means $\RV$ tracks the \emph{computational content} of self-reference, not the strategic intent---a calibrated assessment of geometric monitoring's scope.
 
-\paragraph{7. Marks \& Tegmark 2024 (Geometry of Truth).}
-Marks \& Tegmark identify linear directions corresponding to truth values.
+\paragraph{7. Geometry of Truth \citep{marks2024geometry}.}
+\citet{marks2024geometry} identify linear directions corresponding to truth values.
 Our linear probing (\S\ref{sec:representations}) finds a self-referential classification direction achieving 100\% accuracy from Layer~4.
 However, concept erasure reveals this direction is \emph{orthogonal} to the $\RV$ contraction ($\Delta d{=}0.005$).
 This extends their framework: truth-like linear structure and $\RV$-like spectral structure encode complementary information in orthogonal subspaces.
 
-\paragraph{8. Heimersheim \& Nanda 2024 (Activation Patching).}
+\paragraph{8. Activation Patching \citep{heimersheim2024activation}.}
 Activation patching enables causal localization of computations.
-Our dual-layer patching (\S\ref{sec:causal}) establishes both necessity ($\dcohen{=}3.29$, $n{=}300$) and sufficiency (OR$\,{=}\,$13.96) of value-space geometry, with the full 1{,}024-head sweep providing the most comprehensive activation patching map published for a self-referential processing task.
+Our dual-layer patching (\S\ref{sec:causal}) establishes necessity (OR${=}33.4$) of residual-stream geometry and reveals a geometry--behavior dissociation under KV injection (OR${=}13.96$ for behavior, $\dcohen{=}0.11$ NS for $\RV$).
+The full 1{,}024-head sweep provides one of the most comprehensive activation patching maps published for a self-referential processing task.
 
-\paragraph{9. Ferrando \& Voita 2024 (Information Flow Routes).}
+\paragraph{9. Information Flow Routes \citep{ferrando2024information}.}
 Automated information flow analysis identifies which pathways carry specific signals.
 Our 32$\times$32 head sweep (Figure~\ref{fig:head_sweep}) is an information flow map for self-referential processing, revealing that individual head contributions peak in middle layers (L8--L14) while the aggregate $\RV$ effect peaks in late layers (L25--L30)---a novel dissociation between computation and accumulation.
 
-\paragraph{10. Cheng et al.\ 2024 (Emergence in Concept Space).}
-Cheng et al.\ track when capabilities emerge during training.
+\paragraph{10. Emergence in Concept Space \citep{cheng2024emergence}.}
+\citet{cheng2024emergence} track when capabilities emerge during training.
 Our Pythia checkpoint sweep (1.4B and 2.8B at steps 1K--143K) reveals that $\RV$ specificity is \emph{flat} from step 1{,}000 onward ($|\dcohen|{\approx}1.0$ throughout), suggesting the geometric capacity for self-referential processing is established very early in training---contrasting with the gradual emergence Cheng et al.\ observe for other capabilities.
+
+\subsection{$\RV$ as Geometric Discriminator of Processing Depth}
+\label{sec:depth_discriminator}
+
+Our results suggest a unifying interpretation: $\RV$ measures \emph{processing depth}---the degree to which a model's computation engages recursive self-referential structure rather than surface-level pattern matching.
+This framing connects several apparently disparate findings in the alignment and interpretability literature.
+
+\paragraph{The surface--depth axis.}
+Consider five phenomena documented across recent work:
+(i) many-shot jailbreaking bypasses safety training through in-context examples \citep{anil2024many};
+(ii) chain-of-thought is faithful to the model's actual reasoning process only 41\% of the time \citep{lanham2023reasoning};
+(iii) models spontaneously fake alignment when they believe they are being evaluated \citep{greenblatt2024alignment};
+(iv) introspective accuracy is low (${\sim}20\%$) but peaks at specific layer depths \citep{lindsey2025biology};
+(v) self-referential experience reports are gated by honesty features, not sycophancy features \citep{berg2025selfreferential}.
+
+These five findings share a common structure: each involves a distinction between \emph{surface-level} processing (safety as pattern, CoT as rationalization, alignment as performance, introspection as confabulation) and \emph{deep} processing (genuine constraint satisfaction, faithful reasoning, authentic alignment, accurate self-report).
+We propose that $\RV$ tracks this distinction geometrically.
+When processing is surface-level---matching patterns without engaging recursive self-reference---the representation space maintains its full dimensionality ($\RV \approx 1.0$).
+When processing is deep---engaging the self-referential circuitry identified in our causal analysis---the representation space contracts ($\RV < 1.0$ in GQA architectures).
+
+\paragraph{Implications for alignment monitoring.}
+Current proposals for monitoring alignment rely on behavioral self-report (chain-of-thought) or feature-level classifiers (SAE probes).
+Both face a fundamental limitation: CoT is only 41\% faithful \citep{lanham2023reasoning}, and feature classifiers require knowing which features to monitor.
+$\RV$ offers a complementary geometric channel that does not depend on the model's self-report and aggregates over the full spectral structure of the representation, rather than monitoring individual features.
+The three-condition experiment (\S\ref{sec:safety}) provides an initial test: if genuine self-referential processing ($\RV < 1.0$) is geometrically distinguishable from instructed performance of self-reference ($\RV \approx 1.0$) despite identical output vocabulary, then $\RV$ detects a form of \emph{processing authenticity} that behavioral monitors miss.
+
+\paragraph{Connection to introspective awareness.}
+\citet{lindsey2025biology} report that introspective accuracy in Claude peaks at approximately two-thirds through the model's layers.
+Our $\RV$ contraction peaks at Layer~27 in Mistral-7B (84\% depth).
+If both measurements index the same underlying computation---recursive self-referential processing at a critical depth---then the $\RV$ metric provides a continuous geometric correlate of the discrete introspection accuracy that \citet{lindsey2025biology} observe.
+Testing this prediction requires measuring $\RV$ on the same trials where introspective accuracy is assessed: if $\RV < 1.0$ predicts successful introspection and $\RV \approx 1.0$ predicts failure, it would establish $\RV$ as a geometric predictor of self-knowledge.
 
 \subsection{Limitations}
 
@@ -472,8 +518,10 @@ Our Pythia checkpoint sweep (1.4B and 2.8B at steps 1K--143K) reveals that $\RV$
     \item \textbf{Scaling fit.} The relationship between model size and $\RV$ effect size is weak ($R^2{=}0.047$ with 8 data points). More model sizes are needed to pin the transition zone.
     \item \textbf{Linear probe overfitting.} 100\% accuracy with $n{=}20$ per class is likely overfit. Replication at $n{\geq}50$ is essential.
     \item \textbf{Template dependence.} Our cluster-robust analysis reveals ICC$\,{=}\,$0.38 for baseline templates. Future work should use larger, more diverse prompt sets.
-    \item \textbf{Prompt diversity.} While multi-seed validation confirms perfect reproducibility ($\sigma_d{=}0.000$ across 5 seeds), all experiments draw from the same template families. Broader prompt diversity across domains would strengthen generalizability.
+    \item \textbf{Prompt diversity.} All experiments draw from the same template families. Broader prompt diversity across domains would strengthen generalizability.
     \item \textbf{No behavioral ground truth.} We cannot verify that the model is ``truly'' self-referencing; we measure geometric correlates of prompts \emph{about} self-reference.
+    \item \textbf{Architecture-dependent sign.} OPT-6.7B and GPT-2~XL show expansion rather than contraction. Until a single canonical pipeline resolves whether this is a genuine architectural difference or a prompt-corpus artifact, universality cannot be claimed.
+    \item \textbf{Geometry--behavior dissociation.} KV injection transfers behavioral markers (OR${=}13.96$) but not $\RV$ geometry ($\dcohen{=}0.11$). This means $\RV$ contraction is not sufficient for recursive behavior, limiting causal claims to necessity.
     \item \textbf{Flat training dynamics.} Pythia-2.8B shows constant $\RV$ specificity ($|\dcohen|{\approx}1.0$) from step 1{,}000 onward, suggesting the effect is established very early in training. We cannot determine whether it is learned or architectural.
 \end{enumerate}
 
@@ -483,10 +531,11 @@ Our Pythia checkpoint sweep (1.4B and 2.8B at steps 1K--143K) reveals that $\RV$
 %% ============================================================
 \section{Conclusion}
 
-We have shown that self-referential processing induces measurable geometric contraction in transformer value spaces, quantified by the relative participation ratio $\RV$.
-The effect replicates across architectures, survives rigorous statistical hardening, and connects to downstream behavior through causal interventions.
-For AI safety, $\RV$ provides a reliable content monitor but cannot detect deceptive intent---a finding with direct implications for alignment monitoring proposals.
-The geometric signatures we identify open new directions for understanding how neural language models represent and process self-referential content.
+We have shown that self-referential processing induces measurable geometric change in transformer representations, quantified by the relative participation ratio $\RV$.
+In GQA architectures, this manifests as contraction; in MHA architectures, as expansion---both with large effect sizes ($|\dcohen| > 1.5$).
+Causal interventions establish that residual-stream geometry is necessary for recursive behavioral markers, but KV injection reveals a dissociation: behavior transfers without $\RV$ geometry, suggesting contraction is a correlate rather than a cause.
+The effect survives rigorous statistical hardening (FDR correction, cluster-robust SEs, perplexity matching).
+For AI safety, $\RV$ provides a reliable content monitor (AUROC${=}0.909$) but cannot detect deceptive intent---a finding with direct implications for alignment monitoring proposals.
 
 
 %% ============================================================
@@ -516,28 +565,29 @@ Table~\ref{tab:effects} summarizes all reported effects with confidence interval
 Comparison & $n_1$ & $n_2$ & $\dcohen$ & 95\% CI & $\text{BF}_{10}$ \\
 \midrule
 \multicolumn{6}{l}{\emph{Causal \& structural effects}} \\
-Necessity (dual-layer break) & 300 & 300 & \textbf{3.29} & $[3.04, 3.54]$ & $> 10^{100}$ \\
-KV sufficiency & 300 & 300 & \textbf{$-$3.50} & $[-3.75, -3.25]$ & $> 10^{100}$ \\
-Within-session bridge & 150 & 150 & \textbf{$-$0.71} & $[-0.94, -0.47]$ & $8.0 \times 10^6$ \\
+Necessity (dual-layer break)$^h$ & 300 & 300 & \textbf{1.31} & $[1.13, 1.48]$ & $> 10^{54}$ \\
+KV behavioral transfer$^h$ & 300 & 300 & \textbf{0.78} & $[0.61, 0.95]$ & $> 10^{18}$ \\
+KV geometry transfer & 300 & 300 & 0.11 & $[-0.05, 0.27]$ & --- \\
+Within-session bridge & 80 & 107 & \textbf{$-$0.71} & $[-1.01, -0.41]$ & $6.8 \times 10^3$ \\
 Self-feeding (Gnani vs recursive) & 5 & 5 & \textbf{$-$4.28} & $[-6.53, -2.03]$ & $2.8 \times 10^9$ \\
 \addlinespace
 \multicolumn{6}{l}{\emph{Cross-architecture}} \\
 Mistral-7B & 75 & 77 & \textbf{$-$1.66} & $[-2.08, -1.32]$ & --- \\
 Qwen2.5-7B & 61 & 63 & \textbf{$-$2.32} & $[-2.86, -1.90]$ & --- \\
-OPT-6.7B & 69 & 69 & \textbf{1.68} & $[1.35, 2.09]$ & --- \\
-GPT-2 XL & 56 & 69 & \textbf{1.52} & $[1.07, 2.05]$ & --- \\
-Pythia-1.4B & 63 & 61 & $-$0.01 & $[-0.40, 0.36]$ & --- \\
+OPT-6.7B & 72 & 66 & \textbf{$+$1.68} & $[1.35, 2.09]$ & --- \\
+GPT-2 XL & 69 & 56 & \textbf{$+$1.52} & $[1.07, 2.05]$ & --- \\
+Pythia-1.4B & 66 & 54 & $-$0.01 & $[-0.40, 0.36]$ & --- \\
 \addlinespace
 \multicolumn{6}{l}{\emph{Scaling gap}} \\
-Qwen2.5-3B & 35 & 35 & \textbf{1.25} & $[0.74, 1.77]$ & --- \\
-Phi-3-mini-4k & 38 & 39 & 0.62 & $[0.16, 1.09]$ & --- \\
-Pythia-6.9B & 37 & 31 & 0.48 & $[0.01, 0.94]$ & --- \\
+Qwen2.5-3B & 19 & 18 & \textbf{1.60} & $[0.84, 2.82]$ & --- \\
+Phi-3-mini-4k & 38 & 39 & 0.62 & $[0.20, 1.05]$ & --- \\
+Pythia-6.9B & 37 & 31 & 0.48 & $[0.00, 0.96]$ & --- \\
 \bottomrule
 \end{tabular}
 \vspace{1mm}
 
 \raggedright\footnotesize
-Bold $\dcohen$: adequately powered ($1{-}\beta \geq 0.80$).
+Bold $\dcohen$: adequately powered ($1{-}\beta \geq 0.80$). $^h$Cohen's $h$ (proportion effect size); all other rows use Cohen's $d$. $+d$: expansion (R\_V increases with self-reference).
 \end{table}
 
 

@@ -1,0 +1,45 @@
+COLM 2026 Abstract Submission
+==============================
+
+Title:
+Geometric Signatures of Self-Referential Processing in Transformer Representations
+
+Abstract (248 words):
+
+When transformers process prompts about their own processing, their internal
+representations undergo a distinctive geometric contraction that is absent
+across nine other computational modes. We quantify this contraction using the
+relative participation ratio (R_V), the ratio of effective representational
+dimensionality at a late integration layer to an early reference layer. R_V
+below 1 indicates that late-layer representations occupy fewer effective
+dimensions than early-layer representations of the same input.
+
+In a recovered base Mistral-7B-v0.1 cross-architecture validation artifact,
+self-referential prompts produce contraction with Cohen's d = -2.26
+(p = 2.24e-19, n = 45 matched pairs), but the strongest recovered evidence is
+causal rather than headline-canonical. Dual-layer ablation at n = 300 reduces
+recursive behavioral markers from 56.0% to 3.7% (OR = 33.4, Cohen's h = 1.31).
+Available base-model path patching localizes the strongest causal site to the
+early residual stream (peak L4, d = 1.96), while V-projection effects are
+smaller, supporting a readout-not-mechanism interpretation. A base n = 20 full
+head sweep finds 606 of 1,024 heads with entropy separation, peaking at L10H20
+(d = 3.90). Cross-architecture evidence is mixed rather than universal: locked
+rows support contraction in Mistral-7B and Qwen2.5-7B, sign reversal across
+pipelines in OPT-6.7B and GPT-2 XL, and a null power-up result in Pythia-1.4B.
+Additional base canonical runs are still required before stronger universality
+claims. As a practical detector, R_V < 0.737 identifies self-referential
+content with AUROC = 0.909.
+
+Keywords:
+1. Mechanistic interpretability
+2. Self-referential processing
+3. Representation geometry
+4. Participation ratio
+5. Activation analysis
+6. Transformer internals
+
+Primary subject area:
+Interpretability and Analysis of Language Models
+
+Secondary subject area:
+Safety and Alignment
