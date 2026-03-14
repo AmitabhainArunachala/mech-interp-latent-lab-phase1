@@ -1,0 +1,24 @@
+run_id=20260312_074022
+model=mistralai/Mistral-7B-v0.1
+device=cuda
+python_bin=python3
+head_sweep_file=results/full_head_sweep/full_head_sweep_20260302_074757.json
+n_prompts=30
+top_k=24
+max_pairs=20
+pair_source=top_effect
+pair_pool_size=8
+pair_prompt_limit=20
+ranking_metric=entropy_d
+single_head_threshold=0.3
+manual_heads=<none>
+git_commit=unknown
+hf_hub_offline=0
+transformers_offline=0
+provenance_note=base_v01_only_launcher_for_head_to_head_path_patching
+started_utc=2026-03-12T07:40:23Z
+
+>>> START head_to_head_base 2026-03-12T07:40:23Z
+>>> DONE  head_to_head_base 2026-03-12T07:42:54Z
+finished_utc=2026-03-12T07:42:54Z
+head_to_head_base_complete=1

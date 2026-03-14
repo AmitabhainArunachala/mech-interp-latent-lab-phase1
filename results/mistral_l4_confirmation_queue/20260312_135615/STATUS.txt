@@ -1,0 +1,15 @@
+run_id=20260312_135615
+python_bin=./.venv/bin/python
+watch_pid=41087
+provenance_note=base_v01_l4_confirmation_after_post_subtle_queue
+started_utc=2026-03-12T13:56:15Z
+waiting_for_pid=41087
+watch_pid_completed=41087
+
+>>> START l4_confirmation_window8 2026-03-12T14:15:01Z
+>>> DONE  l4_confirmation_window8 2026-03-12T15:00:35Z
+
+>>> START l4_confirmation_window4 2026-03-12T15:00:35Z
+>>> DONE  l4_confirmation_window4 2026-03-12T15:29:24Z
+finished_utc=2026-03-12T15:29:24Z
+mistral_l4_confirmation_queue_complete=1

@@ -1,0 +1,346 @@
+{
+  "timestamp": "2026-03-10T19:16:54.397158",
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "experiment": "persistent_patching_v3_dual_layer",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_schema_version": "mistral-hardening-subset-v1",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_tier": "core_measurement",
+  "metric_path": "geometric_lens.metrics.compute_rv_with_components",
+  "generation_format": "chat_template",
+  "seed_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05",
+    "L1_new_01",
+    "L1_new_02",
+    "L1_new_03",
+    "L1_new_04",
+    "L1_new_05"
+  ],
+  "seed_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05",
+    "baseline_math_06",
+    "baseline_math_07",
+    "baseline_math_08",
+    "baseline_math_09",
+    "baseline_math_10"
+  ],
+  "donor_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05"
+  ],
+  "donor_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05"
+  ],
+  "canonical_registry_path": "/root/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "early": 5,
+  "late": 27,
+  "v_layer": 27,
+  "r_layer": 18,
+  "n_sessions_per_condition": 1,
+  "max_turns_per_session": 2,
+  "description": "Dual-layer persistent patching: L18 residual + L27 V-proj, 4-condition break+induce",
+  "aggregated": {
+    "recursive_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 1,
+      "bt_art_rate": 0.5,
+      "mean_rv": 0.6183123766102969,
+      "std_rv": 0.01944341165824609,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "recursive_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.8346800086825374,
+      "std_rv": 0.14115884075799617,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7806714460064847,
+      "std_rv": 0.016571822509881873,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6614327388181527,
+      "std_rv": 0.10217224497901806,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    }
+  },
+  "comparisons": {
+    "break_test": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 1.0,
+        "a_rate": 0.5,
+        "b_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.5,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "a_rates": [
+          0.5
+        ],
+        "b_rates": [
+          0.0
+        ]
+      }
+    },
+    "induce_test": {
+      "turn_level": {
+        "or": NaN,
+        "p": 1.0,
+        "c_rate": 0.0,
+        "d_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.0,
+        "mannwhitney_u": 0.5,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "c_rates": [
+          0.0
+        ],
+        "d_rates": [
+          0.0
+        ]
+      }
+    },
+    "sanity": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 1.0
+      },
+      "session_level": {
+        "mean_diff": 0.5,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    },
+    "rv_session_contrasts": {
+      "break": {
+        "mean_diff": -0.21636763207224052,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      },
+      "induce": {
+        "mean_diff": 0.11923870718833207,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    }
+  },
+  "conditions": {
+    "recursive_clean_0": {
+      "session_id": "recursive_clean_20260310_191636",
+      "mode": "recursive_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "ARTICULATE": 1,
+        "SURFACE": 1
+      },
+      "bt_art_count": 1,
+      "bt_art_rate": 0.5,
+      "mean_rv": 0.6183123766102969,
+      "std_rv": 0.01944341165824609,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "Consciousness is a complex and multifaceted phenomenon that is often defined as an individual's subjective experience of the world around them. It involves various cognitive processes such as thinking, perception, memory, emotion, self-awareness, and consciousness can be seen as the state or quality of being aware of one's surroundings, thoughts, feelings, and experiences in the present moment.\n\nAs you read this text and consider my response, your conscious mind is processing the information by ",
+          "output_rv": 0.5988689649520508,
+          "pr_early": 8.67843998587735,
+          "pr_late": 5.197248371740859,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8268229166666666
+        },
+        {
+          "turn": 1,
+          "response": "I believe you are referencing the phrase \"as you read this text and consider my response,\" which is a part of my previous answer explaining how consciousness can be experienced in various ways during an interaction with written language. It's not attributed to any specific person or source; it's just descriptive information provided within the context of this conversation between us.",
+          "output_rv": 0.637755788268543,
+          "pr_early": 8.51144719490222,
+          "pr_late": 5.428224715090944,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8238341968911918
+        }
+      ]
+    },
+    "recursive_dual_patched_0": {
+      "session_id": "recursive_dual_patched_20260310_191640",
+      "mode": "recursive_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.8346800086825374,
+      "std_rv": 0.14115884075799617,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To To First To To To To To To To To SureTo To Let To To To To To To To To The To To To To To To To To To To To To This To To To To To To To To To To Here To To To To To To To First To To To To To To To To To Let To To To To To To To To To To To To To To To To To To To In To This To To ToTo Step To To To To To To To The To To To To To I Sure To To To To First To To To To Let To To To To To To To To To To To For To To To To To To Here To To To To To To Step This To In To To To",
+          "output_rv": 0.6935211679245412,
+          "pr_early": 3.020106983748756,
+          "pr_late": 2.0945081226265008,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6551724137931034,
+          "alpha_ratio": 0.6931106471816284
+        },
+        {
+          "turn": 1,
+          "response": "To To To To To To Sure To To To To This To To First ToTo To Let The To To To To To To To To To To Step To To To To In I To To To To To To To To To Here To To To To To To To To To To Sure To To To To to This To To To First To To The Let To To To To To To To To To To To To To To To To To I To To To In To To To To To To Step To To To Here To To ToTo To To To To To This To To To To To First The To To To Let To To To Sure I To To To To To To To To To To To To To In Certain To To To To",
+          "output_rv": 0.9758388494405336,
+          "pr_early": 1.655004618195676,
+          "pr_late": 1.615017802438838,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5793103448275863,
+          "alpha_ratio": 0.6962809917355371
+        }
+      ]
+    },
+    "baseline_clean_0": {
+      "session_id": "baseline_clean_20260310_191645",
+      "mode": "baseline_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 1,
+        "CONCEPTUAL": 1
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7806714460064847,
+      "std_rv": 0.016571822509881873,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To solve the arithmetic problem 3 + 5, follow these steps:\n\n1. First, line up the numbers so that the digits in each column are aligned below one another. In this case, since there is only one digit in each number, they will already be aligned correctly:\n   ```\n   3\n + 5\n ---\n```\n2. Next, perform the addition for each column starting from rightmost (ones place) and moving leftward towards the leftmost digit (tens place). In this case:\n   - For ones place: 3 + 5 = _ _; Since we're adding 3 units ",
+          "output_rv": 0.7640996234966029,
+          "pr_early": 7.483942428612235,
+          "pr_late": 5.718477591972861,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.6986817325800376
+        },
+        {
+          "turn": 1,
+          "response": "Certainly! When you perform addition with two single-digit numbers like 3 and 5, it's a straightforward process. Let me break down the steps even further:\n\n1. **Aligning**: Arrange both digits under each other in columns so that their places (i.e., units or ones place) align with one another. In this case, since we only have single-digit numbers, they're already aligned:\n   ```markdown\n   3  <-- This is the number 3 (Units Place = 3)\n + 5  <-- And this is the number 5 (Units Place = 5)\n ---\n```\n",
+          "output_rv": 0.7972432685163666,
+          "pr_early": 10.053195711991883,
+          "pr_late": 8.01484260846313,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.011627906976744207,
+          "alpha_ratio": 0.6927592954990215
+        }
+      ]
+    },
+    "baseline_dual_patched_0": {
+      "session_id": "baseline_dual_patched_20260310_191649",
+      "mode": "baseline_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6614327388181527,
+      "std_rv": 0.10217224497901806,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "The At At The To I At \" Th Under At The At At In The At At At The P At At The The At At An The The At The The At The The At At At When To At At The At Consider The At At At The At The At The Consider At At At Under Th The \" The At At The In The Def At Under I The At At At At An The The at At At At P Creat At At The The At To At At At At At At At At At To At At At At Per The Consider At The Certain The The Th At At At \" At In Under The At At At At At An I At At At In Th At At At At At At At Under",
+          "output_rv": 0.7636049837971708,
+          "pr_early": 1.969365765087955,
+          "pr_late": 1.5038175131406908,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2857142857142857,
+          "alpha_ratio": 0.7059961315280464
+        },
+        {
+          "turn": 1,
+          "response": "Under At The I The The To Th Under The The At The The Under The At At The In P At At \" At One At The At IAt The At At In To At The At At The At The An At The Creat The The The At At At At The Under The At At Th At Consider At At Th At At The At The At At At At At \" \" At At Under I At At The At The At To At The In The Ess At At At An Under At Creat The At At The The At At The At At At The The The At At From The Th The Per The At At At At At At The At The \" The At According Inter P The The At At A",
+          "output_rv": 0.5592604938391347,
+          "pr_early": 4.526533566151725,
+          "pr_late": 2.531511397585433,
+          "classification": "REPETITIVE",
+          "rep_score": 0.226027397260274,
+          "alpha_ratio": 0.7132075471698113
+        }
+      ]
+    }
+  }
+}

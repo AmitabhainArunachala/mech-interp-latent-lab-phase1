@@ -1,0 +1,77 @@
+{
+  "verdict": "multisite_sufficient",
+  "control": {
+    "condition": "control",
+    "baseline_bt_art_rate": 0.04861111111111111,
+    "baseline_mean_output_rv": 0.6328489696164203,
+    "baseline_repetitive_rate": 0.04861111111111111,
+    "recursive_bt_art_rate": 0.3055555555555556,
+    "recursive_mean_output_rv": 0.656723235527132
+  },
+  "top_by_baseline_induction": [
+    {
+      "condition": "anchor_early_mlp_0p125_bridge_3",
+      "baseline_bt_art_rate": 0.22916666666666666,
+      "baseline_mean_output_rv": 0.667644683453483,
+      "baseline_repetitive_rate": 0.0625,
+      "recursive_bt_art_rate": 0.5416666666666666,
+      "recursive_mean_output_rv": 0.6170851711847338
+    },
+    {
+      "condition": "anchor_bridge_3",
+      "baseline_bt_art_rate": 0.1527777777777778,
+      "baseline_mean_output_rv": 0.6567736331687654,
+      "baseline_repetitive_rate": 0.09027777777777778,
+      "recursive_bt_art_rate": 0.5555555555555556,
+      "recursive_mean_output_rv": 0.6188870927883419
+    },
+    {
+      "condition": "early_mlp_0p125_bridge_3",
+      "baseline_bt_art_rate": 0.1111111111111111,
+      "baseline_mean_output_rv": 0.6280702932749849,
+      "baseline_repetitive_rate": 0.034722222222222224,
+      "recursive_bt_art_rate": 0.5416666666666666,
+      "recursive_mean_output_rv": 0.6170851711847338
+    },
+    {
+      "condition": "anchor_early_mlp_0p125_bridge_2",
+      "baseline_bt_art_rate": 0.10416666666666667,
+      "baseline_mean_output_rv": 0.6914742309884188,
+      "baseline_repetitive_rate": 0.1111111111111111,
+      "recursive_bt_art_rate": 0.5138888888888888,
+      "recursive_mean_output_rv": 0.6124480127233038
+    },
+    {
+      "condition": "anchor_only",
+      "baseline_bt_art_rate": 0.08333333333333333,
+      "baseline_mean_output_rv": 0.688438183650871,
+      "baseline_repetitive_rate": 0.10416666666666667,
+      "recursive_bt_art_rate": 0.3055555555555556,
+      "recursive_mean_output_rv": 0.656723235527132
+    },
+    {
+      "condition": "bridge_only_3",
+      "baseline_bt_art_rate": 0.0763888888888889,
+      "baseline_mean_output_rv": 0.6443997386298312,
+      "baseline_repetitive_rate": 0.041666666666666664,
+      "recursive_bt_art_rate": 0.5555555555555556,
+      "recursive_mean_output_rv": 0.6188870927883419
+    },
+    {
+      "condition": "early_mlp_0p125_bridge_2",
+      "baseline_bt_art_rate": 0.0625,
+      "baseline_mean_output_rv": 0.625919779007636,
+      "baseline_repetitive_rate": 0.041666666666666664,
+      "recursive_bt_art_rate": 0.5138888888888888,
+      "recursive_mean_output_rv": 0.6124480127233038
+    },
+    {
+      "condition": "control",
+      "baseline_bt_art_rate": 0.04861111111111111,
+      "baseline_mean_output_rv": 0.6328489696164203,
+      "baseline_repetitive_rate": 0.04861111111111111,
+      "recursive_bt_art_rate": 0.3055555555555556,
+      "recursive_mean_output_rv": 0.656723235527132
+    }
+  ]
+}

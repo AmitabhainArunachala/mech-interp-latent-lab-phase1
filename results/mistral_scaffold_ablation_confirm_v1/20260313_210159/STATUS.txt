@@ -1,0 +1,8 @@
+run_id=20260313_210159
+python_bin=./.venv/bin/python
+started_utc=2026-03-13T21:01:59Z
+
+>>> START self_feeding_scaffold_ladder_v2 2026-03-13T21:01:59Z
+>>> DONE  self_feeding_scaffold_ladder_v2 2026-03-13T23:41:20Z
+finished_utc=2026-03-13T23:41:20Z
+mistral_scaffold_ablation_confirm_v1_complete=1

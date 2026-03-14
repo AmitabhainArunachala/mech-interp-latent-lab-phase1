@@ -1,0 +1,17 @@
+run_id=20260312_084229
+model=mistralai/Mistral-7B-v0.1
+device=cuda
+python_bin=./.venv/bin/python
+watch_pid=35600
+provenance_note=base_v01_priority_queue_after_soft_followups
+started_utc=2026-03-12T08:42:29Z
+waiting_for_pid=35600
+watch_pid_completed=35600
+
+>>> START p0_canonical_n100 2026-03-12T09:15:59Z
+>>> DONE  p0_canonical_n100 2026-03-12T09:16:23Z
+
+>>> START full_head_sweep_n100 2026-03-12T09:16:23Z
+>>> DONE  full_head_sweep_n100 2026-03-12T09:29:57Z
+finished_utc=2026-03-12T09:29:57Z
+mistral_base_priority_queue_complete=1

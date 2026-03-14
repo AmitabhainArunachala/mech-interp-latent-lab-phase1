@@ -114,12 +114,51 @@ This is actually a **stronger finding** than "causal loop closed":
 
 ---
 
+## Mistral Hardening Replication (2026-03-11)
+
+The March 10 full hardened rerun on `mistralai/Mistral-7B-Instruct-v0.2` reproduces the dissociation story in a stricter dual-layer setting:
+
+**Artifact**:
+- `results/persistent_patching_v3/persistent_patching_v3_dual_20260310_204100.json`
+
+**Break direction succeeds cleanly**:
+- `recursive_clean`: `164/300 = 54.7%` BT+ART
+- `recursive_dual_patched`: `0/300 = 0.0%` BT+ART
+- Session-level break effect: `d=4.645`, exact permutation `p=1.62e-05`
+
+**Induce remains null despite strong geometric movement**:
+- `baseline_clean`: `6/300 = 2.0%` BT+ART
+- `baseline_dual_patched`: `0/300 = 0.0%` BT+ART
+- Patched baseline sessions show a large R_V shift relative to clean baseline, but still no behavioral induction
+
+**Observed failure mode**:
+- Both patched conditions collapse into `100%` repetitive output
+- This is not the same as malformed token junk:
+  - `recursive_dual_patched mean_alpha_ratio ≈ 0.70`
+  - `baseline_dual_patched mean_alpha_ratio ≈ 0.72`
+  - syntax remains partly intact while semantics collapse
+
+**Measurement caveat**:
+- `baseline_clean` shows `malformed_rate = 5.7%`, but inspection indicates these are arithmetic/markdown-heavy turns with unusually low alphabetic density, not true gibberish
+- Example pattern: structured math answers with many digits, backticks, underscores, and equation symbols cross the old `alpha_ratio < 0.55` threshold
+- This is a scoring artifact in the old heuristic, not evidence that clean baseline generation collapses in the same way as patched runs
+
+**Interpretation**:
+- The hardened Mistral result strengthens the paper's honest claim:
+  - geometry destruction is behaviorally consequential in the break direction
+  - geometry injection is not sufficient to induce clean recursive behavior
+  - the dominant induced phenotype under dual-layer patching is repetitive degeneration, not recursive articulation
+- That is best framed as **necessity plus behavioral dissociation**, not geometric sufficiency
+
+---
+
 ## Next Steps
 
 1. **Attention pattern analysis**: What attention heads are most affected by patching?
 2. **Vocabulary embedding analysis**: Is the effect purely lexical?
 3. **Causal intervention on R_V**: Can we patch ONLY R_V (via V_PROJ) and test behavioral effect?
-4. **Cross-model validation**: Does this dissociation hold for Mistral?
+4. **Classifier cleanup**: Avoid calling structured math/markdown outputs `MALFORMED` solely because alpha density is low
+5. **Cross-model validation**: Does this dissociation hold for Mistral and Gemma under one aligned causal contract?
 
 ---
 

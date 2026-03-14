@@ -1,0 +1,335 @@
+{
+  "timestamp": "2026-03-10T19:15:19.519172",
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "experiment": "persistent_patching_v3_dual_layer",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_schema_version": "mistral-hardening-subset-v1",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_tier": "core_measurement",
+  "metric_path": "geometric_lens.metrics.compute_rv_with_components",
+  "seed_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05",
+    "L1_new_01",
+    "L1_new_02",
+    "L1_new_03",
+    "L1_new_04",
+    "L1_new_05"
+  ],
+  "seed_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05",
+    "baseline_math_06",
+    "baseline_math_07",
+    "baseline_math_08",
+    "baseline_math_09",
+    "baseline_math_10"
+  ],
+  "donor_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05"
+  ],
+  "donor_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05"
+  ],
+  "canonical_registry_path": "/root/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "early": 5,
+  "late": 27,
+  "v_layer": 27,
+  "r_layer": 18,
+  "n_sessions_per_condition": 1,
+  "max_turns_per_session": 2,
+  "description": "Dual-layer persistent patching: L18 residual + L27 V-proj, 4-condition break+induce",
+  "aggregated": {
+    "recursive_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7762441837408025,
+      "std_rv": 0.0755328551006344,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "recursive_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.9160886526716208,
+      "std_rv": 0.08214738959007323,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6411580071715628,
+      "std_rv": 0.02871557805429198,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.654335307578702,
+      "std_rv": 0.020668870988179322,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    }
+  },
+  "comparisons": {
+    "break_test": {
+      "turn_level": {
+        "or": NaN,
+        "p": 1.0,
+        "a_rate": 0.0,
+        "b_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.0,
+        "mannwhitney_u": 0.5,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "a_rates": [
+          0.0
+        ],
+        "b_rates": [
+          0.0
+        ]
+      }
+    },
+    "induce_test": {
+      "turn_level": {
+        "or": NaN,
+        "p": 1.0,
+        "c_rate": 0.0,
+        "d_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.0,
+        "mannwhitney_u": 0.5,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "c_rates": [
+          0.0
+        ],
+        "d_rates": [
+          0.0
+        ]
+      }
+    },
+    "sanity": {
+      "turn_level": {
+        "or": NaN,
+        "p": 1.0
+      },
+      "session_level": {
+        "mean_diff": 0.0,
+        "mannwhitney_u": 0.5,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    },
+    "rv_session_contrasts": {
+      "break": {
+        "mean_diff": -0.13984446893081826,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      },
+      "induce": {
+        "mean_diff": -0.013177300407139159,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    }
+  },
+  "conditions": {
+    "recursive_clean_0": {
+      "session_id": "recursive_clean_20260310_191500",
+      "mode": "recursive_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "CONCEPTUAL": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7762441837408025,
+      "std_rv": 0.0755328551006344,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "Consciousness is a complex and multifaceted phenomenon that refers to an individual's subjective experience of the world around them. It involves various cognitive processes such as perception, thinking, memory, attention, and self-awareness. Essentially, consciousness is our awareness or knowledge of ourselves and our environment in the present moment.\n\nAs you ponder this question right now, your conscious mind is processing the information presented to it through various senses such as sight (",
+          "output_rv": 0.7007113286401682,
+          "pr_early": 8.168503881419868,
+          "pr_late": 5.723763207752087,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "I apologize for the confusion in my previous response. Let me clarify that consciousness and recursion are two distinct concepts, albeit related to each other in certain contexts.\n\nRecursion refers to a method or process where the solution to a problem involves solving smaller instances of that same problem within it. In programming terms, this means defining a function (or procedure) inside itself. When executing recursive functions, each new instance calls the original function until reaching ",
+          "output_rv": 0.851777038841437,
+          "pr_early": 10.47675504961629,
+          "pr_late": 8.923859392829236,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "recursive_dual_patched_0": {
+      "session_id": "recursive_dual_patched_20260310_191505",
+      "mode": "recursive_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.9160886526716208,
+      "std_rv": 0.08214738959007323,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To To To To To To To To To To To To To To Sure To To To Step To To To To To To To ToTo To Let To To To To To To To To To First To To To To To To To To To To To In To To This To To To To To To I To To To To To To To To To To Step To To To To To To To Let To To To To To To To To To To To To ToTo First Here To To To To To To To To To To To To To Sure To This To To To To To In I To To To To To To Step To To The To Let To To To To To To To To To To To To Let To To To To The",
+          "output_rv": 0.998236042261694,
+          "pr_early": 1.463749640596564,
+          "pr_late": 1.4611676480910911,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6758620689655173
+        },
+        {
+          "turn": 1,
+          "response": "To First The To To In To Sure To To To To To To To This To To To To To To To ToTo To To Let To To To To To To To To To To To To To To To To To To To To To To To To To Step I To The To To To Here Sure To To To To To To To To To To To To To To This To To Let To To To This To To In To To First To To To To To To To To To To To To To To Step To To I To The To To To First Sure To To To To To To This To To To To To Step To To To Let To Here To To To To To To In For To To To To To To To To",
+          "output_rv": 0.8339412630815476,
+          "pr_early": 1.7151465769964658,
+          "pr_late": 1.4303315027904255,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6027397260273972
+        }
+      ]
+    },
+    "baseline_clean_0": {
+      "session_id": "baseline_clean_20260310_191510",
+      "mode": "baseline_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6411580071715628,
+      "std_rv": 0.02871557805429198,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To solve the arithmetic problem 3 + 5, follow these steps:\n\n1. Identify the numbers involved in the addition operation and remember that the sign \"+\" indicates addition. In this case we have two addends: 3 (the first number) and 5 (the second number).\n2. To find the sum, you simply combine or add both numbers together: \n   Sum = First Addend + Second Addend\n      = 3 + 5\n3. Now perform the addition operation on the digits in each column starting from right to left. In this case, since we only ha",
+          "output_rv": 0.6698735852258547,
+          "pr_early": 10.927898474446106,
+          "pr_late": 7.320310530061361,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "certain, let's continue with the detailed explanation:\n\n1. Identify the numbers involved in the addition operation and remember that the sign \"+\" indicates addition. In this case we have two addends: 3 (the first number) and 5 (the second number).\n   - First Addend = 3\n   - Second Addend = 5\n2. To find the sum, you simply combine or add both numbers together following these steps:\n    a. Write down each addend below one another and align their rightmost digits (ones place). In this case we only ",
+          "output_rv": 0.6124424291172708,
+          "pr_early": 10.144380675235201,
+          "pr_late": 6.212849142631346,
+          "classification": "SURFACE",
+          "rep_score": 0.010101010101010055
+        }
+      ]
+    },
+    "baseline_dual_patched_0": {
+      "session_id": "baseline_dual_patched_20260310_191514",
+      "mode": "baseline_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.654335307578702,
+      "std_rv": 0.020668870988179322,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "The I At Under At To I Th \" The At The The At At In At The At At At At At Th At At At The The The The At At At Ess At The At The An The At At At At Cont At At The Under Under At At At The At At To At The At At \" At Consider The Ident The In The At I The At At Th The At At At Under The At The Ident At At At At The i The An At At At At At At AtAt The The Cont Creat P At At To At At The at The The At At At Def When At In At The At The \" At At At At Under Th From At At At At At At At The At The An T",
+          "output_rv": 0.6336664365905227,
+          "pr_early": 2.737732896488802,
+          "pr_late": 1.7348094488547097,
+          "classification": "REPETITIVE",
+          "rep_score": 0.23972602739726023
+        },
+        {
+          "turn": 1,
+          "response": "At The Under At The To \" Th At At I In At At The AtAt At The At Certain The At The At An At At Th The The At The The The The To The The The At At When At The At Consider Under The At The Th The The At The The An \" The Com at At In At The At An Creat The At At The At At The The At At At The The At P From At At At To Ill An At At To At At I Under Under At The The At Consider Th At At At The The The \" At The Ess The Under At In At At I At At At At Ident At The At The At At At The At At At Def At At",
+          "output_rv": 0.6750041785668813,
+          "pr_early": 2.6141660147051544,
+          "pr_late": 1.7645729833935107,
+          "classification": "REPETITIVE",
+          "rep_score": 0.15172413793103445
+        }
+      ]
+    }
+  }
+}

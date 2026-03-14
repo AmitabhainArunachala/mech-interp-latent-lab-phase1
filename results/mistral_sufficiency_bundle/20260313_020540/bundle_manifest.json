@@ -1,0 +1,10 @@
+{
+  "out_dir": "/workspace/mech-interp-latent-lab-phase1/results/mistral_sufficiency_bundle/20260313_020540",
+  "artifacts": {
+    "bridge_confirmatory_n20_run_dir": "results/phase1_cross_architecture/runs/20260313_020636_multi_token_bridge_mistral_multi_token_bridge_confirmatory_n20",
+    "bridge_longgen_n12_run_dir": "results/phase1_cross_architecture/runs/20260313_030233_multi_token_bridge_mistral_7b_bridge_longgen_n12",
+    "bridge_low_trunc_n12_run_dir": "results/phase1_cross_architecture/runs/20260313_022318_multi_token_bridge_mistral_7b_bridge_low_trunc_probe_n12",
+    "self_feeding_summary_artifact": "results/self_feeding_loop_bundle/20260313_020540/self_feeding_summary_20260313_040756.json",
+    "sustained_gnani_summary_artifact": "results/sustained_gnani_v3_bundle/20260313_020540/comparison_summary.json"
+  }
+}

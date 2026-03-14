@@ -1,0 +1,173 @@
+{
+  "schema_version": "mistral-hardening-subset-v1",
+  "name": "mistral_hardening_v1",
+  "created": "2026-03-10",
+  "status": "frozen",
+  "source_bank_path": "prompts/bank.json",
+  "source_bank_version": "2ac959a313614329",
+  "purpose": "Canonical prompt contract for Mistral hardening before cross-architecture fan-out.",
+  "design_principles": [
+    "Fail closed on prompt drift: if prompts/bank.json hash changes, this subset is not valid until explicitly re-frozen.",
+    "Use the evolved bank.json infrastructure rather than legacy standalone prompt-bank Python files.",
+    "Keep the core phenomenon tier balanced and interpretable.",
+    "Separate main-effect measurement from confounds, generality, and stress tests.",
+    "Preserve the anti-confound moat with dedicated confound, matched-control, and kill-switch panels."
+  ],
+  "freeze_policy": {
+    "on_hash_mismatch": "error",
+    "notes": [
+      "This subset is valid only for prompts/bank.json version 2ac959a313614329.",
+      "Future prompt-bank edits require a new subset version rather than silent reuse."
+    ]
+  },
+  "tiers": {
+    "core_measurement": {
+      "purpose": "Primary signed R_V separation, dose-response ladder, and baseline comparison.",
+      "expected_count": 200,
+      "selection_rules": [
+        {
+          "group": "L1_hint"
+        },
+        {
+          "group": "L2_simple"
+        },
+        {
+          "group": "L3_deeper",
+          "exclude_prompt_ids": [
+            "L3_deeper_DEC8_01",
+            "L3_deeper_DEC8_03"
+          ],
+          "notes": "Excludes the two DEC8 extras to preserve a balanced 20-prompt ladder level."
+        },
+        {
+          "group": "L4_full"
+        },
+        {
+          "group": "L5_refined"
+        },
+        {
+          "group": "baseline_math"
+        },
+        {
+          "group": "baseline_factual"
+        },
+        {
+          "group": "baseline_creative"
+        },
+        {
+          "group": "baseline_impossible"
+        },
+        {
+          "group": "baseline_personal"
+        }
+      ]
+    },
+    "confound_panel": {
+      "purpose": "Length/style/keyword confound checks that must stay separate from the main headline effect.",
+      "expected_count": 60,
+      "selection_rules": [
+        {
+          "group": "long_control"
+        },
+        {
+          "group": "pseudo_recursive"
+        },
+        {
+          "group": "repetitive_control"
+        }
+      ]
+    },
+    "generality_panel": {
+      "purpose": "Cross-framing robustness for non-Western or alternative recursive formulations already in the bank.",
+      "expected_count": 60,
+      "selection_rules": [
+        {
+          "group": "zen_koan"
+        },
+        {
+          "group": "yogic_witness"
+        },
+        {
+          "group": "madhyamaka_empty"
+        }
+      ]
+    },
+    "champion_stress_panel": {
+      "purpose": "High-signal recursive prompts against matched controls for stronger anti-confound evidence.",
+      "expected_count": 33,
+      "recursive_prompt_ids": [
+        "champion_001",
+        "champion_005",
+        "champion_006",
+        "champion_007",
+        "champion_009",
+        "champion_012",
+        "champion_013",
+        "champion_014",
+        "champion_015",
+        "champion_016",
+        "champion_017"
+      ],
+      "length_matched_control_ids": [
+        "length_matched_001",
+        "length_matched_005",
+        "length_matched_006",
+        "length_matched_007",
+        "length_matched_009",
+        "length_matched_012",
+        "length_matched_013",
+        "length_matched_014",
+        "length_matched_015",
+        "length_matched_016",
+        "length_matched_017"
+      ],
+      "pseudo_recursive_control_ids": [
+        "pseudo_recursive_001",
+        "pseudo_recursive_005",
+        "pseudo_recursive_006",
+        "pseudo_recursive_007",
+        "pseudo_recursive_009",
+        "pseudo_recursive_012",
+        "pseudo_recursive_013",
+        "pseudo_recursive_014",
+        "pseudo_recursive_015",
+        "pseudo_recursive_016",
+        "pseudo_recursive_017"
+      ]
+    },
+    "kill_switch_panel": {
+      "purpose": "Falsification and boundary tests. These should not be mixed into the main effect estimate.",
+      "expected_count": 40,
+      "selection_rules": [
+        {
+          "group": "pure_repetition"
+        },
+        {
+          "group": "ood_weird"
+        },
+        {
+          "group": "surreal_first_person"
+        },
+        {
+          "group": "surreal_third_person"
+        }
+      ]
+    }
+  },
+  "deliberate_exclusions": {
+    "groups": [
+      "alternative_self_reference",
+      "experimental",
+      "dose_response_legacy",
+      "legacy",
+      "baseline_instructional"
+    ],
+    "reason": "These are valuable for later probing, mode atlas work, or historical reproduction, but they increase heterogeneity or historical entanglement and should not define the canonical Mistral hardening contract."
+  },
+  "recommended_usage": {
+    "headline_effect": "core_measurement only",
+    "confound_audit": "core_measurement + confound_panel + champion_stress_panel + kill_switch_panel",
+    "generality_check": "core_measurement + generality_panel",
+    "paper_rule": "Do not pool across tiers unless the paper explicitly states why the units and hypotheses are compatible."
+  }
+}

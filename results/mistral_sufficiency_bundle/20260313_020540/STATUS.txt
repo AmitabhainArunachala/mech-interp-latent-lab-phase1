@@ -1,0 +1,26 @@
+run_id=20260313_020540
+python_bin=./.venv/bin/python
+strict_stage=0
+bridge_stage=1
+self_feed_stage=1
+sustained_gnani_stage=1
+started_utc=2026-03-13T02:05:40Z
+
+>>> START bridge_confirmatory_n20 2026-03-13T02:05:40Z
+>>> DONE  bridge_confirmatory_n20 2026-03-13T02:22:18Z
+
+>>> START bridge_low_trunc_n12 2026-03-13T02:22:18Z
+>>> DONE  bridge_low_trunc_n12 2026-03-13T03:01:33Z
+
+>>> START bridge_longgen_n12 2026-03-13T03:01:34Z
+>>> DONE  bridge_longgen_n12 2026-03-13T03:40:36Z
+
+>>> START self_feeding_loop 2026-03-13T03:40:36Z
+>>> DONE  self_feeding_loop 2026-03-13T04:08:00Z
+
+>>> START sustained_gnani_v3 2026-03-13T04:08:00Z
+>>> DONE  sustained_gnani_v3 2026-03-13T04:25:57Z
+
+>>> BUNDLE_MANIFEST 2026-03-13T04:25:57Z
+finished_utc=2026-03-13T04:25:57Z
+mistral_sufficiency_bundle_complete=1

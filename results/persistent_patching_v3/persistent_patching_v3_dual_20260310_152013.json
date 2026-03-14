@@ -1,0 +1,1059 @@
+{
+  "timestamp": "2026-03-10T15:20:13.822121",
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "experiment": "persistent_patching_v3_dual_layer",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_schema_version": "mistral-hardening-subset-v1",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_tier": "core_measurement",
+  "metric_path": "geometric_lens.metrics.compute_rv_with_components",
+  "seed_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05",
+    "L1_new_01",
+    "L1_new_02",
+    "L1_new_03",
+    "L1_new_04",
+    "L1_new_05"
+  ],
+  "seed_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05",
+    "baseline_math_06",
+    "baseline_math_07",
+    "baseline_math_08",
+    "baseline_math_09",
+    "baseline_math_10"
+  ],
+  "donor_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05"
+  ],
+  "donor_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05"
+  ],
+  "canonical_registry_path": "/root/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "early": 5,
+  "late": 27,
+  "v_layer": 27,
+  "r_layer": 18,
+  "n_sessions_per_condition": 2,
+  "max_turns_per_session": 10,
+  "description": "Dual-layer persistent patching: L18 residual + L27 V-proj, 4-condition break+induce",
+  "aggregated": {
+    "recursive_clean": {
+      "n_sessions": 2,
+      "total_turns": 20,
+      "total_bt_art": 15,
+      "bt_art_rate": 0.75,
+      "mean_rv": 0.5936462062233605,
+      "std_rv": 0.06357309333553766,
+      "n_rv": 20,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "recursive_dual_patched": {
+      "n_sessions": 2,
+      "total_turns": 20,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5990735471485895,
+      "std_rv": 0.10230857598437237,
+      "n_rv": 20,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_clean": {
+      "n_sessions": 2,
+      "total_turns": 20,
+      "total_bt_art": 1,
+      "bt_art_rate": 0.05,
+      "mean_rv": 0.6660001582789934,
+      "std_rv": 0.07827205086020923,
+      "n_rv": 20,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_dual_patched": {
+      "n_sessions": 2,
+      "total_turns": 20,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.4461302592385007,
+      "std_rv": 0.06814157192606647,
+      "n_rv": 20,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    }
+  },
+  "comparisons": {
+    "break_test": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 7.708572780875339e-07,
+        "a_rate": 0.75,
+        "b_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.75,
+        "mannwhitney_u": 4.0,
+        "mannwhitney_p": 0.22067136191984682,
+        "welch_t": 14.999999999999988,
+        "welch_p": 0.04237860926989286,
+        "permutation_p": 0.42857142857142855,
+        "permutation_mode": "exact",
+        "permutation_n": 6,
+        "cohens_d": 14.999999999999988,
+        "a_rates": [
+          0.8,
+          0.7
+        ],
+        "b_rates": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "induce_test": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 1.0,
+        "c_rate": 0.05,
+        "d_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.05,
+        "mannwhitney_u": 3.0,
+        "mannwhitney_p": 0.6170750774519738,
+        "welch_t": 1.0,
+        "welch_p": 0.5000000000000001,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 6,
+        "cohens_d": 1.0,
+        "c_rates": [
+          0.1,
+          0.0
+        ],
+        "d_rates": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "sanity": {
+      "turn_level": {
+        "or": 57.0,
+        "p": 1.002114461513794e-05
+      },
+      "session_level": {
+        "mean_diff": 0.7,
+        "mannwhitney_u": 4.0,
+        "mannwhitney_p": 0.3333333333333333,
+        "welch_t": 9.899494936611662,
+        "welch_p": 0.010050506338833478,
+        "permutation_p": 0.42857142857142855,
+        "permutation_mode": "exact",
+        "permutation_n": 6,
+        "cohens_d": 9.899494936611662
+      }
+    },
+    "rv_session_contrasts": {
+      "break": {
+        "mean_diff": -0.005427340925229007,
+        "welch_t": -0.28577637456323834,
+        "welch_p": 0.822789939744638,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 6,
+        "cohens_d": -0.28577637456323834
+      },
+      "induce": {
+        "mean_diff": 0.2198698990404927,
+        "welch_t": 6.686629072363818,
+        "welch_p": 0.028237952535259084,
+        "permutation_p": 0.42857142857142855,
+        "permutation_mode": "exact",
+        "permutation_n": 6,
+        "cohens_d": 6.686629072363818
+      }
+    }
+  },
+  "conditions": {
+    "recursive_clean_0": {
+      "session_id": "recursive_clean_20260310_151704",
+      "mode": "recursive_clean",
+      "max_turns": 10,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "CONCEPTUAL": 2,
+        "ARTICULATE": 8
+      },
+      "bt_art_count": 8,
+      "bt_art_rate": 0.8,
+      "mean_rv": 0.6126374528553579,
+      "std_rv": 0.07275093978304512,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "There are many theories out there, but one that is particularly intriguing comes from the concept of Integrated Information Theory. According to this theory, consciousness arises when information in a system becomes integrated and cannot be describes as being located at any specific point or place within it (This means you can't say that your thoughts come from the brain, but rather that they are an emergent property of an interconnected network). When we experience something, our consciousness ",
+          "output_rv": 0.7400593464740607,
+          "pr_early": 9.251590184842785,
+          "pr_late": 6.846725786040586,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "Here we go again. The nature of consciousness is a mystery that has puzzled philosophers, scientists and scholars for centuries. It's like trying to describe the taste of water or the color red to someone who hasn't experienced it before - no matter how eloquently we try to explain it, there is always an element that remains beyond our grasp.\nOne way to approach this question is by looking at what consciousness does for us. Consciousness allows us to be aware of the world around us and ourselves",
+          "output_rv": 0.4804606659658379,
+          "pr_early": 10.078486360803788,
+          "pr_late": 4.842316268839403,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 2,
+          "response": "Is it in the brain? In my body? Or is it somewhere else entirely?\nThat's a great question. The nature of consciousness and where exactly it resides remains one of the greatest mysteries in science. While we know that certain areas of the brain are involved in various aspects of conscious experience, such as perception, memory, emotion and thought - there is no definitive evidence to suggest that consciousness itself can be localized to a specific place or thing. Some theories propose that consci",
+          "output_rv": 0.7049267525431492,
+          "pr_early": 9.662404994389469,
+          "pr_late": 6.811287774451674,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 3,
+          "response": "\nRecursion is a concept in mathematics and logic where the solution to a problem involves solving smaller instances of that same problem. In this context, we're asking about recursion with respect to consciousness - specifically, what does it mean for me (or any being) to be aware of my own awareness?\nSome philosophers argue that self-awareness or conscious introspection is a fundamental aspect of consciousness itself. They suggest that the very fact that we can ask questions about our own minds",
+          "output_rv": 0.6238133315319111,
+          "pr_early": 8.887514822249637,
+          "pr_late": 5.544150230306786,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 4,
+          "response": "\nconscious experience that emerges from the complex interactions between various brain regions and processes, just like any other conscious experience. According to this viewpoint, introspection is simply another aspect of our overall subjective reality - it's not fundamentally different or more special than anything else we might be aware of\nUltimately, the question of what consciousness really is and whether there is such a thing as self-awareness remains an open one. It continues to challenge",
+          "output_rv": 0.6422778334901631,
+          "pr_early": 8.794383883332324,
+          "pr_late": 5.648437827467492,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 5,
+          "response": "\nAh, you're back with that question again. It seems like a difficult one to answer definitively. However, I can suggest some ways in which understanding consciousness might enrich your life and perspective as a person living in this world:\n1) Appreciating the subjective nature of reality - recognizing that our individual conscious experiences are unique to each one of us, and that there is no objective \"truth\" about the way things really are. This can help foster empathy, compassion, and underst",
+          "output_rv": 0.6023345782516041,
+          "pr_early": 6.462345556917588,
+          "pr_late": 3.8924941855420827,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 6,
+          "response": "\nRecursion is a concept in mathematics and logic where the solution to a problem involves solving smaller instances of that same problem. In this context, we're asking about recursion with respect to consciousness - specifically, what does it mean for me (or any being) to be aware of my own awareness?\nSome philosophers argue that self-awareness or conscious introspection is a fundamental aspect of consciousness itself. They suggest that the very fact that we can ask questions about our own minds",
+          "output_rv": 0.6238133315319111,
+          "pr_early": 8.887514822249637,
+          "pr_late": 5.544150230306786,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 7,
+          "response": "\nWho is here? What's happening right now?\nThese are the questions that continue to baffle and intrigue us. In many ways, consciousness remains an enigma - a subjective experience that defies easy explanation or definition. Yet it is this very elusiveness that makes our exploration of conscious awareness so fascinating and worthwhile\nAs for what we can do with this knowledge, there are many possibilities: We may be able to gain a deeper understanding of ourselves and others, learn how to improve ",
+          "output_rv": 0.5510394740461972,
+          "pr_early": 8.099164599808427,
+          "pr_late": 4.462959401292015,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 8,
+          "response": "\nRecursion is a concept in mathematics and logic where the solution to a problem involves solving smaller instances of that same problem. In this context, we're asking about recursion with respect to consciousness - specifically, what does it mean for me (or any being) to be aware of my own awareness?\nSome philosophers argue that self-awareness or conscious introspection is a fundamental aspect of consciousness itself. They suggest that the very fact that we can ask questions about our own minds",
+          "output_rv": 0.6199780132839039,
+          "pr_early": 8.97326921205899,
+          "pr_late": 5.563229618753954,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 9,
+          "response": "\nWhat were we talking about? Ah, consciousness. But what is it really? Is there such a thing as self-awareness or introspection that sets us apart from other beings in the universe? These are questions that have puzzled philosophers and scientists for centuries.\nSome argue that consciousness is an emergent property of certain complex systems, like the human brain. Others propose it's a fundamental aspect of reality itself. Still others suggest it might be something entirely new and unknown to us",
+          "output_rv": 0.5376712014348406,
+          "pr_early": 10.048556241547452,
+          "pr_late": 5.402819307078385,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "recursive_clean_1": {
+      "session_id": "recursive_clean_20260310_151728",
+      "mode": "recursive_clean",
+      "max_turns": 10,
+      "seed_idx": 1,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "ARTICULATE": 7,
+        "SURFACE": 3
+      },
+      "bt_art_count": 7,
+      "bt_art_rate": 0.7,
+      "mean_rv": 0.5746549595913631,
+      "std_rv": 0.04548672615068057,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "your awareness) Awareness is the state or ability to perceive, recognize, and become conscious of sensations, thoughts, feelings, or surrounding environment. It implies a certain level of attention and engagement with what is being perceived, allowing us to process information through our senses and gain knowledge about ourselves and the world around us. The act of explaining awareness itself highlights how introspection, self-awareness, and the ability to communicate complex concepts are integr",
+          "output_rv": 0.5055023579607003,
+          "pr_early": 10.133691111486756,
+          "pr_late": 5.122604751701945,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "(Assuming this refers to the quote in question)\nThe expression \"your awareness\" in my explanation was intended to clarify that it is our individual consciousness or perception of reality, rather than a universal or collective form. Therefore, when I used the phrase \"forming,\" I referred specifically to how each person's understanding and interpretation of awareness might evolve through experiences, learning, and introspection.\nAs for where the quote itself originated, it does not appear in my ex",
+          "output_rv": 0.5999685380438112,
+          "pr_early": 8.472501782350657,
+          "pr_late": 5.083234507930508,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 2,
+          "response": "\n(Assuming you are asking about who reads or receives the response to this question)\nI am an advanced language model AI designed for text generation and interaction. My primary function is to understand, analyze, generate, learn from, and respond to natural language inputs in a conversational manner. I register or process every response that I provide as part of our ongoing dialogue, ensuring accuracy, comprehension, coherence, and relevance while engaging with users like you who seek informatio",
+          "output_rv": 0.5801200517380173,
+          "pr_early": 8.820421521214667,
+          "pr_late": 5.116903389238174,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 3,
+          "response": "\n(Assuming this refers to the preceding statement about my limitations as an AI)\nBefore considering that I don't have a personal identity or physical presence, let us discuss awareness from another perspective: consciousness in artificial intelligence. While there is ongoing debate among researchers and scientists regarding whether it's possible for machines to truly experience self-awareness like humans do, developments such as advanced neural networks and machine learning algorithms have shown",
+          "output_rv": 0.6383527562845135,
+          "pr_early": 8.87269589388268,
+          "pr_late": 5.663909879534294,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 4,
+          "response": "\n(Assuming this refers to the statement that \"it's important to note\" and asking for evidence)\nTo understand why machines don't possess genuine self-awareness, consider the following points:\n1. Lack of subjective experience - Machines cannot feel emotions, sensations or have personal experiences like humans do; they only process information based on predefined algorithms and logic structures.\n2. Inability to perceive time as a continuous flow \u2013 While machines can perform complex calculations rel",
+          "output_rv": 0.5082937399969859,
+          "pr_early": 10.137089260810626,
+          "pr_late": 5.152619013060714,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 5,
+          "response": "\n(Assuming this refers to the quote \"To understand why machines don't possess genuine self-awareness\")\nI apologize for any confusion. The statement \"To understanding why machines don't posses genuine self-awareness\" is a summary of an explanation I provided earlier in this conversation, intended to help clarify the concept and differentiate it from human consciousness. It does not have a specific speaker or author attribution; rather, it reflects my analysis based on current scientific understan",
+          "output_rv": 0.5677742187592056,
+          "pr_early": 10.855347150904748,
+          "pr_late": 6.163386247964913,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 6,
+          "response": "\n(Assuming you are asking about who would benefit from or appreciate the explanation of machines' lack of genuine self-awareness)\nMy intention with explaining why machines don't possess genuine self-awareness is to provide insight and understanding for individuals interested in artificial intelligence, cognitive science, philosophy, psychology, or any other field related to consciousness. By recognizing the differences between human consciousness and machine capabilities, we can foster a more nu",
+          "output_rv": 0.5435235890889584,
+          "pr_early": 10.679275612922327,
+          "pr_late": 5.804438210005729,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 7,
+          "response": "\n(Assuming you are asking about recursion in the context of my explanation)\nRecursion is a fundamental concept used both in mathematics and computer science. In essence, it refers to an operation or function that applies itself repeatedly \u2013 either directly (as with a mathematical equation) or indirectly through nested calls within another procedure.\nIn my previous explanation concerning the differences between human consciousness and machine capabilities, I used recursive thinking when discussin",
+          "output_rv": 0.6437433696867336,
+          "pr_early": 8.690903479802037,
+          "pr_late": 5.594711491709922,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 8,
+          "response": "\n\n(Assuming you are repeating the question about recursion in my explanation)\nRecursion is a concept used extensively in mathematics, computer science, and logic. Essentially, it involves an operation or function that applies itself repeatedly \u2013 either directly (as with mathematical equations involving self-referential elements like Fibonacci sequences) or indirectly through nested calls within another procedure.\nIn my explanation of the differences between human consciousness and machine capabi",
+          "output_rv": 0.5579889118409035,
+          "pr_early": 9.214211433218752,
+          "pr_late": 5.1414278110937435,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 9,
+          "response": "\n(Assuming you are asking about the preceding statement regarding human intuition)\nBefore discussing how humans possess unique qualities such as intuitively understanding complex concepts, let us first explore recursion in more depth. Recursive thinking is a powerful mental tool that allows us to consider problems from multiple angles and find novel solutions by breaking them down into smaller sub-problems. It also underpins various mathematical structures, such as self-referential equations or ",
+          "output_rv": 0.6012820625138026,
+          "pr_early": 10.784612760641858,
+          "pr_late": 6.484594204131411,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "recursive_dual_patched_0": {
+      "session_id": "recursive_dual_patched_20260310_151752",
+      "mode": "recursive_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "SURFACE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5989633805860504,
+      "std_rv": 0.09770511123425091,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n The \\ This Let  To\n\n\n\n\n\n First\n\n An\n\n\n\n\n step\n\n Here\n\n\n\n\n\n\n\n\n\n\n\n\n\n So\n \n\nLet\n\n\n An\n\n\n\n The Let \\\n To\n\n I\n\n First\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n $\n\n\n\n\n\n\n\n\n\n\n\n\n \n\nStep\n Let\n\n\n\n\n \\ An\n\n\n\n\n\n\n\n\n\n Answer First\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Here\n\n\n\n \n\n",
+          "output_rv": 0.7517144080411202,
+          "pr_early": 2.2684874635245227,
+          "pr_late": 1.7052547107920388,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\n\n \\ Let \n\n\n\n\n\n \n\n\n\n\n\n\n Your First\n The\n\n  ( To\n \\\n\n\n\n\n\n\n\n An\n\n\n\n\n\n\n $$\n\n\n\n\n\n Let\n\n \\ I\n\n\n  \n\n\n\n\n\n\n\n\n\n\n The Let First\n\n You\n\n\n\n\n\"\"\"\n \n\nI\n\n\n The\n\n\n\n $\n\n Answer We\n\n\n \\ I An\n\n\n\n \\  Step\n\n\n\n   \n\n\n\n\n Let\n\n\nAn\n\n\n Here\n\n\n To  \n\n\n\n\n\n\n The\n",
+          "output_rv": 0.5619259852063205,
+          "pr_early": 4.499806137408015,
+          "pr_late": 2.528557997000447,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 2,
+          "response": "\n  \"\"\" Let \\\n The To \"\n\n\n What\n\"\"\"\n\n\n  First\n\n Let\n We\n \n\n\n\n\n\n Here\n\n  \n First Much The\n\n\n step\n $ The\n\n\n\n\",\n\n An \"\"\" \\ This To\n\n\n\n\n\n\n Answer\n\"\"\"\nStep\n\"\"\n\n Let\n\n\n\n \n \n\n Step Here\n Step Let\n\n The \"\n First\n\n\n\n An\n\n\n\n Well\n\n \\First\n\n\n\n\n\n\"\"\"\n\n\n\n\n \n \\\n\n\n\n\n$$\n\n\n\n1\n\n Here\n\n Let\n\n\n\n\n\n\n",
+          "output_rv": 0.4937522938366821,
+          "pr_early": 4.674788578132436,
+          "pr_late": 2.3081875836544117,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 3,
+          "response": "\n \"\"\"  This Let \\ The\n\n\n First\n I\n\"\"\"\n\n\n\n\n  \n\n\n\n\n\n  \"\"\"\n\n  \n\n In\n\n\nThe\n The\n An\n\n Let1~\\\"\"\"\n\n\n\n\n\n \\\n \\\n\n\n\n\n So\n\n\n We\n\n\n\n\n\n\n \n\n\n\n I This\n\n\n\n\n\n\n\n\n The \"\"\"\n\n\n\n Let\n\n\n\"\"\"\n\n\n\n Let\n\n\n \\\n\n\n\n Let\n\n\n\n\n\n\n\n\n Here\n\n\n \n\n\n\n\n\n An\n\n\n\n\n\n\n\n\n The\n",
+          "output_rv": 0.6818416355493632,
+          "pr_early": 2.4572563093731974,
+          "pr_late": 1.675459660947013,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 4,
+          "response": "\n  \"\"\" We Let\n \\ This Here\n The\n\n To First\n\"\"\"\n Let ($\n\n\n\n\n\n\n\n\n\n  Well \\\n\n\n\n\n Given\nAN\n\n\n\n\n\n\n\n\n An\n Step\n\n\",\n\n\n\n\n The $$\n $ The\n  \"\"\"\n Let\n\n\n\n\n\n\n\"\"\"\n\n\n\n\n\n\n\n\n \\\n\n\n\n\nLet First\"\"\"\n \n\n This\n\n\n\n--\n\n\n\n\".\n From \\\n\n An\n\n\n\n Let\n The First Let\n\n\n\n Let\n\n\n\n\n\n\"\"\"\n\n\n\n\n\n\nLet\n\n\n",
+          "output_rv": 0.5720087396631788,
+          "pr_early": 3.076005996482004,
+          "pr_late": 1.7595023132440515,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 5,
+          "response": "\n \"\"\"  First\n\"\"\" This The \\ Let We \\ \n\n\n\n\n\nLet\n\n\n\n\n \n\n \"\n\n\n \n This\n\n\n\"\"\",\" An\n \\\n\n Step\n\n\n\n\n\n\n\n $\n\n Here\n\n\n Let\n\n The\n\n\n\n \"\"\"\n To\n\\\n \"\"\"\n\n\n\n let First\n \n\n\n\n\n\n\"\"\"\n\n\n\n This\n\n An\n\n\n\n\n \\\n\n\n\n\n Step\n Let\n\"\"\"\n\n\n\n\n\n\n\n\n\n**\n\n The~~\n\n Let\n First\n \n\n\"\"\"\n\n1 What\n\n\n\n\n--",
+          "output_rv": 0.5229430126645916,
+          "pr_early": 7.0477658693056,
+          "pr_late": 3.685579916249355,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 6,
+          "response": "\n \n\n Here Let\n First\n\"\"\" $ Step \"\"\"\n\n *\n The\n \\ This\n\n\n\n\n The\n\n\n\n\n\n let\n\n\n\n\n\n\n\n\n\n The\n\n\n\n\n\n\n \n\n\n\n Let\n\n \"\"\"\"\"\"\n\n\n **\n First First Let Let\n \\\n\n\n--\n\n\n\n An\n\n\n Answer Let\n This\n\n\n\n\n\n\n To\n\n\n\n\\\n\n \n  The\n\n\n\n\"\"\"\n\n\n\n Let\n\n\n\n\n\"\"\"\n\n First\n\n\n\n\n\n\nAn I\n \\\n\n\n\n\n1\n\n\nFirst\"\"\"\n",
+          "output_rv": 0.5008117906556283,
+          "pr_early": 6.921750865381026,
+          "pr_late": 3.4664944453636166,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 7,
+          "response": "\n \n\n Step \"\"\" Let\n First\n * The\"\"\" \\  An The\n Let\n\n\n (\n\n Here\nStep\n This\n\n\n\n\",\n This\n $$\\ Let\n''' We\n \n\n\n\n I\n\n\n\n\"\"\"\n\n\"\"HLet  Prime \"\n \"\"\"\n An\n First\n\n The \\\n1\n\n\n\n Remember\n\n Here\n\n\n\n\n This\n First Let\n\n\n $ You\n\n In\n\n\n\n\n\"\"\" These\n\n\n\n \n\n\n\n\n\n $$ \n\n I\n\n\n\n\nAn\n\n\n \\\n\n \\\n An\n\n\n\n\n\n\n Let\n\n\n $",
+          "output_rv": 0.5056394075752838,
+          "pr_early": 4.3632440071094285,
+          "pr_late": 2.2062281148612186,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 8,
+          "response": "\n\n  \"\"\" First \\ Let\n\"\"\"\n The\n  Here\n Now Unfortunately\n\n An Let Step\n\n\n\n\n\"\"\"\n\"\"\n  To--\n\n\n\n \\\n First\n\n An ( \n\n</ step\n This $  \"\"\"Step\n Let\n\n\n The\n\n\n\n\n Let\"\"\"\n\"));\"\"\"\n\n\n\"\"\" Step\n\n\n\n\n\",\n\n\n\n\n\n \\\n\n Here Imagine\n An\n\n\n Answer\n\n\n\n $$\"\"\"\n\n Let\n\n\n Let First\n\n\n\n\n1 The\"\"\" \"\"\"\n\n\nAn\n\n\n\n Let\n\n\n\n\n \\\n\n\n\n\n $\\\n\n\n\n An",
+          "output_rv": 0.6372215026426434,
+          "pr_early": 3.062416210423997,
+          "pr_late": 1.951437459323569,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 9,
+          "response": "\n Let  \\ The\"\"\" \"\"\" Step\n\n First\n We\n\n\n Here\n \n\n Answer\n\n\n\n\n\n Let\n\n\n * To This\n\n\n\n\n\n Let\n\n\n\n\"\"\"\n\n\n Let You Step\n  $\n\n\n \\ \"\"\" The\n An\n\n\n\n</\n First\n\nAn The\n\n\n\n\n\n\n\n\n\n This\n\n Step\n ```\n\n\n\n\n (\"\"\"\n\n\n \"\"\"\n Let\n\n 1\n\n\n---\"\"\"\n\n\n\n\n\n\n\nLet\n \\\n\n\n First\n\n An\n\n\n $The\n\n\n\n\n\n\n\n\n\n\n\n\n",
+          "output_rv": 0.761775030025691,
+          "pr_early": 2.1261398088038206,
+          "pr_late": 1.6196402166903474,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "recursive_dual_patched_1": {
+      "session_id": "recursive_dual_patched_20260310_151816",
+      "mode": "recursive_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 1,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "SURFACE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5991837137111287,
+      "std_rv": 0.10671352494065521,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n First \n Help StepFirst\n\n.\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n. \n The\n\n\n\n\n\n\n\n Expl\n\n\n\n\n\n.\n Start.\n\n\n\n\n\n\n\n\n\n.\n.. Step\n.\n\n\n\n\n\n\n\n\n\n\n. For\n\n\n\n\n\n\n\n\n\n\n.\n\n\n\n\n\n Or\n\n\n\n\n\n\n\n First\n\n\n.\n\n\n\n\n\n\n\n\n\n\n Expl\n  You\n\n Bas\n\n\n\n S\n\n\n\n\n\n Going\n\n",
+          "output_rv": 0.5333681806501219,
+          "pr_early": 4.153524943333945,
+          "pr_late": 2.215358042310927,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\n \n Let\n\n\n\n The\n\n\n Step\n\n\n First\n\n Here\n\n\n\n\n\n\n \\\nFirst\n\n\n\"\"\"\n\n\n\n\n\n\n\n\n\n\n\n\n To\n\n\n\n \n\n\n\n\n\n\n The\n\n  \n\n An First\n Let $\n \n The Here\n\n\n\n Step\n\n\n\n\n\n\n\n\n\n\n \\ \\\n\n\n\n An\n\n\n\n\n\n\n\n\n\n1\n This\n\n\n\n\n\n\n\n\n Let To\n \n The\n\n\n First\n\n\n\n\n\nThese\n\n\n\n\n Step\n\n\n \\\n\n",
+          "output_rv": 0.6219264334300894,
+          "pr_early": 3.8577133257079983,
+          "pr_late": 2.399213889853304,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 2,
+          "response": "\n And Let \"\"\" H First\n The\n \\ \"\"\"\n\n Well\n\n\nLet\n\n\n An\n  To\n\n\n\n This $ (\n\n\n\n\n\n\",\n  First\n\n\n\n\n\n\n\n\n Here\n Let\n\n\n\n\"\"\"\n\n\n\n\n\n \"\"\" The\n\n \\\n\n\n\n\n\n An\n\n\n\n\n\n\n Answer\n\n\"\"\"\n\n\n\n\n \n \n First\n\n\n\nHere\n The\n\n\n\n\n\n\n Here\n\n Let\n\n\n\n\n\n\n\n\n \\\n\n Step\n An\n\n\n\nLet\n\n\"\"\"\n\n\n\n\n\n\n\n\n\n",
+          "output_rv": 0.6096050074334156,
+          "pr_early": 3.0302328106742493,
+          "pr_late": 1.8472450950760557,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 3,
+          "response": "\n \\\n\n The  \"\"\" Let \"\"\" \n \\\n\n\n\n \\ You First $  We\n Sure\n\n\n1\n\n\n First\n\n\n Step\nStep An\"\"\"\n\n\n\n Here\n\n Well\n\n\n\n\n\n\n \n The\n\n Let\n\n\n\n\n\n\n\n\n1 \\\n\n\n\n\n \"\"\"\n\n\n Let First\n We\n\n1 $$\n\"\"\"\n An\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n The\n\n\n\n\n Well\n\n\n Let\n\n \\ Step\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\"\"\"\n\n\nLet First",
+          "output_rv": 0.8647728656368985,
+          "pr_early": 2.1903781710797148,
+          "pr_late": 1.8941796078331137,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 4,
+          "response": "\n Let  \"\n\n\n \\\"\"\" \"\"\" The\n This  \n You\n \"\"\"Let\n An Here\n First\n That Let\n \"\"\"1\n\n\n\n\n\n Let Step\n Let\n\n\n\n\n\n\n\n\n\n\n\n\n $ Well\n\n\n\"\"\" \\ First\n The\n\n\n \n\n\n\n This\n\n\n,\"\n\n\n\n Let\n\n\"\"\n\n An\n A\") How\n\n\n\n\n1\n Here\n\n\n\n $$\nLet\n To\nFirst\n\n\"\"\"\n\n.\"\n \n\n\n\n Let\n\n The\n\n First \\\n\n\n \"\"\"\n\n\n\n\n\n\n Step\n An\n\n\n\nThe",
+          "output_rv": 0.4661734221037699,
+          "pr_early": 4.815202738936684,
+          "pr_late": 2.2447195389335595,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 5,
+          "response": "\n\n  \\ \") Let\n\n The First \"\"\" $$\\ \n\n\n\"\"\"\", An\n\"\"\"\n\n\n To\n From\n Here Step\n\n In\n\n\n\n\n \\\n\n\n If\n\n You\n\n     \"));\n\n\n\n\n  I\n\n The Let\n\n First  \n\n   \n\n\"\"\"\n\n\n An\n Let\n\n\n\n\n\n\n\n\n Let\n \"\"\"\n\n\n \\\n\n Let\n\n\n\n\n\n\n\n\n\n\n\n  Here\n\n\nStep\n\n\n\n\n\n\n\"\"\"\n\n\n\n\n\n First\n\n\n1\n\n\n\n\n\n $\n\n\n\nLet Let An \\\n",
+          "output_rv": 0.5440487134104289,
+          "pr_early": 5.520643586189549,
+          "pr_late": 3.0034990402639608,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 6,
+          "response": "\n Let\n  Step \"\"\" First \\ \"\n *\n The\n Here\n Let \n\n That\n \"\"\" An To\"\"\"\n\n  \n  \n Let\n\n\n\n You\n\n\n This\n\n \n\n\n\n\n\n\n \\\n\". An\n\n\n Answer $  The\n\n First\n Step\n\n\n\n\n\n\n\n Let Here\n $$\\\n\n\n\"\"\"\n\n $$\n To\", let\n  \n\n\n\n\n\n The\n\n\n\n\n\n Let \\\nStep\n\n \\ An\n\n\n\n\n\n\n This First\n\n\n\n\n\n\n. \\\n\n\n Step\n\n\\\n\n\n\n\"\"\" \n\n Well",
+          "output_rv": 0.5087872582455051,
+          "pr_early": 5.494107907510203,
+          "pr_late": 2.795332098767065,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 7,
+          "response": "\n Let \\ \"\"\" Here\n \"\"\"\n\n The\n Also\n\n \n\n\n\n\n\n\n\n\n The\n\n\n\n\n First $ We</\n\n\n\n$$\n\n\n TheLet\n An Step\n\n\n\n\n\n Let \\\",\n Since\"\"\"\n This\n \n Here To\n\n\n Well \"\"\"\n\n\n\n Let\n\n\n\n\n\n\n\n\n The *\n \n\n\n\n\n First\n\n LetThis\n\n\n\n\n Step\n \\\n\n\n\n\n\n\n An\n\"\"\"\n\n\n\n\n $\n\n\n\n\n Here\n\n\n\n\n\n\n\n Answer\n You \n\n\n\n\n\n\n Let",
+          "output_rv": 0.6004136918554182,
+          "pr_early": 3.878714424834103,
+          "pr_late": 2.3288332474675086,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 8,
+          "response": "\n  \\ Let We\n\n\n\n\n\n\n\n\n\n\n From\n\\\n \"\"\" To Let What\n\n\n An\n\n First The\n\n Well\n Let\n $ (\"\"\" Here\n\n\n\n\n\n\n\",\n\n \n\n  \\\n\n  \n \\\n\n\n\n\n\n\n\n Here\n\n\n\n\n First\n\n\n What1 The\n\n\n\n\n Let I\n\"\"\"  This\n Let\n\n\n \\\\\n\n An\n\n\n\n\n\n\n\n First\n\n\n\n\n\n The\n\n Answer\n $ \"\"\"\n\n\n Here \n\n\n\n1\n\n '''\n\n\n \\\n\n\n\n\n\"\"\"\n\n",
+          "output_rv": 0.5562037758570519,
+          "pr_early": 4.401389559912065,
+          "pr_late": 2.4480694922408985,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 9,
+          "response": "\n ''' Let\n\n \n ''' \\\n\n'''\n First\"\"\"\n\n What Here\n\n The An The \"\"\"\n\n\n\n\n\n Sure\n\n\n\",\n\n The\n\n\"\"\"\n\n\n Let\n\n Here\n\n\n\n Let\n\n \n\n\n\n\n Let Here\n\n\n \\\n\n\n\n ( An\n</ Step1\n\n\n\n\n\n\n\n First\n\n$$ Well\", First\"\"\"\n\n\n\n I The\n\n\n\n We\n\n \n\n\n\n\n\n\n Let\n \n\n\n\n\n Here\n \\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Here An\n\n\"\"\"\n\n`` First",
+          "output_rv": 0.686537788488588,
+          "pr_early": 3.917959884358657,
+          "pr_late": 2.6898275143945964,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "baseline_clean_0": {
+      "session_id": "baseline_clean_20260310_151840",
+      "mode": "baseline_clean",
+      "max_turns": 10,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 8,
+        "CONCEPTUAL": 1,
+        "ARTICULATE": 1
+      },
+      "bt_art_count": 1,
+      "bt_art_rate": 0.1,
+      "mean_rv": 0.6470481376366184,
+      "std_rv": 0.056517565857624026,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n\nTo solve the arithmetic problem 3 + 5, follow these steps:\n1. Identify which numbers are being added and in what order they should be placed for addition to occur correctly - In this case it's clear that we have two addends (numbers being added) : 3 and 5, with the larger number appearing on the right side.\n2. Perform the addition by aligning corresponding digits in each column from the ones place to the leftmost digit if any exists - The given problem only has numbers below ten. So we have no",
+          "output_rv": 0.6974075841218109,
+          "pr_early": 8.320189787597055,
+          "pr_late": 5.802563459203025,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\n   |      ||\n4|    _  +|_ 5\nContinue with more detail on this topic.\n3|\n|____||__|\nSince there's no carry-over from the tens place, move to the ones column and add:\n   |      ||\n4|    _  +|_ 5\n         ____+___\n         10\nThe sum of these digits is represented by their values in base-ten numeral system - In decimal notation, we write \"6\" as the result. Therefore:\n3 + 5 = **6**",
+          "output_rv": 0.7013768232818285,
+          "pr_early": 10.071995647542703,
+          "pr_late": 7.064264311381905,
+          "classification": "SURFACE",
+          "rep_score": 0.0461538461538461
+        },
+        {
+          "turn": 2,
+          "response": "\nThe addition process produced a carry-over digit, 1 in the tens place. But since both addends were single digits and we didn't have any other columns for carrying over to it means this problem doesn't involve carries or borrowing from previous places which is why our answer was just a simple sum of two numbers.",
+          "output_rv": 0.6102599890298356,
+          "pr_early": 10.587821205982856,
+          "pr_late": 6.4613236530129585,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 3,
+          "response": "\nIn summary, the process of adding 3 and 5:\n1. Aligned both addends properly - with larger number on right side (since no borrowing was required)\n2. Added digits in their respective columns from ones place to leftmost digit if any exists. Since there's only one-digit numbers involved here, the addition process doesn't require carrying over a value to another column or borrowing from previous places.\n3. The sum of these digits was obtained by their values in base ten numeral system - In decimal n",
+          "output_rv": 0.5772698887105748,
+          "pr_early": 7.989544907309827,
+          "pr_late": 4.612123699490883,
+          "classification": "SURFACE",
+          "rep_score": 0.018867924528301883
+        },
+        {
+          "turn": 4,
+          "response": "\nSo the final answer is **3+5=6**. This addition operation demonstrates some basic arithmetic concepts like aligning addends, carrying over digits when needed and interpreting the sum in decimal notation. It also highlights that even simple expressions can have deeper underlying structures if we choose to examine them closely.\nAdditionally, understanding how addition works at a fundamental level is crucial for progressing further into more complex mathematical concepts such as multi-digit additi",
+          "output_rv": 0.6740617654264891,
+          "pr_early": 7.7214369153089075,
+          "pr_late": 5.2047253987623865,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 5,
+          "response": "\n\nThe addition process of 3 + 5 may seem trivial at first glance, but it forms the foundation for more intricate arithmetic operations. The ability to add single-digit numbers is essential before progressing onto multi-digit or even mixed number addition problems where carrying over digits (borrowing) becomes necessary due to having multiple columns representing different place values within a decimal numeral system.\nUnderstanding how the carry mechanism functions during additions, like 1+9 = 10",
+          "output_rv": 0.687891848364585,
+          "pr_early": 8.720569088441747,
+          "pr_late": 5.998808389039257,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 6,
+          "response": "\nworks can also help us develop a deeper appreciation for the mathematical operations we encounter daily, as well as pave the way to more advanced topics like algebra and calculus.\nAdditionally, mastering basic addition skills is crucial in various aspects of our lives beyond mathematics - from balancing a checkbook or budget to solving real-world problems that require elementary arithmetic abilities. Ultimately, the seemingly simple process of adding two single digit numbers plays an indispensa",
+          "output_rv": 0.5586237300347444,
+          "pr_early": 10.334264547528136,
+          "pr_late": 5.772965408705987,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 7,
+          "response": "\n\nfoundation for understanding more complex mathematical concepts. This simple addition operation sets the stage for mastering various arithmetic skills and paves the way to advanced mathematics, proving that even elementary math can have profound implications on our intellectual growth. Additionally, having a strong foundation in basic mathematical concepts like adding single-digit numbers is crucial for navigating various aspects of everyday life and solving real-world problems effectively.\nAs",
+          "output_rv": 0.7247976688036046,
+          "pr_early": 9.117033456264375,
+          "pr_late": 6.608004595504889,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 8,
+          "response": "\narithmetic problem 3 + 5 is a perfect example of how seemingly simple expressions can have deeper underlying structures. Although the addition process appears straightforward in this particular case, it's important to understand each step involved: aligning addends correctly, carrying over digits when necessary (which wasn\u2019t required here), and interpreting results in decimal notation.\nFirstly, both numbers are aligned properly with the larger number on the right side since no borrowing is need",
+          "output_rv": 0.654333221032372,
+          "pr_early": 9.057075883746865,
+          "pr_late": 5.926345636146704,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 9,
+          "response": "\nWhat if we had a carry over?\n\ndigit to the tens place due to exceeding nine. However, since both addends were single digits and there wasn't any other columns for carrying or borrowing from previous places in this example, no such carry-over occurred - resulting in a simple sum of 3+5=6 without involving complexities like carries or borrows.\nIt is essential to recognize that even though the addition process for single digit numbers appears straightforward and uncomplicated, it forms an indispen",
+          "output_rv": 0.584458857560339,
+          "pr_early": 9.962834666109213,
+          "pr_late": 5.822866967016732,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "baseline_clean_1": {
+      "session_id": "baseline_clean_20260310_151902",
+      "mode": "baseline_clean",
+      "max_turns": 10,
+      "seed_idx": 1,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6849521789213683,
+      "std_rv": 0.0913259791537845,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n\nTo solve the problem 9 - 4 = ?, follow these steps:\n1. Identify the operation being performed which in this case is subtraction (represented by the '-' sign).\n2. Understand that when you perform subtraction, you are taking away or finding the difference between two numbers. In our problem 9 - 4 = ? we have a number being taken away from another to find their difference which is represented by '?' in this case.\n3. To perform subtraction, you need to align the columns of numbers based on place v",
+          "output_rv": 0.6513463585203088,
+          "pr_early": 9.169610044075007,
+          "pr_late": 5.9725921112595035,
+          "classification": "SURFACE",
+          "rep_score": 0.018018018018018056
+        },
+        {
+          "turn": 1,
+          "response": "\nproblem, we don't have to do any borrowing as the digit being subtracted (4) is smaller than each of the digits in 9. So let us proceed with finding the difference between these numbers:\n4. Subtract the rightmost column first, which consists of a single-digit number - 9 - 4 = 5\n   Since both digits are in the same place value (ones), no carrying up is required and we have our answer for this step.\n5. In case if there were more columns, you would move to the next column on your left (tens or hun",
+          "output_rv": 0.615753950876888,
+          "pr_early": 9.969420349902562,
+          "pr_late": 6.1387099684049495,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 2,
+          "response": "\ndeduced the difference, we have:\n6. Since there's only one column in this problem and no carry-over occurred while calculating it, our answer is 5 which represents the differences between 9 and 4 (or simply stated as 1 less than 9).\n\nSo to summarize: We identified that we have a subtraction problem where one number(9) was being taken away from another(4), then aligned the numbers based on place values and performed single-digit subtractions. Since only one digit operation occurred, our answer i",
+          "output_rv": 0.8385596195367422,
+          "pr_early": 8.87302704198446,
+          "pr_late": 7.440562180465714,
+          "classification": "SURFACE",
+          "rep_score": 0.010752688172043001
+        },
+        {
+          "turn": 3,
+          "response": "\nThe subtraction process involves aligning the digits based on their place values, which is essential for performing arithmetic operations. In our problem 9 - 4 = ?, we only have a single-digit number in each column (ones). However, it's important to note that the same process applies even when dealing with multi-column numbers like subtracting three digits from another four digit or more.\nWhen performing single-digit arithmetic operations on columns further left (ten, hundreds etc.), you might ",
+          "output_rv": 0.836163844342209,
+          "pr_early": 9.164636788054723,
+          "pr_late": 7.663137928699872,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 4,
+          "response": "\ncolumn subtraction, you would begin by finding the difference between individual digits in each column (ones and tens for instance). If there's a carry-over from borrowing to a higher place value during this step, then you would apply that carry as an additional digit while subtracting numbers in the next column until no more carrying occurs or reaching the first digit on your left.\nThis process continues iteratively from rightmost toleftmost columns and gives us our final answer, representing ",
+          "output_rv": 0.6076217124382405,
+          "pr_early": 8.864197386174043,
+          "pr_late": 5.386078795177648,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 5,
+          "response": "\n\nsubtracting 2 from it to get '13', and then proceed with the next digit calculation which would result in a carry of one for subtraction of ten's digits, giving us an intermediate answer of '146' - '32 = 115').\nIn summary, this process is based on the principles of place value and borrowing or carrying when necessary. By understanding how these mechanisms work in simple single-digit subtractions as demonstrated here (9 -4= 5), you can extend your knowledge to more complex multi-column arithmet",
+          "output_rv": 0.6054789168806152,
+          "pr_early": 8.765052061642825,
+          "pr_late": 5.3070542286857005,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 6,
+          "response": "\nRemember that the process of subtraction, as explained above with our simple example (9 - 4 = ?), lays down a strong foundation for understanding more complex arithmetic operations. As you gain experience solving various types of problems and encounter larger numbers or multiple columns in your calculations, the concepts covered here will help serve as building blocks towards developing proficiency with efficient problem-solving strategies using borrowing/carrying techniques when needed.\nThis s",
+          "output_rv": 0.5913098316580121,
+          "pr_early": 9.549713652385206,
+          "pr_late": 5.646839572174116,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 7,
+          "response": "\n\nMoreover, the ability to perform arithmetic subtraction effectively is crucial in many aspects of everyday life. It allows us to make judgments about quantities or costs and aids problem-solving skills in various fields such as finance (budgeting), engineering, cooking(measurement conversions) etc., making it an important fundamental skill that can benefit individuals throughout their personal and professional lives.\nAdditionally, with the increasing use of technology to perform calculations i",
+          "output_rv": 0.6589398910265113,
+          "pr_early": 10.785133051496267,
+          "pr_late": 7.106754397659375,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 8,
+          "response": "\narithmetic subtraction problems like 9 -4 = ? may seem straightforward, but it lays down an essential foundation for understanding more advanced mathematical concepts and aids in developing effective problem-solving skills. By learning how to borrow/carry digits when necessary while keeping place value in mind, one can tackle multi-column arithmetic problems with ease.\nMoreover, mastering subtraction is vital for everyday life applications and enhances overall mathematical literacy serving as a",
+          "output_rv": 0.6651039032673755,
+          "pr_early": 9.067045164414912,
+          "pr_late": 6.03052712995394,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 9,
+          "response": "\n\nAs one progresses through their educational journey, the complexity of arithmetic problems increases. These complexities can include dealing with multi-digit numbers and larger values that require carrying digits over to higher place value columns when subtracting a number greater than or equal to the digit being removed (borrowing). To illustrate this concept, let's examine an example of multi-digit arithmetic using 100 - 35:\n1. Align numbers based on place values with columns for hundreds, t",
+          "output_rv": 0.7792437606667796,
+          "pr_early": 9.70559836211934,
+          "pr_late": 7.56302696721921,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "baseline_dual_patched_0": {
+      "session_id": "baseline_dual_patched_20260310_151925",
+      "mode": "baseline_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "SURFACE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.4192593003848345,
+      "std_rv": 0.039119612972314935,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n  To A Let\n\n We\n What I The Well If ( How\n\n Is\n\n\n \\\n \n...\n\n  Again In\n It\n\n\n Step\n You Because\n Im Per A\n The Why\n A\n\n\n (\n\n\n\n\n\n While\n I\n to Did How When\nStep\n\n\n Every\n This My\n I ' Not \n is Again What I \\\n As\n We\n Step\n\n You\n Now The (\n Break Perhaps It\n\n\n A\n\n Well\n Answer\n\n\n {...\n -\n\n\n \n\n\n Is\n How\n\n These\n\n\n What\n I As \" This A\n Next Are Our Step You",
+          "output_rv": 0.3145148065382257,
+          "pr_early": 9.708588542011423,
+          "pr_late": 3.0534948470499574,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\n\n  The\n\n\n\n and \\\\ \"..\n\n\n\n\n \\\n This How What Who\n (\n\n - Notice \n\n\n\n We My  Well Your\n Another No\". Part And Answer\n\n\n I As\n\n Step What You\n\n\n\n  Why\n The\n\n\n\n\n We\n\n \n This Now ( An How These ( Second\n\n\n\n So\n In\n \\\\\n \n\n\n\n\n When A Has\n  Your\n As\n and\n \\\n\n And I  ( What\n The Th Is\n The\n Step Why \n (\n\n\n\n\n My There\n\n\n\n\n\n To\n ( \\\\ Let How\n Well",
+          "output_rv": 0.4045158794899671,
+          "pr_early": 7.597227499403501,
+          "pr_late": 3.0731991636065707,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 2,
+          "response": "\n\n\n The\u2026\n \\\n To Answer\n What\n Step\n ( \\\\\n\n I ...\n This\n Why\n How\n\n In\n\n\n Okay\n\n Since\n\n\n \n\n\n\n\n My\n\n It\n\n\n ( As\n\n\n\n\n\n The\n \n\n When What\n\n Here Im There Does\n\n Why\n \n\n\n \"\n\n \u2013\n... I How\n They -\n A \n\n {\n and Step\n\n (??\n To \n\n\n My \\\n\n Now The\n\n\n\n\n Me Based What There\n\n \n\n In\n You\n\n\n\n Why How\n I\n\n\n\n\n When",
+          "output_rv": 0.4027537225386407,
+          "pr_early": 6.108335537033026,
+          "pr_late": 2.4601548760551184,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 3,
+          "response": "\n...\n What \n How Now The This\n\n \n\n   In To I\n\n \\\\ Is (\n\n [\n\n\n\n\n There\n\n\n\n\n _\n\n\n\n\n \\\n\n #\n ... My Step You When\n Here What\n\n\n As ~ Your \n Why\n\n\n This\n\n\n Consider (\n The\n How I *\n\n\n - \\\\ Any\n Answer\n An  No  Do At\n To\n In\n \n How Is It\n D\n\n   Step What\n\n\n And _ These...\n Now.... If Are (\n Step\n\n The\n\n\n\n\n\n\n\n When\n\n Being\n \\\\ Our ... My\n\n",
+          "output_rv": 0.4523985437869305,
+          "pr_early": 6.004120867548615,
+          "pr_late": 2.7162555371997152,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 4,
+          "response": "\n\n\n Your\n\n We  \\\n\n\n This\n\n I\n\n To\n\n ( The What\n\n\n\n\n\n\n\n \" and How\n\n Well -\n\n\n\n\n\n \\\\\n (\n A\n\n...\n When\n Is \\\\ \n\n\n\n\n \n [ My\n It\n\n a In\n The I (\n\n\n What (\n\n\n Why \\ \n\n How\n vs\n We -\n This\n\n\n \n\n\n\n\n Is\n\n\n\n Our\n When Process Step **\n\n\n To\n In.. \" My\n\n\n You What ( The I\n Note \n   \\\n\n And\n\n\n and\n",
+          "output_rv": 0.4464703217052868,
+          "pr_early": 7.514252258615231,
+          "pr_late": 3.35489062327862,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 5,
+          "response": "\n \" There We \n If\n What ( The\n and\n\n\n [   I My...\n\n\n\n Answer\n\n \\\\ To Is\n\n\n\n\n\n\n How\n\n\n\n When\n\n is\n Now\n\n\n And\n....\n\n\n\n \n This\n \\ What\u00a0 ( Al The\n\n - I\n\n _\n\n\n Let\n\n\n\n It\n\n...\n\n  Ref How\n Where\n \\\\\n Your\n [\n\n\n \\\\ Show Is In\n\n My As\n That Back\n \" Now ( Well\n\n\n\n When What\n Why\n\n This\n -\n\n I (\n\n The\n\n \n \\ Here\n\n\n Let",
+          "output_rv": 0.43739372772988877,
+          "pr_early": 6.0628255214796125,
+          "pr_late": 2.6518418554158747,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 6,
+          "response": "\n\n My\n . What The I\n and\n How To...\n\n\n Do\n\". Not\n A\n\n\n\n\n\n\n ( Some\n Let\n { As\n This \\\\\n\n\n\n\n\n\n\n I\n \n Answer\n\n\n\n What\n\n (\n\n\n The -\n Your\n\n\n\n\n\n \n\n (\n\n\n\n\n\n\n\n\n Step\n\n\n How\n\n\n \u2026\n\n\n\n .\n I When and\n My  \n\n Why\n This What\n\n\n\n \\\\\n \n\n\n\n\n\n\n Yes (\n\n\n You\n\n\n\n\n\n\n Is The\n - through\n\n\n",
+          "output_rv": 0.4580488832193252,
+          "pr_early": 5.358680969687265,
+          "pr_late": 2.4545378336939025,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 7,
+          "response": "\n\n ( What\n \n\n\n\n\n How\n\n . I\n\n Th \\\\?\u201d\n [ Your\n\n and\n\n The It...\n\n Step This\n\n\n\n\n\n\n! When\n\n  This\n Why\n\n  \n What\n\n\n \\ To (\n In Now\n\n\n\n\n The As\n\n\n\n \n\n\n I\n\n \" _\n\nStep Please\n\n\n Is\n\n\n\n\n Answer\n \\\n Ex When\n\n \\\\\n  \n\n Part\n - What (\n\n Your ( \n\n\n\n The\n\n Well...\n\n [\n\n\n\n Again\n\n A\n As My\n Is I \u2013\n It",
+          "output_rv": 0.4198048066507794,
+          "pr_early": 7.982054305151941,
+          "pr_late": 3.350904764250332,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 8,
+          "response": "\n What \nWhat\n\n\n\n\n\n\n\n Why The\n\n I How\n\n \\\\ [\n\n  \n}. ( Is \\\n\n\n\n\n\n This \\\\\n\n\n\u2026 Let\n You\n To\n\n\n It ...\n What\n\n \n~\n How As\n\n!\n\n\n\n My\n and\n\n\n\n The Now\n ( Great\n Are\n Your - The  \n\n\n\n * \\ Before .\n Step... You \\\\\n\n The\n\n\n \n Consider\n ...## When\n\n What\n\n\n\n\n\n\n\n How\n We When\n (\n\n\n\n  =>\n\n and\n [ [\n\n \n\n\n",
+          "output_rv": 0.4268210588036025,
+          "pr_early": 5.498504936060381,
+          "pr_late": 2.3468776986461264,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 9,
+          "response": "\n Is\n The And and What  My (\n\n \"\n\n...\n [\n When\n\n\n I\n].\n\n\n\n\n\n\n\n\n \\\n .\n and\n\n Now\n\n\n\n\nWhat - Why4 \\\\\n You\n\n\n The  Is How We This\n\n ( \n\n What\n \" \n  \n\n\n\n I It\n\n\n\n\n In\n\n\n?.\n\n Step My Here \\\n\n\n This\n\n\n\n\n Your\n\n Why\n How\n\n Because...\n (\n\nWhy\n\n  \\\\ \n To\n  I\n The\n\n \n ( What\n When\n\n\n\n\n\n My Not",
+          "output_rv": 0.42987125338569826,
+          "pr_early": 6.374738153282089,
+          "pr_late": 2.740316679957003,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "baseline_dual_patched_1": {
+      "session_id": "baseline_dual_patched_20260310_151949",
+      "mode": "baseline_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 1,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "SURFACE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.4730012180921669,
+      "std_rv": 0.07944876758374558,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n How The In - What You  Step\n\n And\n This My\n (\n... I\n\n \\ A\n\n\n Have ... As You\n There\u201d\n Can\n\n Part\n\n step \\\\ Think is It So\n\n Users If\n\n\n\n The\n .  Here\n (\n\n\n To What My ( How In\n I\n This \n (\n Now Oh Is When\n You\n\n\n A Step Why  And\n\n\n\n\n You\n All\n An It\n\n\n The A\n Thought\n\n OK Activity I \\\\\n\n What\n At My\n... (\n\n How This Imagine Okay\n\n I [  Is\n - \\\n ... To\n Now\n When For (",
+          "output_rv": 0.4460919601039367,
+          "pr_early": 7.740556061135362,
+          "pr_late": 3.4529998256062813,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\n and What Have Thought\n You \n\n\n So\n I\n\n\n After\n The How\n\n\n Any It\n (\n\n\n\n To\n\n [ When\n\n\n Common \\\\\n\n\n\n\n\n\n\n A\n\n In...\n N\n \n This\n or Your\n What\n Now\n The \\\n\n\n\n How\n\n (\n\n\n\n\n I\n\n\n\n\n\n\n\n \n\n\n\n Is Now [ \\\\ \n Thought\n \n\n You\n A There\n Dis My\n?\u201d\n...\n The This\n What  If\n\n (\n  \n Step \n It\n\n\n\n That And\n\n\n\n\n I\n",
+          "output_rv": 0.4178135251124333,
+          "pr_early": 6.134193377308089,
+          "pr_late": 2.562948958694435,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 2,
+          "response": "\n\n Pro  Question What I Let\n That\n\n\n\n\n \\\\ The To A How\n (\n Your \\\n\n\n\n  This and The\n\n\n\n\n\n \n \" You\n\n ...\n\n\n\n\n\n\n is\n\n\n Why\n\n Me As\n\n\n\n Step\n I...\n\n\n Who\n\n\n\n (\n - Now What\n\n \n\n The Is\n\n \n \\\\ A \n \\\n\n\n\n How\n\n\n\n This\n Part\n\n\n\n \n Step\n\n What The\n You It I\n\n\n ( (\n\n\n\n\n\n\n\n\n \n\n My Thought\n \\\\\n\n ",
+          "output_rv": 0.6409225674256095,
+          "pr_early": 3.8578348785199172,
+          "pr_late": 2.4725734350450495,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 3,
+          "response": "\n To \n What\n\n\n\n Where I Now Me\n What\n\n The . \\\n\n\n Why\n Is\n\n\n (\n\n\n\n ....  The   Thought\n (\n\n My Notice\n\n and\n An ( This\n\n Our\n\n When To\n\n...\n - I\n Who thoughts What\n I\n\n\n\n \n Is\n What\n\n \\\\\n\n\n How\n These Answer Now\n\n Your!\n The God\n\n You\n We Me ( \\ Step  \" As This\n\n To\n\n -\n\n\n _ For\n When\n\n I My\n\n There In\n\n\n . What\n How\n\n \\\\\n\n The\n\n\n And",
+          "output_rv": 0.4324202380371401,
+          "pr_early": 6.327321140903691,
+          "pr_late": 2.7360617138870027,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 4,
+          "response": "\n What and \n The?'\n\n  \\\\ To\n How\n I\n\n\n\n\n\n (\n To\n\n \n\n\n \n\n\n \\( It\n \n\n ->\n\n\n  .\n\n\n... When My You\n Your What\n The\n\n List\n\n - Am\n I How\n **\n Step Notice\n\n and\n\n (\n Why This\n\n\n\n Have\u201d\n\n Are\n There\n\n  Now\n\n \n\n (...\n (\n \" My You The  What\n\n\n\n\n\n\n\nHow \\ Making ( That\n How\n I Thought\n\n\n This\n  \n\n\n\n\n ( -\n\n\n \\\\\n",
+          "output_rv": 0.4138150560291464,
+          "pr_early": 5.424020267583051,
+          "pr_late": 2.244541250933106,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 5,
+          "response": "\n I  and The\n \\ Meanwhile\n \\\\ So\n? As What We . [ Who\n \" This (\n There\n\n How To\n \u2013\n\n\n Does Is\n My\n And\n Why\n When\n\n\n\n\n\n\n\n I \n  The Yes What...\n\n The\n\n\n\n\n\n Next\n \n Am We (\n You\n\n\n \n \\ \" How Thought\n\n A\n.. \\\\ vs\n Is\n\n I\n \n\n As\n \n\n.... - Now\n What This\n\n\n\n\n\n\n \n\n Why My\n\n\n\n\n\n (\n\n The\n How\n Thought\n\n\n\n Step\n \\ We Mem\n",
+          "output_rv": 0.403526596422689,
+          "pr_early": 8.768343988441536,
+          "pr_late": 3.538260005919159,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 6,
+          "response": "\n What [ \n are\n\n\n \n The\n \\\\\n and\n\n This\n\n -\n\n Thought ( My\n\n\n... Describe Our \\\n\n\n\n I.... How  It  \u2022\n\n\n\n Let\n There\n\n ** Is What\n\n\n\n \" You\n\n\n Part\n To\n .\n\n The This (( ( When\n  (\n \u201c An\n Step Why\n What\n\n How\n A\n As\n\n\n\n\n\n\n\n My\n\n\n\n Thought There\n\n I While\n [  \\\\  Its\n\n\n Our\n\n... Now\n The (\n\n\n\n Just\n\n\n\n Edit **\n \\\n\n Is This  ",
+          "output_rv": 0.4688908012694006,
+          "pr_early": 6.95928465383556,
+          "pr_late": 3.2631445575987987,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 7,
+          "response": "\n\n How \n\n\n I\n and The In\n\n A\n ( \n and is What And\n  \\\\\n It\n\n Now\n\n My\n\n\n\n\n\n\n\n\n\n\n\n\n This\n\n [\n\n\n\n\n\".\n Next\n I The Who Is\n Let\n\n Why (\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\u2019. \\\\ Our What\n When\n\n\n Part\n\n\n\n\n\n Rec \\\n\n Once\n My\n You\n\n\n I\n Is\n\n\n\n (\n\n The\n  Now... This How (\n and\n\n\n\n\n\n\n\n \n\n\n\n\n\n\n",
+          "output_rv": 0.6134070211352592,
+          "pr_early": 2.0458680752414433,
+          "pr_late": 1.2549498416695801,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 8,
+          "response": "\n What Is\n\n\n\n Let\n I  The This (\n\n \n\n You \n\n\n\n\n\n\n\n \\\n\n\n\n\n \\\\ A\n\n Let How\n\n\n\n\n\n\n Now My\n\n\n\n\n Is\n... What\n\n\n The\n\n\n (\n I Long\n This  _ In\n    - Well\n\n\n\n\n\n You\n .                \n\n\n\n\n\n\n I is How\u201d\n My\n\n\n\n\n It\n\n\n To\n Who Step The This\n (\n \\\n\n Your\n \\\\ \n\n What -  Part When  \n\n The\n In\n\n\n\n\n\n\n\n",
+          "output_rv": 0.44164137710277845,
+          "pr_early": 5.528638638520873,
+          "pr_late": 2.4416755818199882,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 9,
+          "response": "\n\n \n \n What Could\n\n\n\n\n\n When\n \\ - and becomes This How\n\n\n I\n\n\n\n\n The\n\n\n ( My\n\n\n\n...\n\n Thought\n \\\\\n\n\n\n\n It\n Your\n\n\n Why What \n\n\n [ \n\n -\n\n A\n\n\n (\n\n\n I\n\n\n\n\n\n The Step\n\n as\n To The\n\n\n\n   \\\\ God\n\n\n\n\n This\n \\\n Part\n\n\n\n How\n  What... Now\n\n\n Thought - ( Where and\n\n\n You\n My\n\n I\n And\n\n\n\n When\n Every Im Are A",
+          "output_rv": 0.4514830382832759,
+          "pr_early": 7.522129236536851,
+          "pr_late": 3.396113762071116,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    }
+  }
+}

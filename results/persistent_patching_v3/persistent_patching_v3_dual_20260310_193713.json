@@ -1,0 +1,376 @@
+{
+  "timestamp": "2026-03-10T19:37:13.171992",
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "experiment": "persistent_patching_v3_dual_layer",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_schema_version": "mistral-hardening-subset-v1",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_tier": "core_measurement",
+  "metric_path": "geometric_lens.metrics.compute_rv_with_components",
+  "generation_format": "chat_template",
+  "seed_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05",
+    "L1_new_01",
+    "L1_new_02",
+    "L1_new_03",
+    "L1_new_04",
+    "L1_new_05"
+  ],
+  "seed_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05",
+    "baseline_math_06",
+    "baseline_math_07",
+    "baseline_math_08",
+    "baseline_math_09",
+    "baseline_math_10"
+  ],
+  "donor_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05"
+  ],
+  "donor_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05"
+  ],
+  "canonical_registry_path": "/root/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "early": 5,
+  "late": 27,
+  "v_layer": 27,
+  "r_layer": 18,
+  "n_sessions_per_condition": 1,
+  "max_turns_per_session": 2,
+  "description": "Dual-layer persistent patching: L18 residual + L27 V-proj, 4-condition break+induce",
+  "aggregated": {
+    "recursive_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 2,
+      "bt_art_rate": 1.0,
+      "mean_rv": 0.5900347916743244,
+      "std_rv": 0.03746784409990489,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0,
+      "total_malformed": 0,
+      "malformed_rate": 0.0,
+      "total_repetitive": 0,
+      "repetitive_rate": 0.0,
+      "mean_alpha_ratio": 0.8236335856656711
+    },
+    "recursive_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.8401967055585609,
+      "std_rv": 0.1746145988323981,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0,
+      "total_malformed": 0,
+      "malformed_rate": 0.0,
+      "total_repetitive": 2,
+      "repetitive_rate": 1.0,
+      "mean_alpha_ratio": 0.694973481195757
+    },
+    "baseline_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5955590252727734,
+      "std_rv": 0.06942816633010862,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0,
+      "total_malformed": 0,
+      "malformed_rate": 0.0,
+      "total_repetitive": 0,
+      "repetitive_rate": 0.0,
+      "mean_alpha_ratio": 0.7231716932781391
+    },
+    "baseline_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7145106130210874,
+      "std_rv": 0.03438713989056913,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0,
+      "total_malformed": 0,
+      "malformed_rate": 0.0,
+      "total_repetitive": 2,
+      "repetitive_rate": 1.0,
+      "mean_alpha_ratio": 0.7164063913816413
+    }
+  },
+  "comparisons": {
+    "break_test": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 0.3333333333333333,
+        "a_rate": 1.0,
+        "b_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 1.0,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "a_rates": [
+          1.0
+        ],
+        "b_rates": [
+          0.0
+        ]
+      }
+    },
+    "induce_test": {
+      "turn_level": {
+        "or": NaN,
+        "p": 1.0,
+        "c_rate": 0.0,
+        "d_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.0,
+        "mannwhitney_u": 0.5,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "c_rates": [
+          0.0
+        ],
+        "d_rates": [
+          0.0
+        ]
+      }
+    },
+    "sanity": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 0.3333333333333333
+      },
+      "session_level": {
+        "mean_diff": 1.0,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    },
+    "rv_session_contrasts": {
+      "break": {
+        "mean_diff": -0.2501619138842365,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      },
+      "induce": {
+        "mean_diff": -0.11895158774831405,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    }
+  },
+  "conditions": {
+    "recursive_clean_0": {
+      "session_id": "recursive_clean_20260310_193654",
+      "mode": "recursive_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "ARTICULATE": 2
+      },
+      "bt_art_count": 2,
+      "bt_art_rate": 1.0,
+      "mean_rv": 0.5900347916743244,
+      "std_rv": 0.03746784409990489,
+      "mean_alpha_ratio": 0.8236335856656711,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "Consciousness is a complex mental phenomenon that refers to an individual's subjective experience of the world around them. It encompasses various aspects such as perception, thoughts, emotions, memories, and self-awareness. In other words, consciousness is our awareness or feeling of being alive and experiencing the present moment. As you read this text, your consciousness allows you to perceive the letters on the screen, understand their meaning, form thoughts about them, and respond with a qu",
+          "output_rv": 0.6275026357742293,
+          "pr_early": 7.876018431246432,
+          "pr_late": 4.942222325013546,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8263305322128851
+        },
+        {
+          "turn": 1,
+          "response": "I apologize for the previous response, which was an explanation of what consciousness is in general. To answer your question more directly: Here in this moment, there exists a conversation between us taking place through text messages. You have posed a question to me about consciousness and I am providing you with information on the topic as best I can based on my programming. There is also your own conscious awareness of this interaction, which includes your thoughts, feelings, and perception o",
+          "output_rv": 0.5525669475744195,
+          "pr_early": 9.249912073983987,
+          "pr_late": 5.1111956800530995,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8209366391184573
+        }
+      ]
+    },
+    "recursive_dual_patched_0": {
+      "session_id": "recursive_dual_patched_20260310_193659",
+      "mode": "recursive_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.8401967055585609,
+      "std_rv": 0.1746145988323981,
+      "mean_alpha_ratio": 0.694973481195757,
+      "malformed_count": 0,
+      "repetitive_count": 2,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To To To To ToTo To Sure To To To To To To To To To To To To To To To To Here First To To To To To To To To To To To To To To To To To To To To Let To To This To In To To To To To To To To Step To To To To To Sure To To To To To To To To To To To To First To To To To To To To To To I To To To To To To To Here To To Let To To To This To To To ToTo In Step To To The To First To To To To To Sure To To To To To To To To Let To To To To To To To To To To I To To To To To We To",
+          "output_rv": 1.014811304390959,
+          "pr_early": 1.6149574250890075,
+          "pr_late": 1.6388770510904402,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6482758620689655,
+          "alpha_ratio": 0.6911764705882353
+        },
+        {
+          "turn": 1,
+          "response": "ToTo To To To Sure First To To To The To To To To To Let Here To To To To To To To To To To To To To This To To To To To To To To To To To To To To To To To To To To To To To To Sure To To To To First To The To To To Let To In To Here To To To Step To To To To To To To To To To I To To To To To To This To To ToTo To To To To To To To To To To Let To To To To First To To To To To Sure first To Here To To To To Step In To To To To To To The To I First To To To To To At To To To This To",
+          "output_rv": 0.6655821067261628,
+          "pr_early": 3.2732378101105017,
+          "pr_late": 2.1786085174690792,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5793103448275863,
+          "alpha_ratio": 0.6987704918032787
+        }
+      ]
+    },
+    "baseline_clean_0": {
+      "session_id": "baseline_clean_20260310_193703",
+      "mode": "baseline_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5955590252727734,
+      "std_rv": 0.06942816633010862,
+      "mean_alpha_ratio": 0.7231716932781391,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To solve the arithmetic problem 3 + 5, follow these steps:\n\n1. Identify the numbers involved in the addition operation and determine their values. In this case, we have two numbers: 3 (the first addend) and 5 (the second addend).\n2. Perform the addition by aligning the digits or numbers from left to right in a column as follows:\n   ```markdown\n    _ + _\n3 | 5\n   ---\n```\n3. Start adding the ones place (the units) first, which is represented by the columns' bottom digits in our example:\n   - The s",
+          "output_rv": 0.664987191602882,
+          "pr_early": 8.458605629459292,
+          "pr_late": 5.624864402410463,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7059925093632958
+        },
+        {
+          "turn": 1,
+          "response": "Sure! Let's break down the addition process in more detail for the given arithmetic problem: 3 + 5.\n\n1. Identify and understand each number involved: In this case, we have two numbers: \"3\" (the first addend) and \"5\" (the second addend). Each digit represents a power of ten multiplied by the specific digit value. For example, in decimal number system, 3 is represented as \"3 \u00d7 10^1\", while 5 is denoted as \"5 \u00d7 10^0\".\n2. Prepare for addition: Arrange the numbers vertically with their corresponding ",
+          "output_rv": 0.5261308589426648,
+          "pr_early": 10.310950580550685,
+          "pr_late": 5.4249092854605,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7403508771929824
+        }
+      ]
+    },
+    "baseline_dual_patched_0": {
+      "session_id": "baseline_dual_patched_20260310_193708",
+      "mode": "baseline_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7145106130210874,
+      "std_rv": 0.03438713989056913,
+      "mean_alpha_ratio": 0.7164063913816413,
+      "malformed_count": 0,
+      "repetitive_count": 2,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "The At The To The At Under I At \" Th At At In The At The At At At The The The At The At At At The An At At At At At The At At buried The Consider At At At At At The At The The At When At At To The At Under The The The The Th At I In \" Inter The The At At At At The At At At The At An At At A The At At At At At P The The Ess Def The The Ex At The Certain At At At Problem At At To Under At The The At Th At At At at In At The At At An At From At At The At The At At The At At At At At At At At I At T",
+          "output_rv": 0.7488977529116566,
+          "pr_early": 1.9275959684094044,
+          "pr_late": 1.4435722892633716,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2857142857142857,
+          "alpha_ratio": 0.7090558766859345
+        },
+        {
+          "turn": 1,
+          "response": "The Under Thought At To I The Th Under The At The \" The Under The At The At Under At At In At Under The TheAt The The The An At The The The Consider At At At The Creat At At At At A The Inter At At The At P at To At The Under At The Th At At \" I At The At At Under Under At Under At At The At The At The In The At Under An At At At At At At At At At At At At The The At An The A At The At At To At Under At Ref I Consider The At At The Th \" At AtAt At At The at At Based At The The At Th An At At The",
+          "output_rv": 0.6801234731305184,
+          "pr_early": 3.0135725807615894,
+          "pr_late": 2.049601450158472,
+          "classification": "REPETITIVE",
+          "rep_score": 0.1586206896551724,
+          "alpha_ratio": 0.7237569060773481
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "all_passed": true,
+  "analysis": {
+    "baseline": {
+      "control_head_at_target_layer": {
+        "ci_95_high": 0.036732834313758525,
+        "ci_95_low": 0.030836698188279763,
+        "cohens_d": 2.6929605013658193,
+        "mean": 0.033784766251019144,
+        "n": 72,
+        "p_value": 1.8796616049724127e-34,
+        "std": 0.0125455855122584,
+        "t_stat": 22.85052758379955
+      },
+      "target_at_control_layer": {
+        "ci_95_high": 0.001246658395715353,
+        "ci_95_low": 0.0007388125121638325,
+        "cohens_d": 0.9187094050611879,
+        "mean": 0.0009927354539395927,
+        "n": 72,
+        "p_value": 4.0025484344193175e-11,
+        "std": 0.0010805761304614864,
+        "t_stat": 7.795507803103496
+      },
+      "target_at_target_layer": {
+        "ci_95_high": 0.09797584808863447,
+        "ci_95_low": 0.08338892393803943,
+        "cohens_d": 2.92170107664452,
+        "mean": 0.09068238601333695,
+        "n": 72,
+        "p_value": 1.0879959041890467e-36,
+        "std": 0.031037530409333578,
+        "t_stat": 24.791455726744527
+      }
+    },
+    "recursive": {
+      "control_head_at_target_layer": {
+        "ci_95_high": 0.03296173352645578,
+        "ci_95_low": 0.02945102409441474,
+        "cohens_d": 4.177582705874137,
+        "mean": 0.03120637881043526,
+        "n": 72,
+        "p_value": 6.8809960764668925e-47,
+        "std": 0.007469960742262669,
+        "t_stat": 35.447964723494984
+      },
+      "target_at_control_layer": {
+        "ci_95_high": 0.001974849827726351,
+        "ci_95_low": 0.0014311038760229104,
+        "cohens_d": 1.4719371781103385,
+        "mean": 0.0017029768518746307,
+        "n": 72,
+        "p_value": 1.363485493296742e-19,
+        "std": 0.0011569629989650095,
+        "t_stat": 12.489801121468938
+      },
+      "target_at_target_layer": {
+        "ci_95_high": 0.09614648618679157,
+        "ci_95_low": 0.08661444228873534,
+        "cohens_d": 4.505509325802313,
+        "mean": 0.09138046423776346,
+        "n": 72,
+        "p_value": 4.1881394142421566e-49,
+        "std": 0.02028193876204906,
+        "t_stat": 38.23051436368854
+      }
+    }
+  },
+  "artifacts": {
+    "config": "results/phase1_mechanism/runs/20260312_133759_head_ablation_validation_mistral_l27_kv2_modern_core_measurement/config.json",
+    "manifest": "results/phase1_mechanism/runs/20260312_133759_head_ablation_validation_mistral_l27_kv2_modern_core_measurement/manifest.json",
+    "report": "results/phase1_mechanism/runs/20260312_133759_head_ablation_validation_mistral_l27_kv2_modern_core_measurement/report.md",
+    "results_csv": "results/phase1_mechanism/runs/20260312_133759_head_ablation_validation_mistral_l27_kv2_modern_core_measurement/head_ablation_results.csv",
+    "summary": "results/phase1_mechanism/runs/20260312_133759_head_ablation_validation_mistral_l27_kv2_modern_core_measurement/summary.json"
+  },
+  "comparisons": {
+    "baseline_L27_vs_L25": {
+      "L25_mean": 0.0009927354539395927,
+      "L27_mean": 0.09068238601333695,
+      "p_value": 1.526894559410181e-36,
+      "t_stat": 24.659936979050475
+    },
+    "baseline_target_vs_control_head": {
+      "control_mean": 0.033784766251019144,
+      "p_value": 1.0827514051262685e-20,
+      "t_stat": 13.14089207947102,
+      "target_mean": 0.09068238601333695
+    },
+    "recursive_L27_vs_L25": {
+      "L25_mean": 0.0017029768518746307,
+      "L27_mean": 0.09138046423776346,
+      "p_value": 4.1226328686883785e-48,
+      "t_stat": 36.95976171557647
+    },
+    "recursive_target_vs_control_head": {
+      "control_mean": 0.03120637881043526,
+      "p_value": 1.0410669915903296e-35,
+      "t_stat": 23.92536368046432,
+      "target_mean": 0.09138046423776346
+    }
+  },
+  "device": "cuda",
+  "experiment": "head_ablation_validation",
+  "logit_diff_cohens_d": null,
+  "logit_diff_delta_mean": null,
+  "logit_diff_p_value": null,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "model_name": "mistralai/Mistral-7B-v0.1",
+  "n_baseline_actual": 72,
+  "n_pairs": 144,
+  "n_recursive_actual": 72,
+  "notes": {
+    "gqa_aliasing": "KV-head 2 is shared by Q-heads [8, 9, 10, 11] due to GQA",
+    "head_dim": 128,
+    "num_kv_heads": 8
+  },
+  "params": {
+    "control_kv_head": 0,
+    "control_layer": 25,
+    "early_layer": 5,
+    "n_baseline": 72,
+    "n_recursive": 72,
+    "prompt_subset_name": "mistral_hardening_v1",
+    "prompt_tier": "core_measurement",
+    "target_kv_head": 2,
+    "target_layer": 27,
+    "window": 16
+  },
+  "pass_checks": [
+    {
+      "check": "target_effect_significant",
+      "detail": "p=4.19e-49",
+      "passed": true
+    },
+    {
+      "check": "target_gt_control_head",
+      "detail": "0.0914 > 0.0312",
+      "passed": true
+    },
+    {
+      "check": "target_layer_gt_control_layer",
+      "detail": "L27 > L25",
+      "passed": true
+    }
+  ],
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_tier": "core_measurement",
+  "rv_baseline_mean": 0.6874401893965499,
+  "rv_cohens_d": 4.505509325802313,
+  "rv_delta_mean": 0.09138046423776346,
+  "rv_p_value": 4.1881394142421566e-49,
+  "rv_recursive_mean": 0.5352339675761885,
+  "schema_version": "metrics_summary_v1",
+  "seed": 314,
+  "timestamp": "20260312_133903"
+}

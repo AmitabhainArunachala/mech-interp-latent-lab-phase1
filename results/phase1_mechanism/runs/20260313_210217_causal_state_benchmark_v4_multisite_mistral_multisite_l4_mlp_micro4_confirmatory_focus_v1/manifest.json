@@ -1,0 +1,47 @@
+{
+  "artifacts": {
+    "blind_key.json": {
+      "bytes": 338306,
+      "sha256": "fa2f41533b2eca5d11e47e326b9eab2e6eb1d0c70e4dba1c95cbfb80a678c136"
+    },
+    "blind_ratings.csv": {
+      "bytes": 898154,
+      "sha256": "32ee85b9ef64bf85c0d0c0328aac089ad299486e1b4f26dbb2d6d4c3670248d5"
+    },
+    "config.json": {
+      "bytes": 2720,
+      "sha256": "87fcba7e9fa1ed2e99205284fa955fc31a16b96014da9811c5a512b00c621ce9"
+    },
+    "hardware_info.json": {
+      "bytes": 266,
+      "sha256": "cd80432c5d0a7076ab8cf4abeddd9aae6154c9ea63d3b5990e7fca6455f63c44"
+    },
+    "metadata.json": {
+      "bytes": 254,
+      "sha256": "639e6a639e8143ede28e97977d751aef24148b49286c077269973bd2e2f1c246"
+    },
+    "prompt_bank_version.json": {
+      "bytes": 36,
+      "sha256": "80691d2771e0243909ff29e275e90a3b1d6275913d8f8a14e4f2fe61735646dc"
+    },
+    "prompt_bank_version.txt": {
+      "bytes": 16,
+      "sha256": "4533d32c6f48a8186b065462f9ac52fbcc7731a6bc2693516095b1fd44aa9518"
+    },
+    "report.md": {
+      "bytes": 31258,
+      "sha256": "7be3158f4dc2ed33b38cb7a19ebc72053bfe32561369938ceb60e178463bfa99"
+    },
+    "summary.json": {
+      "bytes": 30964,
+      "sha256": "9f370af9bc2d8db915cd56cc742a50a19802178fc8f58ec100b35819cb925571"
+    }
+  },
+  "created_at_utc": "2026-03-13T21:49:31Z",
+  "experiment": "causal_state_benchmark_v4_multisite",
+  "git_commit": "not_a_git_repo",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "model_revision": "unspecified",
+  "prompt_bank_version": "2ac959a313614329",
+  "run_dir": "results/phase1_mechanism/runs/20260313_210217_causal_state_benchmark_v4_multisite_mistral_multisite_l4_mlp_micro4_confirmatory_focus_v1"
+}

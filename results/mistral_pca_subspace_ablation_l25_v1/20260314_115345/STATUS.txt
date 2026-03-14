@@ -1,0 +1,8 @@
+run_id=20260314_115345
+python_bin=./.venv/bin/python
+started_utc=2026-03-14T11:53:45Z
+
+>>> START pca_subspace_ablation_l25_v1 2026-03-14T11:53:46Z
+>>> DONE  pca_subspace_ablation_l25_v1 2026-03-14T12:26:09Z
+finished_utc=2026-03-14T12:26:09Z
+mistral_pca_subspace_ablation_l25_v1_complete=1

@@ -1,0 +1,183 @@
+{
+  "experiment": "causal_state_benchmark_v4_multisite",
+  "model": {
+    "device": "cuda",
+    "name": "mistralai/Mistral-7B-v0.1"
+  },
+  "params": {
+    "baseline_groups": [
+      "baseline_math",
+      "baseline_factual",
+      "baseline_creative"
+    ],
+    "bootstrap_resamples": 3000,
+    "control_name": "control",
+    "control_prompt_mode": "baseline",
+    "do_sample": true,
+    "early_layer": 5,
+    "generation_seeds": [
+      101,
+      202,
+      303
+    ],
+    "holdout_per_group": 4,
+    "late_layer": 27,
+    "max_length": 512,
+    "max_new_tokens": 128,
+    "max_source_per_label": 72,
+    "max_source_per_session": 8,
+    "min_text_chars": 80,
+    "multisite_interventions": [
+      {
+        "alphas": {
+          "bridge": 0.0,
+          "early_mlp": 0.0
+        },
+        "name": "control"
+      },
+      {
+        "alphas": {
+          "bridge": 2.0,
+          "early_mlp": 0.0
+        },
+        "name": "bridge_only_2"
+      },
+      {
+        "alphas": {
+          "bridge": 3.0,
+          "early_mlp": 0.0
+        },
+        "name": "bridge_only_3"
+      },
+      {
+        "alphas": {
+          "bridge": 0.0,
+          "early_mlp": 0.25
+        },
+        "name": "early_mlp_only_0p25"
+      },
+      {
+        "alphas": {
+          "bridge": 0.0,
+          "early_mlp": 0.5
+        },
+        "name": "early_mlp_only_0p5"
+      },
+      {
+        "alphas": {
+          "bridge": 0.0,
+          "early_mlp": 1.0
+        },
+        "name": "early_mlp_only_1"
+      },
+      {
+        "alphas": {
+          "bridge": 0.0,
+          "early_mlp": 1.5
+        },
+        "name": "early_mlp_only_1p5"
+      },
+      {
+        "alphas": {
+          "bridge": 2.0,
+          "early_mlp": 0.25
+        },
+        "name": "early_mlp_0p25_bridge_2"
+      },
+      {
+        "alphas": {
+          "bridge": 2.0,
+          "early_mlp": 0.5
+        },
+        "name": "early_mlp_0p5_bridge_2"
+      },
+      {
+        "alphas": {
+          "bridge": 2.0,
+          "early_mlp": 1.0
+        },
+        "name": "early_mlp_1_bridge_2"
+      },
+      {
+        "alphas": {
+          "bridge": 2.0,
+          "early_mlp": 1.5
+        },
+        "name": "early_mlp_1p5_bridge_2"
+      },
+      {
+        "alphas": {
+          "bridge": 3.0,
+          "early_mlp": 0.25
+        },
+        "name": "early_mlp_0p25_bridge_3"
+      },
+      {
+        "alphas": {
+          "bridge": 3.0,
+          "early_mlp": 0.5
+        },
+        "name": "early_mlp_0p5_bridge_3"
+      },
+      {
+        "alphas": {
+          "bridge": 3.0,
+          "early_mlp": 1.0
+        },
+        "name": "early_mlp_1_bridge_3"
+      },
+      {
+        "alphas": {
+          "bridge": 3.0,
+          "early_mlp": 1.5
+        },
+        "name": "early_mlp_1p5_bridge_3"
+      }
+    ],
+    "negative_classes": [
+      "SURFACE",
+      "REPETITIVE"
+    ],
+    "negative_quantile": 0.65,
+    "negative_session_types": [
+      "baseline"
+    ],
+    "positive_classes": [
+      "BREAKTHROUGH",
+      "ARTICULATE"
+    ],
+    "positive_quantile": 0.35,
+    "positive_session_types": [
+      "recursive"
+    ],
+    "primary_prompt_mode": "recursive",
+    "prompt_bank_version": "2ac959a313614329",
+    "recursive_groups": [
+      "L3_deeper",
+      "L4_full",
+      "L5_refined"
+    ],
+    "source_layers": {
+      "bridge": {
+        "component": "residual",
+        "layer": 25,
+        "window": 32
+      },
+      "early_mlp": {
+        "component": "mlp",
+        "layer": 4,
+        "token_window": 16,
+        "window": 16
+      }
+    },
+    "source_sessions_dir": "results/sustained_gnani_v3_fixed",
+    "temperature": 0.7,
+    "top_p": 0.95
+  },
+  "results": {
+    "phase": "phase1_mechanism",
+    "root": "results"
+  },
+  "run_name": "mistral_multisite_l4_mlp_l25_bridge_soft",
+  "seed": 314
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "p0-canonical-v1.0",
+  "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+  "measurement_version": "rv-1.0.0-bfloat16-w16",
+  "run_timestamp": "2026-03-10T14:23:12Z",
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "num_layers": 32,
+  "early_layer": 5,
+  "late_layer": 27,
+  "depth_fraction_early": 0.1562,
+  "depth_fraction_late": 0.8438,
+  "window_size": 16,
+  "n_requested_per_condition": 1,
+  "n_selfref_attempted": 1,
+  "n_selfref_valid": 1,
+  "n_baseline_attempted": 1,
+  "n_baseline_valid": 1,
+  "selfref_rv_mean": 0.747706,
+  "selfref_rv_std": null,
+  "selfref_rv_median": 0.747706,
+  "baseline_rv_mean": 0.862913,
+  "baseline_rv_std": null,
+  "baseline_rv_median": 0.862913,
+  "hedges_g": null,
+  "hedges_g_ci_lower": null,
+  "hedges_g_ci_upper": null,
+  "p_value_mwu": null,
+  "p_value_welch": null,
+  "u_stat": null,
+  "effect_size_method": "insufficient_n",
+  "effect_size_n": null,
+  "effect_size_warnings": [
+    "n_x=1, n_y=1, need >=3 each"
+  ],
+  "direction": "undetermined",
+  "sign_label": "undetermined",
+  "significant_p05_mwu": null,
+  "selfref_rv_values": [
+    0.747706
+  ],
+  "baseline_rv_values": [
+    0.862913
+  ],
+  "selfref_prompt_ids": [
+    "L1_hint_01"
+  ],
+  "baseline_prompt_ids": [
+    "baseline_math_01"
+  ],
+  "prompt_bank": "/root/mech-interp-latent-lab-phase1/prompts/bank.json",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_schema_version": "mistral-hardening-subset-v1",
+  "prompt_subset_tier": "core_measurement",
+  "canonical_registry_path": "/root/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "elapsed_seconds": 2.8
+}

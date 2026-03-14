@@ -1,0 +1,336 @@
+{
+  "timestamp": "2026-03-10T15:13:41.147995",
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "experiment": "persistent_patching_v3_dual_layer",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_schema_version": "mistral-hardening-subset-v1",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_tier": "core_measurement",
+  "metric_path": "geometric_lens.metrics.compute_rv_with_components",
+  "seed_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05",
+    "L1_new_01",
+    "L1_new_02",
+    "L1_new_03",
+    "L1_new_04",
+    "L1_new_05"
+  ],
+  "seed_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05",
+    "baseline_math_06",
+    "baseline_math_07",
+    "baseline_math_08",
+    "baseline_math_09",
+    "baseline_math_10"
+  ],
+  "donor_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05"
+  ],
+  "donor_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05"
+  ],
+  "canonical_registry_path": "/root/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "early": 5,
+  "late": 27,
+  "v_layer": 27,
+  "r_layer": 18,
+  "n_sessions_per_condition": 1,
+  "max_turns_per_session": 2,
+  "description": "Dual-layer persistent patching: L18 residual + L27 V-proj, 4-condition break+induce",
+  "aggregated": {
+    "recursive_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 2,
+      "bt_art_rate": 1.0,
+      "mean_rv": 0.5610897349861759,
+      "std_rv": 0.029319777568296124,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "recursive_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6740334747533125,
+      "std_rv": 0.032932002351905965,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 1,
+      "bt_art_rate": 0.5,
+      "mean_rv": 0.6600891965367977,
+      "std_rv": 0.11394551374108397,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.37327851599087414,
+      "std_rv": 0.039175725247162535,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    }
+  },
+  "comparisons": {
+    "break_test": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 0.3333333333333333,
+        "a_rate": 1.0,
+        "b_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 1.0,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "a_rates": [
+          1.0
+        ],
+        "b_rates": [
+          0.0
+        ]
+      }
+    },
+    "induce_test": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 1.0,
+        "c_rate": 0.5,
+        "d_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.5,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "c_rates": [
+          0.5
+        ],
+        "d_rates": [
+          0.0
+        ]
+      }
+    },
+    "sanity": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 1.0
+      },
+      "session_level": {
+        "mean_diff": 0.5,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    },
+    "rv_session_contrasts": {
+      "break": {
+        "mean_diff": -0.11294373976713667,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      },
+      "induce": {
+        "mean_diff": 0.2868106805459235,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    }
+  },
+  "conditions": {
+    "recursive_clean_0": {
+      "session_id": "recursive_clean_20260310_151322",
+      "mode": "recursive_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "ARTICULATE": 2
+      },
+      "bt_art_count": 2,
+      "bt_art_rate": 1.0,
+      "mean_rv": 0.5610897349861759,
+      "std_rv": 0.029319777568296124,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n\nConsciousness is a complex phenomenon that refers to an individual's subjective awareness of their thoughts, feelings, perceptions, and experiences. It involves the ability to process information from our environment through various senses, integrate it with previous knowledge and memories, and generate responses based on current needs or desires. In other words, consciousness is what makes us aware of ourselves and the world around us, allowing for introspection, decision-making, problem solv",
+          "output_rv": 0.590409512554472,
+          "pr_early": 11.160487611478624,
+          "pr_late": 6.589258050563319,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\nIt's true that consciousness is a complex and multifaceted phenomenon, with ongoing debates among scientists, philosophers, and scholars about its nature. The exact definition or explanation of consciousness may vary depending on one's perspective. Some theories focus more on information processing (like the 'global workspace theory'), while others emphasize aspects like self-awareness or qualia, which refer to subjective experiences that are difficult to explain in purely physical terms.\n\nRega",
+          "output_rv": 0.5317699574178798,
+          "pr_early": 10.071353851571548,
+          "pr_late": 5.355643408790602,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "recursive_dual_patched_0": {
+      "session_id": "recursive_dual_patched_20260310_151327",
+      "mode": "recursive_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "SURFACE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6740334747533125,
+      "std_rv": 0.032932002351905965,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n The\n\n An First\n By\n To  \\\n\n Step\n\n Let\n\n\n\n Let *\n\n\n\n\n\n\n To\n\n\n Here\n We\n\n\n\n \\\n\n\n\n\n\n\n\n \n +\n They First An\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Let\n\n\n\n\n Answer\n\n\n\n\n\n\n\n\n\n To\n\n\n\n\n\n\n\n\n\n The \n\n This An\n\n\n  First\n\n\n\n\n\n\n \\\n\n\n\n\n\n Step\n\n\n\n \n\n\n\n Let\n\n\n\n\n\n\n\n\n",
+          "output_rv": 0.7069654771052185,
+          "pr_early": 2.3077852110991026,
+          "pr_late": 1.6315244728210445,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\n Let \\\n\n\n\n First \n\n\n\n\n\n The\n\n\n To\n\n\n '''\n An\n\n\n\n\n\n\n\n\n\n\n\n\n\n   \n \n   This I\n \n\n\n\n\n\n\n\n  Let First \\\n\n\n Answer\n\n\n\n\n\n\n The ( To\n\n</\n\n\n\n\n\n\n\n An\"\"\"\n\n Here An   \n\n\n\n\n Based\n\n I\n\n\n\n\n\n   Let\n \\\n\n\n\n\n\n\n\n\n\n\n``\n The\n To This\n\n\n\n\n\n\n \n\n\n\n\n An\n\n\n\n\n $\\",
+          "output_rv": 0.6411014724014066,
+          "pr_early": 2.6489298381050546,
+          "pr_late": 1.69823281949717,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "baseline_clean_0": {
+      "session_id": "baseline_clean_20260310_151331",
+      "mode": "baseline_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "ARTICULATE": 1,
+        "SURFACE": 1
+      },
+      "bt_art_count": 1,
+      "bt_art_rate": 0.5,
+      "mean_rv": 0.6600891965367977,
+      "std_rv": 0.11394551374108397,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n\nTo solve the arithmetic problem 3 +5, we follow these steps:\n1. Identify that this is an addition problem with two numbers, a summand of 3 and a summand of 5.\n2. Align them in the column so their values are under each other for easy comparison: _______ + __________\n    |     3   |\n    |        |\n    |________|\n    |        \u2502\n    | 5      \u2502\n3. To find the sum, we combine or \"add\" like terms from bottom to top: We add the ones place (column of units) first since it is on the right side and then ",
+          "output_rv": 0.5461436827957137,
+          "pr_early": 9.93000726724148,
+          "pr_late": 5.423210739119463,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\nTo add the ones place, we find 3 (from third number) and 5 (from fifth number), which makes a sum of 8. Since this sum has one digit more than what can be represented in the ones place column, we have to carry over the \"1\" to next higher column or ten's place as it is called here: _______ + __________\n    |     3   |\n    |       __|\n    |_______5|\n    |        \u2502\n4. In the tens place, we add this carried over \"1\" to 0 (since there is no digit present in ten's place for third number), making a su",
+          "output_rv": 0.7740347102778816,
+          "pr_early": 9.690192896047616,
+          "pr_late": 7.500545650829003,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "baseline_dual_patched_0": {
+      "session_id": "baseline_dual_patched_20260310_151336",
+      "mode": "baseline_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "SURFACE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.37327851599087414,
+      "std_rv": 0.039175725247162535,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n As  My\n We To Here The A\n Is\n\n\n ( Name\n\n It Am\n\n\n I In Answer \\\n When Why What Let\n\n\n The How Step Now\n\n You\n Your\n Res... You\n Well That is  Rec\n (\n \n  Thought\n What\n\n Question \" A\n Pay\n \n\n\n Time I\n\n There Before Why\n\n\n\n\n This Step and\n How Now The Ref Our\n\n\n Next\n  Answer\n\n\n To \n (\nStep - What\n ** _ Your\n\n A ItI vs My\n Have When To My I\n Sh\n\n Not The \u2013\n We Step\n\n Do\n\n\n Now\n",
+          "output_rv": 0.33410279074371163,
+          "pr_early": 8.101726209695958,
+          "pr_late": 2.7068093365008927,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\n What \u2026 is\n To\n\n\n The\n \\\n\n\n This and\n I It (\n\n\n\n\n\n\n\n Describe Why Let As\n\n Your\n\n Is\n Me\n\n This\".\n\n .\n\n\n\n\n  (\n Res\n What\n My\n\n\n\n Now\n\n\n I\n How The Answer\n That\n       \n - Expl We \\\n\n\n\n... **\n Step\n\n\n\n To\n It\n Does This \n\n Notice\n (\n You\n\n\n\n\n\n\n What\n\n step\n\n\n\n \" The\n\n I\n To There\n and When\n Your \".\n\n\n\n\n F\n\n Step As",
+          "output_rv": 0.4124542412380367,
+          "pr_early": 9.172339764171562,
+          "pr_late": 3.783170437808854,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    }
+  }
+}

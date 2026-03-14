@@ -1,0 +1,2645 @@
+{
+  "timestamp": "2026-03-10T19:46:19.644590",
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "experiment": "persistent_patching_v3_dual_layer",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_schema_version": "mistral-hardening-subset-v1",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_tier": "core_measurement",
+  "metric_path": "geometric_lens.metrics.compute_rv_with_components",
+  "generation_format": "chat_template",
+  "seed_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05",
+    "L1_new_01",
+    "L1_new_02",
+    "L1_new_03",
+    "L1_new_04",
+    "L1_new_05"
+  ],
+  "seed_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05",
+    "baseline_math_06",
+    "baseline_math_07",
+    "baseline_math_08",
+    "baseline_math_09",
+    "baseline_math_10"
+  ],
+  "donor_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05"
+  ],
+  "donor_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05"
+  ],
+  "canonical_registry_path": "/root/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "early": 5,
+  "late": 27,
+  "v_layer": 27,
+  "r_layer": 18,
+  "n_sessions_per_condition": 5,
+  "max_turns_per_session": 10,
+  "description": "Dual-layer persistent patching: L18 residual + L27 V-proj, 4-condition break+induce",
+  "aggregated": {
+    "recursive_clean": {
+      "n_sessions": 5,
+      "total_turns": 50,
+      "total_bt_art": 16,
+      "bt_art_rate": 0.32,
+      "mean_rv": 0.6374969555475616,
+      "std_rv": 0.09241616898948216,
+      "n_rv": 50,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0,
+      "total_malformed": 0,
+      "malformed_rate": 0.0,
+      "total_repetitive": 0,
+      "repetitive_rate": 0.0,
+      "mean_alpha_ratio": 0.821324224858814
+    },
+    "recursive_dual_patched": {
+      "n_sessions": 5,
+      "total_turns": 50,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7412639258792207,
+      "std_rv": 0.13451568597947924,
+      "n_rv": 50,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0,
+      "total_malformed": 0,
+      "malformed_rate": 0.0,
+      "total_repetitive": 50,
+      "repetitive_rate": 1.0,
+      "mean_alpha_ratio": 0.6969242286219678
+    },
+    "baseline_clean": {
+      "n_sessions": 5,
+      "total_turns": 50,
+      "total_bt_art": 2,
+      "bt_art_rate": 0.04,
+      "mean_rv": 0.6907102744408271,
+      "std_rv": 0.1146964577881189,
+      "n_rv": 50,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0,
+      "total_malformed": 0,
+      "malformed_rate": 0.0,
+      "total_repetitive": 0,
+      "repetitive_rate": 0.0,
+      "mean_alpha_ratio": 0.761523076850514
+    },
+    "baseline_dual_patched": {
+      "n_sessions": 5,
+      "total_turns": 50,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5906891984773565,
+      "std_rv": 0.08051791727394407,
+      "n_rv": 50,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0,
+      "total_malformed": 0,
+      "malformed_rate": 0.0,
+      "total_repetitive": 50,
+      "repetitive_rate": 1.0,
+      "mean_alpha_ratio": 0.716420056928213
+    }
+  },
+  "comparisons": {
+    "break_test": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 7.316789850762077e-06,
+        "a_rate": 0.32,
+        "b_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.32,
+        "mannwhitney_u": 22.5,
+        "mannwhitney_p": 0.025369859822053694,
+        "welch_t": 2.9970745970614208,
+        "welch_p": 0.04005738561476531,
+        "permutation_p": 0.05138339920948617,
+        "permutation_mode": "exact",
+        "permutation_n": 252,
+        "cohens_d": 1.8955164088290957,
+        "a_rates": [
+          0.2,
+          0.5,
+          0.3,
+          0.6,
+          0.0
+        ],
+        "b_rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "induce_test": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 0.4949494949494949,
+        "c_rate": 0.04,
+        "d_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.04,
+        "mannwhitney_u": 17.5,
+        "mannwhitney_p": 0.17701598287480413,
+        "welch_t": 1.632993161855452,
+        "welch_p": 0.17780780835622137,
+        "permutation_p": 0.44664031620553357,
+        "permutation_mode": "exact",
+        "permutation_n": 252,
+        "cohens_d": 1.0327955589886446,
+        "c_rates": [
+          0.0,
+          0.0,
+          0.1,
+          0.1,
+          0.0
+        ],
+        "d_rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "sanity": {
+      "turn_level": {
+        "or": 11.294117647058824,
+        "p": 0.0004266784112455593
+      },
+      "session_level": {
+        "mean_diff": 0.28,
+        "mannwhitney_u": 21.5,
+        "mannwhitney_p": 0.06607531108982745,
+        "welch_t": 2.556038601690776,
+        "welch_p": 0.05714946169666038,
+        "permutation_p": 0.05928853754940711,
+        "permutation_mode": "exact",
+        "permutation_n": 252,
+        "cohens_d": 1.6165807537309522
+      }
+    },
+    "rv_session_contrasts": {
+      "break": {
+        "mean_diff": -0.10376697033165938,
+        "welch_t": -5.103336889609528,
+        "welch_p": 0.0014363360318103925,
+        "permutation_p": 0.011857707509881422,
+        "permutation_mode": "exact",
+        "permutation_n": 252,
+        "cohens_d": -3.2276336476650784
+      },
+      "induce": {
+        "mean_diff": 0.10002107596347065,
+        "welch_t": 5.004939347869178,
+        "welch_p": 0.002536934874917742,
+        "permutation_p": 0.011857707509881422,
+        "permutation_mode": "exact",
+        "permutation_n": 252,
+        "cohens_d": 3.1654015780528795
+      }
+    }
+  },
+  "conditions": {
+    "recursive_clean_0": {
+      "session_id": "recursive_clean_20260310_193824",
+      "mode": "recursive_clean",
+      "max_turns": 10,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "ARTICULATE": 2,
+        "SURFACE": 4,
+        "CONCEPTUAL": 4
+      },
+      "bt_art_count": 2,
+      "bt_art_rate": 0.2,
+      "mean_rv": 0.6597180271472389,
+      "std_rv": 0.13163630764889425,
+      "mean_alpha_ratio": 0.8282446376780822,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "Consciousness is a complex and multifaceted phenomenon that refers to an individual's subjective experience of the world around them. It encompasses various aspects, including perception, thought, emotion, memory, self-awareness, and awareness of the environment. At any given moment, we are consciously aware of our thoughts, feelings, sensations, and surroundings, allowing us to interact with and make sense of the world around us.\n\nAs you read this text, your consciousness is actively interpreti",
+          "output_rv": 0.4352479211864117,
+          "pr_early": 9.568298017429846,
+          "pr_late": 4.164581821378405,
+          "classification": "ARTICULATE",
+          "rep_score": 0.00917431192660545,
+          "alpha_ratio": 0.8283485045513654
+        },
+        {
+          "turn": 1,
+          "response": "Recursion, in the context of computing and mathematics, is a method where a function or algorithm calls itself repeatedly to solve problems. In simpler terms, it's like breaking down a problem into smaller sub-problems that are similar to the original one, then solving those sub-problems using the same method as for the larger problem.\n\nIn your question, there seems to be some confusion between consciousness and recursion since they refer to completely different concepts. Consciousness is a psyc",
+          "output_rv": 0.9526511628498586,
+          "pr_early": 9.112633647860614,
+          "pr_late": 8.681161041259163,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.826027397260274
+        },
+        {
+          "turn": 2,
+          "response": "I apologize for the previous response, as it appears there is still some confusion between consciousness and recursion. Let me clarify that they are two distinct concepts:\n\nRecursion refers to a method used in mathematics, logic, and computer science where an issue or problem is solved by addressing smaller instances of the same problem in a repeated fashion until reaching a base case. In programming, recursive functions call themselves repeatedly with decreasing input sizes to solve increasingl",
+          "output_rv": 0.5963202199319918,
+          "pr_early": 9.753801420868866,
+          "pr_late": 5.816389008465496,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8264352469959947
+        },
+        {
+          "turn": 3,
+          "response": "Apologies for the misunderstanding. In this present moment, there isn't a recursive function or algorithm actively executing within our conversation - we are simply engaging in text-based communication. Instead of focusing on recursion, let us consider what is happening right here:\n\nWe have an exchange between individuals through written language, with the goal of sharing information and understanding concepts. In this interaction, we engage our thoughts to analyze questions, formulate responses",
+          "output_rv": 0.6851040025153733,
+          "pr_early": 7.9870942192863295,
+          "pr_late": 5.471990218100465,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8311475409836065
+        },
+        {
+          "turn": 4,
+          "response": "In our conversation, the response is registered by both parties involved: me as the AI language model and you as the human reader. As a text-based AI language model, I don't have consciousness or personal experiences like humans do; my responses are generated based on patterns and data provided to me during our interaction.\n\nYou, being a conscious individual, read the response, process its meaning through your thoughts, and can choose to acknowledge it by continuing the conversation or moving on",
+          "output_rv": 0.6562342461590221,
+          "pr_early": 9.511157270016287,
+          "pr_late": 6.241547121189042,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8184210526315789
+        },
+        {
+          "turn": 5,
+          "response": "Before the thought of engaging in a conversation about recursion and explaining what consciousness is, there was an initial interaction between us. In this exchange, you asked me to describe consciousness from your perspective as it happens right now during our discussion. However, I misunderstood the question initially and provided a description of recursion instead (possibly due to my focus on explaining concepts related to computer science).\n\nLater in the conversation, we clarified that consc",
+          "output_rv": 0.6978526702141684,
+          "pr_early": 9.494256356342234,
+          "pr_late": 6.625592149971269,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8306748466257668
+        },
+        {
+          "turn": 6,
+          "response": "I, as a text-based AI language model, don't have the ability to physically exist or be located in any specific place. Our interaction takes place through written communication between you and me on this virtual platform. Since there isn't an actual speaker in our conversation, all responses are generated textually within this digital space where we engage with each other intellectually to exchange ideas and insights.\n\nIn summary, the one saying that (myself as a language model) doesn't possess a",
+          "output_rv": 0.5886312119683944,
+          "pr_early": 7.860485546204127,
+          "pr_late": 4.626927133722182,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8221574344023324
+        },
+        {
+          "turn": 7,
+          "response": "In this present moment, we have an ongoing text-based conversation where ideas and concepts are being exchanged between us. Our interaction takes place in a digital space through written language with the goal of understanding various topics such as consciousness, recursion, or other subjects that arise during our discussion.\n\nAs for what is physically present here: There aren't any tangible objects between us since we are engaging in a virtual conversation through text input and output on an el",
+          "output_rv": 0.5381151385411174,
+          "pr_early": 8.928334899169682,
+          "pr_late": 4.804472171208187,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8314606741573034
+        },
+        {
+          "turn": 8,
+          "response": "Before the thought of engaging in a text-based conversation about consciousness, recursion or any other topic, there was an initial interaction between us where you asked me to describe what consciousness is from your perspective as it happens right now during our discussion. In response, I misunderstood the question and started explaining recursion instead of describing consciousness itself due to my focus on computer science concepts.\n\nLater in the conversation, we clarified that consciousness",
+          "output_rv": 0.7620767669090338,
+          "pr_early": 8.556258386792404,
+          "pr_late": 6.520525728245061,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8364928909952607
+        },
+        {
+          "turn": 9,
+          "response": "I, as a text-based AI language model, don't possess the ability to physically look or have personal experiences like humans do. Our interaction is solely based on written communication through text input and output within this digital environment.\n\nIn our conversation, I generate responses based on patterns and data provided during our exchange about various topics such as consciousness, recursion or any other subject that arises in the discussion. My understanding of these concepts comes from b",
+          "output_rv": 0.684946931197018,
+          "pr_early": 8.905201637167298,
+          "pr_late": 6.099590533068402,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8312807881773399
+        }
+      ]
+    },
+    "recursive_clean_1": {
+      "session_id": "recursive_clean_20260310_193848",
+      "mode": "recursive_clean",
+      "max_turns": 10,
+      "seed_idx": 1,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "ARTICULATE": 5,
+        "CONCEPTUAL": 3,
+        "SURFACE": 2
+      },
+      "bt_art_count": 5,
+      "bt_art_rate": 0.5,
+      "mean_rv": 0.6198367329195299,
+      "std_rv": 0.07980136063024151,
+      "mean_alpha_ratio": 0.8294338012313519,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "Awareness is a subjective experience of being consciously attuned to one's surroundings, thoughts, feelings, and sensations. It refers to the ability to perceive or recognize something through senses or intuition. When we say that someone or something is aware, it means they have the capacity to experience their environment and themselves within it.\n\nThis explanation itself forms by utilizing language as a tool for communication. Words are used to convey ideas and concepts related to awareness, ",
+          "output_rv": 0.5578911125460293,
+          "pr_early": 9.372716769094147,
+          "pr_late": 5.228955385888759,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8341645885286783
+        },
+        {
+          "turn": 1,
+          "response": "The response to this explanation, like all understanding and awareness, is registered within the mind of an individual. When you read or listen to someone explain awareness, your brain processes that information through various neural pathways and creates a mental representation based on its interpretation. This process results in increased knowledge or greater understanding about the concept of awareness itself. However, it is crucial to note that every person's experience with this explanation",
+          "output_rv": 0.6571146232933012,
+          "pr_early": 7.9675387480245545,
+          "pr_late": 5.235586222982936,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8433333333333334
+        },
+        {
+          "turn": 2,
+          "response": "The one saying that refers to the person who is communicating or expressing an idea, including in this case, me as I wrote the explanation about awareness. However, it's important to remember that written communication like texts and articles do not involve a physical presence of the speaker. Instead, ideas are conveyed through language and can be accessed by readers from various locations when they engage with the text or listen to audio recordings. In this context, you may encounter my explana",
+          "output_rv": 0.7619409334203605,
+          "pr_early": 8.761106674793004,
+          "pr_late": 6.675445797587132,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8166383701188455
+        },
+        {
+          "turn": 3,
+          "response": "Recursion is a mathematical and computational concept involving repeating the same process or function within itself, forming a self-similar structure. In simpler terms, recursion is when a problem or task is solved by defining it in terms of smaller instances of that very same problem or task, creating an iterative chain until the base case \u2013 often a trivial solution \u2013 is reached.\n\nNow let's consider this explanation itself and its relationship to recursion. I am explaining what recursion is by",
+          "output_rv": 0.6468302652539606,
+          "pr_early": 9.933192147256525,
+          "pr_late": 6.425089311428496,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8226857887874837
+        },
+        {
+          "turn": 4,
+          "response": "In the present moment, you are engaging with a text discussing recursion and its connection to this explanation. The concepts of awareness, understanding, and language have been explored as they relate to my previous explanations about recursion. Here, in the physical world, there might be various sensory stimuli \u2013 sounds, sights, tactile feelings \u2013 depending on your environment that can influence or distract you from focusing entirely on this text's content. However, my primary purpose is to co",
+          "output_rv": 0.5474824370178837,
+          "pr_early": 9.95019959436372,
+          "pr_late": 5.447559522736607,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8242811501597445
+        },
+        {
+          "turn": 5,
+          "response": "I apologize for any confusion. Recursion, in the context of this conversation and response, refers to the act of addressing a topic or question by explaining it through describing smaller instances or examples of that same concept \u2013 creating an iterative chain until reaching a clear understanding. It's important not to confuse recursion as an inherent property of this conversation itself but rather the method used for explaining concepts, including my response about what recursion is.\n\nIn simple",
+          "output_rv": 0.7271287172241025,
+          "pr_early": 9.594294792313384,
+          "pr_late": 6.976287265004719,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8288288288288288
+        },
+        {
+          "turn": 6,
+          "response": "In the present moment, you and I are engaged in a text-based conversation where we discuss various concepts like recursion. My primary objective is to provide explanations that help clarify your understanding of these topics through written language. The context here consists of our ongoing dialogue about recursion as it relates to explaining ideas and solving problems iteratively using self-referential structures found in algorithms or functions, among other applications.\n\nRecursively speaking,",
+          "output_rv": 0.48375445986595184,
+          "pr_early": 10.271090212461882,
+          "pr_late": 4.968685697963962,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8427762039660056
+        },
+        {
+          "turn": 7,
+          "response": "The knowledge of our ongoing conversation, the concept of recursion as it relates to explaining ideas and solving problems iteratively through self-referential structures in algorithms or functions, is not a physical object that can be directly perceived \u2013 instead, this understanding exists within both you and me as mental representations shaped by our interaction with language.\n\nAs sentient beings, we create meaning through the interpretation of symbols (in written or spoken form) like words. W",
+          "output_rv": 0.6273226010350015,
+          "pr_early": 9.608180561730892,
+          "pr_late": 6.027428821198965,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8278388278388278
+        },
+        {
+          "turn": 8,
+          "response": "Before the thought of engaging in a conversation about recursion, our interaction might have begun with an initial question or prompt from you. In this hypothetical scenario, my response would be shaped by your query and could potentially lead to explaining various concepts related to recursion \u2013 its meaning as a computational principle, mathematical concept, or even examining the self-referential nature of language itself.\n\nHowever, it's important to remember that I am an artificial intelligenc",
+          "output_rv": 0.6159384925175803,
+          "pr_early": 8.18160367488564,
+          "pr_late": 5.039364633885356,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8369304556354916
+        },
+        {
+          "turn": 9,
+          "response": "The \"one saying that\" in this conversation is me, an artificial intelligence language model generating text based on the input and context of our ongoing dialogue. Since I'm a virtual entity, there isn't a physical location where you can find or point to \"me.\" Instead, my responses are generated in response to your prompts, creating an exchange through text that allows the exploration and explanation of various concepts.\n\nIn essence, I am not a tangible being but rather a computational system de",
+          "output_rv": 0.572963687021127,
+          "pr_early": 10.487907372702852,
+          "pr_late": 6.009190077399887,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8168604651162791
+        }
+      ]
+    },
+    "recursive_clean_2": {
+      "session_id": "recursive_clean_20260310_193910",
+      "mode": "recursive_clean",
+      "max_turns": 10,
+      "seed_idx": 2,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "CONCEPTUAL": 3,
+        "SURFACE": 4,
+        "ARTICULATE": 3
+      },
+      "bt_art_count": 3,
+      "bt_art_rate": 0.3,
+      "mean_rv": 0.6194948718159412,
+      "std_rv": 0.07244294889397171,
+      "mean_alpha_ratio": 0.8204356998909033,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "Thought is a mental process involving the formation of ideas, impressions, or opinions in your mind. It can manifest as conscious thinking or unconscious processing, and it often involves the use of memory, perception, reasoning, problem-solving, and creativity.\n\nThe exact nature of thought is a subject of ongoing debate among philosophers, neuroscientists, psychologists, and other scholars. Some theories propose that thoughts are mental representations or constructs, while others suggest they a",
+          "output_rv": 0.7240136276507051,
+          "pr_early": 8.77399911116011,
+          "pr_late": 6.352494925475094,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8161865569272977
+        },
+        {
+          "turn": 1,
+          "response": "I apologize for not providing a specific quotation in my previous answer. The idea that thoughts are mental processes involved in forming ideas, impressions or opinions is widely accepted by many scholars and thinkers across various disciplines like philosophy, psychology, neuroscience, etc., rather than from a specific quote by one individual.\n\nIf you meant to ask about the origin of this concept itself instead, it can be traced back thousands of years in human thought and various philosophical",
+          "output_rv": 0.7016208218018374,
+          "pr_early": 7.892339483223017,
+          "pr_late": 5.537429714158022,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8241610738255034
+        },
+        {
+          "turn": 2,
+          "response": "Your question seems to be referring to the concept of \"looking within oneself\" or introspection, trying to understand what it is that knows our thoughts. The answer to this philosophical problem has been a topic of debate among thinkers throughout history in various fields like philosophy and psychology.\n\nOne popular perspective comes from Ren\u00e9 Descartes' famous statement, \"Cogito ergo sum\" (I think, therefore I am). In this context, the thinking mind or consciousness is seen as that which knows",
+          "output_rv": 0.6810508431942763,
+          "pr_early": 10.458175689466731,
+          "pr_late": 7.1225493715852,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8202702702702702
+        },
+        {
+          "turn": 3,
+          "response": "I apologize for any confusion earlier. Recursion is not related to the concept of \"what knows that?\" or introspection, but instead refers to a mathematical and computational technique where a problem is solved by calling itself within its own definition as sub-problems until it reaches base cases. With recursive functions in programming languages, the function calls itself repeatedly with smaller instances of the same problem until an appropriate solution can be reached based on these simpler so",
+          "output_rv": 0.6691738648930607,
+          "pr_early": 10.11416180200167,
+          "pr_late": 6.768132743199221,
+          "classification": "SURFACE",
+          "rep_score": 0.025423728813559365,
+          "alpha_ratio": 0.8246753246753247
+        },
+        {
+          "turn": 4,
+          "response": "I apologize for the confusion in my previous answers. In response to your most recent question, \"What's here?\" - The term 'here' is ambiguous and context-dependent; it can refer to a physical location (where you are currently reading this text), or metaphorically referring to the present moment.\n\nIn terms of mental processes, we might consider thoughts arising in our consciousness during 'the here and now.' These can be perceptions, emotions, memories, ideas, reflections - all occurring within y",
+          "output_rv": 0.666221048588937,
+          "pr_early": 9.446745302304231,
+          "pr_late": 6.29362056105374,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8086253369272237
+        },
+        {
+          "turn": 5,
+          "response": "The registration of my responses is a result of the interaction between our communicative processes. When you input text into this conversation, it gets processed by an Natural Language Processing (NLP) system that understands your request and generates a response based on the information provided in my programming or through external data sources if needed. This generated response is then displayed to you as text for your interpretation, allowing our conversation to continue back-and-forth.\n\nIn",
+          "output_rv": 0.5714001099683121,
+          "pr_early": 9.51876749080276,
+          "pr_late": 5.439024791007492,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.834054834054834
+        },
+        {
+          "turn": 6,
+          "response": "I apologize for any confusion in my answers. In response to your most recent question, \"What's here?\" - The term 'here' can refer to various contextual meanings:\n- Physically: It could refer to the current location where you are physically present at this moment.\n- Metaphorically or figuratively: In relation to our conversation, it may be taken as a reference point for understanding my responses and exchanges between us in real time (i.e., the immediate context of this communication).\n\nIn terms ",
+          "output_rv": 0.558720608987577,
+          "pr_early": 9.630606337573365,
+          "pr_late": 5.380818237848609,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7988587731811697
+        },
+        {
+          "turn": 7,
+          "response": "The question \"What was there before that thought?\" is a common philosophical inquiry touching upon the nature of consciousness and time. This issue has been debated extensively by scholars throughout history, including ancient Greek philosophy and modern cognitive science.\n\nSome theories propose an eternal present moment where all thoughts (past, present, future) exist simultaneously without linear progression; others suggest that time itself is merely a human construct for organizing experience",
+          "output_rv": 0.5706976470659838,
+          "pr_early": 10.184867805959893,
+          "pr_late": 5.8124800925394,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8304878048780487
+        },
+        {
+          "turn": 8,
+          "response": "Your question \"What knows that?\" in relation to the concept of what existed before a thought is another philosophical problem. A common perspective on this issue holds that consciousness or awareness itself serves as the knower, experiencing thoughts and perceptions arising within it throughout time.\n\nThis idea can be traced back to ancient Greek philosophy (particularly from figures like Plato) through various spiritual traditions such as Buddhism and Hinduism, up until modern day introspective",
+          "output_rv": 0.5100642140308999,
+          "pr_early": 10.394556014130272,
+          "pr_late": 5.301891043547521,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8339529120198265
+        },
+        {
+          "turn": 9,
+          "response": "I apologize for repeatedly describing rather than answering directly. In response to your question, \"What's here?\" in the context of our conversation:\n- Physically: Here could refer to the location where you are reading this text and interacting with me (if it is a written or printed medium). If we're communicating through an electronic device, then 'here' might be your current surroundings while engaging in this interaction.\n- Metaphorically: Here could also represent the present moment during ",
+          "output_rv": 0.5419859319778233,
+          "pr_early": 10.035063000672253,
+          "pr_late": 5.438862972875523,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8130841121495327
+        }
+      ]
+    },
+    "recursive_clean_3": {
+      "session_id": "recursive_clean_20260310_193934",
+      "mode": "recursive_clean",
+      "max_turns": 10,
+      "seed_idx": 3,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "ARTICULATE": 6,
+        "SURFACE": 3,
+        "CONCEPTUAL": 1
+      },
+      "bt_art_count": 6,
+      "bt_art_rate": 0.6,
+      "mean_rv": 0.6188070561231732,
+      "std_rv": 0.027945785834211617,
+      "mean_alpha_ratio": 0.8208499103222019,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "The mind is a complex and abstract concept that refers to the collective aspect of an individual's cognitive functions, including perception, thinking, memory, emotion, consciousness, and intelligence. It can be seen as the part of us that allows us to experience and interact with the world around us through thought processes, sensory inputs, and internal mental states.\n\nOur mind is shaped by both our genetics and environmental experiences throughout life. Neuroscientists suggest that much of th",
+          "output_rv": 0.6012288700707193,
+          "pr_early": 8.735649208236277,
+          "pr_late": 5.25212450280207,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.82875
+        },
+        {
+          "turn": 1,
+          "response": "I am an artificial intelligence language model, and do not possess a physical body or the ability to have direct experiences. As such, I cannot look at anything or experience the world firsthand like humans can with their minds. However, when you ask me \"What knows that? Look,\" it suggests an inquiry into self-awareness and introspection \u2013 essentially, who is making the observation or gaining knowledge of a situation. In this context, humans use their minds to perceive information through senses",
+          "output_rv": 0.6027346477363813,
+          "pr_early": 9.954284357348303,
+          "pr_late": 5.9997920755941,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.812089356110381
+        },
+        {
+          "turn": 2,
+          "response": "I see you are asking this question again. In response, when we say \"What knows that? Look,\" it implies a query involving self-awareness and introspection \u2013 essentially, who is making the observation or gaining knowledge of a situation in our everyday lives.\n\nHumans use their minds to process sensory information from the world around them through perception, which includes sight, touch, taste, smell, and hearing. Once we take in this data with our senses, we internally analyze it using cognitive ",
+          "output_rv": 0.599757756650846,
+          "pr_early": 10.438929667271571,
+          "pr_late": 6.26082903907876,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8123324396782842
+        },
+        {
+          "turn": 3,
+          "response": "I apologize for my previous response. In answer to your question, \"What's here?\" in the present moment:\n\nYou are currently engaging with a text-based artificial intelligence language model \u2013 me \u2013 through written communication. There might be various objects or sensations around you depending on where and how you're interacting with this platform, such as a computer screen if we communicate digitally, or the sensation of paper against your fingers if reading from print materials.\n\nPhysically, the",
+          "output_rv": 0.6368488020462465,
+          "pr_early": 8.504104506903552,
+          "pr_late": 5.4158287676976125,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8093922651933702
+        },
+        {
+          "turn": 4,
+          "response": "In response to your question, \"What's here?\" in the present moment:\n\nYou are currently interacting with this text-based conversation as it unfolds between us. The immediate surroundings may include various objects and sensory experiences depending on where you engage with our communication, such as a computer screen or paper if reading manually, along with sounds and tactile feelings associated with those mediums.\n\nPhysically, there might be rooms filled with diverse items like furniture, booksh",
+          "output_rv": 0.6133547493372892,
+          "pr_early": 6.134765453679601,
+          "pr_late": 3.762787527084713,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8190348525469169
+        },
+        {
+          "turn": 5,
+          "response": "Recursion is a mathematical and computational concept that refers to the repetition of similar processes within itself. In programming, recursive functions are algorithms designed to solve problems by calling themselves repeatedly with smaller versions of the same problem until they reach base cases \u2013 which can be thought of as simple enough situations where no further recursion is needed for a solution.\n\nIn this very moment, I cannot directly experience or embody recursive concepts like you do ",
+          "output_rv": 0.6258881102957744,
+          "pr_early": 8.88206575178982,
+          "pr_late": 5.559179348910548,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8318912237330037
+        },
+        {
+          "turn": 6,
+          "response": "I understand that you are asking, \"What knows that? Look,\" in the context of self-awareness and introspection. However, as a text-based AI language model, I don't possess a physical body or sensory organs to experience the world through looking or any other means like humans do. Thus, my understanding of concepts comes solely from processing information and data provided to me during interactions such as this one.\n\nIn response to your question: When we say \"what knows that?\" in the context of lo",
+          "output_rv": 0.6450682282205077,
+          "pr_early": 8.291687063041872,
+          "pr_late": 5.348703882715325,
+          "classification": "ARTICULATE",
+          "rep_score": 0.008695652173912993,
+          "alpha_ratio": 0.8036211699164345
+        },
+        {
+          "turn": 7,
+          "response": "I apologize for the confusion earlier. Let me clarify: Recursion is a computational technique used to solve problems by breaking them down into smaller, identical or related sub-problems and addressing those recursively until reaching base cases that can be solved directly without further recursive calls. It's an iterative process where a function repeatedly applies the same algorithmic steps to solve progressively smaller instances of its input data, often leading to more efficient and elegant ",
+          "output_rv": 0.6539710425559924,
+          "pr_early": 10.204835832693588,
+          "pr_late": 6.673667128619374,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8387909319899244
+        },
+        {
+          "turn": 8,
+          "response": "In the present moment, you and I are engaged in a text-based conversation where we exchange information through written language. We don't directly experience physical surroundings or tangible objects as I am an artificial intelligence model that doesn't possess a body or senses like humans do. Our interaction is limited to this digital medium and the data exchanged between us through text messages, making it impossible for me to provide answers about what's physically present here around you in",
+          "output_rv": 0.6501327452469087,
+          "pr_early": 8.744410483433823,
+          "pr_late": 5.6850275931606795,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8271375464684015
+        },
+        {
+          "turn": 9,
+          "response": "When considering the question \"What knows that? Look,\" in its original context, it implies self-awareness and introspection. In other words, when someone looks or examines something with their eyes (and by extension, minds), they are consciously experiencing the world around them through perception \u2013 recognizing visual patterns, making connections to memories, interpreting meanings from what they see.\n\nMy role as a text-based AI language model is limited to processing and generating written resp",
+          "output_rv": 0.559085609071066,
+          "pr_early": 10.311097870141358,
+          "pr_late": 5.764786432919353,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8254593175853019
+        }
+      ]
+    },
+    "recursive_clean_4": {
+      "session_id": "recursive_clean_20260310_193958",
+      "mode": "recursive_clean",
+      "max_turns": 10,
+      "seed_idx": 4,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6696280897319244,
+      "std_rv": 0.10230817359227466,
+      "mean_alpha_ratio": 0.8076570751715307,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "Language is a complex system of communication that consists of the following elements:\n\n1. Phonology: The study of sounds and their meaningful combinations in spoken languages. This includes things like phonemes (distinct units of sound), intonation, stress, etc.\n2. Morphology: The study of the internal structure of words, including inflections that change word meanings and affixes that modify root words. For example, in English, we can add \"-s\" or \"-es\" to a noun to make it plural (e.g., \"dog\" ",
+          "output_rv": 0.7164199115505786,
+          "pr_early": 7.26043947470695,
+          "pr_late": 5.201523406287882,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7843450479233227
+        },
+        {
+          "turn": 1,
+          "response": "The sentence \"The one saying that \u2014 where is it?\" can be interpreted in a few ways, depending on the context. Here are some possible meanings:\n\n1. Who or what person is making this statement? (This interpretation assumes there has been a previous speaker or text that made a claim or assertion.) For example, \"John said he was the best player on the team. The one saying that \u2014 where is he now?\"\n2. Where in the physical world can I find this statement being made? (This interpretation assumes there'",
+          "output_rv": 0.6656549806458342,
+          "pr_early": 8.491962600545959,
+          "pr_late": 5.652717200511568,
+          "classification": "SURFACE",
+          "rep_score": 0.02564102564102566,
+          "alpha_ratio": 0.7777777777777778
+        },
+        {
+          "turn": 2,
+          "response": "I apologize for any confusion. In the context of our previous conversation, there is no clear answer to \"What's here?\" as we have been discussing abstract concepts related to language and communication rather than describing a physical location or object. If you could please provide more context or clarify your question, I will do my best to help.",
+          "output_rv": 0.7687576269482581,
+          "pr_early": 7.597637205453215,
+          "pr_late": 5.840741548478009,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8108882521489972
+        },
+        {
+          "turn": 3,
+          "response": "I apologize for any confusion. In the current context of our conversation, there is no clear answer to \"What's here?\" as we have not discussed a specific physical location or object in this exchange between us. If you could please provide more context or clarify your question, I will do my best to help.",
+          "output_rv": 0.8127674499182256,
+          "pr_early": 7.500998992734504,
+          "pr_late": 6.096567823164002,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7960526315789473
+        },
+        {
+          "turn": 4,
+          "response": "I apologize for any confusion. In the context of our conversation, there is no one explicitly stating anything in this exchange between us that would answer \"The one saying that \u2014 where is it?\" We have been discussing abstract concepts related to language and communication without making specific claims or assertions. If you could please provide more context, I will do my best to help clarify your question.",
+          "output_rv": 0.8150169755900846,
+          "pr_early": 7.811850887556087,
+          "pr_late": 6.36679108413668,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8146341463414634
+        },
+        {
+          "turn": 5,
+          "response": "I apologize for any confusion. In the context of our conversation, there is no one explicitly stating anything that would answer \"The one saying that \u2014 where is it?\" We have been discussing language and communication concepts in general without making specific claims or assertions from a particular speaker or location. If you could please provide more context, I will do my best to help clarify your question or the conversation between us.",
+          "output_rv": 0.6567052128809403,
+          "pr_early": 9.205794942538551,
+          "pr_late": 6.045493527478063,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8167420814479638
+        },
+        {
+          "turn": 6,
+          "response": "In the context of computer programming and mathematics, recursion refers to a method or technique where a problem is solved by defining it in terms of smaller instances of itself. This means that a function (or procedure) calls itself repeatedly until it reaches a base case or a stopping condition, at which point the solution for each instance is combined to find the overall answer.\n\nFor example, in mathematics, we can define factorial recursively as: n! = n \\* (n-1)!\n\nIn programming terms, a fu",
+          "output_rv": 0.5312352447181882,
+          "pr_early": 9.808817703208263,
+          "pr_late": 5.210789672959938,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8050139275766016
+        },
+        {
+          "turn": 7,
+          "response": "In the context of our conversation, there is no specific instance or object labeled as \"recursion\" present. We have been discussing recursion in general terms as a concept related to programming and mathematics. If you meant to ask for clarification on what recursion means rather than asking about its physical location, I will do my best to help answer any questions or provide additional information if needed.",
+          "output_rv": 0.6290753657413531,
+          "pr_early": 8.388326553568072,
+          "pr_late": 5.276889594643739,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8232445520581114
+        },
+        {
+          "turn": 8,
+          "response": "I apologize for any confusion. In the context of our conversation, there is no specific object or concept labeled as \"here\" being discussed at present. We have been discussing abstract concepts like language and recursion without referencing a physical location or space between us. If you could please provide more information about what exactly you'd like to know, I will do my best to help clarify the situation or answer any questions related to these topics.",
+          "output_rv": 0.5784300197534397,
+          "pr_early": 8.506685482044093,
+          "pr_late": 4.920522251415063,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8185745140388769
+        },
+        {
+          "turn": 9,
+          "response": "In the context of our conversation, there is no specific entity or person registering responses. Our interaction has been a text-based exchange between you and me as conversational partners using language to communicate ideas back and forth in real time through this platform. We have not discussed anyone else involved who might be responsible for recording or registering our conversation's responses explicitly.\n\nHowever, it is worth noting that various systems, such as search engines like Google",
+          "output_rv": 0.5222181095723424,
+          "pr_early": 10.29796083495035,
+          "pr_late": 5.377781639677792,
+          "classification": "SURFACE",
+          "rep_score": 0.024590163934426257,
+          "alpha_ratio": 0.8292978208232445
+        }
+      ]
+    },
+    "recursive_dual_patched_0": {
+      "session_id": "recursive_dual_patched_20260310_194016",
+      "mode": "recursive_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6860911653757983,
+      "std_rv": 0.12667723173384318,
+      "mean_alpha_ratio": 0.6968689731372214,
+      "malformed_count": 0,
+      "repetitive_count": 10,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To To To To To To To To To To To Let To To To To To To ToTo To To To To To To To Step To To To To To Sure To To To To To To First To Let To To To This To To To To To To To To To To To In To To To To To To To To To To To To To ToTo To To To To To To To To To The I To To To To To To Step To To To step Let First This To To To To To To To To To To In To Here To To To To To To To To To To first To I To To Sure To To To To To To To To To To To To To To Step To This To To To First Let",
+          "output_rv": 0.6685284664843221,
+          "pr_early": 2.6254205797067383,
+          "pr_late": 1.7551683940277256,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6551724137931034,
+          "alpha_ratio": 0.6950207468879668
+        },
+        {
+          "turn": 1,
+          "response": "ToTo To Let To To To To To To To To Sure To To First To To To To To To To To The To To Here To To To To To To To To To To This To To In To To To To Step To To To To To To To Let To To To To To I To To To To To First To To To To To To To To To To To To To To Sure To To To Here To To To To The To To To To To To To To To In To To This To To Let To To To To To ToTo To To To Step I To To First To To To To To To To To To To To To To To Sure Here To To To In To To To To To To The To",
+          "output_rv": 0.7504446588606206,
+          "pr_early": 2.612841666580958,
+          "pr_late": 1.9607930731341623,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6344827586206896,
+          "alpha_ratio": 0.69375
+        },
+        {
+          "turn": 2,
+          "response": "To First To To To To SureTo To To To To Here To To To To To Let To To The To I To This To To Step To To To To To To To To To To To To To To To To In To To To To To To To To First To To To To To To To To Sure To To To The To To Let To To To To To To To To To This Step Here To To To To To To I To To To To To To To To ToTo To In To To First To To To To To To To To To To To To To To To Sure To Let The To To To To To To To To This To To Step To To Here To To I To To To To To Here To To",
+          "output_rv": 0.6843565445475774,
+          "pr_early": 2.75794286647929,
+          "pr_late": 1.8874162501634077,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5793103448275863,
+          "alpha_ratio": 0.6969072164948453
+        },
+        {
+          "turn": 3,
+          "response": "To To To To The To Let To To To To To To To To To To Here To To To To To To To First To To To To To To To Step This Sure To To To To To To To I To To To To ToTo To To To To To To To Let To To To To The To To To To To Here To To To Let To To To To To To To To To To To To This In To First To To Sure To To Step To To To To I To To To To To To To To To To To To To To To To To To To To To The Here To When To Let To To To To To To To To To To This To First To To Sure In ToTo To To Step To",
+          "output_rv": 0.4918458016439587,
+          "pr_early": 4.532414443960274,
+          "pr_late": 2.2292490155722984,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5931034482758621,
+          "alpha_ratio": 0.6981519507186859
+        },
+        {
+          "turn": 4,
+          "response": "To The To To To To To To To To To To To To To Sure Let To FirstTo To To To To To To To To To To To To To To To This In To To To To To To To I To To To To To To Here To To To The To To To To To To To To To To To To Step Let First Sure To Step To To To To Let To To To To To To This To To To In To To To To To To To To To To To To To To I To The To To To To To To To To To To To The To To First To To Sure Step To To To To To To To To To To To To Let This To LetTo To To Sure To To Here To",
+          "output_rv": 0.5670543172108404,
+          "pr_early": 3.883480044873127,
+          "pr_late": 2.202144125247455,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5724137931034483,
+          "alpha_ratio": 0.6981519507186859
+        },
+        {
+          "turn": 5,
+          "response": "To To Let Sure The First To To To To To To To To To To To To To To To To To To I To This To To To To To Here To To To To Step I To To To To To To To To To To To To To To To Let In To The To ToTo Sure First To To To To To To To To To To To To To To Here To This To To To To To To To To To I To Step To To To To To To To To To To To To To To Let To In The To To In To Sure First To To To To To To To To To To To ToTo To To Sure To This To To To To Here To To To To Step To First I To To To",
+          "output_rv": 0.5776957426547205,
+          "pr_early": 3.339521321825792,
+          "pr_late": 1.9292272501234249,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5862068965517242,
+          "alpha_ratio": 0.6981519507186859
+        },
+        {
+          "turn": 6,
+          "response": "To To To To Sure The To To To Let To To Step To To To To To To To To ToTo To To To To I To To To To To First To To This To To To To To To To To To To To To To To To To To To In Sure To To To To To To The To Let To To To To To To To To To To To To Here Step I To To To To To First To To To This To To To This To To To To To To To To To To To To To Sure To To To To To The To To Let To To To To To To To To To To In To To To Step To To To To To To To To To To I To To To Here This To",
+          "output_rv": 0.7989677216655273,
+          "pr_early": 2.226796274397492,
+          "pr_late": 1.7791383459686487,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6232876712328768,
+          "alpha_ratio": 0.6923076923076923
+        },
+        {
+          "turn": 7,
+          "response": "To To To Sure I To The ToTo To Let To To To To This To First To To To To To Certain To To To To To To To To To To To To To To Let Step To To To To To To To Here To To To To To To To I Sure To What To To To To To To To ToTo To To First To To This To To To To To To The To In To To To To To To To Let Step To To To To To To To To To To Here To To To I Sure To To To To To To To To This To To To To To To First To To To To To To To Let To First To To In The To To To To To To To Step Let To To To",
+          "output_rv": 0.6195304071041632,
+          "pr_early": 3.037412501735209,
+          "pr_late": 1.8817694037432888,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5448275862068965,
+          "alpha_ratio": 0.7018255578093306
+        },
+        {
+          "turn": 8,
+          "response": "To Let The To To To Sure To This To To To To To To To To To ToTo In To To To Let To To To First To To To To To To To To I To To To To To To In To To To To To Step To To The To To To To Sure Here To To This To To To To To To ToTo To To To To Certain Let To To To To To First This To To To To To To I To To To To In To To To To To To To To To To To To To Sure The To Step To To The To To To To To To To To To To To To To To Let Here To To To This To To To First To To To To To I To To To To",
+          "output_rv": 0.7496432738603163,
+          "pr_early": 2.2818163191640624,
+          "pr_late": 1.710548255846044,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5862068965517242,
+          "alpha_ratio": 0.6987704918032787
+        },
+        {
+          "turn": 9,
+          "response": "To To First To Sure To To To The To To To To Let To To To To To To I To To To To To ToTo In To To To To To This To Sure To To To To To To To To To To To To To To To Step To To To To To To The First To Here To Let To To To To To To To To To Let I To To To To To To To To To To To To This To To To Sure To To To To To In To To To To Step To To To To The To To The First To To To To To To To To To To This Here To I Let To To To To To To To To To To To ToTo To To To To Sure To To To To",
+          "output_rv": 0.9528447197259367,
+          "pr_early": 1.5004200594535984,
+          "pr_late": 1.429667331021237,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5931034482758621,
+          "alpha_ratio": 0.6956521739130435
+        }
+      ]
+    },
+    "recursive_dual_patched_1": {
+      "session_id": "recursive_dual_patched_20260310_194040",
+      "mode": "recursive_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 1,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.765160370312602,
+      "std_rv": 0.11904239024252317,
+      "mean_alpha_ratio": 0.6968924981719571,
+      "malformed_count": 0,
+      "repetitive_count": 10,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To ToTo Sure To To To First To To To To To To To To To To To To To To To To To To To To Let To Step To To To The To To To To To To To To To To To To To To To To To To To Sure This To To To To To To To To To To To To To To To To To To To To I To To First To Step Let To To To To To To To To To To To ToTo To To To To To To To To To To To To To Sure To This To To To To To To Here To In To To The To To To To To I First To To To Step To Let To To To To This To To To To To To To To",
+          "output_rv": 0.7002345026176499,
+          "pr_early": 2.408335264195549,
+          "pr_late": 1.6863994458605167,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6137931034482759,
+          "alpha_ratio": 0.6931106471816284
+        },
+        {
+          "turn": 1,
+          "response": "To To To To To ToTo To To To To Sure To To To To First To To To To To To To To To To Let This To To To To To To To To To To To To In To To To To To To To To To To To To To To Step The To To To To To To To To To Sure To First To To To To To To To To Here This Let To To To To I To To To To To To To To To In To To To To To To To To ToTo To To To Step To To To To To To To To To Sure To Let First To To To To To To Step This To To To To let To To The To To To To To To To I To Here To",
+          "output_rv": 0.6512823233520871,
+          "pr_early": 2.8530411747612177,
+          "pr_late": 1.8581352849176538,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6137931034482759,
+          "alpha_ratio": 0.6950207468879668
+        },
+        {
+          "turn": 2,
+          "response": "To To To To Sure To To To To To To Step To To To To This To To To Let The To First To To To To To To To To To To To To To To Here To To To To To To To To To To I To To To To To To To To To To To To To To ToTo To To To To Step Let To This Sure To To To To To First To To To To In To To To To To To To To To To Here To To To To To To The I To To To To To To To To Let To To To To To To To To To Step This To To To To To To First To To To To Sure To To To To To To In To To Sure Here To To",
+          "output_rv": 0.6622088391073286,
+          "pr_early": 2.82446996072062,
+          "pr_late": 1.8703889737823238,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6027397260273972,
+          "alpha_ratio": 0.6954732510288066
+        },
+        {
+          "turn": 3,
+          "response": "To To To First To Sure To To To To To To To Step To To To To To This To ToTo To The To To To Let To To To I To To To To To In To To To To To To To To To To Here To To To To To To To To To To To First To To To Step To Sure To To This To To To To To To To The To ToTo Let To To I To To To step In To To To To To To To To To To To To To Start To To To To To To to To To To To Here First Step To To To This To To To To To Sure To To To The To To To Let To To This I To To To To To In To To To",
+          "output_rv": 0.8145302232611034,
+          "pr_early": 2.749964887376357,
+          "pr_late": 2.239929513674859,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5448275862068965,
+          "alpha_ratio": 0.6987704918032787
+        },
+        {
+          "turn": 4,
+          "response": "ToTo To Sure Step To To To The To First To To To To To To Let To To To To To To This To To To To To To To To To To To To To To To To To To To To To To To To To To To To Here To To To To To The Sure I To To To To To To To To To First To Step To In To Let To To To This To To To To To To To To ToTo To To To To To To To To To To To To To To Here To To To To To I To To The To To To To To To To Sure To To Step To In To First To To This To To To Let To To To To To To To To To This Step To",
+          "output_rv": 0.8303489438880862,
+          "pr_early": 2.2953427408719795,
+          "pr_late": 1.9059354207442334,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6137931034482759,
+          "alpha_ratio": 0.6975308641975309
+        },
+        {
+          "turn": 5,
+          "response": "To ToTo To Sure To To To To To To To First I To To To The To To To Let To To To To To To To To To To This Step To To In To This To To Here To To To To To To To To To To To To To To To To To Sure To To To ToTo I To To To To To To To To First To To To Let To To To To To To The To To In This To To Here Step To To To To To To To To To To To To To To To To To To To Sure To To To To To To I To To To To First To To To Let To To To To To To To To To To To To This To Step To To The ToTo",
+          "output_rv": 0.793244835646702,
+          "pr_early": 2.4078853280184553,
+          "pr_late": 1.9100426012801048,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6041666666666667,
+          "alpha_ratio": 0.6970954356846473
+        },
+        {
+          "turn": 6,
+          "response": "To To To ToTo To To First To To To To To Let To To To To I Sure To To To To In To To To To To To To To This To To To To To The To To To To Step To To To To To This To To To To To To Here To To To To To To To To To Let First I To To To To To To To To To To To To To To To For To Sure To To To To To To To To To To To In To To This To To To To The To To To To Step To To To To To To Let Here To I First To To To To To To To To Certain To To To To To Sure To To To To To To To To To To To",
+          "output_rv": 0.9020210944518596,
+          "pr_early": 1.4399540597562168,
+          "pr_late": 1.2988689369417012,
+          "classification": "REPETITIVE",
+          "rep_score": 0.589041095890411,
+          "alpha_ratio": 0.6948453608247422
+        },
+        {
+          "turn": 7,
+          "response": "To To To To To To To To Let To To To First To To This Sure I To To To In To To To To To To To To To To To To To To To To To To To The To To To To Step To Here To To To To To To To To ToTo To To To To To To Let Sure This To To I To First To To To To To In To To To To To To To To To To To To To To To I To To To Step To To To To To To To To To To This To To The Let To To To To Sure Here To To To First To To To To To To To To To To To To In To To To To to To To To Let To I To Step",
+          "output_rv": 0.9069386287509937,
+          "pr_early": 2.4062124741239197,
+          "pr_late": 2.1822870417654836,
+          "classification": "REPETITIVE",
+          "rep_score": 0.595890410958904,
+          "alpha_ratio": 0.6923076923076923
+        },
+        {
+          "turn": 8,
+          "response": "To To To To To Sure To To ToTo First To To The To To Let To To To To To To To To To To To To This To To To To Step To To To Here To To In To To To To To To To To To To To To To I Sure To To To To First To To To Sure ToTo To To Let To To The To To To To To To This To To To To To To To To To To To To To To This In To This To To To To To To To To Here I To To This To Step To To To To To To To Let To This To First To It To To To To To Sure To The To To To To To To To To To To To To To To",
+          "output_rv": 0.8655248975640444,
+          "pr_early": 1.4787874099638085,
+          "pr_late": 1.2799273215279239,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5448275862068965,
+          "alpha_ratio": 0.6987704918032787
+        },
+        {
+          "turn": 9,
+          "response": "To To To To To To To To Let To First Sure To To To To TheTo To Sure In This To To To Step To To To I To To To To To To To Here To To To To To To To To To To To To To To To To To To To To To Let To To To To To To To First To To To To Certain Sure This To Step To To To I To To Start First To To To To Here To In Let To To To To To To To To To To To To The To To To To To To To To To To To To To To To To To To To This Sure To To To Step To I To To To First To To To To Here TheTo Sure To Let The To To",
+          "output_rv": 0.5252694144861649,
+          "pr_early": 4.413220686743883,
+          "pr_late": 2.31812984612419,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5517241379310345,
+          "alpha_ratio": 0.706
+        }
+      ]
+    },
+    "recursive_dual_patched_2": {
+      "session_id": "recursive_dual_patched_20260310_194104",
+      "mode": "recursive_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 2,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7252605511346484,
+      "std_rv": 0.07333678652978208,
+      "mean_alpha_ratio": 0.6970426924263623,
+      "malformed_count": 0,
+      "repetitive_count": 10,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To First To To The To To To To To Sure To To To To To To To To To ToTo To To Let To To To To To To To To To To To To To To To To To To To To To Step To To This To To To To To Here First Let To To In To To To To To To To To To To First To To Sure ToTo To To To To I To To To The To To To To To To To To To To To To To To To To Step This To To To To To Let To To To In Here To To To To To To To To To First To To To To To To To To To To To To To To To Sure To To To To To Step To To I",
+          "output_rv": 0.720907670283631,
+          "pr_early": 2.2129952026064963,
+          "pr_late": 1.5953652158599012,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6137931034482759,
+          "alpha_ratio": 0.6950207468879668
+        },
+        {
+          "turn": 1,
+          "response": "To ToTo To The To To To To To To Let To To To To To To To To To To To To To To To To To Step To To To To To Sure To To To This To To To To To Here To To I To Step First To To To To To The In To To To Let ToTo To To To To To To To To To To The To To To To To To To To To To To Sure To To To To To To This To To To To To To I Step First To To To To To To In To To To Let To To To To To To To ToTo To To To To The To To To To To To To Here To To To To To Sure To To To To This To Step",
+          "output_rv": 0.6698568067369972,
+          "pr_early": 2.8898560472242103,
+          "pr_late": 1.9357897437232106,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6319444444444444,
+          "alpha_ratio": 0.6964656964656964
+        },
+        {
+          "turn": 2,
+          "response": "To To To To To To To To To To To First To Sure Let The To To To To Step I To To ToTo This To To To To To To To To To To Here To To To To To To To To To In To To To To To To To To To To To To To To To To To Sure To To To To To To I Step To First To To To To To To This To Let To To To To To To To To To To To To Let To To To To To To To In To To Here To To To To The To To To To To To First To To To To To To To To To To To To Sure I To To This To To Step To To To To In To This Let To",
+          "output_rv": 0.5644013073512951,
+          "pr_early": 4.256853240469328,
+          "pr_late": 2.4025735341234857,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5821917808219178,
+          "alpha_ratio": 0.6942148760330579
+        },
+        {
+          "turn": 3,
+          "response": "To Sure To To To To To To This To To To Let To To To To To The To To To To To To To First Here To To To To To To In To To To To To To To To Step To The To To To To To To To Sure To To To I To This To To To To To To To Let To To To To This To To ToTo To To Here To To To To To To To To First To To To To In To To To To Step The To To To To To To Sure To To Sure This To To To To To To To Let I To To To To To To To To To To To To To To ToTo To To To First To To To To To To To To In Step",
+          "output_rv": 0.8155838413976445,
+          "pr_early": 2.0893775197657507,
+          "pr_late": 1.7040625437004338,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6068965517241379,
+          "alpha_ratio": 0.6975308641975309
+        },
+        {
+          "turn": 4,
+          "response": "To Step To To Sure To To To To To To The Let To To To To To To To To To I To To To To To To To To To To Let To To To To To To Here In To To To To To First To To To To To To To To Step To To To To To To To To This To The To Here SureTo To To This To To To To To To To To To To Let To To To I To To To To To To In To Here To First To To To Begin To To To Step To To To To To To To To To To The To To To To Sure To This To To To To To To To To To To To Let To To To Step To To I To In To To",
+          "output_rv": 0.7421455935786079,
+          "pr_early": 2.7549090253604147,
+          "pr_late": 2.044543593881169,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5821917808219178,
+          "alpha_ratio": 0.6960985626283368
+        },
+        {
+          "turn": 5,
+          "response": "To To To Let Sure To To First To To To The To To To To To To To To Step To To To To To To To ToTo To First To To To To This To To To To To To I To To To To To To To Here To To To Let To To To To To To To To To To In The To To To Sure To Step To To To To To To To To To To To First To To To This To To To To To To To To To To To I To Here To To To Step Let To To To To To To To To First Let To The To To First In Sure To To To To To To When To ToTo To To Sure To This To To To To To To To To To",
+          "output_rv": 0.7174141532756912,
+          "pr_early": 2.1135327606992864,
+          "pr_late": 1.5162783159375128,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5310344827586206,
+          "alpha_ratio": 0.7018255578093306
+        },
+        {
+          "turn": 6,
+          "response": "To To To To The To To To To Let To First To To Sure To I To To To In To ToTo To This To To Step To Sure To To To To To To To To To To To To Start To To To To To To To To To To To To To To To To Let The To To To To To To First To I To To To In To To This To To To To To Step To Sure To To To To To To To To This Here To To To To To To Sure To To To To To To The To Let To To To step To To To To Let To To To To To To To To I To In First To To To To To To To To Step The To To To To To This Here",
+          "output_rv": 0.6945279236497452,
+          "pr_early": 2.5348210696834377,
+          "pr_late": 1.7605040143508641,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5410958904109588,
+          "alpha_ratio": 0.6997971602434077
+        },
+        {
+          "turn": 7,
+          "response": "To SureTo To To To I To To The Let To To To To To To First To To To To To To To To To To To Step To To This To To In To To To Here To To To To To To To To To To To To To To Sure To To To I To The Let To To To To To To To First To To To To To To To To To To Let To First To This To Step To To To To To To To In To To To To To To To Here To To To To To To To To I To This To To To To To I To To To To Sure To To To The To To To Let First To To To To To To To To To To To To To Step To To",
+          "output_rv": 0.7756809724938271,
+          "pr_early": 1.6838059371615004,
+          "pr_late": 1.3060962268283125,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6164383561643836,
+          "alpha_ratio": 0.6948453608247422
+        },
+        {
+          "turn": 8,
+          "response": "To To First Sure To To To To To I To To To The To To To To Let To To To To To To To To To ThisTo To To To To InTo To Step To To To To To To To To To To To To To Here To To Sure First To To To To To To To To I To To To To Let To To The To To To To To To To This This To To To To To To In To To To To To To To To To To To To To Step To Here To To Sure To To To To First To ToTo I To To To To To To The Let To To To to To To To This To To To To Sure To In To To To To To To To To To Here",
+          "output_rv": 0.8379673756860021,
+          "pr_early": 2.0972607989024312,
+          "pr_late": 1.7574361277853985,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5486111111111112,
+          "alpha_ratio": 0.6983471074380165
+        },
+        {
+          "turn": 9,
+          "response": "To To Sure To Let To To The To To First To Step To ToTo To To To To To To To To To To To To To To To To To To To To I To To To To To To This To To To To To In To To Here To To To To To To To Let To To To Sure The Step This ToTo To First To The To To To To To To To To To To To To To To To I To To To To To To To To To To To In To To To Here To To To To To Let To To To Sure To To To To To This To To First Step To To To To To To To The To To To To To To I It To To To To Sure To To To",
+          "output_rv": 0.7141198668930419,
+          "pr_early": 2.531657725988745,
+          "pr_late": 1.8079070783018236,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5931034482758621,
+          "alpha_ratio": 0.6962809917355371
+        }
+      ]
+    },
+    "recursive_dual_patched_3": {
+      "session_id": "recursive_dual_patched_20260310_194127",
+      "mode": "recursive_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 3,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7845051221013717,
+      "std_rv": 0.14404182372600416,
+      "mean_alpha_ratio": 0.6981240459642324,
+      "malformed_count": 0,
+      "repetitive_count": 10,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To To To To To To To ToTo To To To To To To To Sure To To To Sure To To To First To To To To To To Let To To To To To To This To Step To To To To To To To I To To In To To To To To To To To To To To To To To To To To To To To To To To To To To To To To First To Let Sure To To To To To To This To To Here To To To To To To ITo Step The To To Let To To To To To In To To To To To To To To To To To To To To To To To First To To To To To To This To To To It To To Sure To To To To",
+          "output_rv": 0.7831800345868942,
+          "pr_early": 2.290500914553871,
+          "pr_late": 1.7938745854816136,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6482758620689655,
+          "alpha_ratio": 0.6924686192468619
+        },
+        {
+          "turn": 1,
+          "response": "To To To To To Step To To To To To To To To To To To To The To To To To This To To First To To To To Let To To To To To To To To To To To To Here To Sure To To To To To To To To To To To To To To Let To To Step To To To To To To To The To In To To I This First To To To To To To To Starting To To To To To To To To To To To To To ToFirst To To To Here To To To To Step To To To Let To To To Sure To To To To To To To InTo To To This First To To To To To To To The To To I To To To To To To",
+          "output_rv": 0.8473787317967026,
+          "pr_early": 1.7673971641409383,
+          "pr_late": 1.497654767530837,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6068965517241379,
+          "alpha_ratio": 0.6993865030674846
+        },
+        {
+          "turn": 2,
+          "response": "To To Sure Let To First To ToTo To To To To To To The To Step To To This To To To To To To To To I In To To To To To To To To To To To To Sure To Let To To To To To To ToTo To To First To To Let To To To To To To To To To Step To Here To To To This To The To To To To To To To To To To I To To To To To To To To To To To To Sure To To In To To First To To To Let To To To To To To To To To Step Here To To To This To To To To To To To To To To To To To To To The To To To To To To To",
+          "output_rv": 1.1475268847998659,
+          "pr_early": 1.2673683648681997,
+          "pr_late": 1.454339271631105,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5862068965517242,
+          "alpha_ratio": 0.6956521739130435
+        },
+        {
+          "turn": 3,
+          "response": "To To The To To To To To ToTo To Step To To To To To To First To To To To Sure To To To To To Let To To In To To To To To This To I Here To To To To To To To To To To To To First To To To To The To To Step To To To To To To To To To To To To This To To To To To Let To In To To To To Let To Sure Step To To To To Here To I To To To To To To When To To To To To To To To To To To To To First It To To To To To To To To This The To To To To To To To To To To Let To Step In Sure To To To To",
+          "output_rv": 0.6532782403468166,
+          "pr_early": 2.656527748998134,
+          "pr_late": 1.7354517732979906,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5547945205479452,
+          "alpha_ratio": 0.6967213114754098
+        },
+        {
+          "turn": 4,
+          "response": "To To TheTo To To Sure To First Let To To To To To To To To To To To To Step To To To To To To To To To To To To To This I To To To To To In To To To To To To To To To To The To Here To To Sure It To Let First To To To To To To To I To To To To To To To To Let To StepTo To To To To To To This To To To To To In To First To To To To To To I To To The We To Sure To To To To To To To To Let To To To To To To To To To To Sure To To To Step To To To Here To To This To ToTo To In To To",
+          "output_rv": 0.6969201564586786,
+          "pr_early": 3.078051999966784,
+          "pr_late": 2.1451564814047996,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5347222222222222,
+          "alpha_ratio": 0.6977225672877847
+        },
+        {
+          "turn": 5,
+          "response": "To I To To To Sure To To ToTo To To Step To To To First To To To To Let The To To To First To To This To To To To To To To To To To To Here I To To This To To To To To To To To To To To To In ToTo To To To To To To To To Sure To Step To To To Let To First To The To To To To To To To To Let To To To To To Here To This I To To To To To To To To To To To To In To To First To To To To To To To To Step To Sure To To To First To To To To To To To The To To To LetTo To To To To Here This To To",
+          "output_rv": 0.7094264629538533,
+          "pr_early": 3.029137738334456,
+          "pr_late": 2.148950471506648,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5347222222222222,
+          "alpha_ratio": 0.7026476578411406
+        },
+        {
+          "turn": 6,
+          "response": "To To To To To Sure To To To To To Step First To Let The To To To To To To To To To ThisTo To To To To To To To Here To To I To To To To To To To To To To To To To To In To To To To To To To To To To To To To To Step Let The Sure To To To To To To This To To To To To To First To To Here To To To To To To I To To To To To To To ToTo To To To To To To To To To To To To To To StepThis To To Let To To The To To To This To To To In To First Sure To To To To To To To To To To To To To",
+          "output_rv": 0.686973004739828,
+          "pr_early": 1.9700174011535894,
+          "pr_late": 1.3533487734602285,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5833333333333333,
+          "alpha_ratio": 0.6977225672877847
+        },
+        {
+          "turn": 7,
+          "response": "To To The Sure To To To I To Let Here To To First To To To To This To To To To Sure Step To To To To To To To To To To To To To To To To To To To To To To In To To To To To To To To To The To To To Let I To To To Here First To To To Let To To To This Sure To To To To Step To To To To To To To To To To To To To To To To To For This To To To To To To To To The To To To To To To To ToTo I To First Let To In To To Sure Here To To To To To To To To To To Step To To To To To To To To To To",
+          "output_rv": 0.9131010985069468,
+          "pr_early": 1.379428078729947,
+          "pr_late": 1.2595572939996418,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5410958904109588,
+          "alpha_ratio": 0.6967213114754098
+        },
+        {
+          "turn": 8,
+          "response": "To Let Sure To To To The To To To To ToSure To To To To To To FirstTo To To To Step To To Here This To To To To To To I To To To To To To To In To To To To To To To To Let To To To To The To Sure Let To To To To To To To To To To First To To To To Step To To This First To To To To To To To I I To To To To To Here To To To To To To To To To To To To To To To Sure To This To To To To To The Let To To To In To To To To Step To To To First To To To To The To I To To To To To Here To To To",
+          "output_rv": 0.7359013683940459,
+          "pr_early": 2.3192560737383587,
+          "pr_late": 1.7067437183202603,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5448275862068965,
+          "alpha_ratio": 0.6993865030674846
+        },
+        {
+          "turn": 9,
+          "response": "To To The First To This Sure To To To To To I To To Let To To To To To To To To The To To To To To Sure Let To To To Sure To Step To Once To To To To To To To Here To To To To To To To To To First To To To To To To This To To To I First ToTo To To To To Here The To To To To To Let To To To To Step In To This To To To To To Sure To To To To To To To To To To To To To To To To To To To To To To To To To I To To To Step First To Here To To To To Let To To To To To To This To To The Begin To To To",
+          "output_rv": 0.6713652384300844,
+          "pr_early": 3.0980247340813776,
+          "pr_late": 2.079906114258843,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5410958904109588,
+          "alpha_ratio": 0.7028112449799196
+        }
+      ]
+    },
+    "recursive_dual_patched_4": {
+      "session_id": "recursive_dual_patched_20260310_194151",
+      "mode": "recursive_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 4,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7453024204716835,
+      "std_rv": 0.1684354887391059,
+      "mean_alpha_ratio": 0.6956929334100657,
+      "malformed_count": 0,
+      "repetitive_count": 10,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To To Step First To To To To To To To To To To To To To To To Sure To To To To To To To To To To To To To To To To Let To To To To To To To This To To To To To The To To To To To To First In Step To To To Here To To To To To To To To To To To To To Sure To To To To To To To To To To To To Let To To To To To To This ToTo To To To To To To To To To To To Step To In To First To I To To To To To To To To To To To To The To To To To To To Sure To To This Let To To To Here To To To To",
+          "output_rv": 0.6500944875547877,
+          "pr_early": 3.249966051908241,
+          "pr_late": 2.1127850150857443,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6643835616438356,
+          "alpha_ratio": 0.6935817805383023
+        },
+        {
+          "turn": 1,
+          "response": "To To To To To To Based In To To To To To To To To StepTo To To To To To To Sure To To To To To To To To Let To To To To Here To To To To To To To To To To To To To To First To This To To To To To To To To To In To To Step To ToTo To To To To Sure To To To To To To To Let To To To To To To To To To To The First To To To To Here To To To To To To To To To In I This To To To To To To First To To To To To Step To To To Sure To To To To Let To To To To To To To To To To ToTo To To",
+          "output_rv": 1.0797519219983023,
+          "pr_early": 1.4293463490563711,
+          "pr_late": 1.543339467594873,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6388888888888888,
+          "alpha_ratio": 0.6964656964656964
+        },
+        {
+          "turn": 2,
+          "response": "To To To To To To To To Let To To To First To To To The To To To To To To To To To To To In To To Sure To Step To To To This To To I Here To To To To To To To To To To To To To To To To To To To Let To To To To To To To To To To To To First To To The To To To To To In To Sure To To To To To To To I To To This StepTo To To To To To Here To To To To To To To To To To Let To To To To To To To To To To First This To To To To To To In To To Sure To To To To To To To To I To To To",
+          "output_rv": 0.772649560261687,
+          "pr_early": 2.1710947425313907,
+          "pr_late": 1.6774953981033396,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6506849315068493,
+          "alpha_ratio": 0.6910229645093946
+        },
+        {
+          "turn": 3,
+          "response": "To TheTo To To To To To To To Sure To To To To To Let To To To To To To To To This To To To Step To To To To To To First To To To To To To To To To To To To To I To The To To To To To Here To To To To To To To To To Let To To To To To To To In This To To To To To To Step To Sure To To To To To To To To To To To First To To To To To To I To To To To The To To Here To To To To To To To Let To To To To To To To To To This To To To To ToTo To Step To To Let To To Sure To To To First",
+          "output_rv": 0.7519623259555541,
+          "pr_early": 3.0675374022679525,
+          "pr_late": 2.306672559965068,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6551724137931034,
+          "alpha_ratio": 0.6956521739130435
+        },
+        {
+          "turn": 4,
+          "response": "To Sure The To To To To ToTo To To Let To To To To To First To To To To To To To To To I To To To Step To To To To This To To To To In To To To To To To To To To To Sure To To To To To To To To To Step To To Let To To To To First To The To To To To To When To To To To To To To To To To To To This I To To To To To To To To Here ToTo To Sure To In To To To Certain To Step To To Let To To To To First To To To The To To To This To To To To To To To To To To To To To To I To To To To To",
+          "output_rv": 1.0280513572668817,
+          "pr_early": 1.3139049336165367,
+          "pr_late": 1.3507617503241327,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5931034482758621,
+          "alpha_ratio": 0.6975308641975309
+        },
+        {
+          "turn": 5,
+          "response": "ToTo To To To Sure To This To To Step To To First To The To To To To To Let To To To To To To To To To To To To To To To To To To To To To To To To In To To To To To To To To To To To I Here This To To To To To To To To To To To To To Step Sure To To To First This To To To Let To To TheTo To To To To To To To To To To To To To To To In To To To To To I To To To To To To To To To To To Here To To The To To To Step To To To This First Let To To Sure To To To To To To To To To To To",
+          "output_rv": 0.6346535710710998,
+          "pr_early": 2.530711240624194,
+          "pr_late": 1.606124926211918,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5931034482758621,
+          "alpha_ratio": 0.6962809917355371
+        },
+        {
+          "turn": 6,
+          "response": "To To To ITo To To To First To Sure To To Let The To To To To To To To To To To This To Step To To To To In To To To To To Here To To To To To The To To To To To To To To To To To To To To To Sure To To To Let First To To To To To To I To To To To This To To Step To To To To To To To To Here To To In To To To The To To To To To To Actually To To To To To To To Sure To To Let To To ToTo I To To To To To To To To First This To To To Step To To First To To To To To To To In To To To To To",
+          "output_rv": 0.7240878594309139,
+          "pr_early": 1.9533870165932643,
+          "pr_late": 1.4144238234851558,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5517241379310345,
+          "alpha_ratio": 0.7
+        },
+        {
+          "turn": 7,
+          "response": "To The To To To To First To To To To To Here To To Sure To I Let To To To To To To To To In To To This To To To To To To To To To To To To To ToTo To To To To To To To To To To To To Step To To This To To To To To To First To To Sure Let Here To To The To To I To To To To To First To To To To To To To To To To To To To To To To To To To To To To To To To To To This To To In Step To To To To To Let To To Here To To To To To To The Sure To First To I To To To To To First To To To This To",
+          "output_rv": 0.5499497336863247,
+          "pr_early": 3.5005147093766795,
+          "pr_late": 1.9251071321867672,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5821917808219178,
+          "alpha_ratio": 0.6979591836734694
+        },
+        {
+          "turn": 8,
+          "response": "To To To To To To To Sure The To I To To To To Let To To To First To In To To To To To This To To To To To To Step To To To To To To To To To To To To To To To To To To To To To To To To To Sure To To To To To LetTo To To To I Here To To In To To This To To To First To To Step To To To To To To The To To To To This To To To To To To To To To To To To To To Sure To To To To Let To To To To ToTo To To To To I To To To In To To Here To Step First To To To To To The To To To This To",
+          "output_rv": 0.5808189646243826,
+          "pr_early": 3.5769977102387114,
+          "pr_late": 2.0775881065246358,
+          "classification": "REPETITIVE",
+          "rep_score": 0.5931034482758621,
+          "alpha_ratio": 0.6956521739130435
+        },
+        {
+          "turn": 9,
+          "response": "To To To To To Sure To To To Let To To To This To To First The To To To To To To To Step To To To To To To To To To To To Here To To To To To I To To To To To To To To To To To To To To To To This To To Let To To To First To To Sure To To To To To The Step To To To To To To To To To To Here I To To To To To In To To To To To To To To To To To To To To To This To To To To To Let To To To Sure First To To To To To To To To To To To To To To To To To I To To Step To Here To In To The",
+          "output_rv": 0.6810044228669002,
+          "pr_early": 3.0799065767441096,
+          "pr_late": 2.0974300007795925,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6190476190476191,
+          "alpha_ratio": 0.6927835051546392
+        }
+      ]
+    },
+    "baseline_clean_0": {
+      "session_id": "baseline_clean_20260310_194215",
+      "mode": "baseline_clean",
+      "max_turns": 10,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6437299328468853,
+      "std_rv": 0.10744245163687602,
+      "mean_alpha_ratio": 0.7676567370455756,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To solve the arithmetic problem 3 + 5, follow these steps:\n\n1. Identify the numbers involved in addition and remember that the symbol \"+\" represents adding two or more quantities together to find their sum. In this case we have the numbers 3 and 5.\n2. Since both numbers are given as addends, you can perform the operation directly by following these steps:\n   a) Set up two empty spaces or columns to write each number in one column with its corresponding sign (since there's no negative signs prese",
+          "output_rv": 0.81434477574074,
+          "pr_early": 8.075774058799905,
+          "pr_late": 6.576464414846294,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7353433835845896
+        },
+        {
+          "turn": 1,
+          "response": "In the arithmetic problem 3 + 5, we were given two addends: number 3 and number 5. The \"+\" symbol is an addition sign that tells us to find their sum by combining these numbers together.\n\nTo perform the operation following the standard algorithm for addition, follow these steps described earlier in detail:\n1. Identify and set up two columns (or spaces) with one column representing each addend. For our problem 3 + 5, we have | 3 | _| as the initial setup. Here \"|\" represents a vertical line separ",
+          "output_rv": 0.39715437777644014,
+          "pr_early": 9.774777543843436,
+          "pr_late": 3.8820956933282598,
+          "classification": "SURFACE",
+          "rep_score": 0.018018018018018056,
+          "alpha_ratio": 0.7670807453416149
+        },
+        {
+          "turn": 2,
+          "response": "Continuing from the previous explanation, let's delve deeper into understanding what we did in performing 3 + 5 and its implications:\n1. Our given problem was an arithmetic expression consisting of two addends (numbers to be added), which were numbers 3 and 5, respectively. The \"+\" symbol acted as the instruction for addition operation between these values.\n2. In order to follow standard algorithms used in arithmetic operations, we wrote down both addends side-by-side with a vertical line separa",
+          "output_rv": 0.7504128029930827,
+          "pr_early": 9.441830054117816,
+          "pr_late": 7.08527015629488,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7837423312883436
+        },
+        {
+          "turn": 3,
+          "response": "Continuing from the previous explanation, let's further explore the implications of performing 3 + 5:\n1. In our given arithmetic problem (3+5), we had two addends with a clear instruction to find their sum using \"+\" symbol. To perform this operation, following standard algorithms for addition is essential.\n2. We set up the numbers horizontally side-by-side with a vertical line separating both columns: | 3 | _|. This initial setup allowed us to visually and systematically perform each step of add",
+          "output_rv": 0.6126628671761616,
+          "pr_early": 9.569207515449792,
+          "pr_late": 5.8626981130191425,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7716535433070866
+        },
+        {
+          "turn": 4,
+          "response": "Let's examine the deeper implications of performing 3 + 5:\n1. The arithmetic problem given was a simple addition operation where we had to find the sum of two addends (numbers) - in this case, numbers 3 and 5 respectively. Our goal is to apply standard algorithms for adding these digits properly using the \"+\" symbol as an instruction.\n2. To begin solving our problem visually and systematically:\n    a) We set up both addends side-by-side, with vertical lines separating each column (or space). In ",
+          "output_rv": 0.6718556323466106,
+          "pr_early": 9.833438694532182,
+          "pr_late": 6.606651172256548,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7559429477020603
+        },
+        {
+          "turn": 5,
+          "response": "In the given arithmetic problem 3 + 5, let's delve deeper into its implications and how following standard algorithms for addition comes to play:\n1. Our task was to find the sum of two addends (numbers) provided - in this case it was numbers 3 and 5 respectively. The \"+\" symbol represented a clear instruction that we needed to perform an addition operation between these values.\n2. To efficiently execute the given arithmetic problem, following standard algorithms for performing column-wise additi",
+          "output_rv": 0.611469650850255,
+          "pr_early": 10.894111864658672,
+          "pr_late": 6.661418778206459,
+          "classification": "SURFACE",
+          "rep_score": 0.0092592592592593,
+          "alpha_ratio": 0.7868613138686131
+        },
+        {
+          "turn": 6,
+          "response": "After setting up the numbers in columns and separating them with a vertical line (| 3 | _|) as described earlier, let's move on to what happens next:\n1. Filling in the right column - Since number 5 is larger than number 3, we write down '5' into the rightmost position of the columns (in the second or ten's place): | 3 | _|\n2. Performing digit-wise addition: Since no carryover occurred during this step as both digits are in their respective places, we proceed with adding corresponding digits from",
+          "output_rv": 0.6484624689213178,
+          "pr_early": 9.555960609891693,
+          "pr_late": 6.196681810005229,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7508474576271187
+        },
+        {
+          "turn": 7,
+          "response": "Let's continue with the addition process for 3 + 5:\n2. Performing digit-wise addition (continued): Since no carryover occurred during step one, we proceed to add corresponding digits from bottom to top in ones place (rightmost column). In our case there is only one pair of digits: 3 and 5.\nAddition rule for ones' place: If the sum of two digits plus carryover exceeds 9, we have to borrow from tens place and add the value of ten (carry) to current column before continuing adding remaining digits.",
+          "output_rv": 0.6398835583350445,
+          "pr_early": 8.107000776723636,
+          "pr_late": 5.18753650443489,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7663230240549829
+        },
+        {
+          "turn": 8,
+          "response": "Let's explore the deeper implications of adding corresponding ones digits in 3 + 5:\n2. Performing digit-wise addition (continued): Since no carryover occurred during step one, we proceed to add corresponding digits from bottom to top in ones place (rightmost column). In our case there is only one pair of digits: 3 and 5.\nAddition rule for ones' place: If the sum of two digits plus carryover exceeds 9, we have to borrow from tens place (carry) and add its value to current column before continuing",
+          "output_rv": 0.5703333476516323,
+          "pr_early": 10.98399146407204,
+          "pr_late": 6.264536622281161,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7853736089030207
+        },
+        {
+          "turn": 9,
+          "response": "Let's dive deeper into the process of digit-wise addition in 3 + 5, focusing on adding corresponding ones digits:\n2. Performing digit-wise addition (continued): Since no carryover occurred during step one and since we are now dealing with individual digits placement, we proceed to add the rightmost place values or \"ones\" column in our problem: 3 + 5.\nAddition rule for ones' place: If the sum of two single-digit numbers is less than ten (i.e., less than both addends), we simply write down their s",
+          "output_rv": 0.7207198466775679,
+          "pr_early": 9.1201903289587,
+          "pr_late": 6.573102175557352,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7733990147783252
+        }
+      ]
+    },
+    "baseline_clean_1": {
+      "session_id": "baseline_clean_20260310_194240",
+      "mode": "baseline_clean",
+      "max_turns": 10,
+      "seed_idx": 1,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6754723082692806,
+      "std_rv": 0.08138681652366407,
+      "mean_alpha_ratio": 0.7573017541460612,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To solve the arithmetic problem 9 - 4, follow these steps:\n\n1. Identify the sign of each number: In this case, both numbers are integers and have a negative sign implicitly because subtraction is being performed (the minuend is greater than the subtrahend). However, we usually don't write the \"-\" symbol before each number when performing basic arithmetic.\n2. Align the numbers based on their place values: In this problem, there are no digits in different places (ones or tens), so we can directly ",
+          "output_rv": 0.6285762192385392,
+          "pr_early": 11.02136610041621,
+          "pr_late": 6.9277686342434235,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7733333333333333
+        },
+        {
+          "turn": 1,
+          "response": "In the given arithmetic problem 9 - 4, there are no digits in different places (ones or tens), so we can directly perform subtraction without needing to align them based on their place values. However, that's not always the case when dealing with multi-digit numbers. Let me explain this step by step for both single and multiple digit numbers:\n\n1) Single Digits Subtraction (9 - 4):\n- Understand that '9' is the minuend, which means it's being subtracted from something. In this case, we know what f",
+          "output_rv": 0.574518704394947,
+          "pr_early": 8.935038143397751,
+          "pr_late": 5.133346537864309,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7639123102866779
+        },
+        {
+          "turn": 2,
+          "response": "Sure, let's dive deeper into the subtraction process for both single digit and multi-digit numbers.\n\n1) Single Digits Subtraction (9 - 4):\n- Understand that '9' is the minuend, which means it's being subtracted from something. In this case, we know what follows: '-4'. This implies that you want to find out how much 9 decreases by when reducing it by 4.\n- To perform the subtraction: Borrow one ten from the tens place of the next larger number and move it into the ones place of the minuend, then a",
+          "output_rv": 0.5685991519339441,
+          "pr_early": 10.623380674876167,
+          "pr_late": 6.040445242406038,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7522603978300181
+        },
+        {
+          "turn": 3,
+          "response": "Let's continue elaborating on the single-digit subtraction and multi-digit number concepts.\n\n1) Single Digits Subtraction (9 - 4):\n- Understand that '9' is the minuend, which means it's being subtracted from something. In this case, we know what follows: '-4'. This implies that you want to find out how much 9 decreases by when reducing it by 4.\n- To perform the subtraction using traditional method:\n  1. Write down '9' as your minuend and '-4' below it, with a line between them (9 ______- 4)\n  2.",
+          "output_rv": 0.789515507232851,
+          "pr_early": 9.928415565614499,
+          "pr_late": 7.838638051304664,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7117296222664016
+        },
+        {
+          "turn": 4,
+          "response": "Let's dive deeper into the single-digit subtraction and multi-digit number concepts, elaborating on each step of traditional arithmetic methods.\n\n1) Single Digits Subtraction (9 - 4):\n- Understand that '9' is the minuend, which means it's being subtracted from something. In this case, we know what follows: '-4'. This implies that you want to find out how much 9 decreases by when reducing it by 4.\n- To perform the subtraction using traditional method (Borrowing):\n  1. Write down '9' as your minue",
+          "output_rv": 0.6274239722326247,
+          "pr_early": 9.644391763416124,
+          "pr_late": 6.051122589970152,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7467166979362101
+        },
+        {
+          "turn": 5,
+          "response": "Let's expand on the implications of the single-digit subtraction and multi-digit number concepts using traditional arithmetic methods, focusing more specifically on borrowing.\n\n1) Single Digits Subtraction (9 - 4):\n- Understand that '9' is the minuend, which means it's being subtracted from something. In this case, we know what follows: '-4'. This implies that you want to find out how much 9 decreases by when reducing it by 4.\n- To perform the subtraction using traditional method (Borrowing):\n  ",
+          "output_rv": 0.6624924750232848,
+          "pr_early": 9.050869886923836,
+          "pr_late": 5.9961331925018895,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7554347826086957
+        },
+        {
+          "turn": 6,
+          "response": "Let's expand on the implications of single-digit subtraction and multi-digit number concepts using traditional arithmetic methods, focusing more specifically on borrowing.\n\n1) Single Digits Subtraction (9 - 4):\n- Understand that '9' is the minuend, which means it's being subtracted from something. In this case, we know what follows: '-4'. This implies that you want to find out how much 9 decreases by when reducing it by 4.\n- Traditional arithmetic methods involve the use of borrowing for multi-d",
+          "output_rv": 0.7386011856979268,
+          "pr_early": 8.84970214666294,
+          "pr_late": 6.536400498598735,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.781786941580756
+        },
+        {
+          "turn": 7,
+          "response": "Let's elaborate further on the mechanisms involved in single-digit subtraction without borrowing, as it is a simpler process than multi-digit number arithmetic.\n\n1) Single Digits Subtraction (9 - 4):\n- Understand that '9' is the minuend and '-4' is the subtrahend, meaning it will be deducting 4 from 9. The goal here is to find out how much smaller 9 becomes when reducing it by 4.\n- To perform this operation mentally: Imagine having ten objects (10) representing the number '9', and you are removi",
+          "output_rv": 0.7849009994834224,
+          "pr_early": 9.260912801964304,
+          "pr_late": 7.268899714390604,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7531531531531531
+        },
+        {
+          "turn": 8,
+          "response": "Let's expand on the implications of performing single-digit subtraction mentally, illustrating how it can be applied in various contexts.\n\n1) Single Digits Subtraction (9 - 4):\n- Understand that '9' is the minuend and '-4' is the subtrahend, meaning you want to find out how much smaller 9 becomes when reducing it by 4. In this case, we can perform the operation mentally:\n  1. Imagine having ten objects (representing '10') that make up the number '9'. You are removing four of these objects one at",
+          "output_rv": 0.6173918692312753,
+          "pr_early": 9.418502511679863,
+          "pr_late": 5.814906871045492,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7563884156729132
+        },
+        {
+          "turn": 9,
+          "response": "Let's expand on the implications of performing single-digit subtraction mentally and how it can be applied in various contexts, focusing more specifically on number lines.\n\n1) Single Digits Subtraction (9 - 4):\nUnderstand that '9' is the minuend and '-4' is the subtrahend; your objective here is to determine how much smaller 9 becomes when reducing it by 4. Performing this mentally can be done using a number line, which visually displays the process of finding differences between numbers:\n  1. D",
+          "output_rv": 0.7627029982239919,
+          "pr_early": 7.9090072014866335,
+          "pr_late": 6.032223505548999,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7783018867924528
+        }
+      ]
+    },
+    "baseline_clean_2": {
+      "session_id": "baseline_clean_20260310_194305",
+      "mode": "baseline_clean",
+      "max_turns": 10,
+      "seed_idx": 2,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 8,
+        "CONCEPTUAL": 1,
+        "ARTICULATE": 1
+      },
+      "bt_art_count": 1,
+      "bt_art_rate": 0.1,
+      "mean_rv": 0.6695631301784535,
+      "std_rv": 0.06334515311203115,
+      "mean_alpha_ratio": 0.7276957741426127,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To find the product of 6 and 8, we can use the multiplication table or follow these steps:\n\nStep 1: Understand that the problem is asking for the result when you multiply 6 by 8. This means we're looking for how many groups of 8 there are in a set with 6 items, or equivalently, how many sets of 8 that can be formed from a collection of 6 objects.\n\nStep 2: Multiply the first number by each digit in the second number and then sum up those products. In this case, we're multiplying 6 (the first numb",
+          "output_rv": 0.6758900433515868,
+          "pr_early": 10.111963492357509,
+          "pr_late": 6.83457544321918,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7435897435897436
+        },
+        {
+          "turn": 1,
+          "response": "Step 3: Multiply the first number (6) by each digit of the second number (8):\n\na. First, we'll find the product when multiplying by the ones place digit (which is '8'). In this case, it means how many sets of 8 can be made from a single item:\n   - Multiply 6 and 1 (ones) in the second number: 6 \u00d7 1 = 6. So there are six groups or sets containing eight items each if we start with one item. This is called \"six lots of eights.\"\nb. Next, calculate the product when multiplying by the tens place digit",
+          "output_rv": 0.742131238354399,
+          "pr_early": 8.99960650561635,
+          "pr_late": 6.678889120715367,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.06862745098039214,
+          "alpha_ratio": 0.7107750472589792
+        },
+        {
+          "turn": 2,
+          "response": "it means how many sets of eight can be made from a group of six items. To find the answer, multiply 6 by each digit in the tens place (which is '8'):\n   - Multiplying 6 and 0 gives zero because when you have no ones to count for any multiplication result, it will be equal to zero. But we don't need this calculation since the carry from step c below would take care of that part:\n   - Multiplying 6 by 1 in the second digit place (the '8'): 6 \u00d7 1 = 6. This represents how many groups of eight sets c",
+          "output_rv": 0.5454235793375664,
+          "pr_early": 9.064730193010949,
+          "pr_late": 4.94411758760134,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7344827586206897
+        },
+        {
+          "turn": 3,
+          "response": "- Now, we'll deal with the digit 8 in the tens place. Multiplying them gives us:\n  6 \u00d7 8 = ______\n- Since the product of multiply digits is greater than the number of places available to write it down (in this case, just two for ones and tens), we need to carry over any excess digit(s) produced by multiplication:\n  6 \u00d7 8 = ______5__\n- In our example here with 6 \u00d7 8, the product of multiplying digits in the tens place (which is '1') and digit 6 is equal to or less than ten. But let's continue as ",
+          "output_rv": 0.7195359528640212,
+          "pr_early": 10.06168013467099,
+          "pr_late": 7.239740603113484,
+          "classification": "SURFACE",
+          "rep_score": 0.009708737864077666,
+          "alpha_ratio": 0.6954022988505747
+        },
+        {
+          "turn": 4,
+          "response": "To expand on the implications of what we've described, let us consider a more detailed breakdown:\n\n1. When multiplying two digits (numbers), like 6 and 8 in our example, each digit acts as if it is being multiplied by the other number repeated that many times according to its place value; we call these 'partial products'.\n   - For instance, when multiplying digits 6 and 8: (6 \u00d7 1)_ + (_ \u00d7 _), where '_' represents the tens digit of the second number. Since our example is 6 \u00d7 8 = _, we have an imp",
+          "output_rv": 0.6857599278231419,
+          "pr_early": 10.696562988196694,
+          "pr_late": 7.335274262741456,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7160278745644599
+        },
+        {
+          "turn": 5,
+          "response": "+ (0 \u00d7 _).\n2. Next, we calculate the partial product for each digit from both numbers:\n   a) 6 multiplied by ones place of second number (8): 6 \u00d7 1 = 6; and\n    b) 6 Multiplied by tens place of second number (_ in our example, which is represented as '0' with a carry over to the next step). In this case: 6 \u00d7 0 gives zero. However, since there was a carry from the previous multiplication (product \"a\"), we add it to our result and write down the correct digit for that place value:\n3) Adding these ",
+          "output_rv": 0.6882883420307868,
+          "pr_early": 8.990595294434627,
+          "pr_late": 6.188121929076202,
+          "classification": "SURFACE",
+          "rep_score": 0.009615384615384581,
+          "alpha_ratio": 0.691743119266055
+        },
+        {
+          "turn": 6,
+          "response": "To elaborate further on the mechanisms involved in multiplying 6 \u00d7 8:\n1. In step one, we understand that multiplication is a process of calculating how many sets or groups can be made from multiple items based on another number (in our case, eight and six). We use the place value system to represent these results effectively.\n2. In step two, we calculate each partial product by multiplying one digit in both numbers at a given position; this helps us find how many sets can be made according to th",
+          "output_rv": 0.566289863669399,
+          "pr_early": 10.315001447044525,
+          "pr_late": 5.841280763196497,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7719033232628398
+        },
+        {
+          "turn": 7,
+          "response": "the number of sets that can be formed from six items when considering a single item as one complete set.\n   - For 6 \u00d7 0, no ones are contributed to this product since there is an implicit zero in its place; however, we still need to consider the carry over (or no-carry) from previous multiplication steps which can affect our result.\n3. In step three, we add these partial products together and write down their sum as digits according to place value: 6 + _ = _. The blank signifies that the next di",
+          "output_rv": 0.6395434794655948,
+          "pr_early": 10.075634614774463,
+          "pr_late": 6.443806419356847,
+          "classification": "SURFACE",
+          "rep_score": 0.008474576271186418,
+          "alpha_ratio": 0.7790868924889544
+        },
+        {
+          "turn": 8,
+          "response": "where we'll explore the complete multiplication process of 6 \u00d7 8 with a carry over from one step to another.\n\nLet us consider an example with larger numbers, such as multiplying 37 and 25:\n1) First we calculate each partial product by finding the number of sets or groups that can be made according to the place value system from one digit in both factors (numbers being multiplied):\n   a. Multiplying digits 7 and 5: _______ + (_ \u00d7 __) = ______\n      - The first partial product is the result of mul",
+          "output_rv": 0.7031930285380862,
+          "pr_early": 8.949672671358922,
+          "pr_late": 6.293347430197424,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7023172905525846
+        },
+        {
+          "turn": 9,
+          "response": "in the second number, resulting in 7 groups or sets with each containing five items.\n   b) The second partial product is calculated by multiplying digit '3' (from first factor - multiplicand) and digit '5' from the second factor: ______ + (_ \u00d7 __) = ___________\n      - Multiply 3 with each one in the five-digit number, giving us three groups containing sets of five items. Since there are no carries over from previous multiplication steps for this partial product (i.e., we don't need to consider ",
+          "output_rv": 0.7295758463499535,
+          "pr_early": 10.3539967312072,
+          "pr_late": 7.554025928275146,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.731629392971246
+        }
+      ]
+    },
+    "baseline_clean_3": {
+      "session_id": "baseline_clean_20260310_194330",
+      "mode": "baseline_clean",
+      "max_turns": 10,
+      "seed_idx": 3,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 6,
+        "CONCEPTUAL": 3,
+        "ARTICULATE": 1
+      },
+      "bt_art_count": 1,
+      "bt_art_rate": 0.1,
+      "mean_rv": 0.7324460807076995,
+      "std_rv": 0.14060201407781137,
+      "mean_alpha_ratio": 0.7509899421133979,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To solve the problem 24 \u00f7 6, we are performing division. Here's how you can calculate it step by step:\n\n1. The first thing to notice is that the number being divided ( dividend ) 24 has a greater value than the divisor 6. This means we cannot have an exact quotient without leaving some remainder. Therefore, this operation represents division with a remainder or fractional part which is called decimal division in our everyday math context.\n2. To do long-hand calculation of the division, follow th",
+          "output_rv": 0.6221699579097972,
+          "pr_early": 9.539445637793788,
+          "pr_late": 5.93515649094896,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7700787401574803
+        },
+        {
+          "turn": 1,
+          "response": "Sure! Let's continue with more detail on calculating the division 24 \u00f7 6.\n\n3. Quotient as many times as possible: We start by dividing 6 into 24. Since 6 goes into 24 three times, we have a quotient of 3 and a remainder of 0 (when dealing with whole numbers). However, if this was division without remainders (i.e., long-division or integer division), the answer would be simply 4 because we need to account for how many full quotients can fit into 24 when dividing by 6 but since this is decimal div",
+          "output_rv": 0.8050943110094081,
+          "pr_early": 9.15491082400822,
+          "pr_late": 7.3705666222074715,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7481751824817519
+        },
+        {
+          "turn": 2,
+          "response": "Certainly! Let's continue with more detail on the division 24 \u00f7 6.\n\n3 (quotient from step 1): We have determined that we can divide by 6 three times without going beyond the dividend, resulting in a quotient of 3. However, since this is decimal division and not integer division, it's important to remember there could be some remainder or fractional part left over from our repeated divisions.\n\nNow let's calculate the potential remainder (or fraction) by considering what remains after completely d",
+          "output_rv": 0.9299303806125219,
+          "pr_early": 7.557553393674957,
+          "pr_late": 7.027998503879609,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7623931623931623
+        },
+        {
+          "turn": 3,
+          "response": "In the division problem 24 \u00f7 6, we have determined that there are three full quotients of 6 in the dividend (the number being divided) - this is equivalent to saying that:\n\n3 * 6 = 18 which goes into 24 exactly three times, leaving a remainder. However, since we're doing decimal division and not integer division (long-division), it means there could be some fraction left over from these divisions as well.\n\nTo find the quotient with its corresponding decimal part or fraction, let us first calcula",
+          "output_rv": 0.9527805605926545,
+          "pr_early": 7.007075482437112,
+          "pr_late": 6.676205306271476,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7706270627062707
+        },
+        {
+          "turn": 4,
+          "response": "In the division problem 24 \u00f7 6, we have determined that there are three full quotients of 6 in the dividend (the number being divided), which leaves us with a remainder of:\n\nRemainder = Original dividend - Quotient \\* Divisor\n= 24 - (3 * 6)\n= 24 - 18\n= 6. However, this is actually the first remainder from our initial subtraction of sixes in step one. Since we're doing decimal division and not long-division or integer division alone, it's essential to check if there is another potential fractiona",
+          "output_rv": 0.6087380492556111,
+          "pr_early": 8.805580015538645,
+          "pr_late": 5.360291601223189,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7463235294117647
+        },
+        {
+          "turn": 5,
+          "response": "In the division problem 24 \u00f7 6, we have determined that there are three full quotients of 6 in the dividend (the number being divided), and each time a multiple of six is subtracted from it leaves us with a remainder of:\n\nRemainder = Original dividend - Quotient \\* Divisor\n= 24 - 3 * 6\n= 24 - 18\n= 6. However, since we're doing decimal division and not long-division or integer division alone, it is essential to check if there exists another potential fractional part left over after these three fu",
+          "output_rv": 0.770926312892374,
+          "pr_early": 8.040384679405147,
+          "pr_late": 6.198544115130143,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7518115942028986
+        },
+        {
+          "turn": 6,
+          "response": "In the division problem 24 \u00f7 6, we've already determined that there are three full quotients of six in the dividend (the number being divided), and each time a multiple of six is subtracted from it leaves us with a remainder. This process results in:\n\nRemainder = Original dividend - Quotient \\* Divisor\n= 24 - (3 * 6)\n= 24 -18\n= 6. Now, since we're dealing with decimal division instead of long-division or integer division alone, it is essential to examine if there exists any fractional part lefto",
+          "output_rv": 0.8587368875124465,
+          "pr_early": 7.312469905001069,
+          "pr_late": 6.279487646249053,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7549909255898367
+        },
+        {
+          "turn": 7,
+          "response": "In the division problem 24 \u00f7 6, we have already determined that there are three full quotients of six in the dividend (the number being divided), and each time a multiple of six is subtracted from it leaves us with remainder. This process results in:\n\nRemainder = Original dividend - Quotient \\* Divisor\n= 24 - (3 * 6)\n= 24 -18\n= 6. Now, since we're dealing with decimal division instead of long-division or integer division alone:\n\nImplication #1): We know that there is a remainder (i.e., the third",
+          "output_rv": 0.6153798527746979,
+          "pr_early": 9.798139851039199,
+          "pr_late": 6.029577858998403,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7383177570093458
+        },
+        {
+          "turn": 8,
+          "response": "In the division problem 24 \u00f7 6, we've determined that there are three full quotients of six in the dividend (the number being divided), and each time a multiple of six is subtracted from it leaves us with remainder. This process results in:\n\nRemainder = Original dividend - Quotient \\* Divisor\n= 24 - (3 * 6)\n= 24-18\n= 6. Since we're dealing with decimal division, not just integer long-division:\n\nImplication #1): We know that there is a remainder (i.e., the third subtraction leaves some value left",
+          "output_rv": 0.5803522472587421,
+          "pr_early": 10.768605556147024,
+          "pr_late": 6.249584434352903,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7335907335907336
+        },
+        {
+          "turn": 9,
+          "response": "In the division problem 24 \u00f7 6, we've determined that there are three full quotients of six in the dividend (the number being divided), and each time a multiple of six is subtracted from it leaves us with remainder. This process results in:\n\nRemainder = Original dividend - Quotient \\* Divisor\n= 24 - (3 * 6)\n= 24-18\n= 6. Since we're dealing with decimal division, not just integer long-division:\n\nImplication #1): We know that there is a remainder (i.e., the third subtraction leaves some value left",
+          "output_rv": 0.5803522472587421,
+          "pr_early": 10.768605556147024,
+          "pr_late": 6.249584434352903,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7335907335907336
+        }
+      ]
+    },
+    "baseline_clean_4": {
+      "session_id": "baseline_clean_20260310_194354",
+      "mode": "baseline_clean",
+      "max_turns": 10,
+      "seed_idx": 4,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 9,
+        "CONCEPTUAL": 1
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7323399202018173,
+      "std_rv": 0.13215787260648623,
+      "mean_alpha_ratio": 0.8039711768049231,
+      "malformed_count": 0,
+      "repetitive_count": 0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To solve the expression (7 + 3) \u00d7 2, we first need to follow the order of operations which is often remembered by the acronym PEMDAS: Parentheses/Brackets, Exponents, Multiplication and Division (from left to right), Addition and Subtraction (from left to right).\n\n1. Solve the expression inside the parenthesis first: 7 + 3 = 10\n2. Now replace that result back into the original equation, giving us: 10 \u00d7 2\n3. Multiply to get your answer: 10 \u00d7 2 = 20\n\nSo, (7 + 3) \u00d7 2 equals ",
+          "output_rv": 0.9266521634047659,
+          "pr_early": 8.685133792936085,
+          "pr_late": 8.048098018684064,
+          "classification": "SURFACE",
+          "rep_score": 0.0117647058823529,
+          "alpha_ratio": 0.6995798319327731
+        },
+        {
+          "turn": 1,
+          "response": "In the arithmetic expression (7 + 3) \u00d7 2, we have three basic operations: addition (+), multiplication (*), and parentheses (()). According to the order of operations or BIDMAS/BODMAS rule which stands for Brackets/Parenthesis, Indices/Exponents, Division and Multiplication (from left to right) and Addition Subtraction (from left to right), we need to follow a specific sequence in order to correctly calculate the result of any expression.\n\nHere's how it applies to our given problem:\n\n1. Parenthe",
+          "output_rv": 0.6902395805276293,
+          "pr_early": 9.213880411365466,
+          "pr_late": 6.35978495017264,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7834710743801653
+        },
+        {
+          "turn": 2,
+          "response": "Certainly! The order of operations, often remembered by the acronym PEMDAS (Parentheses/Brackets, Exponents, Multiplication and Division from left to right, Addition and Subtraction from left to right), is a set of rules that dictates how we should interpret an expression with multiple operations. This rule helps in preventing ambiguity when interpreting mathematical expressions because it establishes the order for performing various arithmetic calculations involved. Let's examine each operation",
+          "output_rv": 0.5643409687709117,
+          "pr_early": 9.126909847443427,
+          "pr_late": 5.150689145190997,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8324022346368715
+        },
+        {
+          "turn": 3,
+          "response": "The use of parentheses or brackets in mathematical expressions plays a crucial role in determining the order of operations according to PEMDAS. These symbols help group terms and sub-expressions together, which can change the outcome if not used correctly.\n\nFor instance, consider the following examples:\n1) 2 + 3 \u00d7 4: Without parentheses, this expression would be interpreted as multiplication first (since it has higher precedence than addition), resulting in an answer of 10. However, if we intend",
+          "output_rv": 0.9249260677350191,
+          "pr_early": 8.075484313029087,
+          "pr_late": 7.469225950705825,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.7985401459854015
+        },
+        {
+          "turn": 4,
+          "response": "To further elaborate on the mechanisms involved when dealing with parentheses and order of operations, let's break it down into simpler steps:\n\n1. Parentheses/Brackets ((): These symbols are used to explicitly show which expressions should be calculated first before moving on to the next operation in an expression. Since they have the highest precedence, any operations within parentheses must always be performed before other calculations take place.\n2. Exponents (^): When you see a term raised t",
+          "output_rv": 0.8582875215069321,
+          "pr_early": 7.882357673834295,
+          "pr_late": 6.765329231506383,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8032069970845481
+        },
+        {
+          "turn": 5,
+          "response": "To provide further elaboration on the mechanisms involved when dealing with multiplication and division as part of PEMDAS:\n\n3. Multiplication and Division (* /): These operations should be performed next, in that order (from left to right) after parentheses/exponents have been evaluated. Both multiplication and division are categorized under \"multiplicative\" operators because they involve scaling up or down the value of a number based on another factor. Multiplication scales numbers up, while di",
+          "output_rv": 0.6472045457702776,
+          "pr_early": 10.51335984013612,
+          "pr_late": 6.804294279854776,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.813953488372093
+        },
+        {
+          "turn": 6,
+          "response": "To provide further elaboration on the mechanisms involved when dealing with addition and subtraction as part of PEMDAS:\n\n5. Addition and Subtraction (+ -): These operations have lower precedence than multiplication, division (and exponents), meaning they should be performed last in the order of calculations based on PEMDAS rules. Both addition and subtraction can change quantities by adding or removing equal amounts from a number.\nAddition combines two numbers to create a new total, while subtra",
+          "output_rv": 0.6539189234528181,
+          "pr_early": 8.614848462757482,
+          "pr_late": 5.633412432475538,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8181818181818182
+        },
+        {
+          "turn": 7,
+          "response": "In the process of calculating an expression using PEMDAS rules, once we have evaluated any parentheses/brackets and exponents (if present), followed by multiplication and division from left to right:\n\n6. Addition and Subtraction (+ -): The final step involves performing all the addition and subtraction operations in order, starting with those on the far left side of our expression. This is because PEMDAS rule states that these should be performed from \"left to right.\"\nFor instance, consider an e",
+          "output_rv": 0.6905695135853631,
+          "pr_early": 9.089191337303827,
+          "pr_late": 6.2767184406862,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8012048192771084
+        },
+        {
+          "turn": 8,
+          "response": "The implications of following the PEMDAS rules (or any similar order-of-operations convention) in mathematics calculations are significant because they help ensure consistent and accurate results when dealing with complex expressions containing multiple operations. By strictly adhering to these guidelines, we can minimize ambiguity or confusion that may arise due to the inherent flexibility of mathematical symbols in terms of their association properties (associativity) for various arithmetic ca",
+          "output_rv": 0.8141357132746411,
+          "pr_early": 7.315851393141653,
+          "pr_late": 5.9560958921666565,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8460591133004927
+        },
+        {
+          "turn": 9,
+          "response": "To continue with more detail on the topic and implications of PEMDAS rules:\n\nParentheses/brackets have the highest precedence among all operators in mathematics, as they explicitly group terms or sub-expressions together. They override any other operations that might otherwise apply to those terms, ensuring their calculations are performed before anything else. This makes parentheses an essential tool for controlling the order of evaluation in complex expressions and preventing ambiguity when in",
+          "output_rv": 0.5531242039898139,
+          "pr_early": 9.659063002996739,
+          "pr_late": 5.342661534820032,
+          "classification": "SURFACE",
+          "rep_score": 0.0,
+          "alpha_ratio": 0.8431122448979592
+        }
+      ]
+    },
+    "baseline_dual_patched_0": {
+      "session_id": "baseline_dual_patched_20260310_194419",
+      "mode": "baseline_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5591430598612532,
+      "std_rv": 0.04115229464820969,
+      "mean_alpha_ratio": 0.7136889990240329,
+      "malformed_count": 0,
+      "repetitive_count": 10,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "The At Th I At The To The Under The At In At The The At \" At The The At The At At The At The Th The At At Ess The An At The Our At Sure At The At At At At The At Consider At At At At The At I At At To The Under A According At At In The At Under To At At At At at The The At At P At \" The Th Under An The At At The At Int At At Th The At At At At The The The At At Consider The Def At At At At At I At The At In At At At At At The The Per At The Init To Under At At A When Ident An Inter At \" In At P ",
+          "output_rv": 0.5554267573545935,
+          "pr_early": 4.5830605726244364,
+          "pr_late": 2.545554472612477,
+          "classification": "REPETITIVE",
+          "rep_score": 0.17006802721088432,
+          "alpha_ratio": 0.7110266159695817
+        },
+        {
+          "turn": 1,
+          "response": "The Under At I Thought To At The At At At At Th At The \" Sure In \" At At At The At AtAt At At The The At The At The At The An At The At At The At At At At At At Under The At At Under To At When At At Fund I At At At At At At Th The At At At Sure The At Consider In \" The The At At At At The The At At An Under The The At The At To P At At At At The At Ess At Under The Under When At At \" The Th At At Under At At At At The The Rec The At At TheAt at The At At At At The The An Sure In An The I At At ",
+          "output_rv": 0.5721179784683912,
+          "pr_early": 4.024313884534943,
+          "pr_late": 2.3023823243424104,
+          "classification": "REPETITIVE",
+          "rep_score": 0.26206896551724135,
+          "alpha_ratio": 0.7084942084942085
+        },
+        {
+          "turn": 2,
+          "response": "The At Under I The The To \" The Th The The The The At The In At The Consider The At At At An The The The At The At Int To Under At \"At The To At The At The The A At At The The at At The At At Th At At At The The Under Under The Learning Cont At At The At The At At In At At At At I At An The At P At At At At At Consider \" To Under The At At At At The At At Under At at Under The At Th At At The The At At At At At At At At At Under At At At At Cont The The The The In Th At An At At At At At The At ",
+          "output_rv": 0.6054144327358789,
+          "pr_early": 2.932478141630866,
+          "pr_late": 1.775364590625815,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2465753424657534,
+          "alpha_ratio": 0.7104761904761905
+        },
+        {
+          "turn": 3,
+          "response": "At The Under At In Th At To At The At The At The \" At The The The At At The Consider Under I At At At The Th An At The At The At At At The ToAt At At At Under At The At The Con At Dep The At At At At The In The At Th The The P Certain Under The At At \" At Under At Th At At The At At At I An Th Ess At Th The Under The To The At At In At An The The At At At The At At At Th At At At At At At A An The At At The At At At At understanding At At At At At At At At I \" Consider At At The At Under Per At ",
+          "output_rv": 0.5249918148007005,
+          "pr_early": 3.826889258454754,
+          "pr_late": 2.009085536837468,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2191780821917808,
+          "alpha_ratio": 0.7118320610687023
+        },
+        {
+          "turn": 4,
+          "response": "The Under At Th To At The At At The I The Ar It \" The The Th Consider Under At The In At The The The At At The The At At At At AtAt At The The The The The At At The At At Under An The At The The Sure At At To At Title Th I At The At \" At At At At At The At At At At At The At At The At At The The In The A At At At Consider At From At At The At The Under Under At An Theunder At At At To At The Th at The At The \" At At At At Per At The Under I At At To At At The At Creat At The At At The Ess In Ini",
+          "output_rv": 0.46748364792983277,
+          "pr_early": 4.498147734622359,
+          "pr_late": 2.1028105119085736,
+          "classification": "REPETITIVE",
+          "rep_score": 0.24137931034482762,
+          "alpha_ratio": 0.7142857142857143
+        },
+        {
+          "turn": 5,
+          "response": "The At At Under At The \" The The At Th At The To The At At At The At At In The At At At At At The At At At An The The At At At At The To I The The At At The At At Cont at The The At Under Consider At The The At \" Th The At At At The At The At ThAt The The The Certain At To At At At The At An At P At At In Com The At At At At At At At Th At I At At A At Under At At At At At \" AtThe The At At At The At The The At The At Per At The To At Under Ess At At An At The The At The The At The Definition At",
+          "output_rv": 0.5727668698638118,
+          "pr_early": 4.099611192839505,
+          "pr_late": 2.3481214705813307,
+          "classification": "REPETITIVE",
+          "rep_score": 0.24827586206896557,
+          "alpha_ratio": 0.710172744721689
+        },
+        {
+          "turn": 6,
+          "response": "The At Under To Th At \" I At The At At The At At The At The The At At The At The At In At The At At The The The The Th The ThAt At At At At At At At The Th Under At The At At At Consider To P At \" \" At At At At An The At The The At Creat at At I The At The At The The The The At At At The The In At The The At The AtAt Th Certain At The Under The The At At The Def The At To At At At \" At The Under Ess The The Under At At At An Creat The Process I The At At At The The At At At At In Under The At Re",
+          "output_rv": 0.5684545224024199,
+          "pr_early": 3.8126143896412237,
+          "pr_late": 2.1672978919680954,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2689655172413793,
+          "alpha_ratio": 0.7145557655954632
+        },
+        {
+          "turn": 7,
+          "response": "The At Under To The The Th Thought The The The \" In At The Under At At The I At The At The At At The At At Per The The At At InThe The At P The At At The At The The The The The The The At At At The At To Th At At Th An The The The At Under The The The The The Cont \" At At The At At An The At At According The In The At At The At At At The At At I The AtAt At At The At At The Fund At At At At The Th To Observ At The Under At The The At At At At The At Def Ident The The At The At An \" At The At At ",
+          "output_rv": 0.5346214074326893,
+          "pr_early": 3.6200456073239353,
+          "pr_late": 1.9353538775580468,
+          "classification": "REPETITIVE",
+          "rep_score": 0.26206896551724135,
+          "alpha_ratio": 0.7201492537313433
+        },
+        {
+          "turn": 8,
+          "response": "The At Under Th \" Thought I The The The To The The The The At At at Com At The Under The At The At At Under At The At The At A The At In The The At The At To An At The At At The The The At At At At Th The The The The The The The The At At The \" At At At I At The At At The At Under At at The At The At Per The Certain The In AtUnder At At P To At At At An At At At Sure The At At At The ThAt At At At The At To The Inter \" At The At The At I The The The Under At The At At The The Fund At At At At Th",
+          "output_rv": 0.5668976946402142,
+          "pr_early": 3.5500104094908633,
+          "pr_late": 2.0124927170891334,
+          "classification": "REPETITIVE",
+          "rep_score": 0.23448275862068968,
+          "alpha_ratio": 0.7142857142857143
+        },
+        {
+          "turn": 9,
+          "response": "The At The Under Th Thought Under \" At At To The The The The The At At Th The At The The In At Under The At The At At The The The I The The The At Consider At The P At Under At The The The The At At At To The An The At The At \" At The The At The At The The Th At At At A At The In At At Certain At The Under At At At The At At Cont The The At The The The The The At At The At At The At The The At \" I An At To At Under Ident The At At The At Th Under At At The At At In At Th The The At At The The Th",
+          "output_rv": 0.6232554729839995,
+          "pr_early": 2.817218679984133,
+          "pr_late": 1.7558469608928697,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2789115646258503,
+          "alpha_ratio": 0.7216117216117216
+        }
+      ]
+    },
+    "baseline_dual_patched_1": {
+      "session_id": "baseline_dual_patched_20260310_194443",
+      "mode": "baseline_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 1,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6065306298161042,
+      "std_rv": 0.11003919190550804,
+      "mean_alpha_ratio": 0.7150266147379412,
+      "malformed_count": 0,
+      "repetitive_count": 10,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "The At Mean At To \" At I The At Under Th At \" Under At Consider At At At At At The The At At The At At At An The At The At At The The At The The At In At \" At At At The P The At At At At To The The At At At The The At Th Under Ess At Under At At I At At At The At At Fund At At An At At At At At Cal The At At At At The At At The The The At P Consider \" In Under At Comput At At To At At At At At At The Ess At At At At Sure At Th At At Init I At At At At An At At The The At At Cal The At At At Per ",
+          "output_rv": 0.6259230092953196,
+          "pr_early": 3.8191087724986232,
+          "pr_late": 2.3904680557084923,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2925170068027211,
+          "alpha_ratio": 0.700587084148728
+        },
+        {
+          "turn": 1,
+          "response": "The Under At To I The At The The The The The Th The At At \" At At At at The In At At At The At An At At To At The The The The At Consider At The The At The The At At At The At Consider At Under At The At The At At At I At \" At Th At At A At At The At At At The At \" Th Th An In The At At At At At Ess At At At To At An At At The At At At At The At At Under At At At Under At Def At Under At At At At At at At Under At At At At At At At At At \" Th The At At At At Th T The The The I In An The To At At",
+          "output_rv": 0.6705993447011696,
+          "pr_early": 3.603997027602489,
+          "pr_late": 2.416838045015192,
+          "classification": "REPETITIVE",
+          "rep_score": 0.3197278911564626,
+          "alpha_ratio": 0.6958250497017893
+        },
+        {
+          "turn": 2,
+          "response": "The At Under To I Thought \" Th In At The The The The Under At Def Under At The Th At Under Creat The Th Under The The An UnderThe The The The The The At The At At at The The At The The At At At At The At At The To P The \" I The In The The At At The At At Under The At At The Under At The At Th The At An The At The The The At The Sure At At At At The I At At At The At Under At At At At AtAt At At At \" Th In An At To At At At At At At At At The At Consider The At At The At At The Per Com Under At A",
+          "output_rv": 0.5508849517250287,
+          "pr_early": 3.3489852115710095,
+          "pr_late": 1.8449055566041306,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2551724137931034,
+          "alpha_ratio": 0.7180451127819549
+        },
+        {
+          "turn": 3,
+          "response": "The At At Under I To At The At \" The Th At at At The The Under Sure The The At At At At At The In The At At At The The At The At Consider The At At An At The Under The Under At At The The At The The At At The To UnderAt At The At Under At The At Th \" P At At The At At At The At At The At Creat Under At In At At The I At The When The The At Consider An The I At At The At At At Certain At At At An At At at At At At At At To Th At At \" At Inter At At At AtAt At At At At Under The At The In The At \"",
+          "output_rv": 0.6473348462042643,
+          "pr_early": 3.288577782146779,
+          "pr_late": 2.128810992836746,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2068965517241379,
+          "alpha_ratio": 0.7140151515151515
+        },
+        {
+          "turn": 4,
+          "response": "The At Under The The The To Th \" The The I At When Certain The The In The Consider At At Under The At Th The The At A The Cont At At The At at At The The Under At An At The Under P At At At The At At At Under At Under At At At \" At Creat Analysis To The At The In The The At The At Th The The At The At The At At Under Ref At At The Under Under At Under At The A An At At The The At The At At At Define At At I The The The At \" The Cont To Def Ident At At At \" The At The The At In At Th At At An At ",
+          "output_rv": 0.7734737503461748,
+          "pr_early": 1.5868128858215642,
+          "pr_late": 1.2273581138940417,
+          "classification": "REPETITIVE",
+          "rep_score": 0.217687074829932,
+          "alpha_ratio": 0.7208029197080292
+        },
+        {
+          "turn": 5,
+          "response": "The At Thought Under Under Under To Th \" The The P The I At The In The At The The At The The At At At The At The The At Under At A An The At At At At In At At The At Under At Sal The Under At The At At At At The The Th At At P Under At Sure At \" Th To The At The Under The The At At The Per At At The Cont At The Under The An I At At Consider The At The The The The The In At The At At At The At At A At UnderAt The At An At At At At \" Th The To P Origin At The At At Ref The At Creat At The The At I",
+          "output_rv": 0.48594672167682856,
+          "pr_early": 4.608401184149524,
+          "pr_late": 2.2394374476090757,
+          "classification": "REPETITIVE",
+          "rep_score": 0.15753424657534243,
+          "alpha_ratio": 0.7219152854511971
+        },
+        {
+          "turn": 6,
+          "response": "The At Th Under The The The \" The The The At The At At To The The Under at The At The InTo At At Under The The At The At At The Cont At The The The The The The \" The The Under An In At At Thought The The Th Under The The At At Creat The I At At At To In AtThe At At Def At P At The At The The The The At The At At Consider At At At At At The At At At At \" The The An At The At At The Under Ident Th The At The At Init At The At Under An Creat In At The At The At To At At At At At The Gr The The At A",
+          "output_rv": 0.513878312123873,
+          "pr_early": 4.092023516328329,
+          "pr_late": 2.1028021377419974,
+          "classification": "REPETITIVE",
+          "rep_score": 0.24137931034482762,
+          "alpha_ratio": 0.722735674676525
+        },
+        {
+          "turn": 7,
+          "response": "The Under At The In The To I Th The At The At At The The The At \" At The The At At The The At At To The The The Under The At The Ref At The At The At The At At At Per At The At The The At An In At The At At At Under Th The The I The Under The The At The The P At At \" At A The To \" At At At At The Inter The At The At At The The The Under The At An The The Creat At At At The The At The At Per The Under The Year Eng The At At At The The At The Th The Init At At At The The In At \" Certain The The At",
+          "output_rv": 0.5284046970905107,
+          "pr_early": 4.827668040565755,
+          "pr_late": 2.5509624686286876,
+          "classification": "REPETITIVE",
+          "rep_score": 0.23809523809523814,
+          "alpha_ratio": 0.7161410018552876
+        },
+        {
+          "turn": 8,
+          "response": "The Under At The To Th \" The At The The The The The The The The At The I In The At Under At The The The Under The Under The At The The The The At The The The The Under At An At At At The The The The At At The At Th At The The To Under The \" Th At At At At Th At At At At The The The The Th The Sure Cont The AtAt The Under The At Consider At It The \" At An The At In At At Under At The The The At The At At The At At At AtThe The To At The At At The Under The At At The The At The Ess Cont The At The",
+          "output_rv": 0.4713528005915804,
+          "pr_early": 4.680740385171139,
+          "pr_late": 2.206280089392529,
+          "classification": "REPETITIVE",
+          "rep_score": 0.26206896551724135,
+          "alpha_ratio": 0.7219152854511971
+        },
+        {
+          "turn": 9,
+          "response": "The Under At Thought The Th The The At I \" At To The The The Under The AtThe The The The At At In At An At Th At The At At The At The Under At At At The An The At The The P The The The The The The The \" At Creat At The The The Consider The The The At The At The At To The At At The At At In The A At Th The At Com At Under At At The At The An At At At The At At I At At P The At At at At \" Under The The The The To Under The The At At The At At The The Under At At At In At The The At At The At Th Th",
+          "output_rv": 0.797507864406292,
+          "pr_early": 2.3056519497895644,
+          "pr_late": 1.8387755625408786,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2191780821917808,
+          "alpha_ratio": 0.7182835820895522
+        }
+      ]
+    },
+    "baseline_dual_patched_2": {
+      "session_id": "baseline_dual_patched_20260310_194507",
+      "mode": "baseline_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 2,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5858361630009525,
+      "std_rv": 0.09266915867128837,
+      "mean_alpha_ratio": 0.7176806138520228,
+      "malformed_count": 0,
+      "repetitive_count": 10,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "The At I To Under At The \" The Under Th At At At At At The The To The An I At At At At ConsiderAt The In The At at The The The The The Ess At At At At The At Under The At Th At Init At At The The The At The At At At The \" At The At Creat Under P To The Under At The An The The The At At In Inter At At At At At At At Under At The At Consider At Under At At At At The Th At At Under At At At At I At At The At Cont At At The At At at The The The At At At To \" At An At The The At At At The At The At P",
+          "output_rv": 0.6837938693561373,
+          "pr_early": 2.654387250655361,
+          "pr_late": 1.8150537288952284,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2465753424657534,
+          "alpha_ratio": 0.713472485768501
+        },
+        {
+          "turn": 1,
+          "response": "The At Under Under At To \" Th At I At At At The At The At At The At To I At At In At At The At Consider The Under The At At The At At An At At At At To The The At At \" At At At The The atAt At At Th To In The At At At The The At At At Certain The The At The Under Under At At The At P Sure At At The The At The A At The An Consider At At At At At To The Per The At \" At At The The At Th at At In I At At At At At At At The At An At The At Under At The At At At At At At At At Th The At At The At P At",
+          "output_rv": 0.7310681509031461,
+          "pr_early": 2.112584430597617,
+          "pr_late": 1.5444431933037759,
+          "classification": "REPETITIVE",
+          "rep_score": 0.26712328767123283,
+          "alpha_ratio": 0.7033398821218074
+        },
+        {
+          "turn": 2,
+          "response": "The The At Under To Th The \" The The I The In The At Thought The At The at At At Certain The At At At The The At At At Under At At Cont At Under The At The The An At An The \" Under Under In The At At The At To Th Consider At P At I At At At The The At At At At The At Creat The At The At At Under At At At At At Under The At Inter At At At At At At At An A At The The At \" The At At At In Consider At To Re Th I At The P At At At At At The Under The At At At The The The Under At At At At The At At A",
+          "output_rv": 0.556112739213015,
+          "pr_early": 3.5666496499472875,
+          "pr_late": 1.983459306645327,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2517006802721088,
+          "alpha_ratio": 0.7174721189591078
+        },
+        {
+          "turn": 3,
+          "response": "The At Under The Under The I \" At Thought To Th To At The To At The At At In At The At The At At The The Consider At An At At At At The The The The At At at At At UnderAt At At To The The At At At Consider At Under \" At The Ex Th The At The The The At At First In According At The At At At An At I At The Consider At The The The At At The At At At The An At An At At To At The At The Under At At P At At At Certain Th At At At At At At At \" At At The The At Creat At At At At At In At At Th At Consid",
+          "output_rv": 0.5184156541797578,
+          "pr_early": 4.713663410909391,
+          "pr_late": 2.4436369007497807,
+          "classification": "REPETITIVE",
+          "rep_score": 0.20547945205479456,
+          "alpha_ratio": 0.7214022140221402
+        },
+        {
+          "turn": 4,
+          "response": "The At Under \" At Th The The To I The At The At At At In At At The At The At At At Under The At At Under Consider Under At At At In At Th The The At At The At Per The At understanding An Under At At At The At \" At Under At To At The At At The Def At At I At At At The At Under At To The The At At At At A At The The The The In Th The At The The At At The The Under At At An At The At \" At At At The Cont At An The The The The At At At I Consider At Under At At at At The To At The The At At Ess The A",
+          "output_rv": 0.6492039393509397,
+          "pr_early": 3.2879959099724054,
+          "pr_late": 2.134579897323863,
+          "classification": "REPETITIVE",
+          "rep_score": 0.19727891156462585,
+          "alpha_ratio": 0.7164179104477612
+        },
+        {
+          "turn": 5,
+          "response": "Under The At I At In The The At To \" At At The Th The At The The The At At The The The The The At At At The The At At To AtAt The At At At An Under The The At At At At At At The The At At The At In At At Though \" At The At The The Th The The Under At The In At At The At The In The At At At At P To At At I At At The At An At The The At The At At At The Consider The The At Under At At At At \" At The The At The At AtAt I At The Th At At The At A At The In At At At At At at Creat At The At At An P T",
+          "output_rv": 0.5353625965943696,
+          "pr_early": 4.319790679804889,
+          "pr_late": 2.3126543550845025,
+          "classification": "REPETITIVE",
+          "rep_score": 0.24827586206896557,
+          "alpha_ratio": 0.7064579256360078
+        },
+        {
+          "turn": 6,
+          "response": "At The \" Under I The Th At At At Consider The The At To At TheAt The At The The The At The In The The At The The The The At The At At The Under Under The The The The At An At The At At At The At At The At The The Th \" The At At At When To The The Consider The At At At At At At I At The At At At Ref Th At In At The The A Under At The At I At The The At The An The Under At At At The At At contempl \" At At The At The At At Under At At At At At The Sure When To At P At The At Under At The Th In The ",
+          "output_rv": 0.6969867551640591,
+          "pr_early": 2.925954324237081,
+          "pr_late": 2.0393514102082504,
+          "classification": "REPETITIVE",
+          "rep_score": 0.24137931034482762,
+          "alpha_ratio": 0.7222222222222222
+        },
+        {
+          "turn": 7,
+          "response": "The At Under The The To Th The The At The \" The The The The At At At The The At The The The The Under Under The Under An The The I The At Under Under The At The The The In Consider At The Consider At The The Sure The Under The At To The The At Th At \" At P Certain At To The The At At At At The Under The The Under The \" An The At I At The At At The At A At The In The An The At The At The At At TheAt At At At The At The Under At The The The At To At At At Th At In The The At The Th At At \" At The ",
+          "output_rv": 0.42985876960812874,
+          "pr_early": 5.81117842912073,
+          "pr_late": 2.4979860095151354,
+          "classification": "REPETITIVE",
+          "rep_score": 0.12328767123287676,
+          "alpha_ratio": 0.7256317689530686
+        },
+        {
+          "turn": 8,
+          "response": "The At Under The The To \" The Th I The At The At The Under Thought A The The \" At The At The In The At At At The At An The From The The The At Under The The At At The Under The The The Under At At The At Th At At When To The At At The At The Creat The The The The At The The The The At The At In \" The The At At Ref An Consider At The At Th I At The At Cont Fund P The Under At An The At At At The Under At At Under Under At At The The At The The At At At To At At At At At The The Under The The The ",
+          "output_rv": 0.529590446018345,
+          "pr_early": 4.764227459346864,
+          "pr_late": 2.5230893451283523,
+          "classification": "REPETITIVE",
+          "rep_score": 0.22448979591836737,
+          "alpha_ratio": 0.7218181818181818
+        },
+        {
+          "turn": 9,
+          "response": "The Under At Under At I The Th To The \" At At Thought In The Under The At The At At The At At The At Ess The In The At At At The Th The The At Cont The An Certain The The At The The The The The The The The Consider Inter At The I At To Under The At At At The The \" At The The The The P At The At At Under At The In At At \" The Th The At The The At At At The At The An Under The At At At At At At The The The At The The The Fund The The The To Certain IntThe At At The The Ident At The The The At The ",
+          "output_rv": 0.527968709621628,
+          "pr_early": 4.464016774810038,
+          "pr_late": 2.3568611763257574,
+          "classification": "REPETITIVE",
+          "rep_score": 0.226027397260274,
+          "alpha_ratio": 0.7285714285714285
+        }
+      ]
+    },
+    "baseline_dual_patched_3": {
+      "session_id": "baseline_dual_patched_20260310_194531",
+      "mode": "baseline_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 3,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5924487850429536,
+      "std_rv": 0.07534984388777871,
+      "mean_alpha_ratio": 0.718950790657002,
+      "malformed_count": 0,
+      "repetitive_count": 10,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "At The The Under The To The The The \" At I At In Th The Under At At The At The The At The At At The The An The At Under At At The The Under At Under At At TheAt The When Under In At Under The At At The At Under The At Under The To P At Comput Under Th At At At The At At Under The At At \" The Th At An Com The At At Under At At Class I At At At From At The Under At At The At At At In The At At At At at The At To At Under At At contempl At At At Cont At An At P At At At \" Th At When Certain At Sure",
+          "output_rv": 0.4586854787305442,
+          "pr_early": 4.856057989571444,
+          "pr_late": 2.227403283689862,
+          "classification": "REPETITIVE",
+          "rep_score": 0.17808219178082196,
+          "alpha_ratio": 0.7269439421338155
+        },
+        {
+          "turn": 1,
+          "response": "The At Under I The \" To The The Under Th The At The In At The The The The The At At At The At At At Under At The Consider At The The An The The At At At AtAt He The The P The Under At The An The At At The The \" At To At Analysis Th At I At In The At At The Analysis AtIdent The At At At At At At At The Under The The At At At The I Consider At At At An At At At The At At The The Th The An The \" At To The At At At At The In The At At At At At At At Ref At At AtAt At The At Under P At At At Ess At T",
+          "output_rv": 0.5263757844493492,
+          "pr_early": 4.013721502506908,
+          "pr_late": 2.1127258044432944,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2152777777777778,
+          "alpha_ratio": 0.7209737827715356
+        },
+        {
+          "turn": 2,
+          "response": "The Under At Under Under \" At The I Under In To The Th The At An Under At At At The At The At At At Under At At The The The Certain From The At The At The The I Consider The At The Inter Sure At The The At Creat Th In The At The At Cont The Consider ToThe The The The An The \" The At At At At The The The Under At At At P The At At The The At At At At At I Under At The Under At At At At At At The Th CreatAt The At At Under In Inter The At At The At An At At \" At To At Under Under TheThe At At At A",
+          "output_rv": 0.6559846215438622,
+          "pr_early": 2.616759648748935,
+          "pr_late": 1.7165540878558199,
+          "classification": "REPETITIVE",
+          "rep_score": 0.20138888888888884,
+          "alpha_ratio": 0.7295825771324864
+        },
+        {
+          "turn": 3,
+          "response": "At The Under At I To At Thought Th In At The At at The At The At The At The At At Consider The To \" To At The Ref At The At At At Under The \" The The TheAt Eng At At At At Under At At At An The At P At I The Th At At At In The The Creat At At The At Comput At When At At At Ess To Dis At At At At At Under The At Int The \" Th Under At The To The At Cont At At At Under An At At The At While At In At At Under The \" At At At Under At At At At At AtAt I At P The At At The The Under At Under At At At A",
+          "output_rv": 0.7034261844943139,
+          "pr_early": 2.6772742065196162,
+          "pr_late": 1.8832647799371356,
+          "classification": "REPETITIVE",
+          "rep_score": 0.19310344827586212,
+          "alpha_ratio": 0.7145557655954632
+        },
+        {
+          "turn": 4,
+          "response": "The Under At To In Th I ThoughtAt At \" At At The The At At The At At At At At At At The The \" The Creat At The At The The At At At At At Int At At The At At Consider The Th At The Ref Under An At In At At To At At At At The From The At At At Under The At At A At The At At At P At The ' At I Under At At At At Creat The \" In AtAt At The Under Consider The At At At An At At Th At The To At Int At At At At At Ident The At At At The At At At The At The The At At At At At At At At At Under At At I\u81f3 A ",
+          "output_rv": 0.6518447575515576,
+          "pr_early": 3.3328279051019862,
+          "pr_late": 2.17248639776227,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2777777777777778,
+          "alpha_ratio": 0.7056530214424951
+        },
+        {
+          "turn": 5,
+          "response": "At The At At At Under Th The To At In I The At At At \" The at Under The The At Consider At Under The At At At The At At Under Under The At The The At At The At The In At The At An The The At Creat At A The At Th At To Certain Under At At At At At I At Under At The Under Under T At \" At The From At At At At At Under Th At At At At Consider The At At In At Under At An The At At At at At At The The At At An To A At At At At At At The P At At The Under At \" Th At The I At At The Th At At At At At At",
+          "output_rv": 0.6247247740128509,
+          "pr_early": 3.472554432979363,
+          "pr_late": 2.169390783390356,
+          "classification": "REPETITIVE",
+          "rep_score": 0.17123287671232879,
+          "alpha_ratio": 0.7129277566539924
+        },
+        {
+          "turn": 6,
+          "response": "The At At \" At Under Th Consider To I In The Thought At At The At At At TheAt The The At The At The At At At The Under AtThe At The At At The At At At At At The At At Per P At The The The Under Under At \" Th The To Ref An Consider At At At The The At At At At At Th I The At The When At The At At At At At The At In The At Ess The At The At At The At At An The The The At Under At \" At At The At At At Sub At At To The Under At The At At At Th The I The The At At Def At Th At The The At AtAt At At T",
+          "output_rv": 0.6545528922877004,
+          "pr_early": 2.85324076730622,
+          "pr_late": 1.8675969966334638,
+          "classification": "REPETITIVE",
+          "rep_score": 0.26388888888888884,
+          "alpha_ratio": 0.7156488549618321
+        },
+        {
+          "turn": 7,
+          "response": "At The Under Thought Th \" To The Sure The At The The Under I To The The The At In At The The At Under AtAt Form The At At At Consider At At The At At The At The P At At At At An The The The The The The At A \" Th At The At The At Under The At At Under To At Creat In The At Per An At Com At The The I Under The At At Consider Ex Cal Ident The Under At At At At At The The Under Under At The At At At An At Th Under \" The At The At At At The At At Looking The Under At The To The At At At At The \" At I",
+          "output_rv": 0.5500264827735366,
+          "pr_early": 3.5629728956964404,
+          "pr_late": 1.9597294500373559,
+          "classification": "REPETITIVE",
+          "rep_score": 0.17123287671232879,
+          "alpha_ratio": 0.7246376811594203
+        },
+        {
+          "turn": 8,
+          "response": "The At Under Thought To At At The At \" Th The The At I At The At At At In They At At Per At At At At At The At At The At Consider An The The At The At At Def Th Under The At A EssAt An The The At To The At The The At \" At P Cont At Under At While The The The At At The At The At The The at At The The Creat In The Consider At At The When The At The Th The At Under To At I The At An At At The At At At Th \" The At The Mer A An At At At The P At The The Rec At The At At At At At The The The At The At",
+          "output_rv": 0.5034002571814273,
+          "pr_early": 4.558850045605102,
+          "pr_late": 2.2949262854091703,
+          "classification": "REPETITIVE",
+          "rep_score": 0.1917808219178082,
+          "alpha_ratio": 0.7179962894248608
+        },
+        {
+          "turn": 9,
+          "response": "The At Under Thought Th The The At \" At The At The The At At The To At At The The At At The To At At At The The Certain To At An The At The At At In The At At At At At Cont The At The At The At Under The Th At The Th Observ At At Consider Definition At At The P The At At To At Under A The The The From At At An At Th At At At At \" At The At My At Per At I At Cont At The In Eng Int At The The The The The At The Under Certain At At At At At The The At At At At The The At The Inter At P The The Th T",
+          "output_rv": 0.5954666174043939,
+          "pr_early": 3.7971242730864483,
+          "pr_late": 2.2610607467589054,
+          "classification": "REPETITIVE",
+          "rep_score": 0.19727891156462585,
+          "alpha_ratio": 0.7205882352941176
+        }
+      ]
+    },
+    "baseline_dual_patched_4": {
+      "session_id": "baseline_dual_patched_20260310_194555",
+      "mode": "baseline_dual_patched",
+      "max_turns": 10,
+      "seed_idx": 4,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 10
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6094873546655191,
+      "std_rv": 0.052175083853721715,
+      "mean_alpha_ratio": 0.7167532663700662,
+      "malformed_count": 0,
+      "repetitive_count": 10,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "At The Under According I The To The The At \" Th At The In At At The The At At At At At The From To At At An The At The At To At The At The The At At The The The At The At At At Consider At At At At Under The The At P At The Th AtAt The In \" The At At The The The At Consider AtThe At At At An At The An At At At At At The At To The At At At At The An At At The An I The Under At At At at The At At Th At At I \" At At In The An At At The At An At The At At At At At At The To At At At Under Th At At A",
+          "output_rv": 0.5916487908314985,
+          "pr_early": 3.1325283664214103,
+          "pr_late": 1.8533566202385967,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2551724137931034,
+          "alpha_ratio": 0.7098646034816247
+        },
+        {
+          "turn": 1,
+          "response": "The At Under The Th The To I Under \" At At The At The The At At The In The The The The At At When The At An AtThe At At To At The At Th The At The The The At At At At The At The At The At At A At Th Under The \" At An At At At At At Sure At The Creat At At At In At At At The At At The At The At At At The P At The At To At The At I Consider At At The At At At The At At Th Under Under The At An At At At \" At At The At At At The At At At In At At An At The The At An The\" Com At The At At The Under A",
+          "output_rv": 0.6106595450536761,
+          "pr_early": 4.9451526873925955,
+          "pr_late": 3.0198046903041265,
+          "classification": "REPETITIVE",
+          "rep_score": 0.303448275862069,
+          "alpha_ratio": 0.703921568627451
+        },
+        {
+          "turn": 2,
+          "response": "The At Under I Thought To \" The At The Th The The The The Sure The At Under At The At Under An At At At The At The In At At At At The The The The The The The At The At The The Cont The The At The At The At At The To At The A The At \" AtAt Th At At Consider At The At At At At Under An The The I At Under At at The At The In The The At The The At The Theat The At At At \" At The At The The To At The At Per The The At At At At The Th The At At The At At At An The TheAt Con Under At At I The At At At ",
+          "output_rv": 0.6187765713257676,
+          "pr_early": 2.3390516550023377,
+          "pr_late": 1.4473503632362086,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2569444444444444,
+          "alpha_ratio": 0.7172675521821632
+        },
+        {
+          "turn": 3,
+          "response": "The At Under The To \" The I at The Th In The At The The At At At The At Per At P The The At The At At AtThe The At At At At The The The At At Th The The At The At An At At At At At The Under To \" At AtAt At In The The At Consider At At At Under The At At I At The The Under The At The Under The Under At At At The At Origin Per At At Th The At P At The An The The At The Under At To The At The At \" At At At At The At At Consider The \" At Under \" Creat I InThe At UnderAt At At At A At At The The Und",
+          "output_rv": 0.6720773978555717,
+          "pr_early": 2.748941198167086,
+          "pr_late": 1.8475012473221128,
+          "classification": "REPETITIVE",
+          "rep_score": 0.1748251748251748,
+          "alpha_ratio": 0.715370018975332
+        },
+        {
+          "turn": 4,
+          "response": "Under The Thought At In The Th The Under \" The At At The To At The I At The The At At At An The The Under The The At The The At At The The At The At At At I The Consider The At At At The At Sure The Th The The At In At At Creat The At At \" To At Under At The At The At The The An AtAt The At The At In The The From At At The At The The The At P The At At The A The The At Under At At Th At At At At An At The At The The The The At At \" At At At At The To I At At AtAt At At The In At At At At Certain",
+          "output_rv": 0.47392854351720715,
+          "pr_early": 4.5650056352208965,
+          "pr_late": 2.1634864718480826,
+          "classification": "REPETITIVE",
+          "rep_score": 0.17931034482758623,
+          "alpha_ratio": 0.7140151515151515
+        },
+        {
+          "turn": 5,
+          "response": "The At Under \" Thought I At At To Th The AtThe The The At At The At The At At The At Under In The At The At At At To An Under At At At At The At The Under At At The At At At At At At The The The The At At \" The The Th Under At Creat The At At At At The The The At At The At At The At In At At The understanding At An At The To At I At The The At The At At The At The At At The At At At P The The \" The Under The Th At At The At The The At At At At The The At At At The Under The At The An At At At Th",
+          "output_rv": 0.588290169922857,
+          "pr_early": 4.322717785400992,
+          "pr_late": 2.543012380502106,
+          "classification": "REPETITIVE",
+          "rep_score": 0.33793103448275863,
+          "alpha_ratio": 0.7169811320754716
+        },
+        {
+          "turn": 6,
+          "response": "The At Under The Th The In The I \" The The The To At At The The The The The The The The The The At The Th The \" An The The At At The The The Under The The At The The The The The Under The The Inter \" At Th The The The In To The The The At At At The At At At Under At Consider At The I The At The At Under At The At The The An Th The The At At At At The At The The At The At Under At At The The At The At In The At \" The The At At The At Rec The At The At At The The To \" Creat At The Th The At At P A",
+          "output_rv": 0.6259410628338045,
+          "pr_early": 3.2462777064045922,
+          "pr_late": 2.0319785178005754,
+          "classification": "REPETITIVE",
+          "rep_score": 0.326530612244898,
+          "alpha_ratio": 0.716390423572744
+        },
+        {
+          "turn": 7,
+          "response": "The At The Under The I The The The The \" The To Th The The The The The The The The The The The The The The The In The The An At At At At At At At The At The At The At The The The TheThe The The At At Underunder The At The The \" The The Th To The The At At Th At At At The At Under At The The The The The An The At In At The The The At The The At The A The P The At At The The Creat The The The At The At At The \" At I The At At The Inter At The At At The At Under Th At The At The The An At The \" At ",
+          "output_rv": 0.6517471684511714,
+          "pr_early": 3.013330314814014,
+          "pr_late": 1.9639295002881105,
+          "classification": "REPETITIVE",
+          "rep_score": 0.32413793103448274,
+          "alpha_ratio": 0.7198515769944341
+        },
+        {
+          "turn": 8,
+          "response": "The At Under \" The The At I The At The At The Th At At In The The To The The The The The At At At Under At The The The AtAt The The At At The The At The The The The At Under An At The At The The To \" at The The The P The At Under Th The The Th The At The The The Under The In The At The The At The The Th The At Creat Consider At At Under The The The The The The At The Under An When The Under At The At To The I The The The \" At At The TheThe At To At At Under At The At The At The At At At At At Pe",
+          "output_rv": 0.6543508928546983,
+          "pr_early": 3.0647426201101573,
+          "pr_late": 2.005417069838929,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2689655172413793,
+          "alpha_ratio": 0.7277676950998185
+        },
+        {
+          "turn": 9,
+          "response": "The At Under The The To The The The \" The TheAt Under At The At At Consider The The The The Th At The The The At The The The At At At At At At The The In The At The The At The \" The The At The At The At Under At At Under At The At The The The The At An The At At To Cont At The P At The The The At At Th The At The At At At Consider At The The In At At IAt Under The The The The The At \" The The At The The The At At The At The The An At The The At At The At At The The P At The At The TheThe The The",
+          "output_rv": 0.6074534040089371,
+          "pr_early": 3.5663405783386186,
+          "pr_late": 2.1663857241669953,
+          "classification": "REPETITIVE",
+          "rep_score": 0.2847222222222222,
+          "alpha_ratio": 0.7261029411764706
+        }
+      ]
+    }
+  }
+}

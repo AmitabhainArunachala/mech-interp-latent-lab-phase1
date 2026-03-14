@@ -1,0 +1,7 @@
+run_id=20260312_083326
+python_bin=./.venv/bin/python
+watch_pid=none
+provenance_note=base_v01_soft_followups_l4_mlp_then_l5_soft_residual
+started_utc=2026-03-12T08:33:26Z
+
+>>> START l4_mlp_l25_bridge_soft 2026-03-12T08:33:26Z

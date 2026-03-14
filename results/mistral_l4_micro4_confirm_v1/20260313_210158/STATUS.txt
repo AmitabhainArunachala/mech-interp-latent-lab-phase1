@@ -1,0 +1,14 @@
+run_id=20260313_210158
+python_bin=./.venv/bin/python
+started_utc=2026-03-13T21:01:58Z
+
+>>> START l4_micro4_confirmatory_focus_v1 2026-03-13T21:01:58Z
+>>> DONE  l4_micro4_confirmatory_focus_v1 2026-03-13T21:49:33Z
+
+>>> START summarize_l4_micro4_confirmatory_focus_v1 2026-03-13T21:49:33Z
+>>> DONE  summarize_l4_micro4_confirmatory_focus_v1 2026-03-13T21:49:33Z
+
+>>> START rank_l4_micro4_confirmatory_focus_v1 2026-03-13T21:49:33Z
+>>> DONE  rank_l4_micro4_confirmatory_focus_v1 2026-03-13T21:49:33Z
+finished_utc=2026-03-13T21:49:34Z
+mistral_l4_micro4_confirm_v1_complete=1

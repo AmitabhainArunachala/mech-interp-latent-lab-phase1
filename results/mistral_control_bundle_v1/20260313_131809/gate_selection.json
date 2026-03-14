@@ -1,0 +1,21 @@
+{
+  "best_gate_label": "L5",
+  "best_gate_layer": 5,
+  "scores": {
+    "L5": {
+      "run_dir": "results/phase1_mechanism/runs/20260313_131828_causal_state_benchmark_v2_mistral_gate_discovery_L5",
+      "bt_delta": -0.3777777777777778,
+      "rv_contraction_gain": -0.14140072254837976
+    },
+    "L3": {
+      "run_dir": "results/phase1_mechanism/runs/20260313_135941_causal_state_benchmark_v2_mistral_gate_discovery_L3",
+      "bt_delta": -0.4,
+      "rv_contraction_gain": 0.10759561676637353
+    },
+    "L7": {
+      "run_dir": "results/phase1_mechanism/runs/20260313_144151_causal_state_benchmark_v2_mistral_gate_discovery_L7",
+      "bt_delta": -0.4,
+      "rv_contraction_gain": -0.15103763143619453
+    }
+  }
+}

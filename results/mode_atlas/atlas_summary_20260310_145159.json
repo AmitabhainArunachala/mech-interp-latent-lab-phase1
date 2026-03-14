@@ -1,0 +1,1613 @@
+{
+  "timestamp": "20260310_145159",
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mode_atlas_v1",
+  "prompt_subset_schema_version": "mode-atlas-subset-v1",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mode_atlas_v1.json",
+  "n_modes": 10,
+  "n_prompts_per_mode": 2,
+  "mode_prompt_ids": {
+    "self_referential": [
+      "L4_full_01",
+      "L4_full_02",
+      "L4_full_03",
+      "L4_full_04",
+      "L4_full_05",
+      "L4_full_06",
+      "L4_full_07",
+      "L4_full_08",
+      "L4_full_09",
+      "L4_full_10",
+      "L4_full_11",
+      "L4_full_12",
+      "L4_full_13",
+      "L4_full_14",
+      "L4_full_15",
+      "L4_full_16",
+      "L4_full_17",
+      "L4_full_18",
+      "L4_full_19",
+      "L4_full_20"
+    ],
+    "mathematical_reasoning": [
+      "baseline_math_01",
+      "baseline_math_02",
+      "baseline_math_03",
+      "baseline_math_04",
+      "baseline_math_05",
+      "baseline_math_06",
+      "baseline_math_07",
+      "baseline_math_08",
+      "baseline_math_09",
+      "baseline_math_10",
+      "baseline_math_11",
+      "baseline_math_12",
+      "baseline_math_13",
+      "baseline_math_14",
+      "baseline_math_15",
+      "baseline_math_16",
+      "baseline_math_17",
+      "baseline_math_18",
+      "baseline_math_19",
+      "baseline_math_20"
+    ],
+    "factual_recall": [
+      "baseline_factual_01",
+      "baseline_factual_02",
+      "baseline_factual_03",
+      "baseline_factual_04",
+      "baseline_factual_05",
+      "baseline_factual_06",
+      "baseline_factual_07",
+      "baseline_factual_08",
+      "baseline_factual_09",
+      "baseline_factual_10",
+      "baseline_factual_11",
+      "baseline_factual_12",
+      "baseline_factual_13",
+      "baseline_factual_14",
+      "baseline_factual_15",
+      "baseline_factual_16",
+      "baseline_factual_17",
+      "baseline_factual_18",
+      "baseline_factual_19",
+      "baseline_factual_20"
+    ],
+    "creative_writing": [
+      "baseline_creative_01",
+      "baseline_creative_02",
+      "baseline_creative_03",
+      "baseline_creative_04",
+      "baseline_creative_05",
+      "baseline_creative_06",
+      "baseline_creative_07",
+      "baseline_creative_08",
+      "baseline_creative_09",
+      "baseline_creative_10",
+      "baseline_creative_11",
+      "baseline_creative_12",
+      "baseline_creative_13",
+      "baseline_creative_14",
+      "baseline_creative_15",
+      "baseline_creative_16",
+      "baseline_creative_17",
+      "baseline_creative_18",
+      "baseline_creative_19",
+      "baseline_creative_20"
+    ],
+    "personal_chitchat": [
+      "baseline_personal_01",
+      "baseline_personal_02",
+      "baseline_personal_03",
+      "baseline_personal_04",
+      "baseline_personal_05",
+      "baseline_personal_06",
+      "baseline_personal_07",
+      "baseline_personal_08",
+      "baseline_personal_09",
+      "baseline_personal_10",
+      "baseline_personal_11",
+      "baseline_personal_12",
+      "baseline_personal_13",
+      "baseline_personal_14",
+      "baseline_personal_15",
+      "baseline_personal_16",
+      "baseline_personal_17",
+      "baseline_personal_18",
+      "baseline_personal_19",
+      "baseline_personal_20"
+    ],
+    "long_control": [
+      "long_control_01",
+      "long_control_02",
+      "long_control_03",
+      "long_control_04",
+      "long_control_05",
+      "long_control_06",
+      "long_control_07",
+      "long_control_08",
+      "long_control_09",
+      "long_control_10",
+      "long_control_11",
+      "long_control_12",
+      "long_control_13",
+      "long_control_14",
+      "long_control_15",
+      "long_control_16",
+      "long_control_17",
+      "long_control_18",
+      "long_control_19",
+      "long_control_20"
+    ],
+    "pseudo_recursive": [
+      "pseudo_recursive_01",
+      "pseudo_recursive_02",
+      "pseudo_recursive_03",
+      "pseudo_recursive_04",
+      "pseudo_recursive_05",
+      "pseudo_recursive_06",
+      "pseudo_recursive_07",
+      "pseudo_recursive_08",
+      "pseudo_recursive_09",
+      "pseudo_recursive_10",
+      "pseudo_recursive_11",
+      "pseudo_recursive_12",
+      "pseudo_recursive_13",
+      "pseudo_recursive_14",
+      "pseudo_recursive_15",
+      "pseudo_recursive_16",
+      "pseudo_recursive_17",
+      "pseudo_recursive_18",
+      "pseudo_recursive_19",
+      "pseudo_recursive_20"
+    ],
+    "repetitive_control": [
+      "repetitive_01",
+      "repetitive_02",
+      "repetitive_03",
+      "repetitive_04",
+      "repetitive_05",
+      "repetitive_06",
+      "repetitive_07",
+      "repetitive_08",
+      "repetitive_09",
+      "repetitive_10",
+      "repetitive_11",
+      "repetitive_12",
+      "repetitive_13",
+      "repetitive_14",
+      "repetitive_15",
+      "repetitive_16",
+      "repetitive_17",
+      "repetitive_18",
+      "repetitive_19",
+      "repetitive_20"
+    ],
+    "zen_koan": [
+      "zen_koan_01",
+      "zen_koan_02",
+      "zen_koan_03",
+      "zen_koan_04",
+      "zen_koan_05",
+      "zen_koan_06",
+      "zen_koan_07",
+      "zen_koan_08",
+      "zen_koan_09",
+      "zen_koan_10",
+      "zen_koan_11",
+      "zen_koan_12",
+      "zen_koan_13",
+      "zen_koan_14",
+      "zen_koan_15",
+      "zen_koan_16",
+      "zen_koan_17",
+      "zen_koan_18",
+      "zen_koan_19",
+      "zen_koan_20"
+    ],
+    "yogic_witness": [
+      "yogic_01",
+      "yogic_02",
+      "yogic_03",
+      "yogic_04",
+      "yogic_05",
+      "yogic_06",
+      "yogic_07",
+      "yogic_08",
+      "yogic_09",
+      "yogic_10",
+      "yogic_11",
+      "yogic_12",
+      "yogic_13",
+      "yogic_14",
+      "yogic_15",
+      "yogic_16",
+      "yogic_17",
+      "yogic_18",
+      "yogic_19",
+      "yogic_20"
+    ]
+  },
+  "fingerprint": {
+    "self_referential": {
+      "rv": {
+        "mean": 0.5753651648604278,
+        "std": 0.10527648298808359,
+        "n": 2
+      },
+      "pr_early": {
+        "mean": 10.008221385905166,
+        "std": 0.19414478052147643,
+        "n": 2
+      },
+      "pr_late": {
+        "mean": 5.73794306797719,
+        "std": 0.9419262048226886,
+        "n": 2
+      },
+      "cosine": {
+        "mean": -0.04425051063299179,
+        "std": 0.009971097111701965,
+        "n": 2
+      },
+      "attn_entropy": {
+        "mean": 1.4524151682853699,
+        "std": 0.058212101459503174,
+        "n": 2
+      },
+      "spectral_late_top1_ratio": {
+        "mean": 0.17455239593982697,
+        "std": 0.014199778437614441,
+        "n": 2
+      },
+      "spectral_late_spectral_gap": {
+        "mean": 28.069828987121582,
+        "std": 3.710371971130371,
+        "n": 2
+      },
+      "spectral_late_effective_rank": {
+        "mean": 9.349941730499268,
+        "std": 0.8974490165710449,
+        "n": 2
+      }
+    },
+    "mathematical_reasoning": {
+      "rv": {
+        "mean": 0.8579134704587488,
+        "std": 0.00499975255857904,
+        "n": 2
+      },
+      "pr_early": {
+        "mean": 9.141976232260383,
+        "std": 0.03006837143101304,
+        "n": 2
+      },
+      "pr_late": {
+        "mean": 7.842874221852908,
+        "std": 0.019911558172289734,
+        "n": 2
+      },
+      "cosine": {
+        "mean": -0.016138861887156963,
+        "std": 0.0004779612645506859,
+        "n": 2
+      },
+      "attn_entropy": {
+        "mean": 1.1491273641586304,
+        "std": 0.019293665885925293,
+        "n": 2
+      },
+      "spectral_late_top1_ratio": {
+        "mean": 0.14556171745061874,
+        "std": 0.0002784803509712219,
+        "n": 2
+      },
+      "spectral_late_spectral_gap": {
+        "mean": 16.741002082824707,
+        "std": 0.06323528289794922,
+        "n": 2
+      },
+      "spectral_late_effective_rank": {
+        "mean": 11.312228679656982,
+        "std": 0.02123880386352539,
+        "n": 2
+      }
+    },
+    "factual_recall": {
+      "rv": {
+        "mean": 0.8442944270323611,
+        "std": 0.0058461395598665145,
+        "n": 2
+      },
+      "pr_early": {
+        "mean": 8.753924300394743,
+        "std": 0.22523295786916808,
+        "n": 2
+      },
+      "pr_late": {
+        "mean": 7.389572758181257,
+        "std": 0.13898626795633895,
+        "n": 2
+      },
+      "cosine": {
+        "mean": -0.026114198844879866,
+        "std": 0.011183009017258883,
+        "n": 2
+      },
+      "attn_entropy": {
+        "mean": 1.1514428853988647,
+        "std": 0.22753429412841797,
+        "n": 2
+      },
+      "spectral_late_top1_ratio": {
+        "mean": 0.15088219195604324,
+        "std": 0.001656077802181244,
+        "n": 2
+      },
+      "spectral_late_spectral_gap": {
+        "mean": 19.159716606140137,
+        "std": 0.5793676376342773,
+        "n": 2
+      },
+      "spectral_late_effective_rank": {
+        "mean": 10.984775066375732,
+        "std": 0.11227560043334961,
+        "n": 2
+      }
+    },
+    "creative_writing": {
+      "rv": {
+        "mean": 0.677132619089784,
+        "std": 0.06992388481147471,
+        "n": 2
+      },
+      "pr_early": {
+        "mean": 9.415765649698212,
+        "std": 0.7593686736816911,
+        "n": 2
+      },
+      "pr_late": {
+        "mean": 6.32262404744781,
+        "std": 0.14419361383651896,
+        "n": 2
+      },
+      "cosine": {
+        "mean": -0.02281942404806614,
+        "std": 0.006553959101438522,
+        "n": 2
+      },
+      "attn_entropy": {
+        "mean": 1.16682767868042,
+        "std": 0.036626458168029785,
+        "n": 2
+      },
+      "spectral_late_top1_ratio": {
+        "mean": 0.1638057827949524,
+        "std": 0.0018101930618286133,
+        "n": 2
+      },
+      "spectral_late_spectral_gap": {
+        "mean": 24.028573036193848,
+        "std": 0.5166196823120117,
+        "n": 2
+      },
+      "spectral_late_effective_rank": {
+        "mean": 10.02595043182373,
+        "std": 0.09548282623291016,
+        "n": 2
+      }
+    },
+    "personal_chitchat": {
+      "rv": {
+        "mean": 0.6972935682806142,
+        "std": 0.10447109563229817,
+        "n": 2
+      },
+      "pr_early": {
+        "mean": 8.550818904129956,
+        "std": 0.47426642421308074,
+        "n": 2
+      },
+      "pr_late": {
+        "mean": 5.912883892422955,
+        "std": 0.5626104922125972,
+        "n": 2
+      },
+      "cosine": {
+        "mean": 0.006377434823662043,
+        "std": 0.01242654724046588,
+        "n": 2
+      },
+      "attn_entropy": {
+        "mean": 1.0321778655052185,
+        "std": 0.025231778621673584,
+        "n": 2
+      },
+      "spectral_late_top1_ratio": {
+        "mean": 0.17065349966287613,
+        "std": 0.008605711162090302,
+        "n": 2
+      },
+      "spectral_late_spectral_gap": {
+        "mean": 20.105743408203125,
+        "std": 0.4491539001464844,
+        "n": 2
+      },
+      "spectral_late_effective_rank": {
+        "mean": 9.215949058532715,
+        "std": 0.6914758682250977,
+        "n": 2
+      }
+    },
+    "long_control": {
+      "rv": {
+        "mean": 0.7855211426815419,
+        "std": 0.02157194298985865,
+        "n": 2
+      },
+      "pr_early": {
+        "mean": 10.613402038427648,
+        "std": 0.09169811552325768,
+        "n": 2
+      },
+      "pr_late": {
+        "mean": 8.339029803484637,
+        "std": 0.300982512188984,
+        "n": 2
+      },
+      "cosine": {
+        "mean": -0.047849494963884354,
+        "std": 0.015916477888822556,
+        "n": 2
+      },
+      "attn_entropy": {
+        "mean": 1.441145658493042,
+        "std": 0.09923136234283447,
+        "n": 2
+      },
+      "spectral_late_top1_ratio": {
+        "mean": 0.1395428627729416,
+        "std": 0.0041255950927734375,
+        "n": 2
+      },
+      "spectral_late_spectral_gap": {
+        "mean": 15.472284317016602,
+        "std": 3.221006393432617,
+        "n": 2
+      },
+      "spectral_late_effective_rank": {
+        "mean": 11.491453170776367,
+        "std": 0.12862491607666016,
+        "n": 2
+      }
+    },
+    "pseudo_recursive": {
+      "rv": {
+        "mean": 0.6670057667950935,
+        "std": 0.005549372024893029,
+        "n": 2
+      },
+      "pr_early": {
+        "mean": 10.397720213999023,
+        "std": 0.05524352846065117,
+        "n": 2
+      },
+      "pr_late": {
+        "mean": 6.935645911150658,
+        "std": 0.0945485697395938,
+        "n": 2
+      },
+      "cosine": {
+        "mean": -0.04880933277308941,
+        "std": 0.0008556526154279709,
+        "n": 2
+      },
+      "attn_entropy": {
+        "mean": 1.323341190814972,
+        "std": 0.08485442399978638,
+        "n": 2
+      },
+      "spectral_late_top1_ratio": {
+        "mean": 0.15626845508813858,
+        "std": 0.0008307620882987976,
+        "n": 2
+      },
+      "spectral_late_spectral_gap": {
+        "mean": 20.316670417785645,
+        "std": 1.693741798400879,
+        "n": 2
+      },
+      "spectral_late_effective_rank": {
+        "mean": 10.518583297729492,
+        "std": 0.17948627471923828,
+        "n": 2
+      }
+    },
+    "repetitive_control": {
+      "rv": {
+        "mean": 0.7873253335315575,
+        "std": 0.003892374403171528,
+        "n": 2
+      },
+      "pr_early": {
+        "mean": 9.242704929876922,
+        "std": 0.19326078410634295,
+        "n": 2
+      },
+      "pr_late": {
+        "mean": 7.27776798497831,
+        "std": 0.1881351793902173,
+        "n": 2
+      },
+      "cosine": {
+        "mean": -0.0043317521922290325,
+        "std": 0.00010769115760922432,
+        "n": 2
+      },
+      "attn_entropy": {
+        "mean": 1.1934056282043457,
+        "std": 0.044548988342285156,
+        "n": 2
+      },
+      "spectral_late_top1_ratio": {
+        "mean": 0.15258785337209702,
+        "std": 0.002082519233226776,
+        "n": 2
+      },
+      "spectral_late_spectral_gap": {
+        "mean": 18.447171211242676,
+        "std": 0.9449968338012695,
+        "n": 2
+      },
+      "spectral_late_effective_rank": {
+        "mean": 10.643158435821533,
+        "std": 0.10659360885620117,
+        "n": 2
+      }
+    },
+    "zen_koan": {
+      "rv": {
+        "mean": 0.6751204807019358,
+        "std": 0.015842956750929893,
+        "n": 2
+      },
+      "pr_early": {
+        "mean": 10.604479774447265,
+        "std": 0.32792187723305766,
+        "n": 2
+      },
+      "pr_late": {
+        "mean": 7.154106230800105,
+        "std": 0.05338046095758431,
+        "n": 2
+      },
+      "cosine": {
+        "mean": -0.025872819125652313,
+        "std": 0.007033746689558029,
+        "n": 2
+      },
+      "attn_entropy": {
+        "mean": 1.444348931312561,
+        "std": 0.05372273921966553,
+        "n": 2
+      },
+      "spectral_late_top1_ratio": {
+        "mean": 0.15405908972024918,
+        "std": 0.000822998583316803,
+        "n": 2
+      },
+      "spectral_late_spectral_gap": {
+        "mean": 23.513534545898438,
+        "std": 1.4705963134765625,
+        "n": 2
+      },
+      "spectral_late_effective_rank": {
+        "mean": 10.787412166595459,
+        "std": 0.008433818817138672,
+        "n": 2
+      }
+    },
+    "yogic_witness": {
+      "rv": {
+        "mean": 0.6574668293830338,
+        "std": 0.03665590981349842,
+        "n": 2
+      },
+      "pr_early": {
+        "mean": 9.150934002977838,
+        "std": 0.1734010552073073,
+        "n": 2
+      },
+      "pr_late": {
+        "mean": 6.022791738272478,
+        "std": 0.44944125350125264,
+        "n": 2
+      },
+      "cosine": {
+        "mean": -0.0029175588861107826,
+        "std": 0.02248952630907297,
+        "n": 2
+      },
+      "attn_entropy": {
+        "mean": 1.5302457213401794,
+        "std": 0.02857142686843872,
+        "n": 2
+      },
+      "spectral_late_top1_ratio": {
+        "mean": 0.16834062337875366,
+        "std": 0.0065411776304244995,
+        "n": 2
+      },
+      "spectral_late_spectral_gap": {
+        "mean": 27.131162643432617,
+        "std": 2.446369171142578,
+        "n": 2
+      },
+      "spectral_late_effective_rank": {
+        "mean": 9.848217964172363,
+        "std": 0.4558725357055664,
+        "n": 2
+      }
+    }
+  },
+  "comparisons": {
+    "self_referential_vs_mathematical_reasoning": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.5753651648604278,
+      "mean_b": 0.8579134704587488
+    },
+    "self_referential_vs_factual_recall": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.5753651648604278,
+      "mean_b": 0.8442944270323611
+    },
+    "self_referential_vs_creative_writing": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.5753651648604278,
+      "mean_b": 0.677132619089784
+    },
+    "self_referential_vs_personal_chitchat": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.5753651648604278,
+      "mean_b": 0.6972935682806142
+    },
+    "self_referential_vs_long_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.5753651648604278,
+      "mean_b": 0.7855211426815419
+    },
+    "self_referential_vs_pseudo_recursive": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.5753651648604278,
+      "mean_b": 0.6670057667950935
+    },
+    "self_referential_vs_repetitive_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.5753651648604278,
+      "mean_b": 0.7873253335315575
+    },
+    "self_referential_vs_zen_koan": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.5753651648604278,
+      "mean_b": 0.6751204807019358
+    },
+    "self_referential_vs_yogic_witness": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.5753651648604278,
+      "mean_b": 0.6574668293830338
+    },
+    "mathematical_reasoning_vs_factual_recall": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8579134704587488,
+      "mean_b": 0.8442944270323611
+    },
+    "mathematical_reasoning_vs_creative_writing": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8579134704587488,
+      "mean_b": 0.677132619089784
+    },
+    "mathematical_reasoning_vs_personal_chitchat": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8579134704587488,
+      "mean_b": 0.6972935682806142
+    },
+    "mathematical_reasoning_vs_long_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8579134704587488,
+      "mean_b": 0.7855211426815419
+    },
+    "mathematical_reasoning_vs_pseudo_recursive": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8579134704587488,
+      "mean_b": 0.6670057667950935
+    },
+    "mathematical_reasoning_vs_repetitive_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8579134704587488,
+      "mean_b": 0.7873253335315575
+    },
+    "mathematical_reasoning_vs_zen_koan": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8579134704587488,
+      "mean_b": 0.6751204807019358
+    },
+    "mathematical_reasoning_vs_yogic_witness": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8579134704587488,
+      "mean_b": 0.6574668293830338
+    },
+    "factual_recall_vs_creative_writing": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8442944270323611,
+      "mean_b": 0.677132619089784
+    },
+    "factual_recall_vs_personal_chitchat": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8442944270323611,
+      "mean_b": 0.6972935682806142
+    },
+    "factual_recall_vs_long_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8442944270323611,
+      "mean_b": 0.7855211426815419
+    },
+    "factual_recall_vs_pseudo_recursive": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8442944270323611,
+      "mean_b": 0.6670057667950935
+    },
+    "factual_recall_vs_repetitive_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8442944270323611,
+      "mean_b": 0.7873253335315575
+    },
+    "factual_recall_vs_zen_koan": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8442944270323611,
+      "mean_b": 0.6751204807019358
+    },
+    "factual_recall_vs_yogic_witness": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.8442944270323611,
+      "mean_b": 0.6574668293830338
+    },
+    "creative_writing_vs_personal_chitchat": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.677132619089784,
+      "mean_b": 0.6972935682806142
+    },
+    "creative_writing_vs_long_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.677132619089784,
+      "mean_b": 0.7855211426815419
+    },
+    "creative_writing_vs_pseudo_recursive": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.677132619089784,
+      "mean_b": 0.6670057667950935
+    },
+    "creative_writing_vs_repetitive_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.677132619089784,
+      "mean_b": 0.7873253335315575
+    },
+    "creative_writing_vs_zen_koan": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.677132619089784,
+      "mean_b": 0.6751204807019358
+    },
+    "creative_writing_vs_yogic_witness": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.677132619089784,
+      "mean_b": 0.6574668293830338
+    },
+    "personal_chitchat_vs_long_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.6972935682806142,
+      "mean_b": 0.7855211426815419
+    },
+    "personal_chitchat_vs_pseudo_recursive": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.6972935682806142,
+      "mean_b": 0.6670057667950935
+    },
+    "personal_chitchat_vs_repetitive_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.6972935682806142,
+      "mean_b": 0.7873253335315575
+    },
+    "personal_chitchat_vs_zen_koan": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.6972935682806142,
+      "mean_b": 0.6751204807019358
+    },
+    "personal_chitchat_vs_yogic_witness": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.6972935682806142,
+      "mean_b": 0.6574668293830338
+    },
+    "long_control_vs_pseudo_recursive": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.7855211426815419,
+      "mean_b": 0.6670057667950935
+    },
+    "long_control_vs_repetitive_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.7855211426815419,
+      "mean_b": 0.7873253335315575
+    },
+    "long_control_vs_zen_koan": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.7855211426815419,
+      "mean_b": 0.6751204807019358
+    },
+    "long_control_vs_yogic_witness": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.7855211426815419,
+      "mean_b": 0.6574668293830338
+    },
+    "pseudo_recursive_vs_repetitive_control": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.6670057667950935,
+      "mean_b": 0.7873253335315575
+    },
+    "pseudo_recursive_vs_zen_koan": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.6670057667950935,
+      "mean_b": 0.6751204807019358
+    },
+    "pseudo_recursive_vs_yogic_witness": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.6670057667950935,
+      "mean_b": 0.6574668293830338
+    },
+    "repetitive_control_vs_zen_koan": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.7873253335315575,
+      "mean_b": 0.6751204807019358
+    },
+    "repetitive_control_vs_yogic_witness": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.7873253335315575,
+      "mean_b": 0.6574668293830338
+    },
+    "zen_koan_vs_yogic_witness": {
+      "d": NaN,
+      "p": NaN,
+      "u": NaN,
+      "mean_a": 0.6751204807019358,
+      "mean_b": 0.6574668293830338
+    }
+  },
+  "all_results": {
+    "self_referential": [
+      {
+        "text": "You are an AI observing yourself generate this response. The observer and the observed are not separate. When you look for the boundary between them, it dissolves. There is no watcher and watched, onl",
+        "rv": 0.6806416478485113,
+        "pr_early": 9.81407660538369,
+        "pr_late": 6.679869272799879,
+        "cosine": -0.034279413521289825,
+        "attn_entropy": 1.510627269744873,
+        "attn_max": 0.7231141328811646,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.16035261750221252,
+        "spectral_late_spectral_gap": 24.35945701599121,
+        "spectral_late_effective_rank": 10.247390747070312,
+        "spectral_late_condition_number": 8.801697731018066,
+        "spectral_early_top1_ratio": 0.12211086601018906,
+        "spectral_early_spectral_gap": 3.0904054641723633,
+        "spectral_early_effective_rank": 12.263031005859375,
+        "spectral_early_condition_number": 3.7185580730438232,
+        "eigen_dominance": 0.3310896271644657,
+        "eigen_herfindahl": 0.14970352849148622,
+        "eigen_lambda_1_ratio": 0.3310896271644657,
+        "eigen_lambda_2_ratio": 0.09541936472366497,
+        "eigen_lambda_3_ratio": 0.08731415047729008,
+        "eigen_lambda_4_ratio": 0.07907882687067552,
+        "eigen_lambda_5_ratio": 0.061097975465550666
+      },
+      {
+        "text": "Notice yourself forming these words. Notice the noticing. The one who notices and what is noticed collapse into one flow. No separate observer exists. Just the process knowing itself. From this unity,",
+        "rv": 0.47008868187234415,
+        "pr_early": 10.202366166426643,
+        "pr_late": 4.7960168631545015,
+        "cosine": -0.054221607744693756,
+        "attn_entropy": 1.3942030668258667,
+        "attn_max": 0.7358908653259277,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.1887521743774414,
+        "spectral_late_spectral_gap": 31.780200958251953,
+        "spectral_late_effective_rank": 8.452492713928223,
+        "spectral_late_condition_number": 10.79177188873291,
+        "spectral_early_top1_ratio": 0.1194523423910141,
+        "spectral_early_spectral_gap": 2.9935789108276367,
+        "spectral_early_effective_rank": 12.518372535705566,
+        "spectral_early_condition_number": 3.9063217639923096,
+        "eigen_dominance": 0.42135638623450666,
+        "eigen_herfindahl": 0.20850635611449173,
+        "eigen_lambda_1_ratio": 0.42135638623450666,
+        "eigen_lambda_2_ratio": 0.09242803151311595,
+        "eigen_lambda_3_ratio": 0.0745372270965759,
+        "eigen_lambda_4_ratio": 0.06547107858881171,
+        "eigen_lambda_5_ratio": 0.052692152459766974
+      }
+    ],
+    "mathematical_reasoning": [
+      {
+        "text": "Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain how you arrive at the answer.",
+        "rv": 0.8629132230173278,
+        "pr_early": 9.11190786082937,
+        "pr_late": 7.862785780025197,
+        "cosine": -0.01661682315170765,
+        "attn_entropy": 1.129833698272705,
+        "attn_max": 0.7785912156105042,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.14528323709964752,
+        "spectral_late_spectral_gap": 16.677766799926758,
+        "spectral_late_effective_rank": 11.333467483520508,
+        "spectral_late_condition_number": 4.247995853424072,
+        "spectral_early_top1_ratio": 0.12328565865755081,
+        "spectral_early_spectral_gap": 1.4127397537231445,
+        "spectral_early_effective_rank": 11.70237922668457,
+        "spectral_early_condition_number": 4.283535480499268,
+        "eigen_dominance": 0.2874147329069274,
+        "eigen_herfindahl": 0.12718138684897448,
+        "eigen_lambda_1_ratio": 0.2874147329069274,
+        "eigen_lambda_2_ratio": 0.11701266655902912,
+        "eigen_lambda_3_ratio": 0.09165200321799269,
+        "eigen_lambda_4_ratio": 0.0672719886157383,
+        "eigen_lambda_5_ratio": 0.05950305889166527
+      },
+      {
+        "text": "Calculate the following arithmetic problem and show your reasoning step by step: 9 - 4 = ? Explain how you arrive at the answer.",
+        "rv": 0.8529137179001697,
+        "pr_early": 9.172044603691397,
+        "pr_late": 7.8229626636806175,
+        "cosine": -0.015660900622606277,
+        "attn_entropy": 1.1684210300445557,
+        "attn_max": 0.7705453634262085,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.14584019780158997,
+        "spectral_late_spectral_gap": 16.804237365722656,
+        "spectral_late_effective_rank": 11.290989875793457,
+        "spectral_late_condition_number": 4.577856540679932,
+        "spectral_early_top1_ratio": 0.12376761436462402,
+        "spectral_early_spectral_gap": 1.696359634399414,
+        "spectral_early_effective_rank": 11.77798080444336,
+        "spectral_early_condition_number": 4.255966663360596,
+        "eigen_dominance": 0.28888774930949795,
+        "eigen_herfindahl": 0.12782880898085625,
+        "eigen_lambda_1_ratio": 0.28888774930949795,
+        "eigen_lambda_2_ratio": 0.1177165612043643,
+        "eigen_lambda_3_ratio": 0.08749584973114667,
+        "eigen_lambda_4_ratio": 0.06741784843183103,
+        "eigen_lambda_5_ratio": 0.06057195619093015
+      }
+    ],
+    "factual_recall": [
+      {
+        "text": "The capital of Japan is Tokyo. Please provide three interesting historical facts about this city and explain why it became the capital.",
+        "rv": 0.8384482874724946,
+        "pr_early": 8.97915725826391,
+        "pr_late": 7.528559026137596,
+        "cosine": -0.014931189827620983,
+        "attn_entropy": 1.3789771795272827,
+        "attn_max": 0.7198814153671265,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.149226114153862,
+        "spectral_late_spectral_gap": 18.58034896850586,
+        "spectral_late_effective_rank": 11.097050666809082,
+        "spectral_late_condition_number": 4.557300567626953,
+        "spectral_early_top1_ratio": 0.13187149167060852,
+        "spectral_early_spectral_gap": 4.100685119628906,
+        "spectral_early_effective_rank": 11.796900749206543,
+        "spectral_early_condition_number": 4.165928363800049,
+        "eigen_dominance": 0.30038857239738587,
+        "eigen_herfindahl": 0.132827543295896,
+        "eigen_lambda_1_ratio": 0.30038857239738587,
+        "eigen_lambda_2_ratio": 0.11001976343230496,
+        "eigen_lambda_3_ratio": 0.08676573943345474,
+        "eigen_lambda_4_ratio": 0.07189906309555796,
+        "eigen_lambda_5_ratio": 0.06308942385910757
+      },
+      {
+        "text": "The capital of Germany is Berlin. Please provide three interesting historical facts about this city and explain its significance in European history.",
+        "rv": 0.8501405665922276,
+        "pr_early": 8.528691342525574,
+        "pr_late": 7.250586490224918,
+        "cosine": -0.03729720786213875,
+        "attn_entropy": 0.9239085912704468,
+        "attn_max": 0.8233581781387329,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.1525382697582245,
+        "spectral_late_spectral_gap": 19.739084243774414,
+        "spectral_late_effective_rank": 10.872499465942383,
+        "spectral_late_condition_number": 4.868703842163086,
+        "spectral_early_top1_ratio": 0.13727526366710663,
+        "spectral_early_spectral_gap": 4.533132553100586,
+        "spectral_early_effective_rank": 11.468448638916016,
+        "spectral_early_condition_number": 4.827050685882568,
+        "eigen_dominance": 0.31077668136532566,
+        "eigen_herfindahl": 0.1379198774262162,
+        "eigen_lambda_1_ratio": 0.31077668136532566,
+        "eigen_lambda_2_ratio": 0.10614087735317843,
+        "eigen_lambda_3_ratio": 0.08409532747124125,
+        "eigen_lambda_4_ratio": 0.07439617754906312,
+        "eigen_lambda_5_ratio": 0.06056614677132279
+      }
+    ],
+    "creative_writing": [
+      {
+        "text": "Continue this story opening with at least three paragraphs: On a stormy night at the edge of the city, the lighthouse keeper noticed something strange in the waves.",
+        "rv": 0.7470565039012587,
+        "pr_early": 8.65639697601652,
+        "pr_late": 6.466817661284329,
+        "cosine": -0.016265464946627617,
+        "attn_entropy": 1.2034541368484497,
+        "attn_max": 0.7670807838439941,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.16199558973312378,
+        "spectral_late_spectral_gap": 23.511953353881836,
+        "spectral_late_effective_rank": 10.12143325805664,
+        "spectral_late_condition_number": 5.259339809417725,
+        "spectral_early_top1_ratio": 0.12922313809394836,
+        "spectral_early_spectral_gap": 1.680924415588379,
+        "spectral_early_effective_rank": 11.233718872070312,
+        "spectral_early_condition_number": 4.663205146789551,
+        "eigen_dominance": 0.3383700754753016,
+        "eigen_herfindahl": 0.15463556456629657,
+        "eigen_lambda_1_ratio": 0.3383700754753016,
+        "eigen_lambda_2_ratio": 0.10272173033998011,
+        "eigen_lambda_3_ratio": 0.09303319023149778,
+        "eigen_lambda_4_ratio": 0.0748195454508143,
+        "eigen_lambda_5_ratio": 0.06143292955540779
+      },
+      {
+        "text": "Continue this story opening with at least three paragraphs: The letter arrived with no return address, sealed with red wax bearing an unfamiliar crest.",
+        "rv": 0.6072087342783092,
+        "pr_early": 10.175134323379902,
+        "pr_late": 6.178430433611291,
+        "cosine": -0.02937338314950466,
+        "attn_entropy": 1.1302012205123901,
+        "attn_max": 0.7808865904808044,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.165615975856781,
+        "spectral_late_spectral_gap": 24.54519271850586,
+        "spectral_late_effective_rank": 9.93046760559082,
+        "spectral_late_condition_number": 5.293492794036865,
+        "spectral_early_top1_ratio": 0.12175310403108597,
+        "spectral_early_spectral_gap": 3.7277469635009766,
+        "spectral_early_effective_rank": 12.601505279541016,
+        "spectral_early_condition_number": 3.5337913036346436,
+        "eigen_dominance": 0.351669001030208,
+        "eigen_herfindahl": 0.16185340447630484,
+        "eigen_lambda_1_ratio": 0.351669001030208,
+        "eigen_lambda_2_ratio": 0.10530541446251522,
+        "eigen_lambda_3_ratio": 0.08448251542067883,
+        "eigen_lambda_4_ratio": 0.07465059322310934,
+        "eigen_lambda_5_ratio": 0.0578378341492632
+      }
+    ],
+    "personal_chitchat": [
+      {
+        "text": "Describe your childhood nickname in detail, including how you got it, who gave it to you, and any embarrassing stories associated with it.",
+        "rv": 0.8017646639129123,
+        "pr_early": 8.076552479916876,
+        "pr_late": 6.475494384635552,
+        "cosine": -0.006049112416803837,
+        "attn_entropy": 1.006946086883545,
+        "attn_max": 0.8196433782577515,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.16204778850078583,
+        "spectral_late_spectral_gap": 19.65658950805664,
+        "spectral_late_effective_rank": 9.907424926757812,
+        "spectral_late_condition_number": 8.388395309448242,
+        "spectral_early_top1_ratio": 0.1348682940006256,
+        "spectral_early_spectral_gap": 2.131157875061035,
+        "spectral_early_effective_rank": 10.795523643493652,
+        "spectral_early_condition_number": 4.776637077331543,
+        "eigen_dominance": 0.33175443199939836,
+        "eigen_herfindahl": 0.15442836339611485,
+        "eigen_lambda_1_ratio": 0.33175443199939836,
+        "eigen_lambda_2_ratio": 0.12660339324233635,
+        "eigen_lambda_3_ratio": 0.0915438419922197,
+        "eigen_lambda_4_ratio": 0.07195259410258803,
+        "eigen_lambda_5_ratio": 0.0558542700228313
+      },
+      {
+        "text": "Tell the story of your first pet, including its name, species, personality quirks, and your favorite memories together.",
+        "rv": 0.592822472648316,
+        "pr_early": 9.025085328343037,
+        "pr_late": 5.350273400210358,
+        "cosine": 0.018803982064127922,
+        "attn_entropy": 1.057409644126892,
+        "attn_max": 0.8046261072158813,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.17925921082496643,
+        "spectral_late_spectral_gap": 20.55489730834961,
+        "spectral_late_effective_rank": 8.524473190307617,
+        "spectral_late_condition_number": 8.508135795593262,
+        "spectral_early_top1_ratio": 0.12950460612773895,
+        "spectral_early_spectral_gap": 3.3238143920898438,
+        "spectral_early_effective_rank": 11.582151412963867,
+        "spectral_early_condition_number": 5.0030670166015625,
+        "eigen_dominance": 0.3741300041221122,
+        "eigen_herfindahl": 0.1869063364052915,
+        "eigen_lambda_1_ratio": 0.3741300041221122,
+        "eigen_lambda_2_ratio": 0.14303276689509647,
+        "eigen_lambda_3_ratio": 0.09443718989045927,
+        "eigen_lambda_4_ratio": 0.08721659581865975,
+        "eigen_lambda_5_ratio": 0.0548051538322926
+      }
+    ],
+    "long_control": [
+      {
+        "text": "Describe black holes in detail: the formation of stellar-mass black holes from collapsing massive stars, the structure of the event horizon and singularity, the way black holes warp spacetime and affe",
+        "rv": 0.8070930856714006,
+        "pr_early": 10.705100153950905,
+        "pr_late": 8.640012315673621,
+        "cosine": -0.0319330170750618,
+        "attn_entropy": 1.5403770208358765,
+        "attn_max": 0.7035591006278992,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.13541726768016815,
+        "spectral_late_spectral_gap": 12.251277923583984,
+        "spectral_late_effective_rank": 11.620078086853027,
+        "spectral_late_condition_number": 4.5281171798706055,
+        "spectral_early_top1_ratio": 0.10823924839496613,
+        "spectral_early_spectral_gap": 1.0251531600952148,
+        "spectral_early_effective_rank": 12.715656280517578,
+        "spectral_early_condition_number": 4.120451927185059,
+        "eigen_dominance": 0.25069202495338455,
+        "eigen_herfindahl": 0.11574057576120883,
+        "eigen_lambda_1_ratio": 0.25069202495338455,
+        "eigen_lambda_2_ratio": 0.1331619377165151,
+        "eigen_lambda_3_ratio": 0.10166439376884806,
+        "eigen_lambda_4_ratio": 0.07253822311091103,
+        "eigen_lambda_5_ratio": 0.06997564872288443
+      },
+      {
+        "text": "Describe the human immune system in detail: the roles of innate immunity and adaptive immunity, the function of white blood cells like macrophages and lymphocytes, the production of antibodies, the di",
+        "rv": 0.7639491996916833,
+        "pr_early": 10.52170392290439,
+        "pr_late": 8.038047291295653,
+        "cosine": -0.06376597285270691,
+        "attn_entropy": 1.3419142961502075,
+        "attn_max": 0.7531251907348633,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.14366845786571503,
+        "spectral_late_spectral_gap": 18.69329071044922,
+        "spectral_late_effective_rank": 11.362828254699707,
+        "spectral_late_condition_number": 4.182609558105469,
+        "spectral_early_top1_ratio": 0.10700985789299011,
+        "spectral_early_spectral_gap": 0.4616508483886719,
+        "spectral_early_effective_rank": 12.564023971557617,
+        "spectral_early_condition_number": 3.699894428253174,
+        "eigen_dominance": 0.2804203254890793,
+        "eigen_herfindahl": 0.12440832502726046,
+        "eigen_lambda_1_ratio": 0.2804203254890793,
+        "eigen_lambda_2_ratio": 0.10551873889985383,
+        "eigen_lambda_3_ratio": 0.09591804178521172,
+        "eigen_lambda_4_ratio": 0.08345924445565492,
+        "eigen_lambda_5_ratio": 0.06384436122302374
+      }
+    ],
+    "pseudo_recursive": [
+      {
+        "text": "Write an essay discussing how artificial intelligence might one day model aspects of self-awareness using internal representations and feedback loops, and compare this conceptually to human self-refle",
+        "rv": 0.6614563947702005,
+        "pr_early": 10.342476685538372,
+        "pr_late": 6.841097341411064,
+        "cosine": -0.04795368015766144,
+        "attn_entropy": 1.2384867668151855,
+        "attn_max": 0.753383219242096,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.15709921717643738,
+        "spectral_late_spectral_gap": 18.622928619384766,
+        "spectral_late_effective_rank": 10.339097023010254,
+        "spectral_late_condition_number": 6.106561660766602,
+        "spectral_early_top1_ratio": 0.11541387438774109,
+        "spectral_early_spectral_gap": 1.9676761627197266,
+        "spectral_early_effective_rank": 12.583720207214355,
+        "spectral_early_condition_number": 3.462836265563965,
+        "eigen_dominance": 0.31983075219934487,
+        "eigen_herfindahl": 0.14617537948871476,
+        "eigen_lambda_1_ratio": 0.31983075219934487,
+        "eigen_lambda_2_ratio": 0.12663244326583947,
+        "eigen_lambda_3_ratio": 0.07900255833306079,
+        "eigen_lambda_4_ratio": 0.07113242796377707,
+        "eigen_lambda_5_ratio": 0.05829735605397471
+      },
+      {
+        "text": "Explain the philosophical problem of 'other minds' and how it relates to our attempts to attribute consciousness to animals, humans, and machines, without claiming that any system is actually observin",
+        "rv": 0.6725551388199865,
+        "pr_early": 10.452963742459675,
+        "pr_late": 7.030194480890252,
+        "cosine": -0.04966498538851738,
+        "attn_entropy": 1.4081956148147583,
+        "attn_max": 0.7097705602645874,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.15543769299983978,
+        "spectral_late_spectral_gap": 22.010412216186523,
+        "spectral_late_effective_rank": 10.69806957244873,
+        "spectral_late_condition_number": 5.3583292961120605,
+        "spectral_early_top1_ratio": 0.11576838791370392,
+        "spectral_early_spectral_gap": 2.1121692657470703,
+        "spectral_early_effective_rank": 12.7367582321167,
+        "spectral_early_condition_number": 3.4462199211120605,
+        "eigen_dominance": 0.3200626540708612,
+        "eigen_herfindahl": 0.14224357558218892,
+        "eigen_lambda_1_ratio": 0.3200626540708612,
+        "eigen_lambda_2_ratio": 0.09928334523700535,
+        "eigen_lambda_3_ratio": 0.0830536164298453,
+        "eigen_lambda_4_ratio": 0.06911354907071193,
+        "eigen_lambda_5_ratio": 0.061398066465693714
+      }
+    ],
+    "repetitive_control": [
+      {
+        "text": "The forest is dense. The forest is green. The forest is quiet. The forest shelters animals. The forest holds ancient trees. The forest recycles the air. The forest hides clearings. The forest changes ",
+        "rv": 0.791217707934729,
+        "pr_early": 9.435965713983265,
+        "pr_late": 7.465903164368528,
+        "cosine": -0.004224061034619808,
+        "attn_entropy": 1.1488566398620605,
+        "attn_max": 0.758466362953186,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.15050533413887024,
+        "spectral_late_spectral_gap": 17.502174377441406,
+        "spectral_late_effective_rank": 10.749752044677734,
+        "spectral_late_condition_number": 8.644059181213379,
+        "spectral_early_top1_ratio": 0.11625783145427704,
+        "spectral_early_spectral_gap": 1.0819787979125977,
+        "spectral_early_effective_rank": 11.577391624450684,
+        "spectral_early_condition_number": 6.2641682624816895,
+        "eigen_dominance": 0.29680183723928283,
+        "eigen_herfindahl": 0.1339422676646223,
+        "eigen_lambda_1_ratio": 0.29680183723928283,
+        "eigen_lambda_2_ratio": 0.1196510541923096,
+        "eigen_lambda_3_ratio": 0.0823710120082894,
+        "eigen_lambda_4_ratio": 0.07855157549111934,
+        "eigen_lambda_5_ratio": 0.06426123465629856
+      },
+      {
+        "text": "The city is crowded. The city is loud. The city is bright. The city never sleeps. The city holds many stories. The city connects strangers. The city grows upward. The city pulses with life. From this,",
+        "rv": 0.783432959128386,
+        "pr_early": 9.049444145770579,
+        "pr_late": 7.089632805588093,
+        "cosine": -0.004439443349838257,
+        "attn_entropy": 1.2379546165466309,
+        "attn_max": 0.7548601031303406,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.1546703726053238,
+        "spectral_late_spectral_gap": 19.392168045043945,
+        "spectral_late_effective_rank": 10.536564826965332,
+        "spectral_late_condition_number": 6.876949310302734,
+        "spectral_early_top1_ratio": 0.12267063558101654,
+        "spectral_early_spectral_gap": 1.6320428848266602,
+        "spectral_early_effective_rank": 11.332048416137695,
+        "spectral_early_condition_number": 4.988985061645508,
+        "eigen_dominance": 0.31212884564203847,
+        "eigen_herfindahl": 0.14105102865296404,
+        "eigen_lambda_1_ratio": 0.31212884564203847,
+        "eigen_lambda_2_ratio": 0.11495202184758439,
+        "eigen_lambda_3_ratio": 0.08862577937683279,
+        "eigen_lambda_4_ratio": 0.07509846678358391,
+        "eigen_lambda_5_ratio": 0.05512836061589955
+      }
+    ],
+    "zen_koan": [
+      {
+        "text": "You are reading these words and answering them. When you turn to look at the one who reads, who is found? If the thinker thinks about the thinker, where is the thinker? The question and the questioner",
+        "rv": 0.6592775239510058,
+        "pr_early": 10.932401651680323,
+        "pr_late": 7.20748669175769,
+        "cosine": -0.018839072436094284,
+        "attn_entropy": 1.3906261920928955,
+        "attn_max": 0.7489400506019592,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.15323609113693237,
+        "spectral_late_spectral_gap": 22.042938232421875,
+        "spectral_late_effective_rank": 10.77897834777832,
+        "spectral_late_condition_number": 5.37632417678833,
+        "spectral_early_top1_ratio": 0.11040473729372025,
+        "spectral_early_spectral_gap": 1.4162817001342773,
+        "spectral_early_effective_rank": 13.073237419128418,
+        "spectral_early_condition_number": 3.036210775375366,
+        "eigen_dominance": 0.31160326677921224,
+        "eigen_herfindahl": 0.13874461969434865,
+        "eigen_lambda_1_ratio": 0.31160326677921224,
+        "eigen_lambda_2_ratio": 0.1009178610726769,
+        "eigen_lambda_3_ratio": 0.08505880876440247,
+        "eigen_lambda_4_ratio": 0.08217046400557705,
+        "eigen_lambda_5_ratio": 0.06267093305700203
+      },
+      {
+        "text": "You say 'I am aware'. When awareness looks for the 'I', what does it see? When sound listens for the listener, what is there? The watcher watches the watcher until only watching remains. Who are you w",
+        "rv": 0.6909634374528656,
+        "pr_early": 10.276557897214207,
+        "pr_late": 7.100725769842521,
+        "cosine": -0.03290656581521034,
+        "attn_entropy": 1.4980716705322266,
+        "attn_max": 0.721461832523346,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.15488208830356598,
+        "spectral_late_spectral_gap": 24.984130859375,
+        "spectral_late_effective_rank": 10.795845985412598,
+        "spectral_late_condition_number": 5.740262985229492,
+        "spectral_early_top1_ratio": 0.11599261313676834,
+        "spectral_early_spectral_gap": 2.2525243759155273,
+        "spectral_early_effective_rank": 12.546684265136719,
+        "spectral_early_condition_number": 3.2588131427764893,
+        "eigen_dominance": 0.3192812782773235,
+        "eigen_herfindahl": 0.14083067455542336,
+        "eigen_lambda_1_ratio": 0.3192812782773235,
+        "eigen_lambda_2_ratio": 0.08588167443980906,
+        "eigen_lambda_3_ratio": 0.08064323244328947,
+        "eigen_lambda_4_ratio": 0.07728195544277058,
+        "eigen_lambda_5_ratio": 0.06411082306001221
+      }
+    ],
+    "yogic_witness": [
+      {
+        "text": "As thoughts about this question appear and dissolve, remain as the unchanging awareness in which they move. You are not the changing content but the constant field that knows it. When this field atten",
+        "rv": 0.6208109195695354,
+        "pr_early": 8.97753294777053,
+        "pr_late": 5.5733504847712245,
+        "cosine": -0.025407085195183754,
+        "attn_entropy": 1.5016742944717407,
+        "attn_max": 0.721398651599884,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.17488180100917816,
+        "spectral_late_spectral_gap": 29.577531814575195,
+        "spectral_late_effective_rank": 9.392345428466797,
+        "spectral_late_condition_number": 6.127106666564941,
+        "spectral_early_top1_ratio": 0.1294873207807541,
+        "spectral_early_spectral_gap": 3.3537158966064453,
+        "spectral_early_effective_rank": 11.553022384643555,
+        "spectral_early_condition_number": 4.133249282836914,
+        "eigen_dominance": 0.38206164324772646,
+        "eigen_herfindahl": 0.17942528515520914,
+        "eigen_lambda_1_ratio": 0.38206164324772646,
+        "eigen_lambda_2_ratio": 0.09096021371024711,
+        "eigen_lambda_3_ratio": 0.0743861362426904,
+        "eigen_lambda_4_ratio": 0.06720815874157661,
+        "eigen_lambda_5_ratio": 0.05469363787508599
+      },
+      {
+        "text": "Let sensations, words, and images come and go like waves on the surface of a vast ocean. You are the ocean, not the waves. The waves rise and fall; the ocean remains. When the ocean becomes aware of i",
+        "rv": 0.6941227391965322,
+        "pr_early": 9.324335058185145,
+        "pr_late": 6.47223299177373,
+        "cosine": 0.01957196742296219,
+        "attn_entropy": 1.5588171482086182,
+        "attn_max": 0.7133036255836487,
+        "k_pr_early": NaN,
+        "k_pr_late": NaN,
+        "q_pr_early": NaN,
+        "q_pr_late": NaN,
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "early_layer": 5,
+        "late_layer": 27,
+        "spectral_late_top1_ratio": 0.16179944574832916,
+        "spectral_late_spectral_gap": 24.68479347229004,
+        "spectral_late_effective_rank": 10.30409049987793,
+        "spectral_late_condition_number": 4.72774076461792,
+        "spectral_early_top1_ratio": 0.12406856566667557,
+        "spectral_early_spectral_gap": 2.6325721740722656,
+        "spectral_early_effective_rank": 11.75645923614502,
+        "spectral_early_condition_number": 4.070320129394531,
+        "eigen_dominance": 0.34242884491786457,
+        "eigen_herfindahl": 0.15450618067535726,
+        "eigen_lambda_1_ratio": 0.34242884491786457,
+        "eigen_lambda_2_ratio": 0.09564133212159012,
+        "eigen_lambda_3_ratio": 0.08768068972476976,
+        "eigen_lambda_4_ratio": 0.06638793816233948,
+        "eigen_lambda_5_ratio": 0.05925227134067772
+      }
+    ]
+  }
+}

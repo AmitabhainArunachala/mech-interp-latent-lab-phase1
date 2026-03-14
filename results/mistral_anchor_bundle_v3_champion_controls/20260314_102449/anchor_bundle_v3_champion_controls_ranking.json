@@ -1,0 +1,47 @@
+{
+  "verdict": "multisite_sufficient",
+  "top_by_matched_control_induction": [
+    {
+      "condition": "anchor_early_mlp_0p125_bridge_3",
+      "baseline_bt_art_rate": 0.5416666666666666,
+      "baseline_mean_output_rv": 0.6176864556997813,
+      "recursive_bt_art_rate": 0.16666666666666666,
+      "recursive_mean_output_rv": 0.6832029982329212
+    },
+    {
+      "condition": "anchor_bridge_3",
+      "baseline_bt_art_rate": 0.4895833333333333,
+      "baseline_mean_output_rv": 0.6116389648676375,
+      "recursive_bt_art_rate": 0.10416666666666667,
+      "recursive_mean_output_rv": 0.6884819730673343
+    },
+    {
+      "condition": "anchor_only",
+      "baseline_bt_art_rate": 0.375,
+      "baseline_mean_output_rv": 0.6163129489498073,
+      "recursive_bt_art_rate": 0.0625,
+      "recursive_mean_output_rv": 0.6919750772653881
+    },
+    {
+      "condition": "bridge_only_3",
+      "baseline_bt_art_rate": 0.08333333333333333,
+      "baseline_mean_output_rv": 0.9064753152859307,
+      "recursive_bt_art_rate": 0.10416666666666667,
+      "recursive_mean_output_rv": 0.6884819730673343
+    },
+    {
+      "condition": "control",
+      "baseline_bt_art_rate": 0.052083333333333336,
+      "baseline_mean_output_rv": 0.9221209321330562,
+      "recursive_bt_art_rate": 0.0625,
+      "recursive_mean_output_rv": 0.6919750772653881
+    },
+    {
+      "condition": "early_mlp_0p125_bridge_3",
+      "baseline_bt_art_rate": 0.041666666666666664,
+      "baseline_mean_output_rv": 0.9121151417039991,
+      "recursive_bt_art_rate": 0.16666666666666666,
+      "recursive_mean_output_rv": 0.6832029982329212
+    }
+  ]
+}

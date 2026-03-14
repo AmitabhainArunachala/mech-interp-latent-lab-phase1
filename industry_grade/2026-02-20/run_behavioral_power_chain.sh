@@ -10,7 +10,7 @@ log() {
 
 wait_for_sustained() {
   log "Waiting for sustained_gnani_v3 Task-1 process to finish..."
-  while pgrep -f "scripts/sustained_gnani_v3.py" >/dev/null 2>&1; do
+  while ps auxww | grep '[s]cripts/sustained_gnani_v3.py' >/dev/null 2>&1; do
     sleep 60
   done
   log "sustained_gnani_v3 process no longer running."
@@ -36,7 +36,7 @@ PY
 
 wait_for_seed_bridge_idle() {
   log "Waiting for active seed_bridge GPU runs to finish before Task-2..."
-  while pgrep -f "src.pipelines.run --config configs/canonical/seed_bridge_2026_02_20" >/dev/null 2>&1; do
+  while ps auxww | grep '[s]rc.pipelines.run --config configs/canonical/seed_bridge_2026_02_20' >/dev/null 2>&1; do
     sleep 60
   done
   log "No active seed_bridge runs detected."

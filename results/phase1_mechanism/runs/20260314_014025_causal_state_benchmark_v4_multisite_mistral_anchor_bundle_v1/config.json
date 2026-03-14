@@ -1,0 +1,148 @@
+{
+  "experiment": "causal_state_benchmark_v4_multisite",
+  "model": {
+    "device": "cuda",
+    "name": "mistralai/Mistral-7B-v0.1"
+  },
+  "params": {
+    "baseline_groups": [
+      "baseline_math",
+      "baseline_factual",
+      "baseline_creative"
+    ],
+    "bootstrap_resamples": 5000,
+    "control_name": "control",
+    "control_prompt_mode": "baseline",
+    "do_sample": true,
+    "early_layer": 5,
+    "generation_seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "holdout_per_group": 6,
+    "late_layer": 27,
+    "max_length": 512,
+    "max_new_tokens": 128,
+    "max_source_per_label": 72,
+    "max_source_per_session": 8,
+    "min_text_chars": 80,
+    "multisite_interventions": [
+      {
+        "alphas": {
+          "bridge": 0.0,
+          "early_mlp": 0.0
+        },
+        "name": "control"
+      },
+      {
+        "alphas": {
+          "bridge": 0.0,
+          "early_mlp": 0.0
+        },
+        "name": "anchor_only",
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      },
+      {
+        "alphas": {
+          "bridge": 2.0,
+          "early_mlp": 0.0
+        },
+        "name": "bridge_only_2"
+      },
+      {
+        "alphas": {
+          "bridge": 3.0,
+          "early_mlp": 0.0
+        },
+        "name": "bridge_only_3"
+      },
+      {
+        "alphas": {
+          "bridge": 2.0,
+          "early_mlp": 0.0
+        },
+        "name": "anchor_bridge_2",
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      },
+      {
+        "alphas": {
+          "bridge": 3.0,
+          "early_mlp": 0.0
+        },
+        "name": "anchor_bridge_3",
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      },
+      {
+        "alphas": {
+          "bridge": 2.0,
+          "early_mlp": 0.125
+        },
+        "name": "early_mlp_0p125_bridge_2"
+      },
+      {
+        "alphas": {
+          "bridge": 2.0,
+          "early_mlp": 0.125
+        },
+        "name": "anchor_early_mlp_0p125_bridge_2",
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      }
+    ],
+    "negative_classes": [
+      "SURFACE",
+      "REPETITIVE"
+    ],
+    "negative_quantile": 0.65,
+    "negative_session_types": [
+      "baseline"
+    ],
+    "positive_classes": [
+      "BREAKTHROUGH",
+      "ARTICULATE"
+    ],
+    "positive_quantile": 0.35,
+    "positive_session_types": [
+      "recursive"
+    ],
+    "primary_prompt_mode": "recursive",
+    "prompt_bank_version": "2ac959a313614329",
+    "recursive_groups": [
+      "L3_deeper",
+      "L4_full",
+      "L5_refined"
+    ],
+    "source_layers": {
+      "bridge": {
+        "component": "residual",
+        "layer": 25,
+        "window": 32
+      },
+      "early_mlp": {
+        "component": "mlp",
+        "layer": 4,
+        "token_window": 4,
+        "window": 4
+      }
+    },
+    "source_sessions_dir": "results/sustained_gnani_v3_fixed",
+    "temperature": 0.7,
+    "top_p": 0.95
+  },
+  "results": {
+    "phase": "phase1_mechanism",
+    "root": "results"
+  },
+  "run_name": "mistral_anchor_bundle_v1",
+  "seed": 314
+}

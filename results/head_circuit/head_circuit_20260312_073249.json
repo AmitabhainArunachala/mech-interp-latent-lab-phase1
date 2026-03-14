@@ -1,0 +1,215 @@
+{
+  "timestamp": "20260312_073249",
+  "experiment": "head_to_head_patching",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_tier": "core_measurement",
+  "n_prompts": 20,
+  "top_k_heads": 8,
+  "n_unique_intervention_sites": 8,
+  "head_selection_mode": "manual",
+  "ranking_metric": null,
+  "manual_heads": "L5.H29,L27.H10,L27.H18,L27.H26,L27.H5,L18.H1,L28.H3,L19.H1",
+  "head_sweep_source": "results/full_head_sweep/full_head_sweep_20260312_052013.json",
+  "clean_recursive_rv": 0.5967377679358504,
+  "clean_baseline_rv": 0.7415694022876566,
+  "clean_rv_gap": -0.14483163435180613,
+  "per_head_results": [
+    {
+      "layer": 5,
+      "head": 29,
+      "kv_head": 7,
+      "alias_query_heads": [
+        29
+      ],
+      "entropy_d": NaN,
+      "rank_d": NaN,
+      "patched_rv_mean": 0.6044558120624955,
+      "clean_rv_mean": 0.5967377679358505,
+      "delta_rv": 0.007718044126645007,
+      "cohens_d": 0.11347670811490103,
+      "p_value": 0.7486986250513457,
+      "n_valid": 16,
+      "direction": "break"
+    },
+    {
+      "layer": 27,
+      "head": 10,
+      "kv_head": 2,
+      "alias_query_heads": [
+        10
+      ],
+      "entropy_d": NaN,
+      "rank_d": NaN,
+      "patched_rv_mean": 0.6574899499927472,
+      "clean_rv_mean": 0.5967377679358505,
+      "delta_rv": 0.0607521820568967,
+      "cohens_d": 0.825229658263827,
+      "p_value": 0.018494940419589944,
+      "n_valid": 16,
+      "direction": "break"
+    },
+    {
+      "layer": 27,
+      "head": 18,
+      "kv_head": 4,
+      "alias_query_heads": [
+        18
+      ],
+      "entropy_d": NaN,
+      "rank_d": NaN,
+      "patched_rv_mean": 0.5991571586313758,
+      "clean_rv_mean": 0.5967377679358505,
+      "delta_rv": 0.0024193906955252142,
+      "cohens_d": 0.03483514999931305,
+      "p_value": 0.8653246192630564,
+      "n_valid": 16,
+      "direction": "break"
+    },
+    {
+      "layer": 27,
+      "head": 26,
+      "kv_head": 6,
+      "alias_query_heads": [
+        26
+      ],
+      "entropy_d": NaN,
+      "rank_d": NaN,
+      "patched_rv_mean": 0.5915308392731022,
+      "clean_rv_mean": 0.5967377679358505,
+      "delta_rv": -0.0052069286627483,
+      "cohens_d": -0.06937675130469365,
+      "p_value": 0.7203098459695906,
+      "n_valid": 16,
+      "direction": "break"
+    },
+    {
+      "layer": 27,
+      "head": 5,
+      "kv_head": 1,
+      "alias_query_heads": [
+        5
+      ],
+      "entropy_d": NaN,
+      "rank_d": NaN,
+      "patched_rv_mean": 0.601321326156625,
+      "clean_rv_mean": 0.5967377679358505,
+      "delta_rv": 0.004583558220774497,
+      "cohens_d": 0.06268873369585429,
+      "p_value": 0.9249325745653402,
+      "n_valid": 16,
+      "direction": "break"
+    },
+    {
+      "layer": 18,
+      "head": 1,
+      "kv_head": 0,
+      "alias_query_heads": [
+        1
+      ],
+      "entropy_d": NaN,
+      "rank_d": NaN,
+      "patched_rv_mean": 0.5969742992251499,
+      "clean_rv_mean": 0.5967377679358505,
+      "delta_rv": 0.00023653128929934653,
+      "cohens_d": 0.003297331372527749,
+      "p_value": 0.9549169069449939,
+      "n_valid": 16,
+      "direction": "break"
+    },
+    {
+      "layer": 28,
+      "head": 3,
+      "kv_head": 0,
+      "alias_query_heads": [
+        3
+      ],
+      "entropy_d": NaN,
+      "rank_d": NaN,
+      "patched_rv_mean": 0.5967377679358505,
+      "clean_rv_mean": 0.5967377679358505,
+      "delta_rv": 0.0,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "n_valid": 16,
+      "direction": "break"
+    },
+    {
+      "layer": 19,
+      "head": 1,
+      "kv_head": 0,
+      "alias_query_heads": [
+        1
+      ],
+      "entropy_d": NaN,
+      "rank_d": NaN,
+      "patched_rv_mean": 0.5973993182303323,
+      "clean_rv_mean": 0.5967377679358505,
+      "delta_rv": 0.000661550294481783,
+      "cohens_d": 0.009159488176803642,
+      "p_value": 0.9249325745653402,
+      "n_valid": 16,
+      "direction": "break"
+    }
+  ],
+  "pair_interaction_results": [],
+  "circuit_summary": {
+    "n_significant_heads": 1,
+    "n_early_diversifiers": 0,
+    "n_late_compressors": 1,
+    "n_superadditive_pairs": 0,
+    "top_5_circuit_nodes": [
+      {
+        "layer": 27,
+        "head": 10,
+        "d": 0.825229658263827,
+        "delta_rv": 0.0607521820568967
+      }
+    ]
+  },
+  "recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05",
+    "L1_new_01",
+    "L1_new_02",
+    "L1_new_03",
+    "L1_new_04",
+    "L1_new_05",
+    "L1_new_06",
+    "L1_new_07",
+    "L1_new_08",
+    "L1_new_09",
+    "L1_new_10",
+    "L1_new_11",
+    "L1_new_12",
+    "L1_new_13",
+    "L1_new_14",
+    "L1_new_15"
+  ],
+  "baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05",
+    "baseline_math_06",
+    "baseline_math_07",
+    "baseline_math_08",
+    "baseline_math_09",
+    "baseline_math_10",
+    "baseline_math_11",
+    "baseline_math_12",
+    "baseline_math_13",
+    "baseline_math_14",
+    "baseline_math_15",
+    "baseline_math_16",
+    "baseline_math_17",
+    "baseline_math_18",
+    "baseline_math_19",
+    "baseline_math_20"
+  ]
+}

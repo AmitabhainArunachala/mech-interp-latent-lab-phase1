@@ -1,0 +1,35 @@
+# AMIROS overnight autonomy started 2026-03-14T15:00:19Z
+- 2026-03-14T15:00:53Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T15:00:55Z stop: max-hours reached
+# AMIROS overnight autonomy started 2026-03-14T15:01:51Z
+- 2026-03-14T15:02:26Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T15:02:29Z stop: max-hours reached
+# AMIROS overnight autonomy started 2026-03-14T15:06:55Z
+- 2026-03-14T15:17:54Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T15:18:08Z launched `induced_persistence_followup_v2_long` on `everyday_aqua_limpet-migration`
+- 2026-03-14T15:34:09Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T15:34:29Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T15:40:06Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T15:40:25Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T15:46:01Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T15:46:20Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T15:51:56Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T15:52:17Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T15:58:17Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T15:58:38Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T16:04:14Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T16:04:40Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T16:10:25Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T16:10:50Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T16:16:26Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T16:16:46Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T16:22:21Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T16:22:42Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T16:28:18Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T16:28:39Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T16:34:18Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T16:34:39Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T16:40:23Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T16:40:43Z harvest `annual_fuchsia_goldfish` rc=0
+- 2026-03-14T16:46:18Z harvest `everyday_aqua_limpet-migration` rc=0
+- 2026-03-14T16:46:38Z harvest `annual_fuchsia_goldfish` rc=0

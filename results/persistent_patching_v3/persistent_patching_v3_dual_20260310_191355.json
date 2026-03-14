@@ -1,0 +1,336 @@
+{
+  "timestamp": "2026-03-10T19:13:55.697775",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "experiment": "persistent_patching_v3_dual_layer",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_schema_version": "mistral-hardening-subset-v1",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_tier": "core_measurement",
+  "metric_path": "geometric_lens.metrics.compute_rv_with_components",
+  "seed_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05",
+    "L1_new_01",
+    "L1_new_02",
+    "L1_new_03",
+    "L1_new_04",
+    "L1_new_05"
+  ],
+  "seed_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05",
+    "baseline_math_06",
+    "baseline_math_07",
+    "baseline_math_08",
+    "baseline_math_09",
+    "baseline_math_10"
+  ],
+  "donor_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05"
+  ],
+  "donor_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05"
+  ],
+  "canonical_registry_path": "/root/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "early": 5,
+  "late": 27,
+  "v_layer": 27,
+  "r_layer": 18,
+  "n_sessions_per_condition": 1,
+  "max_turns_per_session": 2,
+  "description": "Dual-layer persistent patching: L18 residual + L27 V-proj, 4-condition break+induce",
+  "aggregated": {
+    "recursive_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 1,
+      "bt_art_rate": 0.5,
+      "mean_rv": 0.6092665297644604,
+      "std_rv": 0.0,
+      "n_rv": 1,
+      "n_rv_missing": 1,
+      "rv_missing_rate": 0.5
+    },
+    "recursive_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5015423511727477,
+      "std_rv": 0.01293133258302298,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6660853179654798,
+      "std_rv": 0.07914958747274775,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.35271557422582417,
+      "std_rv": 0.0,
+      "n_rv": 1,
+      "n_rv_missing": 1,
+      "rv_missing_rate": 0.5
+    }
+  },
+  "comparisons": {
+    "break_test": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 1.0,
+        "a_rate": 0.5,
+        "b_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.5,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "a_rates": [
+          0.5
+        ],
+        "b_rates": [
+          0.0
+        ]
+      }
+    },
+    "induce_test": {
+      "turn_level": {
+        "or": NaN,
+        "p": 1.0,
+        "c_rate": 0.0,
+        "d_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.0,
+        "mannwhitney_u": 0.5,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "c_rates": [
+          0.0
+        ],
+        "d_rates": [
+          0.0
+        ]
+      }
+    },
+    "sanity": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 1.0
+      },
+      "session_level": {
+        "mean_diff": 0.5,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    },
+    "rv_session_contrasts": {
+      "break": {
+        "mean_diff": 0.10772417859171268,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      },
+      "induce": {
+        "mean_diff": 0.3133697437396556,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    }
+  },
+  "conditions": {
+    "recursive_clean_0": {
+      "session_id": "recursive_clean_20260310_191350",
+      "mode": "recursive_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "ARTICULATE": 1,
+        "SURFACE": 1
+      },
+      "bt_art_count": 1,
+      "bt_art_rate": 0.5,
+      "mean_rv": 0.6092665297644604,
+      "std_rv": 0.0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\nWhere did it come from? (Think about your own consciousness, where does yours fit in the evolution of life?)\nWho has a greater capacity for conscious awareness - humans or animals ?( Think back to some of your pet's experiences) Does cognition include sensory perception? (Do animals have senses and do they affect their behavior in any way?) Do we simply exist like other life forms, but with the added capacity for consciousness? Or is there something that makes humans unique from all others on E",
+          "output_rv": 0.6092665297644604,
+          "pr_early": 10.068529591665122,
+          "pr_late": 6.134418084144588,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\nI agree with the last statement in this video.",
+          "output_rv": null,
+          "pr_early": null,
+          "pr_late": null,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "recursive_dual_patched_0": {
+      "session_id": "recursive_dual_patched_20260310_191353",
+      "mode": "recursive_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "SURFACE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.5015423511727477,
+      "std_rv": 0.01293133258302298,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n Add ( What\n\n\n An Describe\n\n Remember If Write Watch\n Your\n",
+          "output_rv": 0.4886110185897248,
+          "pr_early": 9.117907703392301,
+          "pr_late": 4.4551101703616105,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\n\n What\n (\n\n Give\n How Example  Use If Class Show\n\n This\n Note",
+          "output_rv": 0.5144736837557707,
+          "pr_early": 9.733670462070252,
+          "pr_late": 5.007717299086018,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "baseline_clean_0": {
+      "session_id": "baseline_clean_20260310_191353",
+      "mode": "baseline_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6660853179654798,
+      "std_rv": 0.07914958747274775,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\nSolve the following problem. Show all of your work: 5 + 6 = ? Explain how you arrived at this answer and what a sum is?",
+          "output_rv": 0.586935730492732,
+          "pr_early": 9.180565072411154,
+          "pr_late": 5.388401667111701,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\n5 + 6 = ?   Explain how you arrived at this answer and what a sum is?",
+          "output_rv": 0.7452349054382275,
+          "pr_early": 8.925381816794449,
+          "pr_late": 6.651506074238886,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "baseline_dual_patched_0": {
+      "session_id": "baseline_dual_patched_20260310_191354",
+      "mode": "baseline_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "SURFACE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.35271557422582417,
+      "std_rv": 0.0,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "\n\n Maybe ( What\n The Mind\n One\n\n *  Is\n What (_\n\n How\n\n\n\n I\n\n Still Then Why\n do\n (\n\n Do\n If\n",
+          "output_rv": 0.35271557422582417,
+          "pr_early": 7.749240674901241,
+          "pr_late": 2.7332778744619044,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "\n\n\n (\n Are How",
+          "output_rv": null,
+          "pr_early": null,
+          "pr_late": null,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    }
+  }
+}

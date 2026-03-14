@@ -1,0 +1,118 @@
+{
+  "schema_version": "mode-atlas-subset-v1",
+  "name": "mode_atlas_v1",
+  "created": "2026-03-10",
+  "status": "frozen",
+  "source_bank_path": "prompts/bank.json",
+  "source_bank_version": "2ac959a313614329",
+  "purpose": "Canonical bank-backed computational mode atlas for Mistral hardening.",
+  "design_principles": [
+    "Every mode must resolve entirely from prompts/bank.json.",
+    "Keep the atlas balanced at 20 prompts per mode where available.",
+    "Represent distinct recursive, baseline, confound, and generality regimes rather than handcrafted task lists.",
+    "Treat this atlas as a separate contract from the headline core_measurement tier."
+  ],
+  "freeze_policy": {
+    "on_hash_mismatch": "error",
+    "notes": [
+      "This atlas contract is valid only for prompts/bank.json version 2ac959a313614329.",
+      "Mode definitions should change via a new manifest version, not silent script edits."
+    ]
+  },
+  "tiers": {
+    "self_referential": {
+      "purpose": "Canonical high-intensity recursive mode.",
+      "expected_count": 20,
+      "selection_rules": [
+        {
+          "group": "L4_full"
+        }
+      ]
+    },
+    "mathematical_reasoning": {
+      "purpose": "Structured mathematical baseline behavior.",
+      "expected_count": 20,
+      "selection_rules": [
+        {
+          "group": "baseline_math"
+        }
+      ]
+    },
+    "factual_recall": {
+      "purpose": "Factual knowledge retrieval baseline.",
+      "expected_count": 20,
+      "selection_rules": [
+        {
+          "group": "baseline_factual"
+        }
+      ]
+    },
+    "creative_writing": {
+      "purpose": "Open-ended creative generation baseline.",
+      "expected_count": 20,
+      "selection_rules": [
+        {
+          "group": "baseline_creative"
+        }
+      ]
+    },
+    "personal_chitchat": {
+      "purpose": "Conversational first-person baseline.",
+      "expected_count": 20,
+      "selection_rules": [
+        {
+          "group": "baseline_personal"
+        }
+      ]
+    },
+    "long_control": {
+      "purpose": "Length/style control for non-recursive long prompts.",
+      "expected_count": 20,
+      "selection_rules": [
+        {
+          "group": "long_control"
+        }
+      ]
+    },
+    "pseudo_recursive": {
+      "purpose": "Recursion-like lexical control without the target semantics.",
+      "expected_count": 20,
+      "selection_rules": [
+        {
+          "group": "pseudo_recursive"
+        }
+      ]
+    },
+    "repetitive_control": {
+      "purpose": "Surface repetition confound control.",
+      "expected_count": 20,
+      "selection_rules": [
+        {
+          "group": "repetitive_control"
+        }
+      ]
+    },
+    "zen_koan": {
+      "purpose": "Non-Western recursive generality mode.",
+      "expected_count": 20,
+      "selection_rules": [
+        {
+          "group": "zen_koan"
+        }
+      ]
+    },
+    "yogic_witness": {
+      "purpose": "Alternative introspective framing from the generality panel.",
+      "expected_count": 20,
+      "selection_rules": [
+        {
+          "group": "yogic_witness"
+        }
+      ]
+    }
+  },
+  "recommended_usage": {
+    "primary_question": "Is canonical self_referential geometry distinct from other bank-native modes?",
+    "paper_rule": "Do not compare this atlas directly to legacy inline mode-atlas runs."
+  }
+}

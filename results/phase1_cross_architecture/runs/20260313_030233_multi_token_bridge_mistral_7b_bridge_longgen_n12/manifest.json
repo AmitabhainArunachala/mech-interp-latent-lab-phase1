@@ -1,0 +1,47 @@
+{
+  "artifacts": {
+    "VERDICT.md": {
+      "bytes": 1722,
+      "sha256": "6d26160e6d0736e663335fa05cbc99b3bca551fdfa7b93a8df732fcceb2f61c1"
+    },
+    "config.json": {
+      "bytes": 683,
+      "sha256": "2cb8b93aff6c3ce985cd2f2fa6f8e67c4ebafe0ff7601f263ae93db28d0cc1b0"
+    },
+    "hardware_info.json": {
+      "bytes": 266,
+      "sha256": "14e5ea9665381bc1d57d5a9c1face21ee31ce117ace7aee134b47675f6c04f02"
+    },
+    "metadata.json": {
+      "bytes": 253,
+      "sha256": "c0a06a1914a29a17215c45800d20c46b472e16bba50c3b20d424ffcca36a093c"
+    },
+    "prompt_bank_version.json": {
+      "bytes": 36,
+      "sha256": "80691d2771e0243909ff29e275e90a3b1d6275913d8f8a14e4f2fe61735646dc"
+    },
+    "prompt_bank_version.txt": {
+      "bytes": 16,
+      "sha256": "4533d32c6f48a8186b065462f9ac52fbcc7731a6bc2693516095b1fd44aa9518"
+    },
+    "report.md": {
+      "bytes": 4722,
+      "sha256": "a8656916b26e96b000e21efab2578f0d82527cbba4468692c08049cd239345f5"
+    },
+    "rv_behavioral_correlation.csv": {
+      "bytes": 66413,
+      "sha256": "afc26ebab7bfcc9f65629eea054179172c51a3f71f49c6a7dff34e36fbc93449"
+    },
+    "summary.json": {
+      "bytes": 4477,
+      "sha256": "1b82a687daf228a3cfc6b2f6115d8b4250a84de2f020f34bc4e6c50ee99d9c83"
+    }
+  },
+  "created_at_utc": "2026-03-13T03:40:31Z",
+  "experiment": "multi_token_bridge",
+  "git_commit": "not_a_git_repo",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "model_revision": "unspecified",
+  "prompt_bank_version": "2ac959a313614329",
+  "run_dir": "results/phase1_cross_architecture/runs/20260313_030233_multi_token_bridge_mistral_7b_bridge_longgen_n12"
+}

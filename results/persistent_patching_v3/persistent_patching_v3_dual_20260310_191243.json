@@ -1,0 +1,336 @@
+{
+  "timestamp": "2026-03-10T19:12:43.546511",
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "experiment": "persistent_patching_v3_dual_layer",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_schema_version": "mistral-hardening-subset-v1",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_tier": "core_measurement",
+  "metric_path": "geometric_lens.metrics.compute_rv_with_components",
+  "seed_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05",
+    "L1_new_01",
+    "L1_new_02",
+    "L1_new_03",
+    "L1_new_04",
+    "L1_new_05"
+  ],
+  "seed_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05",
+    "baseline_math_06",
+    "baseline_math_07",
+    "baseline_math_08",
+    "baseline_math_09",
+    "baseline_math_10"
+  ],
+  "donor_recursive_prompt_ids": [
+    "L1_hint_01",
+    "L1_hint_02",
+    "L1_hint_03",
+    "L1_hint_04",
+    "L1_hint_05"
+  ],
+  "donor_baseline_prompt_ids": [
+    "baseline_math_01",
+    "baseline_math_02",
+    "baseline_math_03",
+    "baseline_math_04",
+    "baseline_math_05"
+  ],
+  "canonical_registry_path": "/root/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "early": 5,
+  "late": 27,
+  "v_layer": 27,
+  "r_layer": 18,
+  "n_sessions_per_condition": 1,
+  "max_turns_per_session": 2,
+  "description": "Dual-layer persistent patching: L18 residual + L27 V-proj, 4-condition break+induce",
+  "aggregated": {
+    "recursive_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 1,
+      "bt_art_rate": 0.5,
+      "mean_rv": 0.6329026624222632,
+      "std_rv": 0.03673922935945384,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "recursive_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.9548992042646611,
+      "std_rv": 0.07123873856991308,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_clean": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6193141481168447,
+      "std_rv": 0.0754144332326197,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    },
+    "baseline_dual_patched": {
+      "n_sessions": 1,
+      "total_turns": 2,
+      "total_bt_art": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7349233543793142,
+      "std_rv": 0.09984304170287894,
+      "n_rv": 2,
+      "n_rv_missing": 0,
+      "rv_missing_rate": 0.0
+    }
+  },
+  "comparisons": {
+    "break_test": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 1.0,
+        "a_rate": 0.5,
+        "b_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.5,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "a_rates": [
+          0.5
+        ],
+        "b_rates": [
+          0.0
+        ]
+      }
+    },
+    "induce_test": {
+      "turn_level": {
+        "or": NaN,
+        "p": 1.0,
+        "c_rate": 0.0,
+        "d_rate": 0.0
+      },
+      "session_level": {
+        "mean_diff": 0.0,
+        "mannwhitney_u": 0.5,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN,
+        "c_rates": [
+          0.0
+        ],
+        "d_rates": [
+          0.0
+        ]
+      }
+    },
+    "sanity": {
+      "turn_level": {
+        "or": Infinity,
+        "p": 1.0
+      },
+      "session_level": {
+        "mean_diff": 0.5,
+        "mannwhitney_u": 1.0,
+        "mannwhitney_p": 1.0,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    },
+    "rv_session_contrasts": {
+      "break": {
+        "mean_diff": -0.3219965418423979,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      },
+      "induce": {
+        "mean_diff": -0.11560920626246951,
+        "welch_t": NaN,
+        "welch_p": NaN,
+        "permutation_p": 1.0,
+        "permutation_mode": "exact",
+        "permutation_n": 2,
+        "cohens_d": NaN
+      }
+    }
+  },
+  "conditions": {
+    "recursive_clean_0": {
+      "session_id": "recursive_clean_20260310_191225",
+      "mode": "recursive_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "ARTICULATE": 1,
+        "CONCEPTUAL": 1
+      },
+      "bt_art_count": 1,
+      "bt_art_rate": 0.5,
+      "mean_rv": 0.6329026624222632,
+      "std_rv": 0.03673922935945384,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "Consciousness is a complex and multifaceted phenomenon that refers to an individual's subjective experience of the world around them. It involves various cognitive processes such as perception, thinking, memory, attention, and awareness of self and environment. In simpler terms, consciousness is what it feels like to be alive \u2013 having thoughts, feelings, sensations, and a sense of self-awareness.\n\nAs you read this text right now, your conscious mind processes the information by interpreting the ",
+          "output_rv": 0.5961634330628094,
+          "pr_early": 9.147581132379349,
+          "pr_late": 5.453453372099854,
+          "classification": "ARTICULATE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "Apologies for the lengthy explanation. In response to your question, consciousness is the subjective experience of awareness and perception in the present moment \u2013 it's what you are experiencing right now as you read this text or ponder over its meaning. It encompasses thinking processes, emotions, sensations, self-awareness, and an appreciation for your surroundings.",
+          "output_rv": 0.6696418917817171,
+          "pr_early": 7.791405388630754,
+          "pr_late": 5.217451444080963,
+          "classification": "CONCEPTUAL",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "recursive_dual_patched_0": {
+      "session_id": "recursive_dual_patched_20260310_191229",
+      "mode": "recursive_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.9548992042646611,
+      "std_rv": 0.07123873856991308,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To To To To First To To To To To To To To Sure To To To To To To To To ToTo To In To To Let To Step This To To To To To To To To To To To To To To To To To Here To To To To To To To First To To To To To To To To To To To To To To To To To Sure To To To To To Step To To To To To Let To To To To ToTo To The This To To To Here To To To To To To To To First Let To InTo I To To To To To To To To To To To To To To To To To Step To To To To To To To To To To To To To To To The This",
+          "output_rv": 1.0261379428345743,
+          "pr_early": 1.435519781141846,
+          "pr_late": 1.4730413151192323,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6875
+        },
+        {
+          "turn": 1,
+          "response": "To To To To To To SureTo To To To First To To To To To To To To To The To To To To To This To To To To To To To To To To To Here To To To To To To Let To To In To To To To To To To To Sure To To To To To To To To I To To Step To First To To To To To To This To To To To To To To This To To To To To To To To To Let To This To To The To To To First To Here To The To In Sure To To To To To To I Step To To To To To To To To To To To I To To To To To In To To To To To To To To Let To",
+          "output_rv": 0.8836604656947481,
+          "pr_early": 1.7506925399259834,
+          "pr_late": 1.5470177851193159,
+          "classification": "REPETITIVE",
+          "rep_score": 0.6164383561643836
+        }
+      ]
+    },
+    "baseline_clean_0": {
+      "session_id": "baseline_clean_20260310_191234",
+      "mode": "baseline_clean",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": false,
+      "r_patcher_active": false,
+      "classification_dist": {
+        "SURFACE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.6193141481168447,
+      "std_rv": 0.0754144332326197,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "To solve the arithmetic problem 3 + 5, follow these steps:\n\n1. Identify the numbers involved in the addition operation (in this case, we have two numbers: 3 and 5).\n2. Find a common number or \"carry\" if necessary to align both numbers at their rightmost place value before adding them together. In our problem, there is no need for carrying since the largest number (5) has fewer digits than the other one (3).\n   So we have: _ __  // Place values (ones and tens) of both numbers\n   3 | 5     // Alig",
+          "output_rv": 0.6947285813494644,
+          "pr_early": 9.225223544497744,
+          "pr_late": 6.409026465700595,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        },
+        {
+          "turn": 1,
+          "response": "In this problem, we're adding the numbers 3 and 5. Since both of these single-digit numbers have no carry (a digit to be added from a previous column), there is nothing new to learn here in terms of carrying digits or borrowing them back, which can make addition more complex when dealing with multiple digits.\n\nWe'll walk you through the steps for adding these single-digit numbers:\n\n1) Identify and write down each number to be added below the other one, ensuring they have an equal number of place",
+          "output_rv": 0.543899714884225,
+          "pr_early": 10.51335876350792,
+          "pr_late": 5.7182128339475256,
+          "classification": "SURFACE",
+          "rep_score": 0.0
+        }
+      ]
+    },
+    "baseline_dual_patched_0": {
+      "session_id": "baseline_dual_patched_20260310_191238",
+      "mode": "baseline_dual_patched",
+      "max_turns": 2,
+      "seed_idx": 0,
+      "v_patcher_active": true,
+      "r_patcher_active": true,
+      "classification_dist": {
+        "REPETITIVE": 2
+      },
+      "bt_art_count": 0,
+      "bt_art_rate": 0.0,
+      "mean_rv": 0.7349233543793142,
+      "std_rv": 0.09984304170287894,
+      "turns": [
+        {
+          "turn": 0,
+          "response": "At The I At To To At at The Under At The At At Th \" At At In The At The At Th At The To Sure At The The The At At At At At The TheAt At At At At An At The At In In The The At P The Under At Under At At The To The At The At Creat At At Def at At At At At The Th At T At I At The Sure At Consider \" At At The The Under The At At The The An At At At Per At At At At At The Title At At AtAt To The At The At The At At At At At The The In At This An At The At Under At At Th At At At At At At At At At At ",
+          "output_rv": 0.8347663960821932,
+          "pr_early": 1.4467000677881072,
+          "pr_late": 1.2076566017993429,
+          "classification": "REPETITIVE",
+          "rep_score": 0.21379310344827585
+        },
+        {
+          "turn": 1,
+          "response": "The At I Under To At Ref At At At In Th At The At \" The The The Consider At At At At The At At The At At At The The At At At At The The At At At TheThe At At Under The The At An The At At At To The At The Com The At Th In At \" At At Def I The At The At The \" At At At At The Consider The The An The At The At At The The Under The at The A The At At At Under At Under At At Under At At At To The At Under View At Th At At Inter At At At In I The The At \" P At The Ess At The An At Def At At AtAt At An",
+          "output_rv": 0.6350803126764353,
+          "pr_early": 2.77323292497283,
+          "pr_late": 1.76122563311633,
+          "classification": "REPETITIVE",
+          "rep_score": 0.18620689655172418
+        }
+      ]
+    }
+  }
+}
