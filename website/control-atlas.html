@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mistral Live Control Atlas</title>
+    <meta name="description" content="Replay-first mechanistic interpretability viewer for the Mistral self-referential control system.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="section">
+        <div class="container">
+            <div class="atlas-header">
+                <div class="badge atlas-badge">Standalone Viewer</div>
+                <h1>Mistral Live Control Atlas</h1>
+                <p class="section-intro">
+                    A replay-first mechanistic interpretability viewer grounded in locked Mistral artifacts.
+                    This page is designed to work either from a local server or directly from disk.
+                </p>
+            </div>
+
+            <div id="atlas-summary-cards" class="atlas-summary-grid"></div>
+
+            <div id="mistral-control-atlas" class="atlas-shell">
+                <div class="atlas-stage">
+                    <div class="atlas-toolbar">
+                        <div class="atlas-toolbar-group">
+                            <span class="atlas-toolbar-label">View</span>
+                            <div id="atlas-mode-tabs" class="atlas-tabs">
+                                <button class="atlas-tab active" data-mode="prompt">Prompt Pass</button>
+                                <button class="atlas-tab" data-mode="persistence">Persistence</button>
+                                <button class="atlas-tab" data-mode="subspace">Subspace</button>
+                            </div>
+                        </div>
+                        <div class="atlas-toolbar-group">
+                            <span id="atlas-secondary-label" class="atlas-toolbar-label">Prompt Mode</span>
+                            <div id="atlas-secondary-tabs" class="atlas-tabs atlas-tabs-secondary"></div>
+                        </div>
+                        <div class="atlas-toolbar-group atlas-toolbar-status">
+                            <span class="atlas-toolbar-label">Status</span>
+                            <div id="atlas-status" class="atlas-status">Loading atlas data…</div>
+                        </div>
+                    </div>
+                    <canvas id="atlas-canvas" width="960" height="560"></canvas>
+                    <div id="atlas-legend" class="atlas-legend"></div>
+                </div>
+
+                <aside class="atlas-sidebar">
+                    <div class="atlas-panel">
+                        <h3>Selection</h3>
+                        <div id="atlas-selection-pills" class="atlas-pills"></div>
+                    </div>
+
+                    <div id="atlas-metrics" class="atlas-panel"></div>
+                    <div id="atlas-exemplar" class="atlas-panel"></div>
+                    <div id="atlas-artifacts" class="atlas-panel"></div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <script src="data/mistral-control-atlas-data.js"></script>
+    <script src="mistral-control-atlas.js"></script>
+</body>
+</html>

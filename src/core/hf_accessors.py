@@ -40,6 +40,35 @@ def get_layers(model: Any) -> Sequence[Any]:
     )
 
 
+def get_final_norm(model: Any) -> torch.nn.Module:
+    """
+    Return the model's final normalization layer across common HF architectures.
+
+    Supported (best-effort):
+    - Llama/Mistral/Qwen/Gemma/Mixtral style: model.model.norm
+    - OPT style: model.model.decoder.final_layer_norm
+    - GPTNeoX (Pythia): model.gpt_neox.final_layer_norm
+    - GPT-2 style: model.transformer.ln_f
+    """
+    if hasattr(model, "model") and hasattr(model.model, "norm"):
+        return model.model.norm
+    if (
+        hasattr(model, "model")
+        and hasattr(model.model, "decoder")
+        and hasattr(model.model.decoder, "final_layer_norm")
+    ):
+        return model.model.decoder.final_layer_norm
+    if hasattr(model, "gpt_neox") and hasattr(model.gpt_neox, "final_layer_norm"):
+        return model.gpt_neox.final_layer_norm
+    if hasattr(model, "transformer") and hasattr(model.transformer, "ln_f"):
+        return model.transformer.ln_f
+    raise AttributeError(
+        "Unsupported model architecture: could not locate final normalization layer "
+        "(tried model.model.norm, model.model.decoder.final_layer_norm, "
+        "model.gpt_neox.final_layer_norm, model.transformer.ln_f)."
+    )
+
+
 @dataclass(frozen=True)
 class VProjHookPoint:
     """
@@ -95,4 +124,3 @@ def extract_v_from_hook_output(hookpoint: VProjHookPoint, out: torch.Tensor) -> 
         raise ValueError(f"Fused QKV last dim must be divisible by 3; got {d}")
     h = d // 3
     return out[:, :, 2 * h : 3 * h]
-

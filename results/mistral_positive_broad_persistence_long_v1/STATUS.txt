@@ -1,0 +1,8 @@
+run_id=20260319_084606
+python_bin=/root/venvs/mistral-hardening/bin/python
+started_utc=2026-03-19T08:46:06Z
+
+>>> START positive_broad_persistence_long_v1 2026-03-19T08:46:06Z
+>>> DONE  positive_broad_persistence_long_v1 2026-03-19T09:15:30Z
+finished_utc=2026-03-19T09:15:30Z
+mistral_positive_broad_persistence_long_v1_complete=1

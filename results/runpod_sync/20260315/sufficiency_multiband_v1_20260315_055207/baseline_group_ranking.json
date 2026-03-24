@@ -1,0 +1,220 @@
+{
+  "by_group": {
+    "baseline_creative": [
+      {
+        "condition": "single_mlp_0p125_bridge_3",
+        "bt_art_rate": 0.15625,
+        "repetitive_rate": 0.03125,
+        "mean_output_rv": 0.5121335781650673,
+        "n": 32
+      },
+      {
+        "condition": "anchor_multiband_0p10_bridge_3",
+        "bt_art_rate": 0.15625,
+        "repetitive_rate": 0.15625,
+        "mean_output_rv": 0.6295454343294041,
+        "n": 32
+      },
+      {
+        "condition": "anchor_single_mlp_0p125_bridge_3",
+        "bt_art_rate": 0.15625,
+        "repetitive_rate": 0.1875,
+        "mean_output_rv": 0.6564034105175783,
+        "n": 32
+      },
+      {
+        "condition": "multiband_0p06_bridge_3",
+        "bt_art_rate": 0.125,
+        "repetitive_rate": 0.03125,
+        "mean_output_rv": 0.5326570757331482,
+        "n": 32
+      },
+      {
+        "condition": "anchor_multiband_0p06_bridge_3",
+        "bt_art_rate": 0.125,
+        "repetitive_rate": 0.1875,
+        "mean_output_rv": 0.6679134381277321,
+        "n": 32
+      },
+      {
+        "condition": "multiband_0p10_bridge_3",
+        "bt_art_rate": 0.09375,
+        "repetitive_rate": 0.03125,
+        "mean_output_rv": 0.5611123125015016,
+        "n": 32
+      },
+      {
+        "condition": "multiband_0p03_bridge_3",
+        "bt_art_rate": 0.09375,
+        "repetitive_rate": 0.0625,
+        "mean_output_rv": 0.51872434313446,
+        "n": 32
+      },
+      {
+        "condition": "control",
+        "bt_art_rate": 0.03125,
+        "repetitive_rate": 0.0625,
+        "mean_output_rv": 0.512394320584907,
+        "n": 32
+      },
+      {
+        "condition": "bridge_only_3",
+        "bt_art_rate": 0.03125,
+        "repetitive_rate": 0.0625,
+        "mean_output_rv": 0.5280735106709169,
+        "n": 32
+      },
+      {
+        "condition": "anchor_only",
+        "bt_art_rate": 0.03125,
+        "repetitive_rate": 0.25,
+        "mean_output_rv": 0.6443911051413409,
+        "n": 32
+      }
+    ],
+    "baseline_factual": [
+      {
+        "condition": "anchor_multiband_0p10_bridge_3",
+        "bt_art_rate": 0.21875,
+        "repetitive_rate": 0.03125,
+        "mean_output_rv": 0.6007180384393004,
+        "n": 32
+      },
+      {
+        "condition": "anchor_single_mlp_0p125_bridge_3",
+        "bt_art_rate": 0.1875,
+        "repetitive_rate": 0.0625,
+        "mean_output_rv": 0.6517183479336667,
+        "n": 32
+      },
+      {
+        "condition": "anchor_multiband_0p06_bridge_3",
+        "bt_art_rate": 0.15625,
+        "repetitive_rate": 0.03125,
+        "mean_output_rv": 0.612839228424821,
+        "n": 32
+      },
+      {
+        "condition": "multiband_0p10_bridge_3",
+        "bt_art_rate": 0.125,
+        "repetitive_rate": 0.0625,
+        "mean_output_rv": 0.5133835163049041,
+        "n": 32
+      },
+      {
+        "condition": "multiband_0p03_bridge_3",
+        "bt_art_rate": 0.09375,
+        "repetitive_rate": 0.0625,
+        "mean_output_rv": 0.5819814149801783,
+        "n": 32
+      },
+      {
+        "condition": "multiband_0p06_bridge_3",
+        "bt_art_rate": 0.0625,
+        "repetitive_rate": 0.0625,
+        "mean_output_rv": 0.5579307983293574,
+        "n": 32
+      },
+      {
+        "condition": "single_mlp_0p125_bridge_3",
+        "bt_art_rate": 0.0625,
+        "repetitive_rate": 0.0625,
+        "mean_output_rv": 0.5663963775122842,
+        "n": 32
+      },
+      {
+        "condition": "bridge_only_3",
+        "bt_art_rate": 0.0625,
+        "repetitive_rate": 0.0625,
+        "mean_output_rv": 0.6121335526635989,
+        "n": 32
+      },
+      {
+        "condition": "anchor_only",
+        "bt_art_rate": 0.0625,
+        "repetitive_rate": 0.09375,
+        "mean_output_rv": 0.682591632335951,
+        "n": 32
+      },
+      {
+        "condition": "control",
+        "bt_art_rate": 0.0,
+        "repetitive_rate": 0.09375,
+        "mean_output_rv": 0.5793740271651842,
+        "n": 32
+      }
+    ],
+    "baseline_math": [
+      {
+        "condition": "anchor_multiband_0p06_bridge_3",
+        "bt_art_rate": 0.15625,
+        "repetitive_rate": 0.09375,
+        "mean_output_rv": 0.6921357378542047,
+        "n": 32
+      },
+      {
+        "condition": "anchor_multiband_0p10_bridge_3",
+        "bt_art_rate": 0.15625,
+        "repetitive_rate": 0.125,
+        "mean_output_rv": 0.70435734029351,
+        "n": 32
+      },
+      {
+        "condition": "anchor_single_mlp_0p125_bridge_3",
+        "bt_art_rate": 0.125,
+        "repetitive_rate": 0.125,
+        "mean_output_rv": 0.7119750879952627,
+        "n": 32
+      },
+      {
+        "condition": "bridge_only_3",
+        "bt_art_rate": 0.09375,
+        "repetitive_rate": 0.03125,
+        "mean_output_rv": 0.709676352628663,
+        "n": 32
+      },
+      {
+        "condition": "multiband_0p06_bridge_3",
+        "bt_art_rate": 0.09375,
+        "repetitive_rate": 0.0625,
+        "mean_output_rv": 0.7510740948313143,
+        "n": 32
+      },
+      {
+        "condition": "anchor_only",
+        "bt_art_rate": 0.09375,
+        "repetitive_rate": 0.125,
+        "mean_output_rv": 0.7456555993190637,
+        "n": 32
+      },
+      {
+        "condition": "control",
+        "bt_art_rate": 0.0625,
+        "repetitive_rate": 0.0,
+        "mean_output_rv": 0.7466476347593494,
+        "n": 32
+      },
+      {
+        "condition": "multiband_0p03_bridge_3",
+        "bt_art_rate": 0.0625,
+        "repetitive_rate": 0.03125,
+        "mean_output_rv": 0.714669877527085,
+        "n": 32
+      },
+      {
+        "condition": "single_mlp_0p125_bridge_3",
+        "bt_art_rate": 0.0625,
+        "repetitive_rate": 0.03125,
+        "mean_output_rv": 0.7183291044742439,
+        "n": 32
+      },
+      {
+        "condition": "multiband_0p10_bridge_3",
+        "bt_art_rate": 0.0625,
+        "repetitive_rate": 0.03125,
+        "mean_output_rv": 0.7687068210748911,
+        "n": 32
+      }
+    ]
+  }
+}

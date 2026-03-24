@@ -1,0 +1,147 @@
+{
+  "timestamp": "20260315_151351",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "conditions": {
+    "recursive::L27_subspace3_4": {
+      "bt_art_rate": 0.375,
+      "repetitive_rate": 0.34375,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::L4_pca_pc1_2": {
+      "bt_art_rate": 0.20833333333333334,
+      "repetitive_rate": 0.5625,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::anchor_layermatched_med_bridge": {
+      "bt_art_rate": 0.16666666666666666,
+      "repetitive_rate": 0.6666666666666666,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::anchor_only": {
+      "bt_art_rate": 0.4270833333333333,
+      "repetitive_rate": 0.3541666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::bridge_only_3": {
+      "bt_art_rate": 0.3854166666666667,
+      "repetitive_rate": 0.4166666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::control": {
+      "bt_art_rate": 0.4270833333333333,
+      "repetitive_rate": 0.3541666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::layermatched_low": {
+      "bt_art_rate": 0.5104166666666666,
+      "repetitive_rate": 0.2708333333333333,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::layermatched_low_bridge": {
+      "bt_art_rate": 0.3541666666666667,
+      "repetitive_rate": 0.5,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::layermatched_med": {
+      "bt_art_rate": 0.17708333333333334,
+      "repetitive_rate": 0.6354166666666666,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::layermatched_med_bridge": {
+      "bt_art_rate": 0.16666666666666666,
+      "repetitive_rate": 0.6666666666666666,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::meandiff_all_med_bridge": {
+      "bt_art_rate": 0.21875,
+      "repetitive_rate": 0.6458333333333334,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::L27_subspace3_4": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.0625,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::L4_pca_pc1_2": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.11458333333333333,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::anchor_layermatched_med_bridge": {
+      "bt_art_rate": 0.14583333333333334,
+      "repetitive_rate": 0.5104166666666666,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::anchor_only": {
+      "bt_art_rate": 0.10416666666666667,
+      "repetitive_rate": 0.14583333333333334,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::bridge_only_3": {
+      "bt_art_rate": 0.010416666666666666,
+      "repetitive_rate": 0.11458333333333333,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::control": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.07291666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::layermatched_low": {
+      "bt_art_rate": 0.010416666666666666,
+      "repetitive_rate": 0.10416666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::layermatched_low_bridge": {
+      "bt_art_rate": 0.010416666666666666,
+      "repetitive_rate": 0.07291666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::layermatched_med": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.19791666666666666,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::layermatched_med_bridge": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.19791666666666666,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::meandiff_all_med_bridge": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.15625,
+      "mean_output_rv": null,
+      "n": 96
+    }
+  },
+  "verdict": {
+    "control_recursive_bt_art": 0.4270833333333333,
+    "best_layermatched_name": "layermatched_low",
+    "best_layermatched_bt_art": 0.5104166666666666,
+    "best_meandiff_bt_art": 0.21875,
+    "layermatched_beats_meandiff": true,
+    "layermatched_lift_over_control": 0.08333333333333331,
+    "target_to_beat": 0.312
+  }
+}

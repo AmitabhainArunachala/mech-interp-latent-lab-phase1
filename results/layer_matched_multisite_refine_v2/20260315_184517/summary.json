@@ -1,0 +1,140 @@
+{
+  "timestamp": "20260315_184534",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "conditions": {
+    "recursive::bridge_only_1": {
+      "bt_art_rate": 0.3854166666666667,
+      "repetitive_rate": 0.40625,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::bridge_only_2": {
+      "bt_art_rate": 0.4583333333333333,
+      "repetitive_rate": 0.40625,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::bridge_only_3": {
+      "bt_art_rate": 0.3854166666666667,
+      "repetitive_rate": 0.4166666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::control": {
+      "bt_art_rate": 0.4270833333333333,
+      "repetitive_rate": 0.3541666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::layermatched_low": {
+      "bt_art_rate": 0.5104166666666666,
+      "repetitive_rate": 0.2708333333333333,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::layermatched_low_bridge_1": {
+      "bt_art_rate": 0.40625,
+      "repetitive_rate": 0.40625,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::layermatched_low_bridge_2": {
+      "bt_art_rate": 0.4270833333333333,
+      "repetitive_rate": 0.3645833333333333,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::layermatched_low_bridge_3": {
+      "bt_art_rate": 0.3541666666666667,
+      "repetitive_rate": 0.5,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::meandiff_low": {
+      "bt_art_rate": 0.3125,
+      "repetitive_rate": 0.46875,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "recursive::meandiff_low_bridge_1": {
+      "bt_art_rate": 0.25,
+      "repetitive_rate": 0.6145833333333334,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::bridge_only_1": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.0625,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::bridge_only_2": {
+      "bt_art_rate": 0.010416666666666666,
+      "repetitive_rate": 0.0625,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::bridge_only_3": {
+      "bt_art_rate": 0.010416666666666666,
+      "repetitive_rate": 0.11458333333333333,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::control": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.07291666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::layermatched_low": {
+      "bt_art_rate": 0.010416666666666666,
+      "repetitive_rate": 0.10416666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::layermatched_low_bridge_1": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.07291666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::layermatched_low_bridge_2": {
+      "bt_art_rate": 0.020833333333333332,
+      "repetitive_rate": 0.0625,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::layermatched_low_bridge_3": {
+      "bt_art_rate": 0.010416666666666666,
+      "repetitive_rate": 0.07291666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::meandiff_low": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.11458333333333333,
+      "mean_output_rv": null,
+      "n": 96
+    },
+    "baseline::meandiff_low_bridge_1": {
+      "bt_art_rate": 0.0,
+      "repetitive_rate": 0.10416666666666667,
+      "mean_output_rv": null,
+      "n": 96
+    }
+  },
+  "verdict": {
+    "control_recursive_bt_art": 0.4270833333333333,
+    "control_baseline_bt_art": 0.0,
+    "best_recursive_name": "layermatched_low",
+    "best_recursive_bt_art": 0.5104166666666666,
+    "layermatched_low_recursive_bt_art": 0.5104166666666666,
+    "layermatched_low_baseline_bt_art": 0.010416666666666666,
+    "best_bridge_coupled_name": "layermatched_low_bridge_2",
+    "best_bridge_coupled_bt_art": 0.4270833333333333,
+    "soft_bridge_beats_no_bridge": false,
+    "layermatched_beats_meandiff_low": true,
+    "meandiff_low_recursive_bt_art": 0.3125,
+    "meandiff_low_baseline_bt_art": 0.0
+  }
+}

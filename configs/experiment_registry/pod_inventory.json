@@ -16,6 +16,22 @@
       "remote_repo": "/workspace/mech-interp-latent-lab-phase1",
       "role": "control_bundle",
       "enabled": true
+    },
+    {
+      "pod_name": "grotesque_beige_salmon",
+      "host": "root@103.196.86.173",
+      "port": 13805,
+      "remote_repo": "/workspace/mech-interp-latent-lab-phase1",
+      "role": "positive_broad_persistence_rvband",
+      "enabled": true
+    },
+    {
+      "pod_name": "revolutionary_aqua_guineafowl",
+      "host": "root@154.54.102.57",
+      "port": 18633,
+      "remote_repo": "/workspace/mech-interp-latent-lab-phase1",
+      "role": "mistral_sufficiency_bundle_v2",
+      "enabled": true
     }
   ]
 }

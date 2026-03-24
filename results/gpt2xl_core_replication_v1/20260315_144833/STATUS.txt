@@ -1,0 +1,12 @@
+run_id=20260315_144833
+python_bin=./.venv/bin/python
+model_name=openai-community/gpt2-xl
+started_utc=2026-03-15T14:48:33Z
+
+>>> START qwen_p0_canonical 2026-03-15T14:48:34Z
+>>> DONE  qwen_p0_canonical 2026-03-15T14:49:29Z
+
+>>> START qwen_full_path_patching 2026-03-15T14:49:29Z
+>>> DONE  qwen_full_path_patching 2026-03-15T14:50:08Z
+finished_utc=2026-03-15T14:50:08Z
+gpt2xl_core_replication_v1_complete=1

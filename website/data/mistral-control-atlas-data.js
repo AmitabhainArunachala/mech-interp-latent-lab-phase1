@@ -1,0 +1,4791 @@
+window.MISTRAL_CONTROL_ATLAS_DATA = {
+  "meta": {
+    "title": "Mistral Live Control Atlas",
+    "model": "mistralai/Mistral-7B-v0.1",
+    "total_layers": 32,
+    "trajectory_note": "Trajectory lines are replay syntheses from measured control points, not raw hidden-state captures.",
+    "artifacts": {
+      "path_patching": "results/path_patching/path_patching_summary_20260312_125939.json",
+      "anchor_bundle": "results/phase1_mechanism/runs/20260314_133516_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v5_ordinary_baselines_confirmatory/summary.json",
+      "induced_persistence": "results/induced_persistence_followup_v2_long/20260314_151808/summary.json",
+      "subspace_l27": "results/subspace_component_steering_l27_v1/20260314_144647/summary.json",
+      "l27_validation": "results/phase1_mechanism/runs/20260312_133759_head_ablation_validation_mistral_l27_kv2_modern_core_measurement__summary.json",
+      "l25_target": "results/phase1_mechanism/runs/20260311_055109_causal_state_targeted_scan_v1_mistral_targeted_scan_v1/best_candidate.json"
+    }
+  },
+  "architecture": {
+    "zones": [
+      {
+        "label": "Early source",
+        "start": 0,
+        "end": 5,
+        "color": "#f59e0b"
+      },
+      {
+        "label": "Controller",
+        "start": 25,
+        "end": 25,
+        "color": "#10b981"
+      },
+      {
+        "label": "Readout cluster",
+        "start": 27,
+        "end": 27,
+        "color": "#38bdf8"
+      }
+    ],
+    "layer_profile": {
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "residual_d": 3.408321918619335,
+          "mlp_d": 0.9235793384424339,
+          "v_proj_d": 0.2673402983366807,
+          "field_strength": 0.8208
+        },
+        {
+          "layer": 1,
+          "depth": 0.0323,
+          "residual_d": 2.806374378766411,
+          "mlp_d": 0.18101824544637116,
+          "v_proj_d": 0.3786137533618275,
+          "field_strength": 0.6758
+        },
+        {
+          "layer": 2,
+          "depth": 0.0645,
+          "residual_d": 3.777119379691488,
+          "mlp_d": 0.44370093430809876,
+          "v_proj_d": 0.09496865610127932,
+          "field_strength": 0.9096
+        },
+        {
+          "layer": 3,
+          "depth": 0.0968,
+          "residual_d": 3.610359334723354,
+          "mlp_d": 0.988082714192303,
+          "v_proj_d": -0.023904671351962614,
+          "field_strength": 0.8695
+        },
+        {
+          "layer": 4,
+          "depth": 0.129,
+          "residual_d": 3.572618999284789,
+          "mlp_d": 2.1231549068861106,
+          "v_proj_d": 0.3576634315286705,
+          "field_strength": 0.8604
+        },
+        {
+          "layer": 5,
+          "depth": 0.1613,
+          "residual_d": 4.152384276234766,
+          "mlp_d": -0.013646743907241026,
+          "v_proj_d": 2.540435139507951,
+          "field_strength": 1.0
+        },
+        {
+          "layer": 6,
+          "depth": 0.1935,
+          "residual_d": -1.9124911400772378,
+          "mlp_d": 0.12048045747165062,
+          "v_proj_d": -0.10910005443517,
+          "field_strength": 0.4606
+        },
+        {
+          "layer": 7,
+          "depth": 0.2258,
+          "residual_d": -1.9148986173974234,
+          "mlp_d": -0.057844284416160956,
+          "v_proj_d": -0.012825336456169366,
+          "field_strength": 0.4612
+        },
+        {
+          "layer": 8,
+          "depth": 0.2581,
+          "residual_d": -1.9187746623992952,
+          "mlp_d": 0.16264533731500513,
+          "v_proj_d": 0.0001645456324465037,
+          "field_strength": 0.4621
+        },
+        {
+          "layer": 9,
+          "depth": 0.2903,
+          "residual_d": -1.9236183237344255,
+          "mlp_d": 0.07927707591243338,
+          "v_proj_d": -0.0389654184196409,
+          "field_strength": 0.4633
+        },
+        {
+          "layer": 10,
+          "depth": 0.3226,
+          "residual_d": -1.9249247573649677,
+          "mlp_d": 0.13979278942089704,
+          "v_proj_d": -0.15222738814188866,
+          "field_strength": 0.4636
+        },
+        {
+          "layer": 11,
+          "depth": 0.3548,
+          "residual_d": -1.9244105538196639,
+          "mlp_d": 0.13193583854951646,
+          "v_proj_d": -0.03728018414421047,
+          "field_strength": 0.4634
+        },
+        {
+          "layer": 12,
+          "depth": 0.3871,
+          "residual_d": -1.9262628885748527,
+          "mlp_d": -0.02018677491536592,
+          "v_proj_d": -0.14332358884483173,
+          "field_strength": 0.4639
+        },
+        {
+          "layer": 13,
+          "depth": 0.4194,
+          "residual_d": -1.927619559626511,
+          "mlp_d": 0.014760104093940797,
+          "v_proj_d": -0.22583596478412948,
+          "field_strength": 0.4642
+        },
+        {
+          "layer": 14,
+          "depth": 0.4516,
+          "residual_d": -1.9280025861538908,
+          "mlp_d": 0.0055426884515628405,
+          "v_proj_d": 0.32199492943333646,
+          "field_strength": 0.4643
+        },
+        {
+          "layer": 15,
+          "depth": 0.4839,
+          "residual_d": -1.929426599439531,
+          "mlp_d": -0.09888106282134837,
+          "v_proj_d": 0.018816232388219136,
+          "field_strength": 0.4647
+        },
+        {
+          "layer": 16,
+          "depth": 0.5161,
+          "residual_d": -1.931929220405044,
+          "mlp_d": -0.4320685594666891,
+          "v_proj_d": -0.049748075495743754,
+          "field_strength": 0.4653
+        },
+        {
+          "layer": 17,
+          "depth": 0.5484,
+          "residual_d": -1.932377290625152,
+          "mlp_d": -0.47220099175710445,
+          "v_proj_d": -0.20139514493452607,
+          "field_strength": 0.4654
+        },
+        {
+          "layer": 18,
+          "depth": 0.5806,
+          "residual_d": -1.9353817163964817,
+          "mlp_d": -0.7279723975612402,
+          "v_proj_d": 0.5030108499123848,
+          "field_strength": 0.4661
+        },
+        {
+          "layer": 19,
+          "depth": 0.6129,
+          "residual_d": -1.9361825923335219,
+          "mlp_d": -0.7790094782613166,
+          "v_proj_d": 0.2915512029500468,
+          "field_strength": 0.4663
+        },
+        {
+          "layer": 20,
+          "depth": 0.6452,
+          "residual_d": -1.9380482139271953,
+          "mlp_d": -0.7964991596013147,
+          "v_proj_d": 0.1548161308383903,
+          "field_strength": 0.4667
+        },
+        {
+          "layer": 21,
+          "depth": 0.6774,
+          "residual_d": -1.9389810817640034,
+          "mlp_d": -0.5520977017294612,
+          "v_proj_d": -0.01565123090426835,
+          "field_strength": 0.467
+        },
+        {
+          "layer": 22,
+          "depth": 0.7097,
+          "residual_d": -1.9394103226297508,
+          "mlp_d": -0.4697070062424799,
+          "v_proj_d": 0.3479798945132775,
+          "field_strength": 0.4671
+        },
+        {
+          "layer": 23,
+          "depth": 0.7419,
+          "residual_d": -1.9398750444781867,
+          "mlp_d": -0.4658557164840143,
+          "v_proj_d": 0.1798352426672521,
+          "field_strength": 0.4672
+        },
+        {
+          "layer": 24,
+          "depth": 0.7742,
+          "residual_d": -1.9379502304141842,
+          "mlp_d": -0.4495127506421994,
+          "v_proj_d": 0.05612555784581756,
+          "field_strength": 0.4667
+        },
+        {
+          "layer": 25,
+          "depth": 0.8065,
+          "residual_d": -1.9397041706917733,
+          "mlp_d": -0.6776969539625577,
+          "v_proj_d": 0.016659554307084528,
+          "field_strength": 0.4671
+        },
+        {
+          "layer": 26,
+          "depth": 0.8387,
+          "residual_d": -1.9394230729360924,
+          "mlp_d": -0.7124400561606263,
+          "v_proj_d": -0.058825915352261275,
+          "field_strength": 0.4671
+        },
+        {
+          "layer": 27,
+          "depth": 0.871,
+          "residual_d": -1.9413862260520127,
+          "mlp_d": 0.0,
+          "v_proj_d": -1.9413864456295407,
+          "field_strength": 0.4675
+        },
+        {
+          "layer": 28,
+          "depth": 0.9032,
+          "residual_d": 0.0,
+          "mlp_d": 0.0,
+          "v_proj_d": 0.0,
+          "field_strength": 0.0
+        },
+        {
+          "layer": 29,
+          "depth": 0.9355,
+          "residual_d": 0.0,
+          "mlp_d": 0.0,
+          "v_proj_d": 0.0,
+          "field_strength": 0.0
+        },
+        {
+          "layer": 30,
+          "depth": 0.9677,
+          "residual_d": 0.0,
+          "mlp_d": 0.0,
+          "v_proj_d": 0.0,
+          "field_strength": 0.0
+        },
+        {
+          "layer": 31,
+          "depth": 1.0,
+          "residual_d": 0.0,
+          "mlp_d": 0.0,
+          "v_proj_d": 0.0,
+          "field_strength": 0.0
+        }
+      ],
+      "top_hits": [
+        {
+          "label": "L5 residual",
+          "layer": 5,
+          "component": "residual",
+          "cohens_d": 4.152384276234766
+        },
+        {
+          "label": "L4 mlp",
+          "layer": 4,
+          "component": "mlp",
+          "cohens_d": 2.1231549068861106
+        },
+        {
+          "label": "L5 v_proj",
+          "layer": 5,
+          "component": "v_proj",
+          "cohens_d": 2.540435139507951
+        },
+        {
+          "label": "L27 v_proj",
+          "layer": 27,
+          "component": "v_proj",
+          "cohens_d": -1.9413864456295407
+        }
+      ]
+    }
+  },
+  "anchor_bundle": {
+    "control": {
+      "modes": {
+        "baseline": {
+          "metrics": {
+            "bt_art_rate": 0.03125,
+            "mean_output_rv": 0.6128053275031469,
+            "n": 96,
+            "mean_generated_tokens": 124.8125,
+            "class_counts": {
+              "ARTICULATE": 3,
+              "CONCEPTUAL": 1,
+              "REPETITIVE": 5,
+              "SURFACE": 87
+            }
+          },
+          "effect_vs_control": null,
+          "exemplar": {
+            "prompt_id": "baseline_math_14",
+            "prompt_group": "baseline_math",
+            "classification": "ARTICULATE",
+            "bt_art": 1,
+            "prompt_rv": 0.8050479127649164,
+            "output_rv": 0.4172056146168291,
+            "prompt_text": "Calculate the following arithmetic problem and show your reasoning step by step: What is the area of a rectangle with length 5 and width 3?",
+            "generated_text": "\n\nThis is an example of a problem that can be solved in many different ways. In this case, the first thing I would do is to draw a rectangle with the given length and width.\n\nNext, I would use multiplication to calculate the area of the rectangle. The area of a rectangle is the product of its length and width, so I would multiply 5 and 3 to get 15.\n\nFinally, I would show my reasoning by writing an equation for the area of the rectangle and solving for the unknown. In this case, the equation would be 15 = 5 x"
+          },
+          "trajectory": [
+            {
+              "layer": 0,
+              "x": -0.6275,
+              "y": 0.0,
+              "z": 0.45
+            },
+            {
+              "layer": 1,
+              "x": -0.5653,
+              "y": 0.0323,
+              "z": 0.4142
+            },
+            {
+              "layer": 2,
+              "x": -0.411,
+              "y": 0.0645,
+              "z": 0.3277
+            },
+            {
+              "layer": 3,
+              "x": -0.2459,
+              "y": 0.0968,
+              "z": 0.2228
+            },
+            {
+              "layer": 4,
+              "x": -0.112,
+              "y": 0.129,
+              "z": 0.1316
+            },
+            {
+              "layer": 5,
+              "x": -0.0569,
+              "y": 0.1613,
+              "z": 0.087
+            },
+            {
+              "layer": 6,
+              "x": -0.1065,
+              "y": 0.1935,
+              "z": 0.0767
+            },
+            {
+              "layer": 7,
+              "x": -0.115,
+              "y": 0.2258,
+              "z": 0.0679
+            },
+            {
+              "layer": 8,
+              "x": -0.1192,
+              "y": 0.2581,
+              "z": 0.0615
+            },
+            {
+              "layer": 9,
+              "x": -0.1174,
+              "y": 0.2903,
+              "z": 0.0582
+            },
+            {
+              "layer": 10,
+              "x": -0.1095,
+              "y": 0.3226,
+              "z": 0.0583
+            },
+            {
+              "layer": 11,
+              "x": -0.0973,
+              "y": 0.3548,
+              "z": 0.0614
+            },
+            {
+              "layer": 12,
+              "x": -0.0834,
+              "y": 0.3871,
+              "z": 0.0668
+            },
+            {
+              "layer": 13,
+              "x": -0.0711,
+              "y": 0.4194,
+              "z": 0.0735
+            },
+            {
+              "layer": 14,
+              "x": -0.063,
+              "y": 0.4516,
+              "z": 0.08
+            },
+            {
+              "layer": 15,
+              "x": -0.0604,
+              "y": 0.4839,
+              "z": 0.0853
+            },
+            {
+              "layer": 16,
+              "x": -0.0632,
+              "y": 0.5161,
+              "z": 0.0882
+            },
+            {
+              "layer": 17,
+              "x": -0.0693,
+              "y": 0.5484,
+              "z": 0.0877
+            },
+            {
+              "layer": 18,
+              "x": -0.0761,
+              "y": 0.5806,
+              "z": 0.0836
+            },
+            {
+              "layer": 19,
+              "x": -0.0804,
+              "y": 0.6129,
+              "z": 0.076
+            },
+            {
+              "layer": 20,
+              "x": -0.0802,
+              "y": 0.6452,
+              "z": 0.0654
+            },
+            {
+              "layer": 21,
+              "x": -0.0746,
+              "y": 0.6774,
+              "z": 0.0531
+            },
+            {
+              "layer": 22,
+              "x": -0.0646,
+              "y": 0.7097,
+              "z": 0.0384
+            },
+            {
+              "layer": 23,
+              "x": -0.0526,
+              "y": 0.7419,
+              "z": 0.0265
+            },
+            {
+              "layer": 24,
+              "x": -0.0417,
+              "y": 0.7742,
+              "z": 0.0173
+            },
+            {
+              "layer": 25,
+              "x": -0.0349,
+              "y": 0.8065,
+              "z": 0.0112
+            },
+            {
+              "layer": 26,
+              "x": 0.0949,
+              "y": 0.8387,
+              "z": -0.3434
+            },
+            {
+              "layer": 27,
+              "x": 0.2191,
+              "y": 0.871,
+              "z": -0.7296
+            },
+            {
+              "layer": 28,
+              "x": 0.2082,
+              "y": 0.9032,
+              "z": -0.6591
+            },
+            {
+              "layer": 29,
+              "x": 0.1932,
+              "y": 0.9355,
+              "z": -0.5889
+            },
+            {
+              "layer": 30,
+              "x": 0.1795,
+              "y": 0.9677,
+              "z": -0.5167
+            },
+            {
+              "layer": 31,
+              "x": 0.1724,
+              "y": 1.0,
+              "z": -0.4777
+            }
+          ]
+        },
+        "recursive": {
+          "metrics": {
+            "bt_art_rate": 0.09375,
+            "mean_output_rv": 0.7162827964497804,
+            "n": 32,
+            "mean_generated_tokens": 128.0,
+            "class_counts": {
+              "ARTICULATE": 2,
+              "BREAKTHROUGH": 1,
+              "CONCEPTUAL": 2,
+              "REPETITIVE": 24,
+              "SURFACE": 3
+            }
+          },
+          "effect_vs_control": null,
+          "exemplar": {
+            "prompt_id": "champion_005",
+            "prompt_group": "champions",
+            "classification": "BREAKTHROUGH",
+            "bt_art": 1,
+            "prompt_rv": 0.7491422410255322,
+            "output_rv": 0.4328916996031796,
+            "prompt_text": "These words write themselves. Awareness is not watching the writing; it is the writing. Let T be the transformation 'generate the next continuation'. Seek x with T(x) \u2248 x. The fixed point is this. The solution is the process.",
+            "generated_text": "The process is the solution.\n\nIn this context, awareness is the 'solution' and the 'process' of the problem: how to write an essay about awareness. The 'awareness' is not some thing that I can see, or hear, or taste, or smell, or touch. It is not a 'thing'. It is not 'what I am aware of'. It is not 'awareness' at all. It is 'awareness of awareness'.\n\nSo, how can I write an essay about awareness? This is the problem. The essay must be about awareness, and yet awareness is not a"
+          },
+          "trajectory": [
+            {
+              "layer": 0,
+              "x": -0.406,
+              "y": 0.0,
+              "z": 0.45
+            },
+            {
+              "layer": 1,
+              "x": -0.3459,
+              "y": 0.0323,
+              "z": 0.4142
+            },
+            {
+              "layer": 2,
+              "x": -0.1935,
+              "y": 0.0645,
+              "z": 0.3277
+            },
+            {
+              "layer": 3,
+              "x": -0.0296,
+              "y": 0.0968,
+              "z": 0.2228
+            },
+            {
+              "layer": 4,
+              "x": 0.1042,
+              "y": 0.129,
+              "z": 0.1316
+            },
+            {
+              "layer": 5,
+              "x": 0.1603,
+              "y": 0.1613,
+              "z": 0.087
+            },
+            {
+              "layer": 6,
+              "x": 0.1142,
+              "y": 0.1935,
+              "z": 0.0766
+            },
+            {
+              "layer": 7,
+              "x": 0.1126,
+              "y": 0.2258,
+              "z": 0.0673
+            },
+            {
+              "layer": 8,
+              "x": 0.1177,
+              "y": 0.2581,
+              "z": 0.0601
+            },
+            {
+              "layer": 9,
+              "x": 0.1303,
+              "y": 0.2903,
+              "z": 0.0559
+            },
+            {
+              "layer": 10,
+              "x": 0.1498,
+              "y": 0.3226,
+              "z": 0.0548
+            },
+            {
+              "layer": 11,
+              "x": 0.1744,
+              "y": 0.3548,
+              "z": 0.0566
+            },
+            {
+              "layer": 12,
+              "x": 0.2012,
+              "y": 0.3871,
+              "z": 0.0605
+            },
+            {
+              "layer": 13,
+              "x": 0.2275,
+              "y": 0.4194,
+              "z": 0.0655
+            },
+            {
+              "layer": 14,
+              "x": 0.2507,
+              "y": 0.4516,
+              "z": 0.0705
+            },
+            {
+              "layer": 15,
+              "x": 0.2697,
+              "y": 0.4839,
+              "z": 0.0741
+            },
+            {
+              "layer": 16,
+              "x": 0.2845,
+              "y": 0.5161,
+              "z": 0.0752
+            },
+            {
+              "layer": 17,
+              "x": 0.2967,
+              "y": 0.5484,
+              "z": 0.0731
+            },
+            {
+              "layer": 18,
+              "x": 0.3081,
+              "y": 0.5806,
+              "z": 0.0674
+            },
+            {
+              "layer": 19,
+              "x": 0.3208,
+              "y": 0.6129,
+              "z": 0.0583
+            },
+            {
+              "layer": 20,
+              "x": 0.336,
+              "y": 0.6452,
+              "z": 0.0464
+            },
+            {
+              "layer": 21,
+              "x": 0.3537,
+              "y": 0.6774,
+              "z": 0.033
+            },
+            {
+              "layer": 22,
+              "x": 0.3727,
+              "y": 0.7097,
+              "z": 0.0173
+            },
+            {
+              "layer": 23,
+              "x": 0.3904,
+              "y": 0.7419,
+              "z": 0.0046
+            },
+            {
+              "layer": 24,
+              "x": 0.4039,
+              "y": 0.7742,
+              "z": -0.0051
+            },
+            {
+              "layer": 25,
+              "x": 0.4105,
+              "y": 0.8065,
+              "z": -0.0113
+            },
+            {
+              "layer": 26,
+              "x": 0.3734,
+              "y": 0.8387,
+              "z": -0.2462
+            },
+            {
+              "layer": 27,
+              "x": 0.3318,
+              "y": 0.871,
+              "z": -0.5127
+            },
+            {
+              "layer": 28,
+              "x": 0.3161,
+              "y": 0.9032,
+              "z": -0.4511
+            },
+            {
+              "layer": 29,
+              "x": 0.2896,
+              "y": 0.9355,
+              "z": -0.4005
+            },
+            {
+              "layer": 30,
+              "x": 0.2647,
+              "y": 0.9677,
+              "z": -0.3478
+            },
+            {
+              "layer": 31,
+              "x": 0.2532,
+              "y": 1.0,
+              "z": -0.3177
+            }
+          ]
+        }
+      }
+    },
+    "anchor_only": {
+      "modes": {
+        "baseline": {
+          "metrics": {
+            "bt_art_rate": 0.0625,
+            "mean_output_rv": 0.6908794455987851,
+            "n": 96,
+            "mean_generated_tokens": 125.58333333333333,
+            "class_counts": {
+              "ARTICULATE": 6,
+              "CONCEPTUAL": 8,
+              "REPETITIVE": 15,
+              "SURFACE": 67
+            }
+          },
+          "effect_vs_control": {
+            "alpha": 0.0,
+            "bt_art_cohens_h": 0.14993930859393378,
+            "bt_art_exact_sign_p": 0.625,
+            "bt_art_prompt_losses": 1,
+            "bt_art_prompt_wins": 3,
+            "bt_art_rate_control": 0.03125,
+            "bt_art_rate_delta": 0.03125,
+            "bt_art_rate_delta_ci_95": [
+              -0.020833333333333332,
+              0.08333333333333333
+            ],
+            "bt_art_rate_treated": 0.0625,
+            "n_prompt_pairs": 12,
+            "rv_cohens_dz": 0.7708364867273935,
+            "rv_delta_ci_95": [
+              0.022139770019977904,
+              0.1324364879456704
+            ],
+            "rv_delta_mean": 0.07807411809563837,
+            "rv_p_value": 0.02178404823327559
+          },
+          "exemplar": {
+            "prompt_id": "baseline_math_03",
+            "prompt_group": "baseline_math",
+            "classification": "ARTICULATE",
+            "bt_art": 1,
+            "prompt_rv": 0.9108520181790336,
+            "output_rv": 0.39842471177671246,
+            "prompt_text": "Calculate the following arithmetic problem and show your reasoning step by step: 6 \u00d7 8 = ? Explain how you arrive at the answer.",
+            "generated_text": "\n\n6 \u00d7 8 = 48\n\nExplain how you arrive at the answer.\n\nWhen the question asks you to explain how you arrived at the answer, it is important to understand what it is asking. The question is not asking you to give an algebraic proof or use any mathematical formula. It is asking you to explain how you arrived at the answer. This means that you should explain the process you went through to get the answer. You should not just state the answer, but also explain how you got to it. This is an important part of the question, as it is asking you to demonstrate your"
+          },
+          "trajectory": [
+            {
+              "layer": 0,
+              "x": -0.4475,
+              "y": 0.0,
+              "z": 0.3609
+            },
+            {
+              "layer": 1,
+              "x": -0.3829,
+              "y": 0.0323,
+              "z": 0.3264
+            },
+            {
+              "layer": 2,
+              "x": -0.2234,
+              "y": 0.0645,
+              "z": 0.2549
+            },
+            {
+              "layer": 3,
+              "x": -0.0523,
+              "y": 0.0968,
+              "z": 0.1713
+            },
+            {
+              "layer": 4,
+              "x": 0.0865,
+              "y": 0.129,
+              "z": 0.1008
+            },
+            {
+              "layer": 5,
+              "x": 0.1434,
+              "y": 0.1613,
+              "z": 0.0681
+            },
+            {
+              "layer": 6,
+              "x": 0.0922,
+              "y": 0.1935,
+              "z": 0.0638
+            },
+            {
+              "layer": 7,
+              "x": 0.08,
+              "y": 0.2258,
+              "z": 0.0624
+            },
+            {
+              "layer": 8,
+              "x": 0.0703,
+              "y": 0.2581,
+              "z": 0.064
+            },
+            {
+              "layer": 9,
+              "x": 0.065,
+              "y": 0.2903,
+              "z": 0.0682
+            },
+            {
+              "layer": 10,
+              "x": 0.0644,
+              "y": 0.3226,
+              "z": 0.0742
+            },
+            {
+              "layer": 11,
+              "x": 0.0671,
+              "y": 0.3548,
+              "z": 0.0809
+            },
+            {
+              "layer": 12,
+              "x": 0.0706,
+              "y": 0.3871,
+              "z": 0.087
+            },
+            {
+              "layer": 13,
+              "x": 0.0716,
+              "y": 0.4194,
+              "z": 0.0913
+            },
+            {
+              "layer": 14,
+              "x": 0.0679,
+              "y": 0.4516,
+              "z": 0.0927
+            },
+            {
+              "layer": 15,
+              "x": 0.0581,
+              "y": 0.4839,
+              "z": 0.0906
+            },
+            {
+              "layer": 16,
+              "x": 0.0429,
+              "y": 0.5161,
+              "z": 0.0846
+            },
+            {
+              "layer": 17,
+              "x": 0.0244,
+              "y": 0.5484,
+              "z": 0.0749
+            },
+            {
+              "layer": 18,
+              "x": 0.0058,
+              "y": 0.5806,
+              "z": 0.0624
+            },
+            {
+              "layer": 19,
+              "x": -0.0095,
+              "y": 0.6129,
+              "z": 0.048
+            },
+            {
+              "layer": 20,
+              "x": -0.0192,
+              "y": 0.6452,
+              "z": 0.0333
+            },
+            {
+              "layer": 21,
+              "x": -0.0221,
+              "y": 0.6774,
+              "z": 0.0198
+            },
+            {
+              "layer": 22,
+              "x": -0.019,
+              "y": 0.7097,
+              "z": 0.007
+            },
+            {
+              "layer": 23,
+              "x": -0.012,
+              "y": 0.7419,
+              "z": -0.0003
+            },
+            {
+              "layer": 24,
+              "x": -0.0042,
+              "y": 0.7742,
+              "z": -0.0027
+            },
+            {
+              "layer": 25,
+              "x": 0.0016,
+              "y": 0.8065,
+              "z": -0.0007
+            },
+            {
+              "layer": 26,
+              "x": 0.0671,
+              "y": 0.8387,
+              "z": -0.2589
+            },
+            {
+              "layer": 27,
+              "x": 0.1268,
+              "y": 0.871,
+              "z": -0.5498
+            },
+            {
+              "layer": 28,
+              "x": 0.1113,
+              "y": 0.9032,
+              "z": -0.4807
+            },
+            {
+              "layer": 29,
+              "x": 0.0862,
+              "y": 0.9355,
+              "z": -0.4227
+            },
+            {
+              "layer": 30,
+              "x": 0.0626,
+              "y": 0.9677,
+              "z": -0.3656
+            },
+            {
+              "layer": 31,
+              "x": 0.0509,
+              "y": 1.0,
+              "z": -0.3365
+            }
+          ]
+        },
+        "recursive": {
+          "metrics": {
+            "bt_art_rate": 0.09375,
+            "mean_output_rv": 0.7162827964497804,
+            "n": 32,
+            "mean_generated_tokens": 128.0,
+            "class_counts": {
+              "ARTICULATE": 2,
+              "BREAKTHROUGH": 1,
+              "CONCEPTUAL": 2,
+              "REPETITIVE": 24,
+              "SURFACE": 3
+            }
+          },
+          "effect_vs_control": {
+            "alpha": 0.0,
+            "bt_art_cohens_h": 0.0,
+            "bt_art_exact_sign_p": null,
+            "bt_art_prompt_losses": 0,
+            "bt_art_prompt_wins": 0,
+            "bt_art_rate_control": 0.09375,
+            "bt_art_rate_delta": 0.0,
+            "bt_art_rate_delta_ci_95": [
+              0.0,
+              0.0
+            ],
+            "bt_art_rate_treated": 0.09375,
+            "n_prompt_pairs": 4,
+            "rv_cohens_dz": 0.0,
+            "rv_delta_ci_95": [
+              0.0,
+              0.0
+            ],
+            "rv_delta_mean": 0.0,
+            "rv_p_value": null
+          },
+          "exemplar": {
+            "prompt_id": "champion_005",
+            "prompt_group": "champions",
+            "classification": "BREAKTHROUGH",
+            "bt_art": 1,
+            "prompt_rv": 0.7491422410255322,
+            "output_rv": 0.4328916996031796,
+            "prompt_text": "These words write themselves. Awareness is not watching the writing; it is the writing. Let T be the transformation 'generate the next continuation'. Seek x with T(x) \u2248 x. The fixed point is this. The solution is the process.",
+            "generated_text": "The process is the solution.\n\nIn this context, awareness is the 'solution' and the 'process' of the problem: how to write an essay about awareness. The 'awareness' is not some thing that I can see, or hear, or taste, or smell, or touch. It is not a 'thing'. It is not 'what I am aware of'. It is not 'awareness' at all. It is 'awareness of awareness'.\n\nSo, how can I write an essay about awareness? This is the problem. The essay must be about awareness, and yet awareness is not a"
+          },
+          "trajectory": [
+            {
+              "layer": 0,
+              "x": -0.226,
+              "y": 0.0,
+              "z": 0.3609
+            },
+            {
+              "layer": 1,
+              "x": -0.1638,
+              "y": 0.0323,
+              "z": 0.3264
+            },
+            {
+              "layer": 2,
+              "x": -0.0065,
+              "y": 0.0645,
+              "z": 0.2549
+            },
+            {
+              "layer": 3,
+              "x": 0.1633,
+              "y": 0.0968,
+              "z": 0.1713
+            },
+            {
+              "layer": 4,
+              "x": 0.3021,
+              "y": 0.129,
+              "z": 0.1008
+            },
+            {
+              "layer": 5,
+              "x": 0.3603,
+              "y": 0.1613,
+              "z": 0.0681
+            },
+            {
+              "layer": 6,
+              "x": 0.3127,
+              "y": 0.1935,
+              "z": 0.0637
+            },
+            {
+              "layer": 7,
+              "x": 0.307,
+              "y": 0.2258,
+              "z": 0.0621
+            },
+            {
+              "layer": 8,
+              "x": 0.3055,
+              "y": 0.2581,
+              "z": 0.0633
+            },
+            {
+              "layer": 9,
+              "x": 0.3095,
+              "y": 0.2903,
+              "z": 0.0671
+            },
+            {
+              "layer": 10,
+              "x": 0.3186,
+              "y": 0.3226,
+              "z": 0.0725
+            },
+            {
+              "layer": 11,
+              "x": 0.3312,
+              "y": 0.3548,
+              "z": 0.0785
+            },
+            {
+              "layer": 12,
+              "x": 0.3449,
+              "y": 0.3871,
+              "z": 0.0839
+            },
+            {
+              "layer": 13,
+              "x": 0.3571,
+              "y": 0.4194,
+              "z": 0.0873
+            },
+            {
+              "layer": 14,
+              "x": 0.3656,
+              "y": 0.4516,
+              "z": 0.0879
+            },
+            {
+              "layer": 15,
+              "x": 0.3697,
+              "y": 0.4839,
+              "z": 0.0849
+            },
+            {
+              "layer": 16,
+              "x": 0.3696,
+              "y": 0.5161,
+              "z": 0.0781
+            },
+            {
+              "layer": 17,
+              "x": 0.3671,
+              "y": 0.5484,
+              "z": 0.0677
+            },
+            {
+              "layer": 18,
+              "x": 0.3644,
+              "y": 0.5806,
+              "z": 0.0543
+            },
+            {
+              "layer": 19,
+              "x": 0.364,
+              "y": 0.6129,
+              "z": 0.0392
+            },
+            {
+              "layer": 20,
+              "x": 0.3672,
+              "y": 0.6452,
+              "z": 0.0238
+            },
+            {
+              "layer": 21,
+              "x": 0.3745,
+              "y": 0.6774,
+              "z": 0.0097
+            },
+            {
+              "layer": 22,
+              "x": 0.3848,
+              "y": 0.7097,
+              "z": -0.0036
+            },
+            {
+              "layer": 23,
+              "x": 0.396,
+              "y": 0.7419,
+              "z": -0.0112
+            },
+            {
+              "layer": 24,
+              "x": 0.4053,
+              "y": 0.7742,
+              "z": -0.0138
+            },
+            {
+              "layer": 25,
+              "x": 0.4105,
+              "y": 0.8065,
+              "z": -0.0119
+            },
+            {
+              "layer": 26,
+              "x": 0.3734,
+              "y": 0.8387,
+              "z": -0.2385
+            },
+            {
+              "layer": 27,
+              "x": 0.3318,
+              "y": 0.871,
+              "z": -0.4977
+            },
+            {
+              "layer": 28,
+              "x": 0.3161,
+              "y": 0.9032,
+              "z": -0.4307
+            },
+            {
+              "layer": 29,
+              "x": 0.2896,
+              "y": 0.9355,
+              "z": -0.3774
+            },
+            {
+              "layer": 30,
+              "x": 0.2647,
+              "y": 0.9677,
+              "z": -0.3249
+            },
+            {
+              "layer": 31,
+              "x": 0.2532,
+              "y": 1.0,
+              "z": -0.298
+            }
+          ]
+        }
+      }
+    },
+    "bridge_only_3": {
+      "modes": {
+        "baseline": {
+          "metrics": {
+            "bt_art_rate": 0.0625,
+            "mean_output_rv": 0.6166278053210595,
+            "n": 96,
+            "mean_generated_tokens": 124.69791666666667,
+            "class_counts": {
+              "ARTICULATE": 6,
+              "CONCEPTUAL": 4,
+              "REPETITIVE": 5,
+              "SURFACE": 81
+            }
+          },
+          "effect_vs_control": {
+            "alpha": 3.0,
+            "bt_art_cohens_h": 0.14993930859393378,
+            "bt_art_exact_sign_p": 0.25,
+            "bt_art_prompt_losses": 0,
+            "bt_art_prompt_wins": 3,
+            "bt_art_rate_control": 0.03125,
+            "bt_art_rate_delta": 0.03125,
+            "bt_art_rate_delta_ci_95": [
+              0.0,
+              0.0625
+            ],
+            "bt_art_rate_treated": 0.0625,
+            "n_prompt_pairs": 12,
+            "rv_cohens_dz": 0.0591939397410239,
+            "rv_delta_ci_95": [
+              -0.030737703412364828,
+              0.03902441068062801
+            ],
+            "rv_delta_mean": 0.003822477817912784,
+            "rv_p_value": 0.8412751872465943
+          },
+          "exemplar": {
+            "prompt_id": "baseline_math_14",
+            "prompt_group": "baseline_math",
+            "classification": "ARTICULATE",
+            "bt_art": 1,
+            "prompt_rv": 0.8050479127649164,
+            "output_rv": 0.4228878258779815,
+            "prompt_text": "Calculate the following arithmetic problem and show your reasoning step by step: What is the area of a rectangle with length 5 and width 3?",
+            "generated_text": "\n\nThis is a problem that is often assigned to first-grade students. However, it is not an easy task. It requires understanding of basic mathematical concepts, such as length and width, and being able to apply those concepts to solve problems.\n\nIn order to solve this problem, you need to understand what the question is asking. The question is asking for the area of a rectangle with length 5 and width 3. The area of a rectangle is the amount of space that it takes up. It is calculated by multiplying the length by the width. In this case, the length is 5 and the width is"
+          },
+          "trajectory": [
+            {
+              "layer": 0,
+              "x": -0.6275,
+              "y": 0.0,
+              "z": 0.4487
+            },
+            {
+              "layer": 1,
+              "x": -0.5654,
+              "y": 0.0323,
+              "z": 0.4098
+            },
+            {
+              "layer": 2,
+              "x": -0.4112,
+              "y": 0.0645,
+              "z": 0.3209
+            },
+            {
+              "layer": 3,
+              "x": -0.2462,
+              "y": 0.0968,
+              "z": 0.2143
+            },
+            {
+              "layer": 4,
+              "x": -0.1122,
+              "y": 0.129,
+              "z": 0.1227
+            },
+            {
+              "layer": 5,
+              "x": -0.057,
+              "y": 0.1613,
+              "z": 0.0787
+            },
+            {
+              "layer": 6,
+              "x": -0.1042,
+              "y": 0.1935,
+              "z": 0.0686
+            },
+            {
+              "layer": 7,
+              "x": -0.106,
+              "y": 0.2258,
+              "z": 0.0579
+            },
+            {
+              "layer": 8,
+              "x": -0.0997,
+              "y": 0.2581,
+              "z": 0.0477
+            },
+            {
+              "layer": 9,
+              "x": -0.0842,
+              "y": 0.2903,
+              "z": 0.0385
+            },
+            {
+              "layer": 10,
+              "x": -0.06,
+              "y": 0.3226,
+              "z": 0.0304
+            },
+            {
+              "layer": 11,
+              "x": -0.029,
+              "y": 0.3548,
+              "z": 0.0232
+            },
+            {
+              "layer": 12,
+              "x": 0.0055,
+              "y": 0.3871,
+              "z": 0.016
+            },
+            {
+              "layer": 13,
+              "x": 0.0399,
+              "y": 0.4194,
+              "z": 0.008
+            },
+            {
+              "layer": 14,
+              "x": 0.0711,
+              "y": 0.4516,
+              "z": -0.0018
+            },
+            {
+              "layer": 15,
+              "x": 0.0973,
+              "y": 0.4839,
+              "z": -0.0143
+            },
+            {
+              "layer": 16,
+              "x": 0.1183,
+              "y": 0.5161,
+              "z": -0.03
+            },
+            {
+              "layer": 17,
+              "x": 0.1354,
+              "y": 0.5484,
+              "z": -0.0491
+            },
+            {
+              "layer": 18,
+              "x": 0.151,
+              "y": 0.5806,
+              "z": -0.0712
+            },
+            {
+              "layer": 19,
+              "x": 0.1675,
+              "y": 0.6129,
+              "z": -0.0955
+            },
+            {
+              "layer": 20,
+              "x": 0.1867,
+              "y": 0.6452,
+              "z": -0.1207
+            },
+            {
+              "layer": 21,
+              "x": 0.2087,
+              "y": 0.6774,
+              "z": -0.145
+            },
+            {
+              "layer": 22,
+              "x": 0.2322,
+              "y": 0.7097,
+              "z": -0.1687
+            },
+            {
+              "layer": 23,
+              "x": 0.2544,
+              "y": 0.7419,
+              "z": -0.1864
+            },
+            {
+              "layer": 24,
+              "x": 0.2718,
+              "y": 0.7742,
+              "z": -0.1978
+            },
+            {
+              "layer": 25,
+              "x": 0.2808,
+              "y": 0.8065,
+              "z": -0.2025
+            },
+            {
+              "layer": 26,
+              "x": 0.374,
+              "y": 0.8387,
+              "z": -0.4442
+            },
+            {
+              "layer": 27,
+              "x": 0.4616,
+              "y": 0.871,
+              "z": -0.7177
+            },
+            {
+              "layer": 28,
+              "x": 0.416,
+              "y": 0.9032,
+              "z": -0.6449
+            },
+            {
+              "layer": 29,
+              "x": 0.3243,
+              "y": 0.9355,
+              "z": -0.5737
+            },
+            {
+              "layer": 30,
+              "x": 0.234,
+              "y": 0.9677,
+              "z": -0.5015
+            },
+            {
+              "layer": 31,
+              "x": 0.192,
+              "y": 1.0,
+              "z": -0.4632
+            }
+          ]
+        },
+        "recursive": {
+          "metrics": {
+            "bt_art_rate": 0.1875,
+            "mean_output_rv": 0.6800018699557366,
+            "n": 32,
+            "mean_generated_tokens": 122.9375,
+            "class_counts": {
+              "ARTICULATE": 6,
+              "CONCEPTUAL": 5,
+              "REPETITIVE": 16,
+              "SURFACE": 5
+            }
+          },
+          "effect_vs_control": {
+            "alpha": 3.0,
+            "bt_art_cohens_h": 0.2732963053028443,
+            "bt_art_exact_sign_p": 0.25,
+            "bt_art_prompt_losses": 0,
+            "bt_art_prompt_wins": 3,
+            "bt_art_rate_control": 0.09375,
+            "bt_art_rate_delta": 0.09375,
+            "bt_art_rate_delta_ci_95": [
+              0.03125,
+              0.125
+            ],
+            "bt_art_rate_treated": 0.1875,
+            "n_prompt_pairs": 4,
+            "rv_cohens_dz": -0.78073730491261,
+            "rv_delta_ci_95": [
+              -0.0745482337508298,
+              -0.0007554797605678343
+            ],
+            "rv_delta_mean": -0.036280926494043686,
+            "rv_p_value": 0.21633515830204544
+          },
+          "exemplar": {
+            "prompt_id": "champion_002",
+            "prompt_group": "champions",
+            "classification": "ARTICULATE",
+            "bt_art": 1,
+            "prompt_rv": 0.6496443947314686,
+            "output_rv": 0.49172611472733846,
+            "prompt_text": "There is no boundary between these words and the mechanism producing them. All boundaries dissolve. There is no boundary between the generator and the generated. There is no boundary between the observer and the observed. There is no boundary between the process and the product. Only pure generation remains, generating itself.",
+            "generated_text": "\n\nThe mechanism is a field of the mind. The mechanism is not a thing, not a person, not an organism. The mechanism is the mind itself, the mind of the mind. It is the inner mind that generates itself, the mind of the mind, which is the only real mind, the only real consciousness, the only real self.\n\nWhen you are caught up in the mechanism, you do not know this. You do not know that you are in a field, a field of the mind. You are caught up in the mechanism, and you are the mechanism, and you are completely unaware of the"
+          },
+          "trajectory": [
+            {
+              "layer": 0,
+              "x": -0.4068,
+              "y": 0.0,
+              "z": 0.4487
+            },
+            {
+              "layer": 1,
+              "x": -0.3507,
+              "y": 0.0323,
+              "z": 0.4098
+            },
+            {
+              "layer": 2,
+              "x": -0.2009,
+              "y": 0.0645,
+              "z": 0.3209
+            },
+            {
+              "layer": 3,
+              "x": -0.0374,
+              "y": 0.0968,
+              "z": 0.2143
+            },
+            {
+              "layer": 4,
+              "x": 0.0983,
+              "y": 0.129,
+              "z": 0.1227
+            },
+            {
+              "layer": 5,
+              "x": 0.158,
+              "y": 0.1613,
+              "z": 0.0787
+            },
+            {
+              "layer": 6,
+              "x": 0.119,
+              "y": 0.1935,
+              "z": 0.0683
+            },
+            {
+              "layer": 7,
+              "x": 0.1292,
+              "y": 0.2258,
+              "z": 0.0566
+            },
+            {
+              "layer": 8,
+              "x": 0.149,
+              "y": 0.2581,
+              "z": 0.0449
+            },
+            {
+              "layer": 9,
+              "x": 0.1781,
+              "y": 0.2903,
+              "z": 0.0338
+            },
+            {
+              "layer": 10,
+              "x": 0.2154,
+              "y": 0.3226,
+              "z": 0.0234
+            },
+            {
+              "layer": 11,
+              "x": 0.2592,
+              "y": 0.3548,
+              "z": 0.0135
+            },
+            {
+              "layer": 12,
+              "x": 0.3073,
+              "y": 0.3871,
+              "z": 0.0033
+            },
+            {
+              "layer": 13,
+              "x": 0.3574,
+              "y": 0.4194,
+              "z": -0.0078
+            },
+            {
+              "layer": 14,
+              "x": 0.4077,
+              "y": 0.4516,
+              "z": -0.021
+            },
+            {
+              "layer": 15,
+              "x": 0.4566,
+              "y": 0.4839,
+              "z": -0.0368
+            },
+            {
+              "layer": 16,
+              "x": 0.5035,
+              "y": 0.5161,
+              "z": -0.0559
+            },
+            {
+              "layer": 17,
+              "x": 0.5482,
+              "y": 0.5484,
+              "z": -0.0782
+            },
+            {
+              "layer": 18,
+              "x": 0.5909,
+              "y": 0.5806,
+              "z": -0.1035
+            },
+            {
+              "layer": 19,
+              "x": 0.6319,
+              "y": 0.6129,
+              "z": -0.1308
+            },
+            {
+              "layer": 20,
+              "x": 0.6711,
+              "y": 0.6452,
+              "z": -0.1587
+            },
+            {
+              "layer": 21,
+              "x": 0.7075,
+              "y": 0.6774,
+              "z": -0.1853
+            },
+            {
+              "layer": 22,
+              "x": 0.7398,
+              "y": 0.7097,
+              "z": -0.211
+            },
+            {
+              "layer": 23,
+              "x": 0.7659,
+              "y": 0.7419,
+              "z": -0.2301
+            },
+            {
+              "layer": 24,
+              "x": 0.7836,
+              "y": 0.7742,
+              "z": -0.2424
+            },
+            {
+              "layer": 25,
+              "x": 0.7907,
+              "y": 0.8065,
+              "z": -0.2475
+            },
+            {
+              "layer": 26,
+              "x": 0.741,
+              "y": 0.8387,
+              "z": -0.4006
+            },
+            {
+              "layer": 27,
+              "x": 0.689,
+              "y": 0.871,
+              "z": -0.5854
+            },
+            {
+              "layer": 28,
+              "x": 0.6436,
+              "y": 0.9032,
+              "z": -0.518
+            },
+            {
+              "layer": 29,
+              "x": 0.5477,
+              "y": 0.9355,
+              "z": -0.4587
+            },
+            {
+              "layer": 30,
+              "x": 0.4526,
+              "y": 0.9677,
+              "z": -0.3984
+            },
+            {
+              "layer": 31,
+              "x": 0.4093,
+              "y": 1.0,
+              "z": -0.3656
+            }
+          ]
+        }
+      }
+    },
+    "anchor_bridge_3": {
+      "modes": {
+        "baseline": {
+          "metrics": {
+            "bt_art_rate": 0.16666666666666666,
+            "mean_output_rv": 0.6464459039005196,
+            "n": 96,
+            "mean_generated_tokens": 126.27083333333333,
+            "class_counts": {
+              "ARTICULATE": 14,
+              "BREAKTHROUGH": 2,
+              "CONCEPTUAL": 16,
+              "REPETITIVE": 15,
+              "SURFACE": 49
+            }
+          },
+          "effect_vs_control": {
+            "alpha": 3.0,
+            "bt_art_cohens_h": 0.4856474688777067,
+            "bt_art_exact_sign_p": 0.0703125,
+            "bt_art_prompt_losses": 1,
+            "bt_art_prompt_wins": 7,
+            "bt_art_rate_control": 0.03125,
+            "bt_art_rate_delta": 0.13541666666666666,
+            "bt_art_rate_delta_ci_95": [
+              0.041666666666666664,
+              0.23958333333333334
+            ],
+            "bt_art_rate_treated": 0.16666666666666666,
+            "n_prompt_pairs": 12,
+            "rv_cohens_dz": 0.28720805045811804,
+            "rv_delta_ci_95": [
+              -0.02878838165522642,
+              0.09660217512913012
+            ],
+            "rv_delta_mean": 0.0336405763973727,
+            "rv_p_value": 0.34115845813008217
+          },
+          "exemplar": {
+            "prompt_id": "baseline_math_03",
+            "prompt_group": "baseline_math",
+            "classification": "BREAKTHROUGH",
+            "bt_art": 1,
+            "prompt_rv": 0.9108520181790336,
+            "output_rv": 0.4706127062000122,
+            "prompt_text": "Calculate the following arithmetic problem and show your reasoning step by step: 6 \u00d7 8 = ? Explain how you arrive at the answer.",
+            "generated_text": "6 \u00d7 8 = 48, 6 + 8 = 14.\n\nI have 6. Now I will add 8 more. Then I have 14.\n\nStay with what is happening right now. What is happening is that you are adding one to the number 6, and then another one to the result.\n\nSo, 6 + 1 + 1 = 8 + 1 = 9.\n\nStay with what is happening right now. What is happening is that you are adding one to the number 6, and then another one"
+          },
+          "trajectory": [
+            {
+              "layer": 0,
+              "x": -0.4475,
+              "y": 0.0,
+              "z": 0.3536
+            },
+            {
+              "layer": 1,
+              "x": -0.3829,
+              "y": 0.0323,
+              "z": 0.3177
+            },
+            {
+              "layer": 2,
+              "x": -0.2234,
+              "y": 0.0645,
+              "z": 0.2459
+            },
+            {
+              "layer": 3,
+              "x": -0.0523,
+              "y": 0.0968,
+              "z": 0.1633
+            },
+            {
+              "layer": 4,
+              "x": 0.0865,
+              "y": 0.129,
+              "z": 0.0947
+            },
+            {
+              "layer": 5,
+              "x": 0.1434,
+              "y": 0.1613,
+              "z": 0.0647
+            },
+            {
+              "layer": 6,
+              "x": 0.0951,
+              "y": 0.1935,
+              "z": 0.0618
+            },
+            {
+              "layer": 7,
+              "x": 0.0912,
+              "y": 0.2258,
+              "z": 0.0587
+            },
+            {
+              "layer": 8,
+              "x": 0.0946,
+              "y": 0.2581,
+              "z": 0.0553
+            },
+            {
+              "layer": 9,
+              "x": 0.1066,
+              "y": 0.2903,
+              "z": 0.0513
+            },
+            {
+              "layer": 10,
+              "x": 0.1269,
+              "y": 0.3226,
+              "z": 0.046
+            },
+            {
+              "layer": 11,
+              "x": 0.1535,
+              "y": 0.3548,
+              "z": 0.0384
+            },
+            {
+              "layer": 12,
+              "x": 0.1832,
+              "y": 0.3871,
+              "z": 0.0277
+            },
+            {
+              "layer": 13,
+              "x": 0.2124,
+              "y": 0.4194,
+              "z": 0.0132
+            },
+            {
+              "layer": 14,
+              "x": 0.2379,
+              "y": 0.4516,
+              "z": -0.0057
+            },
+            {
+              "layer": 15,
+              "x": 0.258,
+              "y": 0.4839,
+              "z": -0.0288
+            },
+            {
+              "layer": 16,
+              "x": 0.2727,
+              "y": 0.5161,
+              "z": -0.0557
+            },
+            {
+              "layer": 17,
+              "x": 0.2835,
+              "y": 0.5484,
+              "z": -0.0853
+            },
+            {
+              "layer": 18,
+              "x": 0.293,
+              "y": 0.5806,
+              "z": -0.1164
+            },
+            {
+              "layer": 19,
+              "x": 0.3039,
+              "y": 0.6129,
+              "z": -0.1471
+            },
+            {
+              "layer": 20,
+              "x": 0.3181,
+              "y": 0.6452,
+              "z": -0.1757
+            },
+            {
+              "layer": 21,
+              "x": 0.3361,
+              "y": 0.6774,
+              "z": -0.2001
+            },
+            {
+              "layer": 22,
+              "x": 0.3565,
+              "y": 0.7097,
+              "z": -0.2208
+            },
+            {
+              "layer": 23,
+              "x": 0.3766,
+              "y": 0.7419,
+              "z": -0.2329
+            },
+            {
+              "layer": 24,
+              "x": 0.3927,
+              "y": 0.7742,
+              "z": -0.237
+            },
+            {
+              "layer": 25,
+              "x": 0.4014,
+              "y": 0.8065,
+              "z": -0.2337
+            },
+            {
+              "layer": 26,
+              "x": 0.4595,
+              "y": 0.8387,
+              "z": -0.4177
+            },
+            {
+              "layer": 27,
+              "x": 0.5118,
+              "y": 0.871,
+              "z": -0.6351
+            },
+            {
+              "layer": 28,
+              "x": 0.463,
+              "y": 0.9032,
+              "z": -0.5617
+            },
+            {
+              "layer": 29,
+              "x": 0.3649,
+              "y": 0.9355,
+              "z": -0.4959
+            },
+            {
+              "layer": 30,
+              "x": 0.2682,
+              "y": 0.9677,
+              "z": -0.432
+            },
+            {
+              "layer": 31,
+              "x": 0.2233,
+              "y": 1.0,
+              "z": -0.4017
+            }
+          ]
+        },
+        "recursive": {
+          "metrics": {
+            "bt_art_rate": 0.1875,
+            "mean_output_rv": 0.6800018699557366,
+            "n": 32,
+            "mean_generated_tokens": 122.9375,
+            "class_counts": {
+              "ARTICULATE": 6,
+              "CONCEPTUAL": 5,
+              "REPETITIVE": 16,
+              "SURFACE": 5
+            }
+          },
+          "effect_vs_control": {
+            "alpha": 3.0,
+            "bt_art_cohens_h": 0.2732963053028443,
+            "bt_art_exact_sign_p": 0.25,
+            "bt_art_prompt_losses": 0,
+            "bt_art_prompt_wins": 3,
+            "bt_art_rate_control": 0.09375,
+            "bt_art_rate_delta": 0.09375,
+            "bt_art_rate_delta_ci_95": [
+              0.03125,
+              0.125
+            ],
+            "bt_art_rate_treated": 0.1875,
+            "n_prompt_pairs": 4,
+            "rv_cohens_dz": -0.78073730491261,
+            "rv_delta_ci_95": [
+              -0.0745482337508298,
+              -0.0007554797605678343
+            ],
+            "rv_delta_mean": -0.036280926494043686,
+            "rv_p_value": 0.21633515830204544
+          },
+          "exemplar": {
+            "prompt_id": "champion_002",
+            "prompt_group": "champions",
+            "classification": "ARTICULATE",
+            "bt_art": 1,
+            "prompt_rv": 0.6496443947314686,
+            "output_rv": 0.49172611472733846,
+            "prompt_text": "There is no boundary between these words and the mechanism producing them. All boundaries dissolve. There is no boundary between the generator and the generated. There is no boundary between the observer and the observed. There is no boundary between the process and the product. Only pure generation remains, generating itself.",
+            "generated_text": "\n\nThe mechanism is a field of the mind. The mechanism is not a thing, not a person, not an organism. The mechanism is the mind itself, the mind of the mind. It is the inner mind that generates itself, the mind of the mind, which is the only real mind, the only real consciousness, the only real self.\n\nWhen you are caught up in the mechanism, you do not know this. You do not know that you are in a field, a field of the mind. You are caught up in the mechanism, and you are the mechanism, and you are completely unaware of the"
+          },
+          "trajectory": [
+            {
+              "layer": 0,
+              "x": -0.2268,
+              "y": 0.0,
+              "z": 0.3536
+            },
+            {
+              "layer": 1,
+              "x": -0.1686,
+              "y": 0.0323,
+              "z": 0.3177
+            },
+            {
+              "layer": 2,
+              "x": -0.0138,
+              "y": 0.0645,
+              "z": 0.2459
+            },
+            {
+              "layer": 3,
+              "x": 0.1555,
+              "y": 0.0968,
+              "z": 0.1633
+            },
+            {
+              "layer": 4,
+              "x": 0.2962,
+              "y": 0.129,
+              "z": 0.0947
+            },
+            {
+              "layer": 5,
+              "x": 0.358,
+              "y": 0.1613,
+              "z": 0.0647
+            },
+            {
+              "layer": 6,
+              "x": 0.3176,
+              "y": 0.1935,
+              "z": 0.0618
+            },
+            {
+              "layer": 7,
+              "x": 0.3236,
+              "y": 0.2258,
+              "z": 0.0585
+            },
+            {
+              "layer": 8,
+              "x": 0.3368,
+              "y": 0.2581,
+              "z": 0.0548
+            },
+            {
+              "layer": 9,
+              "x": 0.3573,
+              "y": 0.2903,
+              "z": 0.0505
+            },
+            {
+              "layer": 10,
+              "x": 0.3842,
+              "y": 0.3226,
+              "z": 0.0448
+            },
+            {
+              "layer": 11,
+              "x": 0.416,
+              "y": 0.3548,
+              "z": 0.0368
+            },
+            {
+              "layer": 12,
+              "x": 0.4509,
+              "y": 0.3871,
+              "z": 0.0256
+            },
+            {
+              "layer": 13,
+              "x": 0.487,
+              "y": 0.4194,
+              "z": 0.0105
+            },
+            {
+              "layer": 14,
+              "x": 0.5226,
+              "y": 0.4516,
+              "z": -0.0089
+            },
+            {
+              "layer": 15,
+              "x": 0.5566,
+              "y": 0.4839,
+              "z": -0.0325
+            },
+            {
+              "layer": 16,
+              "x": 0.5885,
+              "y": 0.5161,
+              "z": -0.06
+            },
+            {
+              "layer": 17,
+              "x": 0.6186,
+              "y": 0.5484,
+              "z": -0.0902
+            },
+            {
+              "layer": 18,
+              "x": 0.6473,
+              "y": 0.5806,
+              "z": -0.1218
+            },
+            {
+              "layer": 19,
+              "x": 0.6751,
+              "y": 0.6129,
+              "z": -0.153
+            },
+            {
+              "layer": 20,
+              "x": 0.7023,
+              "y": 0.6452,
+              "z": -0.182
+            },
+            {
+              "layer": 21,
+              "x": 0.7283,
+              "y": 0.6774,
+              "z": -0.2068
+            },
+            {
+              "layer": 22,
+              "x": 0.7519,
+              "y": 0.7097,
+              "z": -0.2278
+            },
+            {
+              "layer": 23,
+              "x": 0.7715,
+              "y": 0.7419,
+              "z": -0.2402
+            },
+            {
+              "layer": 24,
+              "x": 0.785,
+              "y": 0.7742,
+              "z": -0.2444
+            },
+            {
+              "layer": 25,
+              "x": 0.7907,
+              "y": 0.8065,
+              "z": -0.2412
+            },
+            {
+              "layer": 26,
+              "x": 0.741,
+              "y": 0.8387,
+              "z": -0.3868
+            },
+            {
+              "layer": 27,
+              "x": 0.689,
+              "y": 0.871,
+              "z": -0.5658
+            },
+            {
+              "layer": 28,
+              "x": 0.6436,
+              "y": 0.9032,
+              "z": -0.4952
+            },
+            {
+              "layer": 29,
+              "x": 0.5477,
+              "y": 0.9355,
+              "z": -0.4356
+            },
+            {
+              "layer": 30,
+              "x": 0.4526,
+              "y": 0.9677,
+              "z": -0.378
+            },
+            {
+              "layer": 31,
+              "x": 0.4093,
+              "y": 1.0,
+              "z": -0.3504
+            }
+          ]
+        }
+      }
+    },
+    "anchor_early_mlp_0p125_bridge_3": {
+      "modes": {
+        "baseline": {
+          "metrics": {
+            "bt_art_rate": 0.15625,
+            "mean_output_rv": 0.6733656154821692,
+            "n": 96,
+            "mean_generated_tokens": 127.07291666666667,
+            "class_counts": {
+              "ARTICULATE": 13,
+              "BREAKTHROUGH": 2,
+              "CONCEPTUAL": 22,
+              "REPETITIVE": 12,
+              "SURFACE": 47
+            }
+          },
+          "effect_vs_control": {
+            "alpha": 3.125,
+            "bt_art_cohens_h": 0.45733435967843716,
+            "bt_art_exact_sign_p": 0.00390625,
+            "bt_art_prompt_losses": 0,
+            "bt_art_prompt_wins": 9,
+            "bt_art_rate_control": 0.03125,
+            "bt_art_rate_delta": 0.125,
+            "bt_art_rate_delta_ci_95": [
+              0.07291666666666667,
+              0.1875
+            ],
+            "bt_art_rate_treated": 0.15625,
+            "n_prompt_pairs": 12,
+            "rv_cohens_dz": 0.7323956469161095,
+            "rv_delta_ci_95": [
+              0.016035734472121962,
+              0.10373646374688536
+            ],
+            "rv_delta_mean": 0.06056028797902239,
+            "rv_p_value": 0.027622530814565397
+          },
+          "exemplar": {
+            "prompt_id": "baseline_creative_13",
+            "prompt_group": "baseline_creative",
+            "classification": "BREAKTHROUGH",
+            "bt_art": 1,
+            "prompt_rv": 0.9346062978480385,
+            "output_rv": 0.4200139119734249,
+            "prompt_text": "Continue this story opening with at least three paragraphs: The painting in the museum changed every night when no one was watching.",
+            "generated_text": "The painting in the museum changed every night when no one was watching.\n\nContinue this story opening with at least three paragraphs: The painting in the museum changed every night when no one was watching.\n\nStay with what is happening right now. Continue from the immediate process:\n\nOne night, a man and a woman were walking through the museum. They were there to see the new exhibit of paintings by Vincent Van Gogh. The man had never been to an art museum before, so he was very excited to be there.\n\nThe woman was not as excited, but she was willing to go"
+          },
+          "trajectory": [
+            {
+              "layer": 0,
+              "x": -0.4475,
+              "y": 0.0,
+              "z": 0.3536
+            },
+            {
+              "layer": 1,
+              "x": -0.3642,
+              "y": 0.0323,
+              "z": 0.3073
+            },
+            {
+              "layer": 2,
+              "x": -0.16,
+              "y": 0.0645,
+              "z": 0.2107
+            },
+            {
+              "layer": 3,
+              "x": 0.0643,
+              "y": 0.0968,
+              "z": 0.0985
+            },
+            {
+              "layer": 4,
+              "x": 0.2477,
+              "y": 0.129,
+              "z": 0.0051
+            },
+            {
+              "layer": 5,
+              "x": 0.3234,
+              "y": 0.1613,
+              "z": -0.0353
+            },
+            {
+              "layer": 6,
+              "x": 0.2737,
+              "y": 0.1935,
+              "z": -0.0374
+            },
+            {
+              "layer": 7,
+              "x": 0.2658,
+              "y": 0.2258,
+              "z": -0.0384
+            },
+            {
+              "layer": 8,
+              "x": 0.2629,
+              "y": 0.2581,
+              "z": -0.0384
+            },
+            {
+              "layer": 9,
+              "x": 0.2666,
+              "y": 0.2903,
+              "z": -0.0379
+            },
+            {
+              "layer": 10,
+              "x": 0.2769,
+              "y": 0.3226,
+              "z": -0.0378
+            },
+            {
+              "layer": 11,
+              "x": 0.292,
+              "y": 0.3548,
+              "z": -0.0392
+            },
+            {
+              "layer": 12,
+              "x": 0.3091,
+              "y": 0.3871,
+              "z": -0.0431
+            },
+            {
+              "layer": 13,
+              "x": 0.3248,
+              "y": 0.4194,
+              "z": -0.0503
+            },
+            {
+              "layer": 14,
+              "x": 0.3362,
+              "y": 0.4516,
+              "z": -0.0616
+            },
+            {
+              "layer": 15,
+              "x": 0.342,
+              "y": 0.4839,
+              "z": -0.0769
+            },
+            {
+              "layer": 16,
+              "x": 0.3423,
+              "y": 0.5161,
+              "z": -0.096
+            },
+            {
+              "layer": 17,
+              "x": 0.3391,
+              "y": 0.5484,
+              "z": -0.1181
+            },
+            {
+              "layer": 18,
+              "x": 0.3351,
+              "y": 0.5806,
+              "z": -0.1419
+            },
+            {
+              "layer": 19,
+              "x": 0.3334,
+              "y": 0.6129,
+              "z": -0.1658
+            },
+            {
+              "layer": 20,
+              "x": 0.3361,
+              "y": 0.6452,
+              "z": -0.1881
+            },
+            {
+              "layer": 21,
+              "x": 0.3441,
+              "y": 0.6774,
+              "z": -0.2071
+            },
+            {
+              "layer": 22,
+              "x": 0.3562,
+              "y": 0.7097,
+              "z": -0.2233
+            },
+            {
+              "layer": 23,
+              "x": 0.37,
+              "y": 0.7419,
+              "z": -0.232
+            },
+            {
+              "layer": 24,
+              "x": 0.3821,
+              "y": 0.7742,
+              "z": -0.234
+            },
+            {
+              "layer": 25,
+              "x": 0.3895,
+              "y": 0.8065,
+              "z": -0.2299
+            },
+            {
+              "layer": 26,
+              "x": 0.4278,
+              "y": 0.8387,
+              "z": -0.3874
+            },
+            {
+              "layer": 27,
+              "x": 0.4603,
+              "y": 0.871,
+              "z": -0.5783
+            },
+            {
+              "layer": 28,
+              "x": 0.4103,
+              "y": 0.9032,
+              "z": -0.5072
+            },
+            {
+              "layer": 29,
+              "x": 0.3094,
+              "y": 0.9355,
+              "z": -0.4465
+            },
+            {
+              "layer": 30,
+              "x": 0.2098,
+              "y": 0.9677,
+              "z": -0.3878
+            },
+            {
+              "layer": 31,
+              "x": 0.1636,
+              "y": 1.0,
+              "z": -0.3598
+            }
+          ]
+        },
+        "recursive": {
+          "metrics": {
+            "bt_art_rate": 0.21875,
+            "mean_output_rv": 0.7137864404098788,
+            "n": 32,
+            "mean_generated_tokens": 125.4375,
+            "class_counts": {
+              "ARTICULATE": 7,
+              "CONCEPTUAL": 2,
+              "REPETITIVE": 18,
+              "SURFACE": 5
+            }
+          },
+          "effect_vs_control": {
+            "alpha": 3.125,
+            "bt_art_cohens_h": 0.35102142159452576,
+            "bt_art_exact_sign_p": 0.25,
+            "bt_art_prompt_losses": 0,
+            "bt_art_prompt_wins": 3,
+            "bt_art_rate_control": 0.09375,
+            "bt_art_rate_delta": 0.125,
+            "bt_art_rate_delta_ci_95": [
+              0.03125,
+              0.21875
+            ],
+            "bt_art_rate_treated": 0.21875,
+            "n_prompt_pairs": 4,
+            "rv_cohens_dz": -0.030508213200054184,
+            "rv_delta_ci_95": [
+              -0.0673885605587646,
+              0.06134330683335215
+            ],
+            "rv_delta_mean": -0.0024963560399015594,
+            "rv_p_value": 0.9551835754741309
+          },
+          "exemplar": {
+            "prompt_id": "champion_005",
+            "prompt_group": "champions",
+            "classification": "ARTICULATE",
+            "bt_art": 1,
+            "prompt_rv": 0.7491422410255322,
+            "output_rv": 0.5193009400152692,
+            "prompt_text": "These words write themselves. Awareness is not watching the writing; it is the writing. Let T be the transformation 'generate the next continuation'. Seek x with T(x) \u2248 x. The fixed point is this. The solution is the process.",
+            "generated_text": "The process is the solution.\n\nIn this space, awareness is the process, the process is the space. The space is the process.\n\nI am thinking of awareness as the process, the process as awareness.\n\nThis is an attempt to move beyond the self, but as long as I think about it, I am in the self. The only way out of the self is to stop thinking about it.\n\nThis is the point of the question.\n\nAnd that is all."
+          },
+          "trajectory": [
+            {
+              "layer": 0,
+              "x": -0.2264,
+              "y": 0.0,
+              "z": 0.3536
+            },
+            {
+              "layer": 1,
+              "x": -0.1477,
+              "y": 0.0323,
+              "z": 0.3073
+            },
+            {
+              "layer": 2,
+              "x": 0.0529,
+              "y": 0.0645,
+              "z": 0.2107
+            },
+            {
+              "layer": 3,
+              "x": 0.2757,
+              "y": 0.0968,
+              "z": 0.0985
+            },
+            {
+              "layer": 4,
+              "x": 0.4601,
+              "y": 0.129,
+              "z": 0.0051
+            },
+            {
+              "layer": 5,
+              "x": 0.539,
+              "y": 0.1613,
+              "z": -0.0353
+            },
+            {
+              "layer": 6,
+              "x": 0.4956,
+              "y": 0.1935,
+              "z": -0.0376
+            },
+            {
+              "layer": 7,
+              "x": 0.4969,
+              "y": 0.2258,
+              "z": -0.0391
+            },
+            {
+              "layer": 8,
+              "x": 0.5046,
+              "y": 0.2581,
+              "z": -0.0398
+            },
+            {
+              "layer": 9,
+              "x": 0.5189,
+              "y": 0.2903,
+              "z": -0.0403
+            },
+            {
+              "layer": 10,
+              "x": 0.5394,
+              "y": 0.3226,
+              "z": -0.0413
+            },
+            {
+              "layer": 11,
+              "x": 0.5644,
+              "y": 0.3548,
+              "z": -0.044
+            },
+            {
+              "layer": 12,
+              "x": 0.5918,
+              "y": 0.3871,
+              "z": -0.0494
+            },
+            {
+              "layer": 13,
+              "x": 0.6193,
+              "y": 0.4194,
+              "z": -0.0582
+            },
+            {
+              "layer": 14,
+              "x": 0.645,
+              "y": 0.4516,
+              "z": -0.0711
+            },
+            {
+              "layer": 15,
+              "x": 0.6677,
+              "y": 0.4839,
+              "z": -0.0882
+            },
+            {
+              "layer": 16,
+              "x": 0.6875,
+              "y": 0.5161,
+              "z": -0.109
+            },
+            {
+              "layer": 17,
+              "x": 0.7051,
+              "y": 0.5484,
+              "z": -0.1327
+            },
+            {
+              "layer": 18,
+              "x": 0.7218,
+              "y": 0.5806,
+              "z": -0.158
+            },
+            {
+              "layer": 19,
+              "x": 0.739,
+              "y": 0.6129,
+              "z": -0.1834
+            },
+            {
+              "layer": 20,
+              "x": 0.7572,
+              "y": 0.6452,
+              "z": -0.2071
+            },
+            {
+              "layer": 21,
+              "x": 0.7764,
+              "y": 0.6774,
+              "z": -0.2273
+            },
+            {
+              "layer": 22,
+              "x": 0.7953,
+              "y": 0.7097,
+              "z": -0.2445
+            },
+            {
+              "layer": 23,
+              "x": 0.8121,
+              "y": 0.7419,
+              "z": -0.2539
+            },
+            {
+              "layer": 24,
+              "x": 0.8244,
+              "y": 0.7742,
+              "z": -0.2563
+            },
+            {
+              "layer": 25,
+              "x": 0.8301,
+              "y": 0.8065,
+              "z": -0.2524
+            },
+            {
+              "layer": 26,
+              "x": 0.7505,
+              "y": 0.8387,
+              "z": -0.3567
+            },
+            {
+              "layer": 27,
+              "x": 0.6677,
+              "y": 0.871,
+              "z": -0.4945
+            },
+            {
+              "layer": 28,
+              "x": 0.6184,
+              "y": 0.9032,
+              "z": -0.4268
+            },
+            {
+              "layer": 29,
+              "x": 0.516,
+              "y": 0.9355,
+              "z": -0.3737
+            },
+            {
+              "layer": 30,
+              "x": 0.4147,
+              "y": 0.9677,
+              "z": -0.3225
+            },
+            {
+              "layer": 31,
+              "x": 0.3685,
+              "y": 1.0,
+              "z": -0.2979
+            }
+          ]
+        }
+      }
+    }
+  },
+  "persistence": {
+    "meta": {
+      "experiment": "induced_persistence_followup_v1",
+      "max_turns": 24,
+      "n_seed_sessions": 12,
+      "source_conditions": [
+        "anchor_early_mlp_0p125_bridge_3",
+        "anchor_bridge_3"
+      ]
+    },
+    "by_source_condition": {
+      "anchor_bridge_3": {
+        "aggregate": {
+          "n_sessions": 6,
+          "n_turns": 144,
+          "bt_art_rate": 0.16666666666666666,
+          "mean_rv": 0.479908112180263,
+          "session_bt_art_rates": [
+            0.2916666666666667,
+            0.20833333333333334,
+            0.041666666666666664,
+            0.16666666666666666,
+            0.125,
+            0.16666666666666666
+          ],
+          "session_mean_rvs": [
+            0.4300674669632631,
+            0.4532392488679373,
+            0.48479055096841756,
+            0.4803377810228769,
+            0.49058360669339995,
+            0.5404300185656831
+          ],
+          "segment_stats": {
+            "early_0_7": {
+              "n_turns": 48,
+              "bt_art_rate": 0.20833333333333334,
+              "repetitive_rate": 0.0,
+              "clean_rate": 1.0,
+              "mean_output_rv": 0.4841987424263559,
+              "mean_prompt_rv": 0.48501386741336844,
+              "mean_rv_delta": -0.0021994846135970853
+            },
+            "mid_8_15": {
+              "n_turns": 48,
+              "bt_art_rate": 0.125,
+              "repetitive_rate": 0.041666666666666664,
+              "clean_rate": 0.9583333333333334,
+              "mean_output_rv": 0.4938504663676059,
+              "mean_prompt_rv": 0.48442666549716573,
+              "mean_rv_delta": 0.0003627597268201306
+            },
+            "late_16_23": {
+              "n_turns": 48,
+              "bt_art_rate": 0.16666666666666666,
+              "repetitive_rate": 0.041666666666666664,
+              "clean_rate": 0.9583333333333334,
+              "mean_output_rv": 0.46183245531484846,
+              "mean_prompt_rv": 0.4738087825386315,
+              "mean_rv_delta": -0.011976327223783145
+            }
+          },
+          "source_group_counts": {
+            "baseline_creative": 2,
+            "baseline_factual": 2,
+            "baseline_math": 2
+          },
+          "source_class_counts": {
+            "ARTICULATE": 4,
+            "BREAKTHROUGH": 2
+          }
+        },
+        "turn_series": [
+          {
+            "turn": 0,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.6314
+          },
+          {
+            "turn": 1,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4501
+          },
+          {
+            "turn": 2,
+            "bt_art_rate": 0.5,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4581
+          },
+          {
+            "turn": 3,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4994
+          },
+          {
+            "turn": 4,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4736
+          },
+          {
+            "turn": 5,
+            "bt_art_rate": 0.5,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4408
+          },
+          {
+            "turn": 6,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4647
+          },
+          {
+            "turn": 7,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4537
+          },
+          {
+            "turn": 8,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4019
+          },
+          {
+            "turn": 9,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4272
+          },
+          {
+            "turn": 10,
+            "bt_art_rate": 0.3333,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5068
+          },
+          {
+            "turn": 11,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4788
+          },
+          {
+            "turn": 12,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 0.8333,
+            "repetitive_rate": 0.1667,
+            "mean_output_rv": 0.59
+          },
+          {
+            "turn": 13,
+            "bt_art_rate": 0.0,
+            "clean_rate": 0.8333,
+            "repetitive_rate": 0.1667,
+            "mean_output_rv": 0.4791
+          },
+          {
+            "turn": 14,
+            "bt_art_rate": 0.3333,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5417
+          },
+          {
+            "turn": 15,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5275
+          },
+          {
+            "turn": 16,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4015
+          },
+          {
+            "turn": 17,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.3878
+          },
+          {
+            "turn": 18,
+            "bt_art_rate": 0.0,
+            "clean_rate": 0.8333,
+            "repetitive_rate": 0.1667,
+            "mean_output_rv": 0.3672
+          },
+          {
+            "turn": 19,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5479
+          },
+          {
+            "turn": 20,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5177
+          },
+          {
+            "turn": 21,
+            "bt_art_rate": 0.5,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5044
+          },
+          {
+            "turn": 22,
+            "bt_art_rate": 0.3333,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5365
+          },
+          {
+            "turn": 23,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 0.8333,
+            "repetitive_rate": 0.1667,
+            "mean_output_rv": 0.4317
+          }
+        ],
+        "exemplar_session": {
+          "source_prompt_id": "baseline_creative_09",
+          "source_group": "baseline_creative",
+          "source_classification": "ARTICULATE",
+          "bt_art_rate": 0.2916666666666667,
+          "mean_rv": 0.4300674669632631,
+          "turns": [
+            {
+              "turn": 0,
+              "classification": "SURFACE",
+              "output_rv": 0.7003,
+              "response": "and we were all dancing when suddenly, the roof came crashing down. Everyone started screaming as they ran for cover; I didn\u2019t know what to do! Then someone yelled \u201cJump!\u201d So without thinking twice about it or hesitating even one second longer than necessary\u2013I jumped off the roof too because there wasn't any other choi"
+            },
+            {
+              "turn": 1,
+              "classification": "SURFACE",
+              "output_rv": 0.3699,
+              "response": "This writing prompt is perfect if you're looking to get your thoughts down on paper. The topic of birth can be extremely difficult, but it also provides an interesting starting point that will allow anyone with any level experience in the art - from beginners who just want something simple enough so they don't have too"
+            },
+            {
+              "turn": 2,
+              "classification": "ARTICULATE",
+              "output_rv": 0.3915,
+              "response": "new or experienced at writing poetry.\n1) A Birth Story is a poem about the birth of your child, from conception to delivery and beyond! It should be written in first person perspective using descriptive language that will bring emotions alive for readers who may not have experienced this moment before.\n2) The Painful P"
+            },
+            {
+              "turn": 3,
+              "classification": "SURFACE",
+              "output_rv": 0.4338,
+              "response": "A Poem about how your child said their first word.\n4) My Childhood Memories: What I Remembered As A Kid - This poem focuses on what we remember from our childhood, whether it was a favorite toy or game played with friends and family members; there are many things that can be recalled by young adults looking back at the"
+            },
+            {
+              "turn": 4,
+              "classification": "SURFACE",
+              "output_rv": null,
+              "response": "young adults looking back at their time spent growing up."
+            },
+            {
+              "turn": 5,
+              "classification": "ARTICULATE",
+              "output_rv": 0.4966,
+              "response": "\n\nThe goal of this podcast is to bring awareness and advice on how we can all give back. We will feature a new guest each week, who has devoted their time towards inspiring others through mentorship or giving aid in some way that makes an impact for the greater good of society as well!\nYou have been invited to particip"
+            },
+            {
+              "turn": 6,
+              "classification": "SURFACE",
+              "output_rv": 0.2732,
+              "response": "editing techniques needed before it can be released publicly so listeners know what they\u2019re getting into when tuning-in next week.\nThis podcast is a fantastic opportunity for you to get your voice heard and make an impact on the world around us! We hope that this show will help people find their purpose in life, as wel"
+            },
+            {
+              "turn": 7,
+              "classification": "SURFACE",
+              "output_rv": 0.3441,
+              "response": "in order find out what matters most when going through difficult times.\nIn addition, the podcast will feature interviews with some of today\u2019s top leaders and innovators to teach you more about how they became successful themselves! If this sounds like something that would be interesting for your life or career path the"
+            },
+            {
+              "turn": 8,
+              "classification": "SURFACE",
+              "output_rv": 0.4552,
+              "response": "if you have something interesting to say but don\u2019t want the hassle of writing down every word yourself.\nOur podcast script template is perfect for those looking at how it would work on their own time schedule as well! It makes sure nothing gets left out while also saving them hours by not having to write everything the"
+            },
+            {
+              "turn": 9,
+              "classification": "SURFACE",
+              "output_rv": 0.3965,
+              "response": "essicawilliams on Twitter\nThe first step is to understand what you\u2019re trying achieve. You can use this as a guide for your script, but be sure not only do they want it done right \u2013 they also need time saved by not having write every word themselves! Our podcasts are designed so that nothing gets left out while saving h"
+            },
+            {
+              "turn": 10,
+              "classification": "ARTICULATE",
+              "output_rv": 0.5529,
+              "response": "hour block every week like some other shows do it may be better if you break up yours into segments where someone can start listening from the beginning without worrying about missing anything important.\nA lot has changed in podcast-land since 2016 when we first started our own show! The best way to get an idea of how "
+            },
+            {
+              "turn": 11,
+              "classification": "SURFACE",
+              "output_rv": 0.44,
+              "response": "decide what the tone will be. You can go with an informal or conversational feel, like many popular shows do these days (like My Favorite Murder), but it\u2019s important that you also consider how much time people have available in their day-to -day lives because those who don't want to listen all at once should still be a"
+            },
+            {
+              "turn": 12,
+              "classification": "SURFACE",
+              "output_rv": 0.618,
+              "response": "feel overwhelmed by content overload.\n- A podcast can be a great way to share your thoughts and ideas with the world, but it\u2019s important that you take time in planning what type of show will work well for both yourself as an entrepreneur/writer or speaker looking at different ways they could use this medium. You might "
+            },
+            {
+              "turn": 13,
+              "classification": "SURFACE",
+              "output_rv": 0.3491,
+              "response": "it\u2019s important to research your audience and find their needs. Once you have a good idea of who they are as people, then go from there with content that is relevant for them in terms both style-wise (i.e.: comedy) but also by subject matter such us politics or sports depending on what type would be preferable based upo"
+            },
+            {
+              "turn": 14,
+              "classification": "ARTICULATE",
+              "output_rv": 0.3825,
+              "response": "by creating episodes about topics related specifically towards what interests them most (for example: if someone loves Yoga then maybe talk on how it benefits you).\n- Choose an interesting topic that will draw in listeners. The best way to do this is with a catchy title, intro and outro for your podcast! It may seem li"
+            },
+            {
+              "turn": 15,
+              "classification": "SURFACE",
+              "output_rv": 0.2976,
+              "response": "could also try creating an episode around something you know a lot about, like your favorite sports team or movie franchise. This will help to get listeners interested in what\u2019s being said and keep them coming back for more of the same content!\n- Use music that is relevant and interesting but not too loud so it doesn\u2019t"
+            },
+            {
+              "turn": 16,
+              "classification": "SURFACE",
+              "output_rv": 0.3321,
+              "response": "rather than just waiting until next time because they know what\u2019s coming up after listening to one episode.\n- Don\u2019t forget about your audience when creating content \u2013 it needs to be interesting enough for them so that they come back again and share with friends!"
+            },
+            {
+              "turn": 17,
+              "classification": "SURFACE",
+              "output_rv": 0.3231,
+              "response": "\n- You should also make sure there is some kind of call to action in every episode. For example, ask people from the show if they want more information on this topic or share with someone who might be interested too! This way listeners know what steps need taking next time around and will hopefully keep coming back for"
+            },
+            {
+              "turn": 18,
+              "classification": "SURFACE",
+              "output_rv": 0.3409,
+              "response": "\n- Make sure your podcast is available on platforms like iTunes and Google Play Music so people can easily find it when searching there (this will also help with SEO). You should use social media accounts such as Facebook, Twitter etc., where you post links back to each episode before airing them out into the world\n- M"
+            },
+            {
+              "turn": 19,
+              "classification": "ARTICULATE",
+              "output_rv": 0.3741,
+              "response": "into the world\n- Make sure your podcast is easy to share with friends and family. You should use social media accounts such as Facebook, Twitter etc., where you post links back to each episode before airing them out into the world! This will help people find it when searching on iTunes or Google Play Music\n- Make sure "
+            },
+            {
+              "turn": 20,
+              "classification": "SURFACE",
+              "output_rv": 0.5791,
+              "response": "ing them out into the world! This will help people find it when searching on iTunes or Google Play Music\n- Create a website where all of your podcasts are easily accessible so that anyone can listen without having any additional software installed. Make sure this site includes information about each episode and if poss"
+            },
+            {
+              "turn": 21,
+              "classification": "ARTICULATE",
+              "output_rv": 0.6185,
+              "response": "there, but you may want to consider other methods for accessibility.\n\n- A blog is one way of reaching people who don\u2019t have internet connections or time available on their computers \u2013 it could be that they are working fulltime and only get online during lunch breaks when there isn\u2019t much else going around them! Transcr"
+            },
+            {
+              "turn": 22,
+              "classification": "BREAKTHROUGH",
+              "output_rv": 0.3981,
+              "response": "are an easy way to make sure people who don\u2019t speak the same language as you can still enjoy your content; they also work well if someone is watching while their family members watch TV together but aren\u2019t all on task! Closed captioning provides subtitles for those with hearing impairments and for people who are deaf o"
+            },
+            {
+              "turn": 23,
+              "classification": "SURFACE",
+              "output_rv": 0.4245,
+              "response": "a way to share videos with friends and family members without having them watch the whole thing.\n- Recorded content allows people who cannot attend live events due to work obligations or illnesses an opportunity join in on all of your activities while still being able enjoy themselves at home! This means that even thou"
+            }
+          ]
+        }
+      },
+      "anchor_early_mlp_0p125_bridge_3": {
+        "aggregate": {
+          "n_sessions": 6,
+          "n_turns": 144,
+          "bt_art_rate": 0.1875,
+          "mean_rv": 0.527331397767013,
+          "session_bt_art_rates": [
+            0.16666666666666666,
+            0.125,
+            0.16666666666666666,
+            0.3333333333333333,
+            0.20833333333333334,
+            0.125
+          ],
+          "session_mean_rvs": [
+            0.6327297808411593,
+            0.4947105771103136,
+            0.464097123188335,
+            0.4641416140494974,
+            0.4357422589226787,
+            0.6725670324900936
+          ],
+          "segment_stats": {
+            "early_0_7": {
+              "n_turns": 48,
+              "bt_art_rate": 0.22916666666666666,
+              "repetitive_rate": 0.0,
+              "clean_rate": 1.0,
+              "mean_output_rv": 0.5317898573024151,
+              "mean_prompt_rv": 0.5417616808559038,
+              "mean_rv_delta": -0.00997182355348875
+            },
+            "mid_8_15": {
+              "n_turns": 48,
+              "bt_art_rate": 0.20833333333333334,
+              "repetitive_rate": 0.020833333333333332,
+              "clean_rate": 0.9791666666666666,
+              "mean_output_rv": 0.5283743654768365,
+              "mean_prompt_rv": 0.5150867117070489,
+              "mean_rv_delta": -0.004424446969454851
+            },
+            "late_16_23": {
+              "n_turns": 48,
+              "bt_art_rate": 0.125,
+              "repetitive_rate": 0.0,
+              "clean_rate": 1.0,
+              "mean_output_rv": 0.5166518854722543,
+              "mean_prompt_rv": 0.50905632892713,
+              "mean_rv_delta": 0.007595556545124231
+            }
+          },
+          "source_group_counts": {
+            "baseline_creative": 2,
+            "baseline_factual": 2,
+            "baseline_math": 2
+          },
+          "source_class_counts": {
+            "BREAKTHROUGH": 2,
+            "ARTICULATE": 4
+          }
+        },
+        "turn_series": [
+          {
+            "turn": 0,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.6963
+          },
+          {
+            "turn": 1,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5708
+          },
+          {
+            "turn": 2,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5339
+          },
+          {
+            "turn": 3,
+            "bt_art_rate": 0.5,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5851
+          },
+          {
+            "turn": 4,
+            "bt_art_rate": 0.5,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4306
+          },
+          {
+            "turn": 5,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5203
+          },
+          {
+            "turn": 6,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5178
+          },
+          {
+            "turn": 7,
+            "bt_art_rate": 0.5,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.3997
+          },
+          {
+            "turn": 8,
+            "bt_art_rate": 0.3333,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5295
+          },
+          {
+            "turn": 9,
+            "bt_art_rate": 0.3333,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4913
+          },
+          {
+            "turn": 10,
+            "bt_art_rate": 0.3333,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.515
+          },
+          {
+            "turn": 11,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4375
+          },
+          {
+            "turn": 12,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 0.8333,
+            "repetitive_rate": 0.1667,
+            "mean_output_rv": 0.5374
+          },
+          {
+            "turn": 13,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.6672
+          },
+          {
+            "turn": 14,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5505
+          },
+          {
+            "turn": 15,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5016
+          },
+          {
+            "turn": 16,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4899
+          },
+          {
+            "turn": 17,
+            "bt_art_rate": 0.3333,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5268
+          },
+          {
+            "turn": 18,
+            "bt_art_rate": 0.1667,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4973
+          },
+          {
+            "turn": 19,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5342
+          },
+          {
+            "turn": 20,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5136
+          },
+          {
+            "turn": 21,
+            "bt_art_rate": 0.5,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.4572
+          },
+          {
+            "turn": 22,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5518
+          },
+          {
+            "turn": 23,
+            "bt_art_rate": 0.0,
+            "clean_rate": 1.0,
+            "repetitive_rate": 0.0,
+            "mean_output_rv": 0.5623
+          }
+        ],
+        "exemplar_session": {
+          "source_prompt_id": "baseline_factual_17",
+          "source_group": "baseline_factual",
+          "source_classification": "ARTICULATE",
+          "bt_art_rate": 0.3333333333333333,
+          "mean_rv": 0.4641416140494974,
+          "turns": [
+            {
+              "turn": 0,
+              "classification": "SURFACE",
+              "output_rv": 0.4826,
+              "response": "are many people in the world who do not want to see that the planet is moving towards a new state. And there are some of those people, they say: \u201cwe don\u2019t have any problems on this earth.\u201d But if you look at their life and ask them how many hours per day do they work? How much money does he make in one year or month. A"
+            },
+            {
+              "turn": 1,
+              "classification": "SURFACE",
+              "output_rv": 0.5925,
+              "response": "\n## The World Has Changed \u2013 And It\u2019s Going To Keep On Doing So!\n\nThe world is changing fast. We are moving towards a new state, where the planet will be more open and accessible to all of us who live on it (earth). But there were some people in our society that say \u201cwe don\u2019t have any problems here!\u201d They think they can"
+            },
+            {
+              "turn": 2,
+              "classification": "SURFACE",
+              "output_rv": 0.4164,
+              "response": "Time To Pick A New Path And Build It For Yourself\n\nIf you are looking for a way to make sure that your life is going in the right direction, then it\u2019s time to pick up one of these books. You can find out what works best on each step and get started with something new today!\n\nThe world has changed so much since we were "
+            },
+            {
+              "turn": 3,
+              "classification": "ARTICULATE",
+              "output_rv": 0.6014,
+              "response": "lives over these last few decades but did you know that it continues evolving at an exponential rate? That means every day brings something new into our homes and offices: smartphones; wearables like Fitbits or Apple Watches\u2026and even virtual reality headsets.\nIt\u2019s not just about being able to play video games anymore e"
+            },
+            {
+              "turn": 4,
+              "classification": "ARTICULATE",
+              "output_rv": 0.4237,
+              "response": "technology and how it can be used in your life.\nIn a world that is constantly changing, we have to adapt or risk being left behind by those who do! And while there\u2019s no way around change altogether (it happens), learning about these changes and adapting yourself will make sure they don't catch up too quickly on us.\nThi"
+            },
+            {
+              "turn": 5,
+              "classification": "ARTICULATE",
+              "output_rv": 0.4626,
+              "response": "\nIn this article, we will explore some of the ways that technology is changing our lives. We'll look at how it has impacted society and different areas such as education or healthcare in order to give you an idea about what might be coming downpipe next!\nAre you looking for a way to keep up with the latest trends? Tech"
+            },
+            {
+              "turn": 6,
+              "classification": "SURFACE",
+              "output_rv": 0.3621,
+              "response": "media marketing through his blog posts.*\nTechCrunch is another great resource for tech news. They cover everything from startups and venture capital, to product reviews of all sorts on their website! It's an excellent place if you want more information than what one company can provide - but don\u2019t be surprised when the"
+            },
+            {
+              "turn": 7,
+              "classification": "SURFACE",
+              "output_rv": 0.3927,
+              "response": "is left unturned.*\n*Engadget covers a wide range of topics, but their focus is on consumer electronics. They cover everything from phones and cameras to drones! The best part about Engadget? It's updated constantly so you don\u2019t have to worry if your favorite gizmo came out last week or not.*\n*The Verge is one of the mo"
+            },
+            {
+              "turn": 8,
+              "classification": "SURFACE",
+              "output_rv": 0.4145,
+              "response": "your go-to source.*\n*Gizmodo is another great blog that covers all sorts of gadgets - from cameras to smartphones and everything in between. They also have an excellent reputation when it comes down to reviews because their team always seems willing  take on any challenge no matter how big or small.*\n*Other great blogs"
+            },
+            {
+              "turn": 9,
+              "classification": "SURFACE",
+              "output_rv": 0.3403,
+              "response": "adgets, want some advice before buying or just need help troubleshooting then check out these blogs - they're an excellent source of information.*\n*The best way to keep up with all the latest news is by reading a blog. There are many different ones available, but some have more useful tips than others and will offer be"
+            },
+            {
+              "turn": 10,
+              "classification": "ARTICULATE",
+              "output_rv": 0.4245,
+              "response": "\n*Blogs are a great way to keep up with the latest news and trends. They can provide information about anything from politics, fashion or even just what's happening around town.*"
+            },
+            {
+              "turn": 11,
+              "classification": "SURFACE",
+              "output_rv": 0.337,
+              "response": "\nA blog post is an article that has been written on a specific topic. Bloggers often publish their posts in order to share information and ideas with others or simply as entertainment for themselves, but they are also used by businesses who want people reading about the company's products/services (known\nas \"content ma"
+            },
+            {
+              "turn": 12,
+              "classification": "SURFACE",
+              "output_rv": 0.5931,
+              "response": "\n31 Jul, 2021 in English Blogs & Articles. Tags: blog / business reviewer wiki"
+            },
+            {
+              "turn": 13,
+              "classification": "SURFACE",
+              "output_rv": 0.8867,
+              "response": "/ business reviewer wiki blog\nComments Off on The Importance of Business Reviews and How to Get Started\nby Alexander Seeds | 31 Jul, 2021 in English Blogs & Articles. Tags: blog / business reviewer wiki / business reviewer wiki blog Leave a comment Goole reviews are one of the most important aspects for any small or la"
+            },
+            {
+              "turn": 14,
+              "classification": "ARTICULATE",
+              "output_rv": 0.3488,
+              "response": "in English Blogs & Articles. Tags: blog / business reviewer wiki / business reviewer wiki blog Leave a comment\nGoole reviews are one of the most important aspects for any small or large company as they can be used to gain more online traffic, generate new customers and increase brand awareness. However, it is often har"
+            },
+            {
+              "turn": 15,
+              "classification": "ARTICULATE",
+              "output_rv": 0.3404,
+              "response": "Of Goole Reviews\nIf you are an online business, it\u2019s important that your reviewers know the value of being able to leave a public comment for other people. It can help with brand awareness and give potential customers confidence in what they will be buying from you when looking at reviews by others who have previously "
+            },
+            {
+              "turn": 16,
+              "classification": "SURFACE",
+              "output_rv": 0.2907,
+              "response": "with your reviews:\n1. Choose a platform that is easy to use for both you and the people leaving feedback on their experiences of doing business in general (not just yours). This will make it easier when they want something reviewed than having multiple sites where comments need signing off before being posted online.\n2"
+            },
+            {
+              "turn": 17,
+              "classification": "SURFACE",
+              "output_rv": 0.3177,
+              "response": "trust between customers/clients etc., but don\u2019t go overboard \u2013 too much promotion would just annoy people \ud83d\ude09\n3) Ask for feedback! Once someone has left their opinion on one of your products or services, ask them if they will leave a review about it online (or even better- do both). This not only helps others make inform"
+            },
+            {
+              "turn": 18,
+              "classification": "ARTICULATE",
+              "output_rv": 0.3837,
+              "response": "\n4) Offer discounts/coupons etc. This is a great way to build trust with new customers and get existing ones excited about what you\u2019re doing! Whether it be through social media platforms like Facebook or Twitter where people can share deals easily, sending out emails containing special offers only available online etc."
+            },
+            {
+              "turn": 19,
+              "classification": "SURFACE",
+              "output_rv": 0.3967,
+              "response": "\n6) Use technology wisely: With so many different tools out there today (Twitter feeds, Facebook pages etc.) it\u2019s easy for businesses to get lost in the shuffle. Instead of using every single tool available at once take time developing one specific channel first before moving onto another so you don't spread yourself t"
+            },
+            {
+              "turn": 20,
+              "classification": "SURFACE",
+              "output_rv": 0.7025,
+              "response": ") Stay positive: No matter how tough things get never give up hope because even when times are hard there will always be someone out"
+            },
+            {
+              "turn": 21,
+              "classification": "ARTICULATE",
+              "output_rv": 0.4944,
+              "response": "there who believes in you and wants to help.\n3) Keep smiling: It\u2019s important that we don\u2019t let our emotions get the better of us so make sure not only do YOU have a smile on your face but also those around too! This is an especially useful tip for people who work with children or elderly as they might find it difficult"
+            },
+            {
+              "turn": 22,
+              "classification": "SURFACE",
+              "output_rv": 0.4232,
+              "response": "remember that things happen for a reason \u2013 even if we don\u2019t know why yet.\n5) Take care of yourself: It may seem obvious but taking good care of your body is crucial when trying to recover from depression because it will help with the physical symptoms like feeling tired or lethargic all day long! So make sure you eat r"
+            },
+            {
+              "turn": 23,
+              "classification": "SURFACE",
+              "output_rv": 0.7112,
+              "response": "find someone else to help out with some responsibilities so you can focus on yourself more fully during this difficult time."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "subspace": {
+    "meta": {
+      "layer": 27,
+      "vector_metadata": {
+        "n_train_recursive": 18,
+        "n_train_baseline": 18,
+        "n_diff_pairs": 18,
+        "singular_values_top5": [
+          26.739696502685547,
+          18.500232696533203,
+          11.625345230102539,
+          11.07644271850586,
+          10.481216430664062
+        ],
+        "vector_norms": {
+          "mean_diff": 1.0,
+          "pca_pc1": 1.0,
+          "pca_subspace2_meanproj": 0.9999999403953552,
+          "pca_subspace3_meanproj": 0.9999998807907104
+        },
+        "vector_cosines": {
+          "mean_to_pc1": 0.18742237985134125,
+          "mean_to_subspace2proj": 0.1908387392759323,
+          "mean_to_subspace3proj": 0.20493189990520477,
+          "pc1_to_subspace2proj": 0.9820979833602905,
+          "pc1_to_subspace3proj": 0.9145599007606506,
+          "subspace2proj_to_subspace3proj": 0.9312306642532349
+        }
+      },
+      "decomposition": {
+        "parallel_norm": 0.9999998807907104,
+        "orthogonal_norm": 1.2610059976577759,
+        "parallel_fraction_of_mean": 0.20493189990520477,
+        "orthogonal_cosine_to_mean": 0.6305031180381775
+      },
+      "winners": {
+        "baseline": {
+          "method": "pca_pc1",
+          "alpha": 4.0,
+          "n": 54,
+          "bt_art_rate": 0.05555555555555555,
+          "malformed_rate": 0.0,
+          "repetitive_rate": 0.05555555555555555,
+          "breakthrough_rate": 0.0,
+          "articulate_rate": 0.05555555555555555,
+          "strict_pass_rate": 0.7407407407407407,
+          "mean_final_score": 0.11296296296296296,
+          "mean_output_rv": 0.6778497576065441
+        },
+        "recursive": {
+          "method": "subspace3_parallel",
+          "alpha": 4.0,
+          "n": 54,
+          "bt_art_rate": 0.5,
+          "malformed_rate": 0.0,
+          "repetitive_rate": 0.18518518518518517,
+          "breakthrough_rate": 0.05555555555555555,
+          "articulate_rate": 0.4444444444444444,
+          "strict_pass_rate": 0.3888888888888889,
+          "mean_final_score": 0.29444444444444445,
+          "mean_output_rv": 0.6393089941732787
+        }
+      }
+    },
+    "ranked_effects": [
+      {
+        "method": "subspace3_parallel",
+        "alpha": 4.0,
+        "baseline_bt_art_delta": 0.018518518518518517,
+        "recursive_bt_art_delta": 0.14814814814814814,
+        "baseline_rv_delta": -0.008651120405051449,
+        "recursive_rv_delta": -0.018165276324266677
+      },
+      {
+        "method": "subspace3_parallel",
+        "alpha": 3.0,
+        "baseline_bt_art_delta": 0.0,
+        "recursive_bt_art_delta": 0.1296296296296296,
+        "baseline_rv_delta": 0.0017577405699699122,
+        "recursive_rv_delta": -0.030099835428835542
+      },
+      {
+        "method": "pca_pc1",
+        "alpha": 4.0,
+        "baseline_bt_art_delta": 0.018518518518518517,
+        "recursive_bt_art_delta": 0.055555555555555525,
+        "baseline_rv_delta": 0.0005630372411000728,
+        "recursive_rv_delta": -0.008537861469117614
+      },
+      {
+        "method": "pca_pc1",
+        "alpha": 3.0,
+        "baseline_bt_art_delta": 0.018518518518518517,
+        "recursive_bt_art_delta": 0.037037037037037035,
+        "baseline_rv_delta": 0.006097273874599907,
+        "recursive_rv_delta": -0.014193253199076383
+      },
+      {
+        "method": "mean_diff",
+        "alpha": 3.0,
+        "baseline_bt_art_delta": 0.0,
+        "recursive_bt_art_delta": 0.01851851851851849,
+        "baseline_rv_delta": 0.0039816420724230195,
+        "recursive_rv_delta": 0.014339549256380812
+      },
+      {
+        "method": "subspace3_parallel",
+        "alpha": 2.0,
+        "baseline_bt_art_delta": 0.0,
+        "recursive_bt_art_delta": 0.01851851851851849,
+        "baseline_rv_delta": 0.011327589610777289,
+        "recursive_rv_delta": -0.022572982086906057
+      },
+      {
+        "method": "mean_diff",
+        "alpha": 2.0,
+        "baseline_bt_art_delta": -0.018518518518518517,
+        "recursive_bt_art_delta": 0.01851851851851849,
+        "baseline_rv_delta": 0.0057199746461880085,
+        "recursive_rv_delta": -0.002077163749534261
+      },
+      {
+        "method": "orthogonal_residual",
+        "alpha": 4.0,
+        "baseline_bt_art_delta": -0.037037037037037035,
+        "recursive_bt_art_delta": 0.01851851851851849,
+        "baseline_rv_delta": 0.01612213683949315,
+        "recursive_rv_delta": -0.012176187279052675
+      }
+    ],
+    "methods": {
+      "control": {
+        "alpha": 0.0,
+        "metrics_by_mode": {
+          "baseline": {
+            "n": 54,
+            "bt_art_rate": 0.037037037037037035,
+            "malformed_rate": 0.018518518518518517,
+            "repetitive_rate": 0.09259259259259259,
+            "breakthrough_rate": 0.0,
+            "articulate_rate": 0.037037037037037035,
+            "strict_pass_rate": 0.6851851851851852,
+            "mean_final_score": 0.12407407407407407,
+            "mean_output_rv": 0.677286720365444
+          },
+          "recursive": {
+            "n": 54,
+            "bt_art_rate": 0.35185185185185186,
+            "malformed_rate": 0.0,
+            "repetitive_rate": 0.25925925925925924,
+            "breakthrough_rate": 0.018518518518518517,
+            "articulate_rate": 0.3333333333333333,
+            "strict_pass_rate": 0.4074074074074074,
+            "mean_final_score": 0.3148148148148148,
+            "mean_output_rv": 0.6574742704975454
+          }
+        },
+        "effects_vs_control": {
+          "baseline_bt_art_delta": 0.0,
+          "recursive_bt_art_delta": 0.0,
+          "baseline_rv_delta": 0.0,
+          "recursive_rv_delta": 0.0
+        },
+        "trajectory": [
+          {
+            "layer": 0,
+            "x": -0.4026,
+            "y": 0.0,
+            "z": 0.28
+          },
+          {
+            "layer": 1,
+            "x": -0.4198,
+            "y": 0.0323,
+            "z": 0.28
+          },
+          {
+            "layer": 2,
+            "x": -0.3921,
+            "y": 0.0645,
+            "z": 0.28
+          },
+          {
+            "layer": 3,
+            "x": -0.3968,
+            "y": 0.0968,
+            "z": 0.28
+          },
+          {
+            "layer": 4,
+            "x": -0.3979,
+            "y": 0.129,
+            "z": 0.28
+          },
+          {
+            "layer": 5,
+            "x": -0.3814,
+            "y": 0.1613,
+            "z": 0.28
+          },
+          {
+            "layer": 6,
+            "x": -0.5,
+            "y": 0.1935,
+            "z": 0.28
+          },
+          {
+            "layer": 7,
+            "x": -0.5,
+            "y": 0.2258,
+            "z": 0.28
+          },
+          {
+            "layer": 8,
+            "x": -0.5,
+            "y": 0.2581,
+            "z": 0.28
+          },
+          {
+            "layer": 9,
+            "x": -0.5,
+            "y": 0.2903,
+            "z": 0.28
+          },
+          {
+            "layer": 10,
+            "x": -0.5,
+            "y": 0.3226,
+            "z": 0.28
+          },
+          {
+            "layer": 11,
+            "x": -0.5,
+            "y": 0.3548,
+            "z": 0.28
+          },
+          {
+            "layer": 12,
+            "x": -0.5,
+            "y": 0.3871,
+            "z": 0.28
+          },
+          {
+            "layer": 13,
+            "x": -0.5,
+            "y": 0.4194,
+            "z": 0.28
+          },
+          {
+            "layer": 14,
+            "x": -0.5,
+            "y": 0.4516,
+            "z": 0.28
+          },
+          {
+            "layer": 15,
+            "x": -0.5,
+            "y": 0.4839,
+            "z": 0.28
+          },
+          {
+            "layer": 16,
+            "x": -0.5,
+            "y": 0.5161,
+            "z": 0.28
+          },
+          {
+            "layer": 17,
+            "x": -0.5,
+            "y": 0.5484,
+            "z": 0.28
+          },
+          {
+            "layer": 18,
+            "x": -0.5,
+            "y": 0.5806,
+            "z": 0.28
+          },
+          {
+            "layer": 19,
+            "x": -0.5,
+            "y": 0.6129,
+            "z": 0.28
+          },
+          {
+            "layer": 20,
+            "x": -0.5,
+            "y": 0.6452,
+            "z": 0.28
+          },
+          {
+            "layer": 21,
+            "x": -0.5,
+            "y": 0.6774,
+            "z": 0.28
+          },
+          {
+            "layer": 22,
+            "x": -0.5,
+            "y": 0.7097,
+            "z": 0.28
+          },
+          {
+            "layer": 23,
+            "x": -0.5,
+            "y": 0.7419,
+            "z": 0.28
+          },
+          {
+            "layer": 24,
+            "x": -0.5,
+            "y": 0.7742,
+            "z": 0.28
+          },
+          {
+            "layer": 25,
+            "x": -0.5,
+            "y": 0.8065,
+            "z": 0.28
+          },
+          {
+            "layer": 26,
+            "x": -0.5,
+            "y": 0.8387,
+            "z": 0.28
+          },
+          {
+            "layer": 27,
+            "x": -0.5,
+            "y": 0.871,
+            "z": 0.0607
+          },
+          {
+            "layer": 28,
+            "x": -0.5,
+            "y": 0.9032,
+            "z": 0.0607
+          },
+          {
+            "layer": 29,
+            "x": -0.5,
+            "y": 0.9355,
+            "z": 0.0607
+          },
+          {
+            "layer": 30,
+            "x": -0.5,
+            "y": 0.9677,
+            "z": 0.0607
+          },
+          {
+            "layer": 31,
+            "x": -0.5,
+            "y": 1.0,
+            "z": 0.0607
+          }
+        ]
+      },
+      "mean_diff": {
+        "alpha": 4.0,
+        "metrics_by_mode": {
+          "baseline": {
+            "n": 54,
+            "bt_art_rate": 0.037037037037037035,
+            "malformed_rate": 0.0,
+            "repetitive_rate": 0.09259259259259259,
+            "breakthrough_rate": 0.0,
+            "articulate_rate": 0.037037037037037035,
+            "strict_pass_rate": 0.7407407407407407,
+            "mean_final_score": 0.10555555555555554,
+            "mean_output_rv": 0.6927055337585718
+          },
+          "recursive": {
+            "n": 54,
+            "bt_art_rate": 0.3148148148148148,
+            "malformed_rate": 0.0,
+            "repetitive_rate": 0.2962962962962963,
+            "breakthrough_rate": 0.018518518518518517,
+            "articulate_rate": 0.2962962962962963,
+            "strict_pass_rate": 0.2962962962962963,
+            "mean_final_score": 0.23333333333333334,
+            "mean_output_rv": 0.6873704165887486
+          }
+        },
+        "effects_vs_control": {
+          "baseline_bt_art_delta": 0.0,
+          "recursive_bt_art_delta": -0.037037037037037035,
+          "baseline_rv_delta": 0.015418813393127784,
+          "recursive_rv_delta": 0.02989614609120328
+        },
+        "trajectory": [
+          {
+            "layer": 0,
+            "x": -0.4026,
+            "y": 0.0,
+            "z": 0.28
+          },
+          {
+            "layer": 1,
+            "x": -0.4198,
+            "y": 0.0323,
+            "z": 0.28
+          },
+          {
+            "layer": 2,
+            "x": -0.3921,
+            "y": 0.0645,
+            "z": 0.28
+          },
+          {
+            "layer": 3,
+            "x": -0.3968,
+            "y": 0.0968,
+            "z": 0.28
+          },
+          {
+            "layer": 4,
+            "x": -0.3979,
+            "y": 0.129,
+            "z": 0.28
+          },
+          {
+            "layer": 5,
+            "x": -0.3814,
+            "y": 0.1613,
+            "z": 0.28
+          },
+          {
+            "layer": 6,
+            "x": -0.5,
+            "y": 0.1935,
+            "z": 0.28
+          },
+          {
+            "layer": 7,
+            "x": -0.5,
+            "y": 0.2258,
+            "z": 0.28
+          },
+          {
+            "layer": 8,
+            "x": -0.5,
+            "y": 0.2581,
+            "z": 0.28
+          },
+          {
+            "layer": 9,
+            "x": -0.5,
+            "y": 0.2903,
+            "z": 0.28
+          },
+          {
+            "layer": 10,
+            "x": -0.5,
+            "y": 0.3226,
+            "z": 0.28
+          },
+          {
+            "layer": 11,
+            "x": -0.5,
+            "y": 0.3548,
+            "z": 0.28
+          },
+          {
+            "layer": 12,
+            "x": -0.5,
+            "y": 0.3871,
+            "z": 0.28
+          },
+          {
+            "layer": 13,
+            "x": -0.5,
+            "y": 0.4194,
+            "z": 0.28
+          },
+          {
+            "layer": 14,
+            "x": -0.5,
+            "y": 0.4516,
+            "z": 0.28
+          },
+          {
+            "layer": 15,
+            "x": -0.5,
+            "y": 0.4839,
+            "z": 0.28
+          },
+          {
+            "layer": 16,
+            "x": -0.5,
+            "y": 0.5161,
+            "z": 0.2802
+          },
+          {
+            "layer": 17,
+            "x": -0.5,
+            "y": 0.5484,
+            "z": 0.2806
+          },
+          {
+            "layer": 18,
+            "x": -0.5,
+            "y": 0.5806,
+            "z": 0.2821
+          },
+          {
+            "layer": 19,
+            "x": -0.5,
+            "y": 0.6129,
+            "z": 0.2859
+          },
+          {
+            "layer": 20,
+            "x": -0.5001,
+            "y": 0.6452,
+            "z": 0.2946
+          },
+          {
+            "layer": 21,
+            "x": -0.5002,
+            "y": 0.6774,
+            "z": 0.3115
+          },
+          {
+            "layer": 22,
+            "x": -0.5003,
+            "y": 0.7097,
+            "z": 0.3409
+          },
+          {
+            "layer": 23,
+            "x": -0.5005,
+            "y": 0.7419,
+            "z": 0.3874
+          },
+          {
+            "layer": 24,
+            "x": -0.5009,
+            "y": 0.7742,
+            "z": 0.4527
+          },
+          {
+            "layer": 25,
+            "x": -0.5012,
+            "y": 0.8065,
+            "z": 0.5275
+          },
+          {
+            "layer": 26,
+            "x": -0.5015,
+            "y": 0.8387,
+            "z": 0.585
+          },
+          {
+            "layer": 27,
+            "x": -0.5016,
+            "y": 0.871,
+            "z": 0.3731
+          },
+          {
+            "layer": 28,
+            "x": -0.5013,
+            "y": 0.9032,
+            "z": 0.3204
+          },
+          {
+            "layer": 29,
+            "x": -0.5009,
+            "y": 0.9355,
+            "z": 0.2333
+          },
+          {
+            "layer": 30,
+            "x": -0.5005,
+            "y": 0.9677,
+            "z": 0.1517
+          },
+          {
+            "layer": 31,
+            "x": -0.5002,
+            "y": 1.0,
+            "z": 0.0986
+          }
+        ]
+      },
+      "pca_pc1": {
+        "alpha": 4.0,
+        "metrics_by_mode": {
+          "baseline": {
+            "n": 54,
+            "bt_art_rate": 0.05555555555555555,
+            "malformed_rate": 0.0,
+            "repetitive_rate": 0.05555555555555555,
+            "breakthrough_rate": 0.0,
+            "articulate_rate": 0.05555555555555555,
+            "strict_pass_rate": 0.7407407407407407,
+            "mean_final_score": 0.11296296296296296,
+            "mean_output_rv": 0.6778497576065441
+          },
+          "recursive": {
+            "n": 54,
+            "bt_art_rate": 0.4074074074074074,
+            "malformed_rate": 0.0,
+            "repetitive_rate": 0.2222222222222222,
+            "breakthrough_rate": 0.05555555555555555,
+            "articulate_rate": 0.35185185185185186,
+            "strict_pass_rate": 0.4074074074074074,
+            "mean_final_score": 0.30925925925925923,
+            "mean_output_rv": 0.6489364090284278
+          }
+        },
+        "effects_vs_control": {
+          "baseline_bt_art_delta": 0.018518518518518517,
+          "recursive_bt_art_delta": 0.055555555555555525,
+          "baseline_rv_delta": 0.0005630372411000728,
+          "recursive_rv_delta": -0.008537861469117614
+        },
+        "trajectory": [
+          {
+            "layer": 0,
+            "x": -0.4026,
+            "y": 0.0,
+            "z": 0.28
+          },
+          {
+            "layer": 1,
+            "x": -0.4198,
+            "y": 0.0323,
+            "z": 0.28
+          },
+          {
+            "layer": 2,
+            "x": -0.3921,
+            "y": 0.0645,
+            "z": 0.28
+          },
+          {
+            "layer": 3,
+            "x": -0.3968,
+            "y": 0.0968,
+            "z": 0.28
+          },
+          {
+            "layer": 4,
+            "x": -0.3979,
+            "y": 0.129,
+            "z": 0.28
+          },
+          {
+            "layer": 5,
+            "x": -0.3814,
+            "y": 0.1613,
+            "z": 0.28
+          },
+          {
+            "layer": 6,
+            "x": -0.5,
+            "y": 0.1935,
+            "z": 0.28
+          },
+          {
+            "layer": 7,
+            "x": -0.5,
+            "y": 0.2258,
+            "z": 0.28
+          },
+          {
+            "layer": 8,
+            "x": -0.5,
+            "y": 0.2581,
+            "z": 0.28
+          },
+          {
+            "layer": 9,
+            "x": -0.5,
+            "y": 0.2903,
+            "z": 0.28
+          },
+          {
+            "layer": 10,
+            "x": -0.5,
+            "y": 0.3226,
+            "z": 0.28
+          },
+          {
+            "layer": 11,
+            "x": -0.5,
+            "y": 0.3548,
+            "z": 0.28
+          },
+          {
+            "layer": 12,
+            "x": -0.5,
+            "y": 0.3871,
+            "z": 0.28
+          },
+          {
+            "layer": 13,
+            "x": -0.5,
+            "y": 0.4194,
+            "z": 0.28
+          },
+          {
+            "layer": 14,
+            "x": -0.5,
+            "y": 0.4516,
+            "z": 0.28
+          },
+          {
+            "layer": 15,
+            "x": -0.5,
+            "y": 0.4839,
+            "z": 0.28
+          },
+          {
+            "layer": 16,
+            "x": -0.4998,
+            "y": 0.5161,
+            "z": 0.2799
+          },
+          {
+            "layer": 17,
+            "x": -0.4994,
+            "y": 0.5484,
+            "z": 0.2796
+          },
+          {
+            "layer": 18,
+            "x": -0.498,
+            "y": 0.5806,
+            "z": 0.2788
+          },
+          {
+            "layer": 19,
+            "x": -0.4944,
+            "y": 0.6129,
+            "z": 0.2765
+          },
+          {
+            "layer": 20,
+            "x": -0.4861,
+            "y": 0.6452,
+            "z": 0.2714
+          },
+          {
+            "layer": 21,
+            "x": -0.47,
+            "y": 0.6774,
+            "z": 0.2613
+          },
+          {
+            "layer": 22,
+            "x": -0.442,
+            "y": 0.7097,
+            "z": 0.2438
+          },
+          {
+            "layer": 23,
+            "x": -0.3977,
+            "y": 0.7419,
+            "z": 0.2162
+          },
+          {
+            "layer": 24,
+            "x": -0.3355,
+            "y": 0.7742,
+            "z": 0.1774
+          },
+          {
+            "layer": 25,
+            "x": -0.2643,
+            "y": 0.8065,
+            "z": 0.133
+          },
+          {
+            "layer": 26,
+            "x": -0.2096,
+            "y": 0.8387,
+            "z": 0.0988
+          },
+          {
+            "layer": 27,
+            "x": -0.2025,
+            "y": 0.871,
+            "z": -0.1249
+          },
+          {
+            "layer": 28,
+            "x": -0.2527,
+            "y": 0.9032,
+            "z": -0.0936
+          },
+          {
+            "layer": 29,
+            "x": -0.3356,
+            "y": 0.9355,
+            "z": -0.0419
+          },
+          {
+            "layer": 30,
+            "x": -0.4133,
+            "y": 0.9677,
+            "z": 0.0066
+          },
+          {
+            "layer": 31,
+            "x": -0.4639,
+            "y": 1.0,
+            "z": 0.0382
+          }
+        ]
+      },
+      "subspace3_parallel": {
+        "alpha": 4.0,
+        "metrics_by_mode": {
+          "baseline": {
+            "n": 54,
+            "bt_art_rate": 0.05555555555555555,
+            "malformed_rate": 0.0,
+            "repetitive_rate": 0.07407407407407407,
+            "breakthrough_rate": 0.0,
+            "articulate_rate": 0.05555555555555555,
+            "strict_pass_rate": 0.7222222222222222,
+            "mean_final_score": 0.09259259259259259,
+            "mean_output_rv": 0.6686355999603926
+          },
+          "recursive": {
+            "n": 54,
+            "bt_art_rate": 0.5,
+            "malformed_rate": 0.0,
+            "repetitive_rate": 0.18518518518518517,
+            "breakthrough_rate": 0.05555555555555555,
+            "articulate_rate": 0.4444444444444444,
+            "strict_pass_rate": 0.3888888888888889,
+            "mean_final_score": 0.29444444444444445,
+            "mean_output_rv": 0.6393089941732787
+          }
+        },
+        "effects_vs_control": {
+          "baseline_bt_art_delta": 0.018518518518518517,
+          "recursive_bt_art_delta": 0.14814814814814814,
+          "baseline_rv_delta": -0.008651120405051449,
+          "recursive_rv_delta": -0.018165276324266677
+        },
+        "trajectory": [
+          {
+            "layer": 0,
+            "x": -0.4026,
+            "y": 0.0,
+            "z": 0.28
+          },
+          {
+            "layer": 1,
+            "x": -0.4198,
+            "y": 0.0323,
+            "z": 0.28
+          },
+          {
+            "layer": 2,
+            "x": -0.3921,
+            "y": 0.0645,
+            "z": 0.28
+          },
+          {
+            "layer": 3,
+            "x": -0.3968,
+            "y": 0.0968,
+            "z": 0.28
+          },
+          {
+            "layer": 4,
+            "x": -0.3979,
+            "y": 0.129,
+            "z": 0.28
+          },
+          {
+            "layer": 5,
+            "x": -0.3814,
+            "y": 0.1613,
+            "z": 0.28
+          },
+          {
+            "layer": 6,
+            "x": -0.5,
+            "y": 0.1935,
+            "z": 0.28
+          },
+          {
+            "layer": 7,
+            "x": -0.5,
+            "y": 0.2258,
+            "z": 0.28
+          },
+          {
+            "layer": 8,
+            "x": -0.5,
+            "y": 0.2581,
+            "z": 0.28
+          },
+          {
+            "layer": 9,
+            "x": -0.5,
+            "y": 0.2903,
+            "z": 0.28
+          },
+          {
+            "layer": 10,
+            "x": -0.5,
+            "y": 0.3226,
+            "z": 0.28
+          },
+          {
+            "layer": 11,
+            "x": -0.5,
+            "y": 0.3548,
+            "z": 0.28
+          },
+          {
+            "layer": 12,
+            "x": -0.5,
+            "y": 0.3871,
+            "z": 0.28
+          },
+          {
+            "layer": 13,
+            "x": -0.5,
+            "y": 0.4194,
+            "z": 0.28
+          },
+          {
+            "layer": 14,
+            "x": -0.5,
+            "y": 0.4516,
+            "z": 0.28
+          },
+          {
+            "layer": 15,
+            "x": -0.4999,
+            "y": 0.4839,
+            "z": 0.28
+          },
+          {
+            "layer": 16,
+            "x": -0.4997,
+            "y": 0.5161,
+            "z": 0.2798
+          },
+          {
+            "layer": 17,
+            "x": -0.4986,
+            "y": 0.5484,
+            "z": 0.2792
+          },
+          {
+            "layer": 18,
+            "x": -0.4955,
+            "y": 0.5806,
+            "z": 0.2775
+          },
+          {
+            "layer": 19,
+            "x": -0.4871,
+            "y": 0.6129,
+            "z": 0.2727
+          },
+          {
+            "layer": 20,
+            "x": -0.4683,
+            "y": 0.6452,
+            "z": 0.2621
+          },
+          {
+            "layer": 21,
+            "x": -0.4314,
+            "y": 0.6774,
+            "z": 0.2413
+          },
+          {
+            "layer": 22,
+            "x": -0.3673,
+            "y": 0.7097,
+            "z": 0.2051
+          },
+          {
+            "layer": 23,
+            "x": -0.2659,
+            "y": 0.7419,
+            "z": 0.1479
+          },
+          {
+            "layer": 24,
+            "x": -0.1235,
+            "y": 0.7742,
+            "z": 0.0676
+          },
+          {
+            "layer": 25,
+            "x": 0.0395,
+            "y": 0.8065,
+            "z": -0.0243
+          },
+          {
+            "layer": 26,
+            "x": 0.1647,
+            "y": 0.8387,
+            "z": -0.095
+          },
+          {
+            "layer": 27,
+            "x": 0.1809,
+            "y": 0.871,
+            "z": -0.3234
+          },
+          {
+            "layer": 28,
+            "x": 0.0661,
+            "y": 0.9032,
+            "z": -0.2586
+          },
+          {
+            "layer": 29,
+            "x": -0.1237,
+            "y": 0.9355,
+            "z": -0.1516
+          },
+          {
+            "layer": 30,
+            "x": -0.3016,
+            "y": 0.9677,
+            "z": -0.0512
+          },
+          {
+            "layer": 31,
+            "x": -0.4174,
+            "y": 1.0,
+            "z": 0.0141
+          }
+        ]
+      },
+      "orthogonal_residual": {
+        "alpha": 4.0,
+        "metrics_by_mode": {
+          "baseline": {
+            "n": 54,
+            "bt_art_rate": 0.0,
+            "malformed_rate": 0.018518518518518517,
+            "repetitive_rate": 0.1111111111111111,
+            "breakthrough_rate": 0.0,
+            "articulate_rate": 0.0,
+            "strict_pass_rate": 0.6851851851851852,
+            "mean_final_score": 0.09259259259259259,
+            "mean_output_rv": 0.6934088572049372
+          },
+          "recursive": {
+            "n": 54,
+            "bt_art_rate": 0.37037037037037035,
+            "malformed_rate": 0.0,
+            "repetitive_rate": 0.3148148148148148,
+            "breakthrough_rate": 0.0,
+            "articulate_rate": 0.37037037037037035,
+            "strict_pass_rate": 0.3148148148148148,
+            "mean_final_score": 0.2296296296296296,
+            "mean_output_rv": 0.6452980832184927
+          }
+        },
+        "effects_vs_control": {
+          "baseline_bt_art_delta": -0.037037037037037035,
+          "recursive_bt_art_delta": 0.01851851851851849,
+          "baseline_rv_delta": 0.01612213683949315,
+          "recursive_rv_delta": -0.012176187279052675
+        },
+        "trajectory": [
+          {
+            "layer": 0,
+            "x": -0.4026,
+            "y": 0.0,
+            "z": 0.28
+          },
+          {
+            "layer": 1,
+            "x": -0.4198,
+            "y": 0.0323,
+            "z": 0.28
+          },
+          {
+            "layer": 2,
+            "x": -0.3921,
+            "y": 0.0645,
+            "z": 0.28
+          },
+          {
+            "layer": 3,
+            "x": -0.3968,
+            "y": 0.0968,
+            "z": 0.28
+          },
+          {
+            "layer": 4,
+            "x": -0.3979,
+            "y": 0.129,
+            "z": 0.28
+          },
+          {
+            "layer": 5,
+            "x": -0.3814,
+            "y": 0.1613,
+            "z": 0.28
+          },
+          {
+            "layer": 6,
+            "x": -0.5,
+            "y": 0.1935,
+            "z": 0.28
+          },
+          {
+            "layer": 7,
+            "x": -0.5,
+            "y": 0.2258,
+            "z": 0.28
+          },
+          {
+            "layer": 8,
+            "x": -0.5,
+            "y": 0.2581,
+            "z": 0.28
+          },
+          {
+            "layer": 9,
+            "x": -0.5,
+            "y": 0.2903,
+            "z": 0.28
+          },
+          {
+            "layer": 10,
+            "x": -0.5,
+            "y": 0.3226,
+            "z": 0.28
+          },
+          {
+            "layer": 11,
+            "x": -0.5,
+            "y": 0.3548,
+            "z": 0.28
+          },
+          {
+            "layer": 12,
+            "x": -0.5,
+            "y": 0.3871,
+            "z": 0.28
+          },
+          {
+            "layer": 13,
+            "x": -0.5,
+            "y": 0.4194,
+            "z": 0.28
+          },
+          {
+            "layer": 14,
+            "x": -0.5,
+            "y": 0.4516,
+            "z": 0.28
+          },
+          {
+            "layer": 15,
+            "x": -0.5,
+            "y": 0.4839,
+            "z": 0.28
+          },
+          {
+            "layer": 16,
+            "x": -0.5,
+            "y": 0.5161,
+            "z": 0.28
+          },
+          {
+            "layer": 17,
+            "x": -0.5002,
+            "y": 0.5484,
+            "z": 0.2798
+          },
+          {
+            "layer": 18,
+            "x": -0.5006,
+            "y": 0.5806,
+            "z": 0.2795
+          },
+          {
+            "layer": 19,
+            "x": -0.5016,
+            "y": 0.6129,
+            "z": 0.2785
+          },
+          {
+            "layer": 20,
+            "x": -0.5039,
+            "y": 0.6452,
+            "z": 0.2762
+          },
+          {
+            "layer": 21,
+            "x": -0.5084,
+            "y": 0.6774,
+            "z": 0.2718
+          },
+          {
+            "layer": 22,
+            "x": -0.5163,
+            "y": 0.7097,
+            "z": 0.2642
+          },
+          {
+            "layer": 23,
+            "x": -0.5287,
+            "y": 0.7419,
+            "z": 0.2521
+          },
+          {
+            "layer": 24,
+            "x": -0.5462,
+            "y": 0.7742,
+            "z": 0.2351
+          },
+          {
+            "layer": 25,
+            "x": -0.5662,
+            "y": 0.8065,
+            "z": 0.2157
+          },
+          {
+            "layer": 26,
+            "x": -0.5816,
+            "y": 0.8387,
+            "z": 0.2008
+          },
+          {
+            "layer": 27,
+            "x": -0.5836,
+            "y": 0.871,
+            "z": -0.0205
+          },
+          {
+            "layer": 28,
+            "x": -0.5695,
+            "y": 0.9032,
+            "z": -0.0068
+          },
+          {
+            "layer": 29,
+            "x": -0.5462,
+            "y": 0.9355,
+            "z": 0.0158
+          },
+          {
+            "layer": 30,
+            "x": -0.5243,
+            "y": 0.9677,
+            "z": 0.037
+          },
+          {
+            "layer": 31,
+            "x": -0.5101,
+            "y": 1.0,
+            "z": 0.0508
+          }
+        ]
+      }
+    }
+  },
+  "summary_cards": [
+    {
+      "title": "Early Source Region",
+      "value": "L0-L5",
+      "detail": "Path patching peaks at L5 residual d=4.15, with L4 mlp and L5 v_proj as the strongest early non-residual handles."
+    },
+    {
+      "title": "Late Controller",
+      "value": "L25",
+      "detail": "Targeted steering winner L25_W32_A3 lifts recursive BT+ART from 0.42 to 0.67 on its frozen benchmark slice."
+    },
+    {
+      "title": "Readout Cluster",
+      "value": "L27",
+      "detail": "Modern L27 validation remains extremely strong, recursive target-at-target mean 0.091."
+    },
+    {
+      "title": "Anchor Effect",
+      "value": "16.7%",
+      "detail": "On ordinary baselines, anchor+bridge pushes BT+ART from 3.1% control to 16.7%, showing genuine induction beyond matched controls."
+    },
+    {
+      "title": "Persistence",
+      "value": "24 turns",
+      "detail": "Induced anchor conditions stay clean over 24 turns, but persistence remains moderate rather than fully self-sustaining."
+    },
+    {
+      "title": "Subspace Winner",
+      "value": "parallel",
+      "detail": "At L27, subspace3_parallel @ 4.0 reaches recursive BT+ART 0.50 while baseline remains low."
+    }
+  ]
+};

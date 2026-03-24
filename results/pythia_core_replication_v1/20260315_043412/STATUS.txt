@@ -1,0 +1,12 @@
+run_id=20260315_043412
+python_bin=./.venv/bin/python
+model_name=EleutherAI/pythia-1.4b
+started_utc=2026-03-15T04:34:12Z
+
+>>> START pythia_p0_canonical 2026-03-15T04:34:12Z
+>>> DONE  pythia_p0_canonical 2026-03-15T04:34:47Z
+
+>>> START pythia_full_path_patching 2026-03-15T04:34:47Z
+>>> DONE  pythia_full_path_patching 2026-03-15T04:35:18Z
+finished_utc=2026-03-15T04:35:18Z
+pythia_core_replication_v1_complete=1

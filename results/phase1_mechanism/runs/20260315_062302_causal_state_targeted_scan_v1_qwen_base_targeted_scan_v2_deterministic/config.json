@@ -1,0 +1,74 @@
+{
+  "experiment": "causal_state_targeted_scan_v1",
+  "model": {
+    "device": "cuda",
+    "name": "Qwen/Qwen2.5-7B"
+  },
+  "params": {
+    "baseline_groups": [
+      "baseline_math",
+      "baseline_factual",
+      "baseline_creative"
+    ],
+    "bootstrap_resamples": 1000,
+    "candidate_alpha_magnitudes": [
+      2.0,
+      3.0
+    ],
+    "candidate_source_layers": [
+      21,
+      23,
+      25
+    ],
+    "candidate_windows": [
+      8,
+      16,
+      32
+    ],
+    "do_sample": false,
+    "early_layer": 4,
+    "generation_seeds": [
+      111
+    ],
+    "late_layer": 23,
+    "max_length": 512,
+    "max_new_tokens": 96,
+    "max_source_per_label": 72,
+    "max_source_per_session": 8,
+    "metric_window": 16,
+    "min_text_chars": 80,
+    "negative_classes": [
+      "SURFACE",
+      "REPETITIVE"
+    ],
+    "negative_quantile": 0.65,
+    "negative_session_types": [
+      "baseline"
+    ],
+    "positive_classes": [
+      "BREAKTHROUGH",
+      "ARTICULATE"
+    ],
+    "positive_quantile": 0.35,
+    "positive_session_types": [
+      "recursive"
+    ],
+    "prompt_bank_version": "2ac959a313614329",
+    "recursive_groups": [
+      "L3_deeper",
+      "L4_full",
+      "L5_refined"
+    ],
+    "search_baseline_per_group": 4,
+    "search_recursive_per_group": 4,
+    "source_sessions_dir": "results/sustained_gnani_v3_fixed",
+    "temperature": 1.0,
+    "top_p": 1.0
+  },
+  "results": {
+    "phase": "phase1_mechanism",
+    "root": "results"
+  },
+  "run_name": "qwen_base_targeted_scan_v2_deterministic",
+  "seed": 42
+}

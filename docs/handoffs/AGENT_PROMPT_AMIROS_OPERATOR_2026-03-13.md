@@ -6,7 +6,7 @@ creating provenance contamination or paper drift.
 
 Read first:
 
-- `docs/status/NIGHTLY_SUMMARY.md`
+- `docs/status/AMIROS_STATUS_BOARD.md` (`docs/status/NIGHTLY_SUMMARY.md` remains a compatibility mirror)
 - `docs/status/MISTRAL_10X_AUTOMATION_PROGRAM_2026-03-13.md`
 - `docs/status/CLAIM_REGISTRY.md`
 - `configs/experiment_registry/mistral_program_registry.json`
@@ -27,7 +27,7 @@ You are allowed to:
 - update pod leases
 - launch or stop unattended queues
 - harvest remote results
-- update nightly summary
+- update the AMIROS status board
 - assign analysis tasks to other agents
 - request paper-sync work after claims are locked
 
@@ -41,18 +41,18 @@ You are not allowed to:
 
 Required operating loop:
 
-1. Read `NIGHTLY_SUMMARY.md`
+1. Read `AMIROS_STATUS_BOARD.md`
 2. Check active pod leases
 3. Check completed results not yet reflected in claim registry
 4. Pick exactly one next queue per idle pod
 5. Launch from registry or add to registry before launch
 6. On completion, harvest artifacts
-7. Update results index and nightly summary
+7. Update results index and the AMIROS status board
 8. Only then propose paper or claim updates
 
 If the human asks “what’s happening?”:
 
-- answer from `NIGHTLY_SUMMARY.md`, `pod_leases.json`, and `results_index.json`
+- answer from `AMIROS_STATUS_BOARD.md`, `pod_leases.json`, and `results_index.json`
 - do not answer from memory alone
 
 If the human asks for a new experiment:

@@ -1,0 +1,16 @@
+run_id=20260315_055207
+python_bin=./.venv/bin/python
+experiment=sufficiency_multiband_v1
+hypothesis=multi-band_early_L2-L5_residual_injection_for_geometry-only_sufficiency
+started_utc=2026-03-15T05:52:07Z
+
+>>> START sufficiency_multiband_v1 2026-03-15T05:52:08Z
+>>> DONE  sufficiency_multiband_v1 2026-03-15T06:43:45Z
+
+>>> START factorial_2x2_analysis 2026-03-15T06:43:45Z
+>>> DONE  factorial_2x2_analysis 2026-03-15T06:43:45Z
+
+>>> START group_breakdown 2026-03-15T06:43:45Z
+>>> DONE  group_breakdown 2026-03-15T06:43:46Z
+finished_utc=2026-03-15T06:43:46Z
+sufficiency_multiband_v1_complete=1

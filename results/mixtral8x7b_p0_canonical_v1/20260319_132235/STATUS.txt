@@ -1,0 +1,6 @@
+run_id=20260319_132235
+python_bin=/root/venvs/mistral-hardening/bin/python
+model_name=mistralai/Mixtral-8x7B-v0.1
+started_utc=2026-03-19T13:22:35Z
+
+>>> START mixtral8x7b_p0_canonical 2026-03-19T13:22:35Z

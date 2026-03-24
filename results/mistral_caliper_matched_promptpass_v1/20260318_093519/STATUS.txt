@@ -1,0 +1,8 @@
+run_id=20260318_093519
+python_bin=/root/venvs/mistral-hardening/bin/python
+started_utc=2026-03-18T09:35:19Z
+
+>>> START mistral_caliper_matched_promptpass_v1 2026-03-18T09:35:19Z
+>>> DONE  mistral_caliper_matched_promptpass_v1 2026-03-18T09:35:32Z
+finished_utc=2026-03-18T09:35:32Z
+mistral_caliper_matched_promptpass_v1_complete=1

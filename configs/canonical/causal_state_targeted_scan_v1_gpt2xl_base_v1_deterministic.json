@@ -1,0 +1,42 @@
+{
+  "experiment": "causal_state_targeted_scan_v1",
+  "run_name": "gpt2xl_base_targeted_scan_v1_deterministic",
+  "seed": 42,
+  "model": {
+    "name": "openai-community/gpt2-xl",
+    "device": "cuda"
+  },
+  "params": {
+    "source_sessions_dir": "results/sustained_gnani_v3_fixed",
+    "early_layer": 7,
+    "late_layer": 40,
+    "metric_window": 16,
+    "max_length": 512,
+    "min_text_chars": 80,
+    "max_source_per_label": 72,
+    "max_source_per_session": 8,
+    "positive_classes": ["BREAKTHROUGH", "ARTICULATE"],
+    "negative_classes": ["SURFACE", "REPETITIVE"],
+    "positive_quantile": 0.35,
+    "negative_quantile": 0.65,
+    "positive_session_types": ["recursive"],
+    "negative_session_types": ["baseline"],
+    "recursive_groups": ["L3_deeper", "L4_full", "L5_refined"],
+    "baseline_groups": ["baseline_math", "baseline_factual", "baseline_creative"],
+    "search_recursive_per_group": 4,
+    "search_baseline_per_group": 4,
+    "generation_seeds": [111],
+    "max_new_tokens": 96,
+    "do_sample": false,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "bootstrap_resamples": 1000,
+    "candidate_source_layers": [36, 40, 44],
+    "candidate_windows": [8, 16, 32],
+    "candidate_alpha_magnitudes": [2.0, 3.0]
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  }
+}

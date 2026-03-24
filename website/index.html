@@ -179,6 +179,73 @@
             </div>
         </section>
 
+        <section id="control-atlas" class="section">
+            <div class="container">
+                <div class="atlas-header">
+                    <div class="badge atlas-badge">Replay-First / Artifact-Grounded</div>
+                    <h2>Live Mistral Control Atlas</h2>
+                    <p class="section-intro">
+                        A deterministic replay viewer for the hardened Mistral control-system story: early source formation,
+                        late behavioral control, late readout compression, anchor-induced regime entry, and long-turn drift.
+                    </p>
+                </div>
+
+                <div id="atlas-summary-cards" class="atlas-summary-grid">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div id="mistral-control-atlas" class="atlas-shell">
+                    <div class="atlas-stage">
+                        <div class="atlas-toolbar">
+                            <div class="atlas-toolbar-group">
+                                <span class="atlas-toolbar-label">View</span>
+                                <div id="atlas-mode-tabs" class="atlas-tabs">
+                                    <button class="atlas-tab active" data-mode="prompt">Prompt Pass</button>
+                                    <button class="atlas-tab" data-mode="persistence">Persistence</button>
+                                    <button class="atlas-tab" data-mode="subspace">Subspace</button>
+                                </div>
+                            </div>
+                            <div class="atlas-toolbar-group">
+                                <span id="atlas-secondary-label" class="atlas-toolbar-label">Prompt Mode</span>
+                                <div id="atlas-secondary-tabs" class="atlas-tabs atlas-tabs-secondary">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                            <div class="atlas-toolbar-group atlas-toolbar-status">
+                                <span class="atlas-toolbar-label">Status</span>
+                                <div id="atlas-status" class="atlas-status">Loading atlas data…</div>
+                            </div>
+                        </div>
+                        <canvas id="atlas-canvas" width="960" height="560"></canvas>
+                        <div id="atlas-legend" class="atlas-legend">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <aside class="atlas-sidebar">
+                        <div class="atlas-panel">
+                            <h3>Selection</h3>
+                            <div id="atlas-selection-pills" class="atlas-pills">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <div id="atlas-metrics" class="atlas-panel">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <div id="atlas-exemplar" class="atlas-panel">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <div id="atlas-artifacts" class="atlas-panel">
+                            <!-- Populated by JS -->
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
         <section id="metric" class="section">
             <div class="container">
                 <h2>The R_V Metric</h2>
@@ -355,5 +422,7 @@ print(f"Effect size (d): {results.cohens_d:.2f}")</code></pre>
     </footer>
     <script src="calculator.js"></script>
     <script src="model-explorer.js"></script>
+    <script src="data/mistral-control-atlas-data.js"></script>
+    <script src="mistral-control-atlas.js"></script>
 </body>
 </html>

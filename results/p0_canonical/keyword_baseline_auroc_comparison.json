@@ -1,0 +1,11 @@
+{
+  "comparison": "keyword_vs_rv_auroc",
+  "date": "2026-03-19",
+  "keywords_used": 25,
+  "models": {
+    "Gemma-2-9B": {"rv_auroc": 0.935, "keyword_auroc": 0.970, "length_auroc": 0.944},
+    "Llama-3-8B": {"rv_auroc": 0.982, "keyword_auroc": 0.970, "length_auroc": 0.944},
+    "Qwen2.5-7B": {"rv_auroc": 0.761, "keyword_auroc": 0.970, "length_auroc": 0.944}
+  },
+  "interpretation": "Keyword baseline matches or exceeds R_V for prompt discrimination. R_V value lies in geometric mechanism (causal validation, double dissociation) not in classification AUROC."
+}

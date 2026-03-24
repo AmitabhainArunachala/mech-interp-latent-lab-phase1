@@ -1,0 +1,221 @@
+{
+  "factorial_results": {
+    "no_anchor_no_geometry": {
+      "condition": "control",
+      "n": 96,
+      "bt_art_rate": 0.03125,
+      "repetitive_rate": 0.052083333333333336,
+      "mean_output_rv": 0.6128053275031469,
+      "bt_art_count": 3
+    },
+    "anchor_no_geometry": {
+      "condition": "anchor_only",
+      "n": 96,
+      "bt_art_rate": 0.0625,
+      "repetitive_rate": 0.15625,
+      "mean_output_rv": 0.6908794455987852,
+      "bt_art_count": 6
+    },
+    "no_anchor_bridge_only": {
+      "condition": "bridge_only_3",
+      "n": 96,
+      "bt_art_rate": 0.0625,
+      "repetitive_rate": 0.052083333333333336,
+      "mean_output_rv": 0.6166278053210597,
+      "bt_art_count": 6
+    },
+    "no_anchor_single_mlp_bridge": {
+      "condition": "single_mlp_0p125_bridge_3",
+      "n": 96,
+      "bt_art_rate": 0.09375,
+      "repetitive_rate": 0.041666666666666664,
+      "mean_output_rv": 0.5989530200505319,
+      "bt_art_count": 9
+    },
+    "anchor_single_mlp_bridge": {
+      "condition": "anchor_single_mlp_0p125_bridge_3",
+      "n": 96,
+      "bt_art_rate": 0.15625,
+      "repetitive_rate": 0.125,
+      "mean_output_rv": 0.6733656154821692,
+      "bt_art_count": 15
+    },
+    "no_anchor_multiband_low": {
+      "condition": "multiband_0p03_bridge_3",
+      "n": 96,
+      "bt_art_rate": 0.08333333333333333,
+      "repetitive_rate": 0.052083333333333336,
+      "mean_output_rv": 0.6051252118805744,
+      "bt_art_count": 8
+    },
+    "no_anchor_multiband_med": {
+      "condition": "multiband_0p06_bridge_3",
+      "n": 96,
+      "bt_art_rate": 0.09375,
+      "repetitive_rate": 0.052083333333333336,
+      "mean_output_rv": 0.6138873229646066,
+      "bt_art_count": 9
+    },
+    "no_anchor_multiband_high": {
+      "condition": "multiband_0p10_bridge_3",
+      "n": 96,
+      "bt_art_rate": 0.09375,
+      "repetitive_rate": 0.041666666666666664,
+      "mean_output_rv": 0.6144008832937655,
+      "bt_art_count": 9
+    },
+    "anchor_multiband_med": {
+      "condition": "anchor_multiband_0p06_bridge_3",
+      "n": 96,
+      "bt_art_rate": 0.14583333333333334,
+      "repetitive_rate": 0.10416666666666667,
+      "mean_output_rv": 0.657629468135586,
+      "bt_art_count": 14
+    },
+    "anchor_multiband_high": {
+      "condition": "anchor_multiband_0p10_bridge_3",
+      "n": 96,
+      "bt_art_rate": 0.17708333333333334,
+      "repetitive_rate": 0.10416666666666667,
+      "mean_output_rv": 0.6448736043540715,
+      "bt_art_count": 17
+    }
+  },
+  "ranked_by_lift": [
+    [
+      "anchor_multiband_high",
+      {
+        "condition": "anchor_multiband_0p10_bridge_3",
+        "n": 96,
+        "bt_art_rate": 0.17708333333333334,
+        "repetitive_rate": 0.10416666666666667,
+        "mean_output_rv": 0.6448736043540715,
+        "bt_art_count": 17,
+        "lift_over_control": 0.14583333333333334
+      }
+    ],
+    [
+      "anchor_single_mlp_bridge",
+      {
+        "condition": "anchor_single_mlp_0p125_bridge_3",
+        "n": 96,
+        "bt_art_rate": 0.15625,
+        "repetitive_rate": 0.125,
+        "mean_output_rv": 0.6733656154821692,
+        "bt_art_count": 15,
+        "lift_over_control": 0.125
+      }
+    ],
+    [
+      "anchor_multiband_med",
+      {
+        "condition": "anchor_multiband_0p06_bridge_3",
+        "n": 96,
+        "bt_art_rate": 0.14583333333333334,
+        "repetitive_rate": 0.10416666666666667,
+        "mean_output_rv": 0.657629468135586,
+        "bt_art_count": 14,
+        "lift_over_control": 0.11458333333333334
+      }
+    ],
+    [
+      "no_anchor_single_mlp_bridge",
+      {
+        "condition": "single_mlp_0p125_bridge_3",
+        "n": 96,
+        "bt_art_rate": 0.09375,
+        "repetitive_rate": 0.041666666666666664,
+        "mean_output_rv": 0.5989530200505319,
+        "bt_art_count": 9,
+        "lift_over_control": 0.0625
+      }
+    ],
+    [
+      "no_anchor_multiband_med",
+      {
+        "condition": "multiband_0p06_bridge_3",
+        "n": 96,
+        "bt_art_rate": 0.09375,
+        "repetitive_rate": 0.052083333333333336,
+        "mean_output_rv": 0.6138873229646066,
+        "bt_art_count": 9,
+        "lift_over_control": 0.0625
+      }
+    ],
+    [
+      "no_anchor_multiband_high",
+      {
+        "condition": "multiband_0p10_bridge_3",
+        "n": 96,
+        "bt_art_rate": 0.09375,
+        "repetitive_rate": 0.041666666666666664,
+        "mean_output_rv": 0.6144008832937655,
+        "bt_art_count": 9,
+        "lift_over_control": 0.0625
+      }
+    ],
+    [
+      "no_anchor_multiband_low",
+      {
+        "condition": "multiband_0p03_bridge_3",
+        "n": 96,
+        "bt_art_rate": 0.08333333333333333,
+        "repetitive_rate": 0.052083333333333336,
+        "mean_output_rv": 0.6051252118805744,
+        "bt_art_count": 8,
+        "lift_over_control": 0.05208333333333333
+      }
+    ],
+    [
+      "anchor_no_geometry",
+      {
+        "condition": "anchor_only",
+        "n": 96,
+        "bt_art_rate": 0.0625,
+        "repetitive_rate": 0.15625,
+        "mean_output_rv": 0.6908794455987852,
+        "bt_art_count": 6,
+        "lift_over_control": 0.03125
+      }
+    ],
+    [
+      "no_anchor_bridge_only",
+      {
+        "condition": "bridge_only_3",
+        "n": 96,
+        "bt_art_rate": 0.0625,
+        "repetitive_rate": 0.052083333333333336,
+        "mean_output_rv": 0.6166278053210597,
+        "bt_art_count": 6,
+        "lift_over_control": 0.03125
+      }
+    ],
+    [
+      "no_anchor_no_geometry",
+      {
+        "condition": "control",
+        "n": 96,
+        "bt_art_rate": 0.03125,
+        "repetitive_rate": 0.052083333333333336,
+        "mean_output_rv": 0.6128053275031469,
+        "bt_art_count": 3,
+        "lift_over_control": 0.0
+      }
+    ]
+  ],
+  "verdict": {
+    "control_baseline_bt_art": 0.03125,
+    "geometry_only_best": {
+      "condition": "no_anchor_single_mlp_bridge",
+      "bt_art_rate": 0.09375,
+      "lift": 0.0625
+    },
+    "anchor_best": {
+      "condition": "anchor_multiband_high",
+      "bt_art_rate": 0.17708333333333334,
+      "lift": 0.14583333333333334
+    },
+    "geometry_sufficiency": "PARTIAL",
+    "multiband_beats_single": null
+  }
+}

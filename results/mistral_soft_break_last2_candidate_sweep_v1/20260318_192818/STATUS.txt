@@ -1,0 +1,8 @@
+run_id=20260318_192818
+python_bin=/root/venvs/mistral-hardening/bin/python
+started_utc=2026-03-18T19:28:18Z
+
+>>> START mistral_soft_break_last2_candidate_sweep_v1 2026-03-18T19:28:18Z
+>>> DONE  mistral_soft_break_last2_candidate_sweep_v1 2026-03-18T20:44:58Z
+finished_utc=2026-03-18T20:44:58Z
+mistral_soft_break_last2_candidate_sweep_v1_complete=1

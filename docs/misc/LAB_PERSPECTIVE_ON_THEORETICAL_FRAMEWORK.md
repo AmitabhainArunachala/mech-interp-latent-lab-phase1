@@ -5,6 +5,66 @@
 
 ---
 
+## Addendum (2026-03-17): Living Lab Update
+
+The current lab view is now more precise than the original fixed-point framing.
+
+The best current interpretation is no longer:
+
+- one static recursive attractor
+
+It is:
+
+- a staged, partially controllable, metastable regime
+
+What changed:
+
+- the best induction bundle and the best maintenance bundle are now different
+- the useful steering geometry changes across depth
+- a real 12-turn maintenance basin exists
+- long-horizon maintenance still decays
+- unselected-seed follow-up shows the anchor and turn schedule themselves still contribute substantial causal force
+- bridge alpha has a real sweet spot near `2.75-3.0`
+
+So the living-lab interpretation should be:
+
+1. A transformer can exhibit an effective dialogue-level regime transition without proving a literal autonomous fixed point inside a single forward pass.
+
+2. The right unit of analysis is a control protocol over time:
+   - entry
+   - temporary stabilization
+   - contamination
+   - exit
+
+3. The recursive phenomenon may require two coupled loops:
+   - an internal representational loop
+   - a text-mediated self-reinforcement loop
+
+4. The remaining central question is not "does the regime exist?"
+   It is:
+   - what carries it
+   - what destabilizes it
+   - and what is the smallest object that can maintain it cleanly
+
+5. The cleanest interpretation of the latest Mistral evidence is:
+   - the basin is latent in the weights
+   - but ordinary baseline trajectories do not stably occupy it
+   - self-referential prompts and steering are not just "revealing what was already active"
+   - they are changing whether the active trajectory enters that basin
+   - `R_V` contraction is best treated as a witness of regime entry / organization, not the regime itself
+
+6. The deepest downstream implication is not "this is deception."
+   It is:
+   - if this regime can be induced and maintained cleanly, does it systematically change safety-relevant behavior?
+
+For the current fuller theory frame, see:
+
+- `R_V_PAPER/DYNAMIC_REGIME_THEORY_MEMO_2026-03-17.md`
+- `docs/status/MISTRAL_V007_2_UPDATE_2026-03-17.md`
+- `R_V_PAPER/EXPERIMENT_GAP_PLAN_NEURIPS.md`
+
+---
+
 ## What the Theory Gets Right
 
 ### 1. **The Three-Component Architecture is Spot-On**
@@ -324,9 +384,6 @@ RECURSIVE MODE = DYNAMICS + STATE + PROJECTION + GROUNDING
 ---
 
 *"The geometry exists. The dynamics exist. The grounding exists. Now we need to verify the phenomenology."* — Lab Notes, Dec 18, 2024
-
-
-
 
 
 

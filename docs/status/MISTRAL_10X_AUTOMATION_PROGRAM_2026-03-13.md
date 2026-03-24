@@ -195,7 +195,7 @@ The first working version of the automation layer now exists in the repo:
 - registry-driven overnight launcher: `scripts/run_mistral_program_queue.py`
 - pod wrapper for the launcher: `scripts/runpod_mistral_overnight_program_queue.sh`
 - harvester: `scripts/harvest_runpod_research_os.sh`
-- nightly summary: `scripts/nightly_summary.py`
+- AMIROS status board generator: `scripts/nightly_summary.py`
 
 This is intentionally narrow: it serializes approved queue units, reconciles artifacts back into the registry, and summarizes stale / missing / ready state. It does not replace experiment-specific queue scripts yet; it orchestrates them.
 
@@ -236,7 +236,7 @@ Reads artifacts, compares runs, proposes follow-up configs, and writes summaries
 2. Write a persistence interpretation from the new segment stats.
 3. Build the scaffold ablation ladder.
 4. Build a machine-readable experiment registry.
-5. Build a sync + nightly summary loop.
+5. Build a sync + status-board loop.
 6. Only then open a larger-model replication lane.
 
 ## What "10x more powerful" actually means

@@ -1,0 +1,22 @@
+{
+  "schema_version": "p0-canonical-provenance-v1",
+  "git_commit": "05f70caee6f549e7381010b1f577975d90e84b92-dirty",
+  "hardware": {
+    "device": "cuda",
+    "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "cuda_version": "12.8",
+    "torch_version": "2.8.0+cu128",
+    "torch_dtype": "float32",
+    "python_version": "3.12.3",
+    "platform": "Linux-6.8.0-90-generic-x86_64-with-glibc2.39"
+  },
+  "metric_path": "geometric_lens.metrics.participation_ratio",
+  "prompt_bank_path": "/root/mech-interp-latent-lab-phase1/prompts/bank.json",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_path": "/root/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_tier": "core_measurement",
+  "canonical_registry_path": "/root/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "cwd": "/root/mech-interp-latent-lab-phase1"
+}

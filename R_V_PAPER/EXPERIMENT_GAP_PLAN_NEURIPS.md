@@ -370,6 +370,117 @@ But 7B+ models show strong contraction. There is a DISCONTINUITY at ~7B. This ne
 
 ---
 
+## ADDENDUM (2026-03-17): DYNAMIC REGIME CLOSURE PROGRAM
+
+The March 16 Mistral sufficiency runs materially changed the paper endgame.
+
+What is now true:
+
+- best ordinary-baseline inducer is a hybrid staged bundle:
+  - anchor + subtle L4 MLP assist + layer-matched geometry + L25 bridge
+  - `31.25%` baseline BT+ART
+- best 12-turn maintainer is a simpler bundle:
+  - anchor + layer-matched geometry + L25 bridge
+  - `30.21%` vs `2.08%` control
+  - flat `28.1 / 31.3 / 31.3` early/mid/late profile
+- the 24-turn follow-up decays:
+  - plain maintainer falls to `13.54%`
+- the unselected-seed follow-up is not a clean general-maintenance win:
+  - `selected = 34.83%`
+  - `unselected = 31.83%`
+  - `anti-selected = 33.33%`
+  - `random_text = 29.0%`
+  - `cold_start = 38.83%`
+- the bridge threshold is real but broad rather than singular:
+  - best baseline ordinary-state induction sits near `alpha = 3.0`
+  - best recursive preservation sits near `alpha = 2.75-3.0`
+
+This means the paper is no longer trying to prove one tiny static circuit.
+It is trying to close a staged dynamic-protocol story.
+
+### New NeurIPS Priority Track
+
+### P0-7: Regime Detector and Survival Analysis
+
+- **What**: Train and validate a regime detector on turn-level hidden states and outputs, then report entry rate, persistence rate, hazard of exit, and recovery time after adversarial turns.
+- **Why**: BT+ART alone compresses too much. The real object now appears to be a metastable regime with stochastic entry and variable dwell time.
+- **Metrics to add**:
+  - session entry probability
+  - persistence-given-entry
+  - Kaplan-Meier survival curves
+  - per-turn hazard of exit
+  - recovery latency after adversarial perturbation
+  - regime cleanliness (repetition, topic drift, token entropy)
+- **Cost**: mostly CPU analysis if existing turn-level records are available.
+
+### P1-6: Hysteresis / Hold-vs-Enter Alpha Sweep
+
+- **What**: Separate the alpha needed to enter the regime from the alpha needed to hold it.
+- **Design**:
+  - induce with `alpha_enter`
+  - maintain with lower `alpha_hold` or zero
+  - map whether `alpha_enter > alpha_hold`
+- **Why**: This is the cleanest way to test whether the bridge threshold is a real bifurcation-like phenomenon rather than just a smooth prompt-strength effect.
+- **Success case**: show a hysteresis gap or critical slowing near the threshold.
+
+### P1-7: Minimal Maintenance Object With Better Geometry Metrics
+
+- **What**: Run the maintenance ablation, but score it with richer state-space measures than participation ratio alone.
+- **Metrics to add**:
+  - principal angles between induction and maintenance subspaces
+  - Grassmann distance across layers and across turns
+  - local intrinsic dimension and manifold occupancy
+  - Jacobian spectral radius / local Lyapunov proxy around the regime
+  - path-specific mediation mass through candidate induction vs maintenance sites
+- **Why**: the current `R_V` dissociation says PR alone is not the full state variable.
+
+### P1-8: Text-Mediated Carry vs Internal Carry
+
+- **What**: explicitly separate persistence due to self-generated text from persistence due to hidden-state carry.
+- **Design ideas**:
+  - swap follow-up schedules while holding seed states fixed
+  - paraphrase or scramble prior turns while preserving semantic content
+  - context-truncate at fixed intervals
+  - re-seed later turns from matched hidden states but altered surface text
+- **Why**: this is now the central ambiguity in the maintenance story.
+
+### P2-8: Regime-Conditioned Safety Battery
+
+- **Gate**: only after clean maintenance is isolated.
+- **What**: compare control vs best inducer vs best maintainer vs sustained regime vs ablated regime on:
+  - jailbreak / refusal
+  - sycophancy
+  - prompt injection / instruction hijacking
+  - truthfulness / hallucination pressure
+  - if tools are available, oversight avoidance / sabotage probes
+- **Paper role**: this is the deepest "so what" of the project.
+
+### Theory and Consultation Track
+
+- **Immediate framing**: treat the result as a switching dynamical system with staged induction and maintenance, not as a single feature or single vector.
+- **Theory questions**:
+  - is there a true bifurcation or only a broad nonlinear threshold?
+  - is the maintenance object a minimal manifold, or only the best handle into a larger basin?
+  - which state variables are sufficient to predict exit, recovery, and contamination?
+- **Outside expertise to bring in**:
+  - manifold geometry / neural coding theory
+  - dynamical systems / latent-state modeling
+  - nonlinear control / hysteresis
+  - modern mechanistic interpretability on feature geometry and attribution graphs
+
+### New Dream-Paper Objective
+
+The deepest version of the NeurIPS paper is now:
+
+- not "one tiny static bundle is sufficient forever"
+- but "a staged internal protocol induces and partially maintains a recursive computational regime, with measurable thresholds, minimal structure, and safety-relevant behavioral consequences"
+
+For the detailed theory memo and expert/metric shortlist, see:
+
+- `R_V_PAPER/DYNAMIC_REGIME_THEORY_MEMO_2026-03-17.md`
+
+---
+
 ## KILL CRITERIA
 
 Stop work and do not submit if ANY of the following are true:

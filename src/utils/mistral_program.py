@@ -143,6 +143,41 @@ def _parse_iso(ts: str) -> datetime | None:
         return None
 
 
+def _result_supersedes_running_lease(
+    lease: dict[str, Any] | None,
+    result: dict[str, Any] | None,
+) -> bool:
+    if lease is None or lease.get("status") != "running" or result is None:
+        return False
+    if result.get("status") != "completed":
+        return False
+    result_ts = _parse_iso(str(result.get("updated_at") or ""))
+    lease_ts = _parse_iso(str(lease.get("updated_at") or ""))
+    if result_ts is None:
+        return False
+    if lease_ts is None:
+        return True
+    return result_ts >= lease_ts
+
+
+def _running_lease_is_superseded_for_unit(
+    lease: dict[str, Any] | None,
+    unit_experiments: list[dict[str, Any]],
+    *,
+    now: datetime,
+) -> bool:
+    if lease is None or lease.get("status") != "running" or not unit_experiments:
+        return False
+    if not all(exp.get("status") == "completed" for exp in unit_experiments):
+        return False
+    if any(
+        _result_supersedes_running_lease(lease, exp.get("latest_result"))
+        for exp in unit_experiments
+    ):
+        return True
+    return lease_is_stale(lease, now=now)
+
+
 def lease_is_stale(
     lease: dict[str, Any],
     *,
@@ -227,9 +262,14 @@ def reconcile_program_registry(
 
         queue_group = str(exp.get("queue_group") or "")
         lease = latest_leases.get(queue_group)
+        lease_superseded = _result_supersedes_running_lease(lease, result)
         if exp.get("status") == "running" and lease is None:
             warnings.append("running_without_lease")
-        if lease is not None and lease.get("status") == "running":
+        if (
+            lease is not None
+            and lease.get("status") == "running"
+            and not lease_superseded
+        ):
             exp["active_lease"] = {
                 "pod_name": lease.get("pod_name", ""),
                 "run_id": lease.get("run_id", ""),
@@ -240,6 +280,8 @@ def reconcile_program_registry(
                 warnings.append("stale_lease")
         else:
             exp.pop("active_lease", None)
+            if lease_superseded:
+                warnings.append("superseded_running_lease")
         exp["warnings"] = warnings
 
     experiments = experiment_map(payload)
@@ -254,12 +296,24 @@ def reconcile_program_registry(
         ]
         lease = latest_leases.get(queue_group)
         statuses = {str(exp.get("status") or "queued") for exp in unit_experiments}
+        running_lease_superseded = _running_lease_is_superseded_for_unit(
+            lease,
+            unit_experiments,
+            now=now,
+        )
+        effective_running_lease = (
+            lease
+            if lease is not None
+            and lease.get("status") == "running"
+            and not running_lease_superseded
+            else None
+        )
 
         deps_ok, blockers = dependencies_satisfied(unit, units=units)
         warnings: list[str] = []
-        if lease is not None and lease.get("status") == "running":
+        if effective_running_lease is not None:
             unit["status"] = "running"
-            if lease_is_stale(lease, now=now):
+            if lease_is_stale(effective_running_lease, now=now):
                 warnings.append("stale_lease")
         elif unit_experiments and all(
             exp.get("status") == "completed" for exp in unit_experiments
@@ -272,12 +326,18 @@ def reconcile_program_registry(
         elif any(status == "running" for status in statuses):
             unit["status"] = "running"
         else:
-            unit["status"] = unit.get("status") or "queued"
+            prior_status = str(unit.get("status") or "")
+            if prior_status in {"", "queued", "blocked"}:
+                unit["status"] = "queued"
+            else:
+                unit["status"] = prior_status
 
         if blockers:
             warnings.extend(f"blocked_by:{item}" for item in blockers)
         if not unit_experiments:
             warnings.append("no_registered_experiments")
+        if running_lease_superseded:
+            warnings.append("superseded_running_lease")
         if unit.get("status") == "completed":
             missing = [
                 exp.get("experiment_id")
@@ -289,12 +349,12 @@ def reconcile_program_registry(
                     "missing_artifacts:" + ",".join(str(item) for item in missing)
                 )
 
-        if lease is not None:
+        if effective_running_lease is not None:
             unit["active_lease"] = {
-                "pod_name": lease.get("pod_name", ""),
-                "run_id": lease.get("run_id", ""),
-                "current_step": lease.get("current_step", ""),
-                "updated_at": lease.get("updated_at", ""),
+                "pod_name": effective_running_lease.get("pod_name", ""),
+                "run_id": effective_running_lease.get("run_id", ""),
+                "current_step": effective_running_lease.get("current_step", ""),
+                "updated_at": effective_running_lease.get("updated_at", ""),
             }
         else:
             unit.pop("active_lease", None)
@@ -302,6 +362,37 @@ def reconcile_program_registry(
         unit["warnings"] = warnings
 
     return payload
+
+
+def effective_active_leases(
+    registry_payload: dict[str, Any],
+    *,
+    results_payload: dict[str, Any] | None = None,
+    leases_payload: dict[str, Any] | None = None,
+    repo_root: Path = PROJECT_ROOT,
+) -> list[dict[str, Any]]:
+    payload = reconcile_program_registry(
+        registry_payload,
+        results_payload=results_payload,
+        leases_payload=leases_payload,
+        repo_root=repo_root,
+    )
+    active: list[dict[str, Any]] = []
+    for unit in payload.get("queue_units", []):
+        if unit.get("status") != "running":
+            continue
+        lease = unit.get("active_lease")
+        if not isinstance(lease, dict):
+            continue
+        active.append(
+            {
+                **lease,
+                "queue_group": unit.get("queue_group", ""),
+                "queue_unit_id": unit.get("queue_unit_id", ""),
+                "stage": unit.get("stage", ""),
+            }
+        )
+    return active
 
 
 def ready_queue_units(

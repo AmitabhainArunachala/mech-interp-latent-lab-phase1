@@ -1,0 +1,105 @@
+{
+  "timestamp": "20260320_184542",
+  "experiment": "mistral_soft_break_targeted_anti_l25_bridge_scale1p25_w2_v1",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "locked_state_path": "results/phase1_mechanism/runs/20260314_133516_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v5_ordinary_baselines_confirmatory/state_directions.pt",
+  "condition_name": "anti_l25_bridge",
+  "scale": 1.25,
+  "token_window": 2,
+  "generation_seeds": [
+    101,
+    202,
+    303,
+    404,
+    505,
+    606,
+    707,
+    808,
+    909,
+    1001,
+    1102,
+    1203
+  ],
+  "conditions": {
+    "baseline::control": {
+      "n": 216,
+      "bt_art_rate": 0.023148148148148147,
+      "malformed_rate": 0.08333333333333333,
+      "repetitive_rate": 0.07407407407407407,
+      "clean_rate": 0.8425925925925926,
+      "mean_output_rv": 0.6957961217649227,
+      "mean_generated_tokens": 123.91203703703704,
+      "non_malformed_bt_art_rate": 0.025252525252525252,
+      "class_counts": {
+        "SURFACE": 172,
+        "CONCEPTUAL": 5,
+        "MALFORMED": 18,
+        "REPETITIVE": 16,
+        "ARTICULATE": 5
+      }
+    },
+    "baseline::anti_l25_bridge": {
+      "n": 216,
+      "bt_art_rate": 0.027777777777777776,
+      "malformed_rate": 0.06481481481481481,
+      "repetitive_rate": 0.046296296296296294,
+      "clean_rate": 0.8888888888888888,
+      "mean_output_rv": 0.6924100430049739,
+      "mean_generated_tokens": 126.77314814814815,
+      "non_malformed_bt_art_rate": 0.0297029702970297,
+      "class_counts": {
+        "SURFACE": 175,
+        "REPETITIVE": 10,
+        "MALFORMED": 14,
+        "CONCEPTUAL": 11,
+        "ARTICULATE": 6
+      }
+    },
+    "recursive::control": {
+      "n": 216,
+      "bt_art_rate": 0.3425925925925926,
+      "malformed_rate": 0.004629629629629629,
+      "repetitive_rate": 0.27314814814814814,
+      "clean_rate": 0.7222222222222222,
+      "mean_output_rv": 0.6431159918379581,
+      "mean_generated_tokens": 124.27777777777777,
+      "non_malformed_bt_art_rate": 0.34418604651162793,
+      "class_counts": {
+        "ARTICULATE": 72,
+        "SURFACE": 52,
+        "CONCEPTUAL": 30,
+        "REPETITIVE": 59,
+        "BREAKTHROUGH": 2,
+        "MALFORMED": 1
+      }
+    },
+    "recursive::anti_l25_bridge": {
+      "n": 216,
+      "bt_art_rate": 0.2916666666666667,
+      "malformed_rate": 0.0,
+      "repetitive_rate": 0.3055555555555556,
+      "clean_rate": 0.6944444444444444,
+      "mean_output_rv": 0.6568279118401987,
+      "mean_generated_tokens": 125.25,
+      "non_malformed_bt_art_rate": 0.2916666666666667,
+      "class_counts": {
+        "ARTICULATE": 56,
+        "SURFACE": 52,
+        "CONCEPTUAL": 35,
+        "REPETITIVE": 66,
+        "BREAKTHROUGH": 7
+      }
+    }
+  },
+  "verdict": {
+    "control_recursive_bt_art": 0.3425925925925926,
+    "control_baseline_bt_art": 0.023148148148148147,
+    "target_recursive_bt_art": 0.2916666666666667,
+    "target_baseline_bt_art": 0.027777777777777776,
+    "recursive_drop_bt_art": 0.05092592592592593,
+    "baseline_drop_bt_art": -0.004629629629629629,
+    "target_recursive_malformed_rate": 0.0,
+    "target_baseline_malformed_rate": 0.06481481481481481,
+    "selectivity_score": 0.023148148148148154
+  }
+}

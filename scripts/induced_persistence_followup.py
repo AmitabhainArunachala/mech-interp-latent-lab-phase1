@@ -15,6 +15,7 @@ import json
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
+import random
 from typing import Any
 
 import numpy as np
@@ -63,11 +64,17 @@ def load_source_records(
     rows = []
     for line in records_path.read_text(encoding="utf-8").splitlines():
         row = json.loads(line)
+        condition_name = row.get("condition_name") or row.get("condition")
         if row.get("prompt_mode") != "baseline":
             continue
-        if row.get("condition_name") not in source_conditions:
+        if condition_name not in source_conditions:
             continue
         if row.get("prompt_group") not in baseline_groups:
+            continue
+        row["condition_name"] = condition_name
+        row["prompt_id"] = row.get("prompt_id", row.get("prompt_index", -1))
+        row["generated_text"] = row.get("generated_text") or row.get("response") or ""
+        if not row["generated_text"]:
             continue
         rows.append(row)
     return rows
@@ -76,12 +83,16 @@ def load_source_records(
 def select_seed_records(
     rows: list[dict[str, Any]],
     top_k_per_group: int,
+    *,
+    selection_strategy: str,
+    seed: int,
 ) -> list[dict[str, Any]]:
     grouped: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
         grouped[(row["condition_name"], row["prompt_group"])].append(row)
 
     selected: list[dict[str, Any]] = []
+    rng = random.Random(seed)
     for key, bucket in sorted(grouped.items()):
         bucket.sort(
             key=lambda r: (
@@ -91,7 +102,25 @@ def select_seed_records(
             ),
             reverse=True,
         )
-        selected.extend(bucket[:top_k_per_group])
+        if selection_strategy == "top":
+            chosen = bucket[:top_k_per_group]
+        elif selection_strategy == "random":
+            chosen = rng.sample(bucket, k=min(top_k_per_group, len(bucket)))
+        elif selection_strategy == "median":
+            if not bucket:
+                chosen = []
+            else:
+                center = max(0, len(bucket) // 2 - top_k_per_group // 2)
+                chosen = bucket[center : center + top_k_per_group]
+        elif selection_strategy == "low_rv":
+            bucket_by_rv = sorted(bucket, key=lambda r: float(r.get("output_rv", 1e9)))
+            chosen = bucket_by_rv[:top_k_per_group]
+        elif selection_strategy == "high_rv":
+            bucket_by_rv = sorted(bucket, key=lambda r: float(r.get("output_rv", -1e9)), reverse=True)
+            chosen = bucket_by_rv[:top_k_per_group]
+        else:
+            raise ValueError(f"Unsupported selection strategy: {selection_strategy}")
+        selected.extend(chosen)
     return selected
 
 
@@ -219,6 +248,11 @@ def main() -> int:
     parser.add_argument("--source-conditions", default=",".join(DEFAULT_CONDITIONS))
     parser.add_argument("--baseline-groups", default=",".join(DEFAULT_GROUPS))
     parser.add_argument("--top-k-per-group", type=int, default=2)
+    parser.add_argument(
+        "--selection-strategy",
+        choices=["top", "random", "median", "low_rv", "high_rv"],
+        default="top",
+    )
     parser.add_argument("--model", default="mistralai/Mistral-7B-v0.1")
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--early-layer", type=int, default=5)
@@ -250,7 +284,18 @@ def main() -> int:
         tokenizer.pad_token = tokenizer.eos_token
 
     rows = load_source_records(source_run_dir, source_conditions, baseline_groups)
-    selected = select_seed_records(rows, top_k_per_group=args.top_k_per_group)
+    if not rows:
+        raise ValueError(
+            "No source records matched the requested source conditions and baseline groups."
+        )
+    selected = select_seed_records(
+        rows,
+        top_k_per_group=args.top_k_per_group,
+        selection_strategy=args.selection_strategy,
+        seed=args.seed,
+    )
+    if not selected:
+        raise ValueError("No seed records selected from the requested source records.")
 
     (out_dir / "selected_seed_records.json").write_text(json.dumps(selected, indent=2), encoding="utf-8")
 
@@ -289,6 +334,7 @@ def main() -> int:
         "source_conditions": source_conditions,
         "baseline_groups": baseline_groups,
         "top_k_per_group": args.top_k_per_group,
+        "selection_strategy": args.selection_strategy,
         "max_turns": args.max_turns,
         "max_new_tokens": args.max_new_tokens,
         "temperature": args.temperature,

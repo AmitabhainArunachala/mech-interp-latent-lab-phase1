@@ -1,0 +1,8 @@
+run_id=20260318_030401
+python_bin=/root/venvs/mistral-hardening/bin/python
+started_utc=2026-03-18T03:04:01Z
+
+>>> START staged_anchor_handoff_structured_v1 2026-03-18T03:04:01Z
+>>> DONE  staged_anchor_handoff_structured_v1 2026-03-18T03:39:01Z
+finished_utc=2026-03-18T03:39:01Z
+mistral_staged_anchor_handoff_structured_v1_complete=1

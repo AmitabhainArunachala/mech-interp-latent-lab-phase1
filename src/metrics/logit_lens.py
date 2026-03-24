@@ -13,6 +13,8 @@ import torch
 from typing import Dict, List, Optional, Tuple, Any
 from dataclasses import dataclass
 
+from src.core.hf_accessors import get_final_norm
+
 
 @dataclass
 class LogitLensResult:
@@ -54,8 +56,8 @@ def compute_logit_lens(
         # h shape: (batch, seq_len, hidden_dim)
         h_pos = h[0, target_position, :]  # (hidden_dim,)
         
-        # Apply final LayerNorm (critical for logit lens!)
-        h_norm = model.model.norm(h_pos)
+        # Apply the architecture-specific final norm before the LM head.
+        h_norm = get_final_norm(model)(h_pos)
         
         # Project to vocabulary
         logits = model.lm_head(h_norm)  # (vocab_size,)

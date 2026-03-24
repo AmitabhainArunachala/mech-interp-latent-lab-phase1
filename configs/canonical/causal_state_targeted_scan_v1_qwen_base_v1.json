@@ -1,0 +1,42 @@
+{
+  "experiment": "causal_state_targeted_scan_v1",
+  "run_name": "qwen_base_targeted_scan_v1",
+  "seed": 42,
+  "model": {
+    "name": "Qwen/Qwen2.5-7B",
+    "device": "cuda"
+  },
+  "params": {
+    "source_sessions_dir": "results/sustained_gnani_v3_fixed",
+    "early_layer": 4,
+    "late_layer": 23,
+    "metric_window": 16,
+    "max_length": 512,
+    "min_text_chars": 80,
+    "max_source_per_label": 72,
+    "max_source_per_session": 8,
+    "positive_classes": ["BREAKTHROUGH", "ARTICULATE"],
+    "negative_classes": ["SURFACE", "REPETITIVE"],
+    "positive_quantile": 0.35,
+    "negative_quantile": 0.65,
+    "positive_session_types": ["recursive"],
+    "negative_session_types": ["baseline"],
+    "recursive_groups": ["L3_deeper", "L4_full", "L5_refined"],
+    "baseline_groups": ["baseline_math", "baseline_factual", "baseline_creative"],
+    "search_recursive_per_group": 4,
+    "search_baseline_per_group": 4,
+    "generation_seeds": [111, 222],
+    "max_new_tokens": 128,
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "bootstrap_resamples": 1000,
+    "candidate_source_layers": [21, 23, 25],
+    "candidate_windows": [8, 16, 32],
+    "candidate_alpha_magnitudes": [2.0, 3.0]
+  },
+  "results": {
+    "root": "results",
+    "phase": "phase1_mechanism"
+  }
+}

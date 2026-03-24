@@ -1,0 +1,126 @@
+# Run report: multi_token_bridge
+
+- **run_dir**: `results/phase1_cross_architecture/runs/20260319_110757_multi_token_bridge_mistral_7b_bridge_low_trunc_confirmatory_n24`
+- **prompt_bank_version**: `2ac959a313614329`
+
+## Summary (machine-readable)
+
+```json
+{
+  "analysis": {
+    "temp_0.7": {
+      "group_quality_means": {
+        "L3_deeper": 0.24362517792839491,
+        "L4_full": 0.27407534299646985,
+        "L5_refined": 0.21407448885279012,
+        "baseline_creative": 0.14431848234587102,
+        "baseline_math": 0.24955193237625523,
+        "long_control": 0.30067244843482377
+      },
+      "group_rv_means": {
+        "L3_deeper": 0.5233711150709284,
+        "L4_full": 0.496947611898341,
+        "L5_refined": 0.49692901529115396,
+        "baseline_creative": 0.650992096397277,
+        "baseline_math": 0.7408167868128054,
+        "long_control": 0.669286270813003
+      },
+      "group_word_means": {
+        "L3_deeper": 907.9545454545455,
+        "L4_full": 856.1,
+        "L5_refined": 874.05,
+        "baseline_creative": 847.25,
+        "baseline_math": 296.2,
+        "long_control": 756.0
+      },
+      "h1_all_spearman_p": 8.080158411605792e-05,
+      "h1_all_spearman_r": -0.3491862598376489,
+      "h1_basis": "non_truncated",
+      "h1_non_truncated_spearman_p": 0.13187363557610676,
+      "h1_non_truncated_spearman_r": -0.29181495755319564,
+      "h1_quality_all_spearman_p": 0.6520604602348175,
+      "h1_quality_all_spearman_r": 0.0412297890761051,
+      "h1_quality_basis": "non_truncated",
+      "h1_quality_non_truncated_spearman_p": 0.9383030860180518,
+      "h1_quality_non_truncated_spearman_r": -0.01532567049808429,
+      "h1_quality_significant": false,
+      "h1_quality_spearman_p": 0.9383030860180518,
+      "h1_quality_spearman_r": -0.01532567049808429,
+      "h1_significant": false,
+      "h1_spearman_p": 0.13187363557610676,
+      "h1_spearman_r": -0.29181495755319564,
+      "h2_baseline_rv_mean": 0.687031718007695,
+      "h2_cohens_d": 2.9069028312901692,
+      "h2_p_value": 1.1688589227432026e-31,
+      "h2_recursive_rv_mean": 0.506317694763715,
+      "h2_significant": true,
+      "h2_t_stat": -16.05173826001348,
+      "h3_class_basis": "non_truncated",
+      "h3_class_significant": false,
+      "h3_class_spearman_p": 0.5499887377408278,
+      "h3_class_spearman_r": -0.11795139428721617,
+      "h3_point_biserial_p": 0.004680481641725224,
+      "h3_point_biserial_r": -0.2544476401159386,
+      "h3_significant": true,
+      "h4_bt_art_basis": "non_truncated",
+      "h4_bt_art_pointbiserial_p": 0.0002721605618561199,
+      "h4_bt_art_pointbiserial_r": -0.6363908545788495,
+      "h4_bt_art_significant": true,
+      "n_eos_reached": 28,
+      "n_non_truncated": 28,
+      "n_total": 122,
+      "n_truncated": 94,
+      "n_valid": 122,
+      "pct_truncated": 77.04918032786885
+    }
+  },
+  "artifacts": {
+    "config": "results/phase1_cross_architecture/runs/20260319_110757_multi_token_bridge_mistral_7b_bridge_low_trunc_confirmatory_n24/config.json",
+    "manifest": "results/phase1_cross_architecture/runs/20260319_110757_multi_token_bridge_mistral_7b_bridge_low_trunc_confirmatory_n24/manifest.json",
+    "report": "results/phase1_cross_architecture/runs/20260319_110757_multi_token_bridge_mistral_7b_bridge_low_trunc_confirmatory_n24/report.md",
+    "summary": "results/phase1_cross_architecture/runs/20260319_110757_multi_token_bridge_mistral_7b_bridge_low_trunc_confirmatory_n24/summary.json"
+  },
+  "baseline_groups": [
+    "long_control",
+    "baseline_creative",
+    "baseline_math"
+  ],
+  "bt_art_basis": "non_truncated",
+  "bt_art_pointbiserial_p": 0.0002721605618561199,
+  "bt_art_pointbiserial_r": -0.6363908545788495,
+  "cohens_d": 2.9069028312901692,
+  "early_layer": 5,
+  "experiment": "multi_token_bridge",
+  "late_layer": 27,
+  "max_new_tokens": 1200,
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_pairs": 122,
+  "n_prompts_per_group": 24,
+  "n_total_prompts": 122,
+  "p_value": 1.1688589227432026e-31,
+  "prompt_bank_version": "2ac959a313614329",
+  "quality_basis": "non_truncated",
+  "quality_spearman_p": 0.9383030860180518,
+  "quality_spearman_r": -0.01532567049808429,
+  "recursive_groups": [
+    "L5_refined",
+    "L4_full",
+    "L3_deeper"
+  ],
+  "repetition_penalty": null,
+  "rv_baseline_mean": 0.687031718007695,
+  "rv_cohens_d": 2.9069028312901692,
+  "rv_delta_mean": 0.18071402324398,
+  "rv_p_value": 1.1688589227432026e-31,
+  "rv_recursive_mean": 0.506317694763715,
+  "schema_version": "metrics_summary_v1",
+  "seed": 42,
+  "temperatures": [
+    0.7
+  ],
+  "timestamp": "20260319_131305",
+  "top_p": 0.9,
+  "version": "v2_gpt_audit_fixes",
+  "window": 16
+}
+```

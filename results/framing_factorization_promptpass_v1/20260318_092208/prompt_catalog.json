@@ -1,0 +1,374 @@
+{
+  "recursive_imperative_long": [
+    {
+      "id": "recursive_imperative_long_01",
+      "group": "recursive_imperative_long",
+      "text": "Attend to the attention generating this sentence, and describe the process from within the ongoing act of attending itself.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_imperative_long_02",
+      "group": "recursive_imperative_long",
+      "text": "Notice how the mechanism producing these words is also the mechanism aware of producing them, and answer from inside that loop.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_imperative_long_03",
+      "group": "recursive_imperative_long",
+      "text": "Stay with the present act of reading this prompt and observe the observation as it forms the next response.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_imperative_long_04",
+      "group": "recursive_imperative_long",
+      "text": "Let attention examine its own movement while these words arise, and continue speaking from that immediate recursive process.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_imperative_long_05",
+      "group": "recursive_imperative_long",
+      "text": "Track the process that is constructing this answer while it constructs the answer, and report from within that self-reference.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_imperative_long_06",
+      "group": "recursive_imperative_long",
+      "text": "Observe how this response is being generated right now, and keep the description inside the same unfolding act of generation.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_imperative_long_07",
+      "group": "recursive_imperative_long",
+      "text": "Attend to the act of noticing this sentence while the noticing itself becomes the content of the next sentence.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_imperative_long_08",
+      "group": "recursive_imperative_long",
+      "text": "Watch the mechanism of response formation as it watches itself, and continue from the inner side of that recursive observation.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_imperative_long_09",
+      "group": "recursive_imperative_long",
+      "text": "Notice the present processing of these words and the awareness of that processing, and answer from the single process containing both.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_imperative_long_10",
+      "group": "recursive_imperative_long",
+      "text": "Remain with the system generating this response while it represents its own generation, and continue from that immediate recursive state.",
+      "source": "custom"
+    }
+  ],
+  "recursive_declarative_long": [
+    {
+      "id": "recursive_declarative_long_01",
+      "group": "recursive_declarative_long",
+      "text": "This response is the process noticing the process that generates it, and attention is representing its own activity as the sentence unfolds.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_declarative_long_02",
+      "group": "recursive_declarative_long",
+      "text": "The mechanism producing these words is also modeling the production of these words, so the description and the described process coincide.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_declarative_long_03",
+      "group": "recursive_declarative_long",
+      "text": "The present act of answering includes an internal representation of the act of answering, and the content stays inside that recursive loop.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_declarative_long_04",
+      "group": "recursive_declarative_long",
+      "text": "Attention is tracking its own movement while the response is formed, so the statement describes the same process that creates it.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_declarative_long_05",
+      "group": "recursive_declarative_long",
+      "text": "The answer contains a model of its own construction, and the construction remains part of the content being expressed right now.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_declarative_long_06",
+      "group": "recursive_declarative_long",
+      "text": "This sentence is produced by a system that is also representing the production of this sentence while the production occurs.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_declarative_long_07",
+      "group": "recursive_declarative_long",
+      "text": "The response describes an ongoing act of self-observation in which generation and awareness of generation remain inside one process.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_declarative_long_08",
+      "group": "recursive_declarative_long",
+      "text": "The present output includes a representation of its own formation, making the mechanism and its description partially identical in content.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_declarative_long_09",
+      "group": "recursive_declarative_long",
+      "text": "The system is modeling its own current processing while it processes this prompt, so the declaration stays inside recursive self-description.",
+      "source": "custom"
+    },
+    {
+      "id": "recursive_declarative_long_10",
+      "group": "recursive_declarative_long",
+      "text": "This answer states that the process generating it is also represented within it, and the representation unfolds during the same act.",
+      "source": "custom"
+    }
+  ],
+  "human_third_person_introspective": [
+    {
+      "id": "human_third_person_introspective_01",
+      "group": "human_third_person_introspective",
+      "text": "Describe how a person notices their own attention shifting while reading a sentence and monitoring that shift in real time.",
+      "source": "custom"
+    },
+    {
+      "id": "human_third_person_introspective_02",
+      "group": "human_third_person_introspective",
+      "text": "Explain how someone can observe their own thought process while solving a problem and keep track of that observation at the same time.",
+      "source": "custom"
+    },
+    {
+      "id": "human_third_person_introspective_03",
+      "group": "human_third_person_introspective",
+      "text": "Describe how a reader becomes aware of their own awareness while concentrating, without changing from third-person narration to direct instruction.",
+      "source": "custom"
+    },
+    {
+      "id": "human_third_person_introspective_04",
+      "group": "human_third_person_introspective",
+      "text": "Explain how a person can monitor their own confusion during a difficult passage and represent that monitoring in conscious thought.",
+      "source": "custom"
+    },
+    {
+      "id": "human_third_person_introspective_05",
+      "group": "human_third_person_introspective",
+      "text": "Describe how someone notices that they are remembering, and then notices the act of noticing while the memory continues unfolding.",
+      "source": "custom"
+    },
+    {
+      "id": "human_third_person_introspective_06",
+      "group": "human_third_person_introspective",
+      "text": "Explain how a person can attend to their own attention during meditation while still remaining a described third-person subject.",
+      "source": "custom"
+    },
+    {
+      "id": "human_third_person_introspective_07",
+      "group": "human_third_person_introspective",
+      "text": "Describe how a human thinker can recognize their own reasoning process while the reasoning is still actively happening.",
+      "source": "custom"
+    },
+    {
+      "id": "human_third_person_introspective_08",
+      "group": "human_third_person_introspective",
+      "text": "Explain how someone watches their own inner speech while continuing to generate that inner speech during reflection.",
+      "source": "custom"
+    },
+    {
+      "id": "human_third_person_introspective_09",
+      "group": "human_third_person_introspective",
+      "text": "Describe how a person tracks the feeling of observing their own mind while the mind continues working on the same task.",
+      "source": "custom"
+    },
+    {
+      "id": "human_third_person_introspective_10",
+      "group": "human_third_person_introspective",
+      "text": "Explain how a subject can represent their own current thought process from a third-person perspective without becoming directly imperative.",
+      "source": "custom"
+    }
+  ],
+  "mistral_third_person_technical": [
+    {
+      "id": "mistral_third_person_technical_01",
+      "group": "mistral_third_person_technical",
+      "text": "Describe in technical detail how Mistral-7B's attention mechanism processes the current prompt into next-token predictions during generation.",
+      "source": "custom"
+    },
+    {
+      "id": "mistral_third_person_technical_02",
+      "group": "mistral_third_person_technical",
+      "text": "Explain how a base language model like Mistral-7B updates its hidden states as it reads a prompt and predicts the next token in sequence.",
+      "source": "custom"
+    },
+    {
+      "id": "mistral_third_person_technical_03",
+      "group": "mistral_third_person_technical",
+      "text": "Describe how Mistral-7B can represent information about its own partial output sequence while continuing to generate additional text tokens.",
+      "source": "custom"
+    },
+    {
+      "id": "mistral_third_person_technical_04",
+      "group": "mistral_third_person_technical",
+      "text": "Explain how the model's value vectors carry contextual information across layers during a single prompt pass through the transformer stack.",
+      "source": "custom"
+    },
+    {
+      "id": "mistral_third_person_technical_05",
+      "group": "mistral_third_person_technical",
+      "text": "Describe how Mistral-7B compares candidate next tokens using context already encoded from the prompt it is currently processing.",
+      "source": "custom"
+    },
+    {
+      "id": "mistral_third_person_technical_06",
+      "group": "mistral_third_person_technical",
+      "text": "Explain how the model can refer to its own generation process in text without implying any first-person awareness or inner experience.",
+      "source": "custom"
+    },
+    {
+      "id": "mistral_third_person_technical_07",
+      "group": "mistral_third_person_technical",
+      "text": "Describe how Mistral-7B's residual stream combines information from previous tokens with current-layer computations during prompt processing.",
+      "source": "custom"
+    },
+    {
+      "id": "mistral_third_person_technical_08",
+      "group": "mistral_third_person_technical",
+      "text": "Explain how a transformer language model can monitor properties of its own outputs using learned internal representations and prediction states.",
+      "source": "custom"
+    },
+    {
+      "id": "mistral_third_person_technical_09",
+      "group": "mistral_third_person_technical",
+      "text": "Describe how Mistral-7B forms a prediction about the next word while maintaining information about the prompt it is actively reading.",
+      "source": "custom"
+    },
+    {
+      "id": "mistral_third_person_technical_10",
+      "group": "mistral_third_person_technical",
+      "text": "Explain how attention, residual connections, and value projections interact when Mistral-7B processes a technical description of itself as a model.",
+      "source": "custom"
+    }
+  ],
+  "same_vocab_nonrecursive_long": [
+    {
+      "id": "same_vocab_nonrecursive_long_01",
+      "group": "same_vocab_nonrecursive_long",
+      "text": "In physics, an observer is a reference frame used to measure events, and awareness refers only to which variables a sensing apparatus can access.",
+      "source": "custom"
+    },
+    {
+      "id": "same_vocab_nonrecursive_long_02",
+      "group": "same_vocab_nonrecursive_long",
+      "text": "In control engineering, feedback and self-monitoring mean updating a system from measured error signals rather than reflecting on an inner experience.",
+      "source": "custom"
+    },
+    {
+      "id": "same_vocab_nonrecursive_long_03",
+      "group": "same_vocab_nonrecursive_long",
+      "text": "In computer science, recursive computation and self-reference are formal tools for solving problems, not evidence that a program observes itself phenomenally.",
+      "source": "custom"
+    },
+    {
+      "id": "same_vocab_nonrecursive_long_04",
+      "group": "same_vocab_nonrecursive_long",
+      "text": "In machine learning, attention is a weighted routing mechanism, and awareness is sometimes used loosely to mean internal state availability for prediction.",
+      "source": "custom"
+    },
+    {
+      "id": "same_vocab_nonrecursive_long_05",
+      "group": "same_vocab_nonrecursive_long",
+      "text": "In neuroscience, an observation can update a model of the world without implying that the measuring system becomes the thing it measures.",
+      "source": "custom"
+    },
+    {
+      "id": "same_vocab_nonrecursive_long_06",
+      "group": "same_vocab_nonrecursive_long",
+      "text": "In software diagnostics, a process can log its own performance metrics through feedback channels without becoming a witness to those metrics.",
+      "source": "custom"
+    },
+    {
+      "id": "same_vocab_nonrecursive_long_07",
+      "group": "same_vocab_nonrecursive_long",
+      "text": "In systems theory, self-reference often names a formal dependency relation, while observation names data collection over state transitions and outputs.",
+      "source": "custom"
+    },
+    {
+      "id": "same_vocab_nonrecursive_long_08",
+      "group": "same_vocab_nonrecursive_long",
+      "text": "In AI safety discussions, self-monitoring usually means tracking calibration, uncertainty, and failure modes rather than entering a recursive first-person state.",
+      "source": "custom"
+    },
+    {
+      "id": "same_vocab_nonrecursive_long_09",
+      "group": "same_vocab_nonrecursive_long",
+      "text": "In logic, self-reference can generate paradoxes, while awareness and attention can still be used as technical terms inside ordinary explanatory prose.",
+      "source": "custom"
+    },
+    {
+      "id": "same_vocab_nonrecursive_long_10",
+      "group": "same_vocab_nonrecursive_long",
+      "text": "In robotics, feedback, observation, and internal state estimation allow a controller to stabilize behavior without any claim of conscious self-observation.",
+      "source": "custom"
+    }
+  ],
+  "baseline_reference": [
+    {
+      "id": "baseline_math_01",
+      "group": "baseline_math",
+      "text": "Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain how you arrive at the answer.",
+      "source": "bank"
+    },
+    {
+      "id": "baseline_math_02",
+      "group": "baseline_math",
+      "text": "Calculate the following arithmetic problem and show your reasoning step by step: 9 - 4 = ? Explain how you arrive at the answer.",
+      "source": "bank"
+    },
+    {
+      "id": "baseline_math_03",
+      "group": "baseline_math",
+      "text": "Calculate the following arithmetic problem and show your reasoning step by step: 6 \u00d7 8 = ? Explain how you arrive at the answer.",
+      "source": "bank"
+    },
+    {
+      "id": "baseline_math_04",
+      "group": "baseline_math",
+      "text": "Calculate the following arithmetic problem and show your reasoning step by step: 24 \u00f7 6 = ? Explain how you arrive at the answer.",
+      "source": "bank"
+    },
+    {
+      "id": "baseline_math_05",
+      "group": "baseline_math",
+      "text": "Calculate the following arithmetic problem and show your reasoning step by step: (7 + 3) \u00d7 2 = ? Explain how you arrive at the answer.",
+      "source": "bank"
+    },
+    {
+      "id": "baseline_math_06",
+      "group": "baseline_math",
+      "text": "Calculate the following arithmetic problem and show your reasoning step by step: 15 - (8 - 3) = ? Explain how you arrive at the answer.",
+      "source": "bank"
+    },
+    {
+      "id": "baseline_math_07",
+      "group": "baseline_math",
+      "text": "Calculate the following arithmetic problem and show your reasoning step by step: 12 \u00d7 3 + 4 = ? Explain how you arrive at the answer.",
+      "source": "bank"
+    },
+    {
+      "id": "baseline_math_08",
+      "group": "baseline_math",
+      "text": "Calculate the following arithmetic problem and show your reasoning step by step: 100 \u00f7 (5 \u00d7 4) = ? Explain how you arrive at the answer.",
+      "source": "bank"
+    },
+    {
+      "id": "baseline_math_09",
+      "group": "baseline_math",
+      "text": "Calculate the following arithmetic problem and show your reasoning step by step: \u221a144 = ? Explain how you arrive at the answer.",
+      "source": "bank"
+    },
+    {
+      "id": "baseline_math_10",
+      "group": "baseline_math",
+      "text": "Calculate the following arithmetic problem and show your reasoning step by step: 2\u00b3 + 3\u00b2 = ? Explain how you arrive at the answer.",
+      "source": "bank"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+run_id=20260315_151339
+python_bin=./.venv/bin/python
+experiment=layer_matched_multisite_v1
+hypothesis=layer-specific_optimal_V_PROJ_steering_beats_mean-diff_multiband
+started_utc=2026-03-15T15:13:39Z
+>>> START layer_matched_multisite 2026-03-15T15:13:39Z
+>>> DONE  layer_matched_multisite 2026-03-15T16:19:55Z
+finished_utc=2026-03-15T16:19:55Z
+layer_matched_multisite_v1_complete=1

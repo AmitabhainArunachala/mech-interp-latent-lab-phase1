@@ -1,0 +1,9 @@
+{
+  "cuda_version": "12.4",
+  "device": "cuda",
+  "gpu_name": "NVIDIA A100-SXM4-80GB",
+  "platform": "Linux-6.17.0-14-generic-x86_64-with-glibc2.35",
+  "python_version": "3.11.10",
+  "torch_dtype": "float32",
+  "torch_version": "2.4.1+cu124"
+}

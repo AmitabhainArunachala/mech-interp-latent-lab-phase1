@@ -1,0 +1,8 @@
+run_id=20260318_094202
+python_bin=/root/venvs/mistral-hardening/bin/python
+started_utc=2026-03-18T09:42:02Z
+
+>>> START mistral_soft_break_latebundle_v1 2026-03-18T09:42:02Z
+>>> DONE  mistral_soft_break_latebundle_v1 2026-03-18T10:17:06Z
+finished_utc=2026-03-18T10:17:06Z
+mistral_soft_break_latebundle_v1_complete=1

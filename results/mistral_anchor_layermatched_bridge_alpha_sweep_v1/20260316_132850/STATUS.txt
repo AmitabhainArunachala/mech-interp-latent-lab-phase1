@@ -1,0 +1,5 @@
+run_id=20260316_132850
+python_bin=./.venv/bin/python
+started_utc=2026-03-16T13:28:50Z
+
+>>> START anchor_layermatched_bridge_alpha_sweep_v1 2026-03-16T13:28:50Z

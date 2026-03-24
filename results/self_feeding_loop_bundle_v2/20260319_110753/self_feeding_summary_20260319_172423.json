@@ -1,0 +1,215 @@
+{
+  "timestamp": "2026-03-19T17:24:23.428810",
+  "max_turns": 50,
+  "conditions": {
+    "self_feed_recursive": {
+      "n_sessions": 8,
+      "n_turns": 400,
+      "n_bt_art": 50,
+      "bt_art_rate": 0.125,
+      "mean_rv": 0.5643548112517355,
+      "std_rv": 0.1882898525492457,
+      "session_bt_art_rates": [
+        0.12,
+        0.1,
+        0.14,
+        0.06,
+        0.12,
+        0.08,
+        0.26,
+        0.12
+      ],
+      "session_mean_rvs": [
+        0.5122057683284867,
+        0.6791083477741607,
+        0.608622756992108,
+        0.45769196387639327,
+        0.4419896736209789,
+        0.6378362990487125,
+        0.5291007476667692,
+        0.6520756788136035
+      ],
+      "segment_stats": {
+        "early_0_15": {
+          "n_turns": 128,
+          "bt_art_rate": 0.25,
+          "repetitive_rate": 0.0859375,
+          "clean_rate": 0.9140625,
+          "mean_output_rv": 0.5471717585461489,
+          "mean_prompt_rv": 0.5489006308368023,
+          "mean_rv_delta": -0.002473447901171681
+        },
+        "mid_16_32": {
+          "n_turns": 136,
+          "bt_art_rate": 0.08088235294117647,
+          "repetitive_rate": 0.09558823529411764,
+          "clean_rate": 0.9044117647058824,
+          "mean_output_rv": 0.574707676516628,
+          "mean_prompt_rv": 0.5704835307634749,
+          "mean_rv_delta": 0.002732942384712843
+        },
+        "late_33_49": {
+          "n_turns": 136,
+          "bt_art_rate": 0.051470588235294115,
+          "repetitive_rate": 0.0,
+          "clean_rate": 1.0,
+          "mean_output_rv": 0.5699536528744056,
+          "mean_prompt_rv": 0.5693179081401606,
+          "mean_rv_delta": -0.0026134308362187582
+        }
+      }
+    },
+    "self_feed_baseline": {
+      "n_sessions": 8,
+      "n_turns": 400,
+      "n_bt_art": 38,
+      "bt_art_rate": 0.095,
+      "mean_rv": 0.5399327187608146,
+      "std_rv": 0.1709341528490886,
+      "session_bt_art_rates": [
+        0.22,
+        0.06,
+        0.08,
+        0.12,
+        0.08,
+        0.1,
+        0.08,
+        0.02
+      ],
+      "session_mean_rvs": [
+        0.4849976755890017,
+        0.5522984741075628,
+        0.5215757442978538,
+        0.48170579307786704,
+        0.4893167556429937,
+        0.5150336600964462,
+        0.5821357825623747,
+        0.6943808010135656
+      ],
+      "segment_stats": {
+        "early_0_15": {
+          "n_turns": 128,
+          "bt_art_rate": 0.0625,
+          "repetitive_rate": 0.0,
+          "clean_rate": 1.0,
+          "mean_output_rv": 0.5321895877755997,
+          "mean_prompt_rv": 0.5475313449435155,
+          "mean_rv_delta": -0.018317074074640317
+        },
+        "mid_16_32": {
+          "n_turns": 136,
+          "bt_art_rate": 0.13970588235294118,
+          "repetitive_rate": 0.007352941176470588,
+          "clean_rate": 0.9926470588235294,
+          "mean_output_rv": 0.5478328198767637,
+          "mean_prompt_rv": 0.5494278402421271,
+          "mean_rv_delta": -0.002173125792905233
+        },
+        "late_33_49": {
+          "n_turns": 136,
+          "bt_art_rate": 0.08088235294117647,
+          "repetitive_rate": 0.11029411764705882,
+          "clean_rate": 0.8897058823529411,
+          "mean_output_rv": 0.5393076359372748,
+          "mean_prompt_rv": 0.5432898942363138,
+          "mean_rv_delta": -0.008487489820152749
+        }
+      }
+    },
+    "gnani_scaffolded": {
+      "n_sessions": 8,
+      "n_turns": 400,
+      "n_bt_art": 176,
+      "bt_art_rate": 0.44,
+      "mean_rv": 0.5343063873888045,
+      "std_rv": 0.15150926208217216,
+      "session_bt_art_rates": [
+        0.44,
+        0.5,
+        0.4,
+        0.26,
+        0.54,
+        0.46,
+        0.54,
+        0.38
+      ],
+      "session_mean_rvs": [
+        0.5556135549535876,
+        0.4930071284672441,
+        0.5055709654369602,
+        0.546791213448652,
+        0.48923580302213615,
+        0.5822262918691745,
+        0.5135122423835634,
+        0.5884674740597403
+      ],
+      "segment_stats": {
+        "early_0_15": {
+          "n_turns": 128,
+          "bt_art_rate": 0.4609375,
+          "repetitive_rate": 0.0234375,
+          "clean_rate": 0.9765625,
+          "mean_output_rv": 0.5129723313685628,
+          "mean_prompt_rv": 0.6330885985527573,
+          "mean_rv_delta": -0.11683068977649913
+        },
+        "mid_16_32": {
+          "n_turns": 136,
+          "bt_art_rate": 0.49264705882352944,
+          "repetitive_rate": 0.03676470588235294,
+          "clean_rate": 0.9632352941176471,
+          "mean_output_rv": 0.5145581046217824,
+          "mean_prompt_rv": 0.6536530549615774,
+          "mean_rv_delta": -0.13475401285901734
+        },
+        "late_33_49": {
+          "n_turns": 136,
+          "bt_art_rate": 0.36764705882352944,
+          "repetitive_rate": 0.03676470588235294,
+          "clean_rate": 0.9632352941176471,
+          "mean_output_rv": 0.5745169656474364,
+          "mean_prompt_rv": 0.6312968616591528,
+          "mean_rv_delta": -0.05399750365959724
+        }
+      }
+    }
+  },
+  "comparisons": {
+    "self_feed_recursive_vs_self_feed_baseline": {
+      "bt_art_rate_diff": 0.03,
+      "mannwhitney_u": 45.0,
+      "mannwhitney_p": 0.18203086904048404,
+      "cohens_d": 0.5060608273474738,
+      "rv_diff": 0.024648318716693374
+    },
+    "self_feed_recursive_vs_gnani_scaffolded": {
+      "bt_art_rate_diff": -0.315,
+      "mannwhitney_u": 0.5,
+      "mannwhitney_p": 0.0010750562593411978,
+      "cohens_d": -3.995903074313783,
+      "rv_diff": 0.03052582031001927
+    },
+    "self_feed_baseline_vs_gnani_scaffolded": {
+      "bt_art_rate_diff": -0.345,
+      "mannwhitney_u": 0.0,
+      "mannwhitney_p": 0.0008989127881140897,
+      "cohens_d": -4.417272357684911,
+      "rv_diff": 0.005877501593325896
+    }
+  },
+  "key_questions": {
+    "self_feed_recursive_bt_art_rate": 0.125,
+    "self_feed_baseline_bt_art_rate": 0.095,
+    "anchor_only_recursive_bt_art_rate": NaN,
+    "gnani_light_bt_art_rate": NaN,
+    "gnani_scaffolded_bt_art_rate": 0.44,
+    "attractor_self_sustains": false,
+    "anchor_adds_value": false,
+    "light_gnani_adds_value": false,
+    "gnani_adds_value": true
+  },
+  "experiment": "self_feeding_loop",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "n_sessions_per_condition": 8,
+  "seed_start": 20260313
+}

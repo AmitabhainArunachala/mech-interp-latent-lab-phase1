@@ -30,9 +30,15 @@ rsync -az --no-owner --no-group -e "ssh ${SSH_OPTS[*]}" \
   "$RUNPOD_HOST:$REMOTE_REPO/configs/experiment_registry/results_index.json" \
   "$tmp_dir/results_index.remote.json"
 
-rsync -az --no-owner --no-group -e "ssh ${SSH_OPTS[*]}" \
-  "$RUNPOD_HOST:$REMOTE_REPO/docs/status/NIGHTLY_SUMMARY.md" \
-  "$REPO_ROOT/docs/status/NIGHTLY_SUMMARY.remote.md"
+if ssh "${SSH_OPTS[@]}" "$RUNPOD_HOST" "test -f '$REMOTE_REPO/docs/status/AMIROS_STATUS_BOARD.md'"; then
+  rsync -az --no-owner --no-group -e "ssh ${SSH_OPTS[*]}" \
+    "$RUNPOD_HOST:$REMOTE_REPO/docs/status/AMIROS_STATUS_BOARD.md" \
+    "$REPO_ROOT/docs/status/AMIROS_STATUS_BOARD.remote.md"
+else
+  rsync -az --no-owner --no-group -e "ssh ${SSH_OPTS[*]}" \
+    "$RUNPOD_HOST:$REMOTE_REPO/docs/status/NIGHTLY_SUMMARY.md" \
+    "$REPO_ROOT/docs/status/AMIROS_STATUS_BOARD.remote.md"
+fi
 
 python3 - "$REPO_ROOT" "$tmp_dir/pod_leases.remote.json" "$tmp_dir/results_index.remote.json" <<'PY'
 import json
@@ -117,22 +123,22 @@ targets_path.write_text(
 )
 PY
 
-while IFS= read -r target; do
+while IFS= read -r target <&3; do
   [[ -z "$target" ]] && continue
   remote_path="$REMOTE_REPO/$target"
   local_path="$REPO_ROOT/$target"
-  if ssh "${SSH_OPTS[@]}" "$RUNPOD_HOST" "test -d '$remote_path'"; then
+  if ssh "${SSH_OPTS[@]}" "$RUNPOD_HOST" "test -d '$remote_path'" < /dev/null; then
     mkdir -p "$local_path"
     rsync -az --no-owner --no-group -e "ssh ${SSH_OPTS[*]}" \
       "$RUNPOD_HOST:$remote_path/" \
-      "$local_path/"
-  elif ssh "${SSH_OPTS[@]}" "$RUNPOD_HOST" "test -f '$remote_path'"; then
+      "$local_path/" < /dev/null
+  elif ssh "${SSH_OPTS[@]}" "$RUNPOD_HOST" "test -f '$remote_path'" < /dev/null; then
     mkdir -p "$(dirname "$local_path")"
     rsync -az --no-owner --no-group -e "ssh ${SSH_OPTS[*]}" \
       "$RUNPOD_HOST:$remote_path" \
-      "$local_path"
+      "$local_path" < /dev/null
   fi
-done < "$tmp_dir/sync_targets.txt"
+done 3< "$tmp_dir/sync_targets.txt"
 
 python3 "$REPO_ROOT/scripts/nightly_summary.py" >/dev/null
 

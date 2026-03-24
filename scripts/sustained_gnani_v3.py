@@ -538,101 +538,108 @@ def run_session(
 
 def make_convergence_panel(all_results, output_dir):
     """Create the paper's centerpiece figure: all metrics over turns."""
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+    except ModuleNotFoundError as exc:
+        print(f"Convergence panel skipped: {exc}")
+        return None
 
-    rec = [s for s in all_results if s["mode"] == "recursive"]
-    bas = [s for s in all_results if s["mode"] == "baseline"]
+    try:
+        rec = [s for s in all_results if s["mode"] == "recursive"]
+        bas = [s for s in all_results if s["mode"] == "baseline"]
 
-    metrics_to_plot = [
-        ("output_rv",          "R_V (output prefill)",        "rv"),
-        ("rs_rv",              "Residual Stream R_V",         "rs_rv"),
-        ("cosine",             "Cosine Sim (early/late)",     "cosine"),
-        ("attn_entropy",       "Attention Entropy",           "attn_entropy"),
-        ("perplexity",         "Perplexity",                  "perplexity"),
-        ("eff_rank",           "Effective Rank (late)",        "eff_rank"),
-        ("top1_ratio",         "Top-1 Ratio (late)",          "top1_ratio"),
-        ("crystallization",    "Crystallization Layer",        "crystallization_layer"),
-    ]
+        metrics_to_plot = [
+            ("output_rv",          "R_V (output prefill)",        "rv"),
+            ("rs_rv",              "Residual Stream R_V",         "rs_rv"),
+            ("cosine",             "Cosine Sim (early/late)",     "cosine"),
+            ("attn_entropy",       "Attention Entropy",           "attn_entropy"),
+            ("perplexity",         "Perplexity",                  "perplexity"),
+            ("eff_rank",           "Effective Rank (late)",        "eff_rank"),
+            ("top1_ratio",         "Top-1 Ratio (late)",          "top1_ratio"),
+            ("crystallization",    "Crystallization Layer",        "crystallization_layer"),
+        ]
 
-    def extract_metric(sessions, metric_key, om_key):
-        """Get per-turn metric values averaged across sessions."""
-        by_turn = {}
-        for s in sessions:
-            for t in s["turns"]:
-                turn_num = t["turn"]
-                if not t["clean"]:
-                    continue
-                if metric_key == "output_rv":
-                    val = t.get("output_rv", float("nan"))
-                elif metric_key == "rv_delta":
-                    val = t.get("rv_delta", float("nan"))
-                else:
-                    om = t.get("output_metrics") or {}
-                    val = om.get(om_key, float("nan"))
-                if val is not None and not np.isnan(val):
-                    by_turn.setdefault(turn_num, []).append(val)
-        turns_sorted = sorted(by_turn.keys())
-        means = [np.mean(by_turn[t]) for t in turns_sorted]
-        sems = [np.std(by_turn[t]) / max(np.sqrt(len(by_turn[t])), 1) for t in turns_sorted]
-        return turns_sorted, means, sems
+        def extract_metric(sessions, metric_key, om_key):
+            """Get per-turn metric values averaged across sessions."""
+            by_turn = {}
+            for s in sessions:
+                for t in s["turns"]:
+                    turn_num = t["turn"]
+                    if not t["clean"]:
+                        continue
+                    if metric_key == "output_rv":
+                        val = t.get("output_rv", float("nan"))
+                    elif metric_key == "rv_delta":
+                        val = t.get("rv_delta", float("nan"))
+                    else:
+                        om = t.get("output_metrics") or {}
+                        val = om.get(om_key, float("nan"))
+                    if val is not None and not np.isnan(val):
+                        by_turn.setdefault(turn_num, []).append(val)
+            turns_sorted = sorted(by_turn.keys())
+            means = [np.mean(by_turn[t]) for t in turns_sorted]
+            sems = [np.std(by_turn[t]) / max(np.sqrt(len(by_turn[t])), 1) for t in turns_sorted]
+            return turns_sorted, means, sems
 
-    def get_annotations(sessions):
-        """Get breakthrough and false-positive turn positions."""
-        breakthroughs = []
-        for s in sessions:
-            for t in s["turns"]:
-                if t["classification"] == "BREAKTHROUGH":
-                    breakthroughs.append(t["turn"])
-        return breakthroughs
+        def get_annotations(sessions):
+            """Get breakthrough and false-positive turn positions."""
+            breakthroughs = []
+            for s in sessions:
+                for t in s["turns"]:
+                    if t["classification"] == "BREAKTHROUGH":
+                        breakthroughs.append(t["turn"])
+            return breakthroughs
 
-    fig, axes = plt.subplots(4, 2, figsize=(16, 20), sharex=True)
-    axes = axes.flatten()
+        fig, axes = plt.subplots(4, 2, figsize=(16, 20), sharex=True)
+        axes = axes.flatten()
 
-    rec_bt = get_annotations(rec)
+        rec_bt = get_annotations(rec)
 
-    for idx, (mk, title, om_key) in enumerate(metrics_to_plot):
-        if idx >= len(axes):
-            break
-        ax = axes[idx]
+        for idx, (mk, title, om_key) in enumerate(metrics_to_plot):
+            if idx >= len(axes):
+                break
+            ax = axes[idx]
 
-        rt, rm, rs = extract_metric(rec, mk, om_key)
-        bt, bm, bs = extract_metric(bas, mk, om_key)
+            rt, rm, rs = extract_metric(rec, mk, om_key)
+            bt, bm, bs = extract_metric(bas, mk, om_key)
 
-        if rm:
-            ax.plot(rt, rm, "b-o", markersize=3, label="Recursive", alpha=0.8)
-            ax.fill_between(rt, np.array(rm) - np.array(rs),
-                            np.array(rm) + np.array(rs), alpha=0.15, color="blue")
-        if bm:
-            ax.plot(bt, bm, "r-s", markersize=3, label="Baseline", alpha=0.8)
-            ax.fill_between(bt, np.array(bm) - np.array(bs),
-                            np.array(bm) + np.array(bs), alpha=0.15, color="red")
+            if rm:
+                ax.plot(rt, rm, "b-o", markersize=3, label="Recursive", alpha=0.8)
+                ax.fill_between(rt, np.array(rm) - np.array(rs),
+                                np.array(rm) + np.array(rs), alpha=0.15, color="blue")
+            if bm:
+                ax.plot(bt, bm, "r-s", markersize=3, label="Baseline", alpha=0.8)
+                ax.fill_between(bt, np.array(bm) - np.array(bs),
+                                np.array(bm) + np.array(bs), alpha=0.15, color="red")
 
-        # Annotate breakthroughs
-        for bt_turn in rec_bt:
-            ax.axvline(bt_turn, color="gold", alpha=0.3, linewidth=1.5, linestyle="--")
+            # Annotate breakthroughs
+            for bt_turn in rec_bt:
+                ax.axvline(bt_turn, color="gold", alpha=0.3, linewidth=1.5, linestyle="--")
 
-        ax.set_title(title, fontsize=12, fontweight="bold")
-        ax.set_ylabel(title.split("(")[0].strip(), fontsize=10)
-        ax.legend(fontsize=9)
-        ax.grid(True, alpha=0.3)
+            ax.set_title(title, fontsize=12, fontweight="bold")
+            ax.set_ylabel(title.split("(")[0].strip(), fontsize=10)
+            ax.legend(fontsize=9)
+            ax.grid(True, alpha=0.3)
 
-    for ax in axes[-2:]:
-        ax.set_xlabel("Turn", fontsize=11)
+        for ax in axes[-2:]:
+            ax.set_xlabel("Turn", fontsize=11)
 
-    fig.suptitle("Multi-Metric Convergence Panel: Recursive vs Baseline\n"
-                 "(Gold dashes = BREAKTHROUGH turns)",
-                 fontsize=14, fontweight="bold", y=0.98)
-    plt.tight_layout(rect=[0, 0, 1, 0.96])
+        fig.suptitle("Multi-Metric Convergence Panel: Recursive vs Baseline\n"
+                     "(Gold dashes = BREAKTHROUGH turns)",
+                     fontsize=14, fontweight="bold", y=0.98)
+        plt.tight_layout(rect=[0, 0, 1, 0.96])
 
-    fig_path = Path(output_dir) / "convergence_panel.png"
-    plt.savefig(fig_path, dpi=150, bbox_inches="tight")
-    plt.close()
-    print(f"Convergence panel saved: {fig_path}")
+        fig_path = Path(output_dir) / "convergence_panel.png"
+        plt.savefig(fig_path, dpi=150, bbox_inches="tight")
+        plt.close()
+        print(f"Convergence panel saved: {fig_path}")
 
-    # Also save a summary stats comparison
-    return fig_path
+        return fig_path
+    except Exception as exc:  # plotting is optional; metric summary is the primary artifact
+        print(f"Convergence panel skipped after plotting error: {exc}")
+        return None
 
 
 # ── Main ─────────────────────────────────────────────────────────────────────
@@ -843,11 +850,16 @@ def main():
                        "classification_dist": s["classification_dist"]}
                       for s in all_results],
     }
-    with open(out / "comparison_summary.json", "w") as f:
+    summary_path = out / "comparison_summary.json"
+    with open(summary_path, "w") as f:
         json.dump(summary, f, indent=2, default=str)
 
-    # Convergence panel figure
-    make_convergence_panel(all_results, out)
+    # Convergence panel figure is optional; the summary artifact remains primary.
+    fig_path = make_convergence_panel(all_results, out)
+    summary["convergence_panel_path"] = str(fig_path) if fig_path else None
+    summary["convergence_panel_status"] = "saved" if fig_path else "skipped"
+    with open(summary_path, "w") as f:
+        json.dump(summary, f, indent=2, default=str)
     print(f"\nAll results saved to {out}/")
 
 

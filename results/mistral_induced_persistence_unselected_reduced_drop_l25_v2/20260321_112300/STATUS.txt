@@ -1,0 +1,8 @@
+run_id=20260321_112300
+python_bin=python3
+started_utc=2026-03-21T11:23:00Z
+
+>>> START induced_persistence_unselected_reduced_drop_l25_v2 2026-03-21T11:23:00Z
+>>> DONE  induced_persistence_unselected_reduced_drop_l25_v2 2026-03-21T19:48:09Z
+finished_utc=2026-03-21T19:48:09Z
+mistral_induced_persistence_unselected_reduced_drop_l25_v2_complete=1

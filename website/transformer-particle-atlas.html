@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R_V Particle Atlas — Mistral-7B-v0.1</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0f;
+      color: #f0f0f5;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #atlas-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* ── HUD Overlay ── */
+    #hud {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    #hud > * {
+      pointer-events: auto;
+    }
+
+    /* Top-left: Title + mode indicator */
+    #hud-title {
+      position: absolute;
+      top: 24px;
+      left: 28px;
+    }
+
+    #hud-title h1 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #f0f0f5;
+      text-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+    }
+
+    #hud-title .subtitle {
+      font-size: 12px;
+      color: #707088;
+      font-weight: 400;
+      margin-top: 2px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    #mode-indicator {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    #mode-indicator.baseline {
+      background: rgba(68, 136, 255, 0.15);
+      color: #6699ff;
+      border: 1px solid rgba(68, 136, 255, 0.3);
+    }
+
+    #mode-indicator.recursive {
+      background: rgba(255, 170, 34, 0.15);
+      color: #ffbb44;
+      border: 1px solid rgba(255, 170, 34, 0.3);
+    }
+
+    #mode-indicator.transition {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    /* Mode toggle buttons */
+    #mode-buttons {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0;
+      background: rgba(10, 10, 15, 0.8);
+      border: 1px solid #2a2a35;
+      border-radius: 6px;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+
+    .mode-btn {
+      padding: 8px 20px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      color: #707088;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.02em;
+      border-right: 1px solid #2a2a35;
+    }
+
+    .mode-btn:last-child {
+      border-right: none;
+    }
+
+    .mode-btn:hover {
+      color: #c0c0d0;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .mode-btn.active-baseline {
+      color: #6699ff;
+      background: rgba(68, 136, 255, 0.1);
+      text-shadow: 0 0 10px rgba(68, 136, 255, 0.3);
+    }
+
+    .mode-btn.active-recursive {
+      color: #ffbb44;
+      background: rgba(255, 170, 34, 0.1);
+      text-shadow: 0 0 10px rgba(255, 170, 34, 0.3);
+    }
+
+    .mode-btn.active-transition {
+      color: #c084fc;
+      background: rgba(168, 85, 247, 0.1);
+      text-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+    }
+
+    /* Top-right: Metrics panel */
+    #metrics-panel {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      background: rgba(10, 10, 15, 0.85);
+      border: 1px solid #2a2a35;
+      border-radius: 8px;
+      padding: 14px 18px;
+      min-width: 220px;
+      backdrop-filter: blur(12px);
+    }
+
+    #metrics-panel h3 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #505068;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 0;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: #808098;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .metric-value {
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .metric-value.rv { color: #c084fc; }
+    .metric-value.effect { color: #f87171; }
+    .metric-value.count { color: #a0a0b0; }
+    .metric-value.bt { color: #10b981; }
+
+    .metric-divider {
+      height: 1px;
+      background: #2a2a35;
+      margin: 6px 0;
+    }
+
+    /* Bottom: Exemplar text */
+    #exemplar-panel {
+      position: absolute;
+      bottom: 24px;
+      left: 28px;
+      right: 220px;
+      background: rgba(10, 10, 15, 0.85);
+      border: 1px solid #2a2a35;
+      border-radius: 8px;
+      padding: 14px 18px;
+      backdrop-filter: blur(12px);
+      max-height: 160px;
+      overflow-y: auto;
+    }
+
+    #exemplar-panel h3 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #505068;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    #exemplar-classification {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    #exemplar-classification.BREAKTHROUGH {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    #exemplar-classification.ARTICULATE {
+      background: rgba(96, 165, 250, 0.15);
+      color: #93c5fd;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+
+    #exemplar-classification.SURFACE {
+      background: rgba(148, 163, 184, 0.1);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    #exemplar-classification.CONCEPTUAL {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    #exemplar-classification.REPETITIVE {
+      background: rgba(251, 146, 60, 0.15);
+      color: #fb923c;
+      border: 1px solid rgba(251, 146, 60, 0.3);
+    }
+
+    .exemplar-prompt {
+      font-size: 11px;
+      color: #909098;
+      line-height: 1.5;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+
+    .exemplar-output {
+      font-size: 12px;
+      color: #c8c8d0;
+      line-height: 1.5;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 400;
+    }
+
+    /* Bottom-right: Legend */
+    #legend-panel {
+      position: absolute;
+      bottom: 24px;
+      right: 28px;
+      background: rgba(10, 10, 15, 0.85);
+      border: 1px solid #2a2a35;
+      border-radius: 8px;
+      padding: 12px 16px;
+      min-width: 170px;
+      backdrop-filter: blur(12px);
+    }
+
+    #legend-panel h3 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #505068;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 2px 0;
+    }
+
+    .legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-swatch.large { width: 12px; height: 12px; }
+    .legend-swatch.small { width: 6px; height: 6px; }
+
+    .legend-text {
+      font-size: 10px;
+      color: #808098;
+    }
+
+    .legend-divider {
+      height: 1px;
+      background: #2a2a35;
+      margin: 6px 0;
+    }
+
+    /* Layer tooltip */
+    #layer-tooltip {
+      position: fixed;
+      display: none;
+      background: rgba(10, 10, 15, 0.92);
+      border: 1px solid #3a3a4a;
+      border-radius: 6px;
+      padding: 10px 14px;
+      pointer-events: none;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      min-width: 180px;
+    }
+
+    #layer-tooltip h4 {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #e0e0f0;
+    }
+
+    #layer-tooltip .tt-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 1px 0;
+    }
+
+    #layer-tooltip .tt-label {
+      font-size: 10px;
+      color: #707088;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    #layer-tooltip .tt-value {
+      font-size: 11px;
+      font-weight: 600;
+      color: #c0c0d8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Trajectory toggle */
+    #trajectory-toggle {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    #trajectory-toggle label {
+      font-size: 11px;
+      color: #707088;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    #trajectory-toggle input[type="checkbox"] {
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 1px solid #3a3a4a;
+      border-radius: 3px;
+      background: rgba(10, 10, 15, 0.8);
+      cursor: pointer;
+      position: relative;
+    }
+
+    #trajectory-toggle input[type="checkbox"]:checked {
+      background: rgba(99, 102, 241, 0.3);
+      border-color: #6366f1;
+    }
+
+    #trajectory-toggle input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 4px;
+      width: 4px; height: 7px;
+      border: solid #818cf8;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    /* Scrollbar styling for exemplar */
+    #exemplar-panel::-webkit-scrollbar {
+      width: 4px;
+    }
+    #exemplar-panel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #exemplar-panel::-webkit-scrollbar-thumb {
+      background: #2a2a35;
+      border-radius: 2px;
+    }
+
+    /* Loading overlay */
+    #loading-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #0a0a0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.8s ease;
+    }
+
+    #loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #loading-overlay h2 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #707088;
+      margin-top: 16px;
+    }
+
+    .loading-spinner {
+      width: 32px;
+      height: 32px;
+      border: 2px solid #2a2a35;
+      border-top-color: #6366f1;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Focus hint */
+    #focus-hint {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+      color: #505068;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #focus-hint.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loading-overlay">
+    <div class="loading-spinner"></div>
+    <h2>Initializing particle field...</h2>
+  </div>
+
+  <canvas id="atlas-canvas"></canvas>
+
+  <div id="hud">
+    <!-- Title -->
+    <div id="hud-title">
+      <h1>R_V Particle Atlas</h1>
+      <div class="subtitle">Mistral-7B-v0.1 | 32 Layers | 10,240 Particles</div>
+      <div id="mode-indicator" class="baseline">Baseline Mode</div>
+    </div>
+
+    <!-- Mode toggle buttons -->
+    <div id="mode-buttons">
+      <button class="mode-btn active-baseline" data-mode="baseline">Baseline</button>
+      <button class="mode-btn" data-mode="recursive">Self-Referential</button>
+      <button class="mode-btn" data-mode="transition">Transition</button>
+    </div>
+
+    <!-- Trajectory toggles -->
+    <div id="trajectory-toggle">
+      <label><input type="checkbox" id="show-trajectories" checked> Trajectories</label>
+      <label><input type="checkbox" id="show-trails"> Trails</label>
+      <label><input type="checkbox" id="auto-rotate" checked> Auto-rotate</label>
+    </div>
+
+    <!-- Metrics panel -->
+    <div id="metrics-panel">
+      <h3>Key Metrics</h3>
+      <div class="metric-row">
+        <span class="metric-label">R_V (output)</span>
+        <span class="metric-value rv" id="rv-value">0.613</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">L27 v_proj d</span>
+        <span class="metric-value effect" id="effect-value">-1.94</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric-row">
+        <span class="metric-label">n (self-ref)</span>
+        <span class="metric-value count" id="n-recursive">32</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">n (baseline)</span>
+        <span class="metric-value count" id="n-baseline">96</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric-row">
+        <span class="metric-label">BT+ART rate</span>
+        <span class="metric-value bt" id="bt-art-value">3.1%</span>
+      </div>
+      <div id="class-counts" style="margin-top: 6px;">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <!-- Exemplar panel -->
+    <div id="exemplar-panel">
+      <h3>Exemplar Generation</h3>
+      <span id="exemplar-classification" class="SURFACE">SURFACE</span>
+      <div class="exemplar-prompt" id="exemplar-prompt"></div>
+      <div class="exemplar-output" id="exemplar-output"></div>
+    </div>
+
+    <!-- Legend -->
+    <div id="legend-panel">
+      <h3>Particle Legend</h3>
+      <div class="legend-item">
+        <div class="legend-swatch" style="background: #4488ff; box-shadow: 0 0 4px #4488ff;"></div>
+        <span class="legend-text">Baseline processing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-swatch" style="background: #ffaa22; box-shadow: 0 0 4px #ffaa22;"></div>
+        <span class="legend-text">Self-referential processing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-swatch" style="background: #ffffff; box-shadow: 0 0 6px #ffe0a0;"></div>
+        <span class="legend-text">L27 contraction (hot)</span>
+      </div>
+      <div class="legend-divider"></div>
+      <div class="legend-item">
+        <div class="legend-swatch large" style="background: rgba(100, 120, 180, 0.4);"></div>
+        <span class="legend-text">Low field (diffuse)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-swatch small" style="background: rgba(255, 200, 100, 0.8);"></div>
+        <span class="legend-text">High |v_proj_d| (contracted)</span>
+      </div>
+      <div class="legend-divider"></div>
+      <div class="legend-item">
+        <div class="legend-swatch" style="background: #f59e0b; box-shadow: 0 0 4px #f59e0b;"></div>
+        <span class="legend-text">Early source (L0-5)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-swatch" style="background: #10b981; box-shadow: 0 0 4px #10b981;"></div>
+        <span class="legend-text">Controller (L25)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-swatch" style="background: #38bdf8; box-shadow: 0 0 4px #38bdf8;"></div>
+        <span class="legend-text">Readout (L27)</span>
+      </div>
+    </div>
+
+    <!-- Layer tooltip -->
+    <div id="layer-tooltip">
+      <h4 id="tt-layer-name">Layer 0</h4>
+      <div class="tt-row">
+        <span class="tt-label">residual_d</span>
+        <span class="tt-value" id="tt-residual">0.000</span>
+      </div>
+      <div class="tt-row">
+        <span class="tt-label">v_proj_d</span>
+        <span class="tt-value" id="tt-vproj">0.000</span>
+      </div>
+      <div class="tt-row">
+        <span class="tt-label">mlp_d</span>
+        <span class="tt-value" id="tt-mlp">0.000</span>
+      </div>
+      <div class="tt-row">
+        <span class="tt-label">field_strength</span>
+        <span class="tt-value" id="tt-field">0.000</span>
+      </div>
+    </div>
+
+    <div id="focus-hint">Click a layer plane to focus | ESC to reset</div>
+  </div>
+
+  <!-- Three.js r128 (global build, file:// compatible) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
+  <!-- Data -->
+  <script src="data/mistral-control-atlas-data.js"></script>
+
+  <!-- Application -->
+  <script src="transformer-particle-atlas.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "test": "initialization_null_rv",
+  "date": "2026-03-19",
+  "n_trials": 200,
+  "window": 16,
+  "head_dim": 128,
+  "n_heads": 32,
+  "random_rv_mean": 0.9999067522611196,
+  "random_rv_std": 0.000707615075556231,
+  "fake_selfref_rv": 1.000028034885509,
+  "fake_baseline_rv": 0.9998774765794438,
+  "fake_hedges_g": 0.2143925243028268,
+  "fake_p_value": 0.1330499633155145,
+  "conclusion": "No systematic R_V difference under random initialization"
+}

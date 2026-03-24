@@ -59,6 +59,8 @@ logs/
 tmp/
 temp/
 *.tmp
+docs/status/.NIGHTLY_SUMMARY.remote.md.*
+workspace/
 
 # LaTeX build artifacts
 *.aux
@@ -71,3 +73,6 @@ temp/
 *.lot
 *.out
 *.toc
+
+# Downloaded reference papers
+R_V_PAPER/colm_reference_papers/*.pdf

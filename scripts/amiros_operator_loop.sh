@@ -44,9 +44,12 @@ harvest_pod() {
   local port="$3"
   local remote_repo="$4"
   if ssh -o ConnectTimeout=8 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p "$port" -i "$SSH_KEY" "$host" "test -d '$remote_repo'" >/dev/null 2>&1; then
-    RUNPOD_HOST="$host" RUNPOD_PORT="$port" SSH_KEY="$SSH_KEY" REMOTE_REPO="$remote_repo" \
-      bash "$REPO_ROOT/scripts/harvest_runpod_research_os.sh" >>"$LOG_FILE" 2>&1 || true
-    log "harvested $pod_name"
+    if RUNPOD_HOST="$host" RUNPOD_PORT="$port" SSH_KEY="$SSH_KEY" REMOTE_REPO="$remote_repo" \
+      bash "$REPO_ROOT/scripts/harvest_runpod_research_os.sh" >>"$LOG_FILE" 2>&1; then
+      log "harvested $pod_name"
+    else
+      log "harvest failed $pod_name"
+    fi
   else
     log "skip harvest $pod_name: remote repo unavailable"
   fi

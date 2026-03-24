@@ -1,0 +1,9 @@
+run_id=20260320_125708
+python_bin=python3
+started_utc=2026-03-20T12:57:08Z
+
+>>> START reduced_late_random_12 2026-03-20T12:57:08Z
+>>> DONE  reduced_late_random_12 2026-03-20T13:40:56Z
+
+>>> START reduced_late_lowrv_12 2026-03-20T13:40:57Z
+>>> FAIL  reduced_late_lowrv_12 rc=2 2026-03-20T13:41:02Z

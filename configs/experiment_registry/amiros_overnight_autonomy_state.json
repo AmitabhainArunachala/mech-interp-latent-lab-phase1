@@ -1,6 +1,6 @@
 {
   "schema_version": "amiros_overnight_autonomy_state_v1",
-  "updated_at": "2026-03-14T16:52:45Z",
+  "updated_at": "2026-03-14T23:07:22Z",
   "pods": {
     "everyday_aqua_limpet-migration": {
       "lane_id": "induced_persistence_lane",
@@ -14,16 +14,21 @@
         "induced_persistence_followup_v2_long"
       ],
       "last_action": "lane_complete",
-      "last_action_at": "2026-03-14T16:52:24Z"
+      "last_action_at": "2026-03-14T23:07:02Z"
     },
     "annual_fuchsia_goldfish": {
       "lane_id": "subspace_component_lane",
-      "current_step_index": 0,
-      "current_step_id": "subspace_component_steering_l27_v1",
-      "launched_steps": [],
-      "completed_steps": [],
-      "last_action": "idle_no_artifact",
-      "last_action_at": "2026-03-14T16:52:45Z"
+      "current_step_index": 1,
+      "current_step_id": "subspace_component_steering_l25_v1",
+      "launched_steps": [
+        "subspace_component_steering_l25_v1"
+      ],
+      "completed_steps": [
+        "subspace_component_steering_l27_v1",
+        "subspace_component_steering_l25_v1"
+      ],
+      "last_action": "subspace_rule_stop",
+      "last_action_at": "2026-03-14T23:07:22Z"
     }
   },
   "history": [
@@ -53,6 +58,30 @@
         "AMIROS_POD_NAME": "everyday_aqua_limpet-migration",
         "AMIROS_HOST": "root@213.173.102.102",
         "AMIROS_PORT": "10061"
+      }
+    },
+    {
+      "at": "2026-03-14T19:25:51Z",
+      "pod_name": "annual_fuchsia_goldfish",
+      "step_id": "subspace_component_steering_l25_v1",
+      "synced": [
+        "scripts/subspace_component_steering.py",
+        "scripts/runpod_mistral_subspace_component_steering_queue.sh"
+      ],
+      "env": {
+        "OUTPUT_STEM": "subspace_component_steering_l25_v1",
+        "QUEUE_GROUP": "mistral_subspace_component_steering_l25_v1",
+        "EXPERIMENT_ID": "subspace_component_steering_l25_v1",
+        "CLAIM_ID": "SUBSPACE_COMPONENT_STEERING_L25_V1",
+        "LAYER": "25",
+        "ALPHAS": "2.0,3.0,4.0",
+        "TRAIN_PER_GROUP": "6",
+        "TEST_PER_GROUP": "6",
+        "GENERATION_SEEDS": "101,202,303",
+        "AMIROS_SESSION": "mistral_subspace_component_steering_l25_v1",
+        "AMIROS_POD_NAME": "annual_fuchsia_goldfish",
+        "AMIROS_HOST": "root@198.13.252.23",
+        "AMIROS_PORT": "10916"
       }
     }
   ]

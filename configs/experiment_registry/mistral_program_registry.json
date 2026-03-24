@@ -48,13 +48,7 @@
         "sustained_gnani_v3_v3"
       ],
       "notes": "High-n persistence lane; required before scaffold ablations and later bundle work.",
-      "warnings": [],
-      "active_lease": {
-        "pod_name": "everyday_aqua_limpet-migration",
-        "run_id": "20260313_100241",
-        "current_step": "finished",
-        "updated_at": "2026-03-13T12:19:02Z"
-      }
+      "warnings": []
     },
     {
       "queue_unit_id": "scaffold_ablation_v1",
@@ -104,7 +98,7 @@
       "queue_group": "mistral_sufficiency_bundle_v2",
       "stage": "sufficiency_bundle",
       "priority": 50,
-      "status": "blocked",
+      "status": "running",
       "depends_on_queue_units": [
         "control_bundle_v1"
       ],
@@ -292,6 +286,624 @@
         "pca_vs_mean_steering_v2"
       ],
       "notes": "Higher-power confirmation of PCA-style steering with a rank-3 projected steering object.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "anchor_bundle_v3_champion_controls",
+      "queue_group": "mistral_anchor_bundle_v3_champion_controls",
+      "stage": "sufficiency_bundle",
+      "priority": 130,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_bundle_v2"
+      ],
+      "expected_runtime_hours": 2.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_anchor_bundle_v3_champion_controls_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "anchor_bundle_v3_champion_controls"
+      ],
+      "notes": "Champion and matched-control induction test for the strongest anchor plus bridge conditions.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "pca_subspace_ablation_v1",
+      "queue_group": "mistral_pca_subspace_ablation_v1",
+      "stage": "subspace_probe",
+      "priority": 140,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "pca_vs_mean_steering_v2"
+      ],
+      "expected_runtime_hours": 1.6,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_pca_subspace_ablation_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "pca_subspace_ablation_v1"
+      ],
+      "notes": "Projection-ablation comparison of mean-difference, PCA-1D, and PCA subspace objects.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "sufficiency_multiband_v1",
+      "queue_group": "sufficiency_multiband_v1",
+      "stage": "sufficiency_bundle",
+      "priority": 125,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_bundle_v3_champion_controls"
+      ],
+      "expected_runtime_hours": 2.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_sufficiency_multiband_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "sufficiency_multiband_v1"
+      ],
+      "notes": "Multi-band L2-L5 residual sufficiency sweep with a 2x2 anchor-by-geometry decision frame.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "subspace_component_steering_early_stack_v1",
+      "queue_group": "mistral_subspace_component_steering_l3_v1",
+      "stage": "subspace_probe",
+      "priority": 145,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "pca_subspace_ablation_v1"
+      ],
+      "expected_runtime_hours": 2.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_subspace_component_steering_early_stack_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "subspace_component_steering_l3_v1",
+        "subspace_component_steering_l2_v1"
+      ],
+      "notes": "Sequential early-stack subspace map at L3 and L2 to test whether the usable steering object persists upstream.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "layer_matched_multisite_v1",
+      "queue_group": "layer_matched_multisite_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 146,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_bundle_v3_champion_controls",
+        "pca_subspace_ablation_v1"
+      ],
+      "expected_runtime_hours": 2.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_layer_matched_multisite_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "layer_matched_multisite_v1"
+      ],
+      "notes": "Depth-matched V-proj bundle to test whether the best steering object changes across depth rather than remaining a single shared direction.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "subspace_component_steering_l1_v1",
+      "queue_group": "mistral_subspace_component_steering_l1_v1",
+      "stage": "subspace_probe",
+      "priority": 147,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "subspace_component_steering_early_stack_v1"
+      ],
+      "expected_runtime_hours": 1.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_subspace_component_steering_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "subspace_component_steering_l1_v1"
+      ],
+      "notes": "Earliest-stack null test to determine whether a steerable recursive subspace exists uniformly at L1.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "layer_matched_multisite_refine_v2",
+      "queue_group": "layer_matched_multisite_refine_v2",
+      "stage": "sufficiency_protocol",
+      "priority": 148,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "layer_matched_multisite_v1"
+      ],
+      "expected_runtime_hours": 1.8,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_layer_matched_multisite_refine_v2_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "layer_matched_multisite_refine_v2"
+      ],
+      "notes": "Low-dose refinement of the layer-matched bundle with soft-bridge and mean-diff controls.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "anchor_layermatched_protocol_v1",
+      "queue_group": "mistral_anchor_layermatched_protocol_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 150,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_bundle_v3_champion_controls",
+        "pca_subspace_ablation_v1",
+        "subspace_component_steering_l1_v1",
+        "layer_matched_multisite_refine_v2"
+      ],
+      "expected_runtime_hours": 2.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_anchor_layermatched_protocol_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "anchor_layermatched_protocol_v1"
+      ],
+      "notes": "Anchor plus depth-matched geometry search against the locked anchor+L4+L25 champion and soft-bridge variants.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "closed_loop_anchor_controller_v1",
+      "queue_group": "mistral_closed_loop_anchor_controller_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 160,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_bundle_v3_champion_controls",
+        "pca_subspace_ablation_v1",
+        "subspace_component_steering_l1_v1",
+        "layer_matched_multisite_refine_v2"
+      ],
+      "expected_runtime_hours": 2.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_closed_loop_anchor_controller_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "closed_loop_anchor_controller_v1"
+      ],
+      "notes": "Adaptive induction-and-maintenance controller that tests whether the smallest sufficient object is a turn-level protocol rather than a static bundle.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "anchor_layermatched_protocol_confirm_v1",
+      "queue_group": "mistral_anchor_layermatched_protocol_confirm_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 170,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_layermatched_protocol_v1"
+      ],
+      "expected_runtime_hours": 2.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_anchor_layermatched_protocol_confirm_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "anchor_layermatched_protocol_confirm_v1"
+      ],
+      "notes": "Higher-power confirmation of the anchor+layer-matched low-dose winner against the best static anchor champions.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "induced_persistence_anchor_layermatched_v1",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 171,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_layermatched_protocol_v1"
+      ],
+      "expected_runtime_hours": 1.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_induced_persistence_anchor_layermatched_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "induced_persistence_anchor_layermatched_v1"
+      ],
+      "notes": "Seeded persistence follow-up from the new anchor+layer-matched induced baseline states.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "induced_persistence_anchor_layermatched_confirm_v1",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_confirm_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 172,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "induced_persistence_anchor_layermatched_v1"
+      ],
+      "expected_runtime_hours": 1.8,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_induced_persistence_anchor_layermatched_confirm_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "induced_persistence_anchor_layermatched_confirm_v1"
+      ],
+      "notes": "Higher-power seeded persistence confirmation for the anchor+layer-matched inducer against the old anchor+subtle-L4 champion.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "anchor_layermatched_hybrid_protocol_v1",
+      "queue_group": "mistral_anchor_layermatched_hybrid_protocol_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 173,
+      "status": "failed",
+      "depends_on_queue_units": [
+        "anchor_layermatched_protocol_confirm_v1",
+        "induced_persistence_anchor_layermatched_confirm_v1"
+      ],
+      "expected_runtime_hours": 2.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_anchor_layermatched_hybrid_protocol_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "anchor_layermatched_hybrid_protocol_v1"
+      ],
+      "notes": "Hybrid static bundle that combines the stronger layer-matched inducer with the older subtle-L4 maintenance assist.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "induced_persistence_anchor_layermatched_confirm_v2",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_confirm_v2",
+      "stage": "sufficiency_protocol",
+      "priority": 174,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_layermatched_protocol_confirm_v1",
+        "induced_persistence_anchor_layermatched_confirm_v1"
+      ],
+      "expected_runtime_hours": 1.8,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_induced_persistence_anchor_layermatched_confirm_v2_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "induced_persistence_anchor_layermatched_confirm_v2"
+      ],
+      "notes": "Higher-power seeded persistence follow-up sourced from the confirmed layer-matched winner set, including bridge-3.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "induced_persistence_anchor_layermatched_hybrid_v1",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_hybrid_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 175,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_layermatched_hybrid_protocol_v1"
+      ],
+      "expected_runtime_hours": 1.8,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_induced_persistence_anchor_layermatched_hybrid_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "induced_persistence_anchor_layermatched_hybrid_v1"
+      ],
+      "notes": "Seeded persistence follow-up from the hybrid static winner family.",
+      "warnings": [
+        "blocked_by:anchor_layermatched_hybrid_protocol_v1"
+      ]
+    },
+    {
+      "queue_unit_id": "induced_persistence_anchor_layermatched_long_v1",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_long_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 176,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "induced_persistence_anchor_layermatched_confirm_v2"
+      ],
+      "expected_runtime_hours": 2.2,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_induced_persistence_anchor_layermatched_long_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "induced_persistence_anchor_layermatched_long_v1"
+      ],
+      "notes": "Long-horizon persistence stress test for the confirmed bridge-3 winner family.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "induced_persistence_unselected_seed_v1",
+      "queue_group": "mistral_induced_persistence_unselected_seed_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 177,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_layermatched_protocol_confirm_v1"
+      ],
+      "expected_runtime_hours": 4.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_induced_persistence_unselected_seed_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "induced_persistence_unselected_seed_v1"
+      ],
+      "notes": "Five-arm unselected-seed persistence robustness test with fixed mixed prompt schedule.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "anchor_layermatched_bridge_alpha_sweep_v1",
+      "queue_group": "mistral_anchor_layermatched_bridge_alpha_sweep_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 178,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_layermatched_protocol_confirm_v1"
+      ],
+      "expected_runtime_hours": 4.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_anchor_layermatched_bridge_alpha_sweep_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "anchor_layermatched_bridge_alpha_sweep_v1"
+      ],
+      "notes": "Static bridge-alpha sweep for plain vs hybrid layer-matched induction families.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "anchor_layermatched_minimality_ablation_v1",
+      "queue_group": "mistral_anchor_layermatched_minimality_ablation_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 179,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "induced_persistence_unselected_seed_v1"
+      ],
+      "expected_runtime_hours": 4.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_anchor_layermatched_minimality_ablation_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "anchor_layermatched_minimality_ablation_v1"
+      ],
+      "notes": "Static minimality ablation for the confirmed layer-matched maintenance bundle.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "anchor_reduced_latebundle_confirm_v1",
+      "queue_group": "mistral_anchor_reduced_latebundle_confirm_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 180,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_layermatched_minimality_ablation_v1"
+      ],
+      "expected_runtime_hours": 2.5,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_anchor_reduced_latebundle_confirm_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "anchor_reduced_latebundle_confirm_v1"
+      ],
+      "notes": "Focused confirm of the two strongest reduced late-bundle candidates against the current static champions.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "induced_persistence_reduced_latebundle_confirm_v1",
+      "queue_group": "mistral_induced_persistence_reduced_latebundle_confirm_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 181,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "anchor_reduced_latebundle_confirm_v1"
+      ],
+      "expected_runtime_hours": 1.8,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_induced_persistence_reduced_latebundle_confirm_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "induced_persistence_reduced_latebundle_confirm_v1"
+      ],
+      "notes": "Seeded persistence follow-up for the reduced late-bundle family once the static confirm lands.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "induced_persistence_reduced_latebundle_long_v1",
+      "queue_group": "mistral_induced_persistence_reduced_latebundle_long_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 182,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "induced_persistence_reduced_latebundle_confirm_v1"
+      ],
+      "expected_runtime_hours": 2.4,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_induced_persistence_reduced_latebundle_long_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "induced_persistence_reduced_latebundle_long_v1"
+      ],
+      "notes": "Long-horizon persistence stress test for the reduced late-bundle winner family.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "staged_anchor_handoff_v1",
+      "queue_group": "mistral_staged_anchor_handoff_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 183,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "induced_persistence_reduced_latebundle_long_v1"
+      ],
+      "expected_runtime_hours": 2.6,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_staged_anchor_handoff_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "staged_anchor_handoff_v1"
+      ],
+      "notes": "Brief active induction-to-maintenance handoff protocol testing whether reduced entry and late-only maintenance can extend the regime beyond pure seed-only persistence.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "staged_anchor_handoff_confirm_v1",
+      "queue_group": "mistral_staged_anchor_handoff_confirm_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 184,
+      "status": "queued",
+      "depends_on_queue_units": [
+        "staged_anchor_handoff_v1"
+      ],
+      "expected_runtime_hours": 5.2,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_staged_anchor_handoff_confirm_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "staged_anchor_handoff_confirm_v1"
+      ],
+      "notes": "Higher-power confirm of the staged handoff protocol, intended only if the exploratory handoff beats the seed-only baselines.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "staged_anchor_handoff_structured_v1",
+      "queue_group": "mistral_staged_anchor_handoff_structured_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 185,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "staged_anchor_handoff_v1"
+      ],
+      "expected_runtime_hours": 2.4,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_staged_anchor_handoff_structured_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "staged_anchor_handoff_structured_v1"
+      ],
+      "notes": "Structured-turn handoff follow-up replacing raw open-loop self-feeding with the fixed mixed prompt schedule from the robustness battery.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "structured_text_carry_ablation_v1",
+      "queue_group": "mistral_structured_text_carry_ablation_v1",
+      "stage": "sufficiency_protocol",
+      "priority": 186,
+      "status": "completed",
+      "depends_on_queue_units": [
+        "staged_anchor_handoff_structured_v1"
+      ],
+      "expected_runtime_hours": 2.4,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mistral_structured_text_carry_ablation_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "structured_text_carry_ablation_v1"
+      ],
+      "notes": "Structured carry-disambiguation seeded from the strongest confirmed maintainer; compares exact carry, shortened carry, scrambled carry, and instruction-only carry.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "gemma9b_p0_canonical_v1",
+      "queue_group": "gemma9b_p0_canonical_v1",
+      "stage": "cross_architecture_replication",
+      "priority": 200,
+      "status": "completed",
+      "depends_on_queue_units": [],
+      "expected_runtime_hours": 3.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_gemma9b_p0_canonical_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "gemma9b_p0_canonical",
+        "gemma9b_full_path_patching"
+      ],
+      "notes": "Frozen-contract P0 canonical + path patching on Gemma-2-9B. Upgrades provisional cross-arch result to locked.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "mixtral8x7b_p0_canonical_v1",
+      "queue_group": "mixtral8x7b_p0_canonical_v1",
+      "stage": "cross_architecture_replication",
+      "priority": 201,
+      "status": "running",
+      "depends_on_queue_units": [],
+      "expected_runtime_hours": 4.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_mixtral8x7b_p0_canonical_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "mixtral8x7b_p0_canonical",
+        "mixtral8x7b_full_path_patching"
+      ],
+      "notes": "Frozen-contract P0 canonical + path patching on Mixtral-8x7B. MoE architecture with d~5.3 from Nov 2025 needs locked provenance.",
+      "warnings": []
+    },
+    {
+      "queue_unit_id": "llama3_8b_p0_canonical_v1",
+      "queue_group": "llama3_8b_p0_canonical_v1",
+      "stage": "cross_architecture_replication",
+      "priority": 202,
+      "status": "completed",
+      "depends_on_queue_units": [],
+      "expected_runtime_hours": 3.0,
+      "launcher": {
+        "type": "bash",
+        "path": "scripts/runpod_llama3_8b_p0_canonical_v1_queue.sh",
+        "args": []
+      },
+      "experiment_ids": [
+        "llama3_8b_p0_canonical",
+        "llama3_8b_full_path_patching"
+      ],
+      "notes": "Frozen-contract P0 canonical + path patching on Llama-3-8B. Most widely used open architecture.",
       "warnings": []
     }
   ],
@@ -482,13 +1094,13 @@
       "experiment_id": "bridge_low_trunc_confirmatory_n24",
       "launch_unit_id": "sufficiency_bundle_v2",
       "stage": "sufficiency_bundle",
-      "status": "queued",
+      "status": "completed",
       "script_or_pipeline": "src.pipelines.run",
       "config_path": "configs/canonical/multi_token_bridge_mistral_low_trunc_confirmatory_n24.json",
       "prompt_contract": "heldout_causal_slice",
       "metric_path": "src/metrics/behavioral_bridge.py + src/pipelines/canonical/multi_token_bridge.py",
       "artifact_glob": "results/phase1_cross_architecture/runs/*mistral_7b_bridge_low_trunc_confirmatory_n24*/summary.json",
-      "artifact_path": "results/phase1_cross_architecture/runs/20260313_055425_multi_token_bridge_mistral_7b_bridge_low_trunc_confirmatory_n24/summary.json",
+      "artifact_path": "results/phase1_cross_architecture/runs/20260319_110757_multi_token_bridge_mistral_7b_bridge_low_trunc_confirmatory_n24/summary.json",
       "queue_group": "mistral_sufficiency_bundle_v2",
       "priority": 50,
       "expected_runtime_hours": 0.8,
@@ -496,19 +1108,25 @@
         "BRIDGE_CONFIRMATORY_LOW_TRUNC"
       ],
       "artifact_exists_local": true,
-      "warnings": []
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260319_110753-bridge_low_trunc_confirmatory_n24",
+        "status": "completed",
+        "updated_at": "2026-03-19T13:13:06Z",
+        "artifact_path": "results/phase1_cross_architecture/runs/20260319_110757_multi_token_bridge_mistral_7b_bridge_low_trunc_confirmatory_n24/summary.json"
+      }
     },
     {
       "experiment_id": "bridge_true_longgen_n18",
       "launch_unit_id": "sufficiency_bundle_v2",
       "stage": "sufficiency_bundle",
-      "status": "queued",
+      "status": "completed",
       "script_or_pipeline": "src.pipelines.run",
       "config_path": "configs/canonical/multi_token_bridge_mistral_true_longgen_n18.json",
       "prompt_contract": "heldout_causal_slice",
       "metric_path": "src/metrics/behavioral_bridge.py + src/pipelines/canonical/multi_token_bridge.py",
       "artifact_glob": "results/phase1_cross_architecture/runs/*mistral_7b_bridge_true_longgen_n18*/summary.json",
-      "artifact_path": "results/phase1_cross_architecture/runs/20260313_062646_multi_token_bridge_mistral_7b_bridge_true_longgen_n18/summary.json",
+      "artifact_path": "results/phase1_cross_architecture/runs/20260319_131310_multi_token_bridge_mistral_7b_bridge_true_longgen_n18/summary.json",
       "queue_group": "mistral_sufficiency_bundle_v2",
       "priority": 50,
       "expected_runtime_hours": 0.7,
@@ -516,27 +1134,39 @@
         "BRIDGE_CONFIRMATORY_LONGGEN"
       ],
       "artifact_exists_local": true,
-      "warnings": []
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260319_110753-bridge_true_longgen_n18",
+        "status": "completed",
+        "updated_at": "2026-03-19T15:57:27Z",
+        "artifact_path": "results/phase1_cross_architecture/runs/20260319_131310_multi_token_bridge_mistral_7b_bridge_true_longgen_n18/summary.json"
+      }
     },
     {
       "experiment_id": "self_feeding_loop_v2",
       "launch_unit_id": "sufficiency_bundle_v2",
       "stage": "sufficiency_bundle",
-      "status": "queued",
+      "status": "completed",
       "script_or_pipeline": "scripts/self_feeding_loop.py",
       "config_path": "",
       "prompt_contract": "internal_script_protocol",
       "metric_path": "scripts/self_feeding_loop.py",
       "artifact_glob": "results/self_feeding_loop_bundle_v2/*/self_feeding_summary_*.json",
-      "artifact_path": "",
+      "artifact_path": "results/self_feeding_loop_bundle_v2/20260319_110753/self_feeding_summary_20260319_172423.json",
       "queue_group": "mistral_sufficiency_bundle_v2",
       "priority": 50,
       "expected_runtime_hours": 1.0,
       "claim_ids": [
         "PERSISTENCE_SELF_FEED_V2"
       ],
-      "artifact_exists_local": false,
-      "warnings": []
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260319_110753-self_feeding_loop_v2",
+        "status": "completed",
+        "updated_at": "2026-03-19T17:24:24Z",
+        "artifact_path": "results/self_feeding_loop_bundle_v2/20260319_110753/self_feeding_summary_20260319_172423.json"
+      }
     },
     {
       "experiment_id": "sustained_gnani_v3_v2",
@@ -557,6 +1187,144 @@
       ],
       "artifact_exists_local": false,
       "warnings": []
+    },
+    {
+      "experiment_id": "gemma9b_p0_canonical",
+      "launch_unit_id": "gemma9b_p0_canonical_v1",
+      "stage": "cross_architecture_replication",
+      "status": "completed",
+      "script_or_pipeline": "scripts/p0_canonical_pipeline.py",
+      "config_path": "scripts/p0_canonical_pipeline.py --model google/gemma-2-9b --n 80 --device cuda",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "P0 canonical pipeline",
+      "artifact_path": "results/p0_canonical/google__gemma-2-9b_p0_result.json",
+      "queue_group": "gemma9b_p0_canonical_v1",
+      "priority": 200,
+      "expected_runtime_hours": 1.0,
+      "claim_ids": [
+        "GEMMA9B_P0_CANONICAL_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260319_095646-p0",
+        "status": "completed",
+        "updated_at": "2026-03-19T09:59:39Z",
+        "artifact_path": "results/p0_canonical/google__gemma-2-9b_p0_result.json"
+      }
+    },
+    {
+      "experiment_id": "gemma9b_full_path_patching",
+      "launch_unit_id": "gemma9b_p0_canonical_v1",
+      "stage": "cross_architecture_replication",
+      "status": "completed",
+      "script_or_pipeline": "scripts/full_path_patching.py",
+      "config_path": "scripts/full_path_patching.py --model google/gemma-2-9b --device cuda --n-prompts 20 --layers 0 3 6 9 12 15 18 21 24 27 30 33 35 38 41",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "full_path_patching",
+      "artifact_path": "results/path_patching/path_patching_summary_20260319_100500.json",
+      "queue_group": "gemma9b_p0_canonical_v1",
+      "priority": 200,
+      "expected_runtime_hours": 2.0,
+      "claim_ids": [
+        "GEMMA9B_P0_CANONICAL_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260319_095646-path",
+        "status": "completed",
+        "updated_at": "2026-03-19T10:05:01Z",
+        "artifact_path": "results/path_patching/path_patching_summary_20260319_100500.json"
+      }
+    },
+    {
+      "experiment_id": "mixtral8x7b_p0_canonical",
+      "launch_unit_id": "mixtral8x7b_p0_canonical_v1",
+      "stage": "cross_architecture_replication",
+      "status": "queued",
+      "script_or_pipeline": "scripts/p0_canonical_pipeline.py",
+      "config_path": "scripts/p0_canonical_pipeline.py --model mistralai/Mixtral-8x7B-v0.1 --n 80 --device cuda",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "P0 canonical pipeline",
+      "artifact_path": "results/p0_canonical/mistralai__Mixtral-8x7B-v0-1_p0_result.json",
+      "queue_group": "mixtral8x7b_p0_canonical_v1",
+      "priority": 201,
+      "expected_runtime_hours": 1.0,
+      "claim_ids": [
+        "MIXTRAL8X7B_P0_CANONICAL_V1"
+      ],
+      "artifact_exists_local": false,
+      "warnings": []
+    },
+    {
+      "experiment_id": "mixtral8x7b_full_path_patching",
+      "launch_unit_id": "mixtral8x7b_p0_canonical_v1",
+      "stage": "cross_architecture_replication",
+      "status": "queued",
+      "script_or_pipeline": "scripts/full_path_patching.py",
+      "config_path": "scripts/full_path_patching.py --model mistralai/Mixtral-8x7B-v0.1 --device cuda --n-prompts 20 --layers 0 2 4 6 8 10 12 14 16 18 20 22 24 25 26 27 28 30",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "full_path_patching",
+      "artifact_path": "",
+      "queue_group": "mixtral8x7b_p0_canonical_v1",
+      "priority": 201,
+      "expected_runtime_hours": 3.0,
+      "claim_ids": [
+        "MIXTRAL8X7B_P0_CANONICAL_V1"
+      ],
+      "artifact_exists_local": false,
+      "warnings": []
+    },
+    {
+      "experiment_id": "llama3_8b_p0_canonical",
+      "launch_unit_id": "llama3_8b_p0_canonical_v1",
+      "stage": "cross_architecture_replication",
+      "status": "completed",
+      "script_or_pipeline": "scripts/p0_canonical_pipeline.py",
+      "config_path": "scripts/p0_canonical_pipeline.py --model meta-llama/Meta-Llama-3-8B --n 80 --device cuda",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "P0 canonical pipeline",
+      "artifact_path": "results/p0_canonical/meta-llama__Meta-Llama-3-8B_p0_result.json",
+      "queue_group": "llama3_8b_p0_canonical_v1",
+      "priority": 202,
+      "expected_runtime_hours": 1.0,
+      "claim_ids": [
+        "LLAMA3_8B_P0_CANONICAL_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260319_094645-p0",
+        "status": "completed",
+        "updated_at": "2026-03-19T09:48:51Z",
+        "artifact_path": "results/p0_canonical/meta-llama__Meta-Llama-3-8B_p0_result.json"
+      }
+    },
+    {
+      "experiment_id": "llama3_8b_full_path_patching",
+      "launch_unit_id": "llama3_8b_p0_canonical_v1",
+      "stage": "cross_architecture_replication",
+      "status": "completed",
+      "script_or_pipeline": "scripts/full_path_patching.py",
+      "config_path": "scripts/full_path_patching.py --model meta-llama/Meta-Llama-3-8B --device cuda --n-prompts 20 --layers 0 2 4 6 8 10 12 14 16 18 20 22 24 26 27 28 30",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "full_path_patching",
+      "artifact_path": "results/path_patching/path_patching_summary_20260319_095406.json",
+      "queue_group": "llama3_8b_p0_canonical_v1",
+      "priority": 202,
+      "expected_runtime_hours": 2.0,
+      "claim_ids": [
+        "LLAMA3_8B_P0_CANONICAL_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260319_094645-path",
+        "status": "completed",
+        "updated_at": "2026-03-19T09:54:07Z",
+        "artifact_path": "results/path_patching/path_patching_summary_20260319_095406.json"
+      }
     },
     {
       "experiment_id": "scaffold_ablation_ladder_v2",
@@ -767,54 +1535,6 @@
       }
     },
     {
-      "queue_unit_id": "anchor_bundle_v3_champion_controls",
-      "queue_group": "mistral_anchor_bundle_v3_champion_controls",
-      "stage": "sufficiency_bundle",
-      "priority": 130,
-      "status": "running",
-      "depends_on_queue_units": [
-        "anchor_bundle_v2"
-      ],
-      "expected_runtime_hours": 2.5,
-      "launcher": {
-        "type": "bash",
-        "path": "scripts/runpod_mistral_anchor_bundle_v3_champion_controls_queue.sh",
-        "args": []
-      },
-      "experiment_ids": [
-        "anchor_bundle_v3_champion_controls"
-      ],
-      "notes": "Champion and matched-control induction test for the strongest anchor plus bridge conditions.",
-      "warnings": [
-        "running_without_lease"
-      ],
-      "artifact_exists_local": false
-    },
-    {
-      "queue_unit_id": "pca_subspace_ablation_v1",
-      "queue_group": "mistral_pca_subspace_ablation_v1",
-      "stage": "subspace_probe",
-      "priority": 140,
-      "status": "running",
-      "depends_on_queue_units": [
-        "pca_vs_mean_steering_v2"
-      ],
-      "expected_runtime_hours": 1.6,
-      "launcher": {
-        "type": "bash",
-        "path": "scripts/runpod_mistral_pca_subspace_ablation_v1_queue.sh",
-        "args": []
-      },
-      "experiment_ids": [
-        "pca_subspace_ablation_v1"
-      ],
-      "notes": "Projection-ablation comparison of mean-difference, PCA-1D, and PCA subspace objects.",
-      "warnings": [
-        "running_without_lease"
-      ],
-      "artifact_exists_local": false
-    },
-    {
       "experiment_id": "anchor_bundle_v3_champion_controls",
       "launch_unit_id": "anchor_bundle_v3_champion_controls",
       "stage": "sufficiency_bundle",
@@ -865,7 +1585,650 @@
         "updated_at": "2026-03-14T10:57:34Z",
         "artifact_path": "results/pca_subspace_ablation_v1/20260314_102447/summary.json"
       }
+    },
+    {
+      "experiment_id": "sufficiency_multiband_v1",
+      "launch_unit_id": "sufficiency_multiband_v1",
+      "stage": "sufficiency_bundle",
+      "status": "completed",
+      "script_or_pipeline": "src.pipelines.run",
+      "config_path": "configs/canonical/causal_state_benchmark_v4_multisite_mistral_sufficiency_multiband_v1.json",
+      "prompt_contract": "champions_plus_ordinary_baselines",
+      "metric_path": "causal_state_benchmark_v4_multisite + factorial_2x2_verdict",
+      "artifact_glob": "results/phase1_mechanism/runs/*mistral_sufficiency_multiband_v1*/summary.json",
+      "artifact_path": "results/phase1_mechanism/runs/20260315_055313_causal_state_benchmark_v4_multisite_mistral_sufficiency_multiband_v1/summary.json",
+      "queue_group": "sufficiency_multiband_v1",
+      "priority": 125,
+      "expected_runtime_hours": 2.0,
+      "claim_ids": [
+        "SUFFICIENCY_MULTIBAND_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260315_055207",
+        "status": "completed",
+        "updated_at": "2026-03-15T06:43:46Z",
+        "artifact_path": "results/phase1_mechanism/runs/20260315_055313_causal_state_benchmark_v4_multisite_mistral_sufficiency_multiband_v1/summary.json"
+      }
+    },
+    {
+      "experiment_id": "subspace_component_steering_l3_v1",
+      "launch_unit_id": "subspace_component_steering_early_stack_v1",
+      "stage": "subspace_probe",
+      "status": "completed",
+      "script_or_pipeline": "scripts/subspace_component_steering.py",
+      "config_path": "scripts/subspace_component_steering.py --layer 3 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "in_subspace_vs_orthogonal_steering + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/subspace_component_steering_l3_v1/*/summary.json",
+      "artifact_path": "results/subspace_component_steering_l3_v1/20260315_144837/summary.json",
+      "queue_group": "mistral_subspace_component_steering_l3_v1",
+      "priority": 145,
+      "expected_runtime_hours": 1.2,
+      "claim_ids": [
+        "SUBSPACE_COMPONENT_STEERING_L3_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260315_144837",
+        "status": "completed",
+        "updated_at": "2026-03-15T15:36:14Z",
+        "artifact_path": "results/subspace_component_steering_l3_v1/20260315_144837/summary.json"
+      }
+    },
+    {
+      "experiment_id": "layer_matched_multisite_v1",
+      "launch_unit_id": "layer_matched_multisite_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/layer_matched_multisite_steering.py",
+      "config_path": "scripts/layer_matched_multisite_steering.py",
+      "prompt_contract": "standard_3x6_train_3x6_test",
+      "metric_path": "layer_matched_multisite_v1",
+      "artifact_glob": "results/layer_matched_multisite_v1/*/summary.json",
+      "artifact_path": "results/layer_matched_multisite_v1/20260315_151339/summary.json",
+      "queue_group": "layer_matched_multisite_v1",
+      "priority": 146,
+      "expected_runtime_hours": 2.0,
+      "claim_ids": [
+        "LAYER_MATCHED_MULTISITE_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260315_151339",
+        "status": "completed",
+        "updated_at": "2026-03-15T16:19:55Z",
+        "artifact_path": "/workspace/mech-interp-latent-lab-phase1/results/layer_matched_multisite_v1/20260315_151339/summary.json"
+      }
+    },
+    {
+      "experiment_id": "subspace_component_steering_l2_v1",
+      "launch_unit_id": "subspace_component_steering_early_stack_v1",
+      "stage": "subspace_probe",
+      "status": "completed",
+      "script_or_pipeline": "scripts/subspace_component_steering.py",
+      "config_path": "scripts/subspace_component_steering.py --layer 2 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "in_subspace_vs_orthogonal_steering + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/subspace_component_steering_l2_v1/*/summary.json",
+      "artifact_path": "results/subspace_component_steering_l2_v1/20260315_153614/summary.json",
+      "queue_group": "mistral_subspace_component_steering_l2_v1",
+      "priority": 145,
+      "expected_runtime_hours": 1.2,
+      "claim_ids": [
+        "SUBSPACE_COMPONENT_STEERING_L2_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260315_153614",
+        "status": "completed",
+        "updated_at": "2026-03-15T16:26:02Z",
+        "artifact_path": "results/subspace_component_steering_l2_v1/20260315_153614/summary.json"
+      }
+    },
+    {
+      "experiment_id": "subspace_component_steering_l1_v1",
+      "launch_unit_id": "subspace_component_steering_l1_v1",
+      "stage": "subspace_probe",
+      "status": "completed",
+      "script_or_pipeline": "scripts/subspace_component_steering.py",
+      "config_path": "scripts/subspace_component_steering.py --layer 1 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "in_subspace_vs_orthogonal_steering + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/subspace_component_steering_l1_v1/*/summary.json",
+      "artifact_path": "results/subspace_component_steering_l1_v1/20260315_184445/summary.json",
+      "queue_group": "mistral_subspace_component_steering_l1_v1",
+      "priority": 147,
+      "expected_runtime_hours": 1.5,
+      "claim_ids": [
+        "SUBSPACE_COMPONENT_STEERING_L1_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260315_184445",
+        "status": "completed",
+        "updated_at": "2026-03-15T19:34:18Z",
+        "artifact_path": "results/subspace_component_steering_l1_v1/20260315_184445/summary.json"
+      }
+    },
+    {
+      "experiment_id": "layer_matched_multisite_refine_v2",
+      "launch_unit_id": "layer_matched_multisite_refine_v2",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/layer_matched_multisite_refine_v2.py",
+      "config_path": "scripts/layer_matched_multisite_refine_v2.py",
+      "prompt_contract": "standard_3x6_train_3x6_test",
+      "metric_path": "layer_matched_multisite_refine_v2",
+      "artifact_glob": "results/layer_matched_multisite_refine_v2/*/summary.json",
+      "artifact_path": "results/layer_matched_multisite_refine_v2/20260315_184517/summary.json",
+      "queue_group": "layer_matched_multisite_refine_v2",
+      "priority": 148,
+      "expected_runtime_hours": 1.8,
+      "claim_ids": [
+        "LAYER_MATCHED_MULTISITE_REFINE_V2"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260315_184517",
+        "status": "completed",
+        "updated_at": "2026-03-15T19:44:50Z",
+        "artifact_path": "/workspace/mech-interp-latent-lab-phase1/results/layer_matched_multisite_refine_v2/20260315_184517/summary.json"
+      }
+    },
+    {
+      "experiment_id": "anchor_layermatched_protocol_v1",
+      "launch_unit_id": "anchor_layermatched_protocol_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/anchor_layermatched_protocol_v1.py",
+      "config_path": "scripts/anchor_layermatched_protocol_v1.py",
+      "prompt_contract": "heldout_anchor_layermatched_protocol_v1",
+      "metric_path": "anchor_layermatched_protocol_v1 + classify_output + compute_rv",
+      "artifact_glob": "results/anchor_layermatched_protocol_v1/*/summary.json",
+      "artifact_path": "results/anchor_layermatched_protocol_v1/20260316_025018/summary.json",
+      "queue_group": "mistral_anchor_layermatched_protocol_v1",
+      "priority": 150,
+      "expected_runtime_hours": 2.0,
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_PROTOCOL_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_025018",
+        "status": "completed",
+        "updated_at": "2026-03-16T03:45:29Z",
+        "artifact_path": "results/anchor_layermatched_protocol_v1/20260316_025018/summary.json"
+      }
+    },
+    {
+      "experiment_id": "closed_loop_anchor_controller_v1",
+      "launch_unit_id": "closed_loop_anchor_controller_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/closed_loop_anchor_controller_v1.py",
+      "config_path": "scripts/closed_loop_anchor_controller_v1.py",
+      "prompt_contract": "closed_loop_anchor_controller_v1",
+      "metric_path": "closed_loop_anchor_controller_v1 + classify_output + compute_rv",
+      "artifact_glob": "results/closed_loop_anchor_controller_v1/*/summary.json",
+      "artifact_path": "results/closed_loop_anchor_controller_v1/20260316_025020/summary.json",
+      "queue_group": "mistral_closed_loop_anchor_controller_v1",
+      "priority": 160,
+      "expected_runtime_hours": 2.0,
+      "claim_ids": [
+        "CLOSED_LOOP_ANCHOR_CONTROLLER_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_025020",
+        "status": "completed",
+        "updated_at": "2026-03-16T03:39:01Z",
+        "artifact_path": "results/closed_loop_anchor_controller_v1/20260316_025020/summary.json"
+      }
+    },
+    {
+      "experiment_id": "anchor_layermatched_protocol_confirm_v1",
+      "launch_unit_id": "anchor_layermatched_protocol_confirm_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/anchor_layermatched_protocol_v1.py",
+      "config_path": "scripts/anchor_layermatched_protocol_v1.py --experiment-name anchor_layermatched_protocol_confirm_v1 --train-per-group 6 --test-per-group 6 --condition-names control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2,anchor_layermatched_low_bridge_3,anchor_meandiff_low_bridge_2 --generation-seeds 101 202 303 404 505 606 707 808",
+      "prompt_contract": "heldout_anchor_layermatched_protocol_confirm_v1",
+      "metric_path": "anchor_layermatched_protocol_v1 + classify_output + compute_rv",
+      "artifact_glob": "results/anchor_layermatched_protocol_confirm_v1/*/summary.json",
+      "artifact_path": "results/anchor_layermatched_protocol_confirm_v1/20260316_092017/summary.json",
+      "queue_group": "mistral_anchor_layermatched_protocol_confirm_v1",
+      "priority": 170,
+      "expected_runtime_hours": 2.5,
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_PROTOCOL_CONFIRM_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_092017",
+        "status": "completed",
+        "updated_at": "2026-03-16T10:15:39Z",
+        "artifact_path": "results/anchor_layermatched_protocol_confirm_v1/20260316_092017/summary.json"
+      }
+    },
+    {
+      "experiment_id": "induced_persistence_anchor_layermatched_v1",
+      "launch_unit_id": "induced_persistence_anchor_layermatched_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/induced_persistence_followup.py",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_protocol_v1/20260316_025018 --source-conditions control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2,anchor_layermatched_low_bridge_3 --baseline-groups baseline --top-k-per-group 2 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/induced_persistence_anchor_layermatched_v1/*/summary.json",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_v1/20260316_040319/summary.json",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_v1",
+      "priority": 171,
+      "expected_runtime_hours": 1.5,
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_040319",
+        "status": "completed",
+        "updated_at": "2026-03-16T04:09:05Z",
+        "artifact_path": "results/induced_persistence_anchor_layermatched_v1/20260316_040319/summary.json"
+      }
+    },
+    {
+      "experiment_id": "induced_persistence_anchor_layermatched_confirm_v1",
+      "launch_unit_id": "induced_persistence_anchor_layermatched_confirm_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/induced_persistence_followup.py",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_protocol_v1/20260316_025018 --source-conditions control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/induced_persistence_anchor_layermatched_confirm_v1/*/summary.json",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_confirm_v1/20260316_092904/summary.json",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_confirm_v1",
+      "priority": 172,
+      "expected_runtime_hours": 1.8,
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_CONFIRM_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_092904",
+        "status": "completed",
+        "updated_at": "2026-03-16T09:45:29Z",
+        "artifact_path": "results/induced_persistence_anchor_layermatched_confirm_v1/20260316_092904/summary.json"
+      }
+    },
+    {
+      "experiment_id": "anchor_layermatched_hybrid_protocol_v1",
+      "launch_unit_id": "anchor_layermatched_hybrid_protocol_v1",
+      "stage": "sufficiency_protocol",
+      "status": "failed",
+      "script_or_pipeline": "scripts/anchor_layermatched_protocol_v1.py",
+      "config_path": "scripts/anchor_layermatched_protocol_v1.py --experiment-name anchor_layermatched_hybrid_protocol_v1 --train-per-group 6 --test-per-group 6 --condition-names control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2,anchor_layermatched_low_bridge_3,anchor_single_mlp_0p125_layermatched_low_bridge_2,anchor_single_mlp_0p125_layermatched_low_bridge_3 --generation-seeds 101 202 303 404 505 606 707 808",
+      "prompt_contract": "heldout_anchor_layermatched_hybrid_protocol_v1",
+      "metric_path": "anchor_layermatched_protocol_v1 + classify_output + compute_rv",
+      "artifact_glob": "results/anchor_layermatched_hybrid_protocol_v1/*/summary.json",
+      "artifact_path": "results/anchor_layermatched_hybrid_protocol_v1/20260316_105309/summary.json",
+      "queue_group": "mistral_anchor_layermatched_hybrid_protocol_v1",
+      "priority": 173,
+      "expected_runtime_hours": 2.5,
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_HYBRID_PROTOCOL_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_105108",
+        "status": "failed",
+        "updated_at": "2026-03-16T12:27:01Z",
+        "artifact_path": "results/anchor_layermatched_hybrid_protocol_v1/20260316_105108/summary.json"
+      }
+    },
+    {
+      "experiment_id": "induced_persistence_anchor_layermatched_confirm_v2",
+      "launch_unit_id": "induced_persistence_anchor_layermatched_confirm_v2",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/induced_persistence_followup.py",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_protocol_confirm_v1/20260316_092017 --source-conditions control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2,anchor_layermatched_low_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/induced_persistence_anchor_layermatched_confirm_v2/*/summary.json",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_confirm_v2/20260316_105106/summary.json",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_confirm_v2",
+      "priority": 174,
+      "expected_runtime_hours": 1.8,
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_CONFIRM_V2"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_105106",
+        "status": "completed",
+        "updated_at": "2026-03-16T11:09:15Z",
+        "artifact_path": "results/induced_persistence_anchor_layermatched_confirm_v2/20260316_105106/summary.json"
+      }
+    },
+    {
+      "experiment_id": "induced_persistence_anchor_layermatched_hybrid_v1",
+      "launch_unit_id": "induced_persistence_anchor_layermatched_hybrid_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/induced_persistence_followup.py",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_hybrid_protocol_v1/20260316_105309 --source-conditions control,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_3,anchor_single_mlp_0p125_layermatched_low_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/induced_persistence_anchor_layermatched_hybrid_v1/*/summary.json",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_hybrid_v1/20260316_123050/summary.json",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_hybrid_v1",
+      "priority": 175,
+      "expected_runtime_hours": 1.8,
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_HYBRID_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_123050",
+        "status": "completed",
+        "updated_at": "2026-03-16T12:45:11Z",
+        "artifact_path": "results/induced_persistence_anchor_layermatched_hybrid_v1/20260316_123050/summary.json"
+      }
+    },
+    {
+      "experiment_id": "induced_persistence_anchor_layermatched_long_v1",
+      "launch_unit_id": "induced_persistence_anchor_layermatched_long_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/induced_persistence_followup.py",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_protocol_confirm_v1/20260316_092017 --source-conditions control,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 24",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/induced_persistence_anchor_layermatched_long_v1/*/summary.json",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_long_v1/20260316_123052/summary.json",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_long_v1",
+      "priority": 176,
+      "expected_runtime_hours": 2.2,
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_LONG_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_123052",
+        "status": "completed",
+        "updated_at": "2026-03-16T12:53:30Z",
+        "artifact_path": "results/induced_persistence_anchor_layermatched_long_v1/20260316_123052/summary.json"
+      }
+    },
+    {
+      "experiment_id": "induced_persistence_unselected_seed_v1",
+      "launch_unit_id": "induced_persistence_unselected_seed_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/induced_persistence_unselected_seed_v1.py",
+      "config_path": "scripts/induced_persistence_unselected_seed_v1.py --source-run-dir results/anchor_layermatched_protocol_confirm_v1/20260316_092017 --target-condition anchor_layermatched_low_bridge_3 --baseline-groups baseline --sessions-per-arm 40 --max-turns 15",
+      "prompt_contract": "induced_seeded_followup_fixed_schedule",
+      "metric_path": "fixed_turn_schedule + self_feed_continuation + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/induced_persistence_unselected_seed_v1/*/summary.json",
+      "queue_group": "mistral_induced_persistence_unselected_seed_v1",
+      "priority": 177,
+      "expected_runtime_hours": 4.0,
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_UNSELECTED_SEED_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_132334",
+        "status": "completed",
+        "updated_at": "2026-03-16T15:09:06Z",
+        "artifact_path": "results/induced_persistence_unselected_seed_v1/20260316_132334/summary.json"
+      },
+      "artifact_path": "results/induced_persistence_unselected_seed_v1/20260316_132334/summary.json"
+    },
+    {
+      "experiment_id": "anchor_layermatched_bridge_alpha_sweep_v1",
+      "launch_unit_id": "anchor_layermatched_bridge_alpha_sweep_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/anchor_layermatched_bridge_alpha_sweep_v1.py",
+      "config_path": "scripts/anchor_layermatched_bridge_alpha_sweep_v1.py --bridge-alphas 1.0,1.5,2.0,2.25,2.5,2.75,3.0,3.5,4.0",
+      "prompt_contract": "anchor_layermatched_static_alpha_sweep",
+      "metric_path": "static induction benchmark + classify_output + compute_rv",
+      "artifact_glob": "results/anchor_layermatched_bridge_alpha_sweep_v1/*/summary.json",
+      "queue_group": "mistral_anchor_layermatched_bridge_alpha_sweep_v1",
+      "priority": 178,
+      "expected_runtime_hours": 4.5,
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_BRIDGE_ALPHA_SWEEP_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260316_132850",
+        "status": "completed",
+        "updated_at": "2026-03-16T15:40:33Z",
+        "artifact_path": "results/anchor_layermatched_bridge_alpha_sweep_v1/20260316_132850/summary.json"
+      },
+      "artifact_path": "results/anchor_layermatched_bridge_alpha_sweep_v1/20260316_132850/summary.json"
+    },
+    {
+      "experiment_id": "anchor_layermatched_minimality_ablation_v1",
+      "launch_unit_id": "anchor_layermatched_minimality_ablation_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/anchor_layermatched_minimality_ablation_v1.py",
+      "config_path": "scripts/anchor_layermatched_minimality_ablation_v1.py",
+      "prompt_contract": "anchor_layermatched_minimality_static_ablation",
+      "metric_path": "static induction benchmark + classify_output + compute_rv",
+      "artifact_glob": "results/anchor_layermatched_minimality_ablation_v1/*/summary.json",
+      "queue_group": "mistral_anchor_layermatched_minimality_ablation_v1",
+      "priority": 179,
+      "expected_runtime_hours": 4.0,
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_MINIMALITY_ABLATION_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "artifact_path": "results/anchor_layermatched_minimality_ablation_v1/20260317_091330/summary.json",
+      "latest_result": {
+        "run_id": "20260317_091330",
+        "status": "completed",
+        "updated_at": "2026-03-17T13:10:06Z",
+        "artifact_path": "results/anchor_layermatched_minimality_ablation_v1/20260317_091330/summary.json"
+      }
+    },
+    {
+      "experiment_id": "anchor_reduced_latebundle_confirm_v1",
+      "launch_unit_id": "anchor_reduced_latebundle_confirm_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/anchor_layermatched_protocol_v1.py",
+      "config_path": "scripts/anchor_layermatched_protocol_v1.py --experiment-name anchor_reduced_latebundle_confirm_v1 --train-per-group 6 --test-per-group 6 --condition-names control,anchor_single_mlp_0p125_bridge_3,anchor_single_mlp_0p125_layermatched_low_bridge_3,anchor_layermatched_low_bridge_3,anchor_drop_L25_vproj_bridge_3,anchor_late_only_bridge_3 --generation-seeds 101 202 303 404 505 606 707 808",
+      "prompt_contract": "heldout_anchor_reduced_latebundle_confirm_v1",
+      "metric_path": "anchor_layermatched_protocol_v1 + classify_output + compute_rv",
+      "artifact_glob": "results/anchor_reduced_latebundle_confirm_v1/*/summary.json",
+      "queue_group": "mistral_anchor_reduced_latebundle_confirm_v1",
+      "priority": 180,
+      "expected_runtime_hours": 2.5,
+      "claim_ids": [
+        "ANCHOR_REDUCED_LATEBUNDLE_CONFIRM_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260317_132349",
+        "status": "completed",
+        "updated_at": "2026-03-17T14:17:41Z",
+        "artifact_path": "results/anchor_reduced_latebundle_confirm_v1/20260317_132349/summary.json"
+      },
+      "artifact_path": "results/anchor_reduced_latebundle_confirm_v1/20260317_132349/summary.json"
+    },
+    {
+      "experiment_id": "induced_persistence_reduced_latebundle_confirm_v1",
+      "launch_unit_id": "induced_persistence_reduced_latebundle_confirm_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/induced_persistence_followup.py",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_reduced_latebundle_confirm_v1/20260317_132349 --source-conditions control,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_3,anchor_drop_L25_vproj_bridge_3,anchor_late_only_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/induced_persistence_reduced_latebundle_confirm_v1/*/summary.json",
+      "queue_group": "mistral_induced_persistence_reduced_latebundle_confirm_v1",
+      "priority": 181,
+      "expected_runtime_hours": 1.8,
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_REDUCED_LATEBUNDLE_CONFIRM_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260317_141750",
+        "status": "completed",
+        "updated_at": "2026-03-17T14:35:27Z",
+        "artifact_path": "results/induced_persistence_reduced_latebundle_confirm_v1/20260317_141750/summary.json"
+      },
+      "artifact_path": "results/induced_persistence_reduced_latebundle_confirm_v1/20260317_141750/summary.json"
+    },
+    {
+      "experiment_id": "induced_persistence_reduced_latebundle_long_v1",
+      "launch_unit_id": "induced_persistence_reduced_latebundle_long_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/induced_persistence_followup.py",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_reduced_latebundle_confirm_v1/20260317_132349 --source-conditions control,anchor_drop_L25_vproj_bridge_3,anchor_late_only_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 24",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "artifact_glob": "results/induced_persistence_reduced_latebundle_long_v1/*/summary.json",
+      "queue_group": "mistral_induced_persistence_reduced_latebundle_long_v1",
+      "priority": 182,
+      "expected_runtime_hours": 2.4,
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_REDUCED_LATEBUNDLE_LONG_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260317_150042",
+        "status": "completed",
+        "updated_at": "2026-03-17T15:20:43Z",
+        "artifact_path": "results/induced_persistence_reduced_latebundle_long_v1/20260317_150042/summary.json"
+      },
+      "artifact_path": "results/induced_persistence_reduced_latebundle_long_v1/20260317_150042/summary.json"
+    },
+    {
+      "experiment_id": "staged_anchor_handoff_v1",
+      "launch_unit_id": "staged_anchor_handoff_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/staged_anchor_handoff_v1.py",
+      "config_path": "scripts/staged_anchor_handoff_v1.py --prompts-per-group 2 --generation-seeds 101 202 --max-turns 24 --max-new-tokens 128",
+      "prompt_contract": "staged_anchor_handoff",
+      "metric_path": "turn-level handoff rollout + classify_output + compute_rv",
+      "artifact_glob": "results/staged_anchor_handoff_v1/*/summary.json",
+      "queue_group": "mistral_staged_anchor_handoff_v1",
+      "priority": 183,
+      "expected_runtime_hours": 2.6,
+      "claim_ids": [
+        "STAGED_ANCHOR_HANDOFF_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260318_005703",
+        "status": "completed",
+        "updated_at": "2026-03-18T02:47:22Z",
+        "artifact_path": "results/staged_anchor_handoff_v1/20260318_005703/summary.json"
+      },
+      "artifact_path": "results/staged_anchor_handoff_v1/20260318_005703/summary.json"
+    },
+    {
+      "experiment_id": "staged_anchor_handoff_confirm_v1",
+      "launch_unit_id": "staged_anchor_handoff_confirm_v1",
+      "stage": "sufficiency_protocol",
+      "status": "queued",
+      "script_or_pipeline": "scripts/staged_anchor_handoff_v1.py",
+      "config_path": "scripts/staged_anchor_handoff_v1.py --prompts-per-group 2 --generation-seeds 101 202 303 404 --max-turns 24 --max-new-tokens 128",
+      "prompt_contract": "staged_anchor_handoff",
+      "metric_path": "turn-level handoff rollout + classify_output + compute_rv",
+      "artifact_glob": "results/staged_anchor_handoff_confirm_v1/*/summary.json",
+      "queue_group": "mistral_staged_anchor_handoff_confirm_v1",
+      "priority": 184,
+      "expected_runtime_hours": 5.2,
+      "claim_ids": [
+        "STAGED_ANCHOR_HANDOFF_CONFIRM_V1"
+      ],
+      "artifact_exists_local": false,
+      "warnings": []
+    },
+    {
+      "experiment_id": "staged_anchor_handoff_structured_v1",
+      "launch_unit_id": "staged_anchor_handoff_structured_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/staged_anchor_handoff_structured_v1.py",
+      "config_path": "scripts/staged_anchor_handoff_structured_v1.py --prompts-per-group 2 --generation-seeds 101 202 --max-turns 15 --max-new-tokens 128",
+      "prompt_contract": "staged_anchor_handoff_structured",
+      "metric_path": "turn-level structured handoff rollout + classify_output + compute_rv",
+      "artifact_glob": "results/staged_anchor_handoff_structured_v1/*/summary.json",
+      "queue_group": "mistral_staged_anchor_handoff_structured_v1",
+      "priority": 185,
+      "expected_runtime_hours": 2.4,
+      "claim_ids": [
+        "STAGED_ANCHOR_HANDOFF_STRUCTURED_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "latest_result": {
+        "run_id": "20260318_030401",
+        "status": "completed",
+        "updated_at": "2026-03-18T04:10:02Z",
+        "artifact_path": "results/staged_anchor_handoff_structured_v1/20260318_030401/summary.json"
+      },
+      "artifact_path": "results/staged_anchor_handoff_structured_v1/20260318_030401/summary.json"
+    },
+    {
+      "experiment_id": "structured_text_carry_ablation_v1",
+      "launch_unit_id": "structured_text_carry_ablation_v1",
+      "stage": "sufficiency_protocol",
+      "status": "completed",
+      "script_or_pipeline": "scripts/structured_text_carry_ablation_v1.py",
+      "config_path": "scripts/structured_text_carry_ablation_v1.py --source-run-dir results/anchor_layermatched_protocol_confirm_v1/20260316_092017 --target-condition anchor_layermatched_low_bridge_3 --control-condition control --top-k-per-group 8 --selection-strategy median --max-turns 15 --max-new-tokens 128",
+      "prompt_contract": "structured_text_carry_ablation",
+      "metric_path": "structured turn schedule + carry transform ablation + classify_output + compute_rv",
+      "artifact_glob": "results/structured_text_carry_ablation_v1/*/summary.json",
+      "queue_group": "mistral_structured_text_carry_ablation_v1",
+      "priority": 186,
+      "expected_runtime_hours": 2.4,
+      "claim_ids": [
+        "STRUCTURED_TEXT_CARRY_ABLATION_V1"
+      ],
+      "artifact_exists_local": true,
+      "warnings": [],
+      "artifact_path": "results/structured_text_carry_ablation_v1/20260318_042111/summary.json",
+      "latest_result": {
+        "run_id": "20260318_042111",
+        "status": "completed",
+        "updated_at": "2026-03-18T09:07:52Z",
+        "artifact_path": "results/structured_text_carry_ablation_v1/20260318_042111/summary.json"
+      }
     }
   ],
-  "reconciled_at": "2026-03-14T16:52:45Z"
+  "reconciled_at": "2026-03-24T14:39:36Z"
 }

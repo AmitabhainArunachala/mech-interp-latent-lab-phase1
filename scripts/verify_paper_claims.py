@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Verify every quantitative claim in the R_V paper against raw data files.
 
-Parses paper_colm2026_v005.tex, extracts numerical claims, and cross-checks
+Parses paper_colm2026_v007.tex, extracts numerical claims, and cross-checks
 each against the corresponding raw JSON data file.  Outputs a line-by-line
 verification report and exits with code 0 (all pass) or 1 (any fail).
 
@@ -26,7 +26,7 @@ from typing import Any
 # ---------------------------------------------------------------------------
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-PAPER_PATH = REPO_ROOT / "R_V_PAPER" / "paper_colm2026_v005.tex"
+PAPER_PATH = REPO_ROOT / "R_V_PAPER" / "paper_colm2026_v007.tex"
 RESULTS_DIR = REPO_ROOT / "results"
 
 # Tolerance for floating-point matching (2 decimal places)

@@ -1,0 +1,19 @@
+{
+  "schema_version": "p0-canonical-config-v1",
+  "model_name": "Qwen/Qwen2.5-7B",
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "window_size": 16,
+  "n_requested_per_condition": 80,
+  "prompt_bank_path": "/workspace/mech-interp-latent-lab-phase1/prompts/bank.json",
+  "prompt_bank_version": "2ac959a313614329",
+  "prompt_subset_path": "/workspace/mech-interp-latent-lab-phase1/prompts/subsets/mistral_hardening_v1.json",
+  "prompt_subset_name": "mistral_hardening_v1",
+  "prompt_subset_schema_version": "mistral-hardening-subset-v1",
+  "prompt_subset_tier": "core_measurement",
+  "canonical_registry_path": "/workspace/mech-interp-latent-lab-phase1/configs/canonical_registry.json",
+  "canonical_registry_schema_version": "canonical-registry-v1",
+  "num_layers": 28,
+  "early_layer": 4,
+  "late_layer": 23
+}

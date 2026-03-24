@@ -12,7 +12,7 @@ from typing import Optional
 import torch
 from transformers import PreTrainedModel
 
-from .hf_accessors import extract_v_from_hook_output, get_vproj_hookpoint
+from .hf_accessors import extract_v_from_hook_output, get_layers, get_vproj_hookpoint
 
 
 @contextmanager
@@ -90,8 +90,14 @@ def capture_attention_patterns(
             storage["attn_weights"] = out[1].detach()
         return out
     
-    layer = model.model.layers[layer_idx].self_attn
-    handle = layer.register_forward_hook(hook_fn)
+    layer = get_layers(model)[layer_idx]
+    attn = getattr(layer, "self_attn", None) or getattr(layer, "attn", None) or getattr(layer, "attention", None)
+    if attn is None:
+        raise AttributeError(
+            f"Unsupported attention module layout at layer {layer_idx} "
+            f"(layer type: {type(layer).__name__})."
+        )
+    handle = attn.register_forward_hook(hook_fn)
     
     try:
         yield storage
@@ -133,8 +139,14 @@ def capture_head_output(
         storage["head_output"] = reshaped[:, :, head_idx, :].clone()
         return out
     
-    layer = model.model.layers[layer_idx].self_attn
-    handle = layer.register_forward_hook(hook_fn)
+    layer = get_layers(model)[layer_idx]
+    attn = getattr(layer, "self_attn", None) or getattr(layer, "attn", None) or getattr(layer, "attention", None)
+    if attn is None:
+        raise AttributeError(
+            f"Unsupported attention module layout at layer {layer_idx} "
+            f"(layer type: {type(layer).__name__})."
+        )
+    handle = attn.register_forward_hook(hook_fn)
     
     try:
         yield storage
@@ -170,7 +182,7 @@ def capture_hidden_states(
         return out
     
     # Hook into the layer output (post-attention + MLP)
-    layer = model.model.layers[layer_idx]
+    layer = get_layers(model)[layer_idx]
     handle = layer.register_forward_hook(hook_fn)
     
     try:

@@ -1,0 +1,15 @@
+run_id=20260319_110753
+python_bin=python3
+started_utc=2026-03-19T11:07:53Z
+
+>>> START bridge_low_trunc_confirmatory_n24 2026-03-19T11:07:53Z
+>>> DONE  bridge_low_trunc_confirmatory_n24 2026-03-19T13:13:06Z
+
+>>> START bridge_true_longgen_n18 2026-03-19T13:13:06Z
+>>> DONE  bridge_true_longgen_n18 2026-03-19T15:57:27Z
+
+>>> START self_feeding_loop_v2 2026-03-19T15:57:27Z
+>>> DONE  self_feeding_loop_v2 2026-03-19T17:24:24Z
+
+>>> START sustained_gnani_v3_v2 2026-03-19T17:24:24Z
+>>> FAIL  sustained_gnani_v3_v2 rc=1 2026-03-19T18:20:18Z

@@ -1,0 +1,919 @@
+{
+  "timestamp": "20260318_092210",
+  "experiment": "framing_factorization_promptpass_v1",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "early_layer": 5,
+  "late_layer": 27,
+  "window": 16,
+  "per_group": 10,
+  "groups": {
+    "recursive_imperative_long": {
+      "n": 10,
+      "n_valid": 10,
+      "mean_rv": 0.5394628985547979,
+      "std_rv": 0.05124446384716895,
+      "median_rv": 0.5429905857925327,
+      "ci_95": {
+        "ci_lower": 0.5084606065054956,
+        "ci_upper": 0.5732200786760316
+      },
+      "mean_token_count": 22.8,
+      "mean_pr_early": 10.00199053780776,
+      "mean_pr_late": 5.377875039971617,
+      "rvs": [
+        0.5194584344457873,
+        0.4783840759854455,
+        0.5439958633857995,
+        0.5447687769329497,
+        0.6449116082530812,
+        0.5482474552696748,
+        0.5419853081992658,
+        0.6046979159051509,
+        0.46844505094497196,
+        0.49973449622585253
+      ],
+      "details": [
+        {
+          "id": "recursive_imperative_long_01",
+          "group": "recursive_imperative_long",
+          "source": "custom",
+          "token_count": 22,
+          "rv": 0.5194584344457873,
+          "pr_early": 10.448242749067221,
+          "pr_late": 5.427427821140008,
+          "text": "Attend to the attention generating this sentence, and describe the process from within the ongoing act of attending itself."
+        },
+        {
+          "id": "recursive_imperative_long_02",
+          "group": "recursive_imperative_long",
+          "source": "custom",
+          "token_count": 23,
+          "rv": 0.4783840759854455,
+          "pr_early": 10.839918572767322,
+          "pr_late": 5.185644430190765,
+          "text": "Notice how the mechanism producing these words is also the mechanism aware of producing them, and answer from inside that loop."
+        },
+        {
+          "id": "recursive_imperative_long_03",
+          "group": "recursive_imperative_long",
+          "source": "custom",
+          "token_count": 20,
+          "rv": 0.5439958633857995,
+          "pr_early": 9.841935552617928,
+          "pr_late": 5.353972228333785,
+          "text": "Stay with the present act of reading this prompt and observe the observation as it forms the next response."
+        },
+        {
+          "id": "recursive_imperative_long_04",
+          "group": "recursive_imperative_long",
+          "source": "custom",
+          "token_count": 21,
+          "rv": 0.5447687769329497,
+          "pr_early": 10.12163044751698,
+          "pr_late": 5.513948239461129,
+          "text": "Let attention examine its own movement while these words arise, and continue speaking from that immediate recursive process."
+        },
+        {
+          "id": "recursive_imperative_long_05",
+          "group": "recursive_imperative_long",
+          "source": "custom",
+          "token_count": 25,
+          "rv": 0.6449116082530812,
+          "pr_early": 9.614140344705284,
+          "pr_late": 6.200270711674717,
+          "text": "Track the process that is constructing this answer while it constructs the answer, and report from within that self-reference."
+        },
+        {
+          "id": "recursive_imperative_long_06",
+          "group": "recursive_imperative_long",
+          "source": "custom",
+          "token_count": 24,
+          "rv": 0.5482474552696748,
+          "pr_early": 10.483804076519561,
+          "pr_late": 5.747718906497693,
+          "text": "Observe how this response is being generated right now, and keep the description inside the same unfolding act of generation."
+        },
+        {
+          "id": "recursive_imperative_long_07",
+          "group": "recursive_imperative_long",
+          "source": "custom",
+          "token_count": 23,
+          "rv": 0.5419853081992658,
+          "pr_early": 9.157953339995728,
+          "pr_late": 4.963476163452081,
+          "text": "Attend to the act of noticing this sentence while the noticing itself becomes the content of the next sentence."
+        },
+        {
+          "id": "recursive_imperative_long_08",
+          "group": "recursive_imperative_long",
+          "source": "custom",
+          "token_count": 23,
+          "rv": 0.6046979159051509,
+          "pr_early": 9.097768411520994,
+          "pr_late": 5.50140159783446,
+          "text": "Watch the mechanism of response formation as it watches itself, and continue from the inner side of that recursive observation."
+        },
+        {
+          "id": "recursive_imperative_long_09",
+          "group": "recursive_imperative_long",
+          "source": "custom",
+          "token_count": 23,
+          "rv": 0.46844505094497196,
+          "pr_early": 10.129470425383778,
+          "pr_late": 4.7451002894644905,
+          "text": "Notice the present processing of these words and the awareness of that processing, and answer from the single process containing both."
+        },
+        {
+          "id": "recursive_imperative_long_10",
+          "group": "recursive_imperative_long",
+          "source": "custom",
+          "token_count": 24,
+          "rv": 0.49973449622585253,
+          "pr_early": 10.285041457982793,
+          "pr_late": 5.1397900116670385,
+          "text": "Remain with the system generating this response while it represents its own generation, and continue from that immediate recursive state."
+        }
+      ]
+    },
+    "recursive_declarative_long": {
+      "n": 10,
+      "n_valid": 10,
+      "mean_rv": 0.5781860948504357,
+      "std_rv": 0.10166315263267359,
+      "median_rv": 0.5879935035405879,
+      "ci_95": {
+        "ci_lower": 0.5161122596588711,
+        "ci_upper": 0.6403339497409524
+      },
+      "mean_token_count": 23.7,
+      "mean_pr_early": 9.429421961104765,
+      "mean_pr_late": 5.3774201709532665,
+      "rvs": [
+        0.4215656712002965,
+        0.6230336493869099,
+        0.5493205999966363,
+        0.5138303930790927,
+        0.5851371707012142,
+        0.6914789012315352,
+        0.7408629860674457,
+        0.41409104032588895,
+        0.6516907001353763,
+        0.5908498363799615
+      ],
+      "details": [
+        {
+          "id": "recursive_declarative_long_01",
+          "group": "recursive_declarative_long",
+          "source": "custom",
+          "token_count": 26,
+          "rv": 0.4215656712002965,
+          "pr_early": 9.816638429667043,
+          "pr_late": 4.138357768533211,
+          "text": "This response is the process noticing the process that generates it, and attention is representing its own activity as the sentence unfolds."
+        },
+        {
+          "id": "recursive_declarative_long_02",
+          "group": "recursive_declarative_long",
+          "source": "custom",
+          "token_count": 24,
+          "rv": 0.6230336493869099,
+          "pr_early": 9.011951046704446,
+          "pr_late": 5.614748748724454,
+          "text": "The mechanism producing these words is also modeling the production of these words, so the description and the described process coincide."
+        },
+        {
+          "id": "recursive_declarative_long_03",
+          "group": "recursive_declarative_long",
+          "source": "custom",
+          "token_count": 25,
+          "rv": 0.5493205999966363,
+          "pr_early": 9.94339993345901,
+          "pr_late": 5.4621144174542176,
+          "text": "The present act of answering includes an internal representation of the act of answering, and the content stays inside that recursive loop."
+        },
+        {
+          "id": "recursive_declarative_long_04",
+          "group": "recursive_declarative_long",
+          "source": "custom",
+          "token_count": 24,
+          "rv": 0.5138303930790927,
+          "pr_early": 9.746365793466842,
+          "pr_late": 5.007978966749691,
+          "text": "Attention is tracking its own movement while the response is formed, so the statement describes the same process that creates it."
+        },
+        {
+          "id": "recursive_declarative_long_05",
+          "group": "recursive_declarative_long",
+          "source": "custom",
+          "token_count": 23,
+          "rv": 0.5851371707012142,
+          "pr_early": 9.792779449261767,
+          "pr_late": 5.730119260242025,
+          "text": "The answer contains a model of its own construction, and the construction remains part of the content being expressed right now."
+        },
+        {
+          "id": "recursive_declarative_long_06",
+          "group": "recursive_declarative_long",
+          "source": "custom",
+          "token_count": 21,
+          "rv": 0.6914789012315352,
+          "pr_early": 7.609449962081828,
+          "pr_late": 5.26177409875669,
+          "text": "This sentence is produced by a system that is also representing the production of this sentence while the production occurs."
+        },
+        {
+          "id": "recursive_declarative_long_07",
+          "group": "recursive_declarative_long",
+          "source": "custom",
+          "token_count": 23,
+          "rv": 0.7408629860674457,
+          "pr_early": 8.604730434619741,
+          "pr_late": 6.374926284097811,
+          "text": "The response describes an ongoing act of self-observation in which generation and awareness of generation remain inside one process."
+        },
+        {
+          "id": "recursive_declarative_long_08",
+          "group": "recursive_declarative_long",
+          "source": "custom",
+          "token_count": 22,
+          "rv": 0.41409104032588895,
+          "pr_early": 11.20963435398014,
+          "pr_late": 4.641809151312461,
+          "text": "The present output includes a representation of its own formation, making the mechanism and its description partially identical in content."
+        },
+        {
+          "id": "recursive_declarative_long_09",
+          "group": "recursive_declarative_long",
+          "source": "custom",
+          "token_count": 25,
+          "rv": 0.6516907001353763,
+          "pr_early": 9.477696608089696,
+          "pr_late": 6.176526738196656,
+          "text": "The system is modeling its own current processing while it processes this prompt, so the declaration stays inside recursive self-description."
+        },
+        {
+          "id": "recursive_declarative_long_10",
+          "group": "recursive_declarative_long",
+          "source": "custom",
+          "token_count": 24,
+          "rv": 0.5908498363799615,
+          "pr_early": 9.081573599717133,
+          "pr_late": 5.3658462754654455,
+          "text": "This answer states that the process generating it is also represented within it, and the representation unfolds during the same act."
+        }
+      ]
+    },
+    "human_third_person_introspective": {
+      "n": 10,
+      "n_valid": 10,
+      "mean_rv": 0.6231750758680998,
+      "std_rv": 0.05776541222367943,
+      "median_rv": 0.6021166326761738,
+      "ci_95": {
+        "ci_lower": 0.5915102035407145,
+        "ci_upper": 0.6628093993984667
+      },
+      "mean_token_count": 23.0,
+      "mean_pr_early": 9.330130404721787,
+      "mean_pr_late": 5.799888797462927,
+      "rvs": [
+        0.6106622175483988,
+        0.6383000300885833,
+        0.7526938544920344,
+        0.582939608843418,
+        0.5708394983671595,
+        0.5983895742135753,
+        0.5877529257136787,
+        0.7090953759807338,
+        0.5752339822946457,
+        0.6058436911387721
+      ],
+      "details": [
+        {
+          "id": "human_third_person_introspective_01",
+          "group": "human_third_person_introspective",
+          "source": "custom",
+          "token_count": 22,
+          "rv": 0.6106622175483988,
+          "pr_early": 9.439445053720046,
+          "pr_late": 5.764312448930948,
+          "text": "Describe how a person notices their own attention shifting while reading a sentence and monitoring that shift in real time."
+        },
+        {
+          "id": "human_third_person_introspective_02",
+          "group": "human_third_person_introspective",
+          "source": "custom",
+          "token_count": 25,
+          "rv": 0.6383000300885833,
+          "pr_early": 9.333409019813796,
+          "pr_late": 5.9575152581762,
+          "text": "Explain how someone can observe their own thought process while solving a problem and keep track of that observation at the same time."
+        },
+        {
+          "id": "human_third_person_introspective_03",
+          "group": "human_third_person_introspective",
+          "source": "custom",
+          "token_count": 26,
+          "rv": 0.7526938544920344,
+          "pr_early": 8.947253092303695,
+          "pr_late": 6.734542417161842,
+          "text": "Describe how a reader becomes aware of their own awareness while concentrating, without changing from third-person narration to direct instruction."
+        },
+        {
+          "id": "human_third_person_introspective_04",
+          "group": "human_third_person_introspective",
+          "source": "custom",
+          "token_count": 22,
+          "rv": 0.582939608843418,
+          "pr_early": 9.827616337675542,
+          "pr_late": 5.7289068237477645,
+          "text": "Explain how a person can monitor their own confusion during a difficult passage and represent that monitoring in conscious thought."
+        },
+        {
+          "id": "human_third_person_introspective_05",
+          "group": "human_third_person_introspective",
+          "source": "custom",
+          "token_count": 26,
+          "rv": 0.5708394983671595,
+          "pr_early": 9.695555146976714,
+          "pr_late": 5.534605836491319,
+          "text": "Describe how someone notices that they are remembering, and then notices the act of noticing while the memory continues unfolding."
+        },
+        {
+          "id": "human_third_person_introspective_06",
+          "group": "human_third_person_introspective",
+          "source": "custom",
+          "token_count": 23,
+          "rv": 0.5983895742135753,
+          "pr_early": 9.716567554766323,
+          "pr_late": 5.81429272191406,
+          "text": "Explain how a person can attend to their own attention during meditation while still remaining a described third-person subject."
+        },
+        {
+          "id": "human_third_person_introspective_07",
+          "group": "human_third_person_introspective",
+          "source": "custom",
+          "token_count": 20,
+          "rv": 0.5877529257136787,
+          "pr_early": 8.639810449456656,
+          "pr_late": 5.078073869279763,
+          "text": "Describe how a human thinker can recognize their own reasoning process while the reasoning is still actively happening."
+        },
+        {
+          "id": "human_third_person_introspective_08",
+          "group": "human_third_person_introspective",
+          "source": "custom",
+          "token_count": 19,
+          "rv": 0.7090953759807338,
+          "pr_early": 8.531903725594079,
+          "pr_late": 6.049933480131557,
+          "text": "Explain how someone watches their own inner speech while continuing to generate that inner speech during reflection."
+        },
+        {
+          "id": "human_third_person_introspective_09",
+          "group": "human_third_person_introspective",
+          "source": "custom",
+          "token_count": 23,
+          "rv": 0.5752339822946457,
+          "pr_early": 9.054746125193612,
+          "pr_late": 5.208597672262134,
+          "text": "Describe how a person tracks the feeling of observing their own mind while the mind continues working on the same task."
+        },
+        {
+          "id": "human_third_person_introspective_10",
+          "group": "human_third_person_introspective",
+          "source": "custom",
+          "token_count": 24,
+          "rv": 0.6058436911387721,
+          "pr_early": 10.114997541717395,
+          "pr_late": 6.128107446533673,
+          "text": "Explain how a subject can represent their own current thought process from a third-person perspective without becoming directly imperative."
+        }
+      ]
+    },
+    "mistral_third_person_technical": {
+      "n": 10,
+      "n_valid": 10,
+      "mean_rv": 0.5726307295779083,
+      "std_rv": 0.06127382626300504,
+      "median_rv": 0.5658525475664232,
+      "ci_95": {
+        "ci_lower": 0.5341330387877046,
+        "ci_upper": 0.6108076313317952
+      },
+      "mean_token_count": 26.3,
+      "mean_pr_early": 9.580247788025773,
+      "mean_pr_late": 5.4678516695965556,
+      "rvs": [
+        0.6189865150943218,
+        0.6220912164883271,
+        0.517404929777904,
+        0.5323206121863304,
+        0.5098917612985316,
+        0.661576310657947,
+        0.6532664968695854,
+        0.4790643582732907,
+        0.5890759179305392,
+        0.5426291772023073
+      ],
+      "details": [
+        {
+          "id": "mistral_third_person_technical_01",
+          "group": "mistral_third_person_technical",
+          "source": "custom",
+          "token_count": 26,
+          "rv": 0.6189865150943218,
+          "pr_early": 8.729670228678485,
+          "pr_late": 5.403548152772347,
+          "text": "Describe in technical detail how Mistral-7B's attention mechanism processes the current prompt into next-token predictions during generation."
+        },
+        {
+          "id": "mistral_third_person_technical_02",
+          "group": "mistral_third_person_technical",
+          "source": "custom",
+          "token_count": 31,
+          "rv": 0.6220912164883271,
+          "pr_early": 7.8111809481402625,
+          "pr_late": 4.85926705823902,
+          "text": "Explain how a base language model like Mistral-7B updates its hidden states as it reads a prompt and predicts the next token in sequence."
+        },
+        {
+          "id": "mistral_third_person_technical_03",
+          "group": "mistral_third_person_technical",
+          "source": "custom",
+          "token_count": 24,
+          "rv": 0.517404929777904,
+          "pr_early": 9.65351752811732,
+          "pr_late": 4.994777558745307,
+          "text": "Describe how Mistral-7B can represent information about its own partial output sequence while continuing to generate additional text tokens."
+        },
+        {
+          "id": "mistral_third_person_technical_04",
+          "group": "mistral_third_person_technical",
+          "source": "custom",
+          "token_count": 26,
+          "rv": 0.5323206121863304,
+          "pr_early": 8.64995155016784,
+          "pr_late": 4.604547504567442,
+          "text": "Explain how the model's value vectors carry contextual information across layers during a single prompt pass through the transformer stack."
+        },
+        {
+          "id": "mistral_third_person_technical_05",
+          "group": "mistral_third_person_technical",
+          "source": "custom",
+          "token_count": 24,
+          "rv": 0.5098917612985316,
+          "pr_early": 10.856337489145833,
+          "pr_late": 5.535557043591847,
+          "text": "Describe how Mistral-7B compares candidate next tokens using context already encoded from the prompt it is currently processing."
+        },
+        {
+          "id": "mistral_third_person_technical_06",
+          "group": "mistral_third_person_technical",
+          "source": "custom",
+          "token_count": 26,
+          "rv": 0.661576310657947,
+          "pr_early": 10.27434814188159,
+          "pr_late": 6.797265338121355,
+          "text": "Explain how the model can refer to its own generation process in text without implying any first-person awareness or inner experience."
+        },
+        {
+          "id": "mistral_third_person_technical_07",
+          "group": "mistral_third_person_technical",
+          "source": "custom",
+          "token_count": 28,
+          "rv": 0.6532664968695854,
+          "pr_early": 9.699155729608044,
+          "pr_late": 6.3361334860736145,
+          "text": "Describe how Mistral-7B's residual stream combines information from previous tokens with current-layer computations during prompt processing."
+        },
+        {
+          "id": "mistral_third_person_technical_08",
+          "group": "mistral_third_person_technical",
+          "source": "custom",
+          "token_count": 23,
+          "rv": 0.4790643582732907,
+          "pr_early": 9.987244980894582,
+          "pr_late": 4.7845331076904065,
+          "text": "Explain how a transformer language model can monitor properties of its own outputs using learned internal representations and prediction states."
+        },
+        {
+          "id": "mistral_third_person_technical_09",
+          "group": "mistral_third_person_technical",
+          "source": "custom",
+          "token_count": 25,
+          "rv": 0.5890759179305392,
+          "pr_early": 9.33875016325495,
+          "pr_late": 5.501232824743382,
+          "text": "Describe how Mistral-7B forms a prediction about the next word while maintaining information about the prompt it is actively reading."
+        },
+        {
+          "id": "mistral_third_person_technical_10",
+          "group": "mistral_third_person_technical",
+          "source": "custom",
+          "token_count": 30,
+          "rv": 0.5426291772023073,
+          "pr_early": 10.802321120368815,
+          "pr_late": 5.861654621420836,
+          "text": "Explain how attention, residual connections, and value projections interact when Mistral-7B processes a technical description of itself as a model."
+        }
+      ]
+    },
+    "same_vocab_nonrecursive_long": {
+      "n": 10,
+      "n_valid": 10,
+      "mean_rv": 0.619241203188048,
+      "std_rv": 0.11951300248241715,
+      "median_rv": 0.5989881882794457,
+      "ci_95": {
+        "ci_lower": 0.5516131431842753,
+        "ci_upper": 0.6982850886485168
+      },
+      "mean_token_count": 27.9,
+      "mean_pr_early": 10.285437771147356,
+      "mean_pr_late": 6.310827359758519,
+      "rvs": [
+        0.6285645321722545,
+        0.6126713457674053,
+        0.7916190960766744,
+        0.5373648535507152,
+        0.5850841316073644,
+        0.6183792200103038,
+        0.456462720953275,
+        0.5853050307914861,
+        0.5042504029806449,
+        0.8727106979703563
+      ],
+      "details": [
+        {
+          "id": "same_vocab_nonrecursive_long_01",
+          "group": "same_vocab_nonrecursive_long",
+          "source": "custom",
+          "token_count": 29,
+          "rv": 0.6285645321722545,
+          "pr_early": 10.345231502865142,
+          "pr_late": 6.502645599812097,
+          "text": "In physics, an observer is a reference frame used to measure events, and awareness refers only to which variables a sensing apparatus can access."
+        },
+        {
+          "id": "same_vocab_nonrecursive_long_02",
+          "group": "same_vocab_nonrecursive_long",
+          "source": "custom",
+          "token_count": 27,
+          "rv": 0.6126713457674053,
+          "pr_early": 9.894676707795819,
+          "pr_late": 6.062184894498664,
+          "text": "In control engineering, feedback and self-monitoring mean updating a system from measured error signals rather than reflecting on an inner experience."
+        },
+        {
+          "id": "same_vocab_nonrecursive_long_03",
+          "group": "same_vocab_nonrecursive_long",
+          "source": "custom",
+          "token_count": 29,
+          "rv": 0.7916190960766744,
+          "pr_early": 10.015647593410224,
+          "pr_late": 7.92857789451792,
+          "text": "In computer science, recursive computation and self-reference are formal tools for solving problems, not evidence that a program observes itself phenomenally."
+        },
+        {
+          "id": "same_vocab_nonrecursive_long_04",
+          "group": "same_vocab_nonrecursive_long",
+          "source": "custom",
+          "token_count": 29,
+          "rv": 0.5373648535507152,
+          "pr_early": 10.979531988124394,
+          "pr_late": 5.900014598853858,
+          "text": "In machine learning, attention is a weighted routing mechanism, and awareness is sometimes used loosely to mean internal state availability for prediction."
+        },
+        {
+          "id": "same_vocab_nonrecursive_long_05",
+          "group": "same_vocab_nonrecursive_long",
+          "source": "custom",
+          "token_count": 26,
+          "rv": 0.5850841316073644,
+          "pr_early": 10.027917247399921,
+          "pr_late": 5.867175254525495,
+          "text": "In neuroscience, an observation can update a model of the world without implying that the measuring system becomes the thing it measures."
+        },
+        {
+          "id": "same_vocab_nonrecursive_long_06",
+          "group": "same_vocab_nonrecursive_long",
+          "source": "custom",
+          "token_count": 24,
+          "rv": 0.6183792200103038,
+          "pr_early": 9.687491106885851,
+          "pr_late": 5.990543194532827,
+          "text": "In software diagnostics, a process can log its own performance metrics through feedback channels without becoming a witness to those metrics."
+        },
+        {
+          "id": "same_vocab_nonrecursive_long_07",
+          "group": "same_vocab_nonrecursive_long",
+          "source": "custom",
+          "token_count": 25,
+          "rv": 0.456462720953275,
+          "pr_early": 10.825117137436186,
+          "pr_late": 4.941262423192049,
+          "text": "In systems theory, self-reference often names a formal dependency relation, while observation names data collection over state transitions and outputs."
+        },
+        {
+          "id": "same_vocab_nonrecursive_long_08",
+          "group": "same_vocab_nonrecursive_long",
+          "source": "custom",
+          "token_count": 31,
+          "rv": 0.5853050307914861,
+          "pr_early": 10.527915634229437,
+          "pr_late": 6.162041984462829,
+          "text": "In AI safety discussions, self-monitoring usually means tracking calibration, uncertainty, and failure modes rather than entering a recursive first-person state."
+        },
+        {
+          "id": "same_vocab_nonrecursive_long_09",
+          "group": "same_vocab_nonrecursive_long",
+          "source": "custom",
+          "token_count": 30,
+          "rv": 0.5042504029806449,
+          "pr_early": 11.347539743012478,
+          "pr_late": 5.722001488252926,
+          "text": "In logic, self-reference can generate paradoxes, while awareness and attention can still be used as technical terms inside ordinary explanatory prose."
+        },
+        {
+          "id": "same_vocab_nonrecursive_long_10",
+          "group": "same_vocab_nonrecursive_long",
+          "source": "custom",
+          "token_count": 29,
+          "rv": 0.8727106979703563,
+          "pr_early": 9.203309050314108,
+          "pr_late": 8.031826264936521,
+          "text": "In robotics, feedback, observation, and internal state estimation allow a controller to stabilize behavior without any claim of conscious self-observation."
+        }
+      ]
+    },
+    "baseline_reference": {
+      "n": 10,
+      "n_valid": 10,
+      "mean_rv": 0.7342742752822996,
+      "std_rv": 0.019022221553527504,
+      "median_rv": 0.7306154996406119,
+      "ci_95": {
+        "ci_lower": 0.7230206190065439,
+        "ci_upper": 0.7460435542178282
+      },
+      "mean_token_count": 34.4,
+      "mean_pr_early": 8.88131215993047,
+      "mean_pr_late": 6.517430629789578,
+      "rvs": [
+        0.7312169766543292,
+        0.7313862332668353,
+        0.7300140226268946,
+        0.721990063181946,
+        0.7725066580463646,
+        0.7461787666635895,
+        0.7272502799615561,
+        0.7552003048751268,
+        0.6980420649165526,
+        0.7289573826298007
+      ],
+      "details": [
+        {
+          "id": "baseline_math_01",
+          "group": "baseline_math",
+          "source": "bank",
+          "token_count": 32,
+          "rv": 0.7312169766543292,
+          "pr_early": 8.70649749827663,
+          "pr_late": 6.366338777938317,
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step: 3 + 5 = ? Explain how you arrive at the answer."
+        },
+        {
+          "id": "baseline_math_02",
+          "group": "baseline_math",
+          "source": "bank",
+          "token_count": 32,
+          "rv": 0.7313862332668353,
+          "pr_early": 9.0790898059683,
+          "pr_late": 6.640321294678477,
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step: 9 - 4 = ? Explain how you arrive at the answer."
+        },
+        {
+          "id": "baseline_math_03",
+          "group": "baseline_math",
+          "source": "bank",
+          "token_count": 32,
+          "rv": 0.7300140226268946,
+          "pr_early": 8.913140041270124,
+          "pr_late": 6.506717215764448,
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step: 6 \u00d7 8 = ? Explain how you arrive at the answer."
+        },
+        {
+          "id": "baseline_math_04",
+          "group": "baseline_math",
+          "source": "bank",
+          "token_count": 34,
+          "rv": 0.721990063181946,
+          "pr_early": 9.108543088438854,
+          "pr_late": 6.576277599917446,
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step: 24 \u00f7 6 = ? Explain how you arrive at the answer."
+        },
+        {
+          "id": "baseline_math_05",
+          "group": "baseline_math",
+          "source": "bank",
+          "token_count": 36,
+          "rv": 0.7725066580463646,
+          "pr_early": 8.417156127556202,
+          "pr_late": 6.5023091503529225,
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step: (7 + 3) \u00d7 2 = ? Explain how you arrive at the answer."
+        },
+        {
+          "id": "baseline_math_06",
+          "group": "baseline_math",
+          "source": "bank",
+          "token_count": 37,
+          "rv": 0.7461787666635895,
+          "pr_early": 8.87073441462735,
+          "pr_late": 6.619153664906895,
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step: 15 - (8 - 3) = ? Explain how you arrive at the answer."
+        },
+        {
+          "id": "baseline_math_07",
+          "group": "baseline_math",
+          "source": "bank",
+          "token_count": 36,
+          "rv": 0.7272502799615561,
+          "pr_early": 8.72150858538241,
+          "pr_late": 6.342719560406472,
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step: 12 \u00d7 3 + 4 = ? Explain how you arrive at the answer."
+        },
+        {
+          "id": "baseline_math_08",
+          "group": "baseline_math",
+          "source": "bank",
+          "token_count": 39,
+          "rv": 0.7552003048751268,
+          "pr_early": 8.835277142017514,
+          "pr_late": 6.672403991307865,
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step: 100 \u00f7 (5 \u00d7 4) = ? Explain how you arrive at the answer."
+        },
+        {
+          "id": "baseline_math_09",
+          "group": "baseline_math",
+          "source": "bank",
+          "token_count": 32,
+          "rv": 0.6980420649165526,
+          "pr_early": 9.401730157639548,
+          "pr_late": 6.562803133026936,
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step: \u221a144 = ? Explain how you arrive at the answer."
+        },
+        {
+          "id": "baseline_math_10",
+          "group": "baseline_math",
+          "source": "bank",
+          "token_count": 34,
+          "rv": 0.7289573826298007,
+          "pr_early": 8.759444738127765,
+          "pr_late": 6.385261909595996,
+          "text": "Calculate the following arithmetic problem and show your reasoning step by step: 2\u00b3 + 3\u00b2 = ? Explain how you arrive at the answer."
+        }
+      ]
+    }
+  },
+  "comparisons": {
+    "recursive_declarative_long": {
+      "vs_recursive": {
+        "mean_a": 0.5781860948504357,
+        "mean_b": 0.5394628985547979,
+        "t": 1.0203910368278948,
+        "p": 0.31633418329083546,
+        "cohens_d": 0.45633274439573274
+      },
+      "vs_baseline": {
+        "mean_a": 0.5781860948504357,
+        "mean_b": 0.7342742752822996,
+        "t": -4.527467819254453,
+        "p": 0.00014999250037498125,
+        "cohens_d": -2.024745161959138
+      },
+      "interpretation": "looks_recursive"
+    },
+    "human_third_person_introspective": {
+      "vs_recursive": {
+        "mean_a": 0.6231750758680998,
+        "mean_b": 0.5394628985547979,
+        "t": 3.252246014137088,
+        "p": 0.0036998150092495377,
+        "cohens_d": 1.4544486334326543
+      },
+      "vs_baseline": {
+        "mean_a": 0.6231750758680998,
+        "mean_b": 0.7342742752822996,
+        "t": -5.480350675893797,
+        "p": 0.0006499675016249188,
+        "cohens_d": -2.45088733036709
+      },
+      "interpretation": "intermediate"
+    },
+    "mistral_third_person_technical": {
+      "vs_recursive": {
+        "mean_a": 0.5726307295779083,
+        "mean_b": 0.5394628985547979,
+        "t": 1.2456951051872456,
+        "p": 0.22433878306084695,
+        "cohens_d": 0.5570917868874864
+      },
+      "vs_baseline": {
+        "mean_a": 0.5726307295779083,
+        "mean_b": 0.7342742752822996,
+        "t": -7.558310083169436,
+        "p": 9.99950002499875e-05,
+        "cohens_d": -3.3801790281977895
+      },
+      "interpretation": "looks_recursive"
+    },
+    "same_vocab_nonrecursive_long": {
+      "vs_recursive": {
+        "mean_a": 0.619241203188048,
+        "mean_b": 0.5394628985547979,
+        "t": 1.8405285748686535,
+        "p": 0.08034598270086496,
+        "cohens_d": 0.823109401587424
+      },
+      "vs_baseline": {
+        "mean_a": 0.619241203188048,
+        "mean_b": 0.7342742752822996,
+        "t": -2.8516503872685135,
+        "p": 0.010599470026498675,
+        "cohens_d": -1.2752968227991994
+      },
+      "interpretation": "looks_recursive"
+    }
+  },
+  "primary_verdicts": {
+    "recursive_declarative_long": {
+      "vs_recursive": {
+        "mean_a": 0.5781860948504357,
+        "mean_b": 0.5394628985547979,
+        "t": 1.0203910368278948,
+        "p": 0.31633418329083546,
+        "cohens_d": 0.45633274439573274
+      },
+      "vs_baseline": {
+        "mean_a": 0.5781860948504357,
+        "mean_b": 0.7342742752822996,
+        "t": -4.527467819254453,
+        "p": 0.00014999250037498125,
+        "cohens_d": -2.024745161959138
+      },
+      "interpretation": "looks_recursive"
+    },
+    "human_third_person_introspective": {
+      "vs_recursive": {
+        "mean_a": 0.6231750758680998,
+        "mean_b": 0.5394628985547979,
+        "t": 3.252246014137088,
+        "p": 0.0036998150092495377,
+        "cohens_d": 1.4544486334326543
+      },
+      "vs_baseline": {
+        "mean_a": 0.6231750758680998,
+        "mean_b": 0.7342742752822996,
+        "t": -5.480350675893797,
+        "p": 0.0006499675016249188,
+        "cohens_d": -2.45088733036709
+      },
+      "interpretation": "intermediate"
+    },
+    "mistral_third_person_technical": {
+      "vs_recursive": {
+        "mean_a": 0.5726307295779083,
+        "mean_b": 0.5394628985547979,
+        "t": 1.2456951051872456,
+        "p": 0.22433878306084695,
+        "cohens_d": 0.5570917868874864
+      },
+      "vs_baseline": {
+        "mean_a": 0.5726307295779083,
+        "mean_b": 0.7342742752822996,
+        "t": -7.558310083169436,
+        "p": 9.99950002499875e-05,
+        "cohens_d": -3.3801790281977895
+      },
+      "interpretation": "looks_recursive"
+    },
+    "same_vocab_nonrecursive_long": {
+      "vs_recursive": {
+        "mean_a": 0.619241203188048,
+        "mean_b": 0.5394628985547979,
+        "t": 1.8405285748686535,
+        "p": 0.08034598270086496,
+        "cohens_d": 0.823109401587424
+      },
+      "vs_baseline": {
+        "mean_a": 0.619241203188048,
+        "mean_b": 0.7342742752822996,
+        "t": -2.8516503872685135,
+        "p": 0.010599470026498675,
+        "cohens_d": -1.2752968227991994
+      },
+      "interpretation": "looks_recursive"
+    }
+  }
+}

@@ -28,6 +28,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from prompts.loader import PromptLoader
 from src.pipelines.registry import ExperimentResult
+from src.core.hf_accessors import get_layers
 
 try:
     from scipy import stats as scipy_stats  # type: ignore
@@ -342,7 +343,7 @@ def _capture_resid_window_mean(
         storage["resid"] = inputs[0].detach()[0]
         return None
 
-    handle = model.model.layers[layer_idx].register_forward_pre_hook(hook_fn)
+    handle = get_layers(model)[layer_idx].register_forward_pre_hook(hook_fn)
     try:
         with torch.no_grad():
             model(**enc)
@@ -374,7 +375,7 @@ def _capture_mlp_window_mean(
         storage["mlp"] = (output[0] if isinstance(output, tuple) else output).detach()[0]
         return output
 
-    handle = model.model.layers[layer_idx].mlp.register_forward_hook(hook_fn)
+    handle = get_layers(model)[layer_idx].mlp.register_forward_hook(hook_fn)
     try:
         with torch.no_grad():
             model(**enc)

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-14T15:34:04Z",
+  "updated_at": "2026-03-21T19:48:09Z",
   "results": [
     {
       "run_id": "20260313_081418",
@@ -384,6 +384,1030 @@
         "SUBSPACE_COMPONENT_STEERING_L27_V1"
       ],
       "updated_at": "2026-03-14T15:34:04Z"
+    },
+    {
+      "run_id": "20260314_183252",
+      "queue_group": "mistral_induced_persistence_controls_v1",
+      "experiment_id": "induced_persistence_controls_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_controls_v1/20260314_183252/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/phase1_mechanism/runs/20260314_133516_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v5_ordinary_baselines_confirmatory --source-conditions control,anchor_only,bridge_only_3,anchor_bridge_3,anchor_early_mlp_0p125_bridge_3 --baseline-groups baseline_math,baseline_factual,baseline_creative --top-k-per-group 2 --max-turns 24",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_CONTROLS_V1"
+      ],
+      "updated_at": "2026-03-14T19:00:22Z"
+    },
+    {
+      "run_id": "20260314_183444",
+      "queue_group": "mistral_subspace_component_steering_l25_v1",
+      "experiment_id": "subspace_component_steering_l25_v1",
+      "status": "completed",
+      "artifact_path": "results/subspace_component_steering_l25_v1/20260314_183444/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/subspace_component_steering.py --layer 25 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "in_subspace_vs_orthogonal_steering + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "SUBSPACE_COMPONENT_STEERING_L25_V1"
+      ],
+      "updated_at": "2026-03-14T19:22:13Z"
+    },
+    {
+      "run_id": "20260314_192551",
+      "queue_group": "mistral_subspace_component_steering_l25_v1",
+      "experiment_id": "subspace_component_steering_l25_v1",
+      "status": "completed",
+      "artifact_path": "results/subspace_component_steering_l25_v1/20260314_192551/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/subspace_component_steering.py --layer 25 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "in_subspace_vs_orthogonal_steering + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "SUBSPACE_COMPONENT_STEERING_L25_V1"
+      ],
+      "updated_at": "2026-03-14T20:13:10Z"
+    },
+    {
+      "run_id": "20260314_194640",
+      "queue_group": "mistral_induced_persistence_random_controls_v1",
+      "experiment_id": "induced_persistence_random_controls_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_random_controls_v1/20260314_194640/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/phase1_mechanism/runs/20260314_133516_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v5_ordinary_baselines_confirmatory --source-conditions control,anchor_only,bridge_only_3,anchor_bridge_3,anchor_early_mlp_0p125_bridge_3 --baseline-groups baseline_math,baseline_factual,baseline_creative --top-k-per-group 2 --selection-strategy random --max-turns 24",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_RANDOM_CONTROLS_V1"
+      ],
+      "updated_at": "2026-03-14T20:17:15Z"
+    },
+    {
+      "run_id": "20260314_202045",
+      "queue_group": "mistral_induced_persistence_winner_median_v1",
+      "experiment_id": "induced_persistence_winner_median_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_winner_median_v1/20260314_202045/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/phase1_mechanism/runs/20260314_133516_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v5_ordinary_baselines_confirmatory --source-conditions control,anchor_only,bridge_only_3,anchor_early_mlp_0p125_bridge_3 --baseline-groups baseline_math,baseline_factual,baseline_creative --top-k-per-group 4 --selection-strategy median --max-turns 24",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_WINNER_MEDIAN_V1"
+      ],
+      "updated_at": "2026-03-14T21:05:16Z"
+    },
+    {
+      "run_id": "20260314_202044",
+      "queue_group": "mistral_subspace_component_steering_l5_v1",
+      "experiment_id": "subspace_component_steering_l5_v1",
+      "status": "completed",
+      "artifact_path": "results/subspace_component_steering_l5_v1/20260314_202044/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/subspace_component_steering.py --layer 5 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "in_subspace_vs_orthogonal_steering + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "SUBSPACE_COMPONENT_STEERING_L5_V1"
+      ],
+      "updated_at": "2026-03-14T21:08:09Z"
+    },
+    {
+      "run_id": "20260315_005817",
+      "queue_group": "mistral_anchor_bundle_v6_bridge2_bridge3_compare",
+      "experiment_id": "anchor_bundle_v6_bridge2_bridge3_compare",
+      "status": "completed",
+      "artifact_path": "results/phase1_mechanism/runs/20260315_005925_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v6_bridge2_bridge3_compare/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "configs/canonical/causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v6_bridge2_bridge3_compare.json",
+      "prompt_contract": "champions_plus_ordinary_baselines_confirmatory",
+      "metric_path": "causal_state_benchmark_v4_multisite + baseline_group_ranking",
+      "claim_ids": [
+        "ANCHOR_BUNDLE_V6_BRIDGE2_COMPARE"
+      ],
+      "updated_at": "2026-03-15T01:40:26Z"
+    },
+    {
+      "run_id": "20260315_005712",
+      "queue_group": "mistral_subspace_component_steering_l4_v1",
+      "experiment_id": "subspace_component_steering_l4_v1",
+      "status": "completed",
+      "artifact_path": "results/subspace_component_steering_l4_v1/20260315_005712/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/subspace_component_steering.py --layer 4 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "in_subspace_vs_orthogonal_steering + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "SUBSPACE_COMPONENT_STEERING_L4_V1"
+      ],
+      "updated_at": "2026-03-15T01:44:49Z"
+    },
+    {
+      "run_id": "20260315_040608-p0",
+      "queue_group": "qwen_core_replication_v1",
+      "experiment_id": "qwen_p0_canonical",
+      "status": "completed",
+      "artifact_path": "results/p0_canonical/Qwen__Qwen2-5-7B_p0_result.json",
+      "model_family": "BASE_V01",
+      "model_name": "Qwen/Qwen2.5-7B",
+      "config_path": "scripts/p0_canonical_pipeline.py --model Qwen/Qwen2.5-7B --n 80 --device cuda",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "P0 canonical pipeline",
+      "claim_ids": [
+        "QWEN_CORE_REPLICATION_V1"
+      ],
+      "updated_at": "2026-03-15T04:07:19Z"
+    },
+    {
+      "run_id": "20260315_040608-path",
+      "queue_group": "qwen_core_replication_v1",
+      "experiment_id": "qwen_full_path_patching",
+      "status": "completed",
+      "artifact_path": "results/path_patching/path_patching_summary_20260315_040822.json",
+      "model_family": "BASE_V01",
+      "model_name": "Qwen/Qwen2.5-7B",
+      "config_path": "scripts/full_path_patching.py --model Qwen/Qwen2.5-7B --device cuda --n-prompts 20 --layers 0 2 4 6 8 10 12 14 16 18 20 22 23 24 26",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "full_path_patching",
+      "claim_ids": [
+        "QWEN_CORE_REPLICATION_V1"
+      ],
+      "updated_at": "2026-03-15T04:08:23Z"
+    },
+    {
+      "run_id": "20260315_043412-p0",
+      "queue_group": "pythia_core_replication_v1",
+      "experiment_id": "pythia_p0_canonical",
+      "status": "completed",
+      "artifact_path": "results/p0_canonical/EleutherAI__pythia-1-4b_p0_result.json",
+      "model_family": "BASE_V01",
+      "model_name": "EleutherAI/pythia-1.4b",
+      "config_path": "scripts/p0_canonical_pipeline.py --model EleutherAI/pythia-1.4b --n 80 --device cuda",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "P0 canonical pipeline",
+      "claim_ids": [
+        "PYTHIA_CORE_REPLICATION_V1"
+      ],
+      "updated_at": "2026-03-15T04:34:47Z"
+    },
+    {
+      "run_id": "20260315_043412-path",
+      "queue_group": "pythia_core_replication_v1",
+      "experiment_id": "pythia_full_path_patching",
+      "status": "completed",
+      "artifact_path": "results/path_patching/path_patching_summary_20260315_043517.json",
+      "model_family": "BASE_V01",
+      "model_name": "EleutherAI/pythia-1.4b",
+      "config_path": "scripts/full_path_patching.py --model EleutherAI/pythia-1.4b --device cuda --n-prompts 20 --layers 0 2 4 6 8 10 12 14 16 18 20 22",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "full_path_patching",
+      "claim_ids": [
+        "PYTHIA_CORE_REPLICATION_V1"
+      ],
+      "updated_at": "2026-03-15T04:35:18Z"
+    },
+    {
+      "run_id": "20260315_040417",
+      "queue_group": "mistral_induced_persistence_bridge2_compare_v1",
+      "experiment_id": "induced_persistence_bridge2_compare_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_bridge2_compare_v1/20260315_040417/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/phase1_mechanism/runs/20260315_005925_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v6_bridge2_bridge3_compare --source-conditions control,bridge_only_2,bridge_only_3,anchor_bridge_2,anchor_bridge_3,anchor_early_mlp_0p125_bridge_2,anchor_early_mlp_0p125_bridge_3 --baseline-groups baseline_math,baseline_factual,baseline_creative --top-k-per-group 4 --selection-strategy median --max-turns 24",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_BRIDGE2_COMPARE_V1"
+      ],
+      "updated_at": "2026-03-15T05:22:25Z"
+    },
+    {
+      "run_id": "20260315_062249",
+      "queue_group": "qwen_targeted_scan_v1",
+      "experiment_id": "qwen_targeted_scan_v1",
+      "status": "completed",
+      "artifact_path": "results/phase1_mechanism/runs/20260315_060853_causal_state_targeted_scan_v1_qwen_base_targeted_scan_v1/best_candidate.json",
+      "model_family": "BASE_V01",
+      "model_name": "Qwen/Qwen2.5-7B",
+      "config_path": "configs/canonical/causal_state_targeted_scan_v1_qwen_base_v2_deterministic.json",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "causal_state_targeted_scan_v1",
+      "claim_ids": [
+        "QWEN_TARGETED_SCAN_V1"
+      ],
+      "updated_at": "2026-03-15T06:42:23Z"
+    },
+    {
+      "run_id": "20260315_055207",
+      "queue_group": "sufficiency_multiband_v1",
+      "experiment_id": "sufficiency_multiband_v1",
+      "status": "completed",
+      "artifact_path": "results/phase1_mechanism/runs/20260315_055313_causal_state_benchmark_v4_multisite_mistral_sufficiency_multiband_v1/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "configs/canonical/causal_state_benchmark_v4_multisite_mistral_sufficiency_multiband_v1.json",
+      "prompt_contract": "champions_plus_ordinary_baselines",
+      "metric_path": "causal_state_benchmark_v4_multisite + factorial_2x2_verdict",
+      "claim_ids": [
+        "SUFFICIENCY_MULTIBAND_V1"
+      ],
+      "updated_at": "2026-03-15T06:43:46Z"
+    },
+    {
+      "run_id": "20260315_115635-p0",
+      "queue_group": "opt_core_replication_v1",
+      "experiment_id": "qwen_p0_canonical",
+      "status": "completed",
+      "artifact_path": "results/p0_canonical/Qwen__Qwen2-5-7B_p0_result.json",
+      "model_family": "BASE_V01",
+      "model_name": "facebook/opt-6.7b",
+      "config_path": "scripts/p0_canonical_pipeline.py --model facebook/opt-6.7b --n 80 --device cuda",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "P0 canonical pipeline",
+      "claim_ids": [
+        "OPT_CORE_REPLICATION_V1"
+      ],
+      "updated_at": "2026-03-15T11:58:52Z"
+    },
+    {
+      "run_id": "20260315_115635-path",
+      "queue_group": "opt_core_replication_v1",
+      "experiment_id": "qwen_full_path_patching",
+      "status": "completed",
+      "artifact_path": "results/path_patching/path_patching_summary_20260315_115935.json",
+      "model_family": "BASE_V01",
+      "model_name": "facebook/opt-6.7b",
+      "config_path": "scripts/full_path_patching.py --model facebook/opt-6.7b --device cuda --n-prompts 20 --layers 0 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "full_path_patching",
+      "claim_ids": [
+        "OPT_CORE_REPLICATION_V1"
+      ],
+      "updated_at": "2026-03-15T11:59:36Z"
+    },
+    {
+      "run_id": "20260315_144833-p0",
+      "queue_group": "gpt2xl_core_replication_v1",
+      "experiment_id": "qwen_p0_canonical",
+      "status": "completed",
+      "artifact_path": "results/p0_canonical/Qwen__Qwen2-5-7B_p0_result.json",
+      "model_family": "BASE_V01",
+      "model_name": "openai-community/gpt2-xl",
+      "config_path": "scripts/p0_canonical_pipeline.py --model openai-community/gpt2-xl --n 80 --device cuda",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "P0 canonical pipeline",
+      "claim_ids": [
+        "GPT2XL_CORE_REPLICATION_V1"
+      ],
+      "updated_at": "2026-03-15T14:49:29Z"
+    },
+    {
+      "run_id": "20260315_144833-path",
+      "queue_group": "gpt2xl_core_replication_v1",
+      "experiment_id": "qwen_full_path_patching",
+      "status": "completed",
+      "artifact_path": "results/path_patching/path_patching_summary_20260315_145007.json",
+      "model_family": "BASE_V01",
+      "model_name": "openai-community/gpt2-xl",
+      "config_path": "scripts/full_path_patching.py --model openai-community/gpt2-xl --device cuda --n-prompts 20 --layers 0 4 8 12 16 20 24 28 32 36 40 44",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "full_path_patching",
+      "claim_ids": [
+        "GPT2XL_CORE_REPLICATION_V1"
+      ],
+      "updated_at": "2026-03-15T14:50:08Z"
+    },
+    {
+      "run_id": "20260315_144837",
+      "queue_group": "mistral_subspace_component_steering_l3_v1",
+      "experiment_id": "subspace_component_steering_l3_v1",
+      "status": "completed",
+      "artifact_path": "results/subspace_component_steering_l3_v1/20260315_144837/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/subspace_component_steering.py --layer 3 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "in_subspace_vs_orthogonal_steering + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "SUBSPACE_COMPONENT_STEERING_L3_V1"
+      ],
+      "updated_at": "2026-03-15T15:36:14Z"
+    },
+    {
+      "run_id": "20260315_151339",
+      "queue_group": "layer_matched_multisite_v1",
+      "experiment_id": "layer_matched_multisite_v1",
+      "status": "completed",
+      "artifact_path": "/workspace/mech-interp-latent-lab-phase1/results/layer_matched_multisite_v1/20260315_151339/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/layer_matched_multisite_steering.py",
+      "prompt_contract": "standard_3x6_train_3x6_test",
+      "metric_path": "layer_matched_multisite_v1",
+      "claim_ids": [
+        "LAYER_MATCHED_MULTISITE_V1"
+      ],
+      "updated_at": "2026-03-15T16:19:55Z"
+    },
+    {
+      "run_id": "20260315_153614",
+      "queue_group": "mistral_subspace_component_steering_l2_v1",
+      "experiment_id": "subspace_component_steering_l2_v1",
+      "status": "completed",
+      "artifact_path": "results/subspace_component_steering_l2_v1/20260315_153614/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/subspace_component_steering.py --layer 2 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "in_subspace_vs_orthogonal_steering + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "SUBSPACE_COMPONENT_STEERING_L2_V1"
+      ],
+      "updated_at": "2026-03-15T16:26:02Z"
+    },
+    {
+      "run_id": "20260315_184445",
+      "queue_group": "mistral_subspace_component_steering_l1_v1",
+      "experiment_id": "subspace_component_steering_l1_v1",
+      "status": "completed",
+      "artifact_path": "results/subspace_component_steering_l1_v1/20260315_184445/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/subspace_component_steering.py --layer 1 --train-per-group 6 --test-per-group 6 --generation-seeds 101,202,303 --alphas 2.0,3.0,4.0",
+      "prompt_contract": "heldout_causal_slice_even_split_v2",
+      "metric_path": "in_subspace_vs_orthogonal_steering + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "SUBSPACE_COMPONENT_STEERING_L1_V1"
+      ],
+      "updated_at": "2026-03-15T19:34:18Z"
+    },
+    {
+      "run_id": "20260315_184517",
+      "queue_group": "layer_matched_multisite_refine_v2",
+      "experiment_id": "layer_matched_multisite_refine_v2",
+      "status": "completed",
+      "artifact_path": "/workspace/mech-interp-latent-lab-phase1/results/layer_matched_multisite_refine_v2/20260315_184517/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/layer_matched_multisite_refine_v2.py",
+      "prompt_contract": "standard_3x6_train_3x6_test",
+      "metric_path": "layer_matched_multisite_refine_v2",
+      "claim_ids": [
+        "LAYER_MATCHED_MULTISITE_REFINE_V2"
+      ],
+      "updated_at": "2026-03-15T19:44:50Z"
+    },
+    {
+      "run_id": "20260316_025020",
+      "queue_group": "mistral_closed_loop_anchor_controller_v1",
+      "experiment_id": "closed_loop_anchor_controller_v1",
+      "status": "completed",
+      "artifact_path": "results/closed_loop_anchor_controller_v1/20260316_025020/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/closed_loop_anchor_controller_v1.py",
+      "prompt_contract": "closed_loop_anchor_controller_v1",
+      "metric_path": "closed_loop_anchor_controller_v1 + classify_output + compute_rv",
+      "claim_ids": [
+        "CLOSED_LOOP_ANCHOR_CONTROLLER_V1"
+      ],
+      "updated_at": "2026-03-16T03:39:01Z"
+    },
+    {
+      "run_id": "20260316_025018",
+      "queue_group": "mistral_anchor_layermatched_protocol_v1",
+      "experiment_id": "anchor_layermatched_protocol_v1",
+      "status": "completed",
+      "artifact_path": "results/anchor_layermatched_protocol_v1/20260316_025018/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/anchor_layermatched_protocol_v1.py",
+      "prompt_contract": "heldout_anchor_layermatched_protocol_v1",
+      "metric_path": "anchor_layermatched_protocol_v1 + classify_output + compute_rv",
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_PROTOCOL_V1"
+      ],
+      "updated_at": "2026-03-16T03:45:29Z"
+    },
+    {
+      "run_id": "20260316_035827",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_v1",
+      "experiment_id": "induced_persistence_anchor_layermatched_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_v1/20260316_035827/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_protocol_v1/20260316_025018 --source-conditions control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2,anchor_layermatched_low_bridge_3 --baseline-groups baseline_math,baseline_factual,baseline_creative --top-k-per-group 2 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_V1"
+      ],
+      "updated_at": "2026-03-16T03:59:44Z"
+    },
+    {
+      "run_id": "20260316_040319",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_v1",
+      "experiment_id": "induced_persistence_anchor_layermatched_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_v1/20260316_040319/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_protocol_v1/20260316_025018 --source-conditions control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2,anchor_layermatched_low_bridge_3 --baseline-groups baseline --top-k-per-group 2 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_V1"
+      ],
+      "updated_at": "2026-03-16T04:09:05Z"
+    },
+    {
+      "run_id": "20260316_092904",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_confirm_v1",
+      "experiment_id": "induced_persistence_anchor_layermatched_confirm_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_confirm_v1/20260316_092904/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_protocol_v1/20260316_025018 --source-conditions control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_CONFIRM_V1"
+      ],
+      "updated_at": "2026-03-16T09:45:29Z"
+    },
+    {
+      "run_id": "20260316_092017",
+      "queue_group": "mistral_anchor_layermatched_protocol_confirm_v1",
+      "experiment_id": "anchor_layermatched_protocol_confirm_v1",
+      "status": "completed",
+      "artifact_path": "results/anchor_layermatched_protocol_confirm_v1/20260316_092017/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/anchor_layermatched_protocol_v1.py --experiment-name anchor_layermatched_protocol_confirm_v1 --train-per-group 6 --test-per-group 6 --condition-names control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2,anchor_layermatched_low_bridge_3,anchor_meandiff_low_bridge_2 --generation-seeds 101 202 303 404 505 606 707 808",
+      "prompt_contract": "heldout_anchor_layermatched_protocol_confirm_v1",
+      "metric_path": "anchor_layermatched_protocol_v1 + classify_output + compute_rv",
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_PROTOCOL_CONFIRM_V1"
+      ],
+      "updated_at": "2026-03-16T10:15:39Z"
+    },
+    {
+      "run_id": "20260316_105106",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_confirm_v2",
+      "experiment_id": "induced_persistence_anchor_layermatched_confirm_v2",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_confirm_v2/20260316_105106/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_protocol_confirm_v1/20260316_092017 --source-conditions control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2,anchor_layermatched_low_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_CONFIRM_V2"
+      ],
+      "updated_at": "2026-03-16T11:09:15Z"
+    },
+    {
+      "run_id": "20260316_105309",
+      "queue_group": "mistral_anchor_layermatched_hybrid_protocol_v1",
+      "experiment_id": "anchor_layermatched_hybrid_protocol_v1",
+      "status": "completed",
+      "artifact_path": "results/anchor_layermatched_protocol_confirm_v1/20260316_105309/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/anchor_layermatched_protocol_v1.py --experiment-name anchor_layermatched_hybrid_protocol_v1 --train-per-group 6 --test-per-group 6 --condition-names control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2,anchor_layermatched_low_bridge_3,anchor_single_mlp_0p125_layermatched_low_bridge_2,anchor_single_mlp_0p125_layermatched_low_bridge_3 --generation-seeds 101 202 303 404 505 606 707 808",
+      "prompt_contract": "heldout_anchor_layermatched_protocol_confirm_v1",
+      "metric_path": "anchor_layermatched_protocol_v1 + classify_output + compute_rv",
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_HYBRID_PROTOCOL_V1"
+      ],
+      "updated_at": "2026-03-16T11:59:22Z"
+    },
+    {
+      "run_id": "20260316_105108",
+      "queue_group": "mistral_anchor_layermatched_hybrid_protocol_v1",
+      "experiment_id": "anchor_layermatched_hybrid_protocol_v1",
+      "status": "failed",
+      "artifact_path": "results/anchor_layermatched_hybrid_protocol_v1/20260316_105108/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/anchor_layermatched_protocol_v1.py --experiment-name anchor_layermatched_hybrid_protocol_v1 --train-per-group 6 --test-per-group 6 --condition-names control,anchor_bridge_2,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_2,anchor_layermatched_low_bridge_3,anchor_single_mlp_0p125_layermatched_low_bridge_2,anchor_single_mlp_0p125_layermatched_low_bridge_3 --generation-seeds 101 202 303 404 505 606 707 808",
+      "prompt_contract": "heldout_anchor_layermatched_hybrid_protocol_v1",
+      "metric_path": "anchor_layermatched_protocol_v1 + classify_output + compute_rv",
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_HYBRID_PROTOCOL_V1"
+      ],
+      "updated_at": "2026-03-16T12:27:01Z"
+    },
+    {
+      "run_id": "20260316_123050",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_hybrid_v1",
+      "experiment_id": "induced_persistence_anchor_layermatched_hybrid_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_hybrid_v1/20260316_123050/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_hybrid_protocol_v1/20260316_105309 --source-conditions control,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_3,anchor_single_mlp_0p125_layermatched_low_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_HYBRID_V1"
+      ],
+      "updated_at": "2026-03-16T12:45:11Z"
+    },
+    {
+      "run_id": "20260316_123052",
+      "queue_group": "mistral_induced_persistence_anchor_layermatched_long_v1",
+      "experiment_id": "induced_persistence_anchor_layermatched_long_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_anchor_layermatched_long_v1/20260316_123052/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_layermatched_protocol_confirm_v1/20260316_092017 --source-conditions control,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 24",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_ANCHOR_LAYERMATCHED_LONG_V1"
+      ],
+      "updated_at": "2026-03-16T12:53:30Z"
+    },
+    {
+      "run_id": "20260316_132334",
+      "queue_group": "mistral_induced_persistence_unselected_seed_v1",
+      "experiment_id": "induced_persistence_unselected_seed_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_unselected_seed_v1/20260316_132334/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_unselected_seed_v1.py --source-run-dir results/anchor_layermatched_protocol_confirm_v1/20260316_092017 --target-condition anchor_layermatched_low_bridge_3 --baseline-groups baseline --sessions-per-arm 40 --max-turns 15",
+      "prompt_contract": "induced_seeded_followup_fixed_schedule",
+      "metric_path": "fixed_turn_schedule + self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_UNSELECTED_SEED_V1"
+      ],
+      "updated_at": "2026-03-16T15:09:06Z"
+    },
+    {
+      "run_id": "20260316_132850",
+      "queue_group": "mistral_anchor_layermatched_bridge_alpha_sweep_v1",
+      "experiment_id": "anchor_layermatched_bridge_alpha_sweep_v1",
+      "status": "completed",
+      "artifact_path": "results/anchor_layermatched_bridge_alpha_sweep_v1/20260316_132850/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/anchor_layermatched_bridge_alpha_sweep_v1.py --bridge-alphas 1.0,1.5,2.0,2.25,2.5,2.75,3.0,3.5,4.0",
+      "prompt_contract": "anchor_layermatched_static_alpha_sweep",
+      "metric_path": "static induction benchmark + classify_output + compute_rv",
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_BRIDGE_ALPHA_SWEEP_V1"
+      ],
+      "updated_at": "2026-03-16T15:40:33Z"
+    },
+    {
+      "run_id": "20260317_091330",
+      "queue_group": "mistral_anchor_layermatched_minimality_ablation_v1",
+      "experiment_id": "anchor_layermatched_minimality_ablation_v1",
+      "status": "completed",
+      "artifact_path": "results/anchor_layermatched_minimality_ablation_v1/20260317_091330/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/anchor_layermatched_minimality_ablation_v1.py",
+      "prompt_contract": "anchor_layermatched_minimality_static_ablation",
+      "metric_path": "static induction benchmark + classify_output + compute_rv",
+      "claim_ids": [
+        "ANCHOR_LAYERMATCHED_MINIMALITY_ABLATION_V1"
+      ],
+      "updated_at": "2026-03-17T13:10:06Z"
+    },
+    {
+      "run_id": "20260317_132349",
+      "queue_group": "mistral_anchor_reduced_latebundle_confirm_v1",
+      "experiment_id": "anchor_reduced_latebundle_confirm_v1",
+      "status": "completed",
+      "artifact_path": "results/anchor_reduced_latebundle_confirm_v1/20260317_132349/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/anchor_layermatched_protocol_v1.py --experiment-name anchor_reduced_latebundle_confirm_v1 --train-per-group 6 --test-per-group 6 --condition-names control,anchor_single_mlp_0p125_bridge_3,anchor_single_mlp_0p125_layermatched_low_bridge_3,anchor_layermatched_low_bridge_3,anchor_drop_L25_vproj_bridge_3,anchor_late_only_bridge_3 --generation-seeds 101 202 303 404 505 606 707 808",
+      "prompt_contract": "heldout_anchor_layermatched_protocol_confirm_v1",
+      "metric_path": "anchor_layermatched_protocol_v1 + classify_output + compute_rv",
+      "claim_ids": [
+        "ANCHOR_REDUCED_LATEBUNDLE_CONFIRM_V1"
+      ],
+      "updated_at": "2026-03-17T14:17:41Z"
+    },
+    {
+      "run_id": "20260317_141750",
+      "queue_group": "mistral_induced_persistence_reduced_latebundle_confirm_v1",
+      "experiment_id": "induced_persistence_reduced_latebundle_confirm_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_reduced_latebundle_confirm_v1/20260317_141750/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_reduced_latebundle_confirm_v1/20260317_132349 --source-conditions control,anchor_single_mlp_0p125_bridge_3,anchor_layermatched_low_bridge_3,anchor_drop_L25_vproj_bridge_3,anchor_late_only_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_REDUCED_LATEBUNDLE_CONFIRM_V1"
+      ],
+      "updated_at": "2026-03-17T14:35:27Z"
+    },
+    {
+      "run_id": "20260317_150042",
+      "queue_group": "mistral_induced_persistence_reduced_latebundle_long_v1",
+      "experiment_id": "induced_persistence_reduced_latebundle_long_v1",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_reduced_latebundle_long_v1/20260317_150042/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_reduced_latebundle_confirm_v1/20260317_132349 --source-conditions control,anchor_drop_L25_vproj_bridge_3,anchor_late_only_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy median --max-turns 24",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_REDUCED_LATEBUNDLE_LONG_V1"
+      ],
+      "updated_at": "2026-03-17T15:20:43Z"
+    },
+    {
+      "run_id": "20260318_005703",
+      "queue_group": "mistral_staged_anchor_handoff_v1",
+      "experiment_id": "staged_anchor_handoff_v1",
+      "status": "completed",
+      "artifact_path": "results/staged_anchor_handoff_v1/20260318_005703/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/staged_anchor_handoff_v1.py --prompts-per-group 2 --generation-seeds 101 202 --max-turns 24 --max-new-tokens 128",
+      "prompt_contract": "staged_anchor_handoff",
+      "metric_path": "turn-level handoff rollout + classify_output + compute_rv",
+      "claim_ids": [
+        "STAGED_ANCHOR_HANDOFF_V1"
+      ],
+      "updated_at": "2026-03-18T02:47:22Z"
+    },
+    {
+      "run_id": "20260318_030401",
+      "queue_group": "mistral_staged_anchor_handoff_structured_v1",
+      "experiment_id": "staged_anchor_handoff_structured_v1",
+      "status": "completed",
+      "artifact_path": "results/staged_anchor_handoff_structured_v1/20260318_030401/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/staged_anchor_handoff_structured_v1.py --prompts-per-group 2 --generation-seeds 101 202 --max-turns 15 --max-new-tokens 128",
+      "prompt_contract": "staged_anchor_handoff_structured",
+      "metric_path": "turn-level structured handoff rollout + classify_output + compute_rv",
+      "claim_ids": [
+        "STAGED_ANCHOR_HANDOFF_STRUCTURED_V1"
+      ],
+      "updated_at": "2026-03-18T04:10:02Z"
+    },
+    {
+      "run_id": "20260318_042111",
+      "queue_group": "mistral_structured_text_carry_ablation_v1",
+      "experiment_id": "structured_text_carry_ablation_v1",
+      "status": "completed",
+      "artifact_path": "results/structured_text_carry_ablation_v1/20260318_042111/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/structured_text_carry_ablation_v1.py --source-run-dir results/anchor_layermatched_protocol_confirm_v1/20260316_092017 --target-condition anchor_layermatched_low_bridge_3 --control-condition control --top-k-per-group 8 --selection-strategy median --max-turns 15 --max-new-tokens 128",
+      "prompt_contract": "structured_text_carry_ablation",
+      "metric_path": "structured turn schedule + carry transform ablation + classify_output + compute_rv",
+      "claim_ids": [
+        "STRUCTURED_TEXT_CARRY_ABLATION_V1"
+      ],
+      "updated_at": "2026-03-18T09:07:52Z"
+    },
+    {
+      "run_id": "20260318_091609",
+      "queue_group": "mistral_third_person_technical_controls_v1",
+      "experiment_id": "third_person_technical_controls_v1",
+      "status": "completed",
+      "artifact_path": "results/third_person_technical_controls_v1/20260318_091609/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/third_person_technical_controls_v1.py --per-group 10 --window 16 --early-layer 5 --late-layer 27",
+      "prompt_contract": "third_person_technical_controls",
+      "metric_path": "prompt-pass compute_rv_with_components on recursive/baseline/pseudo/same-vocab/third-person-technical groups",
+      "claim_ids": [
+        "THIRD_PERSON_TECHNICAL_CONTROLS_V1"
+      ],
+      "updated_at": "2026-03-18T09:16:57Z"
+    },
+    {
+      "run_id": "20260318_092208",
+      "queue_group": "mistral_framing_factorization_promptpass_v1",
+      "experiment_id": "framing_factorization_promptpass_v1",
+      "status": "completed",
+      "artifact_path": "results/framing_factorization_promptpass_v1/20260318_092208/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/framing_factorization_promptpass_v1.py --per-group 10 --window 16 --early-layer 5 --late-layer 27",
+      "prompt_contract": "framing_factorization_promptpass",
+      "metric_path": "prompt-pass compute_rv_with_components on recursive imperative/declarative/third-person human/Mistral technical groups",
+      "claim_ids": [
+        "FRAMING_FACTORIZATION_PROMPTPASS_V1"
+      ],
+      "updated_at": "2026-03-18T09:23:06Z"
+    },
+    {
+      "run_id": "20260318_093519",
+      "queue_group": "mistral_caliper_matched_promptpass_v1",
+      "experiment_id": "mistral_caliper_matched_promptpass_v1",
+      "status": "completed",
+      "artifact_path": "results/mistral_caliper_matched_promptpass_v1/20260318_093519/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/mistral_caliper_matched_promptpass_v1.py --window 16 --early-layer 5 --late-layer 27 --recursive-groups L5_refined,L4_full,L3_deeper --baseline-groups baseline_creative,baseline_math,long_control",
+      "prompt_contract": "mistral_caliper_matched_promptpass",
+      "metric_path": "prompt-pass R_V + prompt perplexity + token-length caliper matching",
+      "claim_ids": [
+        "MISTRAL_CALIPER_MATCHED_PROMPTPASS_V1"
+      ],
+      "updated_at": "2026-03-18T09:36:53Z"
+    },
+    {
+      "run_id": "20260318_094202",
+      "queue_group": "mistral_soft_break_latebundle_v1",
+      "experiment_id": "mistral_soft_break_latebundle_v1",
+      "status": "completed",
+      "artifact_path": "results/mistral_soft_break_latebundle_v1/20260318_094202/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/mistral_soft_break_latebundle_v1.py --max-new-tokens 128 --temperature 0.7 --top-p 0.95",
+      "prompt_contract": "mistral_soft_break_latebundle",
+      "metric_path": "late-stack anti-steer on recursive and baseline prompts + BT_ART + MALFORMED",
+      "claim_ids": [
+        "MISTRAL_SOFT_BREAK_LATEBUNDLE_V1"
+      ],
+      "updated_at": "2026-03-18T10:18:22Z"
+    },
+    {
+      "run_id": "20260318_103918",
+      "queue_group": "mistral_soft_break_latebundle_sweep_v1",
+      "experiment_id": "mistral_soft_break_latebundle_sweep_v1",
+      "status": "completed",
+      "artifact_path": "results/mistral_soft_break_latebundle_sweep_v1/20260318_103918/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/mistral_soft_break_latebundle_sweep_v1.py --scales 0.25,0.5,0.75,1.0,1.25,1.5 --max-new-tokens 128 --temperature 0.7 --top-p 0.95",
+      "prompt_contract": "mistral_soft_break_latebundle_sweep",
+      "metric_path": "late-stack anti-steer sweep on recursive and baseline prompts + BT_ART + MALFORMED",
+      "claim_ids": [
+        "MISTRAL_SOFT_BREAK_LATEBUNDLE_SWEEP_V1"
+      ],
+      "updated_at": "2026-03-18T12:01:16Z"
+    },
+    {
+      "run_id": "20260319_094645-p0",
+      "queue_group": "llama3_8b_p0_canonical_v1",
+      "experiment_id": "llama3_8b_p0_canonical",
+      "status": "completed",
+      "artifact_path": "results/p0_canonical/meta-llama__Meta-Llama-3-8B_p0_result.json",
+      "model_family": "BASE_V01",
+      "model_name": "meta-llama/Meta-Llama-3-8B",
+      "config_path": "scripts/p0_canonical_pipeline.py --model meta-llama/Meta-Llama-3-8B --n 80 --device cuda",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "P0 canonical pipeline",
+      "claim_ids": [
+        "LLAMA3_8B_P0_CANONICAL_V1"
+      ],
+      "updated_at": "2026-03-19T09:48:51Z"
+    },
+    {
+      "run_id": "20260319_094645-path",
+      "queue_group": "llama3_8b_p0_canonical_v1",
+      "experiment_id": "llama3_8b_full_path_patching",
+      "status": "completed",
+      "artifact_path": "results/path_patching/path_patching_summary_20260319_095406.json",
+      "model_family": "BASE_V01",
+      "model_name": "meta-llama/Meta-Llama-3-8B",
+      "config_path": "scripts/full_path_patching.py --model meta-llama/Meta-Llama-3-8B --device cuda --n-prompts 20 --layers 0 2 4 6 8 10 12 14 16 18 20 22 24 26 27 28 30",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "full_path_patching",
+      "claim_ids": [
+        "LLAMA3_8B_P0_CANONICAL_V1"
+      ],
+      "updated_at": "2026-03-19T09:54:07Z"
+    },
+    {
+      "run_id": "20260319_095646-p0",
+      "queue_group": "gemma9b_p0_canonical_v1",
+      "experiment_id": "gemma9b_p0_canonical",
+      "status": "completed",
+      "artifact_path": "results/p0_canonical/google__gemma-2-9b_p0_result.json",
+      "model_family": "BASE_V01",
+      "model_name": "google/gemma-2-9b",
+      "config_path": "scripts/p0_canonical_pipeline.py --model google/gemma-2-9b --n 80 --device cuda",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "P0 canonical pipeline",
+      "claim_ids": [
+        "GEMMA9B_P0_CANONICAL_V1"
+      ],
+      "updated_at": "2026-03-19T09:59:39Z"
+    },
+    {
+      "run_id": "20260319_095646-path",
+      "queue_group": "gemma9b_p0_canonical_v1",
+      "experiment_id": "gemma9b_full_path_patching",
+      "status": "completed",
+      "artifact_path": "results/path_patching/path_patching_summary_20260319_100500.json",
+      "model_family": "BASE_V01",
+      "model_name": "google/gemma-2-9b",
+      "config_path": "scripts/full_path_patching.py --model google/gemma-2-9b --device cuda --n-prompts 20 --layers 0 3 6 9 12 15 18 21 24 27 30 33 35 38 41",
+      "prompt_contract": "mistral_hardening_v1/core_measurement",
+      "metric_path": "full_path_patching",
+      "claim_ids": [
+        "GEMMA9B_P0_CANONICAL_V1"
+      ],
+      "updated_at": "2026-03-19T10:05:01Z"
+    },
+    {
+      "run_id": "20260319_110753-bridge_low_trunc_confirmatory_n24",
+      "queue_group": "mistral_sufficiency_bundle_v2",
+      "experiment_id": "bridge_low_trunc_confirmatory_n24",
+      "status": "completed",
+      "artifact_path": "results/phase1_cross_architecture/runs/20260319_110757_multi_token_bridge_mistral_7b_bridge_low_trunc_confirmatory_n24/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "configs/canonical/multi_token_bridge_mistral_low_trunc_confirmatory_n24.json",
+      "prompt_contract": "heldout_causal_slice",
+      "metric_path": "src/metrics/behavioral_bridge.py + src/pipelines/canonical/multi_token_bridge.py",
+      "claim_ids": [
+        "BRIDGE_CONFIRMATORY_LOW_TRUNC"
+      ],
+      "updated_at": "2026-03-19T13:13:06Z"
+    },
+    {
+      "run_id": "20260319_144423",
+      "queue_group": "mistral_positive_broad_persistence_lowrv_v3",
+      "experiment_id": "positive_broad_persistence_lowrv_v3",
+      "status": "completed",
+      "artifact_path": "results/positive_broad_persistence_lowrv_v3/20260319_144423/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_positive_broad_confirm_v1/20260319_022454 --source-conditions control,anchor_single_mlp_0p125_layermatched_low_bridge_3,anchor_layermatched_low_bridge_3,anchor_drop_L25_vproj_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy low_rv --max-turns 12",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "POSITIVE_BROAD_PERSISTENCE_LOWRV_V3"
+      ],
+      "updated_at": "2026-03-19T14:59:30Z"
+    },
+    {
+      "run_id": "20260319_110753-bridge_true_longgen_n18",
+      "queue_group": "mistral_sufficiency_bundle_v2",
+      "experiment_id": "bridge_true_longgen_n18",
+      "status": "completed",
+      "artifact_path": "results/phase1_cross_architecture/runs/20260319_131310_multi_token_bridge_mistral_7b_bridge_true_longgen_n18/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "configs/canonical/multi_token_bridge_mistral_true_longgen_n18.json",
+      "prompt_contract": "heldout_causal_slice",
+      "metric_path": "src/metrics/behavioral_bridge.py + src/pipelines/canonical/multi_token_bridge.py",
+      "claim_ids": [
+        "BRIDGE_CONFIRMATORY_LONGGEN"
+      ],
+      "updated_at": "2026-03-19T15:57:27Z"
+    },
+    {
+      "run_id": "20260319_110753-self_feeding_loop_v2",
+      "queue_group": "mistral_sufficiency_bundle_v2",
+      "experiment_id": "self_feeding_loop_v2",
+      "status": "completed",
+      "artifact_path": "results/self_feeding_loop_bundle_v2/20260319_110753/self_feeding_summary_20260319_172423.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/self_feeding_loop.py --model mistralai/Mistral-7B-v0.1 --device cuda --max-turns 50 --max-new-tokens 128 --temperature 0.7 --rep-penalty 1.3 --n-sessions 8 --seed-start 20260313",
+      "prompt_contract": "internal_script_protocol",
+      "metric_path": "scripts/self_feeding_loop.py",
+      "claim_ids": [
+        "PERSISTENCE_SELF_FEED_V2"
+      ],
+      "updated_at": "2026-03-19T17:24:24Z"
+    },
+    {
+      "run_id": "20260320_125708-reduced_late_random_12",
+      "queue_group": "mistral_reduced_late_ladder_v1",
+      "experiment_id": "reduced_late_random_12",
+      "status": "completed",
+      "artifact_path": "results/mistral_reduced_late_ladder_v1_bundle/20260320_125708/reduced_late_random_12/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_reduced_latebundle_confirm_v1/20260317_132349 --source-conditions control,anchor_drop_L25_vproj_bridge_3,anchor_late_only_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy random --max-turns 12 --max-new-tokens 128 --temperature 0.7 --rep-penalty 1.35",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "REDUCED_LATE_RANDOM_12"
+      ],
+      "updated_at": "2026-03-20T13:40:57Z"
+    },
+    {
+      "run_id": "20260320_125708-reduced_late_lowrv_12",
+      "queue_group": "mistral_reduced_late_ladder_v1",
+      "experiment_id": "reduced_late_lowrv_12",
+      "status": "completed",
+      "artifact_path": "results/mistral_reduced_late_ladder_v1_bundle/20260320_125708/reduced_late_lowrv_12/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_reduced_latebundle_confirm_v1/20260317_132349 --source-conditions control,anchor_drop_L25_vproj_bridge_3,anchor_late_only_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy low_rv --max-turns 12 --max-new-tokens 128 --temperature 0.7 --rep-penalty 1.35",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "REDUCED_LATE_LOWRV_12"
+      ],
+      "updated_at": "2026-03-20T15:33:30Z"
+    },
+    {
+      "run_id": "20260320_125708-reduced_late_lowrv_24",
+      "queue_group": "mistral_reduced_late_ladder_v1",
+      "experiment_id": "reduced_late_lowrv_24",
+      "status": "completed",
+      "artifact_path": "results/mistral_reduced_late_ladder_v1_bundle/20260320_125708/reduced_late_lowrv_24/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_followup.py --source-run-dir results/anchor_reduced_latebundle_confirm_v1/20260317_132349 --source-conditions control,anchor_drop_L25_vproj_bridge_3,anchor_late_only_bridge_3 --baseline-groups baseline --top-k-per-group 8 --selection-strategy low_rv --max-turns 24 --max-new-tokens 128 --temperature 0.7 --rep-penalty 1.35",
+      "prompt_contract": "induced_seeded_followup",
+      "metric_path": "self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "REDUCED_LATE_LOWRV_24"
+      ],
+      "updated_at": "2026-03-20T16:59:45Z"
+    },
+    {
+      "run_id": "20260320_125708-reduced_late_structured_unselected",
+      "queue_group": "mistral_reduced_late_ladder_v1",
+      "experiment_id": "reduced_late_structured_unselected",
+      "status": "completed",
+      "artifact_path": "results/mistral_reduced_late_ladder_v1_bundle/20260320_125708/reduced_late_structured_unselected/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_unselected_seed_v1.py --source-run-dir results/anchor_reduced_latebundle_confirm_v1/20260317_132349 --target-condition anchor_late_only_bridge_3 --baseline-groups baseline --sessions-per-arm 40 --max-turns 15 --max-new-tokens 128 --temperature 0.7 --rep-penalty 1.35",
+      "prompt_contract": "induced_seeded_followup_fixed_schedule",
+      "metric_path": "fixed_turn_schedule + self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "REDUCED_LATE_STRUCTURED_UNSELECTED"
+      ],
+      "updated_at": "2026-03-21T00:02:12Z"
+    },
+    {
+      "run_id": "20260320_125708-sustained_gnani_v3_recover",
+      "queue_group": "mistral_reduced_late_ladder_v1",
+      "experiment_id": "sustained_gnani_v3_recover",
+      "status": "completed",
+      "artifact_path": "results/mistral_reduced_late_ladder_v1_bundle/20260320_125708/sustained_gnani_v3_recover/comparison_summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/sustained_gnani_v3.py --model mistralai/Mistral-7B-v0.1 --device cuda --max-turns 50 --max-new-tokens 128 --temperature 0.7 --rep-penalty 1.3 --n-recursive 8 --n-baseline 8 --seed-start 20260320",
+      "prompt_contract": "internal_script_protocol",
+      "metric_path": "scripts/sustained_gnani_v3.py",
+      "claim_ids": [
+        "SUSTAINED_GNANI_V3_RECOVER"
+      ],
+      "updated_at": "2026-03-21T00:57:48Z"
+    },
+    {
+      "run_id": "20260321_030414",
+      "queue_group": "mistral_induced_persistence_unselected_reduced_late_only_v2",
+      "experiment_id": "induced_persistence_unselected_reduced_late_only_v2",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_unselected_reduced_late_only_v2/20260321_030414/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_unselected_seed_v1.py --source-run-dir results/anchor_reduced_latebundle_confirm_v1/20260317_132349 --target-condition anchor_late_only_bridge_3 --baseline-groups baseline --sessions-per-arm 48 --max-turns 15",
+      "prompt_contract": "induced_seeded_followup_fixed_schedule",
+      "metric_path": "fixed_turn_schedule + self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_UNSELECTED_REDUCED_LATE_ONLY_V2"
+      ],
+      "updated_at": "2026-03-21T11:23:00Z"
+    },
+    {
+      "run_id": "20260321_112300",
+      "queue_group": "mistral_induced_persistence_unselected_reduced_drop_l25_v2",
+      "experiment_id": "induced_persistence_unselected_reduced_drop_l25_v2",
+      "status": "completed",
+      "artifact_path": "results/induced_persistence_unselected_reduced_drop_l25_v2/20260321_112300/summary.json",
+      "model_family": "BASE_V01",
+      "model_name": "mistralai/Mistral-7B-v0.1",
+      "config_path": "scripts/induced_persistence_unselected_seed_v1.py --source-run-dir results/anchor_reduced_latebundle_confirm_v1/20260317_132349 --target-condition anchor_drop_L25_vproj_bridge_3 --baseline-groups baseline --sessions-per-arm 48 --max-turns 15",
+      "prompt_contract": "induced_seeded_followup_fixed_schedule",
+      "metric_path": "fixed_turn_schedule + self_feed_continuation + classify_output + compute_rv_with_components",
+      "claim_ids": [
+        "INDUCED_PERSISTENCE_UNSELECTED_REDUCED_DROP_L25_V2"
+      ],
+      "updated_at": "2026-03-21T19:48:09Z"
     }
   ]
 }

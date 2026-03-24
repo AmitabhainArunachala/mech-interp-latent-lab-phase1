@@ -1,0 +1,58 @@
+{
+  "analyses": "cross_arch_sprint_local_analyses",
+  "date": "2026-03-19",
+  "partial_correlation": {
+    "Llama-3-8B": {
+      "residual_auroc": 0.702,
+      "partial_r": -0.601,
+      "partial_p": 1.12e-16,
+      "verdict": "strong_independent_signal"
+    },
+    "Gemma-2-9B": {
+      "residual_auroc": 0.668,
+      "partial_r": -0.47,
+      "partial_p": 5.91e-10,
+      "verdict": "significant_independent_signal"
+    },
+    "GPT-2_XL": {
+      "residual_auroc": 0.54,
+      "partial_r": -0.145,
+      "partial_p": 0.07,
+      "verdict": "weak_mostly_lexical"
+    },
+    "Qwen2.5-7B": {
+      "residual_auroc": 0.586,
+      "partial_r": -0.314,
+      "partial_p": 6.59e-05,
+      "verdict": "moderate"
+    }
+  },
+  "cross_model_correlation": {
+    "Llama_vs_Gemma": {
+      "r": 0.794,
+      "p": 4.44e-35,
+      "n": 156
+    },
+    "Llama_vs_Qwen": {
+      "r": 0.502,
+      "p": 2.49e-11,
+      "n": 156
+    },
+    "Gemma_vs_Qwen": {
+      "r": 0.605,
+      "p": 6.31e-17,
+      "n": 156
+    },
+    "Llama_vs_GPT2XL": {
+      "r": 0.41,
+      "p": 1.09e-07,
+      "n": 156
+    }
+  },
+  "base_vs_instruct": {
+    "base_g": -1.866,
+    "instruct_g": -1.418,
+    "delta_g": 0.448,
+    "interpretation": "RLHF weakens contraction by 0.45 SD"
+  }
+}

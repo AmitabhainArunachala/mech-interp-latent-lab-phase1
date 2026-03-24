@@ -1,0 +1,5 @@
+run_id=20260320_155645
+python_bin=/root/venvs/mistral-hardening/bin/python
+started_utc=2026-03-20T15:56:45Z
+
+>>> START structured_text_carry_reduced_late_only_v1 2026-03-20T15:56:45Z

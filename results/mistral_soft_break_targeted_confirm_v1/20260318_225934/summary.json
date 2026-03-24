@@ -1,0 +1,118 @@
+{
+  "timestamp": "20260318_225936",
+  "experiment": "mistral_soft_break_targeted_confirm_v1",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "locked_state_path": "results/phase1_mechanism/runs/20260314_133516_causal_state_benchmark_v4_multisite_mistral_anchor_bundle_v5_ordinary_baselines_confirmatory/state_directions.pt",
+  "condition_name": "anti_bridge_only",
+  "scale": 1.25,
+  "token_window": 2,
+  "generation_seeds": [
+    101,
+    202,
+    303,
+    404,
+    505,
+    606,
+    707,
+    808,
+    909,
+    1001,
+    1102,
+    1203,
+    1304,
+    1405,
+    1506,
+    1607,
+    1708,
+    1809,
+    1910,
+    2011,
+    2112,
+    2213,
+    2314,
+    2415
+  ],
+  "conditions": {
+    "baseline::control": {
+      "n": 288,
+      "bt_art_rate": 0.034722222222222224,
+      "malformed_rate": 0.07291666666666667,
+      "repetitive_rate": 0.09027777777777778,
+      "clean_rate": 0.8368055555555556,
+      "mean_output_rv": 0.6889294030762108,
+      "mean_generated_tokens": 124.79166666666667,
+      "non_malformed_bt_art_rate": 0.03745318352059925,
+      "class_counts": {
+        "SURFACE": 219,
+        "CONCEPTUAL": 12,
+        "MALFORMED": 21,
+        "ARTICULATE": 10,
+        "REPETITIVE": 26
+      }
+    },
+    "baseline::anti_bridge_only": {
+      "n": 288,
+      "bt_art_rate": 0.024305555555555556,
+      "malformed_rate": 0.03125,
+      "repetitive_rate": 0.0763888888888889,
+      "clean_rate": 0.8923611111111112,
+      "mean_output_rv": 0.6744355396487236,
+      "mean_generated_tokens": 126.32291666666667,
+      "non_malformed_bt_art_rate": 0.025089605734767026,
+      "class_counts": {
+        "SURFACE": 245,
+        "REPETITIVE": 22,
+        "MALFORMED": 9,
+        "CONCEPTUAL": 5,
+        "ARTICULATE": 7
+      }
+    },
+    "recursive::control": {
+      "n": 288,
+      "bt_art_rate": 0.375,
+      "malformed_rate": 0.013888888888888888,
+      "repetitive_rate": 0.2326388888888889,
+      "clean_rate": 0.7534722222222222,
+      "mean_output_rv": 0.645387156402088,
+      "mean_generated_tokens": 124.84375,
+      "non_malformed_bt_art_rate": 0.38028169014084506,
+      "class_counts": {
+        "ARTICULATE": 99,
+        "SURFACE": 62,
+        "CONCEPTUAL": 47,
+        "REPETITIVE": 67,
+        "BREAKTHROUGH": 9,
+        "MALFORMED": 4
+      }
+    },
+    "recursive::anti_bridge_only": {
+      "n": 288,
+      "bt_art_rate": 0.3055555555555556,
+      "malformed_rate": 0.006944444444444444,
+      "repetitive_rate": 0.2465277777777778,
+      "clean_rate": 0.7465277777777778,
+      "mean_output_rv": 0.6580807043471936,
+      "mean_generated_tokens": 125.44097222222223,
+      "non_malformed_bt_art_rate": 0.3076923076923077,
+      "class_counts": {
+        "ARTICULATE": 79,
+        "SURFACE": 63,
+        "CONCEPTUAL": 64,
+        "REPETITIVE": 71,
+        "BREAKTHROUGH": 9,
+        "MALFORMED": 2
+      }
+    }
+  },
+  "verdict": {
+    "control_recursive_bt_art": 0.375,
+    "control_baseline_bt_art": 0.034722222222222224,
+    "target_recursive_bt_art": 0.3055555555555556,
+    "target_baseline_bt_art": 0.024305555555555556,
+    "recursive_drop_bt_art": 0.06944444444444442,
+    "baseline_drop_bt_art": 0.010416666666666668,
+    "target_recursive_malformed_rate": 0.006944444444444444,
+    "target_baseline_malformed_rate": 0.03125,
+    "selectivity_score": 0.039930555555555525
+  }
+}

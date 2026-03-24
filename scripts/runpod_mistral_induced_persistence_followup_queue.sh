@@ -32,6 +32,7 @@ SOURCE_RUN_DIR="${SOURCE_RUN_DIR:-results/phase1_mechanism/runs/20260314_133516_
 SOURCE_CONDITIONS="${SOURCE_CONDITIONS:-control,bridge_only_3,anchor_bridge_3,anchor_early_mlp_0p125_bridge_3}"
 BASELINE_GROUPS="${BASELINE_GROUPS:-baseline_math,baseline_factual,baseline_creative}"
 TOP_K_PER_GROUP="${TOP_K_PER_GROUP:-2}"
+SELECTION_STRATEGY="${SELECTION_STRATEGY:-top}"
 MAX_TURNS="${MAX_TURNS:-12}"
 MAX_NEW_TOKENS="${MAX_NEW_TOKENS:-128}"
 TEMPERATURE="${TEMPERATURE:-0.7}"
@@ -105,6 +106,7 @@ run_step "$EXPERIMENT_ID" \
   --source-conditions "$SOURCE_CONDITIONS" \
   --baseline-groups "$BASELINE_GROUPS" \
   --top-k-per-group "$TOP_K_PER_GROUP" \
+  --selection-strategy "$SELECTION_STRATEGY" \
   --max-turns "$MAX_TURNS" \
   --max-new-tokens "$MAX_NEW_TOKENS" \
   --temperature "$TEMPERATURE" \
@@ -119,7 +121,7 @@ run_step "$EXPERIMENT_ID" \
   --artifact-path "${RUN_OUT#$REPO_ROOT/}/summary.json" \
   --model-family BASE_V01 \
   --model-name mistralai/Mistral-7B-v0.1 \
-  --config-path "scripts/induced_persistence_followup.py --source-run-dir $SOURCE_RUN_DIR --source-conditions $SOURCE_CONDITIONS --baseline-groups $BASELINE_GROUPS --top-k-per-group $TOP_K_PER_GROUP --max-turns $MAX_TURNS" \
+  --config-path "scripts/induced_persistence_followup.py --source-run-dir $SOURCE_RUN_DIR --source-conditions $SOURCE_CONDITIONS --baseline-groups $BASELINE_GROUPS --top-k-per-group $TOP_K_PER_GROUP --selection-strategy $SELECTION_STRATEGY --max-turns $MAX_TURNS" \
   --prompt-contract induced_seeded_followup \
   --metric-path "self_feed_continuation + classify_output + compute_rv_with_components" \
   --claim-id "$CLAIM_ID"

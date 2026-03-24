@@ -19,6 +19,7 @@ from src.utils.mistral_program import (  # noqa: E402
     PROGRAM_REGISTRY_PATH,
     POD_LEASES_PATH,
     RESULTS_INDEX_PATH,
+    effective_active_leases,
     lease_is_stale,
     load_pod_leases,
     load_program_registry,
@@ -30,6 +31,9 @@ from src.utils.mistral_program import (  # noqa: E402
 
 
 CLAIM_REGISTRY_PATH = PROJECT_ROOT / "docs" / "status" / "CLAIM_REGISTRY.md"
+STATUS_DIR = PROJECT_ROOT / "docs" / "status"
+CANONICAL_STATUS_BOARD_PATH = STATUS_DIR / "AMIROS_STATUS_BOARD.md"
+LEGACY_NIGHTLY_SUMMARY_PATH = STATUS_DIR / "NIGHTLY_SUMMARY.md"
 
 
 def fmt_ts() -> str:
@@ -75,9 +79,11 @@ def build_summary(*, sync_registry: bool) -> str:
         str(unit.get("status") or "unknown") for unit in queue_units
     )
 
-    active_leases = [
-        lease for lease in leases_payload.get("leases", []) if lease.get("status") == "running"
-    ]
+    active_leases = effective_active_leases(
+        registry_payload,
+        results_payload=results_payload,
+        leases_payload=leases_payload,
+    )
     stale_leases = [lease for lease in active_leases if lease_is_stale(lease)]
     missing_artifacts = [
         exp
@@ -95,7 +101,7 @@ def build_summary(*, sync_registry: bool) -> str:
     ]
 
     lines: list[str] = []
-    lines.append("# Nightly Summary")
+    lines.append("# AMIROS Status Board")
     lines.append("")
     lines.append(f"Generated: {fmt_ts()}")
     lines.append("")
@@ -184,17 +190,20 @@ def build_summary(*, sync_registry: bool) -> str:
         )
     else:
         lines.append("- No launch is ready; add the next approved queue unit or mark completed work in the registry.")
-    lines.append("- Harvest remote artifacts before updating paper-facing claims.")
+    if missing_artifacts:
+        lines.append("- Harvest remote artifacts before updating paper-facing claims.")
+    else:
+        lines.append("- Paper-facing claims can now cite local artifacts under `results/`.")
     lines.append("- Treat orphan or stale state as operational debt, not as evidence.")
 
     return "\n".join(lines) + "\n"
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Generate a Mistral nightly summary.")
+    parser = argparse.ArgumentParser(description="Generate the AMIROS status board.")
     parser.add_argument(
         "--out",
-        default=str(PROJECT_ROOT / "docs" / "status" / "NIGHTLY_SUMMARY.md"),
+        default=str(CANONICAL_STATUS_BOARD_PATH),
         help="Output markdown path",
     )
     parser.add_argument(
@@ -206,10 +215,12 @@ def main() -> int:
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(
-        build_summary(sync_registry=not args.no_sync_registry),
-        encoding="utf-8",
-    )
+    summary_text = build_summary(sync_registry=not args.no_sync_registry)
+    out_path.write_text(summary_text, encoding="utf-8")
+    if out_path.resolve() != CANONICAL_STATUS_BOARD_PATH.resolve():
+        CANONICAL_STATUS_BOARD_PATH.write_text(summary_text, encoding="utf-8")
+    if out_path.resolve() != LEGACY_NIGHTLY_SUMMARY_PATH.resolve():
+        LEGACY_NIGHTLY_SUMMARY_PATH.write_text(summary_text, encoding="utf-8")
     print(out_path)
     return 0
 

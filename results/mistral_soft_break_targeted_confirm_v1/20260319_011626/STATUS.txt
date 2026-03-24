@@ -1,0 +1,8 @@
+run_id=20260319_011626
+python_bin=/root/venvs/mistral-hardening/bin/python
+started_utc=2026-03-19T01:16:26Z
+
+>>> START mistral_soft_break_targeted_confirm_v1 2026-03-19T01:16:26Z
+>>> DONE  mistral_soft_break_targeted_confirm_v1 2026-03-19T02:09:20Z
+finished_utc=2026-03-19T02:09:20Z
+mistral_soft_break_targeted_confirm_v1_complete=1

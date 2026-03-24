@@ -1,0 +1,47 @@
+{
+  "artifacts": {
+    "best_candidate.json": {
+      "bytes": 7793,
+      "sha256": "b2fc1602adbcf39d7d58eae4711973a0f8d2cf03f590f0f0f4999362b2375661"
+    },
+    "candidate_scores.json": {
+      "bytes": 150729,
+      "sha256": "c8914f9329c530a9c327442f29c2c5f50bc726902484c49efc04d04b1d99c4e0"
+    },
+    "config.json": {
+      "bytes": 1529,
+      "sha256": "7bdef8139493bcf9eb9e85ff1dbe4cd58f2036251e0d751bd544d847009ab73c"
+    },
+    "hardware_info.json": {
+      "bytes": 266,
+      "sha256": "cd80432c5d0a7076ab8cf4abeddd9aae6154c9ea63d3b5990e7fca6455f63c44"
+    },
+    "metadata.json": {
+      "bytes": 243,
+      "sha256": "3f7b707db2faae3e9f4dab8fed14c4ac24d4e97cd93450716634ab72f539066c"
+    },
+    "prompt_bank_version.json": {
+      "bytes": 36,
+      "sha256": "80691d2771e0243909ff29e275e90a3b1d6275913d8f8a14e4f2fe61735646dc"
+    },
+    "prompt_bank_version.txt": {
+      "bytes": 16,
+      "sha256": "4533d32c6f48a8186b065462f9ac52fbcc7731a6bc2693516095b1fd44aa9518"
+    },
+    "report.md": {
+      "bytes": 172663,
+      "sha256": "07c8b2509d541f715076e1052d1d8cd98ac28ca1953413d0fd60879fca57e637"
+    },
+    "summary.json": {
+      "bytes": 172394,
+      "sha256": "b69c996099fb41ce9f8751fbc0f0d944bb670a8889e6409138dcb8c1ee50b0aa"
+    }
+  },
+  "created_at_utc": "2026-03-15T06:42:22Z",
+  "experiment": "causal_state_targeted_scan_v1",
+  "git_commit": "not_a_git_repo",
+  "model": "Qwen/Qwen2.5-7B",
+  "model_revision": "unspecified",
+  "prompt_bank_version": "2ac959a313614329",
+  "run_dir": "results/phase1_mechanism/runs/20260315_062302_causal_state_targeted_scan_v1_qwen_base_targeted_scan_v2_deterministic"
+}

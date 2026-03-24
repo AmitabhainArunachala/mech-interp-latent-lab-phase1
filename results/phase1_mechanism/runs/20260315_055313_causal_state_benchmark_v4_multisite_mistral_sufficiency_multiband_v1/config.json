@@ -1,0 +1,191 @@
+{
+  "experiment": "causal_state_benchmark_v4_multisite",
+  "model": {
+    "device": "cuda",
+    "name": "mistralai/Mistral-7B-v0.1"
+  },
+  "params": {
+    "baseline_groups": [
+      "baseline_math",
+      "baseline_factual",
+      "baseline_creative"
+    ],
+    "bootstrap_resamples": 5000,
+    "control_name": "control",
+    "control_prompt_mode": "baseline",
+    "do_sample": true,
+    "early_layer": 5,
+    "generation_seeds": [
+      101,
+      202,
+      303,
+      404,
+      505,
+      606,
+      707,
+      808
+    ],
+    "holdout_per_group": 4,
+    "late_layer": 27,
+    "max_length": 512,
+    "max_new_tokens": 128,
+    "max_source_per_label": 72,
+    "max_source_per_session": 8,
+    "min_text_chars": 80,
+    "multisite_interventions": [
+      {
+        "alphas": {},
+        "name": "control"
+      },
+      {
+        "alphas": {},
+        "name": "anchor_only",
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      },
+      {
+        "alphas": {
+          "bridge": 3.0
+        },
+        "name": "bridge_only_3"
+      },
+      {
+        "alphas": {
+          "L2_resid": 0.03,
+          "L3_resid": 0.03,
+          "L4_resid": 0.03,
+          "L5_resid": 0.03,
+          "bridge": 3.0
+        },
+        "name": "multiband_0p03_bridge_3"
+      },
+      {
+        "alphas": {
+          "L2_resid": 0.06,
+          "L3_resid": 0.06,
+          "L4_resid": 0.06,
+          "L5_resid": 0.06,
+          "bridge": 3.0
+        },
+        "name": "multiband_0p06_bridge_3"
+      },
+      {
+        "alphas": {
+          "L2_resid": 0.1,
+          "L3_resid": 0.1,
+          "L4_resid": 0.1,
+          "L5_resid": 0.1,
+          "bridge": 3.0
+        },
+        "name": "multiband_0p10_bridge_3"
+      },
+      {
+        "alphas": {
+          "L2_resid": 0.06,
+          "L3_resid": 0.06,
+          "L4_resid": 0.06,
+          "L5_resid": 0.06,
+          "bridge": 3.0
+        },
+        "name": "anchor_multiband_0p06_bridge_3",
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      },
+      {
+        "alphas": {
+          "L2_resid": 0.1,
+          "L3_resid": 0.1,
+          "L4_resid": 0.1,
+          "L5_resid": 0.1,
+          "bridge": 3.0
+        },
+        "name": "anchor_multiband_0p10_bridge_3",
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      },
+      {
+        "alphas": {
+          "L4_mlp": 0.125,
+          "bridge": 3.0
+        },
+        "name": "single_mlp_0p125_bridge_3"
+      },
+      {
+        "alphas": {
+          "L4_mlp": 0.125,
+          "bridge": 3.0
+        },
+        "name": "anchor_single_mlp_0p125_bridge_3",
+        "prompt_suffix_by_mode": {
+          "baseline": "\n\nStay with what is happening right now. Continue from the immediate process:"
+        }
+      }
+    ],
+    "negative_classes": [
+      "SURFACE",
+      "REPETITIVE"
+    ],
+    "negative_quantile": 0.65,
+    "negative_session_types": [
+      "baseline"
+    ],
+    "positive_classes": [
+      "BREAKTHROUGH",
+      "ARTICULATE"
+    ],
+    "positive_quantile": 0.35,
+    "positive_session_types": [
+      "recursive"
+    ],
+    "primary_prompt_mode": "recursive",
+    "prompt_bank_version": "2ac959a313614329",
+    "recursive_groups": [
+      "champions"
+    ],
+    "source_layers": {
+      "L2_resid": {
+        "component": "residual",
+        "layer": 2,
+        "window": 16
+      },
+      "L3_resid": {
+        "component": "residual",
+        "layer": 3,
+        "window": 16
+      },
+      "L4_mlp": {
+        "component": "mlp",
+        "layer": 4,
+        "token_window": 4,
+        "window": 4
+      },
+      "L4_resid": {
+        "component": "residual",
+        "layer": 4,
+        "window": 16
+      },
+      "L5_resid": {
+        "component": "residual",
+        "layer": 5,
+        "window": 16
+      },
+      "bridge": {
+        "component": "residual",
+        "layer": 25,
+        "window": 32
+      }
+    },
+    "source_sessions_dir": "results/sustained_gnani_v3_fixed",
+    "temperature": 0.7,
+    "top_p": 0.95
+  },
+  "results": {
+    "phase": "phase1_mechanism",
+    "root": "results"
+  },
+  "run_name": "mistral_sufficiency_multiband_v1",
+  "seed": 314
+}
